@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DatosReporte" targetNamespace="http://tempuri.org/DatosReporte.xsd" xmlns:mstns="http://tempuri.org/DatosReporte.xsd" xmlns="http://tempuri.org/DatosReporte.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DatosReporte" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DatosReporte" msprop:Generator_DataSetName="DatosReporte">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableTitular" msprop:Generator_UserTableName="DataTableTitular" msprop:Generator_RowDeletedName="DataTableTitularRowDeleted" msprop:Generator_RowChangedName="DataTableTitularRowChanged" msprop:Generator_RowClassName="DataTableTitularRow" msprop:Generator_RowChangingName="DataTableTitularRowChanging" msprop:Generator_RowEvArgName="DataTableTitularRowChangeEvent" msprop:Generator_RowEvHandlerName="DataTableTitularRowChangeEventHandler" msprop:Generator_TableClassName="DataTableTitularDataTable" msprop:Generator_TableVarName="tableDataTableTitular" msprop:Generator_RowDeletingName="DataTableTitularRowDeleting" msprop:Generator_TablePropName="DataTableTitular">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="APE_SOC" msprop:Generator_UserColumnName="APE_SOC" msprop:Generator_ColumnPropNameInRow="APE_SOC" msprop:Generator_ColumnVarNameInTable="columnAPE_SOC" msprop:Generator_ColumnPropNameInTable="APE_SOCColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NOM_SOC" msprop:Generator_UserColumnName="NOM_SOC" msprop:Generator_ColumnPropNameInRow="NOM_SOC" msprop:Generator_ColumnVarNameInTable="columnNOM_SOC" msprop:Generator_ColumnPropNameInTable="NOM_SOCColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NRO_SOC" msprop:Generator_UserColumnName="NRO_SOC" msprop:Generator_ColumnPropNameInRow="NRO_SOC" msprop:Generator_ColumnVarNameInTable="columnNRO_SOC" msprop:Generator_ColumnPropNameInTable="NRO_SOCColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NRO_DEP" msprop:Generator_UserColumnName="NRO_DEP" msprop:Generator_ColumnPropNameInRow="NRO_DEP" msprop:Generator_ColumnVarNameInTable="columnNRO_DEP" msprop:Generator_ColumnPropNameInTable="NRO_DEPColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="FOTO" msprop:Generator_UserColumnName="FOTO" msprop:Generator_ColumnVarNameInTable="columnFOTO" msprop:Generator_ColumnPropNameInRow="FOTO" msprop:Generator_ColumnPropNameInTable="FOTOColumn" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="F_NACIM" msprop:Generator_UserColumnName="F_NACIM" msprop:Generator_ColumnPropNameInRow="F_NACIM" msprop:Generator_ColumnVarNameInTable="columnF_NACIM" msprop:Generator_ColumnPropNameInTable="F_NACIMColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SEXO" msprop:Generator_UserColumnName="SEXO" msprop:Generator_ColumnPropNameInRow="SEXO" msprop:Generator_ColumnVarNameInTable="columnSEXO" msprop:Generator_ColumnPropNameInTable="SEXOColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CALL_PAR" msprop:Generator_UserColumnName="CALL_PAR" msprop:Generator_ColumnPropNameInRow="CALL_PAR" msprop:Generator_ColumnVarNameInTable="columnCALL_PAR" msprop:Generator_ColumnPropNameInTable="CALL_PARColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NRO_PAR" msprop:Generator_UserColumnName="NRO_PAR" msprop:Generator_ColumnPropNameInRow="NRO_PAR" msprop:Generator_ColumnVarNameInTable="columnNRO_PAR" msprop:Generator_ColumnPropNameInTable="NRO_PARColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PIS_PAR" msprop:Generator_UserColumnName="PIS_PAR" msprop:Generator_ColumnPropNameInRow="PIS_PAR" msprop:Generator_ColumnVarNameInTable="columnPIS_PAR" msprop:Generator_ColumnPropNameInTable="PIS_PARColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DPT_PAR" msprop:Generator_UserColumnName="DPT_PAR" msprop:Generator_ColumnPropNameInRow="DPT_PAR" msprop:Generator_ColumnVarNameInTable="columnDPT_PAR" msprop:Generator_ColumnPropNameInTable="DPT_PARColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CP_PART" msprop:Generator_UserColumnName="CP_PART" msprop:Generator_ColumnPropNameInRow="CP_PART" msprop:Generator_ColumnVarNameInTable="columnCP_PART" msprop:Generator_ColumnPropNameInTable="CP_PARTColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="LOC_PAR" msprop:Generator_UserColumnName="LOC_PAR" msprop:Generator_ColumnPropNameInRow="LOC_PAR" msprop:Generator_ColumnVarNameInTable="columnLOC_PAR" msprop:Generator_ColumnPropNameInTable="LOC_PARColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTableFamiliiar" msprop:Generator_UserTableName="DataTableFamiliiar" msprop:Generator_RowDeletedName="DataTableFamiliiarRowDeleted" msprop:Generator_RowChangedName="DataTableFamiliiarRowChanged" msprop:Generator_RowClassName="DataTableFamiliiarRow" msprop:Generator_RowChangingName="DataTableFamiliiarRowChanging" msprop:Generator_RowEvArgName="DataTableFamiliiarRowChangeEvent" msprop:Generator_RowEvHandlerName="DataTableFamiliiarRowChangeEventHandler" msprop:Generator_TableClassName="DataTableFamiliiarDataTable" msprop:Generator_TableVarName="tableDataTableFamiliiar" msprop:Generator_RowDeletingName="DataTableFamiliiarRowDeleting" msprop:Generator_TablePropName="DataTableFamiliiar">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="APE_FAM" msprop:Generator_UserColumnName="APE_FAM" msprop:Generator_ColumnPropNameInRow="APE_FAM" msprop:Generator_ColumnVarNameInTable="columnAPE_FAM" msprop:Generator_ColumnPropNameInTable="APE_FAMColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="NOM_FAM" msprop:Generator_UserColumnName="NOM_FAM" msprop:Generator_ColumnPropNameInRow="NOM_FAM" msprop:Generator_ColumnVarNameInTable="columnNOM_FAM" msprop:Generator_ColumnPropNameInTable="NOM_FAMColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="F_NACFAM" msprop:Generator_UserColumnName="F_NACFAM" msprop:Generator_ColumnPropNameInRow="F_NACFAM" msprop:Generator_ColumnVarNameInTable="columnF_NACFAM" msprop:Generator_ColumnPropNameInTable="F_NACFAMColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="BARRA" msprop:Generator_UserColumnName="BARRA" msprop:Generator_ColumnPropNameInRow="BARRA" msprop:Generator_ColumnVarNameInTable="columnBARRA" msprop:Generator_ColumnPropNameInTable="BARRAColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="SOCIOS">
+</Property><Property Name="Archivo de la solución" Value="F:\SOCIOS-13-05-2012\SOCIOS-13-05-2012\socios\SOCIOS.sln">
+</Property><Property Name="Date" Value="jueves, 25 de octubre de 2012">
+</Property><Property Name="Time" Value="10:10">
+</Property><Property Name="Número de registro" Value="2">
+</Property></Properties><Event ErrorLevel="4" Project="SOCIOS" Source="http://go.microsoft.com/fwlink/?LinkId=159919" Description="Advertencia: este proyecto requiere Crystal Reports, que ya no se incluye con Visual Studio. Haga clic aquí para obtener más información.">
+</Event><Event ErrorLevel="1" Project="SOCIOS" Source="SOCIOS.csproj" Description="La versión de destino de su proyecto es .NET Framework 2.0 ó 3.0. Si el proyecto utiliza ensamblados que requieren una versión más reciente de .NET Framework, no se podrá compilar. Puede cambiar la versión de .NET Framework haciendo clic en Propiedades en el menú del proyecto y seleccionando una nueva versión en el cuadro desplegable '.NET Framework'. (En Visual Basic, haga clic en el botón 'Opciones avanzadas del compilador...' en la pestaña Compilar).">
+</Event><Event ErrorLevel="0" Project="SOCIOS" Source="SOCIOS.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="SOCIOS" Source="SOCIOS.csproj" Description="Converted">
+</Event><Event ErrorLevel="1" Project="WebCam_Capture" Source="WebCam_Capture.csproj" Description="La versión de destino de su proyecto es .NET Framework 2.0 ó 3.0. Si el proyecto utiliza ensamblados que requieren una versión más reciente de .NET Framework, no se podrá compilar. Puede cambiar la versión de .NET Framework haciendo clic en Propiedades en el menú del proyecto y seleccionando una nueva versión en el cuadro desplegable '.NET Framework'. (En Visual Basic, haga clic en el botón 'Opciones avanzadas del compilador...' en la pestaña Compilar).">
+</Event><Event ErrorLevel="0" Project="WebCam_Capture" Source="WebCam_Capture.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="WebCam_Capture" Source="WebCam_Capture.csproj" Description="Converted">
+</Event><Event ErrorLevel="1" Project="Webcam_Test" Source="Webcam_Test\Webcam_Test.csproj" Description="La versión de destino de su proyecto es .NET Framework 2.0 ó 3.0. Si el proyecto utiliza ensamblados que requieren una versión más reciente de .NET Framework, no se podrá compilar. Puede cambiar la versión de .NET Framework haciendo clic en Propiedades en el menú del proyecto y seleccionando una nueva versión en el cuadro desplegable '.NET Framework'. (En Visual Basic, haga clic en el botón 'Opciones avanzadas del compilador...' en la pestaña Compilar).">
+</Event><Event ErrorLevel="0" Project="Webcam_Test" Source="Webcam_Test\Webcam_Test.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="Webcam_Test" Source="Webcam_Test\Webcam_Test.csproj" Description="Converted">
+</Event><Event ErrorLevel="4" Project="PruebaSociosFoto" Source="http://go.microsoft.com/fwlink/?LinkId=159919" Description="Advertencia: este proyecto requiere Crystal Reports, que ya no se incluye con Visual Studio. Haga clic aquí para obtener más información.">
+</Event><Event ErrorLevel="1" Project="PruebaSociosFoto" Source="PruebaSociosFoto\PruebaSociosFoto\PruebaSociosFoto.csproj" Description="La versión de destino de su proyecto es .NET Framework 2.0 ó 3.0. Si el proyecto utiliza ensamblados que requieren una versión más reciente de .NET Framework, no se podrá compilar. Puede cambiar la versión de .NET Framework haciendo clic en Propiedades en el menú del proyecto y seleccionando una nueva versión en el cuadro desplegable '.NET Framework'. (En Visual Basic, haga clic en el botón 'Opciones avanzadas del compilador...' en la pestaña Compilar).">
+</Event><Event ErrorLevel="0" Project="PruebaSociosFoto" Source="PruebaSociosFoto\PruebaSociosFoto\PruebaSociosFoto.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="PruebaSociosFoto" Source="PruebaSociosFoto\PruebaSociosFoto\PruebaSociosFoto.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="SOCIOS.sln" Description="La solución se convirtió correctamente">
+</Event><Event ErrorLevel="3" Project="" Source="SOCIOS.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="SOCIOS" Source="SOCIOS.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="WebCam_Capture" Source="WebCam_Capture.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="Webcam_Test" Source="Webcam_Test\Webcam_Test.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="PruebaSociosFoto" Source="PruebaSociosFoto\PruebaSociosFoto\PruebaSociosFoto.csproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event></UpgradeLog>

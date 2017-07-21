@@ -1,0 +1,1448 @@
+﻿using System;
+using System.IO;
+using System.Data;
+using System.Configuration;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Collections;
+using FirebirdSql.Data.Firebird;
+
+namespace SOCIOS
+{
+    class bo_Turismo :SOCIOS.bo
+    {
+
+        #region Pais_Localidad
+        public void Pais_I(string PAIS)
+        {
+            db resultado = new db();
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+
+
+            vector_contenidos.Add(0);
+            vector_tipos.Add("FbDbType.Char");
+            vector_nombres.Add("@PROVINCIAID");
+            
+            vector_contenidos.Add(PAIS);
+            vector_tipos.Add("FbDbType.Char");
+            vector_nombres.Add("@NOMBRE");
+
+          
+
+
+            string vprocedure = "PROVINCIA_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+        public void Localidad_Ins(int PROVINCIAID, string DESCRIPCION, string NOMBRE_CORTO)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(PROVINCIAID);
+            vector_contenidos.Add(DESCRIPCION);
+            vector_contenidos.Add(NOMBRE_CORTO);
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@PROVINCIAID");
+            vector_nombres.Add("@DESCRICION");
+            vector_nombres.Add("@DES_SHORT");
+
+
+            string vprocedure = "P_LOCALIDAD_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+
+        }
+
+        #endregion
+
+        #region Alojamiento
+
+        public void Registro_Persona_I(int Registro_ID, string NOMBRE, string APELLIDO, string DNI)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(0);
+            vector_contenidos.Add(Registro_ID);
+            vector_contenidos.Add(NOMBRE);
+            vector_contenidos.Add(APELLIDO);
+            vector_contenidos.Add(DNI);
+
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@REGISTRO_ALOJAMIENTO_ID");
+
+
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@APELLIDO");
+            vector_nombres.Add("@DNI");
+
+            string vprocedure = "P_ALOJAMIENTO_PERSONA_I";
+
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+        }
+        public void REGISTRO_ALOJAMIENTO_I(int Solicitud, DateTime Fecha, int NRO_SOC, int NRO_DEP, int NRO_ADH, int NRO_DEP_ADH, int BARRA, int HOTEL, int HABITACION, int PERSONAS, int BLOQUEADA)
+        {
+
+            int NroSocio = 0;
+            int NroDep = 0;
+            int NroAdh = 0;
+            int NroDepAdh = 0;
+
+
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+
+            vector_contenidos.Add(0);
+            vector_contenidos.Add(Solicitud);
+            vector_contenidos.Add(Fecha);
+            vector_contenidos.Add(NRO_SOC);
+            vector_contenidos.Add(NRO_DEP);
+            vector_contenidos.Add(NRO_ADH);
+            vector_contenidos.Add(NRO_DEP_ADH);
+            vector_contenidos.Add(BARRA);
+            vector_contenidos.Add(HOTEL);
+            vector_contenidos.Add(HABITACION);
+            vector_contenidos.Add(PERSONAS);
+            vector_contenidos.Add(BLOQUEADA);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@SOLICITUD_ID");
+            vector_nombres.Add("@FECHA");
+            vector_nombres.Add("@NRO_SOC");
+            vector_nombres.Add("@NRO_DEP");
+            vector_nombres.Add("@NRO_ADH");
+            vector_nombres.Add("@NRO_DEP_ADH");
+            vector_nombres.Add("@BARRA");
+            vector_nombres.Add("@HOTEL_ID");
+            vector_nombres.Add("@HABITACION_ID");
+            vector_nombres.Add("@PERSONAS");
+            vector_nombres.Add("@HAB_BLOQUEADA");
+            vector_nombres.Add("@USR_I");
+            vector_nombres.Add("@FECHA_I");
+
+            string vprocedure = "P_REGISTRO_ALOJAMIENTO_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+        public void SOLICITUD_ALOJAMIENTO_U(int ID, DateTime Desde, DateTime Hasta, int Tipo_Habitacion)
+        {
+
+            int NroSocio = 0;
+            int NroDep = 0;
+            int NroAdh = 0;
+            int NroDepAdh = 0;
+
+
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(Desde);
+            vector_contenidos.Add(Hasta);
+
+            vector_contenidos.Add(Tipo_Habitacion);
+
+
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            ArrayList vector_nombres = new ArrayList();
+
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@DESDE");
+            vector_nombres.Add("@HASTA");
+            vector_nombres.Add("@TIPO_HABITACION");
+            vector_nombres.Add("@USR_U");
+            vector_nombres.Add("@F_U");
+
+
+            string vprocedure = "P_SOLICITUD_INTERIOR_U";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+        public void SOLICITUD_ALOJAMIENTO_PROCESO(int ID)
+        {
+
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+            vector_contenidos.Add(1);
+            vector_contenidos.Add(System.DateTime.Now);
+
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@USR_U");
+            vector_nombres.Add("@F_U");
+            vector_nombres.Add("@PROCESADA");
+            vector_nombres.Add("@F_PROCESO");
+
+            string vprocedure = "P_PROCESAR_SOLICITUD_INTERIOR";
+
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+        }
+        public void SOLICITUD_ALOJAMIENTO_I(DateTime Desde, DateTime Hasta, string Tipo, string Dni, string Nombre, string Apellido, int pNro_Socio, int pNro_Dep, int Barra, int pNro_Adh, int pNro_Dep_Adh, int Plazas, int Tipo_Habitacion)
+        {
+
+            int NroSocio = 0;
+            int NroDep = 0;
+            int NroAdh = 0;
+            int NroDepAdh = 0;
+
+            NroSocio = pNro_Socio;
+            NroDep = pNro_Dep;
+            NroAdh = pNro_Adh;
+            NroDepAdh = pNro_Dep_Adh;
+
+
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+
+            vector_contenidos.Add(0);
+            vector_contenidos.Add(Desde);
+            vector_contenidos.Add(Hasta);
+
+            vector_contenidos.Add(Tipo);
+            vector_contenidos.Add(Dni);
+            vector_contenidos.Add(Nombre);
+            vector_contenidos.Add(Apellido);
+
+
+            vector_contenidos.Add(NroSocio);
+            vector_contenidos.Add(NroDep);
+            vector_contenidos.Add(NroAdh);
+            vector_contenidos.Add(NroDepAdh);
+
+
+            vector_contenidos.Add(Barra);
+
+            vector_contenidos.Add(Plazas);
+
+            vector_contenidos.Add(Tipo_Habitacion);
+
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+
+
+
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@DESDE");
+            vector_nombres.Add("@HASTA");
+
+            vector_nombres.Add("@TIPO");
+            vector_nombres.Add("@DNI");
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@APELLIDO");
+
+            vector_nombres.Add("@NRO_SOCIO");
+            vector_nombres.Add("@NRO_DEP");
+            vector_nombres.Add("@NRO_ADH");
+            vector_nombres.Add("@NRO_DEP_ADH");
+            vector_nombres.Add("@BARRA");
+            vector_nombres.Add("@PLAZAS");
+            vector_nombres.Add("@TIPO_HABITACION");
+            vector_nombres.Add("@USR_A");
+            vector_nombres.Add("@F_A");
+
+
+            string vprocedure = "P_SOLICITUD_INTERIOR_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        public void Tipo_Habitacion_Ins(string Tipo, int Camas)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(Tipo);
+            vector_contenidos.Add(Camas);
+
+            // vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+
+
+
+
+            vector_nombres.Add("@TIPO");
+
+            vector_nombres.Add("@CAMAS");
+
+            string vprocedure = "P_HOTEL_HABITACION_TIPO_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+        public void Tipo_Habitacion_Upd(int ID, string Tipo, int Camas)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(Tipo);
+            vector_contenidos.Add(Camas);
+
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+
+
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@TIPO");
+
+            vector_nombres.Add("@CAMAS");
+
+            string vprocedure = "P_HOTEL_HABITACION_TIPO_U";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+        //STORED CARGAR OCUPACION HOTEL
+        public void HABITACION_HOTEL_OCUPACION_I(DateTime Fecha, int Nro_Soc, int Nro_Dep, int Barra, string Nombre, string Apellido, string DNI, int Habitacion_ID, int Plazas, bool Bloqueada, int Solicitud, int Registro, int HOTEL)
+        {
+
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+
+            vector_contenidos.Add(Fecha);
+            vector_contenidos.Add(Nro_Soc);
+            vector_contenidos.Add(Nro_Dep);
+            vector_contenidos.Add(Barra);
+            vector_contenidos.Add(Nombre);
+            vector_contenidos.Add(Apellido);
+            vector_contenidos.Add(DNI);
+            vector_contenidos.Add(Habitacion_ID);
+            vector_contenidos.Add(Plazas);
+            vector_contenidos.Add(Bloqueada);
+            vector_contenidos.Add(Solicitud);
+            vector_contenidos.Add(Registro);
+            vector_contenidos.Add(HOTEL);
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@FECHA");
+            vector_nombres.Add("@NRO_SOC");
+            vector_nombres.Add("@NRO_DEP");
+            vector_nombres.Add("@BARRA");
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@APELLIDO");
+            vector_nombres.Add("@DNI");
+            vector_nombres.Add("@HABITACION_ID");
+            vector_nombres.Add("@PLAZAS");
+            vector_nombres.Add("@BLOQUEADA");
+            vector_nombres.Add("@SOLICITUD");
+            vector_nombres.Add("@REGISTRO_ID");
+            vector_nombres.Add("@HOTEL");
+
+            string vprocedure = "P_HABITACION_OCUPACION_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //STORED BORRAR OCUPACION HOTEL
+        public void HABITACION_HOTEL_OCUPACION_D(int ID)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("@ID");
+
+
+            string vprocedure = "P_HABITACION_OCUPACION_D";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        public void Hotel_Habitacion_Ins(int Hotel, int Habitacion, int PLaza, string Nombre)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+
+            vector_contenidos.Add(Hotel);
+            vector_contenidos.Add(PLaza);
+            vector_contenidos.Add(Habitacion);
+            vector_contenidos.Add(Nombre);
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@HOTEL_ID");
+            vector_nombres.Add("@PLAZA");
+            vector_nombres.Add("@HABITACION_ID");
+            vector_nombres.Add("@NOMBRE");
+
+            string vprocedure = "P_HOTEL_HABITACION_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+        }
+
+        public void Hotel_Habitacion_Baja(int ID)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+
+
+            string vprocedure = "P_HOTEL_HABITACION_D";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+        }
+        public void HOTEL_DIAS_INSERT(int NRO_SOCIO, int NRO_DEP, int TRAMITE, int ENFERMEDAD, int CIRUGIA)
+        {
+
+            db resultado = new db();
+
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(NRO_SOCIO);
+            vector_contenidos.Add(NRO_DEP);
+            vector_contenidos.Add(TRAMITE);
+            vector_contenidos.Add(ENFERMEDAD);
+            vector_contenidos.Add(CIRUGIA);
+
+
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@NRO_SOCIO");
+            vector_nombres.Add("@NRO_DEP");
+            vector_nombres.Add("@TRAMITE");
+            vector_nombres.Add("@ENFERMEDAD");
+            vector_nombres.Add("@CIRUGIA");
+            vector_nombres.Add("@U_ALTA");
+            vector_nombres.Add("@F_ALTA");
+
+            string vprocedure = "P_HOTEL_DIAS_ALOJAMIENTO_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+
+
+        #endregion
+
+        #region Voucher
+
+        public void Voucher_HOTEL_Insert(int BONO, DateTime Desde, DateTime Hasta, int Hotel, int Noches, int Pasajeros, int Regimen, int Habitacion, string Nro_Habitacion, string Tipo, string Motivo)
+        {
+
+            try
+            {
+                db resultado = new db();
+
+
+                ArrayList vector_contenidos = new ArrayList();
+                vector_contenidos.Add(BONO);
+                vector_contenidos.Add(Desde);
+                vector_contenidos.Add(Hasta);
+                vector_contenidos.Add(Hotel);
+                vector_contenidos.Add(Noches);
+                vector_contenidos.Add(Pasajeros);
+                vector_contenidos.Add(Regimen);
+                vector_contenidos.Add(Habitacion);
+                vector_contenidos.Add(System.DateTime.Now);
+                vector_contenidos.Add(VGlobales.vp_username);
+                vector_contenidos.Add(Nro_Habitacion);
+                vector_contenidos.Add(Tipo);
+                vector_contenidos.Add(Motivo);
+
+                ArrayList vector_tipos = new ArrayList();
+
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+
+
+                ArrayList vector_nombres = new ArrayList();
+
+                vector_nombres.Add("@BONO");
+                vector_nombres.Add("@DESDE");
+                vector_nombres.Add("@HASTA");
+                vector_nombres.Add("@HOTEL");
+                vector_nombres.Add("@NOCHES");
+                vector_nombres.Add("@PASAJEROS");
+
+                vector_nombres.Add("@REGIMEN");
+                vector_nombres.Add("@TIPO_HABITACION");
+
+                vector_nombres.Add("@F_ALTA");
+                vector_nombres.Add("@U_ALTA");
+                vector_nombres.Add("@NRO_HABITACION");
+                vector_nombres.Add("@TIPO");
+                vector_nombres.Add("@MOTIVO");
+                string vprocedure = "P_VOUCHER_BONO_HOTEL_I";
+
+                resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        
+        public void Voucher_HOTEL_Update(int ID, int BONO, DateTime Desde, DateTime Hasta, int Hotel, int Noches, int Pasajeros)
+        {
+
+            db resultado = new db();
+
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(BONO);
+            vector_contenidos.Add(Desde);
+            vector_contenidos.Add(Hasta);
+            vector_contenidos.Add(Hotel);
+            vector_contenidos.Add(Noches);
+            vector_contenidos.Add(Pasajeros);
+
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@BONO");
+            vector_nombres.Add("@DESDE");
+            vector_nombres.Add("@HASTA");
+            vector_nombres.Add("@HOTEL");
+            vector_nombres.Add("@NOCHES");
+            vector_nombres.Add("@PASAJEROS");
+            vector_nombres.Add("@REGIMEN");
+            vector_nombres.Add("@HABITACION");
+            vector_nombres.Add("@F_ALTA");
+            vector_nombres.Add("@U_ALTA");
+            string vprocedure = "P_VOUCHER_BONO_HOTEL_U";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+        
+
+
+        #endregion
+
+        #region Salida_Traslado_Regimen
+
+        public void Regimen_Ins(string DESCRIPCION)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(DESCRIPCION);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Varchar");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@U_ALTA");
+            vector_nombres.Add("@F_ALTA");
+
+
+            string vprocedure = "P_TURISMO_REGIMEN_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+        }
+        public void Regimen_Baja(int ID)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@U_BAJA");
+            vector_nombres.Add("@F_BAJA");
+
+
+            string vprocedure = "P_TURISMO_REGIMEN_U";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+        }
+        public void Traslado_Ins(string DESCRIPCION)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(DESCRIPCION);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Varchar");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@U_ALTA");
+            vector_nombres.Add("@F_ALTA");
+
+
+            string vprocedure = "P_TURISMO_TRASLADO_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+        }
+        public void Traslado_Baja(int ID)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@U_BAJA");
+            vector_nombres.Add("@F_BAJA");
+
+
+            string vprocedure = "P_TURISMO_TRASLADO_U";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+        }
+
+        public void Tipo_Salida_Ins(string DESCRIPCION)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(DESCRIPCION);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Varchar");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@U_ALTA");
+            vector_nombres.Add("@F_ALTA");
+
+
+            string vprocedure = "P_TURISMO_TIPO_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+        }
+        public void Tipo_Salida_Baja(int ID)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@U_BAJA");
+            vector_nombres.Add("@F_BAJA");
+
+
+            string vprocedure = "P_TIPO_U";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+        }
+        public void Salida_Ins(string Nombre, DateTime Fecha, bool Agotado, int ProvDesde, int ProvHasta, int Operador, int LocDesde, int LocHasta, decimal Socio, decimal Invitado, decimal Intercirculo, string Estadia, int Regimen, int Traslado, int Tipo, int Hotel, string HotelNombre, bool Destacado, string Moneda, string Observaciones, bool Diario)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(Nombre);
+            vector_contenidos.Add(Fecha);
+            vector_contenidos.Add(Agotado);
+            vector_contenidos.Add(ProvDesde);
+            vector_contenidos.Add(ProvHasta);
+            vector_contenidos.Add(Operador);
+            vector_contenidos.Add(LocDesde);
+            vector_contenidos.Add(LocHasta);
+            vector_contenidos.Add(Socio);
+            vector_contenidos.Add(Invitado);
+            vector_contenidos.Add(Intercirculo);
+            vector_contenidos.Add(Estadia);
+            vector_contenidos.Add(Regimen);
+            vector_contenidos.Add(Traslado);
+            vector_contenidos.Add(Tipo);
+            vector_contenidos.Add(Hotel);
+            vector_contenidos.Add(HotelNombre);
+            vector_contenidos.Add(Destacado);
+            vector_contenidos.Add(Moneda);
+
+
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+            vector_contenidos.Add(Observaciones);
+            vector_contenidos.Add(Diario);
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@FECHA");
+            vector_nombres.Add("@AGOTADO");
+            vector_nombres.Add("@PROV_DESDE");
+            vector_nombres.Add("@PROV_HASTA");
+            vector_nombres.Add("@OPERADOR");
+            vector_nombres.Add("@LOC_DESDE");
+            vector_nombres.Add("@LOC_HASTA");
+            vector_nombres.Add("@SOCIO");
+            vector_nombres.Add("@INVITADO");
+            vector_nombres.Add("@INTERCIRCULO");
+            vector_nombres.Add("@ESTADIA");
+            vector_nombres.Add("@REGIMEN");
+            vector_nombres.Add("@TRASLADO");
+            vector_nombres.Add("@TIPO");
+            vector_nombres.Add("@HOTEL");
+            vector_nombres.Add("@HOTEL_NOMBRE");
+            vector_nombres.Add("@DESTACADO");
+            vector_nombres.Add("@MONEDA");
+            vector_nombres.Add("@U_ALTA");
+            vector_nombres.Add("@F_ALTA");
+            vector_nombres.Add("@OBSERVACIONES");
+            vector_nombres.Add("@DIARIA");
+
+            string vprocedure = "P_TURISMO_SALIDA_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+        }
+
+        public void Salida_Upd(int ID, string Nombre, DateTime Fecha, bool Agotado, int ProvDesde, int ProvHasta, int Operador, int LocDesde, int LocHasta, decimal Socio, decimal Invitado, decimal Intercirculo, string Estadia, int Regimen, int Traslado, int Tipo, int Hotel, string HotelNombre, bool Destacado, string Moneda, string Observaciones, bool Diaria)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(Nombre);
+            vector_contenidos.Add(Fecha);
+            vector_contenidos.Add(Agotado);
+            vector_contenidos.Add(ProvDesde);
+            vector_contenidos.Add(ProvHasta);
+            vector_contenidos.Add(Operador);
+            vector_contenidos.Add(LocDesde);
+            vector_contenidos.Add(LocHasta);
+            vector_contenidos.Add(Socio);
+            vector_contenidos.Add(Invitado);
+            vector_contenidos.Add(Intercirculo);
+            vector_contenidos.Add(Estadia);
+            vector_contenidos.Add(Regimen);
+            vector_contenidos.Add(Traslado);
+            vector_contenidos.Add(Tipo);
+            vector_contenidos.Add(Hotel);
+            vector_contenidos.Add(HotelNombre);
+            vector_contenidos.Add(Destacado);
+            vector_contenidos.Add(Moneda);
+            vector_contenidos.Add(Observaciones);
+            vector_contenidos.Add(Diaria);
+
+
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@FECHA");
+            vector_nombres.Add("@AGOTADO");
+            vector_nombres.Add("@PROV_DESDE");
+            vector_nombres.Add("@PROV_HASTA");
+            vector_nombres.Add("@OPERADOR");
+            vector_nombres.Add("@LOC_DESDE");
+            vector_nombres.Add("@LOC_HASTA");
+            vector_nombres.Add("@SOCIO");
+            vector_nombres.Add("@INVITADO");
+            vector_nombres.Add("@INTERCIRCULO");
+            vector_nombres.Add("@ESTADIA");
+            vector_nombres.Add("@REGIMEN");
+            vector_nombres.Add("@TRASLADO");
+            vector_nombres.Add("@TIPO");
+            vector_nombres.Add("@HOTEL");
+            vector_nombres.Add("@HOTEL_NOMBRE");
+            vector_nombres.Add("@DESTACADO");
+            vector_nombres.Add("@MONEDA");
+
+            vector_nombres.Add("@OBSERVACIONES");
+            vector_nombres.Add("@DIARIA");
+            string vprocedure = "P_TURISMO_SALIDA_U";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+        }
+
+
+        public void Salida_Baja(int ID)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@U_BAJA");
+            vector_nombres.Add("@F_BAJA");
+
+
+            string vprocedure = "P_TURISMO_SALIDA_B";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+        }
+
+        #region Hoteles
+        // Insert Hoteles- Con Modificacion 25/01/2016
+        public void InsertHotel(string Nombre, int Provincia, int Localidad, string Domicilio, string Telefono, int Estrellas, string Obs, string Cuit, string Responsable, string Email_ope, string Email_Reservas, string Email_adm, string Email_Info, string CheckIn, string CheckOut, DateTime Fecha, string User, int Propio, int Social, decimal Late, int NroCuenta)
+        {
+            db resultado = new db();
+            SOCIOS.maxid maximo = new maxid();
+            this.nuevaEspecialidad("HOTELES", Nombre, 0, 0);
+            int ID = Int32.Parse(maximo.m("ID", "SECTACT"));
+
+
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(Nombre);
+            vector_contenidos.Add(Provincia);
+            vector_contenidos.Add(Localidad);
+            vector_contenidos.Add(Domicilio);
+            vector_contenidos.Add(Telefono);
+            vector_contenidos.Add(Estrellas);
+            vector_contenidos.Add(Obs);
+            vector_contenidos.Add(Cuit);
+            vector_contenidos.Add(Responsable);
+            vector_contenidos.Add(Fecha);
+            vector_contenidos.Add(User);
+            vector_contenidos.Add(Email_ope);
+            vector_contenidos.Add(Email_Reservas);
+            vector_contenidos.Add(Email_adm);
+            vector_contenidos.Add(Email_Info);
+            vector_contenidos.Add(CheckIn);
+            vector_contenidos.Add(CheckOut);
+            vector_contenidos.Add(Propio);
+            vector_contenidos.Add(Social);
+            vector_contenidos.Add(Late);
+            vector_contenidos.Add(NroCuenta);
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Integer");
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@PROVINCIAID");
+            vector_nombres.Add("@LOCALIDADID");
+            vector_nombres.Add("@DOMICILIO");
+            vector_nombres.Add("@TELEFONO");
+            vector_nombres.Add("@ESTRELLAS");
+            vector_nombres.Add("@OBSERVACIONES");
+            vector_nombres.Add("@CUIT");
+            vector_nombres.Add("@RESPONSABLE");
+            vector_nombres.Add("@FECHA");
+            vector_nombres.Add("@USR");
+
+
+            vector_nombres.Add("@EMAIL_OPERACION");
+            vector_nombres.Add("@EMAIL_RESERVAS");
+            vector_nombres.Add("@EMAIL_ADM");
+            vector_nombres.Add("@EMAIL_INFO");
+            vector_nombres.Add("@CHECKIN");
+            vector_nombres.Add("@CHECKOUT");
+            vector_nombres.Add("@PROPIO");
+            vector_nombres.Add("@SOCIAL");
+            vector_nombres.Add("@LATE_CHK");
+            vector_nombres.Add("@NRO_CUENTA");
+            string vprocedure = "P_HOTEL_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+        }
+        //Update Hoteles
+
+        public void UpdateHotel(int ID, string Nombre, int Provincia, int Localidad, string Domicilio, string Telefono, int Estrellas, string Obs, string Cuit, string Responsable, string Email_ope, string Email_Reservas, string Email_adm, string Email_Info, string CheckIn, string CheckOut, DateTime Fecha, string User, int Propio, int Social, decimal Late, int NroCuenta)
+        {
+            db resultado = new db();
+
+
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(Nombre);
+            vector_contenidos.Add(Provincia);
+            vector_contenidos.Add(Localidad);
+            vector_contenidos.Add(Domicilio);
+            vector_contenidos.Add(Telefono);
+            vector_contenidos.Add(Estrellas);
+            vector_contenidos.Add(Obs);
+            vector_contenidos.Add(Cuit);
+            vector_contenidos.Add(Responsable);
+            vector_contenidos.Add(Fecha);
+            vector_contenidos.Add(User);
+            vector_contenidos.Add(Email_ope);
+            vector_contenidos.Add(Email_Reservas);
+            vector_contenidos.Add(Email_adm);
+            vector_contenidos.Add(Email_Info);
+            vector_contenidos.Add(CheckIn);
+            vector_contenidos.Add(CheckOut);
+            vector_contenidos.Add(Propio);
+            vector_contenidos.Add(Social);
+            vector_contenidos.Add(Late);
+            vector_contenidos.Add(NroCuenta);
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Integer");
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@NOMBRE");
+            vector_nombres.Add("@PROVINCIAID");
+            vector_nombres.Add("@LOCALIDADID");
+            vector_nombres.Add("@DOMICILIO");
+            vector_nombres.Add("@TELEFONO");
+            vector_nombres.Add("@ESTRELLAS");
+            vector_nombres.Add("@OBSERVACIONES");
+            vector_nombres.Add("@CUIT");
+            vector_nombres.Add("@RESPONSABLE");
+            vector_nombres.Add("@FECHA");
+            vector_nombres.Add("@USR");
+            vector_nombres.Add("@EMAIL_OPERACION");
+            vector_nombres.Add("@EMAIL_RESERVAS");
+            vector_nombres.Add("@EMAIL_ADM");
+            vector_nombres.Add("@EMAIL_INFO");
+            vector_nombres.Add("@CHECKIN");
+            vector_nombres.Add("@CHECKOUT");
+            vector_nombres.Add("@PROPIO");
+            vector_nombres.Add("@SOCIAL");
+            vector_nombres.Add("@LATE_CHK");
+            vector_nombres.Add("@NRO_CUENTA");
+            string vprocedure = "P_HOTEL_U";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+        }
+        //Delete Hoteles
+
+        public void DeleteHotel(int ID)
+        {
+
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(System.DateTime.Now);
+            vector_contenidos.Add(VGlobales.vp_username);
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+
+
+            vector_nombres.Add("@ID");
+
+            vector_nombres.Add("@F_BAJA");
+            vector_nombres.Add("@U_BAJA");
+            string vprocedure = "P_HOTEL_B";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+        #endregion
+
+
+        #endregion
+
+    }
+}

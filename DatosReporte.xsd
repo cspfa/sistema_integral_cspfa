@@ -1,0 +1,134 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableTitular">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_TITULAR" type="xs:int" minOccurs="0" />
+              <xs:element name="AAR" type="xs:int" minOccurs="0" />
+              <xs:element name="ACRJP1" type="xs:int" minOccurs="0" />
+              <xs:element name="ACRJP2" type="xs:int" minOccurs="0" />
+              <xs:element name="ACRJP3" type="xs:int" minOccurs="0" />
+              <xs:element name="PAR" type="xs:int" minOccurs="0" />
+              <xs:element name="PCRJP1" type="xs:int" minOccurs="0" />
+              <xs:element name="PCRJP2" type="xs:int" minOccurs="0" />
+              <xs:element name="PCRJP3" type="xs:int" minOccurs="0" />
+              <xs:element name="APE_SOC" type="xs:string" minOccurs="0" />
+              <xs:element name="NOM_SOC" type="xs:string" minOccurs="0" />
+              <xs:element name="NRO_SOC" type="xs:int" minOccurs="0" />
+              <xs:element name="NRO_DEP" type="xs:int" minOccurs="0" />
+              <xs:element name="JERARQ" type="xs:string" minOccurs="0" />
+              <xs:element name="LEG_PER" type="xs:int" minOccurs="0" />
+              <xs:element name="DESTINO" type="xs:string" minOccurs="0" />
+              <xs:element name="F_ALTPO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="F_ALTCI" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TIP_DOC" type="xs:string" minOccurs="0" />
+              <xs:element name="NUM_DOC" type="xs:int" minOccurs="0" />
+              <xs:element name="NUM_CED" type="xs:int" minOccurs="0" />
+              <xs:element name="F_NACIM" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="CALL_PAR" type="xs:string" minOccurs="0" />
+              <xs:element name="NRO_PAR" type="xs:string" minOccurs="0" />
+              <xs:element name="PIS_PAR" type="xs:string" minOccurs="0" />
+              <xs:element name="DPT_PAR" type="xs:string" minOccurs="0" />
+              <xs:element name="CP_PART" type="xs:string" minOccurs="0" />
+              <xs:element name="LOC_PAR" type="xs:string" minOccurs="0" />
+              <xs:element name="PRO_PAR" type="xs:string" minOccurs="0" />
+              <xs:element name="CAR_TE1" type="xs:int" minOccurs="0" />
+              <xs:element name="NUM_TE1" type="xs:string" minOccurs="0" />
+              <xs:element name="CAR_TE2" type="xs:int" minOccurs="0" />
+              <xs:element name="NUM_TE2" type="xs:string" minOccurs="0" />
+              <xs:element name="F_BAJPO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="M_BAJPO" type="xs:string" minOccurs="0" />
+              <xs:element name="F_BAJCI" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="M_BAJCI" type="xs:string" minOccurs="0" />
+              <xs:element name="F_CESDE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="COD_DTO" type="xs:string" minOccurs="0" />
+              <xs:element name="CAT_SOC" type="xs:string" minOccurs="0" />
+              <xs:element name="F_CACAT" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BEAUCHEF" type="xs:string" minOccurs="0" />
+              <xs:element name="AVAL" type="xs:string" minOccurs="0" />
+              <xs:element name="F_ALTRE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="F_ALTVI" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="GIMNASIO" type="xs:string" minOccurs="0" />
+              <xs:element name="F_ULTMO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EMPLEAD" type="xs:string" minOccurs="0" />
+              <xs:element name="F_CARN" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TIP_CAR" type="xs:string" minOccurs="0" />
+              <xs:element name="ORD_DIA" type="xs:int" minOccurs="0" />
+              <xs:element name="ORD_FEC" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DAT_DOM" type="xs:string" minOccurs="0" />
+              <xs:element name="CAM_JER" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SEX" type="xs:string" minOccurs="0" />
+              <xs:element name="NJERARQ" type="xs:string" minOccurs="0" />
+              <xs:element name="NDESTINO" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_3" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_4" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_5" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_6" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_7" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_8" type="xs:string" minOccurs="0" />
+              <xs:element name="COD_9" type="xs:string" minOccurs="0" />
+              <xs:element name="ESCALA" type="xs:string" minOccurs="0" />
+              <xs:element name="CC" type="xs:int" minOccurs="0" />
+              <xs:element name="IMPORTE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="A_DTO" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SECUENCIA" type="xs:int" minOccurs="0" />
+              <xs:element name="CAR_FAX" type="xs:int" minOccurs="0" />
+              <xs:element name="NUM_FAX" type="xs:string" minOccurs="0" />
+              <xs:element name="USR_ALTA" type="xs:string" minOccurs="0" />
+              <xs:element name="FE_ALTA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USR_MOD" type="xs:string" minOccurs="0" />
+              <xs:element name="FE_MOD" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USR_BAJA" type="xs:string" minOccurs="0" />
+              <xs:element name="FE_BAJA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="NCOD_DTO" type="xs:string" minOccurs="0" />
+              <xs:element name="E_MAIL" type="xs:string" minOccurs="0" />
+              <xs:element name="SUSCRIP" type="xs:string" minOccurs="0" />
+              <xs:element name="ORD_DIA2" type="xs:int" minOccurs="0" />
+              <xs:element name="ORD_FEC2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ORD_DIA3" type="xs:int" minOccurs="0" />
+              <xs:element name="ORD_FEC3" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ORIGEN_ALTA" type="xs:string" minOccurs="0" />
+              <xs:element name="FOTO" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTableFamiliar">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID_TITULAR" type="xs:int" minOccurs="0" />
+              <xs:element name="NRO_SOC" type="xs:int" minOccurs="0" />
+              <xs:element name="NRO_DEP" type="xs:int" minOccurs="0" />
+              <xs:element name="BARRA" type="xs:int" minOccurs="0" />
+              <xs:element name="CAT_SOC" type="xs:string" minOccurs="0" />
+              <xs:element name="APE_FAM" type="xs:string" minOccurs="0" />
+              <xs:element name="NOM_FAM" type="xs:string" minOccurs="0" />
+              <xs:element name="F_CARFAM" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TIP_CARN" type="xs:string" minOccurs="0" />
+              <xs:element name="F_NACFAM" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TIP_DOCF" type="xs:string" minOccurs="0" />
+              <xs:element name="NUM_DOCF" type="xs:int" minOccurs="0" />
+              <xs:element name="NUM_CEDF" type="xs:int" minOccurs="0" />
+              <xs:element name="CAS_ESP" type="xs:string" minOccurs="0" />
+              <xs:element name="F_UMOVFA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="EMPLEAD" type="xs:string" minOccurs="0" />
+              <xs:element name="F_BAJA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="M_BAJA" type="xs:string" minOccurs="0" />
+              <xs:element name="F_ALTA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="SEXO" type="xs:string" minOccurs="0" />
+              <xs:element name="GIMNASIO" type="xs:string" minOccurs="0" />
+              <xs:element name="USR_ALTA" type="xs:string" minOccurs="0" />
+              <xs:element name="FE_ALTA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USR_MOD" type="xs:string" minOccurs="0" />
+              <xs:element name="FE_MOD" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="FE_BAJA" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="USR_BAJA" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

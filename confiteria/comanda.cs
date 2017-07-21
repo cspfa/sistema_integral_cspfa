@@ -1,0 +1,884 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Linq;
+using System.Windows.Forms;
+using System.IO;
+using FirebirdSql.Data.Client;
+using FirebirdSql.Data.FirebirdClient;
+
+namespace SOCIOS.confiteria
+{
+    public partial class comanda : Form
+    {
+        bo dlog = new bo();
+
+        public comanda(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA, int GROUP, int MESA, int ID_COMANDA, int PERSONAS, int PAGO)
+        {
+            InitializeComponent();
+            this.ControlBox = false;
+            llenarGrillaSocio(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA);
+            comboSectAct("MENU CONFITERIA");
+            comboProfesionales(cbSectAct.SelectedValue.ToString());
+            tbMesa.Text = MESA.ToString();
+            GRUPO = GROUP;
+            comboMozos();
+            comboFormasDePago();
+            mostrarArancel();
+            generarListaItems();
+            comboTipoDeComanda();
+
+            if (ID_COMANDA != 0)
+            {
+                tbIdComanda.Text = ID_COMANDA.ToString();
+                tbPersonas.Text = PERSONAS.ToString();
+                cbFormaDePago.SelectedValue = PAGO;
+                buscarItems(ID_COMANDA, "SI", "X");
+                decimal TOTAL = sumarTotal();
+                tbTotal.Text = TOTAL.ToString().Trim();
+                CANTIDAD_ITEMS = dgItems.Rows.Count;
+                string[] DATOS_COMANDA = obtenerDatosComanda(ID_COMANDA);
+                tbContralor.Text = DATOS_COMANDA[0].Trim();
+                cbMozo.SelectedValue = DATOS_COMANDA[1];
+                tbComandaBorrador.Text = DATOS_COMANDA[2].Trim();
+                cbTipoDeComanda.SelectedValue = DATOS_COMANDA[3];
+
+                if (DATOS_COMANDA[3] == "2")
+                {
+                    cambiarDescuento(int.Parse(DATOS_COMANDA[3]));
+                    cbFormaDePago.SelectedValue = 1;
+                    cbFormaDePago.Enabled = false;
+                    resetNroContralor();
+                }
+            }
+        }
+
+        private DataSet COMANDA { get; set; }
+        private DataSet SOLICITUD { get; set; }
+        private DataSet ITEMS { get; set; }
+        private int GRUPO { get; set; }
+        private int CANTIDAD_ITEMS { get; set; }
+        List<ITEMS_CONFITERIA> LISTA_ITEMS;
+        List<ITEMS_CONFITERIA_FILTRO> LISTA_ITEMS_FILTRO;
+        
+        private string[] obtenerDatosComanda(int ID_COMANDA)
+        {
+            string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            string[] RETURN;
+
+            if (foundRows.Length > 0)
+            {
+                RETURN = new string[] { foundRows[0][0].ToString(), foundRows[0][1].ToString(), foundRows[0][2].ToString(), foundRows[0][3].ToString() };
+            }
+            else
+            {
+                RETURN = new string[] { "X", "X", "X", "X" };
+            }
+
+            return RETURN;
+        }
+
+        private void buscarItems(int ID_COMANDA, string MOSTRAR, string IMPRESO)
+        {
+            try
+            {
+                conString conString = new conString();
+                string connectionString = conString.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    string QUERY = "";
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+
+                    if (IMPRESO == "NO")
+                        QUERY = "SELECT C.ITEM, C.CANTIDAD, C.TIPO, C.VALOR, C.SUBTOTAL, C.ITEM_DETALLE, C.TIPO_DETALLE, C.ID, C.IMPRESO, C.OBSERVACIONES FROM CONFITERIA_COMANDA_ITEM C WHERE IMPRESO = 'NO' AND C.COMANDA = " + ID_COMANDA + " ORDER BY C.ID ASC;";
+                    else
+                        QUERY = "SELECT C.ITEM, C.CANTIDAD, C.TIPO, C.VALOR, C.SUBTOTAL, C.ITEM_DETALLE, C.TIPO_DETALLE, C.ID, C.IMPRESO, C.OBSERVACIONES FROM CONFITERIA_COMANDA_ITEM C WHERE C.COMANDA = " + ID_COMANDA + " ORDER BY C.ID ASC;";
+                    
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    cmd.CommandText = QUERY;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+                    ITEMS = null;
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (MOSTRAR == "SI")
+                        {
+                            mostrarItems(ds);
+                        }
+
+                        ITEMS = ds;
+                    }
+
+                    transaction.Commit();
+                    connection.Close();
+                    cmd = null;
+                    transaction = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void buscarComanda(int ID_COMANDA)
+        {
+            try
+            {
+                conString conString = new conString();
+                string connectionString = conString.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO ";
+                    QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
+                    QUERY += "WHERE C.ID = " + ID_COMANDA + " AND C.MOZO = M.ID AND C.FORMA_DE_PAGO = F.ID; ";
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    cmd.CommandText = QUERY;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            COMANDA = ds;
+                        }
+                    }
+
+                    transaction.Commit();
+                    connection.Close();
+                    cmd = null;
+                    transaction = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void mostrarItems(DataSet DS)
+        {
+            dgItems.Rows.Clear();
+
+            foreach (DataRow row in DS.Tables[0].Rows)
+            {
+                string ITEM = row[0].ToString();
+                string CANTIDAD = row[1].ToString();
+                string TIPO = row[2].ToString();
+                string VALOR = row[3].ToString().Trim();
+                string SUBTOTAL = row[4].ToString().Trim();
+                string ITEM_DETALLE = row[5].ToString().Trim();
+                string TIPO_DETALLE = row[6].ToString().Trim();
+                string ID = row[7].ToString().Trim();
+                string IMPRESO = row[8].ToString().Trim();
+                string OBSERVACION = row[9].ToString().Trim();
+                dgItems.Rows.Add(CANTIDAD, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL, ITEM, TIPO, ID, "NO", IMPRESO, OBSERVACION);
+            }
+
+            dgItems.ClearSelection();
+        }
+
+        private void llenarGrillaSocio(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA)
+        {
+            dgSocio.Rows.Add(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA);
+        }
+
+        public void comboTipoDeComanda()
+        {
+            cbTipoDeComanda.DataSource = null;
+            string query = "SELECT ID, TIPO FROM CONFITERIA_TIPO_COMANDA ORDER BY ID ASC;";
+            cbTipoDeComanda.Items.Clear();
+            cbTipoDeComanda.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbTipoDeComanda.DisplayMember = "TIPO";
+            cbTipoDeComanda.ValueMember = "ID";
+            cbTipoDeComanda.SelectedIndex = 0;
+        }
+
+        public void comboFormasDePago()
+        {
+            cbFormaDePago.DataSource = null;
+            string query = "SELECT * FROM FORMAS_DE_PAGO ORDER BY ID ASC;";
+            cbFormaDePago.Items.Clear();
+            cbFormaDePago.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbFormaDePago.DisplayMember = "DETALLE";
+            cbFormaDePago.ValueMember = "ID";
+            cbFormaDePago.SelectedIndex = 0;
+        }
+
+        public void comboSectAct(string ROL)
+        {
+            cbSectAct.DataSource = null;
+            string query = "SELECT ID, TRIM(LEADING FROM DETALLE) AS DETALLE FROM SECTACT WHERE ROL = '" + ROL + "' AND ESTADO = 1 ORDER BY DETALLE;";
+            cbSectAct.Items.Clear();
+            cbSectAct.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbSectAct.DisplayMember = "DETALLE";
+            cbSectAct.ValueMember = "ID";
+            cbSectAct.SelectedIndex = 0;
+        }
+
+        public void comboMozos()
+        {
+            cbMozo.DataSource = null;
+            string query = "SELECT ID, NOMBRE FROM CONFITERIA_MOZOS ORDER BY NOMBRE ASC;";
+            cbMozo.Items.Clear();
+            cbMozo.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbMozo.DisplayMember = "NOMBRE";
+            cbMozo.ValueMember = "ID";
+            cbMozo.SelectedIndex = 0;
+        }
+
+        public void comboProfesionales(string SECTACT)
+        {
+            cbProf.DataSource = null;
+            string query = "SELECT P.ID, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND PE.ESPECIALIDAD = " + SECTACT + " AND P.BAJA IS NULL ORDER BY P.NOMBRE ASC;";
+            cbProf.Items.Clear();
+            cbProf.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbProf.DisplayMember = "NOMBRE";
+            cbProf.ValueMember = "ID";
+        }
+
+        private void cbSectAct_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            comboProfesionales(cbSectAct.SelectedValue.ToString());
+            string SECTACT = cbSectAct.SelectedValue.ToString();
+            mostrarArancel();
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            if (tbCantidad.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD","ERROR");
+                tbCantidad.Focus();
+            }
+            else if (cbSectAct.SelectedValue == "")
+            {
+                MessageBox.Show("SELECCIONAR UN TIPO", "ERROR");
+                cbSectAct.Focus();
+            }
+            else if (cbProf.SelectedValue == "")
+            {
+                MessageBox.Show("SELECCIONAR UN ITEM", "ERROR");
+                cbProf.Focus();
+            }
+            else
+            {
+                int CANTIDAD = int.Parse(tbCantidad.Text.Trim());
+                string TIPO = cbSectAct.Text.Trim();
+                int SEC_ACT = int.Parse(cbSectAct.SelectedValue.ToString());
+                int PROF = int.Parse(cbProf.SelectedValue.ToString());
+                string ITEM = cbProf.Text.Trim();
+                arancel aa = new arancel();
+                decimal VALOR = aa.valorGrupo(SEC_ACT, GRUPO, PROF);
+                decimal SUBTOTAL = VALOR * CANTIDAD;
+                string OBSERVACION = tbItemObservacion.Text.Trim();
+                dgItems.Rows.Add(CANTIDAD, TIPO, ITEM, VALOR, SUBTOTAL, PROF, SEC_ACT, "X", "NO", "NO", OBSERVACION);
+                decimal TOTAL = sumarTotal();
+                tbTotal.Text = TOTAL.ToString();
+            }
+        }
+
+        private void btnQuitarItem_Click(object sender, EventArgs e)
+        {
+            if (dgItems[7, dgItems.CurrentRow.Index].Value.ToString() == "X")
+            {
+                dgItems.Rows.RemoveAt(dgItems.CurrentRow.Index);
+            }
+            else
+            {
+                dgItems[8, dgItems.CurrentRow.Index].Value = "SI";
+                dgItems[2, dgItems.CurrentRow.Index].Value = "ELIMINADO";
+                dgItems[1, dgItems.CurrentRow.Index].Value = "ELIMINADO";
+            }
+            
+            decimal TOTAL = sumarTotal();
+            tbTotal.Text = TOTAL.ToString();
+        }
+
+        private decimal sumarTotal()
+        { 
+            decimal TOTAL = 0;
+            decimal IMPORTE = 0;
+            
+            foreach(DataGridViewRow row in dgItems.Rows)
+            {
+                if (row.Cells[8].Value.ToString() == "NO")
+                {
+                    IMPORTE = Convert.ToDecimal(row.Cells[4].Value);
+                    TOTAL = TOTAL + IMPORTE;
+                }
+            }
+
+            return TOTAL;
+        }
+
+        private void guardarItems()
+        {
+            int COMANDA = int.Parse(tbIdComanda.Text);
+
+            foreach (DataGridViewRow row in dgItems.Rows)
+            {
+                if (row.Cells[8].Value.ToString() == "NO")
+                {
+                    int CANTIDAD = int.Parse(row.Cells[0].Value.ToString());
+                    string TIPO_DETALLE = row.Cells[1].Value.ToString();
+                    string ITEM_DETALLE = row.Cells[2].Value.ToString();
+                    decimal VALOR = Convert.ToDecimal(row.Cells[3].Value.ToString());
+                    decimal SUBTOTAL = Convert.ToDecimal(row.Cells[4].Value.ToString());
+                    int ITEM = int.Parse(row.Cells[5].Value.ToString());
+                    int TIPO = int.Parse(row.Cells[6].Value.ToString());
+                    string OBSERVACION = row.Cells[10].Value.ToString();
+                    dlog.guardaItems(COMANDA, ITEM, CANTIDAD, TIPO, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL, "NO", OBSERVACION);
+                }
+                else if (row.Cells[8].Value.ToString() == "SI")
+                {
+                    int ID = int.Parse(row.Cells[7].Value.ToString());
+                    dlog.eliminaItems(ID);
+                }
+            }
+        }
+
+        private void agregarItems()
+        {
+            int COMANDA = int.Parse(tbIdComanda.Text);
+
+            foreach (DataGridViewRow row in dgItems.Rows)
+            {
+                if (row.Cells[7].Value.ToString() == "X")
+                {
+                    int CANTIDAD = int.Parse(row.Cells[0].Value.ToString());
+                    string TIPO_DETALLE = row.Cells[1].Value.ToString();
+                    string ITEM_DETALLE = row.Cells[2].Value.ToString();
+                    decimal VALOR = Convert.ToDecimal(row.Cells[3].Value.ToString());
+                    decimal SUBTOTAL = Convert.ToDecimal(row.Cells[4].Value.ToString());
+                    int ITEM = int.Parse(row.Cells[5].Value.ToString());
+                    int TIPO = int.Parse(row.Cells[6].Value.ToString());
+                    string OBSERVACION = row.Cells[10].Value.ToString();
+                    dlog.guardaItems(COMANDA, ITEM, CANTIDAD, TIPO, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL, "NO", OBSERVACION);
+                }
+                else if (row.Cells[8].Value.ToString() == "SI")
+                {
+                    int ID = int.Parse(row.Cells[7].Value.ToString());
+                    dlog.eliminaItems(ID);
+                }
+            }
+        }
+
+        private bool checkNumContralor(int CONTRALOR)
+        {
+            string QUERY = "SELECT CONTRALOR FROM CONFITERIA_COMANDAS WHERE CONTRALOR = " + CONTRALOR;
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void guardarMesa(int ID_COMANDA)
+        {
+            try
+            {
+                int HORA = DateTime.Now.Hour;
+                int MINUTO = DateTime.Now.Minute;
+                int SEGUNDO = DateTime.Now.Second;
+                string TIEMPO = HORA.ToString() + ":" + MINUTO.ToString() + ":" + SEGUNDO.ToString();
+                string FECHA = dpFechaComanda.Text + " " + TIEMPO;
+                int MESA = int.Parse(tbMesa.Text);
+                decimal IMPORTE = sumarTotal();
+                int NRO_SOC = int.Parse(dgSocio[0, dgSocio.CurrentCell.RowIndex].Value.ToString());
+                int NRO_DEP = int.Parse(dgSocio[1, dgSocio.CurrentCell.RowIndex].Value.ToString());
+                afiliadoBeneficio ab = new afiliadoBeneficio();
+                string[] AFIL_BENEF = ab.get(NRO_SOC, NRO_DEP);
+                string AFILIADO = AFIL_BENEF[0];
+                string BENEFICIO = AFIL_BENEF[1];
+                int BARRA = int.Parse(dgSocio[2, dgSocio.CurrentCell.RowIndex].Value.ToString());
+                string NOMBRE_SOCIO = dgSocio[3, dgSocio.CurrentCell.RowIndex].Value.ToString();
+                string USUARIO = VGlobales.vp_username;
+                int PERSONAS = int.Parse(tbPersonas.Text.Trim());
+                int MOZO = int.Parse(cbMozo.SelectedValue.ToString());
+                int FORMA_DE_PAGO = int.Parse(cbFormaDePago.SelectedValue.ToString());
+                int CONTRALOR = 0;
+                string COM_BORRADOR = tbComandaBorrador.Text.Trim();
+                string CONSUME = tbConsume.Text.Trim();
+                int TIPO_COMANDA = int.Parse(cbTipoDeComanda.SelectedValue.ToString());
+                int DESCUENTO_APLICADO = 0;
+                decimal IMPORTE_DESCONTADO = 0;
+
+                if (TIPO_COMANDA == 2)
+                {
+                    DESCUENTO_APLICADO = int.Parse(tbDescuento.Text);
+                    IMPORTE_DESCONTADO = IMPORTE - ((IMPORTE * DESCUENTO_APLICADO) / 100);
+                }
+
+                if (cbFormaDePago.SelectedValue.ToString() == "8")
+                {
+                    CONTRALOR = int.Parse(tbContralor.Text);
+                }
+
+                if (ID_COMANDA == 0)
+                {
+                    dlog.guardaMesa(FECHA, MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO);
+                    maxid mid = new maxid();
+                    tbIdComanda.Text = mid.m("ID", "CONFITERIA_COMANDAS");
+                    guardarItems();
+                    dlog.guardaComandaEnMesa(int.Parse(tbIdComanda.Text), MESA);
+                }
+                else
+                {
+                    dlog.modificarMesa(ID_COMANDA, MOZO, IMPORTE, PERSONAS, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO);   
+                }
+
+                MessageBox.Show("MESA GUARDADA", "LISTO");
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("NO SE PUDO GUARDAR LA MESA\n" + error, "ERROR");
+            }
+        }
+
+        private void modificarImporteComanda(int ID_COMANDA)
+        {
+            try
+            {
+                decimal IMPORTE = sumarTotal();
+                dlog.modificarImporteComanda(ID_COMANDA, IMPORTE);
+                MessageBox.Show("SE GUARDO LA MESA", "LISTO");
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("NO SE PUDO ACTUALIZAR EL IMPORTE DE LA COMANDA\n" + error, "ERROR");
+            }
+        }
+
+        private bool checkItems()
+        {
+            int ITEMS = dgItems.Rows.Count;
+
+            if (ITEMS == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void modificarPersoPago(int MESA, int PERSO, int PAGO)
+        {
+            try
+            {
+                dlog.modPersoPagoTemp(MESA, PERSO, PAGO);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("ERROR AL INTENTAR MODIFICAR PERSONAS Y FORMA DE PAGO", "ERROR");
+            }
+        }
+        
+        private void guardarComanda()
+        {
+            try
+            {
+                if (tbIdComanda.Text == "")
+                {
+                    int SECUENCIA = int.Parse(dgSocio[4, dgSocio.CurrentCell.RowIndex].Value.ToString());
+                    guardarMesa(0);
+                    maxid mid = new maxid();
+                    string ID_COMANDA = mid.m("ID", "CONFITERIA_COMANDAS");
+                    tbIdComanda.Text = ID_COMANDA;
+                    buscarItems(int.Parse(ID_COMANDA), "SI", "X");
+                }
+                else
+                {
+                    int ID_COMANDA = int.Parse(tbIdComanda.Text);
+                    guardarMesa(ID_COMANDA);
+                    agregarItems();
+                    buscarItems(ID_COMANDA, "SI", "X");
+                    int PERSO = int.Parse(tbPersonas.Text);
+                    int PAGO = int.Parse(cbFormaDePago.SelectedValue.ToString());
+                    int MESA = int.Parse(tbMesa.Text);
+                    modificarPersoPago(MESA, PERSO, PAGO);
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("NO SE PUDO GUARDAR LA MESA\n" + error, "ERROR");
+            }
+            
+        }
+
+        private void botonGuardarMesa()
+        {
+            Cursor = Cursors.WaitCursor;
+
+            if (checkItems() == false)
+            {
+                MessageBox.Show("NO SE ENCONTRO NINGUN ITEM EN LA LISTA", "ERROR");
+            }
+            else if (cbMozo.SelectedValue.ToString() == "1")
+            {
+                MessageBox.Show("NO SE SELECCIONO NINGÚN MOZO", "ERROR");
+            }
+            else if (cbFormaDePago.SelectedValue.ToString() == "8" && tbContralor.Text == "")
+            {
+                MessageBox.Show("INGRESAR EL NUMERO DE CONTRALOR", "ERROR");
+            }
+            else if (cbFormaDePago.SelectedValue.ToString() == "8" && checkNumContralor(int.Parse(tbContralor.Text)) == true)
+            {
+                MessageBox.Show("EL NUMERO DE CONTRALOR INGRESADO YA FUE ASIGNADO", "ERROR");
+            }
+            else if (tbPersonas.Text == "0")
+            {
+                MessageBox.Show("NUMERO DE PERSONAS NO ESPECIFICADO", "ERROR");
+            }
+            else
+            {
+                guardarComanda();
+            }
+
+            Cursor = Cursors.Default;
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            botonGuardarMesa();
+        }
+
+        private void btnImprimirComanda_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            int NRO_SOC = int.Parse(dgSocio[0, dgSocio.CurrentCell.RowIndex].Value.ToString());
+            int NRO_DEP = int.Parse(dgSocio[1, dgSocio.CurrentCell.RowIndex].Value.ToString());
+            afiliadoBeneficio ab = new afiliadoBeneficio();
+            string[] AFIL_BENEF = ab.get(NRO_SOC, NRO_DEP);
+            string AFILIADO = AFIL_BENEF[0];
+            string BENEFICIO = AFIL_BENEF[1];
+            string NOM_SOC = dgSocio[3, dgSocio.CurrentCell.RowIndex].Value.ToString();
+            decimal IMPORTE = Convert.ToDecimal(tbTotal.Text);
+            string FECHA = DateTime.Today.ToShortDateString();
+            obtenerDestino od = new obtenerDestino();
+            string DESTINO = od.get(NRO_SOC, NRO_DEP);
+            obtenerLegPer olp = new obtenerLegPer();
+            int LEG_PER = olp.get(NRO_SOC, NRO_DEP);
+            string FORMA_DE_PAGO = cbFormaDePago.SelectedValue.ToString();
+            int MESA = int.Parse(tbMesa.Text);
+            int SECUENCIA = int.Parse(dgSocio[4, dgSocio.CurrentCell.RowIndex].Value.ToString());
+            int D_ADTO = 1;
+            int M_ADTO = DateTime.Today.Month + 1;
+            int Y_ADTO = DateTime.Today.Year;
+            string A_DTO = D_ADTO.ToString() + "/" + M_ADTO.ToString() + "/" + Y_ADTO.ToString();
+            int TIPO_COMANDA = int.Parse(cbTipoDeComanda.SelectedValue.ToString());
+
+            if (MessageBox.Show("SE VA A CERRAR LA MESA " + tbMesa.Text + "\n¿CONTINUAR?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                botonGuardarMesa();
+
+                if (tbIdComanda.Text != "")
+                {
+                    int ID_COMANDA = int.Parse(tbIdComanda.Text);
+
+                    try
+                    {
+                        if (MESA == 27)
+                            dlog.cerrarMesa(MESA, "DELIVERY");
+                        else
+                            dlog.cerrarMesa(MESA, "CERRADA");
+
+                        try
+                        {
+                            buscarComanda(ID_COMANDA);
+                            buscarItems(ID_COMANDA, "NO", "X");
+                            imprimir i = new imprimir();
+                            i.imprimirComanda(ITEMS, COMANDA, "SOCIO");
+
+                            if (FORMA_DE_PAGO == "8")
+                            {
+                                dlog.nuevaSolicitudDescuentoConfiteria(FECHA, NOM_SOC, IMPORTE, DESTINO, LEG_PER, AFILIADO, BENEFICIO, A_DTO, ID_COMANDA);
+                                maxid mid = new maxid();
+                                int ID_SOLICITUD = int.Parse(mid.m("ID", "CONFITERIA_SOL_DESC"));
+                                listadoComandas lc = new listadoComandas();
+                                SOLICITUD = lc.buscarSolicitud(ID_SOLICITUD, "CONFITERIA_SOL_DESC");
+                                dlog.descuentoEnComanda(ID_COMANDA, ID_SOLICITUD);
+                                i.imprimirSolicitud(SOLICITUD);
+                            }
+
+                            if (TIPO_COMANDA == 2)
+                            {
+                                dlog.nuevaSolicitudEspecial(FECHA, NOM_SOC, IMPORTE, DESTINO, LEG_PER, AFILIADO, BENEFICIO, A_DTO, ID_COMANDA);
+                                maxid mid = new maxid();
+                                int ID_SOLICITUD = int.Parse(mid.m("ID", "CONFITERIA_SOL_ESP"));
+                                listadoComandas lc = new listadoComandas();
+                                SOLICITUD = lc.buscarSolicitud(ID_SOLICITUD, "CONFITERIA_SOL_ESP");
+                                dlog.descuentoEnComanda(ID_COMANDA, ID_SOLICITUD);
+                                i.imprimirSolicitudEspecial(SOLICITUD);
+                            }
+
+                            this.Close();
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show("NO SE PUDO IMPRIMIR LA COMANDA\n" + error, "ERROR");
+                        }
+                    }
+                    catch (Exception error)
+                    {
+                        MessageBox.Show("NO SE PUDO CERRAR LA MESA\n" + error, "ERROR");
+                    }
+                }
+            }
+
+            Cursor = Cursors.Default;
+        }
+
+        private void marcarItemImpreso()
+        {
+            foreach (DataGridViewRow row in dgItems.Rows)
+            {
+                if (row.Cells[9].Value.ToString() != "SI")
+                {
+                    dlog.marcarItemImpreso(int.Parse(row.Cells[7].Value.ToString()));
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                botonGuardarMesa();
+                int ID_COMANDA = int.Parse(tbIdComanda.Text);
+                int MESA = int.Parse(tbMesa.Text);
+                imprimir i = new imprimir();
+                buscarComanda(ID_COMANDA);
+                buscarItems(ID_COMANDA, "NO", "NO");
+                    
+                if (ITEMS.Tables[0].Rows.Count > 0)
+                {
+                    i.imprimirComanda(ITEMS, COMANDA, "COCINA");
+                    marcarItemImpreso();
+                }
+                else
+                {
+                    MessageBox.Show("NO SE ENCONTRARON ITEMS NUEVOS PARA IMPRIMIR", "ERROR");
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("NO SE PUDO IMPRIMIR LA COMANDA\n" + error, "ERROR");
+            }
+
+            Cursor = Cursors.Default;
+        }
+
+        private void btnCerrarComanda_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            if (MessageBox.Show("¿GUARDAR LA COMANDA?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (checkItems() == false)
+                {
+                    MessageBox.Show("NO SE ENCONTRO NINGUN ITEM EN LA LISTA", "ERROR");
+                }
+                else
+                {
+                    guardarComanda();
+                    this.Close();
+                }
+            }
+            else
+            {
+                if (tbIdComanda.Text == "")
+                {
+                    int MESA = int.Parse(tbMesa.Text);
+                    dlog.cerrarMesa(MESA, "CERRADA");
+                    this.Close();
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            
+            Cursor = Cursors.Default;
+        }
+
+        private void mostrarArancel()
+        { 
+            string TIPO = cbSectAct.Text.Trim();
+            int SEC_ACT = int.Parse(cbSectAct.SelectedValue.ToString());
+            int PROF = int.Parse(cbProf.SelectedValue.ToString());
+            arancel aa = new arancel();
+            decimal VALOR = aa.valorGrupo(SEC_ACT, GRUPO, PROF);
+            tbImporteItem.Text = VALOR.ToString();
+        }
+        
+        private void cbProf_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            mostrarArancel();
+        }
+
+        private void resetNroContralor()
+        {
+            if (cbFormaDePago.SelectedValue.ToString() == "8")
+            {
+                tbContralor.Text = "";
+                tbContralor.ReadOnly = false;
+            }
+            else
+            {
+                tbContralor.Text = "";
+                tbContralor.ReadOnly = true;
+            }
+        }
+
+        private void cbFormaDePago_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            resetNroContralor();
+        }
+
+        private void cargarItemEnCombos(string SEL_TIPO, string SEL_ITEM)
+        {
+            cbSectAct.SelectedValue = int.Parse(SEL_TIPO);
+            comboProfesionales(cbSectAct.SelectedValue.ToString());
+            cbProf.SelectedValue = int.Parse(SEL_ITEM);
+        }
+
+        public void buscarItems(string CONDICION)
+        {
+            var FILTRO = LISTA_ITEMS.Where(x => x.NOMBRE.Contains(CONDICION)).ToList();
+            dgResultados.DataSource = null;
+            dgResultados.DataSource = FILTRO;
+            dgResultados.Columns[0].Visible = false;
+            dgResultados.Columns[1].Visible = false;
+            dgResultados.Columns[2].Width = 600;
+        }
+        
+        public class ITEMS_CONFITERIA
+        {
+            public string ID { get; set; }
+            public string ESPECIALIDAD { get; set; }
+            public string NOMBRE { get; set; }
+
+            public ITEMS_CONFITERIA(string id, string especialidad, string nombre)
+            {
+                this.ID = id;
+                this.ESPECIALIDAD = especialidad;
+                this.NOMBRE = nombre;
+            }
+        }
+
+        public class ITEMS_CONFITERIA_FILTRO
+        {
+            public string ID { get; set; }
+            public string ESPECIALIDAD { get; set; }
+            public string NOMBRE { get; set; }
+
+            public ITEMS_CONFITERIA_FILTRO(string id, string especialidad, string nombre)
+            {
+                this.ID = id;
+                this.ESPECIALIDAD = especialidad;
+                this.NOMBRE = nombre;
+            }
+        }
+
+        private void generarListaItems()
+        {
+            try
+            {
+                LISTA_ITEMS = new List<ITEMS_CONFITERIA>();
+                string QUERY = "SELECT P.ID, PE.ESPECIALIDAD, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND P.ROL = 'MENU CONFITERIA' AND P.BAJA IS NULL ORDER BY P.NOMBRE ASC;";
+                DataSet ds1 = new DataSet();
+                conString conString = new conString();
+                string connectionString = conString.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    FbDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string ID = reader.GetString(reader.GetOrdinal("ID")).Trim();
+                        string ESPECIALIDAD = reader.GetString(reader.GetOrdinal("ESPECIALIDAD")).Trim();
+                        string NOMBRE = reader.GetString(reader.GetOrdinal("NOMBRE")).Trim();
+                        LISTA_ITEMS.Add(new ITEMS_CONFITERIA(ID, ESPECIALIDAD, NOMBRE));
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS");
+            }
+        }
+
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            string CONDICION = textBox1.Text.Trim();
+            buscarItems(CONDICION);
+        }
+
+        private void dgResultados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string SEL_TIPO = dgResultados[1, dgResultados.CurrentCell.RowIndex].Value.ToString();
+            string SEL_ITEM = dgResultados[0, dgResultados.CurrentCell.RowIndex].Value.ToString();
+            cargarItemEnCombos(SEL_TIPO, SEL_ITEM);
+            mostrarArancel();
+        }
+
+        private void cambiarDescuento(int TIPO_COMANDA)
+        {
+            string QUERY = "SELECT DESCUENTO FROM CONFITERIA_TIPO_COMANDA WHERE ID = " + TIPO_COMANDA + ";";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            tbDescuento.Text = foundRows[0][0].ToString();
+        }
+
+        private void cbTipoDeComanda_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int TIPO_COMANDA = int.Parse(cbTipoDeComanda.SelectedValue.ToString());
+            cambiarDescuento(TIPO_COMANDA);
+
+            if (TIPO_COMANDA == 2)
+            {
+                cbFormaDePago.SelectedValue = 1;
+                cbFormaDePago.Enabled = false;
+            }
+            else
+            {
+                cbFormaDePago.Enabled = true;
+            }
+
+            resetNroContralor();
+        }
+    }
+}

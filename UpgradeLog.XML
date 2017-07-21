@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="WebCam_Capture">
+</Property><Property Name="Archivo de la solución" Value="C:\Descargas\C__Webcam_161075762003\WebCam_Capture.sln">
+</Property><Property Name="Date" Value="Domingo, 22 de Noviembre de 2009">
+</Property><Property Name="Time" Value="16:29">
+</Property></Properties><Event ErrorLevel="0" Project="WebCam_Capture" Source="WebCam_Capture.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="WebCam_Capture" Source="WebCam_Capture.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Webcam_Test" Source="Webcam_Test\Webcam_Test.csproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="Webcam_Test" Source="Webcam_Test\Webcam_Test.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="WebCam_Capture.sln" Description="La solución se convirtió correctamente">
+</Event><Event ErrorLevel="3" Project="" Source="WebCam_Capture.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="WebCam_Capture" Source="WebCam_Capture.csproj" Description="Búsqueda completa: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="Webcam_Test" Source="Webcam_Test\Webcam_Test.csproj" Description="Búsqueda completa: no es necesario actualizar los archivos de proyecto.">
+</Event></UpgradeLog>
