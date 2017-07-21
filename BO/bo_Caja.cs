@@ -325,7 +325,6 @@ namespace SOCIOS.BO
         //STORED GRABAR NRO RECIBO EN INGRESOS A PROCESAR
         public void reciboEnIngresos(int SECUENCIA, string NRO_RECIBO)
         {
-
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
             ArrayList vector_nombres = new ArrayList();
@@ -333,10 +332,8 @@ namespace SOCIOS.BO
             vector_contenidos.Add(SECUENCIA);
             vector_contenidos.Add(NRO_RECIBO);
 
-            
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
-
             
             vector_nombres.Add("@SECUENCIA");
             vector_nombres.Add("@NRO_RECIBO");
@@ -349,21 +346,18 @@ namespace SOCIOS.BO
         //STORED GRABAR NRO BONO EN INGRESOS A PROCESAR
         public void bonoEnIngresos(int SECUENCIA, string NRO_BONO)
         {
-
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
             ArrayList vector_nombres = new ArrayList();
-            
+
             vector_contenidos.Add(SECUENCIA);
             vector_contenidos.Add(NRO_BONO);
 
-            
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
 
-            
             vector_nombres.Add("@SECUENCIA");
-            vector_nombres.Add("@NRO_BONO");
+            vector_nombres.Add("@NRO_RECIBO");
 
             string vprocedure = "INGRESOS_A_PROCESAR_BONO";
 
