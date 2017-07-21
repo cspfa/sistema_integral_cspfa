@@ -165,6 +165,7 @@ namespace SOCIOS
                     dataGridView1.Columns[9].Width = 40;
                     dataGridView1.Columns[10].Width = 40;
                     dataGridView1.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    dataGridView1.Columns[16].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     transaction.Commit();
                     dataGridView1.Columns[8].Visible = false;
                     dataGridView1.Columns[12].Visible = false;
@@ -172,9 +173,10 @@ namespace SOCIOS
                     dataGridView1.Columns[14].Visible = false;
                     dataGridView1.Columns[15].Visible = false;
                     dataGridView1.Columns[17].Visible = false;
-                    dataGridView1.Columns[18].Visible = true;
+                    dataGridView1.Columns[18].Visible = false;
                     dataGridView1.Columns[19].Visible = false;
                     dataGridView1.Columns[20].Visible = false;
+                    dataGridView1.Columns[21].Visible = false;
                     //pintarAnulados();
                 }
             }

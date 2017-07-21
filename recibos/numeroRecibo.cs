@@ -103,7 +103,7 @@ namespace SOCIOS
 
             try
             {
-                string QUERY = "SELECT VALOR FROM CONFIG WHERE PARAM = 'PUNTO_VENTA' AND ROL = '" + VGlobales.vp_role + "';";
+                string QUERY = "SELECT PTO_VTA FROM PUNTOS_DE_VENTA WHERE ROL = 'PUNTO_VENTA' AND ROL = '" + VGlobales.vp_role + "';";
                 DataRow[] foundRows;
                 foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
                 int dif_anios = 0;
