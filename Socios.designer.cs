@@ -739,7 +739,6 @@ namespace SOCIOS
             this.tbCiudad.Location = new System.Drawing.Point(828, 99);
             this.tbCiudad.MaxLength = 7;
             this.tbCiudad.Name = "tbCiudad";
-            this.tbCiudad.ReadOnly = true;
             this.tbCiudad.Size = new System.Drawing.Size(64, 20);
             this.tbCiudad.TabIndex = 33;
             this.tbCiudad.Text = "0";
@@ -1160,7 +1159,6 @@ namespace SOCIOS
             this.tbTraspasado.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbTraspasado.Location = new System.Drawing.Point(292, 129);
             this.tbTraspasado.Name = "tbTraspasado";
-            this.tbTraspasado.ReadOnly = true;
             this.tbTraspasado.Size = new System.Drawing.Size(20, 20);
             this.tbTraspasado.TabIndex = 18;
             // 
@@ -2041,7 +2039,6 @@ namespace SOCIOS
             // 
             this.tbIdEmp.Location = new System.Drawing.Point(504, 20);
             this.tbIdEmp.Name = "tbIdEmp";
-            this.tbIdEmp.ReadOnly = true;
             this.tbIdEmp.Size = new System.Drawing.Size(77, 20);
             this.tbIdEmp.TabIndex = 17;
             // 
