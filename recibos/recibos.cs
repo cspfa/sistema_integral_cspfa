@@ -324,7 +324,7 @@ namespace SOCIOS
 
                 if (foundRows.Length > 0)
                 {
-                    float A = float.Parse(foundRows[0][0].ToString());
+                    float A = float.Parse(IMPORTE.ToString());
                     cbPtoVta.SelectedValue = foundRows[0][6].ToString();
                     lbArancel.Text = A.ToString();
                     lbArancel.Enabled = false;
