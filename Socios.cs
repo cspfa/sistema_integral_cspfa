@@ -2280,7 +2280,7 @@ namespace SOCIOS
                         vBajaCascada = "S";
                         textBox15.Text = "000";
                         textBox18.Text = "000";
-                        
+                        tbCiudad.Text = "0";
                     }
                     else
                     { 
