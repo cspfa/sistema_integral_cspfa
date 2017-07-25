@@ -323,7 +323,7 @@ namespace SOCIOS.BO
         }
 
         //STORED GRABAR NRO RECIBO EN INGRESOS A PROCESAR
-        public void reciboEnIngresos(int SECUENCIA, string NRO_RECIBO)
+        public void reciboEnIngresos(int SECUENCIA, string NRO_RECIBO, decimal IMPORTE)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
@@ -331,12 +331,15 @@ namespace SOCIOS.BO
             
             vector_contenidos.Add(SECUENCIA);
             vector_contenidos.Add(NRO_RECIBO);
+            vector_contenidos.Add(IMPORTE);
 
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Numeric");
             
             vector_nombres.Add("@SECUENCIA");
             vector_nombres.Add("@NRO_RECIBO");
+            vector_nombres.Add("@IMPORTE");
 
             string vprocedure = "INGRESOS_A_PROCESAR_RECIBO";
 
@@ -344,7 +347,7 @@ namespace SOCIOS.BO
         }
 
         //STORED GRABAR NRO BONO EN INGRESOS A PROCESAR
-        public void bonoEnIngresos(int SECUENCIA, string NRO_BONO)
+        public void bonoEnIngresos(int SECUENCIA, string NRO_BONO, decimal IMPORTE)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
@@ -352,12 +355,15 @@ namespace SOCIOS.BO
 
             vector_contenidos.Add(SECUENCIA);
             vector_contenidos.Add(NRO_BONO);
+            vector_contenidos.Add(IMPORTE);
 
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Numeric");
 
             vector_nombres.Add("@SECUENCIA");
-            vector_nombres.Add("@NRO_RECIBO");
+            vector_nombres.Add("@NRO_BONO");
+            vector_nombres.Add("@IMPORTE");
 
             string vprocedure = "INGRESOS_A_PROCESAR_BONO";
 

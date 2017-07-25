@@ -463,7 +463,7 @@ namespace SOCIOS
                                 idsectact, idsoc, IMPORTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N);
-                            BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP);
+                            BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP, IMPORTE);
                         }
 
                         if (RECIBO_BONO == "B")
@@ -472,7 +472,7 @@ namespace SOCIOS
                                 idsectact, idsoc, IMPORTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N);
-                            BO_CAJA.bonoEnIngresos(secuencia, NRO_COMP);
+                            BO_CAJA.bonoEnIngresos(secuencia, NRO_COMP, IMPORTE);
                         }
                         
                         string DETALLE = lbSectAct.Text + " - " + lbNombreProf.Text;
@@ -590,7 +590,7 @@ namespace SOCIOS
                                 {
                                     if (ENBLANCO == false)
                                     {
-                                        BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString());
+                                        BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                         DateTime Hoy = DateTime.Today;
                                         gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
                                         lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"));
@@ -624,7 +624,7 @@ namespace SOCIOS
                                 }
                                 else
                                 {
-                                    BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString());
+                                    BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                     DateTime Hoy = DateTime.Today;
                                     gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
                                             lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"));

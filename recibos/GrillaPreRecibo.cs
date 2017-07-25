@@ -176,7 +176,7 @@ namespace SOCIOS
                     dataGridView1.Columns[18].Visible = false;
                     dataGridView1.Columns[19].Visible = false;
                     dataGridView1.Columns[20].Visible = false;
-                    dataGridView1.Columns[21].Visible = false;
+                    //dataGridView1.Columns[21].Visible = false;
                     //pintarAnulados();
                 }
             }
