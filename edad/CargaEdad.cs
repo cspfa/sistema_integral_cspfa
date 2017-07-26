@@ -16,6 +16,7 @@ namespace SOCIOS
         bo dlog = new bo();
 
         string ID;
+
         string NRO;
         string DEP;
         string BARRA;
