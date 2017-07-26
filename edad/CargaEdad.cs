@@ -14,6 +14,7 @@ namespace SOCIOS
     public partial class CargaEdad : Form
     {
         bo dlog = new bo();
+
         string ID;
         string NRO;
         string DEP;

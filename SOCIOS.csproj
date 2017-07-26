@@ -287,9 +287,7 @@
       <DependentUpon>admAsistencia.cs</DependentUpon>
     </Compile>
     <Compile Include="deportes\Asistencias\AsistenciaService.cs" />
-    <Compile Include="deportes\Asistencias\ReporteAsistencia.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="deportes\Asistencias\ReporteAsistencia.cs" />
     <Compile Include="deportes\Asistencias\ReporteAsistencia.designer.cs">
       <DependentUpon>ReporteAsistencia.cs</DependentUpon>
     </Compile>
@@ -313,9 +311,7 @@
     <Compile Include="confiteria\listadoAranceles.Designer.cs">
       <DependentUpon>listadoAranceles.cs</DependentUpon>
     </Compile>
-    <Compile Include="deportes\admActividades.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="deportes\admActividades.cs" />
     <Compile Include="deportes\admActividades.designer.cs">
       <DependentUpon>admActividades.cs</DependentUpon>
     </Compile>
@@ -487,9 +483,7 @@
       <DependentUpon>AbmTabla.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmTabla\TableInterface.cs" />
-    <Compile Include="Adherentes.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Adherentes.cs" />
     <Compile Include="Adherentes.designer.cs">
       <DependentUpon>Adherentes.cs</DependentUpon>
     </Compile>
@@ -511,9 +505,7 @@
     <Compile Include="BO\bo_Turismo.cs" />
     <Compile Include="BO_Control_Acceso.cs" />
     <Compile Include="BO\bo_Patrimonio.cs" />
-    <Compile Include="buscar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="buscar.cs" />
     <Compile Include="buscar.designer.cs">
       <DependentUpon>buscar.cs</DependentUpon>
     </Compile>
@@ -527,9 +519,7 @@
     <Compile Include="carnet\CarnetUtils.cs" />
     <Compile Include="COD_DTO.cs" />
     <Compile Include="conString.cs" />
-    <Compile Include="Consultar.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Consultar.cs" />
     <Compile Include="Consultar.designer.cs">
       <DependentUpon>Consultar.cs</DependentUpon>
     </Compile>
@@ -570,9 +560,7 @@
       <DependentUpon>CargaEdad.cs</DependentUpon>
     </Compile>
     <Compile Include="edad\servicioEdad.cs" />
-    <Compile Include="Familiares.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Familiares.cs" />
     <Compile Include="Familiares.designer.cs">
       <DependentUpon>Familiares.cs</DependentUpon>
     </Compile>
@@ -675,9 +663,7 @@
     <Compile Include="Selector_Carnet.designer.cs">
       <DependentUpon>Selector_Carnet.cs</DependentUpon>
     </Compile>
-    <Compile Include="Socios.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Socios.cs" />
     <Compile Include="Socios.designer.cs">
       <DependentUpon>Socios.cs</DependentUpon>
     </Compile>
@@ -899,9 +885,7 @@
     <Compile Include="informePagos.Designer.cs">
       <DependentUpon>informePagos.cs</DependentUpon>
     </Compile>
-    <Compile Include="IngresoAsamblea.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="IngresoAsamblea.cs" />
     <Compile Include="IngresoAsamblea.designer.cs">
       <DependentUpon>IngresoAsamblea.cs</DependentUpon>
     </Compile>
@@ -911,9 +895,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="asambleas\Quorum.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="asambleas\Quorum.cs" />
     <Compile Include="asambleas\Quorum.designer.cs">
       <DependentUpon>Quorum.cs</DependentUpon>
     </Compile>
@@ -1060,9 +1042,7 @@
     </Compile>
     <Compile Include="turnos\existe.cs" />
     <Compile Include="turnos\maxid.cs" />
-    <Compile Include="Mover_Adherentes.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Mover_Adherentes.cs" />
     <Compile Include="Mover_Adherentes.Designer.cs">
       <DependentUpon>Mover_Adherentes.cs</DependentUpon>
     </Compile>
@@ -1072,9 +1052,7 @@
     <Compile Include="turnos\profesionales.Designer.cs">
       <DependentUpon>profesionales.cs</DependentUpon>
     </Compile>
-    <Compile Include="MenuABM.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="MenuABM.cs" />
     <Compile Include="MenuABM.Designer.cs">
       <DependentUpon>MenuABM.cs</DependentUpon>
     </Compile>
@@ -1084,15 +1062,11 @@
     <Compile Include="FotoZoom.Designer.cs">
       <DependentUpon>FotoZoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Acerca_de.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Acerca_de.cs" />
     <Compile Include="Acerca_de.designer.cs">
       <DependentUpon>Acerca_de.cs</DependentUpon>
     </Compile>
-    <Compile Include="FichaAdherente.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="FichaAdherente.cs" />
     <Compile Include="FichaAdherente.Designer.cs">
       <DependentUpon>FichaAdherente.cs</DependentUpon>
     </Compile>
