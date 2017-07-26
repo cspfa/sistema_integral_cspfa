@@ -18,6 +18,7 @@ namespace SOCIOS
         string ID;
 
         string NRO;
+        
         string DEP;
         string BARRA;
         string TIPO;
