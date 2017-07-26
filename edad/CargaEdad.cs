@@ -20,6 +20,7 @@ namespace SOCIOS
         string NRO;
         
         string DEP;
+        
         string BARRA;
         string TIPO;
         public CargaEdad(string Nombre,string Apellido, string pTipo,string pID,string pNRO,string pDEP,string pBARRA)
