@@ -1712,7 +1712,7 @@ namespace SOCIOS
                     NUM = row[0].ToString();
                     NOMBRE = row[1].ToString();
                     CONCEPTO = row[2].ToString();
-                    DEBE = row[3].ToString();
+                    DEBE = "301207";
                     IMPORTE = Convert.ToDecimal(row[4]);
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
@@ -1848,7 +1848,7 @@ namespace SOCIOS
                 TABLA_TOTAL_EGRESOS.SpacingAfter = 0;
                 TABLA_TOTAL_EGRESOS.SpacingBefore = 0;
                 TABLA_TOTAL_EGRESOS.SetWidths(new float[] { 4f, 4f });
-                PdfPCell CELDA_TITULO_EGRESOS = new PdfPCell(new Phrase("3.01.1.01 EGRESOS DEL DIA TOTAL", _mediumFontBoldWhite));
+                PdfPCell CELDA_TITULO_EGRESOS = new PdfPCell(new Phrase("3.01.1.01 EGRESOS DEL DIA TOTAL (HABER)", _mediumFontBoldWhite));
                 PdfPCell CELDA_TOTAL_EGRESOS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_EGRESOS), _mediumFontBoldWhite));
                 CELDA_TITULO_EGRESOS.BackgroundColor = topo;
                 CELDA_TITULO_EGRESOS.BorderColor = blanco;
