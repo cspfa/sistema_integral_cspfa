@@ -50,6 +50,8 @@
             this.ingresosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresoXCantidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backupDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actualizarDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sectoresYActividadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profesionalesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cargaEscuelaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,8 +150,6 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.actualizarDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.backupDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -317,8 +317,7 @@
             this.camposToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportarToolStripMenuItem1,
             this.ingresosToolStripMenuItem2,
-            this.ingresoXCantidadToolStripMenuItem,
-            this.actualizarDBToolStripMenuItem});
+            this.ingresoXCantidadToolStripMenuItem});
             this.camposToolStripMenuItem1.Enabled = false;
             this.camposToolStripMenuItem1.Name = "camposToolStripMenuItem1";
             this.camposToolStripMenuItem1.Size = new System.Drawing.Size(57, 20);
@@ -352,6 +351,7 @@
             // 
             this.procesosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.backupDBToolStripMenuItem,
+            this.actualizarDBToolStripMenuItem,
             this.sectoresYActividadesToolStripMenuItem,
             this.profesionalesToolStripMenuItem1,
             this.cargaEscuelaToolStripMenuItem,
@@ -369,6 +369,22 @@
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.procesosToolStripMenuItem.Text = "Sistemas";
+            // 
+            // backupDBToolStripMenuItem
+            // 
+            this.backupDBToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("backupDBToolStripMenuItem.Image")));
+            this.backupDBToolStripMenuItem.Name = "backupDBToolStripMenuItem";
+            this.backupDBToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.backupDBToolStripMenuItem.Text = "Backup DB";
+            this.backupDBToolStripMenuItem.Click += new System.EventHandler(this.backupDBToolStripMenuItem_Click);
+            // 
+            // actualizarDBToolStripMenuItem
+            // 
+            this.actualizarDBToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("actualizarDBToolStripMenuItem.Image")));
+            this.actualizarDBToolStripMenuItem.Name = "actualizarDBToolStripMenuItem";
+            this.actualizarDBToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.actualizarDBToolStripMenuItem.Text = "Actualizar DB";
+            this.actualizarDBToolStripMenuItem.Click += new System.EventHandler(this.actualizarDBToolStripMenuItem_Click_1);
             // 
             // sectoresYActividadesToolStripMenuItem
             // 
@@ -1208,22 +1224,6 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // actualizarDBToolStripMenuItem
-            // 
-            this.actualizarDBToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("actualizarDBToolStripMenuItem.Image")));
-            this.actualizarDBToolStripMenuItem.Name = "actualizarDBToolStripMenuItem";
-            this.actualizarDBToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
-            this.actualizarDBToolStripMenuItem.Text = "Actualizar DB";
-            this.actualizarDBToolStripMenuItem.Click += new System.EventHandler(this.actualizarDBToolStripMenuItem_Click);
-            // 
-            // backupDBToolStripMenuItem
-            // 
-            this.backupDBToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("backupDBToolStripMenuItem.Image")));
-            this.backupDBToolStripMenuItem.Name = "backupDBToolStripMenuItem";
-            this.backupDBToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.backupDBToolStripMenuItem.Text = "Backup DB";
-            this.backupDBToolStripMenuItem.Click += new System.EventHandler(this.backupDBToolStripMenuItem_Click);
-            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1385,7 +1385,7 @@
         private System.Windows.Forms.ToolStripMenuItem dePFAACABAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deCABAAPFAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteDeVerificacionAsistenciaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem actualizarDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupDBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem actualizarDBToolStripMenuItem;
     }
 }

@@ -9,6 +9,7 @@ using FirebirdSql.Data.FirebirdClient;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Net;
 using System.Net.NetworkInformation;
+using System.Collections.Generic;
 
 namespace SOCIOS
 {
@@ -1977,84 +1978,84 @@ namespace SOCIOS
             va.ShowDialog();
         }
 
-        private void actualizarDBToolStripMenuItem_Click(object sender, EventArgs e)
+        private void netUse(string SERVER, string USUARIO, string PASSWORD)
         {
+            ProcessStartInfo PInfo;
+            Process P;
+            PInfo = new ProcessStartInfo("cmd", @"/c net use \\" + SERVER + " " + PASSWORD + " /user:" + USUARIO);
+            PInfo.CreateNoWindow = true; 
+            PInfo.UseShellExecute = true;
+            P = Process.Start(PInfo);
+            P.WaitForExit(5000);
+            P.Close();
+        }
 
+        private void stopFirebird()
+        {
+            ProcessStartInfo PInfo;
+            Process P;
+            PInfo = new ProcessStartInfo("cmd", @"/c net stop FirebirdServerDefaultInstance");
+            PInfo.CreateNoWindow = false; 
+            PInfo.UseShellExecute = true; 
+            P = Process.Start(PInfo);
+            P.WaitForExit(5000);
+            P.Close();
+        }
+
+        private void actualizarDBToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("¿CONFIRMA REALIZAR LA ACTUALIZACIÓN DE LA BASE DE DATOS?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+
+            if (dr == DialogResult.Yes)
+            {
+                netUse("192.168.1.6", "ahernandez", "C1rc4C0mb4t");
+
+                if (File.Exists(@"\\192.168.1.6\Data\BACKUP\CSPFA_DATOS7.FDB"))
+                {
+                    string FOLDER = "";
+                    string FULLPATH = "";
+                    FolderBrowserDialog FBD = new FolderBrowserDialog();
+
+                    if (FBD.ShowDialog() == DialogResult.OK)
+                    {
+                        FOLDER = FBD.SelectedPath;
+                        List<String> TempFiles = new List<String>();
+                        TempFiles.Add(@"\\192.168.1.6\Data\BACKUP\CSPFA_DATOS7.FDB");
+                        FULLPATH = FOLDER + "CSPFA_DATOS7.FDB";
+
+                        if (File.Exists(FULLPATH))
+                        {
+                            stopFirebird();
+                            File.Delete(FULLPATH); 
+                        }
+
+                        CopyFiles.CopyFiles Temp = new CopyFiles.CopyFiles(TempFiles, FOLDER, "UPDATE");
+                        CopyFiles.DIA_CopyFiles TempDiag = new CopyFiles.DIA_CopyFiles("Actualizando la base de datos...");
+                        TempDiag.SynchronizationObject = this;
+                        Temp.CopyAsync(TempDiag);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("EL ARCHIVO DE BASE DE DATOS NO EXISTE EN ORIGEN", "ERROR");
+                }
+            }
         }
 
         private void backupDBToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("¿CONFIRMA REALIZAR EL BACKUP DE LA BASE DE DATOS?\nSI EL ARCHIVO EXISTE EN EL DESTINO SERA SOBREESCRITO", "PREGUNTA",
-            MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question,
-            MessageBoxDefaultButton.Button1);
+            DialogResult dr = MessageBox.Show("¿CONFIRMA REALIZAR EL BACKUP DE LA BASE DE DATOS?", "PREGUNTA", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
 
             if (dr == DialogResult.Yes)
             {
-                Cursor = Cursors.WaitCursor;
-                string COPIAR = "";
-                string ORIGEN = @"\\192.168.1.6\Data\CSPFA_TEST.FDB";
-                string DESTINO = @"C:\";
-                COPIAR = CopyFile(ORIGEN, DESTINO);
-                Cursor = Cursors.Default;
-                MessageBox.Show(COPIAR);
+                netUse("192.168.1.6", "ahernandez", "C1rc4C0mb4t");
+                List<String> TempFiles = new List<String>();
+                TempFiles.Add(@"\\192.168.1.6\Data\CSPFA_DATOS7.FDB");
+                CopyFiles.CopyFiles Temp = new CopyFiles.CopyFiles(TempFiles, @"\\192.168.1.6\Data\BACKUP", "BACKUP");
+                CopyFiles.DIA_CopyFiles TempDiag = new CopyFiles.DIA_CopyFiles("Realizando backup de la base de datos...");
+                TempDiag.SynchronizationObject = this;
+                Temp.CopyAsync(TempDiag);
             }
-        }
-
-        public string CopyFile(string Filein, string fileOut)
-        {
-            try
-            {
-                Stream st = File.OpenRead(Filein);
-                byte[] arrbt = ReadFully(st);
-                CreateFile(fileOut, arrbt);
-                return "OK";
-            }
-            catch (Exception error)
-            {
-                return error.ToString();
-            }
-        } 
-
-        public byte[] ReadFully(Stream input)
-        {
-            byte[] buffer = new byte[255];
-            progressBar1.Visible = true;
-            progressBar1.Value = 0;
-            progressBar1.Maximum = 99999999;
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                int read;
-
-                while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    ms.Write(buffer, 0, read);
-                    progressBar1.PerformStep();
-                }
-
-                return ms.ToArray();
-            }
-        }
-
-        public void CreateFile(string fileOut, byte[] bta)
-        {
-            FileStream fs = File.Create(fileOut);
-            progressBar1.Visible = true;
-            progressBar1.Value = 0;
-            progressBar1.Maximum = bta.Length;
-
-            for (int i = 0; i < bta.Length; i++)
-            {
-                fs.WriteByte(bta[i]);
-
-                if (i % 5000 == 0)
-                {
-                    progressBar1.PerformStep();
-                    Application.DoEvents();
-                }
-            }
-
-            fs.Close();
         }
     }
 }

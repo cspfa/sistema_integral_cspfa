@@ -28,12 +28,10 @@ namespace SOCIOS
         public void OpenCnn()
         {
             string connectionString;
-
             Datos_ini ini2 = new Datos_ini();
-
             FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-
-            cs.DataSource = ini2.Servidor;  cs.Port = int.Parse(ini2.Puerto);
+            cs.DataSource = ini2.Servidor;  
+            cs.Port = int.Parse(ini2.Puerto);
             VGlobales.vp_datasource = ini2.Servidor;
             cs.Database = ini2.Ubicacion;
             VGlobales.vp_database = ini2.Ubicacion;
@@ -43,9 +41,7 @@ namespace SOCIOS
             cs.Dialect = 3;
             cs.Pooling = false;
             ini2 = null;
-
             connectionString = cs.ToString();
-
             connection = new FbConnection(connectionString);
 
             if (connection.State != ConnectionState.Open)
