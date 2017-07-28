@@ -230,28 +230,24 @@ namespace SOCIOS.registroSocios
         #region ASPIRANTES
         public class ASPIRANTES
         {
+            public int ORDEN { get; set; }
             public int LP { get; set; }
             public string APELLIDOS { get; set; }
             public string NOMBRES { get; set; }
             public string GENERO { get; set; }
             public string ALTA { get; set; }
             public int DNI { get; set; }
-            public string FE_NAC { get; set; }
-            public int OSOC { get; set; }
-            public int DEST { get; set; }
             public int AFILIADO { get; set; }
 
-            public ASPIRANTES(int lp, string apellidos, string nombres, int dni, string genero, string alta, string fe_nac, int osoc, int dest, int afiliado)
-            {   
+            public ASPIRANTES(int orden, int lp, string apellidos, string nombres, int dni, string genero, string alta, int afiliado)
+            {
+                this.ORDEN = orden;
                 this.LP = lp;
                 this.APELLIDOS = apellidos;
                 this.NOMBRES = nombres;
                 this.GENERO = genero;
                 this.ALTA = alta;
                 this.DNI = dni;
-                this.FE_NAC = fe_nac;
-                this.OSOC = osoc;
-                this.DEST = dest;
                 this.AFILIADO = afiliado;
             }
         }
@@ -273,16 +269,21 @@ namespace SOCIOS.registroSocios
             int DEST = 0;
             int OSOC = 0;
             int AFILIADO = 0;
+            int ORD = 0;
 
             for (int i = 0; i < table.Rows.Count; i++)
             {
-                string ELEPE = table.Rows[i][0].ToString().Replace(".", "");
-                string APELLIDOS = table.Rows[i][1].ToString().Trim().ToUpper();
-                string NOMBRES = table.Rows[i][2].ToString().Trim().ToUpper();
-                string GENERO = table.Rows[i][3].ToString().Trim().ToUpper();
-                string ALTA = table.Rows[i][4].ToString();
-                string S_DNI = table.Rows[i][5].ToString().Replace(".", "");
-                string FE_NAC = "";
+                string ORDEN = table.Rows[i][0].ToString().Replace(".", "");
+                string ELEPE = table.Rows[i][1].ToString().Replace(".", "");
+                string APELLIDOS = table.Rows[i][2].ToString().Trim().ToUpper();
+                string NOMBRES = table.Rows[i][3].ToString().Trim().ToUpper();
+                string GENERO = table.Rows[i][4].ToString().Trim().ToUpper();
+                string ALTA = table.Rows[i][5].ToString();
+                string S_DNI = table.Rows[i][6].ToString().Replace(".", "");
+                string AFIL = table.Rows[i][7].ToString().Replace(".", "");
+
+                if (ORDEN != "")
+                    ORD = int.Parse(ORDEN);
 
                 if (ELEPE != "")
                     LP = int.Parse(ELEPE);
@@ -290,16 +291,10 @@ namespace SOCIOS.registroSocios
                 if (S_DNI != "")
                     DNI = int.Parse(S_DNI);
 
-                //if (table.Rows[i][7].ToString() != "")
-                    OSOC = 0;//int.Parse(table.Rows[i][7].ToString());
+                if (AFIL != "")
+                    AFILIADO = int.Parse(AFIL);
 
-                //if (table.Rows[i][8].ToString() != "")
-                    DEST = 0;//int.Parse(table.Rows[i][8].ToString());
-
-                //if (table.Rows[i][9].ToString() != "")
-                    AFILIADO = 0;//int.Parse(table.Rows[i][9].ToString());
-
-                ASPIRANTES.Add(new ASPIRANTES(LP, APELLIDOS, NOMBRES, DNI, GENERO, ALTA.Replace(" 0:00:00", ""), FE_NAC.Replace(" 0:00:00", ""), OSOC, DEST, AFILIADO));
+                ASPIRANTES.Add(new ASPIRANTES(ORD, LP, APELLIDOS, NOMBRES, DNI, GENERO, ALTA.Replace(" 0:00:00", ""), AFILIADO));
             }
 
             dgAspirantes.DataSource = ASPIRANTES;
@@ -465,26 +460,17 @@ namespace SOCIOS.registroSocios
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string QUERY = "SELECT LEG_PER, APE_SOC, NOM_SOC, SEX, FE_ALTA, NUM_DOC, F_NACIM, OBRA_SOCIAL, DESTINO, ACRJP2, NRO_SOC, NCOD_DTO, A_DTO FROM TITULAR WHERE";
-            int X = 0;
+            string QUERY = "SELECT LEG_PER, APE_SOC, NOM_SOC, SEX, FE_ALTA, NUM_DOC, F_NACIM, OBRA_SOCIAL, DESTINO, ACRJP2, NRO_SOC, NCOD_DTO, A_DTO FROM TITULAR WHERE NUM_DOC IN (";
+            int DNI = 0;
 
             foreach (DataGridViewRow row in dgAspirantes.Rows)
             {
-                string DNI = row.Cells[5].Value.ToString();
-
-                if (X == 0)
-                {
-                    QUERY += " NUM_DOC = " + DNI;
-                    X++;
-                }
-                else
-                {
-                    QUERY += " OR NUM_DOC = " + DNI;
-                }
-
+                DNI = int.Parse(row.Cells[6].Value.ToString());
+                QUERY += DNI + ",";
             }
 
-            QUERY += " AND NRO_SOC <= " + tbDesde.Text.Trim() + " AND NRO_SOC >= " + tbHasta.Text.Trim() + ";";
+            QUERY = QUERY.TrimEnd(',');
+            QUERY = QUERY + ");";
 
             Clipboard.SetData(DataFormats.Text, (Object)QUERY);
             MessageBox.Show("CONSULTA COPIADA");

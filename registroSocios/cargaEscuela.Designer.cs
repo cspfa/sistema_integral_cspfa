@@ -47,8 +47,6 @@
             this.tbPromocion = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.tbDesde = new System.Windows.Forms.TextBox();
-            this.tbHasta = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgNetos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgAspirantes)).BeginInit();
@@ -216,27 +214,11 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // tbDesde
-            // 
-            this.tbDesde.Location = new System.Drawing.Point(934, 222);
-            this.tbDesde.Name = "tbDesde";
-            this.tbDesde.Size = new System.Drawing.Size(100, 20);
-            this.tbDesde.TabIndex = 31;
-            // 
-            // tbHasta
-            // 
-            this.tbHasta.Location = new System.Drawing.Point(935, 248);
-            this.tbHasta.Name = "tbHasta";
-            this.tbHasta.Size = new System.Drawing.Size(100, 20);
-            this.tbHasta.TabIndex = 32;
-            // 
             // cargaEscuela
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1101, 578);
-            this.Controls.Add(this.tbHasta);
-            this.Controls.Add(this.tbDesde);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbPromocion);
@@ -287,7 +269,5 @@
         private System.Windows.Forms.TextBox tbPromocion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox tbDesde;
-        private System.Windows.Forms.TextBox tbHasta;
     }
 }
