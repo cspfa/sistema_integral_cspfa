@@ -16,6 +16,8 @@ namespace SOCIOS.registroSocios
 {
     public partial class cargaEscuela : Form
     {
+        bo dlog = new bo();
+
         public cargaEscuela()
         {
             InitializeComponent();
@@ -51,29 +53,29 @@ namespace SOCIOS.registroSocios
                     int NRO_SOC = ns.numero(1);
                     int ID_TITULAR = ((NRO_SOC * 1000) + 994);
                     int NRO_DEP = 994;
-                    LEG_PER = int.Parse(row.Cells[0].Value.ToString());
+                    LEG_PER = int.Parse(row.Cells[1].Value.ToString());
                     int AAR = 1;
                     int ACRJP1 = 0;
-                    int ACRJP2 = int.Parse(row.Cells[9].Value.ToString());
+                    int ACRJP2 = int.Parse(row.Cells[7].Value.ToString());
                     int ACRJP3 = 0;
-                    string APE_SOC = row.Cells[1].Value.ToString();
-                    string NOM_SOC = row.Cells[2].Value.ToString();
-                    int NUM_DOC = int.Parse(row.Cells[5].Value.ToString());
+                    string APE_SOC = row.Cells[2].Value.ToString();
+                    string NOM_SOC = row.Cells[3].Value.ToString();
+                    int NUM_DOC = int.Parse(row.Cells[6].Value.ToString());
                     string COD_DTO = "640";
-                    string NCOD_DTO = "640";
-                    string F_ALTPO = row.Cells[4].Value.ToString();
+                    string NCOD_DTO = "633";
+                    string F_ALTPO = row.Cells[5].Value.ToString();
                     string F_ALTCI = DateTime.Today.ToShortDateString();
                     string A_DTO = dpAdto.Text;
-                    string DESTINO = row.Cells[8].Value.ToString();;
-                    string JERARQ = "";
+                    string DESTINO = "0175";
+                    string JERARQ = "0041";
                     string CAT_SOC = "001";
                     string OBS = "PROMOCION " + tbPromocion.Text.Trim();
                     string CALL_PAR = "";
                     string LOC_PAR = "";
                     string NUM_TE1 = "";
-                    string SEX = row.Cells[3].Value.ToString(); ;
-                    string OBRA_SOCIAL = row.Cells[7].Value.ToString();
-                    string F_NACIM = row.Cells[6].Value.ToString();
+                    string SEX = row.Cells[4].Value.ToString().Substring(0,1);
+                    string OBRA_SOCIAL = "";
+                    string F_NACIM = "01/01/1990";
 
                     #region VARIABLES VACIAS
                     int PAR = 0;
@@ -161,8 +163,10 @@ namespace SOCIOS.registroSocios
 
             if (archivo != "*.txt")
             {
+                Cursor = Cursors.WaitCursor;
                 lbArchivoTXT.Text = archivo;
                 generarListaNetos();
+                Cursor = Cursors.Default;
             }
         }
 
@@ -175,8 +179,10 @@ namespace SOCIOS.registroSocios
 
             if (archivo != "*.xls")
             {
+                Cursor = Cursors.WaitCursor;
                 lbArchivoXLS.Text =  archivo;
                 generarListaAspirantes(lbArchivoXLS.Text);
+                Cursor = Cursors.Default;
             }
         }
 
@@ -238,8 +244,9 @@ namespace SOCIOS.registroSocios
             public string ALTA { get; set; }
             public int DNI { get; set; }
             public int AFILIADO { get; set; }
+            public int NRO_SOC { get; set; }
 
-            public ASPIRANTES(int orden, int lp, string apellidos, string nombres, int dni, string genero, string alta, int afiliado)
+            public ASPIRANTES(int orden, int lp, string apellidos, string nombres, int dni, string genero, string alta, int afiliado, int nro_soc)
             {
                 this.ORDEN = orden;
                 this.LP = lp;
@@ -249,6 +256,7 @@ namespace SOCIOS.registroSocios
                 this.ALTA = alta;
                 this.DNI = dni;
                 this.AFILIADO = afiliado;
+                this.NRO_SOC = nro_soc;
             }
         }
 
@@ -278,9 +286,10 @@ namespace SOCIOS.registroSocios
                 string APELLIDOS = table.Rows[i][2].ToString().Trim().ToUpper();
                 string NOMBRES = table.Rows[i][3].ToString().Trim().ToUpper();
                 string GENERO = table.Rows[i][4].ToString().Trim().ToUpper();
-                string ALTA = table.Rows[i][5].ToString();
-                string S_DNI = table.Rows[i][6].ToString().Replace(".", "");
-                string AFIL = table.Rows[i][7].ToString().Replace(".", "");
+                string ESCALAFON = table.Rows[i][5].ToString().Trim().ToUpper();
+                string ALTA = table.Rows[i][6].ToString();
+                string S_DNI = table.Rows[i][7].ToString().Replace(".", "");
+                string AFIL = table.Rows[i][8].ToString().Replace(".", "");
 
                 if (ORDEN != "")
                     ORD = int.Parse(ORDEN);
@@ -294,7 +303,7 @@ namespace SOCIOS.registroSocios
                 if (AFIL != "")
                     AFILIADO = int.Parse(AFIL);
 
-                ASPIRANTES.Add(new ASPIRANTES(ORD, LP, APELLIDOS, NOMBRES, DNI, GENERO, ALTA.Replace(" 0:00:00", ""), AFILIADO));
+                ASPIRANTES.Add(new ASPIRANTES(ORD, LP, APELLIDOS, NOMBRES, DNI, GENERO, ALTA.Replace(" 0:00:00", ""), AFILIADO, 0));
             }
 
             dgAspirantes.DataSource = ASPIRANTES;
@@ -314,11 +323,11 @@ namespace SOCIOS.registroSocios
                 foreach (DataGridViewRow row2 in dgAspirantes.Rows)
                 {
                     int DNI_NETO = int.Parse(row1.Cells[5].Value.ToString());
-                    int DNI_ASPI = int.Parse(row2.Cells[5].Value.ToString());
+                    int DNI_ASPI = int.Parse(row2.Cells[6].Value.ToString());
 
                     if (DNI_NETO == DNI_ASPI)
                     {
-                        row2.Cells[9].Value = row1.Cells[0].Value.ToString();
+                        row2.Cells[7].Value = row1.Cells[0].Value.ToString();
                     }
                 }
 
@@ -428,16 +437,6 @@ namespace SOCIOS.registroSocios
             Cursor = Cursors.Default;*/
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            generarListaAspirantes(lbArchivoXLS.Text);
-        }
-
-        private void btnImportarRegistros_Click(object sender, EventArgs e)
-        {
-            insertarRegistros();
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
             string QUERY = "";
@@ -458,7 +457,7 @@ namespace SOCIOS.registroSocios
             MessageBox.Show("CONSULTA COPIADA");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click_2(object sender, EventArgs e)
         {
             string QUERY = "SELECT LEG_PER, APE_SOC, NOM_SOC, SEX, FE_ALTA, NUM_DOC, F_NACIM, OBRA_SOCIAL, DESTINO, ACRJP2, NRO_SOC, NCOD_DTO, A_DTO FROM TITULAR WHERE NUM_DOC IN (";
             int DNI = 0;
@@ -472,8 +471,71 @@ namespace SOCIOS.registroSocios
             QUERY = QUERY.TrimEnd(',');
             QUERY = QUERY + ");";
 
-            Clipboard.SetData(DataFormats.Text, (Object)QUERY);
-            MessageBox.Show("CONSULTA COPIADA");
+            //Clipboard.SetData(DataFormats.Text, (Object)QUERY);
+            //MessageBox.Show("CONSULTA COPIADA");
+        }
+
+        private void btnImportarRegistros_Click_1(object sender, EventArgs e)
+        {
+            insertarRegistros();
+        }
+
+        private void btnListadoFinal_Click(object sender, EventArgs e)
+        {
+            int NUM_DOC = 0;
+            int DNI_DGV = 0;
+            int DNI_TIT = 0;
+            int NRO_SOC = 0;
+            DateTime A_DTO = Convert.ToDateTime(dpAdto.Text);
+            string A_DTO_S = A_DTO.ToString("MM/dd/yyyy");
+            string QUERY = "SELECT NRO_SOC, NUM_DOC FROM TITULAR WHERE NUM_DOC IN (";
+
+            if (dgAspirantes.Rows.Count == 0)
+            {
+                MessageBox.Show("CARGAR EXCEL ESCUELA", "ERROR");
+            }
+            else
+            {
+                Cursor = Cursors.WaitCursor;
+
+                foreach (DataGridViewRow row in dgAspirantes.Rows)
+                {
+                    NUM_DOC = int.Parse(row.Cells[6].Value.ToString());
+                    QUERY += NUM_DOC + ",";
+                }
+
+                QUERY = QUERY.TrimEnd(',');
+                QUERY = QUERY + ") AND ORIGEN_ALTA = 'ESC' AND A_DTO = '" + A_DTO_S + "' ORDER BY LEG_PER ASC;";
+                //Clipboard.SetData(DataFormats.Text, (Object)QUERY);
+                DataRow[] foundRows;
+                foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+                if (foundRows.Length > 0)
+                {
+                    foreach (DataGridViewRow DG_ASPIRANTES in dgAspirantes.Rows)
+                    {
+                        foreach (DataRow TITULARES in foundRows)
+                        {
+                            DNI_DGV = int.Parse(DG_ASPIRANTES.Cells[6].Value.ToString());
+                            DNI_TIT = int.Parse(TITULARES[1].ToString());
+                            NRO_SOC = int.Parse(TITULARES[0].ToString());
+
+                            if (DNI_DGV == DNI_TIT)
+                            {
+                                DG_ASPIRANTES.Cells[8].Value = NRO_SOC.ToString();
+                            }
+
+                            progressBar1.PerformStep();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("NO SE ECONTRARON DATOS", "ERROR");
+                }
+
+                Cursor = Cursors.Default;
+            }
         }
     }
 }
