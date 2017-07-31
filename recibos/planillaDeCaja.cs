@@ -1253,6 +1253,7 @@ namespace SOCIOS
                 int X = 0;
                 string TIPO = "";
                 string ANULADO = "";
+                string PTO_VTA = "";
 
                 Paragraph header = new Paragraph("// " + VGlobales.vp_role + " // PLANILLA DE CAJA " + FECHA, _standardFontBold);
                 header.Alignment = Element.ALIGN_CENTER;
@@ -1270,7 +1271,7 @@ namespace SOCIOS
                 TABLA_INGRESOS.WidthPercentage = 100;
                 TABLA_INGRESOS.SpacingAfter = 10;
                 TABLA_INGRESOS.SpacingBefore = 10;
-                TABLA_INGRESOS.SetWidths(new float[] { 1f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_INGRESOS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f });
                 PdfPCell CELDA_NUM = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
@@ -1321,7 +1322,7 @@ namespace SOCIOS
                 TABLA_INGRESOS_OTROS.WidthPercentage = 100;
                 TABLA_INGRESOS_OTROS.SpacingAfter = 10;
                 TABLA_INGRESOS_OTROS.SpacingBefore = 10;
-                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f });
                 PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO_OTROS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
@@ -1371,7 +1372,7 @@ namespace SOCIOS
                 TABLA_EGRESOS.WidthPercentage = 100;
                 TABLA_EGRESOS.SpacingAfter = 10;
                 TABLA_EGRESOS.SpacingBefore = 10;
-                TABLA_EGRESOS.SetWidths(new float[] { 1f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f });
                 PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO_EGRESOS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
@@ -1518,6 +1519,7 @@ namespace SOCIOS
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString().Replace("12:00:00 a.m.", "");
+                    PTO_VTA = row[12].ToString();
 
                     if (X == 0)
                     {
@@ -1530,7 +1532,7 @@ namespace SOCIOS
                         X--;
                     }
 
-                    PdfPCell CELL_NUM = new PdfPCell(new Phrase(TIPO + "" + NUM, _mediumFont));
+                    PdfPCell CELL_NUM = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
                     CELL_NUM.HorizontalAlignment = 1;
                     CELL_NUM.BorderWidth = 0;
                     CELL_NUM.BackgroundColor = colorFondo;
@@ -1615,6 +1617,7 @@ namespace SOCIOS
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString();
+                    PTO_VTA = row[12].ToString();
 
                     if (X == 0)
                     {
@@ -1627,7 +1630,7 @@ namespace SOCIOS
                         X--;
                     }
 
-                    PdfPCell CELL_NUM_OTROS = new PdfPCell(new Phrase(TIPO + "" + NUM, _mediumFont));
+                    PdfPCell CELL_NUM_OTROS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
                     CELL_NUM_OTROS.HorizontalAlignment = 1;
                     CELL_NUM_OTROS.BorderWidth = 0;
                     CELL_NUM_OTROS.BackgroundColor = colorFondo;
@@ -1717,6 +1720,7 @@ namespace SOCIOS
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString();
+                    PTO_VTA = row[12].ToString();
 
                     if (X == 0)
                     {
@@ -1729,7 +1733,7 @@ namespace SOCIOS
                         X--;
                     }
 
-                    PdfPCell CELL_NUM_EGRESOS = new PdfPCell(new Phrase(TIPO + "" + NUM, _mediumFont));
+                    PdfPCell CELL_NUM_EGRESOS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
                     CELL_NUM_EGRESOS.HorizontalAlignment = 1;
                     CELL_NUM_EGRESOS.BorderWidth = 0;
                     CELL_NUM_EGRESOS.BackgroundColor = colorFondo;

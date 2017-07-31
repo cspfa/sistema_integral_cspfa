@@ -325,7 +325,9 @@
       <DependentUpon>CadetesMayores.cs</DependentUpon>
     </Compile>
     <Compile Include="deportes\CamposService.cs" />
-    <Compile Include="deportes\Campos\Exportar_Deportes.cs" />
+    <Compile Include="deportes\Campos\Exportar_Deportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="deportes\Campos\Exportar_Deportes.designer.cs">
       <DependentUpon>Exportar_Deportes.cs</DependentUpon>
     </Compile>
