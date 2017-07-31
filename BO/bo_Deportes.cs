@@ -102,6 +102,7 @@ namespace SOCIOS
             vector_nombres.Add("@OBS");
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@ID_ROL");
+
             string vprocedure = "DEPORTES_ADM_I";
 
 
@@ -962,7 +963,7 @@ namespace SOCIOS
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
 
-        public void Importacion_Actividad(int ID_DEPORTE,int NRO_SOC,int NRO_DEP,int BARRA,string CAT_SOC,int SECTACT,int PROFESIONAL,int ID_ARANCEL,decimal ARANCEL,int ESTADO,string USR_A,DateTime F_ALTA,string USR_U,DateTime F_UPDATE,string USR_B,DateTime F_BAJA,int ID_ROL, string ROL, int POR_DTO )
+        public void Importacion_Actividad(int ID_DEPORTE,int NRO_SOC,int NRO_DEP,int BARRA,DateTime  A_DTO,string CAT_SOC,int SECTACT,int PROFESIONAL,int ID_ARANCEL,decimal ARANCEL,int ESTADO,string USR_A,DateTime F_ALTA,string USR_U,DateTime? F_UPDATE,string USR_B,DateTime? F_BAJA,int ID_ROL, string ROL, int POR_DTO )
         {
              db resultado = new db();
 
@@ -986,7 +987,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Integer");
             vector_nombres.Add("@BARRA");
              
-              vector_contenidos.Add(BARRA);
+              vector_contenidos.Add(A_DTO);
             vector_tipos.Add("FbDbType.Varchar");
             vector_nombres.Add("@A_DTO");
    
@@ -1056,5 +1057,36 @@ namespace SOCIOS
 
         }
 
+        public void Actualizo_Fecha_Update(int ID_ROL, string ROL)
+
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+
+            vector_contenidos.Add(VGlobales.vp_username.TrimStart().TrimEnd());
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@USR_MODIFICACION");
+
+            vector_contenidos.Add(System.DateTime.Now);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@FE_MODIFICACION");
+
+            vector_contenidos.Add(ROL);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@ROL");
+
+            vector_contenidos.Add(ID_ROL);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@ID_ROL");
+
+           
+            string vprocedure = "P_DEPORTES_ADM_U_FECHA";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        
+        }
     }
 }

@@ -287,6 +287,18 @@
     <Compile Include="copyFiles\DIA_CopyFiles.Designer.cs">
       <DependentUpon>DIA_CopyFiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="deportes\admActividades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deportes\admActividades.designer.cs">
+      <DependentUpon>admActividades.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deportes\admDeportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deportes\admDeportes.designer.cs">
+      <DependentUpon>admDeportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="deportes\Asistencias\admAsistencia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -306,32 +318,6 @@
     <Compile Include="deportes\Asistencias\VerificacionAsistencia.designer.cs">
       <DependentUpon>VerificacionAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="registroSocios\CABA-PFA.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="registroSocios\CABA-PFA.Designer.cs">
-      <DependentUpon>CABA-PFA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="carnet\CarnetDeportes.cs" />
-    <Compile Include="ClasesBase.cs" />
-    <Compile Include="confiteria\listadoAranceles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="confiteria\listadoAranceles.Designer.cs">
-      <DependentUpon>listadoAranceles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="deportes\admActividades.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="deportes\admActividades.designer.cs">
-      <DependentUpon>admActividades.cs</DependentUpon>
-    </Compile>
-    <Compile Include="deportes\admDeportes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="deportes\admDeportes.designer.cs">
-      <DependentUpon>admDeportes.cs</DependentUpon>
-    </Compile>
     <Compile Include="deportes\CadetesMayores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -339,12 +325,6 @@
       <DependentUpon>CadetesMayores.cs</DependentUpon>
     </Compile>
     <Compile Include="deportes\CamposService.cs" />
-    <Compile Include="deportes\Campos\Exportar_Deportes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="deportes\Campos\Exportar_Deportes.designer.cs">
-      <DependentUpon>Exportar_Deportes.cs</DependentUpon>
-    </Compile>
     <Compile Include="deportes\Clases.cs" />
     <Compile Include="deportes\DeportesService.cs" />
     <Compile Include="deportes\DescuentoDeportes.cs">
@@ -362,13 +342,37 @@
     <Compile Include="deportes\VencimientoAptoFisico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="deportes\VencimientoAptoFisico.designer.cs">
-      <DependentUpon>VencimientoAptoFisico.cs</DependentUpon>
-    </Compile>
+    <Compile Include="deportes\VencimientoAptoFisico.designer.cs" />
     <Compile Include="deportes\VencimientoAptoFisico2.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="deportes\VencimientoAptoFisico2.Designer.cs" />
+    <Compile Include="recibos\importarComprobantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recibos\importarComprobantes.Designer.cs">
+      <DependentUpon>importarComprobantes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="registroSocios\CABA-PFA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registroSocios\CABA-PFA.Designer.cs">
+      <DependentUpon>CABA-PFA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="carnet\CarnetDeportes.cs" />
+    <Compile Include="ClasesBase.cs" />
+    <Compile Include="confiteria\listadoAranceles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="confiteria\listadoAranceles.Designer.cs">
+      <DependentUpon>listadoAranceles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deportes\Campos\Exportar_Deportes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deportes\Campos\Exportar_Deportes.designer.cs">
+      <DependentUpon>Exportar_Deportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="descuentos\GenerarInfoDescuentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1207,9 +1211,7 @@
     <EmbeddedResource Include="deportes\Selector_Deportes.resx">
       <DependentUpon>Selector_Deportes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="deportes\VencimientoAptoFisico.resx">
-      <DependentUpon>VencimientoAptoFisico.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="deportes\VencimientoAptoFisico.resx" />
     <EmbeddedResource Include="deportes\VencimientoAptoFisico2.resx" />
     <EmbeddedResource Include="descuentos\GenerarInfoDescuentos.resx">
       <DependentUpon>GenerarInfoDescuentos.cs</DependentUpon>
@@ -1325,6 +1327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="patrimonio\abmPatrimonio.resx">
       <DependentUpon>abmPatrimonio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="recibos\importarComprobantes.resx">
+      <DependentUpon>importarComprobantes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="recibos\puntosDeVenta.resx">
       <DependentUpon>puntosDeVenta.cs</DependentUpon>

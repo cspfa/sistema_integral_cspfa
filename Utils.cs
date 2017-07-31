@@ -84,7 +84,7 @@ namespace SOCIOS
            //    texto = ex.Message;
            //}
           //tamanio carnet
-            Image fotoTratada  = Utils.resizeImage(fotoP,new Size(340,340));
+            Image fotoTratada  =  resizeImage(fotoP,new Size(340,340));
             return fotoTratada;
        
        
@@ -391,6 +391,23 @@ namespace SOCIOS
            double inches = hundrethsOfInch / 100.0;
            return inches.ToString(CultureInfo.InvariantCulture) + "in";
        }
+
+      
+           
+       
    }
 
+   public static class FECHAS
+
+   {
+       public static string fechaUSA(DateTime fecha)
+       {
+           string Fecha = fecha.Month.ToString("00") + "/" + fecha.Day.ToString("00") + "/" + fecha.Year.ToString("0000");
+
+           return Fecha;
+
+
+       }
+   
+   }
 }

@@ -148,6 +148,12 @@ namespace SOCIOS
                 cs.Database = ini2.Ubicacion_Delfo;
             }
 
+            if (ROL == "CPOPOLVORINES")
+            {
+                cs.DataSource = ini2.Servidor_Belgrano;
+                cs.Database = ini2.Ubicacion_Belgrano;
+            }
+
             cs.Port = int.Parse(ini2.Puerto);
             VGlobales.vp_datasource = ini2.Servidor;
             // cs.Database = ini2.Ubicacion;

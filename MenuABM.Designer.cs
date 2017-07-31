@@ -50,6 +50,9 @@
             this.ingresosToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresoXCantidadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importarComprobantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.delfoCabreraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generalBelgranoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backupDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualizarDBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sectoresYActividadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -350,6 +353,7 @@
             // procesosToolStripMenuItem
             // 
             this.procesosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.importarComprobantesToolStripMenuItem,
             this.backupDBToolStripMenuItem,
             this.actualizarDBToolStripMenuItem,
             this.sectoresYActividadesToolStripMenuItem,
@@ -369,6 +373,32 @@
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.procesosToolStripMenuItem.Text = "Sistemas";
+            // 
+            // importarComprobantesToolStripMenuItem
+            // 
+            this.importarComprobantesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.delfoCabreraToolStripMenuItem,
+            this.generalBelgranoToolStripMenuItem});
+            this.importarComprobantesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("importarComprobantesToolStripMenuItem.Image")));
+            this.importarComprobantesToolStripMenuItem.Name = "importarComprobantesToolStripMenuItem";
+            this.importarComprobantesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.importarComprobantesToolStripMenuItem.Text = "Importar Comprobantes";
+            // 
+            // delfoCabreraToolStripMenuItem
+            // 
+            this.delfoCabreraToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("delfoCabreraToolStripMenuItem.Image")));
+            this.delfoCabreraToolStripMenuItem.Name = "delfoCabreraToolStripMenuItem";
+            this.delfoCabreraToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.delfoCabreraToolStripMenuItem.Text = "Delfo Cabrera";
+            this.delfoCabreraToolStripMenuItem.Click += new System.EventHandler(this.delfoCabreraToolStripMenuItem_Click);
+            // 
+            // generalBelgranoToolStripMenuItem
+            // 
+            this.generalBelgranoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.bullet_green;
+            this.generalBelgranoToolStripMenuItem.Name = "generalBelgranoToolStripMenuItem";
+            this.generalBelgranoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.generalBelgranoToolStripMenuItem.Text = "General Belgrano";
+            this.generalBelgranoToolStripMenuItem.Click += new System.EventHandler(this.generalBelgranoToolStripMenuItem_Click);
             // 
             // backupDBToolStripMenuItem
             // 
@@ -1387,5 +1417,8 @@
         private System.Windows.Forms.ToolStripMenuItem reporteDeVerificacionAsistenciaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem backupDBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem actualizarDBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importarComprobantesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem delfoCabreraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generalBelgranoToolStripMenuItem;
     }
 }

@@ -117,11 +117,11 @@ namespace SOCIOS.deportes
        public string USR_ALTA       { get; set; }
        public DateTime FE_ALTA      { get; set; }
        public string USR_U          { get; set; }
-       public DateTime FE_U         { get; set; }
+       public DateTime? FE_U         { get; set; }
        public int ID_ARANCEL        { get; set; }
        public int SECTACT           { get; set; }
        public string ESTADO         { get; set; }
-       public DateTime FE_BAJA      { get; set; }
+       public DateTime? FE_BAJA      { get; set; }
        public string USR_BAJA       { get; set; }
        public string ROL            { get; set; }
        public int ID_ROL            { get; set; }
@@ -245,7 +245,7 @@ namespace SOCIOS.deportes
    public class Apto_Foto
    {
        public System.Drawing.Image Imagen         { get; set; }
-       public DateTime             FechaApto      { get; set; }
+       public DateTime?             FechaApto      { get; set; }
    }
 
 

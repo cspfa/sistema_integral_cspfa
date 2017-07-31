@@ -28,6 +28,8 @@ namespace SOCIOS.deportes.Asistencia
 
        public string   PRESENTE           { get; set; }
        public DateTime VENCIMIENTO_APTO   { get; set; }
+       public int Sectact                 { get; set; }
+       public string ROL                  { get; set; }
     }
 
    public class AsistenciaService
@@ -41,7 +43,7 @@ namespace SOCIOS.deportes.Asistencia
            string connectionString;
            List<ReporteAsistencia> lista = new List<ReporteAsistencia>();
            DataTable dt1 = new DataTable("RESULTADOS");
-           string Query = "select D.ID_ROL Id, D.NOMBRE Nombre,D.APELLIDO Apellido,D.FE_VENCIMIENTO Fecha,IIF(char_length(MD.DNI)>0,'SI','NO') Moroso, D.DNI DNI " +
+           string Query = "select D.ID_ROL Id, D.NOMBRE Nombre,D.APELLIDO Apellido,D.FE_VENCIMIENTO Fecha,IIF(char_length(MD.DNI)>0,'SI','NO') Moroso, D.DNI DNI , D.Sectact SEC, D.ROL ROL " +
                         "from deportes_adm D left join MOROSOS_DEPORTES MD on MD.DNI = cast(D.dni as Integer) , socio_actividades A , sectact S " +
                         "where D.ID_ROL =A.ID_DEPORTE and D.ROL=A.ROL  and S.ID =A.SECTACT    and S.ID =" + ID + "  AND D.ROL='" + ROL + "' ORDER BY Apellido";
            DataSet ds1 = new DataSet();
@@ -83,6 +85,8 @@ namespace SOCIOS.deportes.Asistencia
                        item.FECHA    = DateTime.Parse(reader3.GetString(reader3.GetOrdinal("Fecha")).Trim()).ToShortDateString();
                       // item.MORA     = reader3.GetString(reader3.GetOrdinal("Moroso")).Trim();
                        item.DNI      =  reader3.GetString(reader3.GetOrdinal("DNI")).Trim();
+                       item.Sectact = Int32.Parse(reader3.GetOrdinal("SEC").ToString());
+                       item.ROL = reader3.GetString(reader3.GetOrdinal("ROL")).TrimEnd().TrimStart();
 
                        lista.Add(item);
 
@@ -106,6 +110,63 @@ namespace SOCIOS.deportes.Asistencia
 
        }
 
+
+
+       public List<ReporteAsistencia> ReporteAsistencia_Remoto(DateTime Desde,DateTime Hasta,string ROL)
+       {
+
+           string connectionString;
+           List<ReporteAsistencia> lista = new List<ReporteAsistencia>();
+           DataTable dt1 = new DataTable("RESULTADOS");
+               string Query = @"select A.ID ID, A.NOMBRE NOMBRE, A.APELLIDO APELLIDO,A.FECHA FECHA,A.DNI , A.P PRESENTE, A.ROL ROL, A.SECTACT SECT from SOCIO_ACTIVIDADES_ASISTENCIA A
+                                      WHERE A.FECHA between '" + fechaUSA( Desde) + "' AND '" +  fechaUSA( Hasta) + "' AND A.ROL='"  +ROL +"'  order by DNI"  ;
+
+          DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable_Remota(Query,ROL).Select();
+            try
+            {
+                // foundRows = dlog.BO_EjecutoDataTable_Remota(QUERY,RolRemoto).Select();
+                if (foundRows.Length > 0)
+                {
+                    int I = 0;
+                    for (int i = 0; i < foundRows.Length; i++)
+                    {
+
+                        
+                        ReporteAsistencia item = new ReporteAsistencia();
+                        item.ID = foundRows[i][0].ToString();
+                        item.NOMBRE = foundRows[i][1].ToString();
+                        item.APELLIDO = foundRows[i][2].ToString();
+                        item.FECHA = DateTime.Parse(foundRows[i][3].ToString()).ToShortDateString();
+                        // item.MORA     = reader3.GetString(reader3.GetOrdinal("Moroso")).Trim();
+                        item.DNI = foundRows[i][4].ToString();
+                        item.PRESENTE = foundRows[i][5].ToString();
+
+                        item.ROL = foundRows[i][6].ToString().TrimEnd().TrimStart();
+                        item.Sectact = Int32.Parse(foundRows[i][7].ToString());
+
+                        lista.Add(item);
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+           return lista;
+
+
+       }
+
+
+
+
+
+       
        private string fechaUSA(DateTime fecha)
        {
            string Fecha = fecha.Month.ToString("00") + "/" + fecha.Day.ToString("00") + "/" + fecha.Year.ToString("0000");
@@ -126,7 +187,7 @@ namespace SOCIOS.deportes.Asistencia
            SOCIOS.deportes.DeportesService ds = new DeportesService();
 
            DataTable dt1 = new DataTable("RESULTADOS");
-           string Query = @"select A.ID ID, A.NOMBRE NOMBRE, A.APELLIDO APELLIDO,A.FECHA FECHA,A.DNI , A.P PRESENTE from SOCIO_ACTIVIDADES_ASISTENCIA A
+           string Query = @"select A.ID ID, A.NOMBRE NOMBRE, A.APELLIDO APELLIDO,A.FECHA FECHA,A.DNI , A.P PRESENTE, A.ROL ROL, A.SECTACT SECT from SOCIO_ACTIVIDADES_ASISTENCIA A
                                       WHERE A.FECHA between '" + Desde + "' AND '" + Hasta + "' AND A.ROL='"  +ROL +"' and A.SECTACT= " + SECT_ACT.ToString() +  " order by DNI"  ;
            DataSet ds1 = new DataSet();
 
@@ -177,6 +238,8 @@ namespace SOCIOS.deportes.Asistencia
 
                        if (reader3.GetString(reader3.GetOrdinal("PRESENTE")).Trim() != "0")
                            item.PRESENTE = "X";
+                       item.ROL = reader3.GetString(reader3.GetOrdinal("ROL")).TrimEnd().TrimStart();
+                       item.Sectact = Int32.Parse(reader3.GetString(reader3.GetOrdinal("SECT")));
 
                        
                        lista.Add(item);

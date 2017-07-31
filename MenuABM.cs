@@ -2057,5 +2057,17 @@ namespace SOCIOS
                 Temp.CopyAsync(TempDiag);
             }
         }
+
+        private void delfoCabreraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO DELFO CABRERA", "CPOCABA");
+            ic.ShowDialog();
+        }
+
+        private void generalBelgranoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO GENERAL BELGRANO", "CPOPOLVORINES");
+            ic.ShowDialog();
+        }
     }
 }

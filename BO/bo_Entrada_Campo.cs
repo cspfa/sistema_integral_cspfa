@@ -336,7 +336,7 @@ namespace SOCIOS
             vector_contenidos.Add(DISCA_ACOM);
             vector_tipos.Add("FbDbType.Integer");
             vector_nombres.Add("@DISCA_ACOM");
-
+            
             vector_contenidos.Add(ID_ROL);
             vector_tipos.Add("FbDbType.Integer");
             vector_nombres.Add("@ID_ROL");

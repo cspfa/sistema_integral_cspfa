@@ -64,7 +64,7 @@ namespace SOCIOS.registroSocios
                     string COD_DTO = "640";
                     string NCOD_DTO = "633";
                     string F_ALTPO = row.Cells[5].Value.ToString();
-                    string F_ALTCI = DateTime.Today.ToShortDateString();
+                    string F_ALTCI = dpAdto.Text;
                     string A_DTO = dpAdto.Text;
                     string DESTINO = "0175";
                     string JERARQ = "0041";
