@@ -33,11 +33,14 @@
             this.cbROLES = new System.Windows.Forms.ComboBox();
             this.regRed = new System.Windows.Forms.Button();
             this.pnlID = new System.Windows.Forms.Panel();
+            this.fechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.fechaDesde = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.Desde = new System.Windows.Forms.Label();
             this.dgDeportes = new System.Windows.Forms.DataGridView();
-            this.fechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.fechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cb_Deportes = new System.Windows.Forms.CheckBox();
+            this.cbAsistencia = new System.Windows.Forms.CheckBox();
             this.gpRed.SuspendLayout();
             this.pnlID.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDeportes)).BeginInit();
@@ -45,17 +48,18 @@
             // 
             // gpRed
             // 
+            this.gpRed.Controls.Add(this.cbAsistencia);
+            this.gpRed.Controls.Add(this.cb_Deportes);
             this.gpRed.Controls.Add(this.label2);
             this.gpRed.Controls.Add(this.cbROLES);
             this.gpRed.Controls.Add(this.regRed);
             this.gpRed.Controls.Add(this.pnlID);
             this.gpRed.Location = new System.Drawing.Point(12, 12);
             this.gpRed.Name = "gpRed";
-            this.gpRed.Size = new System.Drawing.Size(491, 110);
+            this.gpRed.Size = new System.Drawing.Size(882, 110);
             this.gpRed.TabIndex = 30;
             this.gpRed.TabStop = false;
             this.gpRed.Text = "Filtros Datos de Red";
-            this.gpRed.Visible = false;
             // 
             // label2
             // 
@@ -73,6 +77,7 @@
             this.cbROLES.Name = "cbROLES";
             this.cbROLES.Size = new System.Drawing.Size(88, 21);
             this.cbROLES.TabIndex = 33;
+            this.cbROLES.SelectedIndexChanged += new System.EventHandler(this.cbROLES_SelectedIndexChanged);
             // 
             // regRed
             // 
@@ -94,7 +99,20 @@
             this.pnlID.Name = "pnlID";
             this.pnlID.Size = new System.Drawing.Size(286, 64);
             this.pnlID.TabIndex = 32;
-            this.pnlID.Visible = false;
+            // 
+            // fechaHasta
+            // 
+            this.fechaHasta.Location = new System.Drawing.Point(65, 32);
+            this.fechaHasta.Name = "fechaHasta";
+            this.fechaHasta.Size = new System.Drawing.Size(200, 20);
+            this.fechaHasta.TabIndex = 8;
+            // 
+            // fechaDesde
+            // 
+            this.fechaDesde.Location = new System.Drawing.Point(67, 6);
+            this.fechaDesde.Name = "fechaDesde";
+            this.fechaDesde.Size = new System.Drawing.Size(200, 20);
+            this.fechaDesde.TabIndex = 7;
             // 
             // label1
             // 
@@ -122,25 +140,46 @@
             this.dgDeportes.Size = new System.Drawing.Size(882, 291);
             this.dgDeportes.TabIndex = 31;
             // 
-            // fechaDesde
+            // button1
             // 
-            this.fechaDesde.Location = new System.Drawing.Point(67, 6);
-            this.fechaDesde.Name = "fechaDesde";
-            this.fechaDesde.Size = new System.Drawing.Size(200, 20);
-            this.fechaDesde.TabIndex = 7;
+            this.button1.Location = new System.Drawing.Point(819, 425);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "PROCESAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // fechaHasta
+            // cb_Deportes
             // 
-            this.fechaHasta.Location = new System.Drawing.Point(65, 32);
-            this.fechaHasta.Name = "fechaHasta";
-            this.fechaHasta.Size = new System.Drawing.Size(200, 20);
-            this.fechaHasta.TabIndex = 8;
+            this.cb_Deportes.AutoSize = true;
+            this.cb_Deportes.Checked = true;
+            this.cb_Deportes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_Deportes.Location = new System.Drawing.Point(444, 14);
+            this.cb_Deportes.Name = "cb_Deportes";
+            this.cb_Deportes.Size = new System.Drawing.Size(169, 17);
+            this.cb_Deportes.TabIndex = 35;
+            this.cb_Deportes.Text = "DEPORTES Y ACTIVIDADES";
+            this.cb_Deportes.UseVisualStyleBackColor = true;
+            // 
+            // cbAsistencia
+            // 
+            this.cbAsistencia.AutoSize = true;
+            this.cbAsistencia.Checked = true;
+            this.cbAsistencia.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAsistencia.Location = new System.Drawing.Point(444, 42);
+            this.cbAsistencia.Name = "cbAsistencia";
+            this.cbAsistencia.Size = new System.Drawing.Size(89, 17);
+            this.cbAsistencia.TabIndex = 36;
+            this.cbAsistencia.Text = "ASISTENCIA";
+            this.cbAsistencia.UseVisualStyleBackColor = true;
             // 
             // Exportar_Deportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 484);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dgDeportes);
             this.Controls.Add(this.gpRed);
             this.Name = "Exportar_Deportes";
@@ -166,5 +205,8 @@
         private System.Windows.Forms.DataGridView dgDeportes;
         private System.Windows.Forms.DateTimePicker fechaHasta;
         private System.Windows.Forms.DateTimePicker fechaDesde;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox cbAsistencia;
+        private System.Windows.Forms.CheckBox cb_Deportes;
     }
 }
