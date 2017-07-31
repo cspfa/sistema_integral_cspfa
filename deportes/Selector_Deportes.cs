@@ -182,8 +182,10 @@ namespace SOCIOS.deportes
             if (foundRows.Length > 0)
             {
 
-                 item.FechaApto =DateTime.Parse(foundRows[0][0].ToString().Trim());
-
+                if (foundRows[0][0].ToString().Trim().Length > 0)
+                    item.FechaApto = DateTime.Parse(foundRows[0][0].ToString().Trim());
+                else
+                    item.FechaApto = null;
                 if (foundRows[0][1].ToString().Length != 0)
                 {
                     byteBLOBData1 = (byte[])foundRows[0][1];

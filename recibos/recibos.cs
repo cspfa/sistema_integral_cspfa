@@ -519,7 +519,7 @@ namespace SOCIOS
         private void modificarImprimirRecibo(string COMPROBANTE, string ACCION)
         {
             float ARANCEL = 0;
-            bool ENBLANCO = false;
+            string ENBLANCO = "";
 
             if (ACCION != "IMPRIMIR" && tbNroRecibo.Text == "")
             {
@@ -570,9 +570,9 @@ namespace SOCIOS
                         if (RECIBO_BONO == "R")
                         {
                             MSG = "RECIBO CARGADO CORRECTAMENTE";
-                            ENBLANCO = nr.comprobanteVacio(NRO_COMP, PTO_VTA, "RECIBOS_CAJA");
+                            ENBLANCO = nr.comprobanteVacio(NRO_COMP, PTO_VTA, "RECIBOS_CAJA").Trim();
 
-                            if (ENBLANCO == false)
+                            if (ENBLANCO != "BLANCO" && ENBLANCO != "RESERVADO")
                             {
                                 MessageBox.Show("EL RECIBO Nº " + NRO_COMP + " DEL PUNTO DE VENTA " + PTO_VTA + " NO ESTA EN BLANCO");
                             }
@@ -588,7 +588,7 @@ namespace SOCIOS
                                 }
                                 else
                                 {
-                                    if (ENBLANCO == false)
+                                    if (ENBLANCO == "RESERVADO")
                                     {
                                         BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                         DateTime Hoy = DateTime.Today;
@@ -607,7 +607,7 @@ namespace SOCIOS
                         {
                             ENBLANCO = nr.comprobanteVacio(NRO_COMP, PTO_VTA, "BONOS_CAJA");
 
-                            if (ENBLANCO == false)
+                            if (ENBLANCO != "BLANCO" && ENBLANCO != "RESERVADO")
                             {
                                 MessageBox.Show("EL BONO Nº " + NRO_COMP + " DEL PUNTO DE VENTA " + PTO_VTA + " NO ESTA EN BLANCO");
                             }
@@ -627,7 +627,7 @@ namespace SOCIOS
                                     BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                     DateTime Hoy = DateTime.Today;
                                     gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                            lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"));
+                                    lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"));
                                 }
 
                                 this.Close();

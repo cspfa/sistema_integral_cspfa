@@ -33,11 +33,12 @@
             this.cbROLES = new System.Windows.Forms.ComboBox();
             this.regRed = new System.Windows.Forms.Button();
             this.pnlID = new System.Windows.Forms.Panel();
+            this.fechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.fechaDesde = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.Desde = new System.Windows.Forms.Label();
             this.dgDeportes = new System.Windows.Forms.DataGridView();
-            this.fechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.fechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.button1 = new System.Windows.Forms.Button();
             this.gpRed.SuspendLayout();
             this.pnlID.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDeportes)).BeginInit();
@@ -55,7 +56,6 @@
             this.gpRed.TabIndex = 30;
             this.gpRed.TabStop = false;
             this.gpRed.Text = "Filtros Datos de Red";
-            this.gpRed.Visible = false;
             // 
             // label2
             // 
@@ -73,6 +73,7 @@
             this.cbROLES.Name = "cbROLES";
             this.cbROLES.Size = new System.Drawing.Size(88, 21);
             this.cbROLES.TabIndex = 33;
+            this.cbROLES.SelectedIndexChanged += new System.EventHandler(this.cbROLES_SelectedIndexChanged);
             // 
             // regRed
             // 
@@ -94,7 +95,20 @@
             this.pnlID.Name = "pnlID";
             this.pnlID.Size = new System.Drawing.Size(286, 64);
             this.pnlID.TabIndex = 32;
-            this.pnlID.Visible = false;
+            // 
+            // fechaHasta
+            // 
+            this.fechaHasta.Location = new System.Drawing.Point(65, 32);
+            this.fechaHasta.Name = "fechaHasta";
+            this.fechaHasta.Size = new System.Drawing.Size(200, 20);
+            this.fechaHasta.TabIndex = 8;
+            // 
+            // fechaDesde
+            // 
+            this.fechaDesde.Location = new System.Drawing.Point(67, 6);
+            this.fechaDesde.Name = "fechaDesde";
+            this.fechaDesde.Size = new System.Drawing.Size(200, 20);
+            this.fechaDesde.TabIndex = 7;
             // 
             // label1
             // 
@@ -122,25 +136,22 @@
             this.dgDeportes.Size = new System.Drawing.Size(882, 291);
             this.dgDeportes.TabIndex = 31;
             // 
-            // fechaDesde
+            // button1
             // 
-            this.fechaDesde.Location = new System.Drawing.Point(67, 6);
-            this.fechaDesde.Name = "fechaDesde";
-            this.fechaDesde.Size = new System.Drawing.Size(200, 20);
-            this.fechaDesde.TabIndex = 7;
-            // 
-            // fechaHasta
-            // 
-            this.fechaHasta.Location = new System.Drawing.Point(65, 32);
-            this.fechaHasta.Name = "fechaHasta";
-            this.fechaHasta.Size = new System.Drawing.Size(200, 20);
-            this.fechaHasta.TabIndex = 8;
+            this.button1.Location = new System.Drawing.Point(819, 425);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "PROCESAR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Exportar_Deportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 484);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dgDeportes);
             this.Controls.Add(this.gpRed);
             this.Name = "Exportar_Deportes";
@@ -166,5 +177,6 @@
         private System.Windows.Forms.DataGridView dgDeportes;
         private System.Windows.Forms.DateTimePicker fechaHasta;
         private System.Windows.Forms.DateTimePicker fechaDesde;
+        private System.Windows.Forms.Button button1;
     }
 }

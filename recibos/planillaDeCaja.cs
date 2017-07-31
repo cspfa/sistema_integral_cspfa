@@ -1274,7 +1274,7 @@ namespace SOCIOS
                 PdfPCell CELDA_NUM = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPUTACION = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
+                PdfPCell CELDA_IMPUTACION = new PdfPCell(new Phrase("HABER", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPORTE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
                 PdfPCell CELDA_OBS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
                 PdfPCell CELDA_ANULADO = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
@@ -1325,7 +1325,7 @@ namespace SOCIOS
                 PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO_OTROS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPUTACION_OTROS = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
+                PdfPCell CELDA_IMPUTACION_OTROS = new PdfPCell(new Phrase("HABER", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPORTE_OTROS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
                 PdfPCell CELDA_OBS_OTROS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
                 PdfPCell CELDA_ANULADO_OTROS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
@@ -1588,7 +1588,7 @@ namespace SOCIOS
                 TABLA_TOTAL_INGRESOS.SpacingAfter = 0;
                 TABLA_TOTAL_INGRESOS.SpacingBefore = 0;
                 TABLA_TOTAL_INGRESOS.SetWidths(new float[] { 4f, 4f });
-                PdfPCell CELDA_TITULO = new PdfPCell(new Phrase("TOTAL", _mediumFontBoldWhite));
+                PdfPCell CELDA_TITULO = new PdfPCell(new Phrase("3.01.1.01 INGRESOS DEL DIA (DEBE)", _mediumFontBoldWhite));
                 PdfPCell CELDA_TOTAL = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_INGRESOS_EFECTIVO), _mediumFontBoldWhite));
                 CELDA_TITULO.BackgroundColor = topo;
                 CELDA_TITULO.BorderColor = blanco;
@@ -1690,7 +1690,7 @@ namespace SOCIOS
                 TABLA_TOTAL_OTROS.SpacingAfter = 0;
                 TABLA_TOTAL_OTROS.SpacingBefore = 0;
                 TABLA_TOTAL_OTROS.SetWidths(new float[] { 4f, 4f });
-                PdfPCell CELDA_TITULO_OTROS = new PdfPCell(new Phrase("TOTAL", _mediumFontBoldWhite));
+                PdfPCell CELDA_TITULO_OTROS = new PdfPCell(new Phrase("3.01.1.01 INGRESOS DEL DIA (DEBE)", _mediumFontBoldWhite));
                 PdfPCell CELDA_TOTAL_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_INGRESOS_OTROS), _mediumFontBoldWhite));
                 CELDA_TITULO_OTROS.BackgroundColor = topo;
                 CELDA_TITULO_OTROS.BorderColor = blanco;
@@ -1712,7 +1712,7 @@ namespace SOCIOS
                     NUM = row[0].ToString();
                     NOMBRE = row[1].ToString();
                     CONCEPTO = row[2].ToString();
-                    DEBE = row[3].ToString();
+                    DEBE = "301207";
                     IMPORTE = Convert.ToDecimal(row[4]);
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
@@ -1848,7 +1848,7 @@ namespace SOCIOS
                 TABLA_TOTAL_EGRESOS.SpacingAfter = 0;
                 TABLA_TOTAL_EGRESOS.SpacingBefore = 0;
                 TABLA_TOTAL_EGRESOS.SetWidths(new float[] { 4f, 4f });
-                PdfPCell CELDA_TITULO_EGRESOS = new PdfPCell(new Phrase("TOTAL EGRESOS", _mediumFontBoldWhite));
+                PdfPCell CELDA_TITULO_EGRESOS = new PdfPCell(new Phrase("3.01.1.01 EGRESOS DEL DIA TOTAL (HABER)", _mediumFontBoldWhite));
                 PdfPCell CELDA_TOTAL_EGRESOS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_EGRESOS), _mediumFontBoldWhite));
                 CELDA_TITULO_EGRESOS.BackgroundColor = topo;
                 CELDA_TITULO_EGRESOS.BorderColor = blanco;
@@ -1856,7 +1856,7 @@ namespace SOCIOS
                 CELDA_TITULO_EGRESOS.FixedHeight = 16f;
                 CELDA_TOTAL_EGRESOS.BackgroundColor = topo;
                 CELDA_TOTAL_EGRESOS.BorderColor = blanco;
-                CELDA_TOTAL_EGRESOS.HorizontalAlignment = 2;
+                CELDA_TOTAL_EGRESOS.HorizontalAlignment = 1;
                 CELDA_TOTAL_EGRESOS.FixedHeight = 16f;
                 TABLA_TOTAL_EGRESOS.AddCell(CELDA_TITULO_EGRESOS);
                 TABLA_TOTAL_EGRESOS.AddCell(CELDA_TOTAL_EGRESOS);

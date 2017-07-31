@@ -2857,7 +2857,7 @@ namespace SOCIOS
             vector_nombres.Add("USR_ALTA");    //63
             vector_nombres.Add("NCOD_DTO");    //69
             vector_nombres.Add("ORIGEN_ALTA"); //76
-            vector_nombres.Add("FOTO"); //76
+            vector_nombres.Add("FOTO");        //76
             vector_nombres.Add("OBS"); //76
             vector_nombres.Add("OBSERVAC"); //76
             vector_nombres.Add("F_NACIM"); //76

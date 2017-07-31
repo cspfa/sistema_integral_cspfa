@@ -24,8 +24,6 @@ namespace SOCIOS
         private string connectionString;
         private static readonly object padlock = new object();
 
-        
-
         public FbDataReader Lleno_Datos(string comando, int p1, int p2)
         {
             Datos_ini ini2 = new Datos_ini();
@@ -105,6 +103,8 @@ namespace SOCIOS
         public string Vcarnet_metro;
         public string Servidor_Delfo;
         public string Ubicacion_Delfo;
+        public string Servidor_Belgrano;
+        public string Ubicacion_Belgrano;
 
         public Datos_ini()
         {
@@ -130,8 +130,10 @@ namespace SOCIOS
             Vcarnet_adh_interfuerza_fam = ini.ReadString("CARNET_ADH_INTERFUERZA_FAM");
             Vcarnet_adh_interfuerza_cad = ini.ReadString("CARNET_ADH_INTERFUERZA_CAD");
             VGlobales.v_fechatope = ini.ReadString("FECHA_TOPE");
-            Servidor_Delfo = ini.ReadString("DELFO");
+            Servidor_Delfo = ini.ReadString("DELFO_TEST");
             Ubicacion_Delfo = ini.ReadString("UBICACION_DELFO");
+            Servidor_Belgrano = ini.ReadString("BELGRANO_TEST");
+            Ubicacion_Belgrano = ini.ReadString("UBICACION_BELGRANO");
         }
     }
 

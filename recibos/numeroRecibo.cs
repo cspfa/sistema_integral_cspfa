@@ -121,16 +121,12 @@ namespace SOCIOS
             return PTO_VTA;
         }
 
-        public bool comprobanteVacio(int NRO_COMP, string PTO_VTA, string TABLA)
+        public string comprobanteVacio(int NRO_COMP, string PTO_VTA, string TABLA)
         {
-            string query = "SELECT ID FROM " + TABLA + " WHERE NRO_COMP = " + NRO_COMP + " AND PTO_VTA = '" + PTO_VTA + "' AND CUENTA_DEBE IS NULL;";
+            string query = "SELECT USUARIO_MOD FROM " + TABLA + " WHERE NRO_COMP = " + NRO_COMP + " AND PTO_VTA = '" + PTO_VTA + "' AND CUENTA_DEBE IS NULL;";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(query).Select();
-
-            if (foundRows.Length > 0)
-                return true;
-            else
-                return false;
+            return foundRows[0][0].ToString();
         }
 
         public int obtenerNumeracionReservada(string PTO_VTA, string TABLA)

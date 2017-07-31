@@ -267,7 +267,7 @@ namespace SOCIOS
             }
         }
 
-        private void puntoDeVenta(string ROLE)
+        public void puntoDeVenta(string ROLE)
         {
             bo dlog = new bo();
             string QUERY_N = "SELECT ID, PTO_VTA FROM PUNTOS_DE_VENTA WHERE ROL = '" + ROLE + "' AND ACCION = 'N' ORDER BY ID ASC;";
@@ -289,6 +289,7 @@ namespace SOCIOS
                 VGlobales.PTO_VTA_M = foundRowsM[0][1].ToString();
             }
         }
+
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {

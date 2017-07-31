@@ -615,6 +615,11 @@ namespace SOCIOS.deportes
 
 
                         dlog.BajaSociosActividad(ID, hoy, Estado);
+
+                        //24/07/2017  se actualiza siempre la fecha de update 
+
+                        dlog.Actualizo_Fecha_Update(ID_HEAD, ROL.TrimEnd().TrimStart());
+            
                         MessageBox.Show("ACTIVIDAD BORRADA", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                    
@@ -704,8 +709,10 @@ namespace SOCIOS.deportes
                     MessageBox.Show("ACTIVIDAD INGRESADA CON EXITO", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Refrescar_Grilla();
                 }
-                
-            
+
+                //24/07/2017  se actualiza siempre la fecha de update 
+
+                dlog.Actualizo_Fecha_Update(ID_HEAD, ROL.TrimEnd().TrimStart());
             
             
                             
