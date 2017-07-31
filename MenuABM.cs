@@ -2069,5 +2069,11 @@ namespace SOCIOS
             importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO GENERAL BELGRANO", "CPOPOLVORINES");
             ic.ShowDialog();
         }
+
+        private void exportarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.deportes.Campos.Exportar_Deportes ed = new deportes.Campos.Exportar_Deportes();
+            ed.ShowDialog();
+        }
     }
 }

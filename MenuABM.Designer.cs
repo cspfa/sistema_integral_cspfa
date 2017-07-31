@@ -153,6 +153,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.exportarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -801,7 +802,8 @@
             this.cargaAsistenciaToolStripMenuItem,
             this.enviarVencimientosToolStripMenuItem,
             this.listadoDescuentosToolStripMenuItem,
-            this.reporteDeVerificacionAsistenciaToolStripMenuItem});
+            this.reporteDeVerificacionAsistenciaToolStripMenuItem,
+            this.exportarToolStripMenuItem});
             this.deportesToolStrip.Enabled = false;
             this.deportesToolStrip.Name = "deportesToolStrip";
             this.deportesToolStrip.Size = new System.Drawing.Size(63, 20);
@@ -1254,6 +1256,14 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
+            // exportarToolStripMenuItem
+            // 
+            this.exportarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportarToolStripMenuItem.Image")));
+            this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
+            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.exportarToolStripMenuItem.Text = "Exportar";
+            this.exportarToolStripMenuItem.Click += new System.EventHandler(this.exportarToolStripMenuItem_Click);
+            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1420,5 +1430,6 @@
         private System.Windows.Forms.ToolStripMenuItem importarComprobantesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem delfoCabreraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generalBelgranoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportarToolStripMenuItem;
     }
 }

@@ -325,6 +325,10 @@
       <DependentUpon>CadetesMayores.cs</DependentUpon>
     </Compile>
     <Compile Include="deportes\CamposService.cs" />
+    <Compile Include="deportes\Campos\Exportar_Deportes.cs" />
+    <Compile Include="deportes\Campos\Exportar_Deportes.designer.cs">
+      <DependentUpon>Exportar_Deportes.cs</DependentUpon>
+    </Compile>
     <Compile Include="deportes\Clases.cs" />
     <Compile Include="deportes\DeportesService.cs" />
     <Compile Include="deportes\DescuentoDeportes.cs">
@@ -366,12 +370,6 @@
     </Compile>
     <Compile Include="confiteria\listadoAranceles.Designer.cs">
       <DependentUpon>listadoAranceles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="deportes\Campos\Exportar_Deportes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="deportes\Campos\Exportar_Deportes.designer.cs">
-      <DependentUpon>Exportar_Deportes.cs</DependentUpon>
     </Compile>
     <Compile Include="descuentos\GenerarInfoDescuentos.cs">
       <SubType>Form</SubType>
