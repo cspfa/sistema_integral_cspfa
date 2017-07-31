@@ -30,7 +30,7 @@ namespace SOCIOS
        
         DateTime fecha_Apto;
 
-        public admDeportes(string var_NombreTabla, string var_Numero, string var_Depuracion, string var_Barra, string var_Numero_Titular, string var_Depuracion_Titular, int var_Id_Socio, string DNI, string var_Nombre, string var_Apellido, Image imagenTitular, string var_Role,int ID,bool pCopioApto,DateTime pFechaApto)
+        public admDeportes(string var_NombreTabla, string var_Numero, string var_Depuracion, string var_Barra, string var_Numero_Titular, string var_Depuracion_Titular, int var_Id_Socio, string DNI, string var_Nombre, string var_Apellido, Image imagenTitular, string var_Role,int ID,bool pCopioApto,DateTime? pFechaApto)
         {
 
             //INICIALIZO VARIABLES Y COMBOS
@@ -72,11 +72,11 @@ namespace SOCIOS
             idsoc = var_Id_Socio;
             imagen_defecto = imagenTitular;
             //copio foto y fecha de apto
-
-            if (pCopioApto)
+            
+            if (pCopioApto && pFechaApto!=null)
             {
                 Copio_Apto = true;
-                fecha_Apto = pFechaApto;
+                fecha_Apto = pFechaApto.Value;
 
               
             }
@@ -683,7 +683,8 @@ namespace SOCIOS
             if (foundRows.Length > 0)
             {
                 ID = Int32.Parse(foundRows[0][0].ToString().Trim());
-                dpApto.Value = DateTime.Parse(foundRows[0][1].ToString().Trim());
+                if (foundRows[0][1].ToString().Length >1)
+                   dpApto.Value = DateTime.Parse(foundRows[0][1].ToString().Trim());
                 dpCarnet.Value = DateTime.Parse(foundRows[0][2].ToString().Trim());
                 cbCarnet.SelectedValue = foundRows[0][3].ToString().Trim();
 
