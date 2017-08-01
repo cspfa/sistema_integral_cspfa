@@ -106,6 +106,7 @@
             this.enviarVencimientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listadoDescuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteDeVerificacionAsistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creditosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actualizarMorososToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.generarTXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,7 +154,6 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.exportarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -697,7 +697,7 @@
             // 
             this.recibosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("recibosToolStripMenuItem.Image")));
             this.recibosToolStripMenuItem.Name = "recibosToolStripMenuItem";
-            this.recibosToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.recibosToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.recibosToolStripMenuItem.Text = "Listado de Ingresos";
             this.recibosToolStripMenuItem.Click += new System.EventHandler(this.recibosToolStripMenuItem_Click);
             // 
@@ -705,15 +705,15 @@
             // 
             this.imprimirRecibosEnBlancoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("imprimirRecibosEnBlancoToolStripMenuItem.Image")));
             this.imprimirRecibosEnBlancoToolStripMenuItem.Name = "imprimirRecibosEnBlancoToolStripMenuItem";
-            this.imprimirRecibosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.imprimirRecibosEnBlancoToolStripMenuItem.Text = "Recibos / bonos en blanco";
+            this.imprimirRecibosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.imprimirRecibosEnBlancoToolStripMenuItem.Text = "Comprobantes en blanco";
             this.imprimirRecibosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.imprimirRecibosEnBlancoToolStripMenuItem_Click);
             // 
             // anularReciboToolStripMenuItem
             // 
             this.anularReciboToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("anularReciboToolStripMenuItem.Image")));
             this.anularReciboToolStripMenuItem.Name = "anularReciboToolStripMenuItem";
-            this.anularReciboToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.anularReciboToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.anularReciboToolStripMenuItem.Text = "Anular recibo / bono";
             this.anularReciboToolStripMenuItem.Click += new System.EventHandler(this.anularReciboToolStripMenuItem_Click);
             // 
@@ -721,7 +721,7 @@
             // 
             this.cerrarCajaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cerrarCajaToolStripMenuItem.Image")));
             this.cerrarCajaToolStripMenuItem.Name = "cerrarCajaToolStripMenuItem";
-            this.cerrarCajaToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.cerrarCajaToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.cerrarCajaToolStripMenuItem.Text = "Planilla de Caja";
             this.cerrarCajaToolStripMenuItem.Click += new System.EventHandler(this.cerrarCajaToolStripMenuItem_Click);
             // 
@@ -729,7 +729,7 @@
             // 
             this.arancelesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("arancelesToolStripMenuItem.Image")));
             this.arancelesToolStripMenuItem.Name = "arancelesToolStripMenuItem";
-            this.arancelesToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.arancelesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.arancelesToolStripMenuItem.Text = "Aranceles";
             this.arancelesToolStripMenuItem.Click += new System.EventHandler(this.arancelesToolStripMenuItem_Click_1);
             // 
@@ -737,7 +737,7 @@
             // 
             this.puntosDeVentaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("puntosDeVentaToolStripMenuItem.Image")));
             this.puntosDeVentaToolStripMenuItem.Name = "puntosDeVentaToolStripMenuItem";
-            this.puntosDeVentaToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.puntosDeVentaToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.puntosDeVentaToolStripMenuItem.Text = "Puntos de Venta";
             this.puntosDeVentaToolStripMenuItem.Click += new System.EventHandler(this.puntosDeVentaToolStripMenuItem_Click);
             // 
@@ -856,6 +856,14 @@
             this.reporteDeVerificacionAsistenciaToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.reporteDeVerificacionAsistenciaToolStripMenuItem.Text = "Reporte de Verificación Asistencia";
             this.reporteDeVerificacionAsistenciaToolStripMenuItem.Click += new System.EventHandler(this.reporteDeVerificacionAsistenciaToolStripMenuItem_Click);
+            // 
+            // exportarToolStripMenuItem
+            // 
+            this.exportarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportarToolStripMenuItem.Image")));
+            this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
+            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.exportarToolStripMenuItem.Text = "Exportar";
+            this.exportarToolStripMenuItem.Click += new System.EventHandler(this.exportarToolStripMenuItem_Click);
             // 
             // creditosToolStripMenuItem
             // 
@@ -1255,14 +1263,6 @@
             this.pbFoto.TabIndex = 10;
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
-            // 
-            // exportarToolStripMenuItem
-            // 
-            this.exportarToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportarToolStripMenuItem.Image")));
-            this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
-            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.exportarToolStripMenuItem.Text = "Exportar";
-            this.exportarToolStripMenuItem.Click += new System.EventHandler(this.exportarToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
