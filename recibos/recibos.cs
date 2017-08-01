@@ -613,7 +613,7 @@ namespace SOCIOS
                             }
                             else
                             {
-                                BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
+                                BO_CAJA.modificarBonosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
                                 barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA);
 
