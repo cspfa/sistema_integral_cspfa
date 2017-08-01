@@ -118,7 +118,11 @@ namespace SOCIOS
             
             dgTotalesDelDia.Rows.Add("TOTAL DEL DÍA", string.Format("{0:n}", (INGRESOS_EFECTIVO + INGRESOS_OTROS)));
             dgTotalesDelDia.Rows.Add("SALDO DEL DÍA ANTERIOR", string.Format("{0:n}", (SALDO_ANTERIOR)));
-            dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", (SALDO_ANTERIOR + INGRESOS_EFECTIVO + INGRESOS_OTROS - EGRESOS)));
+
+            if (dgCajasAnteriores.Rows.Count == 1)
+                dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", "0,00"));
+            else
+                dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", (SALDO_ANTERIOR + INGRESOS_EFECTIVO + INGRESOS_OTROS - EGRESOS)));
             
             cajaDeHoyEnComposicion();
 
@@ -874,8 +878,9 @@ namespace SOCIOS
 
                 if (VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES")
                 {
-                    PATH = @"C:\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
-                    DIR = @"C:\";
+                    //PATH = @"C:\PlanillasCaja\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
+                    //DIR = @"C:\PlanillasCaja";
+                    PATH = "SAVEAS";
                 }
 
                 if (!Directory.Exists(DIR))
