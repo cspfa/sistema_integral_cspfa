@@ -311,7 +311,7 @@ namespace SOCIOS
             try
             {
                 DataSet ds1 = new DataSet();
-                string query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 2);";
+                string query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 2 AND DESTINO <> 4);";
                 conString cs = new conString();
                 string connectionString = cs.get();
 
@@ -1066,7 +1066,7 @@ namespace SOCIOS
                 string query = "";
 
                 if (VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA2")
-                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ") WHERE DESTINO IS NULL OR (DESTINO <> 4);";
+                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ") WHERE DESTINO IS NULL OR (DESTINO <> 4 AND DESTINO <> 2);";
 
                 if (VGlobales.vp_role != "CAJA" && VGlobales.vp_role != "INFORMES" && VGlobales.vp_role != "CAJA2")
                     query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ");";
