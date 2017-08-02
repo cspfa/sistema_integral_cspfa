@@ -312,14 +312,6 @@ namespace SOCIOS
             Cursor = Cursors.Default;
         }
 
-        private void ToolStripMenuItem10_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
-            Acerca_de frmAcerca = new Acerca_de();
-            frmAcerca.ShowDialog(this);
-            Cursor = Cursors.Default;
-        }
-
         private void profesionalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;

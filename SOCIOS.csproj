@@ -159,7 +159,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="actualizar_update.cs" />
     <Compile Include="bono\BonosOdontologia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1095,12 +1094,6 @@
     <Compile Include="FotoZoom.Designer.cs">
       <DependentUpon>FotoZoom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Acerca_de.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Acerca_de.designer.cs">
-      <DependentUpon>Acerca_de.cs</DependentUpon>
-    </Compile>
     <Compile Include="FichaAdherente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1534,10 +1527,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>MenuABM.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Acerca_de.resx">
-      <DependentUpon>Acerca_de.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="FichaAdherente.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FichaAdherente.cs</DependentUpon>
@@ -1578,7 +1567,6 @@
     <Compile Include="turnos\ultimodia.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\FIND.BMP" />
   </ItemGroup>
   <ItemGroup>
@@ -1678,8 +1666,6 @@
     <None Include="Resources\arrow_undo1.png" />
     <Content Include="Resources\balance24_d.bmp" />
     <None Include="tecnica\app.config" />
-    <None Include="ClassDiagram2.cd" />
-    <None Include="ClassDiagram3.cd" />
     <None Include="Resources\Contact.bmp" />
     <None Include="Resources\db_find24.bmp" />
     <None Include="Resources\Calendar.bmp" />
