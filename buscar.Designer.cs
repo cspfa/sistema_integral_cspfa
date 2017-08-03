@@ -280,11 +280,11 @@
             this.lbRestablecer994.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbRestablecer994.Enabled = false;
             this.lbRestablecer994.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbRestablecer994.Location = new System.Drawing.Point(721, 164);
+            this.lbRestablecer994.Location = new System.Drawing.Point(725, 164);
             this.lbRestablecer994.Name = "lbRestablecer994";
-            this.lbRestablecer994.Size = new System.Drawing.Size(147, 13);
+            this.lbRestablecer994.Size = new System.Drawing.Size(76, 13);
             this.lbRestablecer994.TabIndex = 49;
-            this.lbRestablecer994.Text = "RESTABLECER ADH INTER";
+            this.lbRestablecer994.Text = "RES ADH INT";
             this.lbRestablecer994.Click += new System.EventHandler(this.lbRestablecer994_Click);
             // 
             // label20
