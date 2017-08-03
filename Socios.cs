@@ -248,6 +248,7 @@ namespace SOCIOS
                             v_pcrjp3 = mt.GetInt32(mt.GetOrdinal("PCRJP3"));
                             v_par = mt.GetInt32(mt.GetOrdinal("PAR"));
                             v_aar = mt.GetInt32(mt.GetOrdinal("AAR"));
+                            tbCUIL.Text = mt.GetString(mt.GetOrdinal("CUIL")).Trim();
 
                             if (maskedTextbox25.Text == null || maskedTextbox25.Text == string.Empty || maskedTextbox25.Text.Length == 0)
                             {
@@ -1186,6 +1187,7 @@ namespace SOCIOS
             bindingNavigator1.MoveLastItem.Enabled = false;
             bindingNavigator1.MoveNextItem.Enabled = false;
             bindingNavigator1.MovePreviousItem.Enabled = false;
+            tbCUIL.ReadOnly = false;
             cancelar.Enabled = true;
             grabar.Enabled = true;
             buscar.Enabled = false;
@@ -1380,6 +1382,7 @@ namespace SOCIOS
                 tbIdEmp.ReadOnly = true;
                 tbTraspasado.ReadOnly = true;
                 tbCiudad.ReadOnly = true;
+                tbCUIL.ReadOnly = true;
 
                 comboBox1.PreventDropDown = true;
                 comboBox1.BackColor = Color.FromName("Control");
@@ -2559,6 +2562,7 @@ namespace SOCIOS
                             cmd.Parameters.Add(new FbParameter("@ID_EMPLEADO", FbDbType.Integer));
                             cmd.Parameters.Add(new FbParameter("@COD_CIUDAD", FbDbType.Integer));
                             cmd.Parameters.Add(new FbParameter("@TRASPASADO", FbDbType.Char, 1));
+                            cmd.Parameters.Add(new FbParameter("@CUIL", FbDbType.Char, 11));
 
                             cmd.Parameters["@P01"].Value = (maskedTextBox7.Text == "" ? 0 : (int?)(System.Convert.ToInt32(maskedTextBox7.Text)));
                             cmd.Parameters["@P03"].Value = (maskedTextBox6.Text == "__" ? 0 : (int?)(System.Convert.ToInt32(maskedTextBox6.Text)));
@@ -2726,6 +2730,11 @@ namespace SOCIOS
                             else
                                 cmd.Parameters["@COD_CIUDAD"].Value = 0;
 
+                            if (tbCUIL.Text.Trim() != "")
+                                cmd.Parameters["@CUIL"].Value = tbCUIL.Text.Trim();
+                            else
+                                cmd.Parameters["@CUIL"].Value = "";
+
                             richTextbox1.SaveFile(@"TEMP.RTF", RichTextBoxStreamType.RichText);
                             FileStream stream = new FileStream(@"TEMP.RTF", FileMode.Open, FileAccess.Read);
                             int size = Convert.ToInt32(stream.Length);
@@ -2838,6 +2847,7 @@ namespace SOCIOS
             tbIdEmp.ReadOnly = true;
             tbTraspasado.ReadOnly = true;
             tbCiudad.ReadOnly = true;
+            tbCUIL.ReadOnly = true;
 
             comboBox1.PreventDropDown = true;
             comboBox1.BackColor = Color.FromName("Control");
