@@ -75,9 +75,9 @@ namespace SOCIOS.BO
         }
 
         //STORED IMPORTAR BONOS
-        public void importarBonos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, float VALOR, string FORMA_DE_PAGO, int SECTACT,
+        public void importarBonos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, decimal VALOR, string FORMA_DE_PAGO, int SECTACT,
             string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
-            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, string DNI, string PTO_VTA, int CAJA_DIARIA)
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, int DNI, string PTO_VTA, int CAJA_DIARIA)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
@@ -149,9 +149,9 @@ namespace SOCIOS.BO
         }
 
         //STORED IMPORTAR RECIBOS
-        public void importarRecibos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, float VALOR, string FORMA_DE_PAGO, int SECTACT,
+        public void importarRecibos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, decimal VALOR, string FORMA_DE_PAGO, int SECTACT,
             string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
-            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, string DNI, string PTO_VTA, int CAJA_DIARIA)
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, int DNI, string PTO_VTA, int CAJA_DIARIA)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
