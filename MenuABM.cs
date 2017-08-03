@@ -2020,7 +2020,14 @@ namespace SOCIOS
                         if (File.Exists(FULLPATH))
                         {
                             stopFirebird();
+
+                            if (File.Exists(NEWNAME))
+                            {
+                                File.Delete(NEWNAME);
+                            }
+
                             File.Move(FULLPATH, NEWNAME);
+                            File.Delete(FULLPATH);
                         }
 
                         CopyFiles.CopyFiles Temp = new CopyFiles.CopyFiles(TempFiles, FOLDER, "UPDATE");
