@@ -2040,7 +2040,6 @@ namespace SOCIOS
 
             if (dr == DialogResult.Yes)
             {
-                netUse("192.168.1.6", "ahernandez", "C1rc4C0mb4t");
                 List<String> TempFiles = new List<String>();
                 TempFiles.Add(@"\\192.168.1.6\Data\CSPFA_DATOS7.FDB");
                 CopyFiles.CopyFiles Temp = new CopyFiles.CopyFiles(TempFiles, @"\\192.168.1.6\Data\BACKUP", "BACKUP");
