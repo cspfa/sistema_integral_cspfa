@@ -1996,29 +1996,31 @@ namespace SOCIOS
 
         private void actualizarDBToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("¿CONFIRMA REALIZAR LA ACTUALIZACIÓN DE LA BASE DE DATOS?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-
-            if (dr == DialogResult.Yes)
+            if (File.Exists(@"\\192.168.1.6\Data\BACKUP\CSPFA_DATOS7.FDB"))
             {
-                netUse("192.168.1.6", "ahernandez", "C1rc4C0mb4t");
+                string FOLDER = "";
+                string FULLPATH = "";
+                string NEWNAME = "";
+                FolderBrowserDialog FBD = new FolderBrowserDialog();
 
-                if (File.Exists(@"\\192.168.1.6\Data\BACKUP\CSPFA_DATOS7.FDB"))
+                if (FBD.ShowDialog() == DialogResult.OK)
                 {
-                    string FOLDER = "";
-                    string FULLPATH = "";
-                    FolderBrowserDialog FBD = new FolderBrowserDialog();
+                    FOLDER = FBD.SelectedPath;
+                    List<String> TempFiles = new List<String>();
+                    TempFiles.Add(@"\\192.168.1.6\Data\BACKUP\CSPFA_DATOS7.FDB");
+                    FULLPATH = FOLDER + "CSPFA_DATOS7.FDB";
+                    NEWNAME = FOLDER + "CSPFA_DATOS7.OLD";
 
-                    if (FBD.ShowDialog() == DialogResult.OK)
+                    DialogResult dr = MessageBox.Show("¿CONFIRMA REALIZAR LA ACTUALIZACIÓN DE LA BASE DE DATOS?", "PREGUNTA", MessageBoxButtons.YesNo);
+
+                    if (dr == DialogResult.Yes)
                     {
-                        FOLDER = FBD.SelectedPath;
-                        List<String> TempFiles = new List<String>();
-                        TempFiles.Add(@"\\192.168.1.6\Data\BACKUP\CSPFA_DATOS7.FDB");
-                        FULLPATH = FOLDER + "CSPFA_DATOS7.FDB";
-
+                        netUse("192.168.1.6", "ahernandez", "C1rc4C0mb4t");
+               
                         if (File.Exists(FULLPATH))
                         {
                             stopFirebird();
-                            File.Delete(FULLPATH); 
+                            File.Move(FULLPATH, NEWNAME);
                         }
 
                         CopyFiles.CopyFiles Temp = new CopyFiles.CopyFiles(TempFiles, FOLDER, "UPDATE");
@@ -2027,10 +2029,10 @@ namespace SOCIOS
                         Temp.CopyAsync(TempDiag);
                     }
                 }
-                else
-                {
-                    MessageBox.Show("EL ARCHIVO DE BASE DE DATOS NO EXISTE EN ORIGEN", "ERROR");
-                }
+            }
+            else
+            {
+                MessageBox.Show("EL ARCHIVO DE BASE DE DATOS NO EXISTE EN ORIGEN", "ERROR");
             }
         }
 
