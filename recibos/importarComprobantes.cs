@@ -23,15 +23,6 @@ namespace SOCIOS
             ROLE = ROL;
         }
 
-        private string comprobantesDisponibles()
-        {
-            string QUERY = "SELECT COUNT(ID) FROM RECIBOS_CAJA WHERE ROL = '" + ROLE + "' AND PTO_VTA = '" + PTO_VTA + "' AND USUARIO_MOD <> 'RESERVADO' AND USUARIO_MOD <> 'BLANCO';";
-            DataRow[] foundRows;
-            foundRows = dlog.BO_EjecutoDataTable_Remota(QUERY, ROLE).Select();
-            string CANTIDAD = foundRows[0][0].ToString();
-            return "CANTIDAD DE COMPROBANTES A IMPORTAR: " + CANTIDAD;
-        }
-
         private string testConnection()
         {
             string CONN = "";
@@ -41,11 +32,11 @@ namespace SOCIOS
             try
             {
                 foundRows = dlog.BO_EjecutoDataTable_Remota(QUERY, ROLE).Select();
-                CONN = "CONEXIÓN CON LA BASE DE DATOS: Conectada";
+                CONN = "BASE DE DATOS: Conectada";
             }
             catch (Exception error)
             {
-                CONN = "CONEXIÓN CON LA BASE DE DATOS: Desconectada";
+                CONN = "BASE DE DATOS: Desconectada";
             }
             
             return CONN;
@@ -54,7 +45,6 @@ namespace SOCIOS
         private void importarComprobantes_Load(object sender, EventArgs e)
         {
             lbConexion.Text = testConnection();
-            lbCantidad.Text = comprobantesDisponibles();
         }
     }
 }

@@ -1543,7 +1543,6 @@
     <EmbeddedResource Include="turnos\turnos.resx">
       <DependentUpon>turnos.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ClassDiagram4.cd" />
     <None Include="CrystalReport1.mht" />
     <None Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
