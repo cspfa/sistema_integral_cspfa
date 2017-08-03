@@ -38,7 +38,7 @@ namespace SOCIOS.bono
             Total = pTotal;
             CAB = pCAB;
             SOC = pSOC;
-            Prof = pProf;
+            Prof = pProf.TrimEnd().TrimStart();
             Fecha = pfecha;
             dlog = new bo();
            
