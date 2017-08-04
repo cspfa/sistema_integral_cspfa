@@ -40,7 +40,7 @@ namespace SOCIOS
                 }
                 else if (VGlobales.vp_role != "CAJA" && VGlobales.vp_role != "INFORMES" && VGlobales.vp_role != "SISTEMAS" && VGlobales.vp_role != "CONTADURIA" && VGlobales.vp_role != "CAJA2")
                 {
-                    v_consulta = v_consulta + " AND A.ROL = '" + VGlobales.vp_role + "'";
+                    v_consulta = v_consulta + " AND A.ROL = '" + VGlobales.vp_role + "' AND APELLIDO <> 'CONTADURIA' AND APELLIDO <> 'TESORERIA' AND APELLIDO <> 'SISTEMAS'";
                 }
                 else if (VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA2")
                 {
