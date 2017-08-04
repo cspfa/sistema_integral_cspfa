@@ -218,5 +218,15 @@ namespace SOCIOS
             CommitTransaction();
             CloseCnn();
         }
+
+        public void Ejecuto_Consulta_Remota(string query, string rol)
+        {
+            OpenCnn_Remota(rol);
+            NewTransaction();
+            FbCommand comando = new FbCommand(query, connection, transaction);
+            comando.ExecuteNonQuery();
+            CommitTransaction();
+            CloseCnn();
+        }
     }
 }
