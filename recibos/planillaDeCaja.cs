@@ -141,7 +141,7 @@ namespace SOCIOS
             {
                 tabPage3.Dispose();
                 btnExcelCaja.Enabled = false;
-                btnMostrarCaja.Enabled = false;
+                //btnMostrarCaja.Enabled = false;
                 gbDepositoCajas.Enabled = false;
             }
 
