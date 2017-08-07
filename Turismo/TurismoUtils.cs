@@ -276,7 +276,7 @@ namespace SOCIOS.Turismo
 
         public void ComboSalida(ComboBox combo)
         {
-            string query = "SELECT ID ,( NOMBRE || '- ' ||  extract(day from  FECHA)  || '/' || extract(month from Fecha) || '/' ||  extract(year from Fecha)    ) as NOMBRE   FROM TURISMO_SALIDA   order by NOMBRE,FECHA ";
+            string query = "SELECT ID ,( NOMBRE || '- ' ||  extract(day from  FECHA)  || '/' || extract(month from Fecha) || '/' ||  extract(year from Fecha)    ) as NOMBRE   FROM TURISMO_SALIDA where  (U_BAJA is null)  order by NOMBRE,FECHA ";
 
 
             combo.DataSource = null;
