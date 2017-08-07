@@ -754,19 +754,27 @@ namespace SOCIOS.bono
             if (tbSocios.Text.Length > 0)
             {
                 Socio = decimal.Parse(tbSocios.Text);
-            
+
             }
+            else
+                Socio = 0;
+
             if (tbInvitado.Text.Length > 0)
             {
                 Invi = decimal.Parse(tbInvitado.Text);
 
             }
+            else
+                Invi = 0;
+
 
             if (tbInterCirculo.Text.Length > 0)
             {
                 Inter = decimal.Parse(tbInterCirculo.Text);
 
             }
+            else
+                Inter = 0;
 
 
             lblSaldoTotal.Text =Decimal.Round(  Socio + Invi + Inter,2).ToString();
