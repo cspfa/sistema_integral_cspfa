@@ -1996,6 +1996,8 @@ namespace SOCIOS
 
         private void actualizarDBToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            netUse("192.168.1.6", "ahernandez", "C1rc4C0mb4t");
+
             if (File.Exists(@"\\192.168.1.6\Data\BACKUP\CSPFA_DATOS7.FDB"))
             {
                 string FOLDER = "";
@@ -2015,8 +2017,6 @@ namespace SOCIOS
 
                     if (dr == DialogResult.Yes)
                     {
-                        netUse("192.168.1.6", "ahernandez", "C1rc4C0mb4t");
-               
                         if (File.Exists(FULLPATH))
                         {
                             stopFirebird();
