@@ -48,8 +48,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPlanilla = new System.Windows.Forms.TabPage();
+            this.btnDepoCajaCampo = new System.Windows.Forms.Button();
             this.btnMostrarCaja = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnCerrarCaja = new System.Windows.Forms.Button();
@@ -101,7 +104,15 @@
             this.cbBancosCheques = new System.Windows.Forms.ComboBox();
             this.btnAgregarCheque = new System.Windows.Forms.Button();
             this.dgCheques = new System.Windows.Forms.DataGridView();
-            this.btnDepoCajaCampo = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.tbNroHasta = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbTipos = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbNroDesde = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dgBuscador = new System.Windows.Forms.DataGridView();
             this.tabControl.SuspendLayout();
             this.tabPlanilla.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -121,6 +132,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgOtros)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCheques)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBuscador)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -130,6 +143,7 @@
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage4);
             this.tabControl.Location = new System.Drawing.Point(5, 5);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -157,6 +171,16 @@
             this.tabPlanilla.TabIndex = 0;
             this.tabPlanilla.Text = "PLANILLA DE CAJA";
             this.tabPlanilla.UseVisualStyleBackColor = true;
+            // 
+            // btnDepoCajaCampo
+            // 
+            this.btnDepoCajaCampo.Location = new System.Drawing.Point(681, 167);
+            this.btnDepoCajaCampo.Name = "btnDepoCajaCampo";
+            this.btnDepoCajaCampo.Size = new System.Drawing.Size(291, 30);
+            this.btnDepoCajaCampo.TabIndex = 117;
+            this.btnDepoCajaCampo.Text = "DEPOSITAR CAJAS  CAMPOS";
+            this.btnDepoCajaCampo.UseVisualStyleBackColor = true;
+            this.btnDepoCajaCampo.Click += new System.EventHandler(this.btnDepoCajaCampo_Click);
             // 
             // btnMostrarCaja
             // 
@@ -901,15 +925,116 @@
             this.dgCheques.Size = new System.Drawing.Size(1133, 569);
             this.dgCheques.TabIndex = 73;
             // 
-            // btnDepoCajaCampo
+            // tabPage4
             // 
-            this.btnDepoCajaCampo.Location = new System.Drawing.Point(681, 167);
-            this.btnDepoCajaCampo.Name = "btnDepoCajaCampo";
-            this.btnDepoCajaCampo.Size = new System.Drawing.Size(291, 30);
-            this.btnDepoCajaCampo.TabIndex = 117;
-            this.btnDepoCajaCampo.Text = "DEPOSITAR CAJAS  CAMPOS";
-            this.btnDepoCajaCampo.UseVisualStyleBackColor = true;
-            this.btnDepoCajaCampo.Click += new System.EventHandler(this.btnDepoCajaCampo_Click);
+            this.tabPage4.Controls.Add(this.btnBuscar);
+            this.tabPage4.Controls.Add(this.tbNroHasta);
+            this.tabPage4.Controls.Add(this.label12);
+            this.tabPage4.Controls.Add(this.cbTipos);
+            this.tabPage4.Controls.Add(this.label11);
+            this.tabPage4.Controls.Add(this.tbNroDesde);
+            this.tabPage4.Controls.Add(this.label10);
+            this.tabPage4.Controls.Add(this.dgBuscador);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1149, 619);
+            this.tabPage4.TabIndex = 5;
+            this.tabPage4.Text = "BUSCADOR";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(436, 9);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 80;
+            this.btnBuscar.Text = "BUSCAR";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // tbNroHasta
+            // 
+            this.tbNroHasta.Location = new System.Drawing.Point(189, 10);
+            this.tbNroHasta.Name = "tbNroHasta";
+            this.tbNroHasta.Size = new System.Drawing.Size(61, 20);
+            this.tbNroHasta.TabIndex = 79;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(135, 14);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(43, 13);
+            this.label12.TabIndex = 78;
+            this.label12.Text = "HASTA";
+            // 
+            // cbTipos
+            // 
+            this.cbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipos.FormattingEnabled = true;
+            this.cbTipos.Location = new System.Drawing.Point(304, 10);
+            this.cbTipos.Name = "cbTipos";
+            this.cbTipos.Size = new System.Drawing.Size(121, 21);
+            this.cbTipos.TabIndex = 77;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(261, 14);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(32, 13);
+            this.label11.TabIndex = 76;
+            this.label11.Text = "TIPO";
+            // 
+            // tbNroDesde
+            // 
+            this.tbNroDesde.Location = new System.Drawing.Point(63, 10);
+            this.tbNroDesde.Name = "tbNroDesde";
+            this.tbNroDesde.Size = new System.Drawing.Size(61, 20);
+            this.tbNroDesde.TabIndex = 75;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 14);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.TabIndex = 74;
+            this.label10.Text = "DESDE";
+            // 
+            // dgBuscador
+            // 
+            this.dgBuscador.AllowUserToAddRows = false;
+            this.dgBuscador.AllowUserToDeleteRows = false;
+            this.dgBuscador.AllowUserToResizeColumns = false;
+            this.dgBuscador.AllowUserToResizeRows = false;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgBuscador.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            this.dgBuscador.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgBuscador.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgBuscador.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgBuscador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgBuscador.Location = new System.Drawing.Point(8, 40);
+            this.dgBuscador.Margin = new System.Windows.Forms.Padding(5);
+            this.dgBuscador.Name = "dgBuscador";
+            this.dgBuscador.ReadOnly = true;
+            this.dgBuscador.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgBuscador.RowHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            this.dgBuscador.RowHeadersVisible = false;
+            this.dgBuscador.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(1);
+            this.dgBuscador.RowTemplate.ReadOnly = true;
+            this.dgBuscador.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgBuscador.Size = new System.Drawing.Size(1133, 570);
+            this.dgBuscador.TabIndex = 73;
             // 
             // planillaDeCaja
             // 
@@ -947,6 +1072,9 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCheques)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgBuscador)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1007,6 +1135,15 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnMostrarCaja;
         private System.Windows.Forms.Button btnDepoCajaCampo;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.DataGridView dgBuscador;
+        private System.Windows.Forms.TextBox tbNroDesde;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cbTipos;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox tbNroHasta;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnBuscar;
 
 
 

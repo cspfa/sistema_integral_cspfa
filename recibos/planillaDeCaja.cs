@@ -42,12 +42,106 @@ namespace SOCIOS
             cargaInicial(0);
         }
 
+        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID)
+        {
+            try
+            {
+                DataSet ds1 = new DataSet();
+                string query = "SELECT * FROM BUSCAR_COMPROBANTES (" + DESDE + ", " + HASTA + ", '" + COMPROBANTE + "');";
+                conString cs = new conString();
+                string connectionString = cs.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataTable dt1 = new DataTable("RESULTADOS");
+                    dt1.Columns.Add("#", typeof(string));
+                    dt1.Columns.Add("DETALLE", typeof(string));
+                    dt1.Columns.Add("CONCEPTO", typeof(string));
+                    dt1.Columns.Add("IMP", typeof(int));
+                    dt1.Columns.Add("IMPORTE", typeof(string));
+                    dt1.Columns.Add("OBSERVACIONES", typeof(string));
+                    dt1.Columns.Add("FECHA", typeof(string));
+                    dt1.Columns.Add("ANULADO", typeof(string));
+                    dt1.Columns.Add("F_PAGO", typeof(string));
+                    dt1.Columns.Add("ID", typeof(string));
+                    dt1.Columns.Add("PV", typeof(string));
+                    ds1.Tables.Add(dt1);
+                    FbCommand cmd = new FbCommand(query, connection, transaction);
+                    FbDataReader reader = cmd.ExecuteReader();
+                    string NRO_COMP = string.Empty;
+                    string DETALLE = string.Empty;
+                    string CONCEPTO = string.Empty;
+                    string IMPUTACION = string.Empty;
+                    decimal IMPORTE;
+                    string OBSERVACIONES = string.Empty;
+                    string FECHA = string.Empty;
+                    string VALOR;
+                    decimal TOTAL = 0;
+                    string TIPO = string.Empty;
+                    string ANULADO = string.Empty;
+                    string F_PAGO = string.Empty;
+                    decimal CAJAS_DEPOSITADAS = 0;
+                    string ID_COMP = string.Empty;
+                    string PTO_VTA = string.Empty;
+
+                    while (reader.Read())
+                    {
+                        TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
+                        NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
+
+                        if (TIPO == "B")
+                            NRO_COMP = "B" + NRO_COMP;
+                        else
+                            NRO_COMP = "R" + NRO_COMP;
+
+                        DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
+                        CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
+                        IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));
+                        IMPORTE = reader.GetDecimal(reader.GetOrdinal("IMPORTE"));
+                        VALOR = string.Format("{0:n}", IMPORTE);
+                        OBSERVACIONES = reader.GetString(reader.GetOrdinal("OBSERVACIONES")).Trim();
+                        FECHA = reader.GetString(reader.GetOrdinal("FECHA_RECIBO")).Trim().Replace(" 0:00:00", "");
+                        TOTAL = TOTAL + IMPORTE;
+                        ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
+                        F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
+                        ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
+                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA);
+                    }
+
+                    reader.Close();
+                    GRID.DataSource = dt1;
+                    GRID.Columns[0].Width = 60;
+                    GRID.Columns[1].Width = 190;
+                    GRID.Columns[2].Width = 190;
+                    GRID.Columns[3].Width = 50;
+                    GRID.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[4].Width = 80;
+                    GRID.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[5].Width = 195;
+                    GRID.Columns[6].Visible = true;
+                    GRID.Columns[6].Width = 70;
+                    GRID.Columns[7].Width = 70;
+                    GRID.Columns[8].Width = 110;
+                    GRID.Columns[9].Width = 50;
+                    GRID.Columns[10].Width = 40;
+                    transaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        } 
+
         private void habilitarEdicion()
         {
             tbNuevoImporteEfectivo.Text = "";
             tbNuevoImporteOtros.Text = "";
 
-            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO")
+            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO" || VGlobales.vp_username == "KMARTIN")
             {
                 label1.Enabled = true;
                 label7.Enabled = true;
@@ -62,6 +156,12 @@ namespace SOCIOS
                 btnNuevoImporteEfectivo.Enabled = true;
                 btnNuevoImporteOtros.Enabled = true;
             }
+        }
+
+        private void comboComprobantes()
+        {
+            cbTipos.Items.Add("RECIBOS");
+            cbTipos.Items.Add("BONOS");
         }
         
         private void cargaInicial(int CAJA)
@@ -144,6 +244,8 @@ namespace SOCIOS
                 //btnMostrarCaja.Enabled = false;
                 gbDepositoCajas.Enabled = false;
             }
+
+            comboComprobantes();
 
             Cursor = Cursors.Default;
         }
@@ -3107,6 +3209,38 @@ namespace SOCIOS
 
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            int DESDE = 0;
+            int HASTA = 0;
+            string COMPROBANTE = "";
+            COMPROBANTE = cbTipos.SelectedItem.ToString();
+            string COMP_MIN = COMPROBANTE.Substring(0, 1);
+
+            if (tbNroDesde.Text.Trim() == "")
+            {
+                MessageBox.Show("INGRESAR UN NRO DESDE", "ERROR!");
+            }
+            else if (tbNroHasta.Text.Trim() == "")
+            {
+                MessageBox.Show("INGRESAR UN NRO HASTA", "ERROR!");
+            }
+            else if (COMPROBANTE == "")
+            {
+                MessageBox.Show("SELECCIONAR UN TIPO DE COMPROBANTE", "ERROR!");
+            }
+            else
+            {
+                DESDE = int.Parse(tbNroDesde.Text.Trim());
+                HASTA = int.Parse(tbNroHasta.Text.Trim());
+            }
+
+
+
+            DataGridView GRID = dgBuscador;
+            buscador(DESDE, HASTA, COMP_MIN, GRID);
         }
     }
 }
