@@ -76,6 +76,7 @@
             this.cbPtoVta = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbDisponibles = new System.Windows.Forms.Label();
+            this.lbReintegro = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -546,6 +547,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.lbReintegro);
             this.groupBox3.Controls.Add(this.lbDisponibles);
             this.groupBox3.Controls.Add(this.lbNroRecibo);
             this.groupBox3.Controls.Add(this.tbNroRecibo);
@@ -564,13 +566,25 @@
             this.lbDisponibles.AutoSize = true;
             this.lbDisponibles.Enabled = false;
             this.lbDisponibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDisponibles.Location = new System.Drawing.Point(398, 22);
+            this.lbDisponibles.Location = new System.Drawing.Point(451, 22);
             this.lbDisponibles.Name = "lbDisponibles";
             this.lbDisponibles.Size = new System.Drawing.Size(117, 18);
             this.lbDisponibles.TabIndex = 83;
             this.lbDisponibles.Text = "DISPONIBLES";
             this.lbDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbDisponibles.Visible = false;
+            // 
+            // lbReintegro
+            // 
+            this.lbReintegro.AutoSize = true;
+            this.lbReintegro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbReintegro.Location = new System.Drawing.Point(228, 21);
+            this.lbReintegro.Name = "lbReintegro";
+            this.lbReintegro.Size = new System.Drawing.Size(106, 18);
+            this.lbReintegro.TabIndex = 84;
+            this.lbReintegro.Text = "REINTEGRO";
+            this.lbReintegro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbReintegro.Visible = false;
             // 
             // recibos
             // 
@@ -651,5 +665,6 @@
         private System.Windows.Forms.ComboBox cbPtoVta;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lbDisponibles;
+        private System.Windows.Forms.Label lbReintegro;
     }
 }
