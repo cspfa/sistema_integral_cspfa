@@ -416,6 +416,10 @@ namespace SOCIOS
             {
                 MessageBox.Show("Se debe ingresar como Socio Invitado para poder generar recibo", "INFORME DE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (REINTEGRO == "SI" && VGlobales.vp_NroRecibo == "")
+            {
+                MessageBox.Show("NO SE PUEDE HACER UN REINTEGRO SI TODAVIA NO SE GENERO EL COMPROBANTE", "ERROR");
+            }
             else
             {
                 recibos r = new recibos(VGlobales.vp_IdScocio, VGlobales.vp_IdSecAct, VGlobales.vp_IDProf, VGlobales.vp_Secuencia,
