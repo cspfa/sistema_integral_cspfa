@@ -410,6 +410,7 @@ namespace SOCIOS
             string FECHA_RECIBO = DateTime.Today.ToShortDateString();
             string DOBLE_DUPLICADO = "NO";
             decimal IMPORTE = 0;
+            int REINTEGRO_DE = 0;
 
             if (cbDobleDuplicado.Checked == true)
             {
@@ -462,7 +463,7 @@ namespace SOCIOS
                             BO_CAJA.nuevoReciboCaja(recibo_id, int.Parse(cbCuentasDebe.Text), int.Parse(cbCuentasHaber.Text),
                                 idsectact, idsoc, IMPORTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
-                                NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N);
+                                NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE);
                             BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP, IMPORTE);
                         }
 
@@ -471,7 +472,7 @@ namespace SOCIOS
                             BO_CAJA.nuevoBonoCaja(recibo_id, int.Parse(cbCuentasDebe.Text), int.Parse(cbCuentasHaber.Text),
                                 idsectact, idsoc, IMPORTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
-                                NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N);
+                                NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE);
                             BO_CAJA.bonoEnIngresos(secuencia, NRO_COMP, IMPORTE);
                         }
                         
