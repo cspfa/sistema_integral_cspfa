@@ -230,7 +230,7 @@ namespace SOCIOS
             Cursor = Cursors.Default;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void imprimirComprobante()
         {
             Cursor = Cursors.WaitCursor;
             VGlobales.vp_IdScocio = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString()) * 1000;
@@ -244,7 +244,7 @@ namespace SOCIOS
             VGlobales.vp_Barra = dataGridView1[9, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             VGlobales.vp_CodDto = dataGridView1[10, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             string RB = dataGridView1[17, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            
+
             if (RB == "R")
                 VGlobales.vp_NroRecibo = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
@@ -282,6 +282,11 @@ namespace SOCIOS
             }
 
             Cursor = Cursors.Default;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            imprimirComprobante();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -428,6 +433,11 @@ namespace SOCIOS
             string RECIBO = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             string BONO = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             elimiarCajaDiaria(RECIBO, BONO);
+        }
+
+        private void btnReintegro_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
