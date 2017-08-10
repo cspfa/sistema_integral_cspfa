@@ -202,9 +202,10 @@ namespace SOCIOS
             nombreProf np = new nombreProf();
             string PROFESIONAL = np.nombre(ID_PROFESIONAL);
             numerosAletras nal = new numerosAletras();
-            string VALOR_SIN_PESO = VALOR.Replace("$", "");
-            string VALOR_SIN_PUNTO = VALOR_SIN_PESO.Replace(".", ",");
-            string VALOR_LETRAS = nal.convertir(VALOR_SIN_PUNTO);
+            VALOR = VALOR.Replace("$", "");
+            VALOR = VALOR.Replace(".", ",");
+            VALOR = VALOR.Replace("-", "");
+            string VALOR_LETRAS = nal.convertir(VALOR);
             fechaAletras fal = new fechaAletras();
             string FECHA_LETRAS = fal.convertir(FECHA);
             int CANTIDAD = 2;
