@@ -585,7 +585,7 @@ namespace SOCIOS.BO
         //STORED NUEVO RECIBO DE CAJA
         public void nuevoReciboCaja(int ID, int CUENTA_DEBE, int CUENTA_HABER, int SECTACT, int ID_SOCIO, decimal VALOR,
             string FORMA_DE_PAGO, string USUARIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
-            string OBSERVACIONES, string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA)
+            string OBSERVACIONES, string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA, int REINTEGRO_DE)
         {
 
             ArrayList vector_contenidos = new ArrayList();
@@ -611,6 +611,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(TIPO_SOCIO_NO_TITULAR);
             vector_contenidos.Add(NRO_COMP);
             vector_contenidos.Add(PTO_VTA);
+            vector_contenidos.Add(REINTEGRO_DE);
             
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -631,6 +632,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
             
             vector_nombres.Add("@ID");
             vector_nombres.Add("@CUENTA_DEBE");
@@ -651,6 +653,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@TIPO_SOCIO_NO_TITULAR");
             vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@PTO_VTA");
+            vector_nombres.Add("@REINTEGRO_DE");
 
             string vprocedure = "RECIBOS_CAJA_I";
 
@@ -660,7 +663,7 @@ namespace SOCIOS.BO
         //STORED NUEVO BONO DE CAJA
         public void nuevoBonoCaja(int ID, int CUENTA_DEBE, int CUENTA_HABER, int SECTACT, int ID_SOCIO, decimal VALOR, string FORMA_DE_PAGO,
             string USUARIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, string OBSERVACIONES,
-            string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA)
+            string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA, int REINTEGRO_DE)
         {
 
             ArrayList vector_contenidos = new ArrayList();
@@ -686,6 +689,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(TIPO_SOCIO_NO_TITULAR);
             vector_contenidos.Add(NRO_COMP);
             vector_contenidos.Add(PTO_VTA);
+            vector_contenidos.Add(REINTEGRO_DE);
 
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -706,6 +710,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
 
             vector_nombres.Add("@ID");
             vector_nombres.Add("@CUENTA_DEBE");
@@ -726,6 +731,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@TIPO_SOCIO_NO_TITULAR");
             vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@PTO_VTA");
+            vector_nombres.Add("@REINTEGRO_DE");
 
             string vprocedure = "BONOS_CAJA_I";
 
