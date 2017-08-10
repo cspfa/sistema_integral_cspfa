@@ -2517,7 +2517,7 @@ namespace SOCIOS
                     }
 
                     recibos r = new recibos(ID_SOCIO, int.Parse(ID_DESTINO), ID_PROFESIONAL, 0, APELLIDO, NOMBRE, TIPO, BARRA, COD_DTO,
-                    NRO_RECIBO, NRO_SOC, NRO_DEP, NRO_SOC, NRO_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB);
+                    NRO_RECIBO, NRO_SOC, NRO_DEP, NRO_SOC, NRO_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, "NO");
                     r.ShowDialog();
                 }
                 
@@ -2554,7 +2554,7 @@ namespace SOCIOS
                     }
 
                     recibos r = new recibos(ID_SOCIO, int.Parse(ID_DESTINO), int.Parse(ID_PROFESIONAL), 0, APELLIDO, NOMBRE, TIPO, BARRA, COD_DTO,
-                    NRO_RECIBO, NRO_SOC, NRO_DEP, TITULAR_SOC, TITULAR_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB);
+                    NRO_RECIBO, NRO_SOC, NRO_DEP, TITULAR_SOC, TITULAR_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, "NO");
                     r.ShowDialog();
                 }
             }
