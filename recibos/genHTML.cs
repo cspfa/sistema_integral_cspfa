@@ -197,7 +197,8 @@ namespace SOCIOS
         }
         #endregion
 
-        public void reciboTicket(string NRO_RECIBO, string NOMBRE_SOCIO, string FORMAPAGO, string SECTACT, string VALOR, int ID_PROFESIONAL, string SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, string OBSERVACIONES, string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, string COMPROBANTE, string PTO_VTA, string FECHA)
+        public void reciboTicket(string NRO_RECIBO, string NOMBRE_SOCIO, string FORMAPAGO, string SECTACT, string VALOR, int ID_PROFESIONAL, string SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, 
+            string OBSERVACIONES, string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, string COMPROBANTE, string PTO_VTA, string FECHA, string REINTEGRO)
         {
             nombreProf np = new nombreProf();
             string PROFESIONAL = np.nombre(ID_PROFESIONAL);
@@ -210,7 +211,8 @@ namespace SOCIOS
             string FECHA_LETRAS = fal.convertir(FECHA);
             int CANTIDAD = 2;
             string BR = COMPROBANTE;
-            string[] DATOS = { NRO_RECIBO, FECHA_LETRAS, NOMBRE_SOCIO, FORMAPAGO, SECTACT, VALOR, VALOR_LETRAS, FECHA, PROFESIONAL, SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DNI, CANTIDAD.ToString(), BR, PTO_VTA };
+            string[] DATOS = { NRO_RECIBO, FECHA_LETRAS, NOMBRE_SOCIO, FORMAPAGO, SECTACT, VALOR, VALOR_LETRAS, FECHA, PROFESIONAL, SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, NRO_SOC,
+                               NRO_DEP, DOBLE_DUPLICADO, DNI, CANTIDAD.ToString(), BR, PTO_VTA, REINTEGRO };
             DATOS_BR = DATOS;
             print();
         }
@@ -264,6 +266,8 @@ namespace SOCIOS
             string PTO_VTA = DATOS_BR[18];
             string VALOR = DATOS_BR[5];
             string VALOR_LETRAS = DATOS_BR[6];
+            string REINTEGRO = DATOS_BR[19];
+            string RR = "Recibí de ";
 
             if (RECIBO_BONO == "B")
             {
@@ -277,6 +281,11 @@ namespace SOCIOS
                 code39.Code = "RE" + DATOS_BR[0];
                 LEYENDA = "Concepto: ";
                 TITULO = "RECIBO";
+            }
+
+            if (REINTEGRO == "SI")
+            {
+                RR = "Reintegré a ";   
             }
 
             Bitmap bm = new Bitmap(code39.CreateDrawingImage(Color.Black, Color.White));
@@ -316,7 +325,7 @@ namespace SOCIOS
             Offset = Offset + 20;
             graphics.DrawString("Buenos Aires, " + DATOS_BR[1], courier_big, black, startX, startY + Offset);
             Offset = Offset + sep2;
-            graphics.DrawString("Recibí de " + DATOS_BR[2], courier_big, black, startX, startY + Offset);
+            graphics.DrawString(RR + "" + DATOS_BR[2], courier_big, black, startX, startY + Offset);
             Offset = Offset + sep2;
             graphics.DrawString(DATOS_BR[10] + " - " + DATOS_BR[12] + " - " + DATOS_BR[13], courier_big, black, startX, startY + Offset);
             Offset = Offset + sep2;

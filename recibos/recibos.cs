@@ -592,7 +592,8 @@ namespace SOCIOS
                     {
                         DateTime Hoy = DateTime.Today;
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, IMPORTE.ToString(), idprof,
-                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"));
+                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA, 
+                                Hoy.ToString("dd/MM/yyyy"), reintegro);
                     }
 
                     this.Close();
@@ -691,7 +692,7 @@ namespace SOCIOS
                                         BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                         DateTime Hoy = DateTime.Today;
                                         gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"));
+                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO");
                                     }
 
                                     MessageBox.Show(MSG);
@@ -725,7 +726,7 @@ namespace SOCIOS
                                     BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                     DateTime Hoy = DateTime.Today;
                                     gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                    lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"));
+                                    lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO");
                                 }
 
                                 this.Close();
@@ -738,7 +739,7 @@ namespace SOCIOS
                     {
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, lbArancel.Text, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE.ToString(), 
-                                HABER.ToString(), RECIBO_BONO, PTO_VTA, FECHA_RECIBO);
+                                HABER.ToString(), RECIBO_BONO, PTO_VTA, FECHA_RECIBO, "NO");
 
                         this.Close();
                     }
