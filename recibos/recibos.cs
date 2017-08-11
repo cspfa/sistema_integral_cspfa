@@ -102,7 +102,7 @@ namespace SOCIOS
             {
                 numero_de_recibo = "";
                 lbReintegro.Visible = true;
-                lbReintegro.Text = "REINTEGRO DE " + VGlobales.PTO_VTA_N + "-" + NUMERO_DE_RECIBO;
+                lbReintegro.Text = "REINTEGRO DE " + VGlobales.PTO_VTA_N + "-" + NUMERO_DE_RECIBO + " - IMPORTE $ " + IMPORTE.ToString();
                 reintegro_de = int.Parse(NUMERO_DE_RECIBO);
                 label5.Text = "REINTEGRO:";
                 label5.Left = 35;
