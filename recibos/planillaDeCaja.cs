@@ -3257,5 +3257,32 @@ namespace SOCIOS
             DataGridView GRID = dgBuscador;
             buscador(DESDE, HASTA, COMP_MIN, GRID);
         }
+
+        private void dgCajasAnteriores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string ID = "";
+            string FECHA = "";
+            string EFECTIVO = "";
+            string OTROS = "";
+            string SUBTOTAL = "";
+            string EGRESOS = "";
+            string SALDO = "";
+            string TOTAL = "";
+
+            foreach (DataGridViewRow row in dgCajasAnteriores.SelectedRows)
+            {
+                ID = row.Cells[0].Value.ToString();
+                FECHA = row.Cells[3].Value.ToString();
+                EFECTIVO = row.Cells[4].Value.ToString();
+                OTROS = row.Cells[5].Value.ToString();
+                SUBTOTAL = row.Cells[6].Value.ToString();
+                EGRESOS = row.Cells[7].Value.ToString();
+                SALDO = row.Cells[8].Value.ToString();
+                TOTAL = row.Cells[9].Value.ToString();
+            }
+
+            modificarCajaDiaria mcd = new modificarCajaDiaria(ID, FECHA, EFECTIVO, OTROS, SUBTOTAL, EGRESOS, SALDO, TOTAL);
+            mcd.ShowDialog();
+        }
     }
 }

@@ -352,6 +352,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="deportes\VencimientoAptoFisico2.Designer.cs" />
+    <Compile Include="modificarCajaDiaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modificarCajaDiaria.Designer.cs">
+      <DependentUpon>modificarCajaDiaria.cs</DependentUpon>
+    </Compile>
     <Compile Include="recibos\importarComprobantes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -645,7 +651,6 @@
     <Compile Include="nuevoUsuario.Designer.cs">
       <DependentUpon>nuevoUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="recibos\MarcaEntity.cs" />
     <Compile Include="recibos\numeroRecibo.cs" />
     <Compile Include="obtenerDestino.cs" />
     <Compile Include="obtenerLegPer.cs" />
@@ -1314,6 +1319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="interior\cargarObservacion.resx">
       <DependentUpon>cargarObservacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modificarCajaDiaria.resx">
+      <DependentUpon>modificarCajaDiaria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="nuevoUsuario.resx">
       <DependentUpon>nuevoUsuario.cs</DependentUpon>

@@ -481,6 +481,7 @@
             this.dgCajasAnteriores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCajasAnteriores.Size = new System.Drawing.Size(645, 168);
             this.dgCajasAnteriores.TabIndex = 77;
+            this.dgCajasAnteriores.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCajasAnteriores_CellContentDoubleClick);
             // 
             // label2
             // 
