@@ -1361,6 +1361,7 @@ namespace SOCIOS
                 string TIPO = "";
                 string ANULADO = "";
                 string PTO_VTA = "";
+                string F_PAGO = "";
 
                 Paragraph header = new Paragraph("// " + VGlobales.vp_role + " // PLANILLA DE CAJA " + FECHA, _standardFontBold);
                 header.Alignment = Element.ALIGN_CENTER;
@@ -1425,11 +1426,11 @@ namespace SOCIOS
 
                 #region CABECERA INGRESOS EN OTROS
 
-                PdfPTable TABLA_INGRESOS_OTROS = new PdfPTable(7);
+                PdfPTable TABLA_INGRESOS_OTROS = new PdfPTable(8);
                 TABLA_INGRESOS_OTROS.WidthPercentage = 100;
                 TABLA_INGRESOS_OTROS.SpacingAfter = 10;
                 TABLA_INGRESOS_OTROS.SpacingBefore = 10;
-                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f, 2f });
                 PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO_OTROS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
@@ -1437,6 +1438,7 @@ namespace SOCIOS
                 PdfPCell CELDA_IMPORTE_OTROS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
                 PdfPCell CELDA_OBS_OTROS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
                 PdfPCell CELDA_ANULADO_OTROS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
+                PdfPCell CELDA_PAGO_OTROS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
                 CELDA_NUM_OTROS.BackgroundColor = topo;
                 CELDA_NUM_OTROS.BorderColor = blanco;
                 CELDA_NUM_OTROS.HorizontalAlignment = 1;
@@ -1465,6 +1467,10 @@ namespace SOCIOS
                 CELDA_ANULADO_OTROS.BorderColor = blanco;
                 CELDA_ANULADO_OTROS.HorizontalAlignment = 1;
                 CELDA_ANULADO_OTROS.FixedHeight = 16f;
+                CELDA_PAGO_OTROS.BackgroundColor = topo;
+                CELDA_PAGO_OTROS.BorderColor = blanco;
+                CELDA_PAGO_OTROS.HorizontalAlignment = 1;
+                CELDA_PAGO_OTROS.FixedHeight = 16f;
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_NUM_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_APENOM_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_CONCEPTO_OTROS);
@@ -1472,6 +1478,7 @@ namespace SOCIOS
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_IMPORTE_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_OBS_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_ANULADO_OTROS);
+                TABLA_INGRESOS_OTROS.AddCell(CELDA_PAGO_OTROS);
                 #endregion
 
                 #region CABECERA EGRESOS
@@ -1725,6 +1732,7 @@ namespace SOCIOS
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString();
                     PTO_VTA = row[12].ToString();
+                    F_PAGO = row[11].ToString();
 
                     if (X == 0)
                     {
@@ -1785,6 +1793,13 @@ namespace SOCIOS
                     CELL_ANULADO_OTROS.BackgroundColor = colorFondo;
                     CELL_ANULADO_OTROS.FixedHeight = 14f;
                     TABLA_INGRESOS_OTROS.AddCell(CELL_ANULADO_OTROS);
+
+                    PdfPCell CELL_PAGO_OTROS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
+                    CELL_PAGO_OTROS.HorizontalAlignment = 2;
+                    CELL_PAGO_OTROS.BorderWidth = 0;
+                    CELL_PAGO_OTROS.BackgroundColor = colorFondo;
+                    CELL_PAGO_OTROS.FixedHeight = 14f;
+                    TABLA_INGRESOS_OTROS.AddCell(CELL_PAGO_OTROS);
                 }
 
                 Paragraph sub2 = new Paragraph("INGRESOS DEL DIA CHEQUES, DEPOSITOS Y TARJETAS", _standardFontBold);
