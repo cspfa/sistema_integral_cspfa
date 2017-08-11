@@ -286,13 +286,13 @@ namespace SOCIOS.confiteria
                 int SEC_ACT = int.Parse(cbSectAct.SelectedValue.ToString());
                 int PROF = int.Parse(cbProf.SelectedValue.ToString());
                 string ITEM = cbProf.Text.Trim();
-                arancel aa = new arancel();
-                decimal VALOR = aa.valorGrupo(SEC_ACT, GRUPO, PROF);
+                decimal VALOR = decimal.Parse(tbImporteItem.Text.Trim());
                 decimal SUBTOTAL = VALOR * CANTIDAD;
                 string OBSERVACION = tbItemObservacion.Text.Trim();
                 dgItems.Rows.Add(CANTIDAD, TIPO, ITEM, VALOR, SUBTOTAL, PROF, SEC_ACT, "X", "NO", "NO", OBSERVACION);
                 decimal TOTAL = sumarTotal();
                 tbTotal.Text = TOTAL.ToString();
+                tbImporteItem.ReadOnly = true;
             }
         }
 
@@ -737,7 +737,14 @@ namespace SOCIOS.confiteria
             int PROF = int.Parse(cbProf.SelectedValue.ToString());
             arancel aa = new arancel();
             decimal VALOR = aa.valorGrupo(SEC_ACT, GRUPO, PROF);
-            tbImporteItem.Text = VALOR.ToString();
+
+            if (VALOR > 0)
+                tbImporteItem.Text = VALOR.ToString();
+            else
+            {
+                tbImporteItem.Text = "";
+                tbImporteItem.ReadOnly = false;
+            }
         }
         
         private void cbProf_SelectionChangeCommitted(object sender, EventArgs e)
