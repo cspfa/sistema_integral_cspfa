@@ -2467,7 +2467,8 @@ namespace SOCIOS
                 morososNoTitulares();
             }
 
-            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONTADURIA" || VGlobales.vp_role == "JARDIN MATERNAL" || VGlobales.vp_role == "CPOCABA")
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONTADURIA"
+                || VGlobales.vp_role == "JARDIN MATERNAL" || VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES")
             {
                 btnCargarRecibo.Enabled = true;
             }
