@@ -704,7 +704,7 @@ namespace SOCIOS
 
                         if (RECIBO_BONO == "B")
                         {
-                            ENBLANCO = nr.comprobanteVacio(NRO_COMP, PTO_VTA, "BONOS_CAJA");
+                            ENBLANCO = nr.comprobanteVacio(NRO_COMP, PTO_VTA, "BONOS_CAJA").Trim();
 
                             if (ENBLANCO != "BLANCO" && ENBLANCO != "RESERVADO")
                             {
