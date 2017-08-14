@@ -126,7 +126,11 @@ namespace SOCIOS
             string query = "SELECT USUARIO_MOD FROM " + TABLA + " WHERE NRO_COMP = " + NRO_COMP + " AND PTO_VTA = '" + PTO_VTA + "' AND CUENTA_DEBE IS NULL;";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(query).Select();
-            return foundRows[0][0].ToString();
+
+            if (foundRows.Length > 0)
+                return foundRows[0][0].ToString();
+            else
+                return "USADO";
         }
 
         public int obtenerNumeracionReservada(string PTO_VTA, string TABLA)
