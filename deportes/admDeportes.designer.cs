@@ -42,6 +42,7 @@
             this.lbTelefono = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.gpDeportes = new System.Windows.Forms.GroupBox();
+            this.cbApto = new System.Windows.Forms.CheckBox();
             this.btnBaja = new System.Windows.Forms.Button();
             this.tbObs = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -82,7 +83,6 @@
             this.btnCamera = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.EditarFoto = new System.Windows.Forms.Button();
-            this.cbApto = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.gpDeportes.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -250,6 +250,16 @@
             this.gpDeportes.TabStop = false;
             this.gpDeportes.Text = "DATOS DEPORTES";
             // 
+            // cbApto
+            // 
+            this.cbApto.AutoSize = true;
+            this.cbApto.Location = new System.Drawing.Point(111, 26);
+            this.cbApto.Name = "cbApto";
+            this.cbApto.Size = new System.Drawing.Size(15, 14);
+            this.cbApto.TabIndex = 97;
+            this.cbApto.UseVisualStyleBackColor = true;
+            this.cbApto.CheckedChanged += new System.EventHandler(this.cbApto_CheckedChanged);
+            // 
             // btnBaja
             // 
             this.btnBaja.DialogResult = System.Windows.Forms.DialogResult.No;
@@ -374,6 +384,7 @@
             this.lbVencimiento.Size = new System.Drawing.Size(79, 13);
             this.lbVencimiento.TabIndex = 81;
             this.lbVencimiento.Text = "DD/MM/AAAA";
+            this.lbVencimiento.Visible = false;
             // 
             // lblFecha
             // 
@@ -383,6 +394,7 @@
             this.lblFecha.Size = new System.Drawing.Size(81, 13);
             this.lblFecha.TabIndex = 80;
             this.lblFecha.Text = "VENCIMIENTO";
+            this.lblFecha.Visible = false;
             // 
             // lblEstado
             // 
@@ -649,16 +661,6 @@
             this.EditarFoto.Text = "EDITAR  FOTO";
             this.EditarFoto.UseVisualStyleBackColor = true;
             this.EditarFoto.Click += new System.EventHandler(this.EditarFoto_Click);
-            // 
-            // cbApto
-            // 
-            this.cbApto.AutoSize = true;
-            this.cbApto.Location = new System.Drawing.Point(111, 26);
-            this.cbApto.Name = "cbApto";
-            this.cbApto.Size = new System.Drawing.Size(15, 14);
-            this.cbApto.TabIndex = 97;
-            this.cbApto.UseVisualStyleBackColor = true;
-            this.cbApto.CheckedChanged += new System.EventHandler(this.cbApto_CheckedChanged);
             // 
             // admDeportes
             // 

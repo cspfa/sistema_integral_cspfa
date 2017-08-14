@@ -1352,9 +1352,16 @@ namespace SOCIOS
         private void cbApto_CheckedChanged(object sender, EventArgs e)
         {
             if (cbApto.Checked)
+            {
                 dpApto.Visible = true;
+                lblFecha.Visible = true;
+                lbVencimiento.Visible = true;
+            }
             else
-                dpApto.Visible = false;
+            { dpApto.Visible = false;
+              lblFecha.Visible = false;
+              lbVencimiento.Visible = false;
+            }
         }
 
     }
