@@ -182,7 +182,7 @@ namespace SOCIOS.deportes
             if (foundRows.Length > 0)
             {
 
-                if (foundRows[0][0].ToString().Trim().Length > 0)
+                if (foundRows[0][0].ToString().Length > 0)
                     item.FechaApto = DateTime.Parse(foundRows[0][0].ToString().Trim());
                 else
                     item.FechaApto = null;
