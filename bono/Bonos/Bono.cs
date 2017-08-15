@@ -75,6 +75,7 @@ namespace SOCIOS.bono
             this.DatosTitular(pSocTitular, pdepTitular);
             this.Cargar_Servicios(pNRo_Soc, pNro_Dep, pBarra, pSocTitular, pdepTitular);
             GrillaPersonas_Habilitados(true);
+            
 
         
         }
@@ -197,6 +198,7 @@ namespace SOCIOS.bono
                     Datos.Add(ds);
                 }
                 }
+
         }
 
 
