@@ -28,6 +28,7 @@ namespace SOCIOS.bono
         decimal Recargo=0;
         VoucherUtils vu = new VoucherUtils();
         Hotel_Dias_Utils hotel_Dias_Utils = new Hotel_Dias_Utils();
+        string InfoValorHabitacion = "";
         public BonoHotel()
         {
         
@@ -65,6 +66,10 @@ namespace SOCIOS.bono
              UpdateComboHotel();
              UpdateComboSocial();
              utilsTurismo.UpdateComboTabla("TURISMO_REGIMEN", cbRegimen);
+
+             if (srvDatosSocio.CAB.Telefonos.Length > 0)
+                 tbContacto.Text = srvDatosSocio.CAB.Telefonos;
+
 
          }
         
@@ -160,9 +165,16 @@ namespace SOCIOS.bono
                 lbMenores.Visible = false;
 
                 if (cbHabitacion.Text.ToUpper().Contains("PERSONA"))
+                {
                     Arancel = this.SeteoValorHotelXPersona(cbLateCheck.Checked);
+                    lbCartelHabitacion.Visible = true;
+                    lnkInfoHabitacion.Visible = true;
+                }
                 else
-                    Arancel = this.SeteoValorHotelXHabitacion();
+                {   Arancel = this.SeteoValorHotelXHabitacion();
+                    lbCartelHabitacion.Visible = false;
+                    lnkInfoHabitacion.Visible = false;
+                }
 
                 if (Arancel < 9999)
                 {
@@ -214,7 +226,9 @@ namespace SOCIOS.bono
             decimal totalSocio = 0;
             decimal totalInter = 0;
             decimal totalInvi = 0;
-
+            tbSocios.Text       = "0";
+            tbInterCirculo.Text = "0";
+            tbInvitado.Text     = "0";
             decimal Late_Check = 0;
             if (LateCheckOut)
                 Late_Check = utilsTurismo.Hotel_Late_Chk(hotel);
@@ -236,10 +250,13 @@ namespace SOCIOS.bono
            // totalSocio = this.Menores(totalSocio, Socios, MenorSocio);
            //  totalInter = this.Menores(totalInter, Intercirculo, MenorInter);
            // totalInvi = this.Menores(totalInvi, Invitado, MenorInvitado);
+            tbSocios.Text = totalSocio.ToString();
+            tbInterCirculo.Text = totalInter.ToString();
+            tbInvitado.Text = totalInvi.ToString();
 
-            this.TotalizarTipo(tbSocios, Socios, arancelSocio, totalSocio);
-            this.TotalizarTipo(tbInterCirculo, Intercirculo, arancelInter, totalInter);
-            this.TotalizarTipo(tbInvitado, Invitado, arancelInvitado, totalInvi);
+            this.TotalizarTipo("-SOCIOS", Socios, arancelSocio, totalSocio);
+            this.TotalizarTipo("-INTER", Intercirculo, arancelInter, totalInter);
+            this.TotalizarTipo("-INV", Invitado, arancelInvitado, totalInvi);
 
 
 
@@ -345,14 +362,15 @@ namespace SOCIOS.bono
         }
 
 
-        private void TotalizarTipo(TextBox lbl, int Cantidad, decimal Monto, decimal Total)
+        private void TotalizarTipo(string Tipo, int Cantidad, decimal Monto, decimal Total)
         {
             try
             {
                 if (Total != 0)
-                    lbl.Text = Cantidad.ToString() + " - $ " + Decimal.Round(Monto, 2).ToString() + " C/U";
-                else
-                    lbl.Text = "0";
+                    InfoValorHabitacion  = InfoValorHabitacion +  Tipo +" " +   Cantidad.ToString() + " - $ " + Decimal.Round(Monto, 2).ToString() + " C/U";
+               
+
+
             }
             catch (Exception ex)
             { 
@@ -791,6 +809,21 @@ namespace SOCIOS.bono
         private void tbInterCirculo_TextChanged(object sender, EventArgs e)
         {
             this.Dias();
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lnkInfoHabitacion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show(InfoValorHabitacion);
+        }
+
+        private void lbCartelHabitacion_Click(object sender, EventArgs e)
+        {
+
         }
             
 

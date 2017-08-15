@@ -41,6 +41,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.lnkInfoHabitacion = new System.Windows.Forms.LinkLabel();
+            this.tbContacto = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tbInterCirculo = new System.Windows.Forms.TextBox();
             this.tbInvitado = new System.Windows.Forms.TextBox();
             this.tbSocios = new System.Windows.Forms.TextBox();
@@ -67,6 +70,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbRegimen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.lbCartelHabitacion = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -188,6 +192,9 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.lnkInfoHabitacion);
+            this.gpDatos.Controls.Add(this.tbContacto);
+            this.gpDatos.Controls.Add(this.label12);
             this.gpDatos.Controls.Add(this.tbInterCirculo);
             this.gpDatos.Controls.Add(this.tbInvitado);
             this.gpDatos.Controls.Add(this.label5);
@@ -216,10 +223,38 @@
             this.gpDatos.Controls.Add(this.label1);
             this.gpDatos.Location = new System.Drawing.Point(8, 401);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(812, 205);
+            this.gpDatos.Size = new System.Drawing.Size(812, 236);
             this.gpDatos.TabIndex = 137;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // lnkInfoHabitacion
+            // 
+            this.lnkInfoHabitacion.AutoSize = true;
+            this.lnkInfoHabitacion.Location = new System.Drawing.Point(221, 79);
+            this.lnkInfoHabitacion.Name = "lnkInfoHabitacion";
+            this.lnkInfoHabitacion.Size = new System.Drawing.Size(141, 13);
+            this.lnkInfoHabitacion.TabIndex = 161;
+            this.lnkInfoHabitacion.TabStop = true;
+            this.lnkInfoHabitacion.Text = "Ver Info Precio X Habitacion";
+            this.lnkInfoHabitacion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkInfoHabitacion_LinkClicked);
+            // 
+            // tbContacto
+            // 
+            this.tbContacto.Location = new System.Drawing.Point(100, 133);
+            this.tbContacto.Name = "tbContacto";
+            this.tbContacto.Size = new System.Drawing.Size(193, 20);
+            this.tbContacto.TabIndex = 159;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(21, 136);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(66, 13);
+            this.label12.TabIndex = 158;
+            this.label12.Text = "CONTACTO";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // tbInterCirculo
             // 
@@ -359,7 +394,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 143);
+            this.label7.Location = new System.Drawing.Point(48, 161);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
             this.label7.TabIndex = 146;
@@ -367,7 +402,7 @@
             // 
             // tbObs
             // 
-            this.tbObs.Location = new System.Drawing.Point(99, 143);
+            this.tbObs.Location = new System.Drawing.Point(99, 161);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
             this.tbObs.Size = new System.Drawing.Size(696, 50);
@@ -385,7 +420,7 @@
             // fpago
             // 
             this.fpago.AutoSize = true;
-            this.fpago.Location = new System.Drawing.Point(220, 80);
+            this.fpago.Location = new System.Drawing.Point(300, 110);
             this.fpago.Name = "fpago";
             this.fpago.Size = new System.Drawing.Size(67, 13);
             this.fpago.TabIndex = 120;
@@ -455,10 +490,23 @@
             this.label9.TabIndex = 141;
             this.label9.Text = "REGIMEN";
             // 
+            // lbCartelHabitacion
+            // 
+            this.lbCartelHabitacion.AutoSize = true;
+            this.lbCartelHabitacion.ForeColor = System.Drawing.Color.Red;
+            this.lbCartelHabitacion.Location = new System.Drawing.Point(191, 385);
+            this.lbCartelHabitacion.Name = "lbCartelHabitacion";
+            this.lbCartelHabitacion.Size = new System.Drawing.Size(412, 13);
+            this.lbCartelHabitacion.TabIndex = 146;
+            this.lbCartelHabitacion.Text = "EL VALOR REPRESENTA LA SUMA TOTAL DE PERSONAS   POR C/CATEGORIA";
+            this.lbCartelHabitacion.Visible = false;
+            this.lbCartelHabitacion.Click += new System.EventHandler(this.lbCartelHabitacion_Click);
+            // 
             // BonoHotel
             // 
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(957, 639);
+            this.ClientSize = new System.Drawing.Size(957, 666);
+            this.Controls.Add(this.lbCartelHabitacion);
             this.Controls.Add(this.cbLateCheck);
             this.Controls.Add(this.Deselecionar);
             this.Controls.Add(this.Seleccion);
@@ -524,5 +572,9 @@
         private System.Windows.Forms.TextBox tbInterCirculo;
         private System.Windows.Forms.TextBox tbInvitado;
         private System.Windows.Forms.TextBox tbSocios;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbContacto;
+        private System.Windows.Forms.LinkLabel lnkInfoHabitacion;
+        private System.Windows.Forms.Label lbCartelHabitacion;
     }
 }

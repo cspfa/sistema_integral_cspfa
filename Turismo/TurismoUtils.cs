@@ -18,9 +18,9 @@ namespace SOCIOS.Turismo
         public int      Prov_Desde       { get; set; }
         public string  Prov_Desde_Nombre { get; set; }
         public int      Prov_Hasta       { get; set; }
-        public string Prov_Hasta_Nombre { get; set; }
+        public string Prov_Hasta_Nombre  { get; set; }
         public int      Operador         { get; set; }
-        public string   Operador_Nombre { get; set; }
+        public string   Operador_Nombre  { get; set; }
         public int      Loc_Desde        { get; set; }
         public string   Loc_Desde_Nombre { get; set; }
         public int      Loc_Hasta        { get; set; }
@@ -30,17 +30,18 @@ namespace SOCIOS.Turismo
         public decimal  InterCirculo     { get; set; }
         public string   Estadia          { get; set; }
         public int      Regimen          { get; set; }
-        public string   Regimen_Nombre { get; set; }
+        public string   Regimen_Nombre   { get; set; }
         public int      Traslado         { get; set; }
-        public string   Traslado_Nombre { get; set; }
+        public string   Traslado_Nombre  { get; set; }
         public int      Tipo             { get; set; }
-        public string   Tipo_Nombre { get; set; }
+        public string   Tipo_Nombre      { get; set; }
         public int      Hotel            { get; set; }
         public string   Hotel_Nombre     { get; set; }
         public int      Destacado        { get; set; }
         public string   Moneda           { get; set; }
         public string   Observaciones    { get; set; }
         public int      Diaria           { get; set; }
+        public decimal  Menor            { get; set; }
 
     
     }
@@ -456,7 +457,7 @@ namespace SOCIOS.Turismo
             string Query = @"SELECT   TS.ID,TS.NOMBRE,TS.FECHA,TS.AGOTADO,TS.PROV_DESDE,TS.PROV_HASTA,TS.OPERADOR,TS.LOC_DESDE,
                              TS.LOC_HASTA,TS.SOCIO,TS.INVITADO,TS.INTERCIRCULO,TS.ESTADIA,TS.REGIMEN,TS.TRASLADO,TS.TIPO,
                              TS.HOTEL,TS.HOTEL_NOMBRE,TS.DESTACADO,TS.MONEDA,TS.U_BAJA,TS.F_BAJA,TS.OBSERVACIONES,PD.NOMBRE,
-                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA
+                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA,TS.MENOR
                              FROM  TURISMO_SALIDA TS ,
                              PROVINCIA PD,
                              PROVINCIA PH, 
@@ -503,13 +504,14 @@ namespace SOCIOS.Turismo
                 salida.Observaciones = foundRows[0][22].ToString();
                 salida.Prov_Desde_Nombre = foundRows[0][23].ToString();
                 salida.Prov_Hasta_Nombre =foundRows[0][24].ToString();
-                salida.Loc_Desde_Nombre  = foundRows[0][25].ToString();
-                salida.Loc_Hasta_Nombre  = foundRows[0][26].ToString();
-                salida.Operador_Nombre   = foundRows[0][27].ToString();
-                salida.Regimen_Nombre = foundRows[0][28].ToString();
-                salida.Traslado_Nombre = foundRows[0][29].ToString();
-                salida.Tipo_Nombre = foundRows[0][30].ToString();
-                salida.Diaria = Int32.Parse( foundRows[0][31].ToString());
+                salida.Loc_Desde_Nombre   = foundRows[0][25].ToString();
+                salida.Loc_Hasta_Nombre   = foundRows[0][26].ToString();
+                salida.Operador_Nombre    = foundRows[0][27].ToString();
+                salida.Regimen_Nombre     = foundRows[0][28].ToString();
+                salida.Traslado_Nombre    = foundRows[0][29].ToString();
+                salida.Tipo_Nombre        = foundRows[0][30].ToString();
+                salida.Diaria             = Int32.Parse( foundRows[0][31].ToString());
+                salida.Menor =  Decimal.Round( Decimal.Parse(foundRows[0][32].ToString()) ,2);
 
             }
 
