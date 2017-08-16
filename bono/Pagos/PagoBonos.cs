@@ -255,7 +255,14 @@ namespace SOCIOS.bono
 
         }
 
-        
+        private void getContralor()
+
+        {
+            if (tbContralor.Text.Length == 0 ||tbContralor.Text =="0")
+                throw new Exception("Debe ingresar un Numero De Contralor, no puede ser 0");
+            else
+                NumeroContraLor = Int32.Parse(tbContralor.Text);        
+        }
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
@@ -300,23 +307,26 @@ namespace SOCIOS.bono
                         break;
                     case 4:
                         //Parte en Efectiv, parte en planilla en cuotas
-
+                        this.getContralor();
                         this.ValidoCuotas(tbCantidadCuotas);
                         this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
+                      
 
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
                         formaPago = " Se va a Abonar el Bono en  Efectivo $" + lbMonto1.Text + " ,  " + lbMonto2.Text +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
                         SaldoIngreso = Decimal.Parse(lbMonto1.Text);
-
+                       
+                        
                         break;
                     case 7:
                         //Parte en Debito, parte en planilla en cuotas
-
+                        this.getContralor();
                         this.ValidoCuotas(tbCantidadCuotas);
                         this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
+                       
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
                         formaPago = " Se va a Abonar el Bono en  Debito $" + lbMonto1.Text + " ,  " + lbMonto2.Text +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
@@ -326,7 +336,7 @@ namespace SOCIOS.bono
 
                     case 8:
                         //Parte en Credito, parte en planilla en cuotas
-
+                        this.getContralor();
                         this.ValidoCuotas(tbCantidadCuotas);
                         this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
@@ -339,6 +349,7 @@ namespace SOCIOS.bono
 
                     case 5:
                         //Todo en planilla en cuotas
+                        this.getContralor();
                         this.ValidoCuotas(tbCantidadCuotas);
                        // this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         MontoCuota = Decimal.Round(Decimal.Parse(lbMonto1.Text), 2);

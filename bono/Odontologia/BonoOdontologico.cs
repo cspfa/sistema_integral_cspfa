@@ -625,6 +625,11 @@ namespace SOCIOS.bono
             }
         }
 
+        private void lbTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         }
 

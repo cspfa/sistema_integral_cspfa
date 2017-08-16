@@ -29,6 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BonoOdontologico));
+            this.AnularBono = new System.Windows.Forms.Button();
+            this.Reiniciar = new System.Windows.Forms.Button();
+            this.lbFormaPago = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbObs = new System.Windows.Forms.TextBox();
+            this.cbEspecialidad = new System.Windows.Forms.ComboBox();
+            this.bntImprimir = new System.Windows.Forms.Button();
+            this.lbTotal = new System.Windows.Forms.Label();
+            this.lbSaldoTotal = new System.Windows.Forms.Label();
+            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
+            this.NuevoBank = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.CancelarBank = new System.Windows.Forms.ToolStripButton();
+            this.gvTratamientos = new System.Windows.Forms.DataGridView();
+            this.btnPago = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Grabar = new System.Windows.Forms.Button();
+            this.dpFecha = new System.Windows.Forms.DateTimePicker();
+            this.FechaApto = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.gpOdonto = new System.Windows.Forms.GroupBox();
             this.tbMonto = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -36,34 +56,203 @@
             this.cbTratamiento = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lbEspecialidad = new System.Windows.Forms.Label();
-            this.cbEspecialidad = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbNombre = new System.Windows.Forms.Label();
             this.lbEdad = new System.Windows.Forms.Label();
             this.lbNacimiento = new System.Windows.Forms.Label();
-            this.lbNombre = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dpFecha = new System.Windows.Forms.DateTimePicker();
-            this.FechaApto = new System.Windows.Forms.Label();
-            this.btnPago = new System.Windows.Forms.Button();
-            this.Grabar = new System.Windows.Forms.Button();
-            this.gvTratamientos = new System.Windows.Forms.DataGridView();
-            this.toolStrip4 = new System.Windows.Forms.ToolStrip();
-            this.NuevoBank = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-            this.CancelarBank = new System.Windows.Forms.ToolStripButton();
-            this.lbTotal = new System.Windows.Forms.Label();
-            this.lbSaldoTotal = new System.Windows.Forms.Label();
-            this.bntImprimir = new System.Windows.Forms.Button();
-            this.tbObs = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbFormaPago = new System.Windows.Forms.Label();
-            this.Reiniciar = new System.Windows.Forms.Button();
-            this.AnularBono = new System.Windows.Forms.Button();
-            this.gpOdonto.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvTratamientos)).BeginInit();
             this.toolStrip4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTratamientos)).BeginInit();
+            this.gpOdonto.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // AnularBono
+            // 
+            this.AnularBono.Location = new System.Drawing.Point(304, 593);
+            this.AnularBono.Name = "AnularBono";
+            this.AnularBono.Size = new System.Drawing.Size(75, 23);
+            this.AnularBono.TabIndex = 110;
+            this.AnularBono.Text = "Anular";
+            this.AnularBono.UseVisualStyleBackColor = true;
+            this.AnularBono.Visible = false;
+            this.AnularBono.Click += new System.EventHandler(this.AnularBono_Click);
+            // 
+            // Reiniciar
+            // 
+            this.Reiniciar.Location = new System.Drawing.Point(676, 593);
+            this.Reiniciar.Name = "Reiniciar";
+            this.Reiniciar.Size = new System.Drawing.Size(114, 23);
+            this.Reiniciar.TabIndex = 109;
+            this.Reiniciar.Text = "Reiniciar Pantalla";
+            this.Reiniciar.UseVisualStyleBackColor = true;
+            this.Reiniciar.Click += new System.EventHandler(this.Reiniciar_Click);
+            // 
+            // lbFormaPago
+            // 
+            this.lbFormaPago.AutoSize = true;
+            this.lbFormaPago.Location = new System.Drawing.Point(169, 506);
+            this.lbFormaPago.Name = "lbFormaPago";
+            this.lbFormaPago.Size = new System.Drawing.Size(0, 13);
+            this.lbFormaPago.TabIndex = 108;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 523);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(98, 13);
+            this.label7.TabIndex = 107;
+            this.label7.Text = "OBSERVACIONES";
+            // 
+            // tbObs
+            // 
+            this.tbObs.Location = new System.Drawing.Point(14, 545);
+            this.tbObs.Multiline = true;
+            this.tbObs.Name = "tbObs";
+            this.tbObs.Size = new System.Drawing.Size(779, 40);
+            this.tbObs.TabIndex = 106;
+            // 
+            // cbEspecialidad
+            // 
+            this.cbEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEspecialidad.FormattingEnabled = true;
+            this.cbEspecialidad.Location = new System.Drawing.Point(397, 593);
+            this.cbEspecialidad.Name = "cbEspecialidad";
+            this.cbEspecialidad.Size = new System.Drawing.Size(265, 21);
+            this.cbEspecialidad.TabIndex = 86;
+            this.cbEspecialidad.Visible = false;
+            // 
+            // bntImprimir
+            // 
+            this.bntImprimir.Location = new System.Drawing.Point(213, 593);
+            this.bntImprimir.Name = "bntImprimir";
+            this.bntImprimir.Size = new System.Drawing.Size(75, 23);
+            this.bntImprimir.TabIndex = 105;
+            this.bntImprimir.Text = "Re-Imprimir";
+            this.bntImprimir.UseVisualStyleBackColor = true;
+            this.bntImprimir.Visible = false;
+            this.bntImprimir.Click += new System.EventHandler(this.bntImprimir_Click);
+            // 
+            // lbTotal
+            // 
+            this.lbTotal.AutoSize = true;
+            this.lbTotal.Location = new System.Drawing.Point(699, 494);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(42, 13);
+            this.lbTotal.TabIndex = 104;
+            this.lbTotal.Text = "TOTAL";
+            this.lbTotal.Visible = false;
+            this.lbTotal.Click += new System.EventHandler(this.lbTotal_Click);
+            // 
+            // lbSaldoTotal
+            // 
+            this.lbSaldoTotal.AutoSize = true;
+            this.lbSaldoTotal.Location = new System.Drawing.Point(359, 245);
+            this.lbSaldoTotal.Name = "lbSaldoTotal";
+            this.lbSaldoTotal.Size = new System.Drawing.Size(0, 13);
+            this.lbSaldoTotal.TabIndex = 103;
+            // 
+            // toolStrip4
+            // 
+            this.toolStrip4.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NuevoBank,
+            this.toolStripSeparator13,
+            this.CancelarBank});
+            this.toolStrip4.Location = new System.Drawing.Point(14, 494);
+            this.toolStrip4.Name = "toolStrip4";
+            this.toolStrip4.Size = new System.Drawing.Size(143, 25);
+            this.toolStrip4.TabIndex = 102;
+            this.toolStrip4.Text = "toolStrip4";
+            // 
+            // NuevoBank
+            // 
+            this.NuevoBank.Image = ((System.Drawing.Image)(resources.GetObject("NuevoBank.Image")));
+            this.NuevoBank.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.NuevoBank.Name = "NuevoBank";
+            this.NuevoBank.Size = new System.Drawing.Size(72, 22);
+            this.NuevoBank.Text = "Agregar ";
+            this.NuevoBank.Click += new System.EventHandler(this.NuevoBank_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 25);
+            // 
+            // CancelarBank
+            // 
+            this.CancelarBank.Image = ((System.Drawing.Image)(resources.GetObject("CancelarBank.Image")));
+            this.CancelarBank.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.CancelarBank.Name = "CancelarBank";
+            this.CancelarBank.Size = new System.Drawing.Size(62, 22);
+            this.CancelarBank.Text = "Borrar ";
+            this.CancelarBank.Click += new System.EventHandler(this.CancelarBank_Click);
+            // 
+            // gvTratamientos
+            // 
+            this.gvTratamientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvTratamientos.Location = new System.Drawing.Point(14, 376);
+            this.gvTratamientos.Name = "gvTratamientos";
+            this.gvTratamientos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvTratamientos.Size = new System.Drawing.Size(377, 116);
+            this.gvTratamientos.TabIndex = 85;
+            // 
+            // btnPago
+            // 
+            this.btnPago.Location = new System.Drawing.Point(14, 593);
+            this.btnPago.Name = "btnPago";
+            this.btnPago.Size = new System.Drawing.Size(75, 23);
+            this.btnPago.TabIndex = 101;
+            this.btnPago.Text = "Pago Bono";
+            this.btnPago.UseVisualStyleBackColor = true;
+            this.btnPago.Visible = false;
+            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(117, 335);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 84;
+            this.label5.Text = "EDAD";
+            // 
+            // Grabar
+            // 
+            this.Grabar.Location = new System.Drawing.Point(105, 593);
+            this.Grabar.Name = "Grabar";
+            this.Grabar.Size = new System.Drawing.Size(92, 23);
+            this.Grabar.TabIndex = 100;
+            this.Grabar.Text = "Imprimir Bono";
+            this.Grabar.UseVisualStyleBackColor = true;
+            this.Grabar.Visible = false;
+            this.Grabar.Click += new System.EventHandler(this.Grabar_Click);
+            // 
+            // dpFecha
+            // 
+            this.dpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpFecha.Location = new System.Drawing.Point(14, 350);
+            this.dpFecha.Name = "dpFecha";
+            this.dpFecha.Size = new System.Drawing.Size(88, 20);
+            this.dpFecha.TabIndex = 76;
+            // 
+            // FechaApto
+            // 
+            this.FechaApto.AutoSize = true;
+            this.FechaApto.Location = new System.Drawing.Point(13, 335);
+            this.FechaApto.Name = "FechaApto";
+            this.FechaApto.Size = new System.Drawing.Size(45, 13);
+            this.FechaApto.TabIndex = 75;
+            this.FechaApto.Text = "FECHA ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(169, 335);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(130, 13);
+            this.label3.TabIndex = 83;
+            this.label3.Text = "FECHA DE NACIMIENTO";
             // 
             // gpOdonto
             // 
@@ -137,33 +326,23 @@
             this.lbEspecialidad.TabIndex = 73;
             this.lbEspecialidad.Text = "PRESTACION";
             // 
-            // cbEspecialidad
+            // label2
             // 
-            this.cbEspecialidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEspecialidad.FormattingEnabled = true;
-            this.cbEspecialidad.Location = new System.Drawing.Point(397, 567);
-            this.cbEspecialidad.Name = "cbEspecialidad";
-            this.cbEspecialidad.Size = new System.Drawing.Size(265, 21);
-            this.cbEspecialidad.TabIndex = 86;
-            this.cbEspecialidad.Visible = false;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(314, 335);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 77;
+            this.label2.Text = "PACIENTE";
             // 
-            // label5
+            // lbNombre
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(117, 335);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 84;
-            this.label5.Text = "EDAD";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(169, 335);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(130, 13);
-            this.label3.TabIndex = 83;
-            this.label3.Text = "FECHA DE NACIMIENTO";
+            this.lbNombre.AutoSize = true;
+            this.lbNombre.Location = new System.Drawing.Point(314, 354);
+            this.lbNombre.Name = "lbNombre";
+            this.lbNombre.Size = new System.Drawing.Size(54, 13);
+            this.lbNombre.TabIndex = 78;
+            this.lbNombre.Text = "NOMBRE";
             // 
             // lbEdad
             // 
@@ -183,187 +362,9 @@
             this.lbNacimiento.TabIndex = 79;
             this.lbNacimiento.Text = "FechaNacimiento";
             // 
-            // lbNombre
-            // 
-            this.lbNombre.AutoSize = true;
-            this.lbNombre.Location = new System.Drawing.Point(314, 354);
-            this.lbNombre.Name = "lbNombre";
-            this.lbNombre.Size = new System.Drawing.Size(54, 13);
-            this.lbNombre.TabIndex = 78;
-            this.lbNombre.Text = "NOMBRE";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(314, 335);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 13);
-            this.label2.TabIndex = 77;
-            this.label2.Text = "PACIENTE";
-            // 
-            // dpFecha
-            // 
-            this.dpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpFecha.Location = new System.Drawing.Point(14, 350);
-            this.dpFecha.Name = "dpFecha";
-            this.dpFecha.Size = new System.Drawing.Size(88, 20);
-            this.dpFecha.TabIndex = 76;
-            // 
-            // FechaApto
-            // 
-            this.FechaApto.AutoSize = true;
-            this.FechaApto.Location = new System.Drawing.Point(13, 335);
-            this.FechaApto.Name = "FechaApto";
-            this.FechaApto.Size = new System.Drawing.Size(45, 13);
-            this.FechaApto.TabIndex = 75;
-            this.FechaApto.Text = "FECHA ";
-            // 
-            // btnPago
-            // 
-            this.btnPago.Location = new System.Drawing.Point(14, 567);
-            this.btnPago.Name = "btnPago";
-            this.btnPago.Size = new System.Drawing.Size(75, 23);
-            this.btnPago.TabIndex = 101;
-            this.btnPago.Text = "Pago Bono";
-            this.btnPago.UseVisualStyleBackColor = true;
-            this.btnPago.Visible = false;
-            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
-            // 
-            // Grabar
-            // 
-            this.Grabar.Location = new System.Drawing.Point(105, 567);
-            this.Grabar.Name = "Grabar";
-            this.Grabar.Size = new System.Drawing.Size(92, 23);
-            this.Grabar.TabIndex = 100;
-            this.Grabar.Text = "Imprimir Bono";
-            this.Grabar.UseVisualStyleBackColor = true;
-            this.Grabar.Visible = false;
-            this.Grabar.Click += new System.EventHandler(this.Grabar_Click);
-            // 
-            // gvTratamientos
-            // 
-            this.gvTratamientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvTratamientos.Location = new System.Drawing.Point(14, 376);
-            this.gvTratamientos.Name = "gvTratamientos";
-            this.gvTratamientos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvTratamientos.Size = new System.Drawing.Size(377, 116);
-            this.gvTratamientos.TabIndex = 85;
-            // 
-            // toolStrip4
-            // 
-            this.toolStrip4.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.NuevoBank,
-            this.toolStripSeparator13,
-            this.CancelarBank});
-            this.toolStrip4.Location = new System.Drawing.Point(14, 494);
-            this.toolStrip4.Name = "toolStrip4";
-            this.toolStrip4.Size = new System.Drawing.Size(282, 25);
-            this.toolStrip4.TabIndex = 102;
-            this.toolStrip4.Text = "toolStrip4";
-            // 
-            // NuevoBank
-            // 
-            this.NuevoBank.Image = ((System.Drawing.Image)(resources.GetObject("NuevoBank.Image")));
-            this.NuevoBank.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.NuevoBank.Name = "NuevoBank";
-            this.NuevoBank.Size = new System.Drawing.Size(141, 22);
-            this.NuevoBank.Text = "Agregar Tratamientos";
-            this.NuevoBank.Click += new System.EventHandler(this.NuevoBank_Click);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 25);
-            // 
-            // CancelarBank
-            // 
-            this.CancelarBank.Image = ((System.Drawing.Image)(resources.GetObject("CancelarBank.Image")));
-            this.CancelarBank.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.CancelarBank.Name = "CancelarBank";
-            this.CancelarBank.Size = new System.Drawing.Size(132, 22);
-            this.CancelarBank.Text = "Borrar Seleccionado";
-            this.CancelarBank.Click += new System.EventHandler(this.CancelarBank_Click);
-            // 
-            // lbTotal
-            // 
-            this.lbTotal.AutoSize = true;
-            this.lbTotal.Location = new System.Drawing.Point(349, 501);
-            this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(42, 13);
-            this.lbTotal.TabIndex = 104;
-            this.lbTotal.Text = "TOTAL";
-            this.lbTotal.Visible = false;
-            // 
-            // lbSaldoTotal
-            // 
-            this.lbSaldoTotal.AutoSize = true;
-            this.lbSaldoTotal.Location = new System.Drawing.Point(359, 245);
-            this.lbSaldoTotal.Name = "lbSaldoTotal";
-            this.lbSaldoTotal.Size = new System.Drawing.Size(0, 13);
-            this.lbSaldoTotal.TabIndex = 103;
-            // 
-            // bntImprimir
-            // 
-            this.bntImprimir.Location = new System.Drawing.Point(213, 567);
-            this.bntImprimir.Name = "bntImprimir";
-            this.bntImprimir.Size = new System.Drawing.Size(75, 23);
-            this.bntImprimir.TabIndex = 105;
-            this.bntImprimir.Text = "Re-Imprimir";
-            this.bntImprimir.UseVisualStyleBackColor = true;
-            this.bntImprimir.Visible = false;
-            this.bntImprimir.Click += new System.EventHandler(this.bntImprimir_Click);
-            // 
-            // tbObs
-            // 
-            this.tbObs.Location = new System.Drawing.Point(14, 521);
-            this.tbObs.Multiline = true;
-            this.tbObs.Name = "tbObs";
-            this.tbObs.Size = new System.Drawing.Size(779, 40);
-            this.tbObs.TabIndex = 106;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(696, 501);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 13);
-            this.label7.TabIndex = 107;
-            this.label7.Text = "OBSERVACIONES";
-            // 
-            // lbFormaPago
-            // 
-            this.lbFormaPago.AutoSize = true;
-            this.lbFormaPago.Location = new System.Drawing.Point(329, 490);
-            this.lbFormaPago.Name = "lbFormaPago";
-            this.lbFormaPago.Size = new System.Drawing.Size(0, 13);
-            this.lbFormaPago.TabIndex = 108;
-            // 
-            // Reiniciar
-            // 
-            this.Reiniciar.Location = new System.Drawing.Point(676, 567);
-            this.Reiniciar.Name = "Reiniciar";
-            this.Reiniciar.Size = new System.Drawing.Size(114, 23);
-            this.Reiniciar.TabIndex = 109;
-            this.Reiniciar.Text = "Reiniciar Pantalla";
-            this.Reiniciar.UseVisualStyleBackColor = true;
-            this.Reiniciar.Click += new System.EventHandler(this.Reiniciar_Click);
-            // 
-            // AnularBono
-            // 
-            this.AnularBono.Location = new System.Drawing.Point(304, 567);
-            this.AnularBono.Name = "AnularBono";
-            this.AnularBono.Size = new System.Drawing.Size(75, 23);
-            this.AnularBono.TabIndex = 110;
-            this.AnularBono.Text = "Anular";
-            this.AnularBono.UseVisualStyleBackColor = true;
-            this.AnularBono.Visible = false;
-            this.AnularBono.Click += new System.EventHandler(this.AnularBono_Click);
-            // 
             // BonoOdontologico
             // 
-            this.ClientSize = new System.Drawing.Size(805, 596);
+            this.ClientSize = new System.Drawing.Size(805, 626);
             this.Controls.Add(this.AnularBono);
             this.Controls.Add(this.Reiniciar);
             this.Controls.Add(this.lbFormaPago);
@@ -388,11 +389,11 @@
             this.Controls.Add(this.lbNacimiento);
             this.Name = "BonoOdontologico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.gpOdonto.ResumeLayout(false);
-            this.gpOdonto.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvTratamientos)).EndInit();
             this.toolStrip4.ResumeLayout(false);
             this.toolStrip4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTratamientos)).EndInit();
+            this.gpOdonto.ResumeLayout(false);
+            this.gpOdonto.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

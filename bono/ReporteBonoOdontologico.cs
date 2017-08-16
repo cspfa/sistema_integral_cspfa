@@ -76,10 +76,10 @@ namespace SOCIOS.bono
             //Codigo de Barra
             string Barra = "OD" + ID.ToString("0000000000");
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[19];
+            ReportParameter[] parameters = new ReportParameter[20];
             //Establecemos el valor de los parámetros
             int nroContraLor = this.Contralor(ID);
-            string Contralor = "";
+            string Contralor = nroContraLor.ToString();
 
             if (nroContraLor != 0)
                 Contralor = "Contralor DTO : "+  nroContraLor.ToString();
@@ -103,7 +103,11 @@ namespace SOCIOS.bono
             parameters[15] = new ReportParameter("Total", Total.ToString("0.##"));
             parameters[16] = new ReportParameter("Anulado", BonoAnulado.ToString());
             parameters[17] = new ReportParameter("Barra", Barra);
-            parameters[18] = new ReportParameter("Contralor",Contralor);
+            if (Contralor != "0")
+                parameters[18] = new ReportParameter("Contralor","CONTRALOR:" + Contralor);
+            else
+                 parameters[18] = new ReportParameter("Contralor","");
+            parameters[19] = new ReportParameter("Categoria",SOC.TIPO );
             this.reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Clear();
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", ds));
@@ -211,10 +215,10 @@ namespace SOCIOS.bono
 
             if (foundRows.Length > 0)
             {
-                return 0;
+                return Int32.Parse(foundRows[0][0].ToString());
             }
             else
-                return 1;
+                return 0;
         
         }
 
