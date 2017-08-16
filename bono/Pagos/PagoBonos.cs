@@ -106,10 +106,10 @@ namespace SOCIOS.bono
             Query = Query + " WHERE ID <> 9 AND ID<>10";
 
             //16-08-2017 , financiacion efectivo para todos 
-            if (ROL != "TURISMO" )
-            {
-                Query =Query+  " AND ID <> 6";
-            }
+            //if (ROL != "TURISMO" )
+            //{
+            //    Query =Query+  " AND ID <> 6";
+            //}
 
             Query = Query + "ORDER BY ID";
             cbTipoPago.DataSource = null;
