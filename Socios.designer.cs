@@ -150,7 +150,6 @@ namespace SOCIOS
             this.btnBeneficio = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnAdquirir = new System.Windows.Forms.Button();
-            this.lbUltimaModificacion = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -192,6 +191,8 @@ namespace SOCIOS
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.tbCUIL = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -1453,7 +1454,6 @@ namespace SOCIOS
             this.groupBox5.Controls.Add(this.btnBeneficio);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Controls.Add(this.btnAdquirir);
-            this.groupBox5.Controls.Add(this.lbUltimaModificacion);
             this.groupBox5.Controls.Add(this.label3);
             this.groupBox5.Controls.Add(this.textBox2);
             this.groupBox5.Controls.Add(this.label4);
@@ -1495,6 +1495,8 @@ namespace SOCIOS
             this.groupBox5.Controls.Add(this.textBox8);
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Controls.Add(this.label18);
+            this.groupBox5.Controls.Add(this.tbCUIL);
+            this.groupBox5.Controls.Add(this.label9);
             this.groupBox5.Controls.Add(this.textBox9);
             this.groupBox5.Controls.Add(this.label19);
             this.groupBox5.Location = new System.Drawing.Point(12, 68);
@@ -1506,9 +1508,9 @@ namespace SOCIOS
             // 
             // btnBeneficio
             // 
-            this.btnBeneficio.Location = new System.Drawing.Point(828, 117);
+            this.btnBeneficio.Location = new System.Drawing.Point(804, 123);
             this.btnBeneficio.Name = "btnBeneficio";
-            this.btnBeneficio.Size = new System.Drawing.Size(75, 53);
+            this.btnBeneficio.Size = new System.Drawing.Size(83, 40);
             this.btnBeneficio.TabIndex = 50;
             this.btnBeneficio.Text = "Datos Bienestar";
             this.btnBeneficio.UseVisualStyleBackColor = true;
@@ -1535,15 +1537,6 @@ namespace SOCIOS
             this.btnAdquirir.UseVisualStyleBackColor = true;
             this.btnAdquirir.Click += new System.EventHandler(this.btnAdquirir_Click);
             // 
-            // lbUltimaModificacion
-            // 
-            this.lbUltimaModificacion.AutoSize = true;
-            this.lbUltimaModificacion.Location = new System.Drawing.Point(784, 147);
-            this.lbUltimaModificacion.Name = "lbUltimaModificacion";
-            this.lbUltimaModificacion.Size = new System.Drawing.Size(24, 13);
-            this.lbUltimaModificacion.TabIndex = 48;
-            this.lbUltimaModificacion.Text = "UM";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -1562,7 +1555,7 @@ namespace SOCIOS
             this.textBox2.MaxLength = 20;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(342, 20);
+            this.textBox2.Size = new System.Drawing.Size(242, 20);
             this.textBox2.TabIndex = 9;
             // 
             // label4
@@ -1593,7 +1586,7 @@ namespace SOCIOS
             this.textBox17.MaxLength = 6;
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(71, 20);
+            this.textBox17.Size = new System.Drawing.Size(93, 20);
             this.textBox17.TabIndex = 27;
             this.textBox17.Text = "0";
             this.textBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1601,7 +1594,7 @@ namespace SOCIOS
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(636, 147);
+            this.label63.Location = new System.Drawing.Point(640, 147);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(56, 13);
             this.label63.TabIndex = 43;
@@ -1867,7 +1860,7 @@ namespace SOCIOS
             this.textBox11.MaxLength = 8;
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(120, 20);
+            this.textBox11.Size = new System.Drawing.Size(93, 20);
             this.textBox11.TabIndex = 26;
             // 
             // label16
@@ -1990,6 +1983,28 @@ namespace SOCIOS
             this.label18.TabIndex = 28;
             this.label18.Text = "LOCALIDAD";
             // 
+            // tbCUIL
+            // 
+            this.tbCUIL.AcceptsReturn = true;
+            this.tbCUIL.AcceptsTab = true;
+            this.tbCUIL.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbCUIL.Location = new System.Drawing.Point(702, 46);
+            this.tbCUIL.MaxLength = 11;
+            this.tbCUIL.Name = "tbCUIL";
+            this.tbCUIL.ReadOnly = true;
+            this.tbCUIL.Size = new System.Drawing.Size(93, 20);
+            this.tbCUIL.TabIndex = 22;
+            this.tbCUIL.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(700, 25);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(31, 13);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "CUIL";
+            // 
             // textBox9
             // 
             this.textBox9.AcceptsReturn = true;
@@ -2006,7 +2021,7 @@ namespace SOCIOS
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(704, 74);
+            this.label19.Location = new System.Drawing.Point(700, 74);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 13);
             this.label19.TabIndex = 29;
@@ -3061,7 +3076,6 @@ namespace SOCIOS
         private System.Windows.Forms.TabControl TabsSocios;
         private System.Windows.Forms.TabPage TabTitular;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label lbUltimaModificacion;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
@@ -3256,6 +3270,8 @@ namespace SOCIOS
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox tbTraspasado;
         private System.Windows.Forms.Button btnImpInvPart;
+        private System.Windows.Forms.TextBox tbCUIL;
+        private System.Windows.Forms.Label label9;
     }
 }
 

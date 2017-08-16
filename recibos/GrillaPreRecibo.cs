@@ -40,7 +40,7 @@ namespace SOCIOS
                 }
                 else if (VGlobales.vp_role != "CAJA" && VGlobales.vp_role != "INFORMES" && VGlobales.vp_role != "SISTEMAS" && VGlobales.vp_role != "CONTADURIA" && VGlobales.vp_role != "CAJA2")
                 {
-                    v_consulta = v_consulta + " AND A.ROL = '" + VGlobales.vp_role + "'";
+                    v_consulta = v_consulta + " AND A.ROL = '" + VGlobales.vp_role + "' AND APELLIDO <> 'CONTADURIA' AND APELLIDO <> 'TESORERIA' AND APELLIDO <> 'SISTEMAS'";
                 }
                 else if (VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA2")
                 {
@@ -230,60 +230,6 @@ namespace SOCIOS
             Cursor = Cursors.Default;
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
-            VGlobales.vp_IdScocio = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString()) * 1000;
-            VGlobales.vp_IdScocio = VGlobales.vp_IdScocio + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-            VGlobales.vp_IdSecAct = Convert.ToInt32(dataGridView1[13, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-            VGlobales.vp_IDProf = Convert.ToInt32(dataGridView1[12, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-            VGlobales.vp_Secuencia = Convert.ToInt32(dataGridView1[8, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-            VGlobales.vp_Apellido = dataGridView1[2, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            VGlobales.vp_Nombre = dataGridView1[3, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            VGlobales.vp_TipSoc = dataGridView1[4, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            VGlobales.vp_Barra = dataGridView1[9, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            VGlobales.vp_CodDto = dataGridView1[10, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string RB = dataGridView1[17, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            
-            if (RB == "R")
-                VGlobales.vp_NroRecibo = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-
-            if (RB == "B")
-                VGlobales.vp_NroRecibo = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-
-            string NRO_SOC = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string NRO_DEP = dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string TIT_SOC = dataGridView1[14, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string TIT_DEP = dataGridView1[15, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string ROLE = dataGridView1[5, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string DNI = dataGridView1[19, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            int GRUPO = int.Parse(dataGridView1[20, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-            int CUENTA = 0;
-            decimal IMPORTE = decimal.Parse(dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-
-            if (dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString() != "")
-            {
-                CUENTA = int.Parse(dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-            }
-
-            if (VGlobales.vp_IdScocio == 0)
-            {
-                MessageBox.Show("Se debe ingresar como Socio Invitado para poder generar recibo", "INFORME DE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                recibos r = new recibos(VGlobales.vp_IdScocio, VGlobales.vp_IdSecAct, VGlobales.vp_IDProf, VGlobales.vp_Secuencia,
-                        VGlobales.vp_Apellido, VGlobales.vp_Nombre, VGlobales.vp_TipSoc, VGlobales.vp_Barra, VGlobales.vp_CodDto,
-                        VGlobales.vp_NroRecibo, NRO_SOC, NRO_DEP, TIT_SOC, TIT_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB);
-                r.ShowDialog();
-
-                if (VGlobales.vp_NroRecibo == "")
-                    Llenar_grilla("XXX", "X");
-            }
-
-            Cursor = Cursors.Default;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -428,6 +374,74 @@ namespace SOCIOS
             string RECIBO = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             string BONO = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             elimiarCajaDiaria(RECIBO, BONO);
+        }
+
+        private void imprimirComprobante(string REINTEGRO)
+        {
+            Cursor = Cursors.WaitCursor;
+            VGlobales.vp_IdScocio = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString()) * 1000;
+            VGlobales.vp_IdScocio = VGlobales.vp_IdScocio + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+            VGlobales.vp_IdSecAct = Convert.ToInt32(dataGridView1[13, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+            VGlobales.vp_IDProf = Convert.ToInt32(dataGridView1[12, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+            VGlobales.vp_Secuencia = Convert.ToInt32(dataGridView1[8, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+            VGlobales.vp_Apellido = dataGridView1[2, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            VGlobales.vp_Nombre = dataGridView1[3, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            VGlobales.vp_TipSoc = dataGridView1[4, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            VGlobales.vp_Barra = dataGridView1[9, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            VGlobales.vp_CodDto = dataGridView1[10, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string RB = dataGridView1[17, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+
+            if (RB == "R")
+                VGlobales.vp_NroRecibo = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+
+            if (RB == "B")
+                VGlobales.vp_NroRecibo = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+
+            string NRO_SOC = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string NRO_DEP = dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string TIT_SOC = dataGridView1[14, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string TIT_DEP = dataGridView1[15, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string ROLE = dataGridView1[5, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string DNI = dataGridView1[19, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            int GRUPO = int.Parse(dataGridView1[20, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+            int CUENTA = 0;
+            decimal IMPORTE = decimal.Parse(dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+
+            if (dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString() != "")
+            {
+                CUENTA = int.Parse(dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+            }
+
+            if (VGlobales.vp_IdScocio == 0)
+            {
+                MessageBox.Show("Se debe ingresar como Socio Invitado para poder generar recibo", "INFORME DE ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (REINTEGRO == "SI" && VGlobales.vp_NroRecibo == "")
+            {
+                MessageBox.Show("NO SE PUEDE HACER UN REINTEGRO SI TODAVIA NO SE GENERO EL COMPROBANTE", "ERROR");
+            }
+            else
+            {
+                recibos r = new recibos(VGlobales.vp_IdScocio, VGlobales.vp_IdSecAct, VGlobales.vp_IDProf, VGlobales.vp_Secuencia,
+                        VGlobales.vp_Apellido, VGlobales.vp_Nombre, VGlobales.vp_TipSoc, VGlobales.vp_Barra, VGlobales.vp_CodDto,
+                        VGlobales.vp_NroRecibo, NRO_SOC, NRO_DEP, TIT_SOC, TIT_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, REINTEGRO);
+                r.ShowDialog();
+
+                if (VGlobales.vp_NroRecibo == "")
+                    Llenar_grilla("XXX", "X");
+            }
+
+            Cursor = Cursors.Default;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            imprimirComprobante("NO");
+        }
+
+        private void btnReintegro_Click(object sender, EventArgs e)
+        {
+            imprimirComprobante("SI");
         }
     }
 }

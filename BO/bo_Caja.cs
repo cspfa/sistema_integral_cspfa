@@ -15,6 +15,218 @@ namespace SOCIOS.BO
     class bo_Caja:bo
     {
         db resultado = new db();
+
+        //STORED IMPORTAR CAJA DIARIA
+        public void importarCajaDiaria(string FECHA, string US_ALTA, decimal INGRESOS_EFECTIVO, decimal INGRESOS_OTROS, decimal SUBTOTAL_INGRESOS, decimal EGRESOS,
+        decimal SALDO_CAJA, string ROL, decimal TOTAL, int DEPOSITADA, int BANCO, int IMPUTACION, int CAJA_DEPOSITADA, string CODIGO_DEPOSITO)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(FECHA);
+            vector_contenidos.Add(US_ALTA);
+            vector_contenidos.Add(INGRESOS_EFECTIVO);
+            vector_contenidos.Add(INGRESOS_OTROS);
+            vector_contenidos.Add(SUBTOTAL_INGRESOS);
+            vector_contenidos.Add(EGRESOS);
+            vector_contenidos.Add(SALDO_CAJA);
+            vector_contenidos.Add(ROL);
+            vector_contenidos.Add(TOTAL);
+            vector_contenidos.Add(DEPOSITADA);
+            vector_contenidos.Add(BANCO);
+            vector_contenidos.Add(IMPUTACION);
+            vector_contenidos.Add(CAJA_DEPOSITADA);
+            vector_contenidos.Add(CODIGO_DEPOSITO);
+
+            vector_tipos.Add("FbDbType.Date");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
+
+            vector_nombres.Add("@PIN_FECHA");
+            vector_nombres.Add("@PIN_US_ALTA");
+            vector_nombres.Add("@PIN_INGRESOS_EFECTIVO");
+            vector_nombres.Add("@PIN_INGRESOS_OTROS");
+            vector_nombres.Add("@PIN_SUBTOTAL_INGRESOS");
+            vector_nombres.Add("@PIN_EGRESOS");
+            vector_nombres.Add("@PIN_SALDO_CAJA");
+            vector_nombres.Add("@PIN_ROL");
+            vector_nombres.Add("@PIN_TOTAL");
+            vector_nombres.Add("@PIN_DEPOSITADA");
+            vector_nombres.Add("@PIN_BANCO");
+            vector_nombres.Add("@PIN_IMPUTACION");
+            vector_nombres.Add("@PIN_CAJA_DEPOSITADA");
+            vector_nombres.Add("@PIN_CODIGO_DEPOSITO");
+
+            string vprocedure = "CAJA_DIARIA_IMPORTAR";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //STORED IMPORTAR BONOS
+        public void importarBonos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, decimal VALOR, string FORMA_DE_PAGO, int SECTACT,
+            string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, int DNI, string PTO_VTA, int CAJA_DIARIA, string ROL)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(NRO_COMP);
+            vector_contenidos.Add(CUENTA_DEBE);
+            vector_contenidos.Add(CUENTA_HABER);
+            vector_contenidos.Add(VALOR);
+            vector_contenidos.Add(FORMA_DE_PAGO);
+            vector_contenidos.Add(SECTACT);
+            vector_contenidos.Add(USUARIO_MOD);
+            vector_contenidos.Add(FECHA_RECIBO);
+            vector_contenidos.Add(ID_SOCIO);
+            vector_contenidos.Add(ID_PROFESIONAL);
+            vector_contenidos.Add(NOMBRE_SOCIO_TITULAR);
+            vector_contenidos.Add(TIPO_SOCIO_TITULAR);
+            vector_contenidos.Add(OBSERVACIONES);
+            vector_contenidos.Add(BARRA);
+            vector_contenidos.Add(NOMBRE_SOCIO);
+            vector_contenidos.Add(TIPO_SOCIO);
+            vector_contenidos.Add(DNI);
+            vector_contenidos.Add(PTO_VTA);
+            vector_contenidos.Add(CAJA_DIARIA);
+            vector_contenidos.Add(ROL);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
+
+            vector_nombres.Add("@NRO_COMP");
+            vector_nombres.Add("@CUENTA_DEBE");
+            vector_nombres.Add("@CUENTA_HABER");
+            vector_nombres.Add("@VALOR");
+            vector_nombres.Add("@FORMA_DE_PAGO");
+            vector_nombres.Add("@SECTACT");
+            vector_nombres.Add("@USUARIO_MOD");
+            vector_nombres.Add("@FECHA_RECIBO");
+            vector_nombres.Add("@ID_SOCIO");
+            vector_nombres.Add("@ID_PROFESIONAL");
+            vector_nombres.Add("@NOMBRE_SOCIO_TITULAR");
+            vector_nombres.Add("@TIPO_SOCIO_TITULAR");
+            vector_nombres.Add("@OBSERVACIONES");
+            vector_nombres.Add("@BARRA");
+            vector_nombres.Add("@NOMBRE_SOCIO");
+            vector_nombres.Add("@TIPO_SOCIO");
+            vector_nombres.Add("@DNI");
+            vector_nombres.Add("@PTO_VTA");
+            vector_nombres.Add("@CAJA_DIARIA");
+            vector_nombres.Add("@ROL");
+
+            string vprocedure = "BONOS_CAJA_IMPORTAR";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //STORED IMPORTAR RECIBOS
+        public void importarRecibos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, decimal VALOR, string FORMA_DE_PAGO, int SECTACT,
+            string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, int DNI, string PTO_VTA, int CAJA_DIARIA, string ROL)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(NRO_COMP);
+            vector_contenidos.Add(CUENTA_DEBE);
+            vector_contenidos.Add(CUENTA_HABER);
+            vector_contenidos.Add(VALOR);
+            vector_contenidos.Add(FORMA_DE_PAGO);
+            vector_contenidos.Add(SECTACT);
+            vector_contenidos.Add(USUARIO_MOD);
+            vector_contenidos.Add(FECHA_RECIBO);
+            vector_contenidos.Add(ID_SOCIO);
+            vector_contenidos.Add(ID_PROFESIONAL);
+            vector_contenidos.Add(NOMBRE_SOCIO_TITULAR);
+            vector_contenidos.Add(TIPO_SOCIO_TITULAR);
+            vector_contenidos.Add(OBSERVACIONES);
+            vector_contenidos.Add(BARRA);
+            vector_contenidos.Add(NOMBRE_SOCIO);
+            vector_contenidos.Add(TIPO_SOCIO);
+            vector_contenidos.Add(DNI);
+            vector_contenidos.Add(PTO_VTA);
+            vector_contenidos.Add(CAJA_DIARIA);
+            vector_contenidos.Add(ROL);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
+
+            vector_nombres.Add("@NRO_COMP");
+            vector_nombres.Add("@CUENTA_DEBE");
+            vector_nombres.Add("@CUENTA_HABER");
+            vector_nombres.Add("@VALOR");
+            vector_nombres.Add("@FORMA_DE_PAGO");
+            vector_nombres.Add("@SECTACT");
+            vector_nombres.Add("@USUARIO_MOD");
+            vector_nombres.Add("@FECHA_RECIBO");
+            vector_nombres.Add("@ID_SOCIO");
+            vector_nombres.Add("@ID_PROFESIONAL");
+            vector_nombres.Add("@NOMBRE_SOCIO_TITULAR");
+            vector_nombres.Add("@TIPO_SOCIO_TITULAR");
+            vector_nombres.Add("@OBSERVACIONES");
+            vector_nombres.Add("@BARRA");
+            vector_nombres.Add("@NOMBRE_SOCIO");
+            vector_nombres.Add("@TIPO_SOCIO");
+            vector_nombres.Add("@DNI");
+            vector_nombres.Add("@PTO_VTA");
+            vector_nombres.Add("@CAJA_DIARIA");
+            vector_nombres.Add("@ROL");
+
+            string vprocedure = "RECIBOS_CAJA_IMPORTAR";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
         
         //STORED MODIFICAR CAJA DIARIA
         public void modificarCajaDiaria(decimal INGRESOS_EFECTIVO, decimal INGRESOS_OTROS, decimal SUBTOTAL_INGRESOS, decimal EGRESOS, decimal SALDO_CAJA, string ROL, decimal TOTAL)
@@ -373,7 +585,7 @@ namespace SOCIOS.BO
         //STORED NUEVO RECIBO DE CAJA
         public void nuevoReciboCaja(int ID, int CUENTA_DEBE, int CUENTA_HABER, int SECTACT, int ID_SOCIO, decimal VALOR,
             string FORMA_DE_PAGO, string USUARIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
-            string OBSERVACIONES, string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA)
+            string OBSERVACIONES, string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA, int REINTEGRO_DE)
         {
 
             ArrayList vector_contenidos = new ArrayList();
@@ -399,6 +611,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(TIPO_SOCIO_NO_TITULAR);
             vector_contenidos.Add(NRO_COMP);
             vector_contenidos.Add(PTO_VTA);
+            vector_contenidos.Add(REINTEGRO_DE);
             
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -419,6 +632,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
             
             vector_nombres.Add("@ID");
             vector_nombres.Add("@CUENTA_DEBE");
@@ -439,6 +653,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@TIPO_SOCIO_NO_TITULAR");
             vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@PTO_VTA");
+            vector_nombres.Add("@REINTEGRO_DE");
 
             string vprocedure = "RECIBOS_CAJA_I";
 
@@ -448,7 +663,7 @@ namespace SOCIOS.BO
         //STORED NUEVO BONO DE CAJA
         public void nuevoBonoCaja(int ID, int CUENTA_DEBE, int CUENTA_HABER, int SECTACT, int ID_SOCIO, decimal VALOR, string FORMA_DE_PAGO,
             string USUARIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, string OBSERVACIONES,
-            string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA)
+            string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, int NRO_COMP, string PTO_VTA, int REINTEGRO_DE)
         {
 
             ArrayList vector_contenidos = new ArrayList();
@@ -474,6 +689,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(TIPO_SOCIO_NO_TITULAR);
             vector_contenidos.Add(NRO_COMP);
             vector_contenidos.Add(PTO_VTA);
+            vector_contenidos.Add(REINTEGRO_DE);
 
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -494,6 +710,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
 
             vector_nombres.Add("@ID");
             vector_nombres.Add("@CUENTA_DEBE");
@@ -514,6 +731,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@TIPO_SOCIO_NO_TITULAR");
             vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@PTO_VTA");
+            vector_nombres.Add("@REINTEGRO_DE");
 
             string vprocedure = "BONOS_CAJA_I";
 
@@ -776,15 +994,15 @@ namespace SOCIOS.BO
         }
 
         //STORED MODIFICAR BONOS EN BLANCO
-        public void modificarBonosEnBlanco(int ID, int CUENTA_DEBE, int CUENTA_HABER, float VALOR, string FORMA_DE_PAGO, int SECTACT,
+        public void modificarBonosEnBlanco(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, float VALOR, string FORMA_DE_PAGO, int SECTACT,
             string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
-            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR, string PTO_VTA)
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, string DNI, string PTO_VTA)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
             ArrayList vector_nombres = new ArrayList();
-            
-            vector_contenidos.Add(ID);
+
+            vector_contenidos.Add(NRO_COMP);
             vector_contenidos.Add(CUENTA_DEBE);
             vector_contenidos.Add(CUENTA_HABER);
             vector_contenidos.Add(VALOR);
@@ -801,9 +1019,8 @@ namespace SOCIOS.BO
             vector_contenidos.Add(NOMBRE_SOCIO);
             vector_contenidos.Add(TIPO_SOCIO);
             vector_contenidos.Add(DNI);
-            vector_contenidos.Add(TIPO_SOCIO_NO_TITULAR);
             vector_contenidos.Add(PTO_VTA);
-            
+
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -822,10 +1039,8 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
 
-            
-            vector_nombres.Add("@ID");
+            vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@CUENTA_DEBE");
             vector_nombres.Add("@CUENTA_HABER");
             vector_nombres.Add("@VALOR");
@@ -842,7 +1057,6 @@ namespace SOCIOS.BO
             vector_nombres.Add("@NOMBRE_SOCIO");
             vector_nombres.Add("@TIPO_SOCIO");
             vector_nombres.Add("@DNI");
-            vector_nombres.Add("@TIPO_SOCIO_NO_TITULAR");
             vector_nombres.Add("@PTO_VTA");
 
             string vprocedure = "BONOS_CAJA_U";

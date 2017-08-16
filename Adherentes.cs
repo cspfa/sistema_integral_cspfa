@@ -37,6 +37,7 @@ namespace SOCIOS
         public static int vp_id_adherente = 0;
         public bool v_semaforo_baja_adh;
 
+        #region LIMPIAR/HABILITAR/DESHABILITAR
         public void limpio_botones()
         {
             bindingNavigator1.MoveFirstItem.Enabled = true;
@@ -221,7 +222,9 @@ namespace SOCIOS
             button1.Enabled = true;
             button2.Enabled = true;
         }
+        #endregion
 
+        #region BINDING NAVIGATOR
         private void bindingNavigatorMoveFirstItem_Click(object sender, EventArgs e)
         {
             limpio_botones();
@@ -291,6 +294,7 @@ namespace SOCIOS
 
             this.BindDatosDT();
         }
+        #endregion
 
         private void nuevo_Click(object sender, EventArgs e)
         {
@@ -301,7 +305,7 @@ namespace SOCIOS
             else
             {
                 Crear_fila();
-                // BindDatosDT();
+                BindDatosDT();
             }
         }
 
@@ -311,58 +315,51 @@ namespace SOCIOS
             int nrowpos = 0;
             isediting = "NO";
             isadding = "SI";
-
             bindingNavigator1.MoveFirstItem.Enabled = false;
             bindingNavigator1.MoveLastItem.Enabled = false;
             bindingNavigator1.MoveNextItem.Enabled = false;
             bindingNavigator1.MovePreviousItem.Enabled = false;
-
             cancelar.Enabled = true;
             grabar.Enabled = true;
             editar.Enabled = false;
             nuevo.Enabled = false;
             Ficha.Enabled = false;
-
             maskedTextBox1.Text = Socios.vp_nro_soc.ToString();
             maskedTextBox2.Text = Socios.vp_nro_dep.ToString();
-
             limpio_campos();
 
+            if (gpofamiliar==true)
+            {
+                nrowpos = rowpos;
+                maskedTextBox3.Text = adherentesDT.Rows[nrowpos]["NRO_ADH"].ToString().TrimEnd();
+                maskedTextBox13.Text = adherentesDT.Rows[nrowpos]["NRO_DEPADH"].ToString().TrimEnd();
+                maskedTextBox11.Text = adherentesDT.Rows[nrowpos]["BARRA"].ToString().TrimEnd();
+                txtBarra = Convert.ToInt32(maskedTextBox11.Text) + 1;
+                maskedTextBox11.Text = txtBarra.ToString();
+            }
+            else
+            {
+                maskedTextBox3.Text = "0";
 
-                if (gpofamiliar==true)
+                if (VGlobales.vp_adh_inp == "A")
                 {
-                    nrowpos = rowpos;
-                    maskedTextBox3.Text = adherentesDT.Rows[nrowpos]["NRO_ADH"].ToString().TrimEnd();
-                    maskedTextBox13.Text = adherentesDT.Rows[nrowpos]["NRO_DEPADH"].ToString().TrimEnd();
-                    maskedTextBox11.Text = adherentesDT.Rows[nrowpos]["BARRA"].ToString().TrimEnd();
-                    txtBarra = Convert.ToInt32(maskedTextBox11.Text) + 1;
-                    maskedTextBox11.Text = txtBarra.ToString();
+                    maskedTextBox13.Text = "978";
+
+                    if (maskedTextBox2.Text == "17" || maskedTextBox2.Text == "017")
+                    {
+                        maskedTextBox13.Text = "917";
+                    }
                 }
                 else
                 {
-                    maskedTextBox3.Text = "0";
-
-                    if (VGlobales.vp_adh_inp == "A")
-                    {
-                        maskedTextBox13.Text = "978";
-
-                        if (maskedTextBox2.Text == "17" || maskedTextBox2.Text == "017")
-                        {
-                            maskedTextBox13.Text = "917";
-                        }
-                    }
-                    else
-                    {
-                        maskedTextBox13.Text = "11";
-                    }
-
-                    maskedTextBox11.Text = "0";
+                    maskedTextBox13.Text = "11";
                 }
-                
-                textBox15.Focus();
-                    
 
-            // se pone fecha del día en los siguientes campos
+                maskedTextBox11.Text = "0";
+            }
+                
+            textBox15.Focus();
+                    
             // Fecha de Alta Circulo    
             maskedTextbox4.Text = DateTime.Today.Date.Day.ToString().PadLeft(2, '0') +
                                   DateTime.Today.Date.Month.ToString().PadLeft(2, '0') +
@@ -375,11 +372,8 @@ namespace SOCIOS
             textBox4.Text = "N"; 
 
             Byte[] byteBLOBData1 = imageToByteArray(SOCIOS.Properties.Resources.fotonodisponible);
-
             newpos = rowpos;
-
             Habilitar();
-
         }
 
         private void editar_Click(object sender, EventArgs e)

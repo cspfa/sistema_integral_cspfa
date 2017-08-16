@@ -39,6 +39,7 @@
             this.btnSociosAbm = new MicroFour.StrataFrame.UI.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modificarFormaDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnReintegro = new MicroFour.StrataFrame.UI.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +58,7 @@
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(904, 518);
+            this.button3.Location = new System.Drawing.Point(752, 518);
             this.button3.Name = "button3";
             this.button3.ParentContainer = null;
             this.button3.Size = new System.Drawing.Size(163, 32);
@@ -68,7 +69,7 @@
             // dtpFecha
             // 
             this.dtpFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFecha.Location = new System.Drawing.Point(383, 525);
+            this.dtpFecha.Location = new System.Drawing.Point(229, 524);
             this.dtpFecha.Name = "dtpFecha";
             this.dtpFecha.Size = new System.Drawing.Size(103, 20);
             this.dtpFecha.TabIndex = 4;
@@ -76,7 +77,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(760, 518);
+            this.button1.Location = new System.Drawing.Point(607, 518);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(140, 32);
             this.button1.TabIndex = 5;
@@ -87,7 +88,7 @@
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(632, 518);
+            this.button4.Location = new System.Drawing.Point(478, 518);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(124, 32);
             this.button4.TabIndex = 6;
@@ -112,7 +113,7 @@
             // btnSociosAbm
             // 
             this.btnSociosAbm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSociosAbm.Location = new System.Drawing.Point(492, 518);
+            this.btnSociosAbm.Location = new System.Drawing.Point(337, 518);
             this.btnSociosAbm.Name = "btnSociosAbm";
             this.btnSociosAbm.ParentContainer = null;
             this.btnSociosAbm.Size = new System.Drawing.Size(136, 32);
@@ -125,20 +126,32 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modificarFormaDePagoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 26);
             // 
             // modificarFormaDePagoToolStripMenuItem
             // 
             this.modificarFormaDePagoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.money;
             this.modificarFormaDePagoToolStripMenuItem.Name = "modificarFormaDePagoToolStripMenuItem";
-            this.modificarFormaDePagoToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.modificarFormaDePagoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.modificarFormaDePagoToolStripMenuItem.Text = "Modificar Forma de Pago";
+            // 
+            // btnReintegro
+            // 
+            this.btnReintegro.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReintegro.Location = new System.Drawing.Point(920, 518);
+            this.btnReintegro.Name = "btnReintegro";
+            this.btnReintegro.ParentContainer = null;
+            this.btnReintegro.Size = new System.Drawing.Size(146, 32);
+            this.btnReintegro.TabIndex = 9;
+            this.btnReintegro.Text = "REINTEGRO";
+            this.btnReintegro.Click += new System.EventHandler(this.btnReintegro_Click);
             // 
             // GrillaPreRecibo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1263, 562);
+            this.Controls.Add(this.btnReintegro);
             this.Controls.Add(this.btnSociosAbm);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
@@ -171,5 +184,6 @@
         private MicroFour.StrataFrame.UI.Windows.Forms.Button btnSociosAbm;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem modificarFormaDePagoToolStripMenuItem;
+        private MicroFour.StrataFrame.UI.Windows.Forms.Button btnReintegro;
     }
 }

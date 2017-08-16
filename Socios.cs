@@ -248,6 +248,7 @@ namespace SOCIOS
                             v_pcrjp3 = mt.GetInt32(mt.GetOrdinal("PCRJP3"));
                             v_par = mt.GetInt32(mt.GetOrdinal("PAR"));
                             v_aar = mt.GetInt32(mt.GetOrdinal("AAR"));
+                            tbCUIL.Text = mt.GetString(mt.GetOrdinal("CUIL")).Trim();
 
                             if (maskedTextbox25.Text == null || maskedTextbox25.Text == string.Empty || maskedTextbox25.Text.Length == 0)
                             {
@@ -893,7 +894,8 @@ namespace SOCIOS
             }
 
             if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA") || (VGlobales.vp_role.Trim() == "SSADPADUA"))
+                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA") 
+                || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "CONTADURIA"))
             {
                 nuevo.Enabled = true;
 
@@ -1186,6 +1188,7 @@ namespace SOCIOS
             bindingNavigator1.MoveLastItem.Enabled = false;
             bindingNavigator1.MoveNextItem.Enabled = false;
             bindingNavigator1.MovePreviousItem.Enabled = false;
+            tbCUIL.ReadOnly = false;
             cancelar.Enabled = true;
             grabar.Enabled = true;
             buscar.Enabled = false;
@@ -1380,6 +1383,7 @@ namespace SOCIOS
                 tbIdEmp.ReadOnly = true;
                 tbTraspasado.ReadOnly = true;
                 tbCiudad.ReadOnly = true;
+                tbCUIL.ReadOnly = true;
 
                 comboBox1.PreventDropDown = true;
                 comboBox1.BackColor = Color.FromName("Control");
@@ -1463,9 +1467,11 @@ namespace SOCIOS
         private void nuevo_Click(object sender, EventArgs e)
         {
             if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA"))
+                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA")
+                || (VGlobales.vp_role.Trim() == "CONTADURIA"))
             {
                 maskedTextBox2.Text = "012";
+                maskedTextBox2.ReadOnly = true;
             }
             else if (VGlobales.vp_role == "CPOCABA")
             {
@@ -1505,7 +1511,8 @@ namespace SOCIOS
             maskedTextBox1.ReadOnly = true;
 
             if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA" || (VGlobales.vp_role.Trim() == "SSADPADUA")))
+                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA" 
+                || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "CONTADURIA")))
             {
                 maskedTextBox2.ReadOnly = true;
                 maskedTextBox2.Text = "12";
@@ -1788,9 +1795,10 @@ namespace SOCIOS
                         string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA')";
 
                         if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                            || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA") || (VGlobales.vp_role.Trim() == "SSADPADUA"))
+                            || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA")
+                            || (VGlobales.vp_role.Trim() == "CONFITERIA") || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "CONTADURIA"))
                         {
-                            string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO != '0001' AND CODIGO != '0002' AND CODIGO != '0003' AND CODIGO != '0004' AND CODIGO != '0006' AND CODIGO != '0007' AND CODIGO != '0010' AND CODIGO != '0011' AND CODIGO != '0012';";
+                            string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO = '0005';";
                         }
                         
                         if ((VGlobales.vp_role.Trim() == "CPOCABA")) 
@@ -2559,6 +2567,7 @@ namespace SOCIOS
                             cmd.Parameters.Add(new FbParameter("@ID_EMPLEADO", FbDbType.Integer));
                             cmd.Parameters.Add(new FbParameter("@COD_CIUDAD", FbDbType.Integer));
                             cmd.Parameters.Add(new FbParameter("@TRASPASADO", FbDbType.Char, 1));
+                            cmd.Parameters.Add(new FbParameter("@CUIL", FbDbType.Char, 11));
 
                             cmd.Parameters["@P01"].Value = (maskedTextBox7.Text == "" ? 0 : (int?)(System.Convert.ToInt32(maskedTextBox7.Text)));
                             cmd.Parameters["@P03"].Value = (maskedTextBox6.Text == "__" ? 0 : (int?)(System.Convert.ToInt32(maskedTextBox6.Text)));
@@ -2726,6 +2735,11 @@ namespace SOCIOS
                             else
                                 cmd.Parameters["@COD_CIUDAD"].Value = 0;
 
+                            if (tbCUIL.Text.Trim() != "")
+                                cmd.Parameters["@CUIL"].Value = tbCUIL.Text.Trim();
+                            else
+                                cmd.Parameters["@CUIL"].Value = "";
+
                             richTextbox1.SaveFile(@"TEMP.RTF", RichTextBoxStreamType.RichText);
                             FileStream stream = new FileStream(@"TEMP.RTF", FileMode.Open, FileAccess.Read);
                             int size = Convert.ToInt32(stream.Length);
@@ -2838,6 +2852,7 @@ namespace SOCIOS
             tbIdEmp.ReadOnly = true;
             tbTraspasado.ReadOnly = true;
             tbCiudad.ReadOnly = true;
+            tbCUIL.ReadOnly = true;
 
             comboBox1.PreventDropDown = true;
             comboBox1.BackColor = Color.FromName("Control");
@@ -4372,7 +4387,7 @@ namespace SOCIOS
        private void listView2_Click_1(object sender, EventArgs e)
        {
            Cursor = Cursors.WaitCursor;
-           vp_nro_adh = (int)(System.Convert.ToInt32(listView2.FocusedItem.Index));
+           vp_nro_adh = int.Parse(listView2.FocusedItem.Index.ToString());
            VGlobales.vp_cod_bar = string.Empty;
            VGlobales.vp_adh_inp = "A";
 

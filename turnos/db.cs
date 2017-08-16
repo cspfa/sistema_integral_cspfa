@@ -133,7 +133,6 @@ namespace SOCIOS
             CloseCnn();
         }
 
-
         public void OpenCnn_Remota(string ROL)
         {
             string connectionString;
@@ -205,6 +204,26 @@ namespace SOCIOS
             }
 
             comando.CommandType = CommandType.StoredProcedure;
+            comando.ExecuteNonQuery();
+            CommitTransaction();
+            CloseCnn();
+        }
+
+        public void Ejecuto_Consulta(string query)
+        {
+            OpenCnn();
+            NewTransaction();
+            FbCommand comando = new FbCommand(query, connection, transaction);
+            comando.ExecuteNonQuery();
+            CommitTransaction();
+            CloseCnn();
+        }
+
+        public void Ejecuto_Consulta_Remota(string query, string rol)
+        {
+            OpenCnn_Remota(rol);
+            NewTransaction();
+            FbCommand comando = new FbCommand(query, connection, transaction);
             comando.ExecuteNonQuery();
             CommitTransaction();
             CloseCnn();

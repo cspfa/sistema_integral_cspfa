@@ -42,12 +42,106 @@ namespace SOCIOS
             cargaInicial(0);
         }
 
+        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID)
+        {
+            try
+            {
+                DataSet ds1 = new DataSet();
+                string query = "SELECT * FROM BUSCAR_COMPROBANTES (" + DESDE + ", " + HASTA + ", '" + COMPROBANTE + "');";
+                conString cs = new conString();
+                string connectionString = cs.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataTable dt1 = new DataTable("RESULTADOS");
+                    dt1.Columns.Add("#", typeof(string));
+                    dt1.Columns.Add("DETALLE", typeof(string));
+                    dt1.Columns.Add("CONCEPTO", typeof(string));
+                    dt1.Columns.Add("IMP", typeof(int));
+                    dt1.Columns.Add("IMPORTE", typeof(string));
+                    dt1.Columns.Add("OBSERVACIONES", typeof(string));
+                    dt1.Columns.Add("FECHA", typeof(string));
+                    dt1.Columns.Add("ANULADO", typeof(string));
+                    dt1.Columns.Add("F_PAGO", typeof(string));
+                    dt1.Columns.Add("ID", typeof(string));
+                    dt1.Columns.Add("PV", typeof(string));
+                    ds1.Tables.Add(dt1);
+                    FbCommand cmd = new FbCommand(query, connection, transaction);
+                    FbDataReader reader = cmd.ExecuteReader();
+                    string NRO_COMP = string.Empty;
+                    string DETALLE = string.Empty;
+                    string CONCEPTO = string.Empty;
+                    string IMPUTACION = string.Empty;
+                    decimal IMPORTE;
+                    string OBSERVACIONES = string.Empty;
+                    string FECHA = string.Empty;
+                    string VALOR;
+                    decimal TOTAL = 0;
+                    string TIPO = string.Empty;
+                    string ANULADO = string.Empty;
+                    string F_PAGO = string.Empty;
+                    decimal CAJAS_DEPOSITADAS = 0;
+                    string ID_COMP = string.Empty;
+                    string PTO_VTA = string.Empty;
+
+                    while (reader.Read())
+                    {
+                        TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
+                        NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
+
+                        if (TIPO == "B")
+                            NRO_COMP = "B" + NRO_COMP;
+                        else
+                            NRO_COMP = "R" + NRO_COMP;
+
+                        DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
+                        CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
+                        IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));
+                        IMPORTE = reader.GetDecimal(reader.GetOrdinal("IMPORTE"));
+                        VALOR = string.Format("{0:n}", IMPORTE);
+                        OBSERVACIONES = reader.GetString(reader.GetOrdinal("OBSERVACIONES")).Trim();
+                        FECHA = reader.GetString(reader.GetOrdinal("FECHA_RECIBO")).Trim().Replace(" 0:00:00", "");
+                        TOTAL = TOTAL + IMPORTE;
+                        ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
+                        F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
+                        ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
+                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA);
+                    }
+
+                    reader.Close();
+                    GRID.DataSource = dt1;
+                    GRID.Columns[0].Width = 60;
+                    GRID.Columns[1].Width = 190;
+                    GRID.Columns[2].Width = 190;
+                    GRID.Columns[3].Width = 50;
+                    GRID.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[4].Width = 80;
+                    GRID.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[5].Width = 195;
+                    GRID.Columns[6].Visible = true;
+                    GRID.Columns[6].Width = 70;
+                    GRID.Columns[7].Width = 70;
+                    GRID.Columns[8].Width = 110;
+                    GRID.Columns[9].Width = 50;
+                    GRID.Columns[10].Width = 40;
+                    transaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        } 
+
         private void habilitarEdicion()
         {
             tbNuevoImporteEfectivo.Text = "";
             tbNuevoImporteOtros.Text = "";
 
-            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO")
+            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO" || VGlobales.vp_username == "KMARTIN")
             {
                 label1.Enabled = true;
                 label7.Enabled = true;
@@ -62,6 +156,12 @@ namespace SOCIOS
                 btnNuevoImporteEfectivo.Enabled = true;
                 btnNuevoImporteOtros.Enabled = true;
             }
+        }
+
+        private void comboComprobantes()
+        {
+            cbTipos.Items.Add("RECIBOS");
+            cbTipos.Items.Add("BONOS");
         }
         
         private void cargaInicial(int CAJA)
@@ -118,7 +218,11 @@ namespace SOCIOS
             
             dgTotalesDelDia.Rows.Add("TOTAL DEL DÍA", string.Format("{0:n}", (INGRESOS_EFECTIVO + INGRESOS_OTROS)));
             dgTotalesDelDia.Rows.Add("SALDO DEL DÍA ANTERIOR", string.Format("{0:n}", (SALDO_ANTERIOR)));
-            dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", (SALDO_ANTERIOR + INGRESOS_EFECTIVO + INGRESOS_OTROS - EGRESOS)));
+
+            if (dgCajasAnteriores.Rows.Count == 1)
+                dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", "0,00"));
+            else
+                dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", (SALDO_ANTERIOR + INGRESOS_EFECTIVO + INGRESOS_OTROS - EGRESOS)));
             
             cajaDeHoyEnComposicion();
 
@@ -137,9 +241,11 @@ namespace SOCIOS
             {
                 tabPage3.Dispose();
                 btnExcelCaja.Enabled = false;
-                btnMostrarCaja.Enabled = false;
+                //btnMostrarCaja.Enabled = false;
                 gbDepositoCajas.Enabled = false;
             }
+
+            comboComprobantes();
 
             Cursor = Cursors.Default;
         }
@@ -307,7 +413,7 @@ namespace SOCIOS
             try
             {
                 DataSet ds1 = new DataSet();
-                string query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 2);";
+                string query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4);";
                 conString cs = new conString();
                 string connectionString = cs.get();
 
@@ -874,8 +980,9 @@ namespace SOCIOS
 
                 if (VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES")
                 {
-                    PATH = @"C:\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
-                    DIR = @"C:\";
+                    //PATH = @"C:\PlanillasCaja\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
+                    //DIR = @"C:\PlanillasCaja";
+                    PATH = "SAVEAS";
                 }
 
                 if (!Directory.Exists(DIR))
@@ -1061,10 +1168,10 @@ namespace SOCIOS
                 string query = "";
 
                 if (VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA2")
-                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ") WHERE DESTINO IS NULL OR (DESTINO <> 4);";
+                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
                 if (VGlobales.vp_role != "CAJA" && VGlobales.vp_role != "INFORMES" && VGlobales.vp_role != "CAJA2")
-                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ");";
+                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
                 FbCommand cmd = new FbCommand(query, connection, transaction);
                 cmd.CommandText = query;
@@ -1253,6 +1360,8 @@ namespace SOCIOS
                 int X = 0;
                 string TIPO = "";
                 string ANULADO = "";
+                string PTO_VTA = "";
+                string F_PAGO = "";
 
                 Paragraph header = new Paragraph("// " + VGlobales.vp_role + " // PLANILLA DE CAJA " + FECHA, _standardFontBold);
                 header.Alignment = Element.ALIGN_CENTER;
@@ -1270,7 +1379,7 @@ namespace SOCIOS
                 TABLA_INGRESOS.WidthPercentage = 100;
                 TABLA_INGRESOS.SpacingAfter = 10;
                 TABLA_INGRESOS.SpacingBefore = 10;
-                TABLA_INGRESOS.SetWidths(new float[] { 1f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_INGRESOS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f });
                 PdfPCell CELDA_NUM = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
@@ -1317,11 +1426,11 @@ namespace SOCIOS
 
                 #region CABECERA INGRESOS EN OTROS
 
-                PdfPTable TABLA_INGRESOS_OTROS = new PdfPTable(7);
+                PdfPTable TABLA_INGRESOS_OTROS = new PdfPTable(8);
                 TABLA_INGRESOS_OTROS.WidthPercentage = 100;
                 TABLA_INGRESOS_OTROS.SpacingAfter = 10;
                 TABLA_INGRESOS_OTROS.SpacingBefore = 10;
-                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f, 2f });
                 PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO_OTROS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
@@ -1329,6 +1438,7 @@ namespace SOCIOS
                 PdfPCell CELDA_IMPORTE_OTROS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
                 PdfPCell CELDA_OBS_OTROS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
                 PdfPCell CELDA_ANULADO_OTROS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
+                PdfPCell CELDA_PAGO_OTROS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
                 CELDA_NUM_OTROS.BackgroundColor = topo;
                 CELDA_NUM_OTROS.BorderColor = blanco;
                 CELDA_NUM_OTROS.HorizontalAlignment = 1;
@@ -1357,6 +1467,10 @@ namespace SOCIOS
                 CELDA_ANULADO_OTROS.BorderColor = blanco;
                 CELDA_ANULADO_OTROS.HorizontalAlignment = 1;
                 CELDA_ANULADO_OTROS.FixedHeight = 16f;
+                CELDA_PAGO_OTROS.BackgroundColor = topo;
+                CELDA_PAGO_OTROS.BorderColor = blanco;
+                CELDA_PAGO_OTROS.HorizontalAlignment = 1;
+                CELDA_PAGO_OTROS.FixedHeight = 16f;
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_NUM_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_APENOM_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_CONCEPTO_OTROS);
@@ -1364,6 +1478,7 @@ namespace SOCIOS
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_IMPORTE_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_OBS_OTROS);
                 TABLA_INGRESOS_OTROS.AddCell(CELDA_ANULADO_OTROS);
+                TABLA_INGRESOS_OTROS.AddCell(CELDA_PAGO_OTROS);
                 #endregion
 
                 #region CABECERA EGRESOS
@@ -1371,7 +1486,7 @@ namespace SOCIOS
                 TABLA_EGRESOS.WidthPercentage = 100;
                 TABLA_EGRESOS.SpacingAfter = 10;
                 TABLA_EGRESOS.SpacingBefore = 10;
-                TABLA_EGRESOS.SetWidths(new float[] { 1f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f });
                 PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO_EGRESOS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
@@ -1518,6 +1633,7 @@ namespace SOCIOS
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString().Replace("12:00:00 a.m.", "");
+                    PTO_VTA = row[12].ToString();
 
                     if (X == 0)
                     {
@@ -1530,7 +1646,7 @@ namespace SOCIOS
                         X--;
                     }
 
-                    PdfPCell CELL_NUM = new PdfPCell(new Phrase(TIPO + "" + NUM, _mediumFont));
+                    PdfPCell CELL_NUM = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
                     CELL_NUM.HorizontalAlignment = 1;
                     CELL_NUM.BorderWidth = 0;
                     CELL_NUM.BackgroundColor = colorFondo;
@@ -1615,6 +1731,8 @@ namespace SOCIOS
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString();
+                    PTO_VTA = row[12].ToString();
+                    F_PAGO = row[11].ToString();
 
                     if (X == 0)
                     {
@@ -1627,7 +1745,7 @@ namespace SOCIOS
                         X--;
                     }
 
-                    PdfPCell CELL_NUM_OTROS = new PdfPCell(new Phrase(TIPO + "" + NUM, _mediumFont));
+                    PdfPCell CELL_NUM_OTROS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
                     CELL_NUM_OTROS.HorizontalAlignment = 1;
                     CELL_NUM_OTROS.BorderWidth = 0;
                     CELL_NUM_OTROS.BackgroundColor = colorFondo;
@@ -1675,6 +1793,13 @@ namespace SOCIOS
                     CELL_ANULADO_OTROS.BackgroundColor = colorFondo;
                     CELL_ANULADO_OTROS.FixedHeight = 14f;
                     TABLA_INGRESOS_OTROS.AddCell(CELL_ANULADO_OTROS);
+
+                    PdfPCell CELL_PAGO_OTROS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
+                    CELL_PAGO_OTROS.HorizontalAlignment = 2;
+                    CELL_PAGO_OTROS.BorderWidth = 0;
+                    CELL_PAGO_OTROS.BackgroundColor = colorFondo;
+                    CELL_PAGO_OTROS.FixedHeight = 14f;
+                    TABLA_INGRESOS_OTROS.AddCell(CELL_PAGO_OTROS);
                 }
 
                 Paragraph sub2 = new Paragraph("INGRESOS DEL DIA CHEQUES, DEPOSITOS Y TARJETAS", _standardFontBold);
@@ -1717,6 +1842,7 @@ namespace SOCIOS
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString();
+                    PTO_VTA = row[12].ToString();
 
                     if (X == 0)
                     {
@@ -1729,7 +1855,7 @@ namespace SOCIOS
                         X--;
                     }
 
-                    PdfPCell CELL_NUM_EGRESOS = new PdfPCell(new Phrase(TIPO + "" + NUM, _mediumFont));
+                    PdfPCell CELL_NUM_EGRESOS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
                     CELL_NUM_EGRESOS.HorizontalAlignment = 1;
                     CELL_NUM_EGRESOS.BorderWidth = 0;
                     CELL_NUM_EGRESOS.BackgroundColor = colorFondo;
@@ -3098,6 +3224,65 @@ namespace SOCIOS
 
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            int DESDE = 0;
+            int HASTA = 0;
+            string COMPROBANTE = "";
+            COMPROBANTE = cbTipos.SelectedItem.ToString();
+            string COMP_MIN = COMPROBANTE.Substring(0, 1);
+
+            if (tbNroDesde.Text.Trim() == "")
+            {
+                MessageBox.Show("INGRESAR UN NRO DESDE", "ERROR!");
+            }
+            else if (tbNroHasta.Text.Trim() == "")
+            {
+                MessageBox.Show("INGRESAR UN NRO HASTA", "ERROR!");
+            }
+            else if (COMPROBANTE == "")
+            {
+                MessageBox.Show("SELECCIONAR UN TIPO DE COMPROBANTE", "ERROR!");
+            }
+            else
+            {
+                DESDE = int.Parse(tbNroDesde.Text.Trim());
+                HASTA = int.Parse(tbNroHasta.Text.Trim());
+            }
+
+
+
+            DataGridView GRID = dgBuscador;
+            buscador(DESDE, HASTA, COMP_MIN, GRID);
+        }
+
+        private void dgCajasAnteriores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string ID = "";
+            string FECHA = "";
+            string EFECTIVO = "";
+            string OTROS = "";
+            string SUBTOTAL = "";
+            string EGRESOS = "";
+            string SALDO = "";
+            string TOTAL = "";
+
+            foreach (DataGridViewRow row in dgCajasAnteriores.SelectedRows)
+            {
+                ID = row.Cells[0].Value.ToString();
+                FECHA = row.Cells[3].Value.ToString();
+                EFECTIVO = row.Cells[4].Value.ToString();
+                OTROS = row.Cells[5].Value.ToString();
+                SUBTOTAL = row.Cells[6].Value.ToString();
+                EGRESOS = row.Cells[7].Value.ToString();
+                SALDO = row.Cells[8].Value.ToString();
+                TOTAL = row.Cells[9].Value.ToString();
+            }
+
+            modificarCajaDiaria mcd = new modificarCajaDiaria(ID, FECHA, EFECTIVO, OTROS, SUBTOTAL, EGRESOS, SALDO, TOTAL);
+            mcd.ShowDialog();
         }
     }
 }
