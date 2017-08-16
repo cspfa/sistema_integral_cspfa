@@ -4387,7 +4387,7 @@ namespace SOCIOS
        private void listView2_Click_1(object sender, EventArgs e)
        {
            Cursor = Cursors.WaitCursor;
-           vp_nro_adh = (int)(System.Convert.ToInt32(listView2.FocusedItem.Index));
+           vp_nro_adh = int.Parse(listView2.FocusedItem.Index.ToString());
            VGlobales.vp_cod_bar = string.Empty;
            VGlobales.vp_adh_inp = "A";
 
