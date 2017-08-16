@@ -105,7 +105,8 @@ namespace SOCIOS.bono
             //7-9-2016 : sacar 
             Query = Query + " WHERE ID <> 9 AND ID<>10";
 
-            if (ROL != "TURISMO")
+            //16-08-2017 , financiacion efectivo para todos 
+            if (ROL != "TURISMO" )
             {
                 Query =Query+  " AND ID <> 6";
             }
@@ -282,13 +283,15 @@ namespace SOCIOS.bono
                         //Parte en Efectivo, parte en Credito
                        // this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
-                        formaPago = " Se va a Abonar el Bono en Efectivo $ " + lbMonto1.Text + " , Tarjeta de Credito $ " + lbMontoTarjeta.Text;
+                        formaPago = " Se va a Abonar el Bono en Efectivo $ " + lbMonto1.Text + " , Tarjeta de Credito Total $ " + lbMontoTarjeta.Text;
                         SaldoIngreso = Decimal.Parse(lbMonto1.Text);
                         
                       
                         SaldoInteres = Decimal.Round(Decimal.Parse(lbMontoTarjeta.Text)  - Decimal.Parse(lbMonto2.Text),2);
                         Saldo = Saldo + SaldoInteres;
-
+                        
+                        // 9-08-2017 - no se agrega el interes en el valor del bono  
+                        Saldo =  Decimal.Round(Decimal.Parse(lbMonto2.Text),2);
                         this.ValidarTarjeta();
                         
                         
@@ -610,7 +613,7 @@ namespace SOCIOS.bono
                 {
                     lbFp1.Text =  "Debito :";
                 }
-                else
+                else if (Tipo ==8)
                 {
                     lbFp1.Text =  "Credito :";
                 }
