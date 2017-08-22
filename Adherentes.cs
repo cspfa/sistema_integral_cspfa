@@ -305,7 +305,7 @@ namespace SOCIOS
             else
             {
                 Crear_fila();
-                BindDatosDT();
+                //BindDatosDT();
             }
         }
 
