@@ -177,8 +177,18 @@ namespace SOCIOS
             BaseColor blanco = new BaseColor(255, 255, 255);
             BaseColor colorFondo = new BaseColor(255, 255, 255);
 
+            SaveFileDialog SFD = new SaveFileDialog();
+            SFD.Filter = "Archivo PDF|*.pdf";
+            SFD.Title = "Guardar Listado";
+            string PATH = "";
+
+            if (SFD.ShowDialog() == DialogResult.OK)
+            {
+                PATH = SFD.FileName;
+            }
+
             Document doc = new Document(PageSize.A4);
-            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(@"C:\CSPFA_SOCIOS\MOVIMIENTOS_PERSONAL.PDF", FileMode.Create));
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(PATH, FileMode.Create));
             doc.AddTitle("MOVIMIENTOS DE PERSONAL");
             doc.AddCreator("CSPFA");
             doc.Open();
@@ -269,15 +279,14 @@ namespace SOCIOS
             }
 
             doc.Add(TABLA_HEADER);
-
             doc.Close();
             writer.Close();
+            MessageBox.Show("LISTADO GENERADO", "LISTO!");
         }
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
             imprimirListado();
-            OpenAdobeAcrobat(@"C:\CSPFA_SOCIOS\MOVIMIENTOS_PERSONAL.PDF");
         }
 
         static void OpenAdobeAcrobat(string f)

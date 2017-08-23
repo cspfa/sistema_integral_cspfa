@@ -245,6 +245,11 @@ namespace SOCIOS
                 gbDepositoCajas.Enabled = false;
             }
 
+            if (VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES")
+            {
+                btnDepoCajaCampo.Enabled = true;
+            }
+
             comboComprobantes();
 
             Cursor = Cursors.Default;

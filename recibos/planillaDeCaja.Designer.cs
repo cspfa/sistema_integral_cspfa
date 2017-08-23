@@ -174,6 +174,7 @@
             // 
             // btnDepoCajaCampo
             // 
+            this.btnDepoCajaCampo.Enabled = false;
             this.btnDepoCajaCampo.Location = new System.Drawing.Point(681, 167);
             this.btnDepoCajaCampo.Name = "btnDepoCajaCampo";
             this.btnDepoCajaCampo.Size = new System.Drawing.Size(291, 30);

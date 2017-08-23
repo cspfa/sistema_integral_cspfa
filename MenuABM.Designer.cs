@@ -154,6 +154,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.aBMTipoHabitaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -907,6 +908,7 @@
             this.aBMTrasladoToolStripMenuItem,
             this.aBMTipoSalidaToolStripMenuItem,
             this.aBMSalidasToolStripMenuItem,
+            this.aBMTipoHabitaciónToolStripMenuItem,
             this.proveedoresToolStripMenuItem1,
             this.arancelesToolStripMenuItem1});
             this.turismoToolStripMenuItem.Enabled = false;
@@ -917,56 +919,56 @@
             // bonosTurismoToolStripMenuItem
             // 
             this.bonosTurismoToolStripMenuItem.Name = "bonosTurismoToolStripMenuItem";
-            this.bonosTurismoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.bonosTurismoToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.bonosTurismoToolStripMenuItem.Text = "Bonos Turismo";
             this.bonosTurismoToolStripMenuItem.Click += new System.EventHandler(this.bonosTurismoToolStripMenuItem_Click);
             // 
             // aBMRegimenToolStripMenuItem
             // 
             this.aBMRegimenToolStripMenuItem.Name = "aBMRegimenToolStripMenuItem";
-            this.aBMRegimenToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aBMRegimenToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.aBMRegimenToolStripMenuItem.Text = "ABM Regimen";
             this.aBMRegimenToolStripMenuItem.Click += new System.EventHandler(this.aBMRegimenToolStripMenuItem_Click);
             // 
             // hotelesToolStripMenuItem
             // 
             this.hotelesToolStripMenuItem.Name = "hotelesToolStripMenuItem";
-            this.hotelesToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.hotelesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.hotelesToolStripMenuItem.Text = "ABM Hoteles";
             this.hotelesToolStripMenuItem.Click += new System.EventHandler(this.hotelesToolStripMenuItem_Click);
             // 
             // aBMTrasladoToolStripMenuItem
             // 
             this.aBMTrasladoToolStripMenuItem.Name = "aBMTrasladoToolStripMenuItem";
-            this.aBMTrasladoToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aBMTrasladoToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.aBMTrasladoToolStripMenuItem.Text = "ABM Traslado";
             this.aBMTrasladoToolStripMenuItem.Click += new System.EventHandler(this.aBMTrasladoToolStripMenuItem_Click);
             // 
             // aBMTipoSalidaToolStripMenuItem
             // 
             this.aBMTipoSalidaToolStripMenuItem.Name = "aBMTipoSalidaToolStripMenuItem";
-            this.aBMTipoSalidaToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aBMTipoSalidaToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.aBMTipoSalidaToolStripMenuItem.Text = "ABM Tipo Salida";
             this.aBMTipoSalidaToolStripMenuItem.Click += new System.EventHandler(this.aBMTipoSalidaToolStripMenuItem_Click);
             // 
             // aBMSalidasToolStripMenuItem
             // 
             this.aBMSalidasToolStripMenuItem.Name = "aBMSalidasToolStripMenuItem";
-            this.aBMSalidasToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aBMSalidasToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.aBMSalidasToolStripMenuItem.Text = "ABM Salidas";
             this.aBMSalidasToolStripMenuItem.Click += new System.EventHandler(this.aBMSalidasToolStripMenuItem_Click);
             // 
             // proveedoresToolStripMenuItem1
             // 
             this.proveedoresToolStripMenuItem1.Name = "proveedoresToolStripMenuItem1";
-            this.proveedoresToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.proveedoresToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
             this.proveedoresToolStripMenuItem1.Text = "Proveedores";
             this.proveedoresToolStripMenuItem1.Click += new System.EventHandler(this.proveedoresToolStripMenuItem1_Click);
             // 
             // arancelesToolStripMenuItem1
             // 
             this.arancelesToolStripMenuItem1.Name = "arancelesToolStripMenuItem1";
-            this.arancelesToolStripMenuItem1.Size = new System.Drawing.Size(149, 22);
+            this.arancelesToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
             this.arancelesToolStripMenuItem1.Text = "Aranceles";
             this.arancelesToolStripMenuItem1.Click += new System.EventHandler(this.arancelesToolStripMenuItem1_Click);
             // 
@@ -1264,6 +1266,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
+            // aBMTipoHabitaciónToolStripMenuItem
+            // 
+            this.aBMTipoHabitaciónToolStripMenuItem.Name = "aBMTipoHabitaciónToolStripMenuItem";
+            this.aBMTipoHabitaciónToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.aBMTipoHabitaciónToolStripMenuItem.Text = "ABM Tipo Habitación";
+            this.aBMTipoHabitaciónToolStripMenuItem.Click += new System.EventHandler(this.aBMTipoHabitaciónToolStripMenuItem_Click);
+            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1431,5 +1440,6 @@
         private System.Windows.Forms.ToolStripMenuItem delfoCabreraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem generalBelgranoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aBMTipoHabitaciónToolStripMenuItem;
     }
 }

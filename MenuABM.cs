@@ -2075,5 +2075,11 @@ namespace SOCIOS
             SOCIOS.deportes.Campos.Exportar_Deportes ed = new deportes.Campos.Exportar_Deportes();
             ed.ShowDialog();
         }
+
+        private void aBMTipoHabitaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.Turismo.TipoHabitacion tp = new Turismo.TipoHabitacion();
+            tp.ShowDialog();
+        }
     }
 }
