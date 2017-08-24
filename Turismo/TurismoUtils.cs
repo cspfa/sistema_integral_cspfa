@@ -263,7 +263,7 @@ namespace SOCIOS.Turismo
             if (Pasaje)
               query = query + " WHERE TIPO='67'";
             else
-                query = query + " WHERE TIPO='66'";
+                query = query + " WHERE TIPO='66' or TIPO='67'";
 
             combo.DataSource = null;
             combo.Items.Clear();
