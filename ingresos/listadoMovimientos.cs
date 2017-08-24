@@ -42,18 +42,53 @@ namespace SOCIOS
             lvMovimientos.Items.Clear();
             lvMovimientos.Columns.Clear();
             lvMovimientos.BeginUpdate();
-
             lvMovimientos.Columns.Add("NOMBRE Y APELLIDO");
             lvMovimientos.Columns.Add("CARGO");
             lvMovimientos.Columns.Add("MOVIMIENTO");
             lvMovimientos.Columns.Add("DIA Y HORA");
 
+            if (cbTodos.Checked == false)
+            {
+                lvMovimientos.Columns.Add("CARGA");
+            }
+            
+            string NOMBRE = "";
+            string CARGO = "";
+            string MOVIMIENTO = "";
+            string FECHA_HORA = "";
+            DateTime HORA_DESDE = DateTime.Now;
+            DateTime HORA_HASTA = DateTime.Now;
+            TimeSpan CARGA_HORARIA = TimeSpan.FromSeconds(0);
+            TimeSpan TOTAL_HORAS = TimeSpan.FromSeconds(0);
+
             do
             {
-                ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("NOMBRE")).Trim().ToUpper());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("CARGO")).ToUpper());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOVIMIENTO")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_HORA")).Trim());
+                NOMBRE = reader.GetString(reader.GetOrdinal("NOMBRE")).Trim().ToUpper();
+                CARGO = reader.GetString(reader.GetOrdinal("CARGO")).ToUpper();
+                MOVIMIENTO = reader.GetString(reader.GetOrdinal("MOVIMIENTO")).Trim();
+                FECHA_HORA = reader.GetString(reader.GetOrdinal("FECHA_HORA")).Trim();
+
+                ListViewItem listItem = new ListViewItem(NOMBRE);
+                listItem.SubItems.Add(CARGO);
+                listItem.SubItems.Add(MOVIMIENTO);
+                listItem.SubItems.Add(FECHA_HORA);
+
+                if (cbTodos.Checked == false)
+                {
+                    if (MOVIMIENTO == "ENTRADA")
+                    {
+                        HORA_DESDE = Convert.ToDateTime(FECHA_HORA);
+                    }
+
+                    if (MOVIMIENTO == "SALIDA")
+                    {
+                        HORA_HASTA = Convert.ToDateTime(FECHA_HORA);
+                        CARGA_HORARIA = HORA_HASTA.Subtract(HORA_DESDE);
+                        listItem.SubItems.Add(CARGA_HORARIA.ToString());
+                        TOTAL_HORAS = TOTAL_HORAS.Add(CARGA_HORARIA);
+                    }
+                }
+
                 lvMovimientos.Items.Add(listItem);
             }
 
@@ -61,6 +96,7 @@ namespace SOCIOS
             lvMovimientos.EndUpdate();
             lvMovimientos.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             lvMovimientos.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lbTotalHoras.Text = "TOTAL DE HORAS REALIZADAS: " + TOTAL_HORAS.TotalHours;
         }
 
         private void buscarListado(int PERSONA, string DESDE, string HASTA)
@@ -138,7 +174,6 @@ namespace SOCIOS
             
             
             char[] SEP = { '/' };
-            
             string DESDE = dpDesde.Text;
             string[] DE = DESDE.Split(SEP);
             string FECHA_DESDE = DE[1]+"/"+DE[0]+"/"+DE[2];

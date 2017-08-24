@@ -38,6 +38,7 @@
             this.cbTodos = new System.Windows.Forms.CheckBox();
             this.lvMovimientos = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.btnImprimir = new System.Windows.Forms.Button();
+            this.lbTotalHoras = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnListar
@@ -124,10 +125,11 @@
             this.lvMovimientos.HideSelection = false;
             this.lvMovimientos.Location = new System.Drawing.Point(13, 76);
             this.lvMovimientos.Margin = new System.Windows.Forms.Padding(0);
+            this.lvMovimientos.MultiSelect = false;
             this.lvMovimientos.Name = "lvMovimientos";
             this.lvMovimientos.ParentContainer = null;
             this.lvMovimientos.ShowItemToolTips = true;
-            this.lvMovimientos.Size = new System.Drawing.Size(624, 577);
+            this.lvMovimientos.Size = new System.Drawing.Size(624, 560);
             this.lvMovimientos.TabIndex = 17;
             this.lvMovimientos.UseCompatibleStateImageBehavior = false;
             this.lvMovimientos.View = System.Windows.Forms.View.Details;
@@ -142,11 +144,21 @@
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
+            // lbTotalHoras
+            // 
+            this.lbTotalHoras.AutoSize = true;
+            this.lbTotalHoras.Location = new System.Drawing.Point(12, 643);
+            this.lbTotalHoras.Name = "lbTotalHoras";
+            this.lbTotalHoras.Size = new System.Drawing.Size(174, 13);
+            this.lbTotalHoras.TabIndex = 19;
+            this.lbTotalHoras.Text = "TOTAL DE HORAS REALIZADAS:";
+            // 
             // listadoMovimientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(650, 662);
+            this.Controls.Add(this.lbTotalHoras);
             this.Controls.Add(this.btnImprimir);
             this.Controls.Add(this.lvMovimientos);
             this.Controls.Add(this.cbTodos);
@@ -177,5 +189,6 @@
         private System.Windows.Forms.CheckBox cbTodos;
         private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvMovimientos;
         private System.Windows.Forms.Button btnImprimir;
+        private System.Windows.Forms.Label lbTotalHoras;
     }
 }
