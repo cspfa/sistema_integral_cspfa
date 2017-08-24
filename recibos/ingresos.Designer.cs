@@ -43,6 +43,7 @@
             this.cbAnulado = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbDest = new System.Windows.Forms.ComboBox();
+            this.cbListarTodos = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgIngresos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -180,12 +181,25 @@
             this.cbDest.Size = new System.Drawing.Size(349, 21);
             this.cbDest.TabIndex = 50;
             // 
+            // cbListarTodos
+            // 
+            this.cbListarTodos.AutoSize = true;
+            this.cbListarTodos.Location = new System.Drawing.Point(468, 43);
+            this.cbListarTodos.Name = "cbListarTodos";
+            this.cbListarTodos.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cbListarTodos.Size = new System.Drawing.Size(105, 17);
+            this.cbListarTodos.TabIndex = 52;
+            this.cbListarTodos.Text = "LISTAR TODOS";
+            this.cbListarTodos.UseVisualStyleBackColor = true;
+            this.cbListarTodos.CheckedChanged += new System.EventHandler(this.cbListarTodos_CheckedChanged);
+            // 
             // ingresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1194, 615);
+            this.Controls.Add(this.cbListarTodos);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbDest);
             this.Controls.Add(this.label4);
@@ -228,5 +242,6 @@
         private System.Windows.Forms.ComboBox cbAnulado;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbDest;
+        private System.Windows.Forms.CheckBox cbListarTodos;
     }
 }
