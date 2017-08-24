@@ -21,6 +21,13 @@ namespace SOCIOS
         public ingresos()
         {
             InitializeComponent();
+            cargaInicial();
+        }
+
+        private void cargaInicial()
+        {
+            dpDesde.Text = DateTime.Today.ToShortDateString();
+            dpHasta.Text = DateTime.Today.ToShortDateString();
             comboRoles();
             comboDestinos(cbRoles.SelectedValue.ToString());
             comboAnulado();
@@ -99,12 +106,11 @@ namespace SOCIOS
 
         public void comboDestinos(string ROL)
         {
-            string query;
-            query = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + ROL + "' AND ESTADO = 1 ORDER BY DETALLE ASC;";
+            string QUERY = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + ROL + "' AND ESTADO = 1 ORDER BY DETALLE ASC;";
             cbDest.DataSource = null;
             cbDest.Items.Clear();
             cbDest.SelectedItem = 0;
-            cbDest.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbDest.DataSource = dlog.BO_EjecutoDataTable(QUERY);
             cbDest.DisplayMember = "DETALLE";
             cbDest.ValueMember = "ID";
         }
@@ -234,6 +240,8 @@ namespace SOCIOS
                     FbCommand cmd = new FbCommand(query, connection, transaction);
                     FbDataReader reader3 = cmd.ExecuteReader();
 
+                    if (reader3.Read())
+                    {
                         if (COMANDO == "VER")
                         {
                             mostrarRecibos(reader3);
@@ -260,6 +268,11 @@ namespace SOCIOS
                                 }
                             }
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("NO SE ENCONTRARON REGISTROS CON LA CONDICION INGRESADA", "ERROR!");
+                    }
 
                     transaction.Commit();
                 }
@@ -288,8 +301,13 @@ namespace SOCIOS
             string FECHA_HASTA = MESH + "/" + DIAH + "/" + ANOH;
 
             string ANULADO = cbAnulado.SelectedItem.ToString();
-            string DETALLE = cbDest.SelectedValue.ToString();
+            string DETALLE = cbDest.SelectedValue.ToString().Trim();
             string ROL = cbRoles.SelectedValue.ToString().Trim();
+
+            if (cbListarTodos.CheckState.ToString() == "Checked")
+            {
+                DETALLE = "TODOS";
+            }
 
             buscarRecibos(FECHA_DESDE, FECHA_HASTA, ROL, "VER", ANULADO, DETALLE);
         }
@@ -310,12 +328,30 @@ namespace SOCIOS
             string DETALLE = cbDest.SelectedValue.ToString();
             string ROL = cbRoles.SelectedValue.ToString().Trim();
 
+            if (cbListarTodos.CheckState.ToString() == "Checked")
+            {
+                DETALLE = "TODOS";
+            }
+
             buscarRecibos(FECHA_DESDE, FECHA_HASTA, ROL, "EXCEL", ANULADO, DETALLE);
         }
 
         private void cbRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboDestinos(cbRoles.SelectedValue.ToString());
+        }
+
+        private void cbListarTodos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbListarTodos.CheckState.ToString() == "Checked")
+            {
+                cbDest.Enabled = false;
+            }
+
+            if (cbListarTodos.CheckState.ToString() == "Unchecked")
+            {
+                cbDest.Enabled = true;
+            }
         }
     }
 }
