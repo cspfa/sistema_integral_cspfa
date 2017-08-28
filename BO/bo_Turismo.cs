@@ -999,7 +999,8 @@ namespace SOCIOS
 
 
         }
-        public void Salida_Ins(string Nombre, DateTime Fecha, bool Agotado, int ProvDesde, int ProvHasta, int Operador, int LocDesde, int LocHasta, decimal Socio, decimal Invitado, decimal Intercirculo, string Estadia, int Regimen, int Traslado, int Tipo, int Hotel, string HotelNombre, bool Destacado, string Moneda, string Observaciones, bool Diario)
+
+        public void Salida_Ins(string Nombre, DateTime Fecha, bool Agotado, int ProvDesde, int ProvHasta, int Operador, int LocDesde, int LocHasta, decimal Socio, decimal Invitado, decimal Intercirculo, decimal Menor, string Estadia, int Regimen, int Traslado, int Tipo, int Hotel, string HotelNombre, bool Destacado, string Moneda, string Observaciones, bool Diario)
         {
             db resultado = new db();
 
@@ -1023,13 +1024,13 @@ namespace SOCIOS
             vector_contenidos.Add(HotelNombre);
             vector_contenidos.Add(Destacado);
             vector_contenidos.Add(Moneda);
-
+            vector_contenidos.Add(Destacado);
 
             vector_contenidos.Add(VGlobales.vp_username);
             vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
-
             vector_contenidos.Add(Observaciones);
-            vector_contenidos.Add(Diario);
+            vector_contenidos.Add(Menor);
+
 
 
 
@@ -1057,6 +1058,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
             ArrayList vector_nombres = new ArrayList();
 
             vector_nombres.Add("@NOMBRE");
@@ -1081,7 +1083,8 @@ namespace SOCIOS
             vector_nombres.Add("@U_ALTA");
             vector_nombres.Add("@F_ALTA");
             vector_nombres.Add("@OBSERVACIONES");
-            vector_nombres.Add("@DIARIA");
+            vector_nombres.Add("@DESTACADO");
+            vector_nombres.Add("@MENOR");
 
             string vprocedure = "P_TURISMO_SALIDA_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
@@ -1089,7 +1092,7 @@ namespace SOCIOS
 
         }
 
-        public void Salida_Upd(int ID, string Nombre, DateTime Fecha, bool Agotado, int ProvDesde, int ProvHasta, int Operador, int LocDesde, int LocHasta, decimal Socio, decimal Invitado, decimal Intercirculo, string Estadia, int Regimen, int Traslado, int Tipo, int Hotel, string HotelNombre, bool Destacado, string Moneda, string Observaciones, bool Diaria)
+        public void Salida_Upd(int ID, string Nombre, DateTime Fecha, bool Agotado, int ProvDesde, int ProvHasta, int Operador, int LocDesde, int LocHasta, decimal Socio, decimal Invitado, decimal Intercirculo, decimal Menor, string Estadia, int Regimen, int Traslado, int Tipo, int Hotel, string HotelNombre, bool Destacado, string Moneda, string Observaciones, bool Diaria)
         {
             db resultado = new db();
 
@@ -1116,6 +1119,7 @@ namespace SOCIOS
             vector_contenidos.Add(Moneda);
             vector_contenidos.Add(Observaciones);
             vector_contenidos.Add(Diaria);
+            vector_contenidos.Add(Menor);
 
 
 
@@ -1147,6 +1151,7 @@ namespace SOCIOS
 
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@ID");
@@ -1172,6 +1177,7 @@ namespace SOCIOS
 
             vector_nombres.Add("@OBSERVACIONES");
             vector_nombres.Add("@DIARIA");
+            vector_nombres.Add("@MENOR");
             string vprocedure = "P_TURISMO_SALIDA_U";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 

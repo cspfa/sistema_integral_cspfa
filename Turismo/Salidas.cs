@@ -16,7 +16,7 @@ namespace SOCIOS.Turismo
 {
     public partial class Salidas : Form
     {
-        bo dlog = new bo();
+        bo_Turismo dlog = new bo_Turismo();
         SOCIOS.Turismo.TurismoUtils utilsTurismo = new TurismoUtils();
      
         int Inicio;
@@ -161,10 +161,12 @@ namespace SOCIOS.Turismo
                 decimal  Socio        = decimal.Parse(tbPrecioSocio.Text);
                 decimal  Invitado     = decimal.Parse(tbPrecioInvitado.Text);
                 decimal  InterCirculo = decimal.Parse(tbPrecioInterCirculo.Text);
+                decimal Menor         = decimal.Parse(tbMenor.Text);
                 int      Regimen      = Int32.Parse  ( cbRegimen.SelectedValue.ToString()  );
                 int      Traslado     = Int32.Parse(cbTraslado.SelectedValue.ToString());
                 int      Tipo         = Int32.Parse(cbTipo.SelectedValue.ToString());
                 int Hotel             =0;
+
 
                 utilsTurismo.checkDestinosRepetidos( LocDesde, LocHasta);
          
@@ -174,11 +176,13 @@ namespace SOCIOS.Turismo
                     throw new Exception("El Valor Invitado No Puede ser 0");
                 if (InterCirculo == 0)
                     throw new Exception("El Valor Intercirculo No Puede ser 0");
+                if (Menor == 0)
+                    throw new Exception("El Valor Menor No Puede ser 0");
 
                 if (Modo =="INS")
-                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked);
+                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked);
                 else
-                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked);
+                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked);
                     
 
                 this.UpdateGrilla();
@@ -228,6 +232,8 @@ namespace SOCIOS.Turismo
                  cbDiaria.Checked = false;
                  this.Seteo_diaria(false);
              }
+
+             tbMenor.Text = salida.Menor.ToString("0.##");
              
 
             
