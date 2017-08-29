@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Salidas));
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.tbMenor = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.cbDiaria = new System.Windows.Forms.CheckBox();
             this.Reset = new System.Windows.Forms.Button();
             this.btnAgregarProveedor = new System.Windows.Forms.Button();
@@ -81,6 +83,8 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.tbMenor);
+            this.gpDatos.Controls.Add(this.label16);
             this.gpDatos.Controls.Add(this.cbDiaria);
             this.gpDatos.Controls.Add(this.Reset);
             this.gpDatos.Controls.Add(this.btnAgregarProveedor);
@@ -126,6 +130,23 @@
             this.gpDatos.TabIndex = 0;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // tbMenor
+            // 
+            this.tbMenor.Location = new System.Drawing.Point(301, 153);
+            this.tbMenor.Name = "tbMenor";
+            this.tbMenor.Size = new System.Drawing.Size(70, 20);
+            this.tbMenor.TabIndex = 169;
+            this.tbMenor.Text = "0";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(251, 157);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(37, 13);
+            this.label16.TabIndex = 168;
+            this.label16.Text = "Menor";
             // 
             // cbDiaria
             // 
@@ -179,7 +200,7 @@
             // 
             // tbPrecioInterCirculo
             // 
-            this.tbPrecioInterCirculo.Location = new System.Drawing.Point(429, 153);
+            this.tbPrecioInterCirculo.Location = new System.Drawing.Point(435, 153);
             this.tbPrecioInterCirculo.Name = "tbPrecioInterCirculo";
             this.tbPrecioInterCirculo.Size = new System.Drawing.Size(70, 20);
             this.tbPrecioInterCirculo.TabIndex = 11;
@@ -188,7 +209,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(365, 157);
+            this.label14.Location = new System.Drawing.Point(377, 157);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 13);
             this.label14.TabIndex = 161;
@@ -222,7 +243,7 @@
             // 
             // tbPrecioInvitado
             // 
-            this.tbPrecioInvitado.Location = new System.Drawing.Point(429, 125);
+            this.tbPrecioInvitado.Location = new System.Drawing.Point(435, 125);
             this.tbPrecioInvitado.Name = "tbPrecioInvitado";
             this.tbPrecioInvitado.Size = new System.Drawing.Size(70, 20);
             this.tbPrecioInvitado.TabIndex = 10;
@@ -231,7 +252,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(378, 130);
+            this.label12.Location = new System.Drawing.Point(384, 130);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(45, 13);
             this.label12.TabIndex = 157;
@@ -609,5 +630,7 @@
         private System.Windows.Forms.Button btnAgregarProveedor;
         private System.Windows.Forms.Button Reset;
         private System.Windows.Forms.CheckBox cbDiaria;
+        private System.Windows.Forms.TextBox tbMenor;
+        private System.Windows.Forms.Label label16;
     }
 }
