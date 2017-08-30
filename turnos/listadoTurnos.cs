@@ -70,7 +70,7 @@ namespace SOCIOS
             cbEspecialidades.SelectedIndex = -1;
         }
 
-        public bool comboProfesional(string ESPECIALIDAD)
+        public bool comboProfesional(string ESPECIALIDAD,ComboBox cbProfesionales)
         {
             cbProfesionales.DataSource = null;
             string query = "SELECT P.ID, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE PE.ESPECIALIDAD = " + ESPECIALIDAD + " AND PE.PROFESIONAL = P.ID AND P.BAJA IS NULL ORDER BY P.NOMBRE ASC;";
@@ -215,7 +215,7 @@ namespace SOCIOS
 
         private void cbEspecialidades_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            comboProfesional(cbEspecialidades.SelectedValue.ToString());
+            comboProfesional(cbEspecialidades.SelectedValue.ToString(),cbProfesionales);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -357,16 +357,22 @@ namespace SOCIOS
         {
             this.SetearDatosBono();
             int secAct = Int32.Parse(cbOdontologia.SelectedValue.ToString());
-            string Profesional = cbProfesionales.SelectedText;
+            string Profesional = cbProfesionalesOdontologia.SelectedText;
 
         
             bono.BonoOdontologico admBonoOdonto = new bono.BonoOdontologico(NRO_SOC, NRO_DEP, BARRA, NRO_SOC_TIT, NRO_DEP_TIT, secAct, Turno, false, "TURNO");
-            admBonoOdonto.idProfesional = Int32.Parse(cbProfesionales.SelectedValue.ToString());
-            admBonoOdonto.nombreProfesional = cbProfesionales.Text;
+            admBonoOdonto.idProfesional = Int32.Parse(cbProfesionalesOdontologia.SelectedValue.ToString());
+            admBonoOdonto.nombreProfesional = cbProfesionalesOdontologia.Text;
             admBonoOdonto.ShowDialog();
             admBonoOdonto.Focus();
 
            
+        }
+
+        private void cbOdontologia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          if (cbOdontologia.SelectedValue != null)
+            comboProfesional(cbOdontologia.SelectedValue.ToString(), cbProfesionalesOdontologia);
         }
     }
 }

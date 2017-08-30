@@ -42,6 +42,8 @@
             this.btnBonoEspecialidad = new System.Windows.Forms.Button();
             this.cbOdontologia = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbProfesionalesOdontologia = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoTurnos)).BeginInit();
             this.gpOtras.SuspendLayout();
             this.SuspendLayout();
@@ -107,7 +109,7 @@
             this.dgvListadoTurnos.AllowUserToAddRows = false;
             this.dgvListadoTurnos.AllowUserToDeleteRows = false;
             this.dgvListadoTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListadoTurnos.Location = new System.Drawing.Point(10, 83);
+            this.dgvListadoTurnos.Location = new System.Drawing.Point(-3, 114);
             this.dgvListadoTurnos.MultiSelect = false;
             this.dgvListadoTurnos.Name = "dgvListadoTurnos";
             this.dgvListadoTurnos.ReadOnly = true;
@@ -148,12 +150,14 @@
             // 
             // gpOtras
             // 
+            this.gpOtras.Controls.Add(this.cbProfesionalesOdontologia);
+            this.gpOtras.Controls.Add(this.label5);
             this.gpOtras.Controls.Add(this.btnBonoEspecialidad);
             this.gpOtras.Controls.Add(this.cbOdontologia);
             this.gpOtras.Controls.Add(this.label4);
             this.gpOtras.Location = new System.Drawing.Point(731, 18);
             this.gpOtras.Name = "gpOtras";
-            this.gpOtras.Size = new System.Drawing.Size(525, 58);
+            this.gpOtras.Size = new System.Drawing.Size(525, 90);
             this.gpOtras.TabIndex = 10;
             this.gpOtras.TabStop = false;
             this.gpOtras.Text = "OTRAS ESPECIALIDADES ODONTOLOGICAS";
@@ -177,6 +181,7 @@
             this.cbOdontologia.Name = "cbOdontologia";
             this.cbOdontologia.Size = new System.Drawing.Size(314, 21);
             this.cbOdontologia.TabIndex = 12;
+            this.cbOdontologia.SelectedIndexChanged += new System.EventHandler(this.cbOdontologia_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -187,11 +192,29 @@
             this.label4.TabIndex = 11;
             this.label4.Text = "Especialidad:";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Profesionales:";
+            // 
+            // cbProfesionalesOdontologia
+            // 
+            this.cbProfesionalesOdontologia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProfesionalesOdontologia.FormattingEnabled = true;
+            this.cbProfesionalesOdontologia.Location = new System.Drawing.Point(176, 57);
+            this.cbProfesionalesOdontologia.Name = "cbProfesionalesOdontologia";
+            this.cbProfesionalesOdontologia.Size = new System.Drawing.Size(224, 21);
+            this.cbProfesionalesOdontologia.TabIndex = 11;
+            // 
             // listadoTurnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1285, 483);
+            this.ClientSize = new System.Drawing.Size(1285, 522);
             this.Controls.Add(this.gpOtras);
             this.Controls.Add(this.btnBono);
             this.Controls.Add(this.label3);
@@ -230,5 +253,7 @@
         private System.Windows.Forms.Button btnBonoEspecialidad;
         private System.Windows.Forms.ComboBox cbOdontologia;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cbProfesionalesOdontologia;
+        private System.Windows.Forms.Label label5;
     }
 }
