@@ -119,10 +119,16 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btAgregarArticulo = new System.Windows.Forms.Button();
             this.themedGroupBox3 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.chSectores = new System.Windows.Forms.CheckBox();
+            this.cbFecha = new System.Windows.Forms.CheckBox();
+            this.label111 = new System.Windows.Forms.Label();
+            this.tbCuitBusqueda = new System.Windows.Forms.TextBox();
+            this.label110 = new System.Windows.Forms.Label();
+            this.tbOpBusqueda = new System.Windows.Forms.TextBox();
+            this.cbSectorBusqueda = new System.Windows.Forms.ComboBox();
             this.dpFechaListado = new System.Windows.Forms.DateTimePicker();
             this.btnListado = new System.Windows.Forms.Button();
             this.lbTipoBusqueda = new System.Windows.Forms.Label();
-            this.tbBuscarNumeroSolicitud = new System.Windows.Forms.MaskedTextBox();
             this.tbBuscarNumeroFactura = new System.Windows.Forms.MaskedTextBox();
             this.label46 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
@@ -131,6 +137,7 @@
             this.lvFacturas = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.btnBuscarFactura = new System.Windows.Forms.Button();
             this.tbBuscarFactura = new System.Windows.Forms.TextBox();
+            this.tbBuscarNumeroSolicitud = new System.Windows.Forms.MaskedTextBox();
             this.tabOrdenesDePago = new System.Windows.Forms.TabPage();
             this.btnListadoBusqueda = new System.Windows.Forms.Button();
             this.tbTotalBusqueda = new System.Windows.Forms.Label();
@@ -834,7 +841,7 @@
             this.themedGroupBox2.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
             this.themedGroupBox2.GradientBegin = System.Drawing.Color.White;
             this.themedGroupBox2.GradientEnd = System.Drawing.Color.White;
-            this.themedGroupBox2.Location = new System.Drawing.Point(628, 199);
+            this.themedGroupBox2.Location = new System.Drawing.Point(634, 189);
             this.themedGroupBox2.Name = "themedGroupBox2";
             this.themedGroupBox2.Size = new System.Drawing.Size(407, 173);
             this.themedGroupBox2.TabIndex = 46;
@@ -1162,7 +1169,7 @@
             this.grupoAltaFactura.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
             this.grupoAltaFactura.GradientBegin = System.Drawing.Color.White;
             this.grupoAltaFactura.GradientEnd = System.Drawing.Color.White;
-            this.grupoAltaFactura.Location = new System.Drawing.Point(8, 199);
+            this.grupoAltaFactura.Location = new System.Drawing.Point(2, 189);
             this.grupoAltaFactura.Name = "grupoAltaFactura";
             this.grupoAltaFactura.Size = new System.Drawing.Size(617, 173);
             this.grupoAltaFactura.TabIndex = 44;
@@ -1366,10 +1373,16 @@
             // 
             this.themedGroupBox3.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.themedGroupBox3.BorderColor = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox3.Controls.Add(this.chSectores);
+            this.themedGroupBox3.Controls.Add(this.cbFecha);
+            this.themedGroupBox3.Controls.Add(this.label111);
+            this.themedGroupBox3.Controls.Add(this.tbCuitBusqueda);
+            this.themedGroupBox3.Controls.Add(this.label110);
+            this.themedGroupBox3.Controls.Add(this.tbOpBusqueda);
+            this.themedGroupBox3.Controls.Add(this.cbSectorBusqueda);
             this.themedGroupBox3.Controls.Add(this.dpFechaListado);
             this.themedGroupBox3.Controls.Add(this.btnListado);
             this.themedGroupBox3.Controls.Add(this.lbTipoBusqueda);
-            this.themedGroupBox3.Controls.Add(this.tbBuscarNumeroSolicitud);
             this.themedGroupBox3.Controls.Add(this.tbBuscarNumeroFactura);
             this.themedGroupBox3.Controls.Add(this.label46);
             this.themedGroupBox3.Controls.Add(this.label45);
@@ -1378,12 +1391,13 @@
             this.themedGroupBox3.Controls.Add(this.lvFacturas);
             this.themedGroupBox3.Controls.Add(this.btnBuscarFactura);
             this.themedGroupBox3.Controls.Add(this.tbBuscarFactura);
+            this.themedGroupBox3.Controls.Add(this.tbBuscarNumeroSolicitud);
             this.themedGroupBox3.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
             this.themedGroupBox3.GradientBegin = System.Drawing.Color.White;
             this.themedGroupBox3.GradientEnd = System.Drawing.Color.White;
-            this.themedGroupBox3.Location = new System.Drawing.Point(8, 10);
+            this.themedGroupBox3.Location = new System.Drawing.Point(2, 2);
             this.themedGroupBox3.Name = "themedGroupBox3";
-            this.themedGroupBox3.Size = new System.Drawing.Size(1027, 186);
+            this.themedGroupBox3.Size = new System.Drawing.Size(1039, 186);
             this.themedGroupBox3.TabIndex = 43;
             this.themedGroupBox3.Title = "BÚSQUEDA";
             this.themedGroupBox3.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -1392,57 +1406,117 @@
             this.themedGroupBox3.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
             this.themedGroupBox3.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
             // 
+            // chSectores
+            // 
+            this.chSectores.AutoSize = true;
+            this.chSectores.Location = new System.Drawing.Point(548, 28);
+            this.chSectores.Name = "chSectores";
+            this.chSectores.Size = new System.Drawing.Size(15, 14);
+            this.chSectores.TabIndex = 44;
+            this.chSectores.UseVisualStyleBackColor = true;
+            this.chSectores.CheckedChanged += new System.EventHandler(this.chSectores_CheckedChanged);
+            // 
+            // cbFecha
+            // 
+            this.cbFecha.AutoSize = true;
+            this.cbFecha.Location = new System.Drawing.Point(442, 28);
+            this.cbFecha.Name = "cbFecha";
+            this.cbFecha.Size = new System.Drawing.Size(15, 14);
+            this.cbFecha.TabIndex = 43;
+            this.cbFecha.UseVisualStyleBackColor = true;
+            this.cbFecha.CheckedChanged += new System.EventHandler(this.cbFecha_CheckedChanged);
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(766, 29);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(32, 13);
+            this.label111.TabIndex = 42;
+            this.label111.Text = "CUIT";
+            // 
+            // tbCuitBusqueda
+            // 
+            this.tbCuitBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbCuitBusqueda.Location = new System.Drawing.Point(800, 25);
+            this.tbCuitBusqueda.Name = "tbCuitBusqueda";
+            this.tbCuitBusqueda.Size = new System.Drawing.Size(77, 20);
+            this.tbCuitBusqueda.TabIndex = 41;
+            this.tbCuitBusqueda.TabStop = false;
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(879, 29);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(22, 13);
+            this.label110.TabIndex = 40;
+            this.label110.Text = "OP";
+            // 
+            // tbOpBusqueda
+            // 
+            this.tbOpBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbOpBusqueda.Location = new System.Drawing.Point(905, 25);
+            this.tbOpBusqueda.Name = "tbOpBusqueda";
+            this.tbOpBusqueda.Size = new System.Drawing.Size(52, 20);
+            this.tbOpBusqueda.TabIndex = 39;
+            this.tbOpBusqueda.TabStop = false;
+            // 
+            // cbSectorBusqueda
+            // 
+            this.cbSectorBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSectorBusqueda.Enabled = false;
+            this.cbSectorBusqueda.FormattingEnabled = true;
+            this.cbSectorBusqueda.Location = new System.Drawing.Point(569, 25);
+            this.cbSectorBusqueda.Name = "cbSectorBusqueda";
+            this.cbSectorBusqueda.Size = new System.Drawing.Size(193, 21);
+            this.cbSectorBusqueda.TabIndex = 37;
+            this.cbSectorBusqueda.TabStop = false;
+            // 
             // dpFechaListado
             // 
+            this.dpFechaListado.Enabled = false;
             this.dpFechaListado.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpFechaListado.Location = new System.Drawing.Point(853, 32);
+            this.dpFechaListado.Location = new System.Drawing.Point(459, 25);
             this.dpFechaListado.Name = "dpFechaListado";
             this.dpFechaListado.Size = new System.Drawing.Size(83, 20);
             this.dpFechaListado.TabIndex = 35;
+            this.dpFechaListado.TabStop = false;
             // 
             // btnListado
             // 
-            this.btnListado.Location = new System.Drawing.Point(942, 30);
+            this.btnListado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
+            this.btnListado.Location = new System.Drawing.Point(997, 25);
             this.btnListado.Name = "btnListado";
-            this.btnListado.Size = new System.Drawing.Size(75, 23);
+            this.btnListado.Size = new System.Drawing.Size(30, 20);
             this.btnListado.TabIndex = 34;
-            this.btnListado.Text = "LISTADO";
             this.btnListado.UseVisualStyleBackColor = true;
             this.btnListado.Click += new System.EventHandler(this.btnListado_Click);
             // 
             // lbTipoBusqueda
             // 
             this.lbTipoBusqueda.AutoSize = true;
-            this.lbTipoBusqueda.Location = new System.Drawing.Point(809, 0);
+            this.lbTipoBusqueda.Location = new System.Drawing.Point(906, 3);
             this.lbTipoBusqueda.Name = "lbTipoBusqueda";
             this.lbTipoBusqueda.Size = new System.Drawing.Size(41, 13);
             this.lbTipoBusqueda.TabIndex = 33;
             this.lbTipoBusqueda.Text = "label68";
-            this.lbTipoBusqueda.Visible = false;
-            // 
-            // tbBuscarNumeroSolicitud
-            // 
-            this.tbBuscarNumeroSolicitud.Location = new System.Drawing.Point(316, 31);
-            this.tbBuscarNumeroSolicitud.Mask = "000000";
-            this.tbBuscarNumeroSolicitud.Name = "tbBuscarNumeroSolicitud";
-            this.tbBuscarNumeroSolicitud.Size = new System.Drawing.Size(100, 20);
-            this.tbBuscarNumeroSolicitud.TabIndex = 2;
-            this.tbBuscarNumeroSolicitud.Visible = false;
-            this.tbBuscarNumeroSolicitud.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarNumeroSolicitud_KeyUp);
             // 
             // tbBuscarNumeroFactura
             // 
-            this.tbBuscarNumeroFactura.Location = new System.Drawing.Point(316, 31);
+            this.tbBuscarNumeroFactura.Location = new System.Drawing.Point(352, 25);
             this.tbBuscarNumeroFactura.Mask = "0000-00000000";
             this.tbBuscarNumeroFactura.Name = "tbBuscarNumeroFactura";
-            this.tbBuscarNumeroFactura.Size = new System.Drawing.Size(100, 20);
+            this.tbBuscarNumeroFactura.Size = new System.Drawing.Size(87, 20);
             this.tbBuscarNumeroFactura.TabIndex = 2;
+            this.tbBuscarNumeroFactura.Visible = false;
             this.tbBuscarNumeroFactura.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarNumeroFactura_KeyUp);
             // 
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(423, 35);
+            this.label46.Location = new System.Drawing.Point(189, 29);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(32, 13);
             this.label46.TabIndex = 32;
@@ -1451,31 +1525,32 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(254, 35);
+            this.label45.Location = new System.Drawing.Point(334, 29);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(55, 13);
+            this.label45.Size = new System.Drawing.Size(14, 13);
             this.label45.TabIndex = 25;
-            this.label45.Text = "NÚMERO";
+            this.label45.Text = "#";
             // 
             // cbTipoBusqueda
             // 
             this.cbTipoBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoBusqueda.FormattingEnabled = true;
-            this.cbTipoBusqueda.Location = new System.Drawing.Point(462, 31);
+            this.cbTipoBusqueda.Location = new System.Drawing.Point(222, 25);
             this.cbTipoBusqueda.Name = "cbTipoBusqueda";
-            this.cbTipoBusqueda.Size = new System.Drawing.Size(168, 21);
+            this.cbTipoBusqueda.Size = new System.Drawing.Size(110, 21);
             this.cbTipoBusqueda.TabIndex = 3;
+            this.cbTipoBusqueda.TabStop = false;
             this.cbTipoBusqueda.SelectionChangeCommitted += new System.EventHandler(this.cbTipoBusqueda_SelectionChangeCommitted);
             this.cbTipoBusqueda.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cbTipoBusqueda_KeyUp);
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(12, 35);
+            this.label44.Location = new System.Drawing.Point(4, 29);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(75, 13);
+            this.label44.Size = new System.Drawing.Size(54, 13);
             this.label44.TabIndex = 23;
-            this.label44.Text = "PROVEEDOR";
+            this.label44.Text = "NOMBRE";
             // 
             // lvFacturas
             // 
@@ -1485,13 +1560,13 @@
             this.lvFacturas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvFacturas.FullRowSelect = true;
             this.lvFacturas.HideSelection = false;
-            this.lvFacturas.Location = new System.Drawing.Point(2, 62);
+            this.lvFacturas.Location = new System.Drawing.Point(1, 48);
             this.lvFacturas.Margin = new System.Windows.Forms.Padding(0);
             this.lvFacturas.MultiSelect = false;
             this.lvFacturas.Name = "lvFacturas";
             this.lvFacturas.ParentContainer = null;
             this.lvFacturas.ShowItemToolTips = true;
-            this.lvFacturas.Size = new System.Drawing.Size(1023, 122);
+            this.lvFacturas.Size = new System.Drawing.Size(1035, 135);
             this.lvFacturas.TabIndex = 3;
             this.lvFacturas.UseCompatibleStateImageBehavior = false;
             this.lvFacturas.View = System.Windows.Forms.View.Details;
@@ -1499,22 +1574,34 @@
             // 
             // btnBuscarFactura
             // 
-            this.btnBuscarFactura.Location = new System.Drawing.Point(636, 30);
+            this.btnBuscarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarFactura.Image = global::SOCIOS.Properties.Resources.magnifier;
+            this.btnBuscarFactura.Location = new System.Drawing.Point(963, 25);
             this.btnBuscarFactura.Name = "btnBuscarFactura";
-            this.btnBuscarFactura.Size = new System.Drawing.Size(127, 23);
+            this.btnBuscarFactura.Size = new System.Drawing.Size(30, 20);
             this.btnBuscarFactura.TabIndex = 4;
-            this.btnBuscarFactura.Text = "BUSCAR [F1]";
             this.btnBuscarFactura.UseVisualStyleBackColor = true;
             this.btnBuscarFactura.Click += new System.EventHandler(this.btnBuscarFactura_Click);
             // 
             // tbBuscarFactura
             // 
             this.tbBuscarFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbBuscarFactura.Location = new System.Drawing.Point(94, 31);
+            this.tbBuscarFactura.Location = new System.Drawing.Point(62, 25);
             this.tbBuscarFactura.Name = "tbBuscarFactura";
-            this.tbBuscarFactura.Size = new System.Drawing.Size(153, 20);
+            this.tbBuscarFactura.Size = new System.Drawing.Size(126, 20);
             this.tbBuscarFactura.TabIndex = 1;
+            this.tbBuscarFactura.TabStop = false;
             this.tbBuscarFactura.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarFactura_KeyUp);
+            // 
+            // tbBuscarNumeroSolicitud
+            // 
+            this.tbBuscarNumeroSolicitud.Location = new System.Drawing.Point(352, 25);
+            this.tbBuscarNumeroSolicitud.Mask = "000000";
+            this.tbBuscarNumeroSolicitud.Name = "tbBuscarNumeroSolicitud";
+            this.tbBuscarNumeroSolicitud.Size = new System.Drawing.Size(87, 20);
+            this.tbBuscarNumeroSolicitud.TabIndex = 2;
+            this.tbBuscarNumeroSolicitud.TabStop = false;
+            this.tbBuscarNumeroSolicitud.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarNumeroSolicitud_KeyUp);
             // 
             // tabOrdenesDePago
             // 
@@ -4928,5 +5015,12 @@
         private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvPlanDeCuentas;
         private System.Windows.Forms.Button btnBuscarCuenta;
         private System.Windows.Forms.TextBox tbBuscarCuenta;
+        private System.Windows.Forms.ComboBox cbSectorBusqueda;
+        private System.Windows.Forms.Label label111;
+        private System.Windows.Forms.TextBox tbCuitBusqueda;
+        private System.Windows.Forms.Label label110;
+        private System.Windows.Forms.TextBox tbOpBusqueda;
+        private System.Windows.Forms.CheckBox cbFecha;
+        private System.Windows.Forms.CheckBox chSectores;
     }
 }
