@@ -56,13 +56,17 @@ namespace SOCIOS
                 btnCancelarFactura.Enabled = false;*/
             }
 
-            if (cbTipoComprobante.SelectedValue.ToString() == "1")
+            string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
+
+            if (TIPO_COMPROBANTE == "2" || TIPO_COMPROBANTE == "9" || TIPO_COMPROBANTE == "12")
             {
                 tbNumFactura.Enabled = true;
                 tbNumSolicitud.Enabled = false;
             }
 
-            if (cbTipoBusqueda.SelectedValue.ToString() == "1")
+            string TIPO_DE_BUSQUEDA = cbTipoBusqueda.SelectedValue.ToString();
+
+            if (TIPO_DE_BUSQUEDA == "2" || TIPO_DE_BUSQUEDA == "9" || TIPO_DE_BUSQUEDA == "12")
             {
                 tbBuscarNumeroFactura.Visible = true;
                 tbBuscarNumeroSolicitud.Visible = false;
@@ -96,6 +100,7 @@ namespace SOCIOS
                 lvProveedores.Columns.Add("ID");
                 lvProveedores.Columns.Add("TIPO");
                 lvProveedores.Columns.Add("TIPO CUENTA");
+                lvProveedores.Columns.Add("TIPO PROVE");
             }
             do
             {
@@ -111,6 +116,7 @@ namespace SOCIOS
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ID")));
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TIPO")));
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TIPO_DE_CUENTA")));
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TIPO_PROVE")));
                 lvProveedores.Items.Add(listItem);
             }
 
@@ -118,9 +124,9 @@ namespace SOCIOS
             lvProveedores.EndUpdate();
             lvProveedores.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             lvProveedores.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-            /*lvProveedores.Columns[9].Width = 0;
+            lvProveedores.Columns[9].Width = 0;
             lvProveedores.Columns[10].Width = 0;
-            lvProveedores.Columns[11].Width = 0;*/
+            lvProveedores.Columns[11].Width = 0;
         }
 
         static void OpenMicrosoftExcel(string f)
@@ -133,20 +139,11 @@ namespace SOCIOS
 
         private void buscarProveedores(string CONDICION, string ACCION)
         {
-            string connectionString;
-            Datos_ini ini2 = new Datos_ini();
+            conString cs = new conString();
+            string connectionString = cs.get();
 
             try
             {
-                FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-                cs.DataSource = ini2.Servidor; cs.Port = int.Parse(ini2.Puerto);
-                cs.Database = ini2.Ubicacion;
-                cs.UserID = VGlobales.vp_username;
-                cs.Password = VGlobales.vp_password;
-                cs.Role = VGlobales.vp_role;
-                cs.Dialect = 3;
-                connectionString = cs.ToString();
-
                 using (FbConnection connection = new FbConnection(connectionString))
                 {
                     connection.Open();
@@ -221,6 +218,7 @@ namespace SOCIOS
             tbCuenta.Text = "";
             tbCBU.Text = "";
             cbTipoDeCuenta.SelectedIndex = 0;
+            cbTipoProveedor.SelectedIndex = 0;
         }
 
         private void limpiarFactura()
@@ -380,9 +378,20 @@ namespace SOCIOS
 
         }
 
+        private void comboAnticipos()
+        {
+            string query = "SELECT ID, TRIM(RAZON_SOCIAL) AS RS FROM PROVEEDORES WHERE FE_BAJA IS NULL AND TIPO_DE_CUENTA = 'A' ORDER BY RAZON_SOCIAL ASC;";
+            cbProveedores.DataSource = null;
+            cbProveedores.Items.Clear();
+            cbProveedores.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbProveedores.DisplayMember = "RS";
+            cbProveedores.ValueMember = "ID";
+            cbProveedores.SelectedItem = 0;
+        }
+
         private void comboProveedores(ComboBox COMBO)
         {
-            string query = "SELECT ID, TRIM(RAZON_SOCIAL) AS RS FROM PROVEEDORES WHERE FE_BAJA IS NULL ORDER BY RAZON_SOCIAL ASC;";
+            string query = "SELECT ID, TRIM(RAZON_SOCIAL) AS RS FROM PROVEEDORES WHERE FE_BAJA IS NULL AND TIPO_DE_CUENTA <> 'A' ORDER BY RAZON_SOCIAL ASC;";
             COMBO.DataSource = null;
             COMBO.Items.Clear();
             COMBO.DataSource = dlog.BO_EjecutoDataTable(query);
@@ -459,10 +468,13 @@ namespace SOCIOS
 
         private void comboTipoComprobante(ComboBox COMBO)
         {
-            string query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE ORDER BY TIPO";
+            string query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE ORDER BY ORDEN";
 
             if (COMBO == cbTipoFactura)
-                query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE WHERE ID IN(1, 4, 5, 6, 7, 8) ORDER BY TIPO";
+                query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE WHERE ID IN(1, 4, 5, 6, 7, 8) ORDER BY ORDEN";
+
+            if (COMBO == cbTipoComprobante)
+                query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE WHERE TIPO <> '#TODOS' ORDER BY ORDEN";
 
             COMBO.DataSource = null;
             COMBO.Items.Clear();
@@ -566,17 +578,21 @@ namespace SOCIOS
         { 
             bool RES = false;
             int PROVEEDOR = int.Parse(cbProveedores.SelectedValue.ToString());
+            string TIPO_DE_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
 
-            if (PROVEEDOR != 814 && PROVEEDOR != 1089 && PROVEEDOR != 1073)
+            if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
             {
-                string NUM_FACTURA = tbNumFactura.Text.Trim();
-                string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "';";
-                DataRow[] foundRows;
-                foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
-
-                if (foundRows.Length > 0)
+                if (PROVEEDOR != 814 && PROVEEDOR != 1089 && PROVEEDOR != 1073)
                 {
-                    RES = true;
+                    string NUM_FACTURA = tbNumFactura.Text.Trim();
+                    string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "';";
+                    DataRow[] foundRows;
+                    foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+                    if (foundRows.Length > 0)
+                    {
+                        RES = true;
+                    }
                 }
             }
 
@@ -642,6 +658,7 @@ namespace SOCIOS
                 lvFacturas.Columns.Add("OP");
                 lvFacturas.Columns.Add("TIPO");
                 lvFacturas.Columns.Add("CUIT");
+                lvFacturas.Columns.Add("TC");
             }
             do
             {
@@ -659,6 +676,7 @@ namespace SOCIOS
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ORDEN_DE_PAGO")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TIPO")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("CUIT")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TC")).Trim());
                 lvFacturas.Items.Add(listItem);
             }
 
@@ -730,7 +748,7 @@ namespace SOCIOS
                     {
                         case "BUSCAR":
                         QUERY += "SELECT F.ID, F.PROVEEDOR, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.FE_ALTA, F.US_ALTA, F.FE_MOD, ";
-                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT ";
+                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC ";
                         break;
 
                         case "EXCEL":
@@ -1278,7 +1296,13 @@ namespace SOCIOS
 
             foreach (DataRow row in ds.Tables[0].Rows)
             {
-                tbNumSolicitud.Text = row[0].ToString();
+                string TIPO_DE_COMPROBANTE = row[14].ToString();
+
+                if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
+                    comboProveedores(cbProveedores);
+                else
+                    comboAnticipos();
+
                 cbProveedores.SelectedValue = row[1];
                 dpFechaFactura.Text = row[3].ToString();
                 decimal IMPORTE = Convert.ToDecimal(row[4].ToString().Trim());
@@ -1288,8 +1312,9 @@ namespace SOCIOS
                 cbSectores.SelectedValue = row[10].ToString().Trim();
                 tbNumSecGral.Text = row[13].ToString().Trim();
                 cbTipoComprobante.SelectedValue = row[14];
+                
 
-                if (cbTipoComprobante.SelectedValue.ToString() != "2")
+                if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
                 {
                     tbNumFactura.Enabled = true;
                     lbNumFactura.Enabled = true;
@@ -1302,7 +1327,7 @@ namespace SOCIOS
                     tbNumFactura.Enabled = false;
                     lbNumFactura.Enabled = false;
                     lbNumSolicitud.Enabled = true;
-                    tbNumSolicitud.Text = row[0].ToString();
+                    tbNumSolicitud.Text = row[2].ToString();
                     tbNumFactura.Text = "";
                 }
 
@@ -2810,27 +2835,24 @@ namespace SOCIOS
 
         private void cbTipoComprobante_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            /*if (cbTipoComprobante.SelectedValue.ToString() == "4" && tbImporte.Text != "")
-            {
-                decimal IMPORTE = Convert.ToDecimal(tbImporte.Text);
-                int REGIMEN = int.Parse(cbRegimenFactura.SelectedValue.ToString());
-                calcularRetencion(IMPORTE, REGIMEN);
-            }*/
+            string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
 
-            if (cbTipoComprobante.SelectedValue.ToString() != "2")
+            if (TIPO_COMPROBANTE == "2" || TIPO_COMPROBANTE == "9" || TIPO_COMPROBANTE == "12")
             {
-                tbNumFactura.Enabled = true;
-                lbNumFactura.Enabled = true;
-                lbNumSolicitud.Enabled = false;
-                tbNumSolicitud.Text = "";
-            }
-            else
-            {
+                comboAnticipos();
                 tbNumFactura.Enabled = false;
                 lbNumFactura.Enabled = false;
                 lbNumSolicitud.Enabled = true;
                 maxid mid = new maxid();
                 tbNumSolicitud.Text = mid.m("ID", "FACTURAS");
+            }
+            else
+            {
+                comboProveedores(cbProveedores);
+                tbNumFactura.Enabled = true;
+                lbNumFactura.Enabled = true;
+                lbNumSolicitud.Enabled = false;
+                tbNumSolicitud.Text = "";
             }
 
             grupoFacturas(sender);
@@ -3113,9 +3135,9 @@ namespace SOCIOS
 
         private void btnGuardarFactura_Click_1(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
             btnGuardarFactura.Enabled = false;
             int ARTICULOS = dgArticulos.Rows.Count;
+            string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();        
 
             if (cbProveedores.SelectedValue == "")
             {
@@ -3123,7 +3145,7 @@ namespace SOCIOS
                 cbProveedores.Focus();
                 btnGuardarFactura.Enabled = true;
             }
-            else if (cbTipoComprobante.Text == "FACTURA")
+            else if (TIPO_COMPROBANTE != "2" && TIPO_COMPROBANTE != "9" && TIPO_COMPROBANTE != "12")
             {
                 if (tbNumFactura.Text == "")
                 {
@@ -3149,8 +3171,8 @@ namespace SOCIOS
                 {
                     int PROVEEDOR = int.Parse(cbProveedores.SelectedValue.ToString());
                     string NUM_FACTURA = "";
-                    
-                    if (cbTipoComprobante.SelectedValue.ToString() != "2")
+
+                    if (TIPO_COMPROBANTE != "2" && TIPO_COMPROBANTE != "9" && TIPO_COMPROBANTE != "12")
                     {
                         NUM_FACTURA = tbNumFactura.Text.Trim();
                     }
@@ -3173,6 +3195,8 @@ namespace SOCIOS
                     string FE_ALTA_NOTA = "";
                     int REGIMEN = 0;
                     decimal RETENCION = 0;
+
+                    Cursor = Cursors.WaitCursor;
 
                     BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL, TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0);
                     
@@ -3238,6 +3262,7 @@ namespace SOCIOS
                     limpiarFactura();
                     dgArticulos.Rows.Clear();
                     btnGuardarFactura.Enabled = true;
+                    comboProveedores(cbProveedores);
                     Cursor = Cursors.Default;
                     MessageBox.Show("DEUDA GUARDADA", "LISTO!");
                 }
@@ -3261,6 +3286,7 @@ namespace SOCIOS
             dgArticulos.Rows.Clear();
             btnGuardarFactura.Enabled = true;
             btnModFactura.Enabled = false;
+            comboProveedores(cbProveedores);
         }
 
         private void btnModFactura_Click_1(object sender, EventArgs e)
@@ -3919,12 +3945,12 @@ namespace SOCIOS
                 string WEB = null;
                 string CONTACTO = null;
                 string CUIT = null;
-                int CUENTA = int.Parse(tbCuenta.Text.Trim());
+                string CUENTA = null;
                 string USR_MOD = VGlobales.vp_username;
                 DateTime Hoy = DateTime.Today;
                 string FE_MOD = Hoy.ToString("dd/MM/yyyy");
                 string CBU = tbCBU.Text.Trim();
-                string TIPO = null;
+                string TIPO = cbTipoProveedor.SelectedValue.ToString();
                 string TIPO_DE_CUENTA = cbTipoDeCuenta.SelectedValue.ToString();
 
                 RAZON_SOCIAL = (tbRazonSocial.Text.Trim() != "") ? tbRazonSocial.Text.Trim() : null;
@@ -3935,11 +3961,13 @@ namespace SOCIOS
                 CONTACTO = (tbContacto.Text.Trim() != "") ? tbContacto.Text.Trim() : null;
                 CUIT = (tbCuit.Text.Trim() != "") ? tbCuit.Text.Trim() : null;
                 CBU = (tbEmail.Text.Trim() != "") ? tbEmail.Text.Trim() : null;
+                CUENTA = (tbCuenta.Text.Trim() != "") ? tbCuenta.Text.Trim() : null;
 
                 try
                 {
                     BO_COMPRAS.modificaUnProveedor(ID, RAZON_SOCIAL, EMAIL, DOMICILIO, TELEFONO, WEB, CONTACTO, CUIT, CUENTA, USR_MOD, FE_MOD, CBU, TIPO, TIPO_DE_CUENTA);
                     MessageBox.Show("PROVEEDOR MODIFICADO CORRECTAMENTE");
+                    button1.Enabled = true;
                     button2.Enabled = true;
                     button3.Enabled = true;
                     limpiarFormulario();
@@ -3954,12 +3982,14 @@ namespace SOCIOS
         private void button3_Click_1(object sender, EventArgs e)
         {
             limpiarFormulario();
+            button1.Enabled = true;
             button2.Enabled = false;
             button3.Enabled = false;
         }
 
         private void lvProveedores_Click(object sender, EventArgs e)
         {
+            button1.Enabled = false;
             button2.Enabled = true;
             button3.Enabled = true;
             btnEliminarProveedor.Enabled = true;
@@ -4336,6 +4366,7 @@ namespace SOCIOS
                     BO_COMPRAS.eliminaUnProveedor(ID_PROVEEDOR, USR_BAJA, FE_BAJA);
                     lvProveedores.Clear();
                     limpiarFormulario();
+                    button1.Enabled = true;
                     button2.Enabled = false;
                     button3.Enabled = false;
                     btnEliminarProveedor.Enabled = false;
@@ -5062,6 +5093,11 @@ namespace SOCIOS
                 cbSectorBusqueda.Enabled = true;
             else
                 cbSectorBusqueda.Enabled = false;
+        }
+
+        private void themedGroupBox3_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

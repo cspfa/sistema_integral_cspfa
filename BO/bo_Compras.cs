@@ -92,7 +92,7 @@ namespace SOCIOS.BO
         }
 
         //STORED MODIFICA UN PROVEEDOR
-        public void modificaUnProveedor(int ID, string RAZON_SOCIAL, string EMAIL, string DOMICILIO, string TELEFONO, string WEB, string CONTACTO, string CUIT, int CUENTA, string USR_MOD, string FE_MOD, string CBU, string TIPO, string TIPO_DE_CUENTA)
+        public void modificaUnProveedor(int ID, string RAZON_SOCIAL, string EMAIL, string DOMICILIO, string TELEFONO, string WEB, string CONTACTO, string CUIT, string CUENTA, string USR_MOD, string FE_MOD, string CBU, string TIPO, string TIPO_DE_CUENTA)
         {
             db resultado = new db();
 
