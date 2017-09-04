@@ -29,21 +29,23 @@ namespace SOCIOS.deportes
             cs.ComboRol(cbRol);
             ROL = VGlobales.vp_role;
 
-            if (VGlobales.vp_role == "DEPORTES")
+            //if (VGlobales.vp_role == "DEPORTES")
             
-            {
-                cs.ComboActividad("DEPORTES",cbActividad);
-                cbRol.Visible = true;
-                lbRol.Visible = true;
+            //{
+            //    cs.ComboActividad("DEPORTES",cbActividad);
+            //    cbRol.Visible = true;
+            //    lbRol.Visible = true;
 
             
-            }
-            else
-            {
-                cs.ComboActividad(VGlobales.vp_role.TrimEnd().TrimStart(),cbActividad);
-                cbRol.Visible = false;
-                lbRol.Visible = false;
-            }
+            //}
+            //else
+            //{
+            //    cs.ComboActividad(VGlobales.vp_role.TrimEnd().TrimStart(),cbActividad);
+            //    cbRol.Visible = false;
+            //    lbRol.Visible = false;
+            //}
+
+            this.ComboActividad();
 
             DataGridViewCheckBoxColumn col1 = new DataGridViewCheckBoxColumn();
             dataGridView1.Columns.Add(col1);
@@ -203,7 +205,7 @@ namespace SOCIOS.deportes
             string connectionString;
             DataTable dt1 = new DataTable("RESULTADOS");
             
-            string Query = "select  '' P,D.ID_ROL Id, D.NOMBRE Nombre,D.APELLIDO Apellido " +
+            string Query = "select  '' P,D.ID_ROL Id, D.NOMBRE Nombre,D.APELLIDO Apellido,D.DNI DNI " +
                          "from deportes_adm D , socio_actividades A , sectact S " +
                          "where D.ID_ROL =A.ID_DEPORTE  and S.ID =A.SECTACT    and S.ID =" + ID + " AND D.ROL ='" + ROL +"'" ;
 
@@ -235,7 +237,7 @@ namespace SOCIOS.deportes
                     dt1.Columns.Add("Id", typeof(string));
                     dt1.Columns.Add("Nombre", typeof(string));
                     dt1.Columns.Add("Apellido", typeof(string));
-                   
+                    dt1.Columns.Add("DNI", typeof(string));
 
 
                     ds1.Tables.Add(dt1);
@@ -249,7 +251,8 @@ namespace SOCIOS.deportes
                         dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("P")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Id")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Nombre")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("Apellido")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("Apellido")).Trim(),
+                                     reader3.GetString(reader3.GetOrdinal("DNI")).Trim());
 
                     }
 
@@ -290,16 +293,16 @@ namespace SOCIOS.deportes
             }
         }
 
-        private void GrabarDatos(int ID,int SecAct, int P, string Nombre, string Apellido, DateTime Fecha,string ROL)
+        private void GrabarDatos(int ID,int SecAct, int P, string Nombre, string Apellido, DateTime Fecha,string ROL,string DNI)
         {
             if (Update)
             {
-                dlog.UpdateAsistencia(ID, SecAct, P, Nombre, Apellido, Fecha,ROL);
+                dlog.UpdateAsistencia(ID, SecAct, P, Nombre, Apellido, Fecha,ROL,DNI);
                 
             }
             else
             {
-                dlog.AltaAsistencia(SecAct, P, Nombre, Apellido, Fecha,ROL);
+                dlog.AltaAsistencia(SecAct, P, Nombre, Apellido, Fecha,ROL,DNI);
                 
             }
 
@@ -312,9 +315,9 @@ namespace SOCIOS.deportes
             int SectAct=Int32.Parse(ID);
             string ROL = "";
             if (VGlobales.vp_role == "DEPORTES")
-                ROL = "DEPORTES";
+                 ROL = cbRol.SelectedText.TrimEnd().TrimStart();
             else
-                ROL = cbRol.SelectedText.TrimEnd().TrimStart();
+                ROL = VGlobales.vp_role.TrimEnd().TrimStart();
 
 
             try
@@ -326,15 +329,16 @@ namespace SOCIOS.deportes
                     int rID = Int32.Parse(row.Cells[2].Value.ToString());
                     string Nombre = row.Cells[3].Value.ToString();
                     string Apellido = row.Cells[4].Value.ToString();
-                    
+                    string DNI = row.Cells[5].Value.ToString();
+                    bool bChecked=false;
 
-                    bool bChecked = (null != oCell && null != oCell.Value &&  (bool)oCell.Value);
-
+                    if (null != oCell && null != oCell.Value  )
+                      bChecked= Convert.ToBoolean( oCell.Value.ToString());
 
                     if (bChecked == true)
-                        this.GrabarDatos(rID, SectAct, 1, Nombre, Apellido, Fecha,ROL);
+                        this.GrabarDatos(rID, SectAct, 1, Nombre, Apellido, Fecha,ROL,DNI);
                     else
-                        this.GrabarDatos(rID, SectAct, 0, Nombre, Apellido, Fecha,ROL);
+                        this.GrabarDatos(rID, SectAct, 0, Nombre, Apellido, Fecha,ROL,DNI);
 
 
                 }
@@ -359,6 +363,8 @@ namespace SOCIOS.deportes
             
             }
         }
+
+       
 
         private void selAll_Click(object sender, EventArgs e)
         {
@@ -393,18 +399,41 @@ namespace SOCIOS.deportes
 
         private void cbRol_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //if (VGlobales.vp_role == "DEPORTES")
+            //{
+            //    cs.ComboActividad("DEPORTES",cbActividad);
+            //    ROL = cbRol.Text;
+            //}
+            //else
+            //{
+            //    cs.ComboActividad(VGlobales.vp_role.TrimEnd().TrimStart(),cbActividad);
+            //    ROL = VGlobales.vp_role;
+            //}
+
+            this.ComboActividad();
+
+
+        }
+
+        private void ComboActividad()
+        {
             if (VGlobales.vp_role == "DEPORTES")
             {
-                cs.ComboActividad("DEPORTES",cbActividad);
-                ROL = cbRol.Text;
+
+                ROL = cbRol.Text.TrimEnd().TrimStart();
+                cbRol.Visible = true;
+                lbRol.Visible = true;
+
+
             }
             else
             {
-                cs.ComboActividad(VGlobales.vp_role.TrimEnd().TrimStart(),cbActividad);
-                ROL = VGlobales.vp_role;
+                ROL = VGlobales.vp_role.TrimEnd().TrimStart();
+                cbRol.Visible = false;
+                lbRol.Visible = false;
             }
 
-
+            cs.ComboActividad(ROL, cbActividad);
         }
 
 

@@ -401,8 +401,9 @@ namespace SOCIOS
             vector_contenidos.Add(NOMBRE);
             vector_contenidos.Add(APELLIDO);
             vector_contenidos.Add(FECHA);
-            vector_contenidos.Add(ROL);
             vector_contenidos.Add(DNI);
+            vector_contenidos.Add(ROL);
+      
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -422,8 +423,9 @@ namespace SOCIOS
             vector_nombres.Add("@NOMBRE");
             vector_nombres.Add("@APELLIDO");
             vector_nombres.Add("@FECHA");
-            vector_nombres.Add("@ROL");
             vector_nombres.Add("@DNI");
+            vector_nombres.Add("@ROL");
+           
             string vprocedure = "P_ASISTENCIA_DEPORTES_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
