@@ -56,6 +56,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lbObs = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.lbMenor = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -325,12 +327,33 @@
             this.label11.TabIndex = 26;
             this.label11.Text = "OBS";
             // 
+            // lbMenor
+            // 
+            this.lbMenor.AutoSize = true;
+            this.lbMenor.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMenor.Location = new System.Drawing.Point(99, 206);
+            this.lbMenor.Name = "lbMenor";
+            this.lbMenor.Size = new System.Drawing.Size(60, 13);
+            this.lbMenor.TabIndex = 29;
+            this.lbMenor.Text = "NOMBRE";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(46, 205);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(47, 13);
+            this.label15.TabIndex = 28;
+            this.label15.Text = "MENOR";
+            // 
             // FormSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(674, 221);
+            this.ClientSize = new System.Drawing.Size(674, 239);
+            this.Controls.Add(this.lbMenor);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.lbObs);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lbIntercirculo);
@@ -400,5 +423,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lbObs;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lbMenor;
+        private System.Windows.Forms.Label label15;
     }
 }

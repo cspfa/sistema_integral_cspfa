@@ -27,6 +27,8 @@ namespace SOCIOS.bono
          public int MenorInvitado = 0;
          public int MenorInter    = 0;
          public int MenorSocio    = 0;
+
+         public int MenorPaquete  = 0;
          public decimal SaldoIngreso = 0;
 
          public int DESTINO;
@@ -860,6 +862,9 @@ namespace SOCIOS.bono
             MenorInvitado = 0;
             Intercirculo  = 0;
             MenorInter    = 0;
+            // los menores paquete, son personas entre 3 y 10 años . 
+            MenorPaquete = 0;
+
             bool ControlEdad = false;
 
             foreach (SOCIOS.Turismo.GridPersona item in listaPersonas)
@@ -873,7 +878,7 @@ namespace SOCIOS.bono
 
                    Socios      = this.StatsTipoMayor(Socios, item.Edad, TopeEdad);
 
-                   if (Control_Edad(item.Barra,item.Tipo) ==true)
+                   if (Control_Edad(item.Barra,item.Tipo) ==true && (tipoBono != "PAQUETE"))
                       MenorSocio  =  this.StatsTipoMenor(MenorSocio, item.Edad, TopeEdad);
 
                 }
@@ -883,14 +888,14 @@ namespace SOCIOS.bono
                     {
 
                        Invitado      =   this.StatsTipoMayor(Invitado, item.Edad, TopeEdad);
-                       if (Control_Edad(item.Barra, item.Tipo) == true)
+                       if (Control_Edad(item.Barra, item.Tipo) == true && (tipoBono != "PAQUETE"))
                             MenorInvitado =   this.StatsTipoMenor(MenorInvitado, item.Edad, TopeEdad);
                     }
 
                     else
                     {
                        Intercirculo   =   this.StatsTipoMayor(Intercirculo, item.Edad, TopeEdad);
-                      
+                      if (tipoBono != "PAQUETE")
                        MenorInter     =   this.StatsTipoMenor(MenorInter, item.Edad, TopeEdad);
                         
                     
@@ -902,6 +907,8 @@ namespace SOCIOS.bono
             
             
             }
+
+            MenorPaquete =  listaPersonas.Where(v=>v.Edad.Length >0).Where(x => ( Int32.Parse(x.Edad) >= 3 && Int32.Parse(x.Edad) < 11)).Count();
 
 
 

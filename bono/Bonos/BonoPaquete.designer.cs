@@ -30,7 +30,6 @@
         {
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.cbPaquete = new System.Windows.Forms.ComboBox();
-            this.tbObs = new System.Windows.Forms.TextBox();
             this.AnularBono = new System.Windows.Forms.Button();
             this.Reiniciar = new System.Windows.Forms.Button();
             this.bntImprimir = new System.Windows.Forms.Button();
@@ -39,19 +38,27 @@
             this.Seleccion = new System.Windows.Forms.Button();
             this.Deseleccionar = new System.Windows.Forms.Button();
             this.lbSaldoTotal = new System.Windows.Forms.Label();
-            this.lbSocios = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lbInvitados = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pagBono = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.lbInterCirculo = new System.Windows.Forms.Label();
             this.fpago = new System.Windows.Forms.Label();
             this.dpFechaBono = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.tbMenor = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbInterCirculo = new System.Windows.Forms.TextBox();
+            this.tbInvitados = new System.Windows.Forms.TextBox();
+            this.tbSocios = new System.Windows.Forms.TextBox();
+            this.infoSocio = new System.Windows.Forms.Label();
+            this.infoInter = new System.Windows.Forms.Label();
+            this.tbObs = new System.Windows.Forms.TextBox();
+            this.InfoMenor = new System.Windows.Forms.Label();
+            this.InfoInvi = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,15 +80,6 @@
             this.cbPaquete.Size = new System.Drawing.Size(269, 21);
             this.cbPaquete.TabIndex = 83;
             this.cbPaquete.SelectedIndexChanged += new System.EventHandler(this.cbPaquete_SelectedIndexChanged);
-            // 
-            // tbObs
-            // 
-            this.tbObs.Location = new System.Drawing.Point(50, 552);
-            this.tbObs.Multiline = true;
-            this.tbObs.Name = "tbObs";
-            this.tbObs.Size = new System.Drawing.Size(727, 83);
-            this.tbObs.TabIndex = 108;
-            this.tbObs.TextChanged += new System.EventHandler(this.tbObs_TextChanged);
             // 
             // AnularBono
             // 
@@ -159,26 +157,16 @@
             // lbSaldoTotal
             // 
             this.lbSaldoTotal.AutoSize = true;
-            this.lbSaldoTotal.Location = new System.Drawing.Point(218, 85);
+            this.lbSaldoTotal.Location = new System.Drawing.Point(218, 114);
             this.lbSaldoTotal.Name = "lbSaldoTotal";
             this.lbSaldoTotal.Size = new System.Drawing.Size(13, 13);
             this.lbSaldoTotal.TabIndex = 118;
             this.lbSaldoTotal.Text = "0";
             // 
-            // lbSocios
-            // 
-            this.lbSocios.AutoSize = true;
-            this.lbSocios.Location = new System.Drawing.Point(96, 25);
-            this.lbSocios.Name = "lbSocios";
-            this.lbSocios.Size = new System.Drawing.Size(47, 13);
-            this.lbSocios.TabIndex = 132;
-            this.lbSocios.Text = "SOCIOS";
-            this.lbSocios.Click += new System.EventHandler(this.lbSocios_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(218, 25);
+            this.label1.Location = new System.Drawing.Point(392, 54);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 131;
@@ -188,7 +176,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 85);
+            this.label7.Location = new System.Drawing.Point(21, 114);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(98, 13);
             this.label7.TabIndex = 109;
@@ -197,27 +185,17 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 25);
+            this.label4.Location = new System.Drawing.Point(116, 54);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 134;
             this.label4.Text = "SOCIOS";
             this.label4.Click += new System.EventHandler(this.label4_Click_1);
             // 
-            // lbInvitados
-            // 
-            this.lbInvitados.AutoSize = true;
-            this.lbInvitados.Location = new System.Drawing.Point(329, 25);
-            this.lbInvitados.Name = "lbInvitados";
-            this.lbInvitados.Size = new System.Drawing.Size(65, 13);
-            this.lbInvitados.TabIndex = 133;
-            this.lbInvitados.Text = "INVITADOS";
-            this.lbInvitados.Click += new System.EventHandler(this.lbInvitados_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(143, 85);
+            this.label8.Location = new System.Drawing.Point(143, 114);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 13);
             this.label8.TabIndex = 119;
@@ -225,7 +203,7 @@
             // 
             // pagBono
             // 
-            this.pagBono.Location = new System.Drawing.Point(17, 53);
+            this.pagBono.Location = new System.Drawing.Point(17, 82);
             this.pagBono.Name = "pagBono";
             this.pagBono.Size = new System.Drawing.Size(75, 23);
             this.pagBono.TabIndex = 114;
@@ -236,25 +214,16 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(218, 53);
+            this.label6.Location = new System.Drawing.Point(116, 82);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(87, 13);
             this.label6.TabIndex = 135;
             this.label6.Text = "INTERCIRCULO";
             // 
-            // lbInterCirculo
-            // 
-            this.lbInterCirculo.AutoSize = true;
-            this.lbInterCirculo.Location = new System.Drawing.Point(329, 53);
-            this.lbInterCirculo.Name = "lbInterCirculo";
-            this.lbInterCirculo.Size = new System.Drawing.Size(65, 13);
-            this.lbInterCirculo.TabIndex = 136;
-            this.lbInterCirculo.Text = "INVITADOS";
-            // 
             // fpago
             // 
             this.fpago.AutoSize = true;
-            this.fpago.Location = new System.Drawing.Point(327, 109);
+            this.fpago.Location = new System.Drawing.Point(327, 126);
             this.fpago.Name = "fpago";
             this.fpago.Size = new System.Drawing.Size(67, 13);
             this.fpago.TabIndex = 120;
@@ -262,7 +231,7 @@
             // 
             // dpFechaBono
             // 
-            this.dpFechaBono.Location = new System.Drawing.Point(398, 78);
+            this.dpFechaBono.Location = new System.Drawing.Point(398, 107);
             this.dpFechaBono.Name = "dpFechaBono";
             this.dpFechaBono.Size = new System.Drawing.Size(200, 20);
             this.dpFechaBono.TabIndex = 132;
@@ -271,7 +240,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(329, 80);
+            this.label2.Location = new System.Drawing.Point(329, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 132;
@@ -279,18 +248,25 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.label5);
+            this.gpDatos.Controls.Add(this.InfoInvi);
+            this.gpDatos.Controls.Add(this.InfoMenor);
+            this.gpDatos.Controls.Add(this.infoInter);
+            this.gpDatos.Controls.Add(this.infoSocio);
+            this.gpDatos.Controls.Add(this.tbMenor);
+            this.gpDatos.Controls.Add(this.label3);
+            this.gpDatos.Controls.Add(this.tbInterCirculo);
+            this.gpDatos.Controls.Add(this.tbInvitados);
+            this.gpDatos.Controls.Add(this.tbSocios);
             this.gpDatos.Controls.Add(this.label2);
             this.gpDatos.Controls.Add(this.dpFechaBono);
             this.gpDatos.Controls.Add(this.fpago);
-            this.gpDatos.Controls.Add(this.lbInterCirculo);
             this.gpDatos.Controls.Add(this.label6);
             this.gpDatos.Controls.Add(this.pagBono);
             this.gpDatos.Controls.Add(this.label8);
-            this.gpDatos.Controls.Add(this.lbInvitados);
             this.gpDatos.Controls.Add(this.label4);
             this.gpDatos.Controls.Add(this.label7);
             this.gpDatos.Controls.Add(this.label1);
-            this.gpDatos.Controls.Add(this.lbSocios);
             this.gpDatos.Controls.Add(this.lbSaldoTotal);
             this.gpDatos.Location = new System.Drawing.Point(33, 427);
             this.gpDatos.Name = "gpDatos";
@@ -298,6 +274,106 @@
             this.gpDatos.TabIndex = 122;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // tbMenor
+            // 
+            this.tbMenor.Location = new System.Drawing.Point(475, 79);
+            this.tbMenor.Name = "tbMenor";
+            this.tbMenor.Size = new System.Drawing.Size(63, 20);
+            this.tbMenor.TabIndex = 140;
+            this.tbMenor.TextChanged += new System.EventHandler(this.tbMenor_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(393, 82);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 139;
+            this.label3.Text = "MENOR";
+            // 
+            // tbInterCirculo
+            // 
+            this.tbInterCirculo.Location = new System.Drawing.Point(203, 77);
+            this.tbInterCirculo.Name = "tbInterCirculo";
+            this.tbInterCirculo.Size = new System.Drawing.Size(63, 20);
+            this.tbInterCirculo.TabIndex = 138;
+            this.tbInterCirculo.TextChanged += new System.EventHandler(this.tbInterCirculo_TextChanged);
+            // 
+            // tbInvitados
+            // 
+            this.tbInvitados.Location = new System.Drawing.Point(475, 51);
+            this.tbInvitados.Name = "tbInvitados";
+            this.tbInvitados.Size = new System.Drawing.Size(63, 20);
+            this.tbInvitados.TabIndex = 137;
+            this.tbInvitados.TextChanged += new System.EventHandler(this.tbInvitados_TextChanged);
+            // 
+            // tbSocios
+            // 
+            this.tbSocios.Location = new System.Drawing.Point(204, 51);
+            this.tbSocios.Name = "tbSocios";
+            this.tbSocios.Size = new System.Drawing.Size(63, 20);
+            this.tbSocios.TabIndex = 136;
+            this.tbSocios.TextChanged += new System.EventHandler(this.tbSocios_TextChanged);
+            // 
+            // infoSocio
+            // 
+            this.infoSocio.AutoSize = true;
+            this.infoSocio.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.infoSocio.Location = new System.Drawing.Point(282, 54);
+            this.infoSocio.Name = "infoSocio";
+            this.infoSocio.Size = new System.Drawing.Size(32, 13);
+            this.infoSocio.TabIndex = 141;
+            this.infoSocio.Text = "INFO";
+            // 
+            // infoInter
+            // 
+            this.infoInter.AutoSize = true;
+            this.infoInter.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.infoInter.Location = new System.Drawing.Point(282, 82);
+            this.infoInter.Name = "infoInter";
+            this.infoInter.Size = new System.Drawing.Size(32, 13);
+            this.infoInter.TabIndex = 142;
+            this.infoInter.Text = "INFO";
+            // 
+            // tbObs
+            // 
+            this.tbObs.Location = new System.Drawing.Point(50, 578);
+            this.tbObs.Multiline = true;
+            this.tbObs.Name = "tbObs";
+            this.tbObs.Size = new System.Drawing.Size(727, 83);
+            this.tbObs.TabIndex = 108;
+            this.tbObs.TextChanged += new System.EventHandler(this.tbObs_TextChanged);
+            // 
+            // InfoMenor
+            // 
+            this.InfoMenor.AutoSize = true;
+            this.InfoMenor.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.InfoMenor.Location = new System.Drawing.Point(566, 86);
+            this.InfoMenor.Name = "InfoMenor";
+            this.InfoMenor.Size = new System.Drawing.Size(32, 13);
+            this.InfoMenor.TabIndex = 143;
+            this.InfoMenor.Text = "INFO";
+            // 
+            // InfoInvi
+            // 
+            this.InfoInvi.AutoSize = true;
+            this.InfoInvi.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.InfoInvi.Location = new System.Drawing.Point(566, 54);
+            this.InfoInvi.Name = "InfoInvi";
+            this.InfoInvi.Size = new System.Drawing.Size(32, 13);
+            this.InfoInvi.TabIndex = 144;
+            this.InfoInvi.Text = "INFO";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label5.Location = new System.Drawing.Point(14, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(497, 13);
+            this.label5.TabIndex = 145;
+            this.label5.Text = "LO INDICADO EN CADA CAMPO DE TARIFA ES EL PRECIO INDIVIDUAL CARGADO EN LA SALIDA";
             // 
             // BonoPaquete
             // 
@@ -328,7 +404,6 @@
 
         private System.Windows.Forms.Label lbTipoViaje;
         private System.Windows.Forms.ComboBox cbPaquete;
-        private System.Windows.Forms.TextBox tbObs;
         private System.Windows.Forms.Button AnularBono;
         private System.Windows.Forms.Button Reiniciar;
         private System.Windows.Forms.Button bntImprimir;
@@ -337,18 +412,26 @@
         private System.Windows.Forms.Button Seleccion;
         private System.Windows.Forms.Button Deseleccionar;
         private System.Windows.Forms.Label lbSaldoTotal;
-        private System.Windows.Forms.Label lbSocios;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lbInvitados;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button pagBono;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lbInterCirculo;
         private System.Windows.Forms.Label fpago;
         private System.Windows.Forms.DateTimePicker dpFechaBono;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gpDatos;
+        private System.Windows.Forms.TextBox tbMenor;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbInterCirculo;
+        private System.Windows.Forms.TextBox tbInvitados;
+        private System.Windows.Forms.TextBox tbSocios;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label InfoInvi;
+        private System.Windows.Forms.Label InfoMenor;
+        private System.Windows.Forms.Label infoInter;
+        private System.Windows.Forms.Label infoSocio;
+        private System.Windows.Forms.TextBox tbObs;
     }
 }

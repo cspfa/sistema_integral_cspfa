@@ -176,30 +176,42 @@ namespace SOCIOS.bono
            decimal totalSocio = 0;
            decimal totalInter = 0;
            decimal totalInvi = 0;
-           
+           decimal totalMenor = 0;
+           tbSocios.Text = "0";
+           tbInvitados.Text = "0";
+           tbMenor.Text = "0";
+           tbInterCirculo.Text = "0";
+
+
            salida = utilsTurismo.GetSalida(numeroSalida);
 
            this.CalcularCantidadSociosGrupo("PAQUETE");
-
-           totalSocio = salida.Socio * Socios;
+           //04-09-2017 se calculan los menores aparte, por lo cual no se cuentan como socios 
+           totalSocio = salida.Socio * (Socios - MenorPaquete);
            totalInter = salida.InterCirculo * Intercirculo;
            totalInvi = salida.Invitado * Invitado;
+           totalMenor = salida.Menor * MenorPaquete;
        
-           this.TotalizarTipo(lbSocios, Socios, salida.Socio, totalSocio);
-           this.TotalizarTipo(lbInterCirculo, Intercirculo, salida.InterCirculo, totalInter);
-           this.TotalizarTipo(lbInvitados, Invitado, salida.Invitado, totalInvi);
-          
-           lbSaldoTotal.Text = (totalInvi + totalSocio + totalInter).ToString("0.##");
+           this.TotalizarTipo(tbSocios, Socios, salida.Socio, totalSocio);
+           this.TotalizarTipo(tbInterCirculo, Intercirculo, salida.InterCirculo, totalInter);
+           this.TotalizarTipo(tbInvitados, Invitado, salida.Invitado, totalInvi);
+           this.TotalizarTipo(tbMenor, MenorPaquete, salida.Menor, totalMenor);
 
+           lbSaldoTotal.Text = (totalInvi + totalSocio + totalInter + totalMenor).ToString("0.##");
+          
+           infoInter.Text = salida.InterCirculo.ToString("0.##");
+           InfoInvi.Text = salida.Invitado.ToString("0.##");
+           InfoMenor.Text = salida.Menor.ToString("0.##");
+           infoSocio.Text = salida.Socio.ToString("0.##");
 
         }
 
-        private void TotalizarTipo(Label lbl, int Cantidad, decimal Monto,decimal Total)
+        private void TotalizarTipo(TextBox tb, int Cantidad, decimal Monto,decimal Total)
         {
             if (Total != 0)
-               lbl.Text = Cantidad.ToString() + "-" + Monto.ToString("0.##") + "c/u";
+               tb.Text = (Cantidad * Monto).ToString("0.##");
             else
-                lbl.Text ="";
+                tb.Text ="";
         }
 
         private void Grabar_Click(object sender, EventArgs e)
@@ -322,6 +334,49 @@ namespace SOCIOS.bono
             Deseleccionar.Visible = false;
             Seleccion.Enabled = true;
 
+        }
+
+        private void tbSocios_TextChanged(object sender, EventArgs e)
+        {
+            this.CalculoTotal();
+        }
+
+        private void CalculoTotal()
+
+        { 
+            decimal Socios=0;
+            decimal Inter =0;
+            decimal Invi  =0;
+            decimal Menor =0;
+
+            if (tbSocios.Text.Length > 0)
+                Socios = Decimal.Parse(tbSocios.Text);
+
+            if (tbInterCirculo.Text.Length > 0)
+                Inter = Decimal.Parse(tbInterCirculo.Text);
+
+            if (tbInvitados.Text.Length > 0)
+                Invi = Decimal.Parse(tbInvitados.Text);
+
+            if (tbMenor.Text.Length > 0)
+                Menor = Decimal.Parse(tbMenor.Text);
+
+            lbSaldoTotal.Text = Decimal.Round(Socios + Inter + Invi + Menor, 2).ToString();
+        }
+
+        private void tbInvitados_TextChanged(object sender, EventArgs e)
+        {
+            this.CalculoTotal();
+        }
+
+        private void tbInterCirculo_TextChanged(object sender, EventArgs e)
+        {
+            this.CalculoTotal();
+        }
+
+        private void tbMenor_TextChanged(object sender, EventArgs e)
+        {
+            this.CalculoTotal();
         }
         
        

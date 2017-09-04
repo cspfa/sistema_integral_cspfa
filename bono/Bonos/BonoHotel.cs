@@ -258,6 +258,11 @@ namespace SOCIOS.bono
             this.TotalizarTipo("-INTER", Intercirculo, arancelInter, totalInter);
             this.TotalizarTipo("-INV", Invitado, arancelInvitado, totalInvi);
 
+            if (MenorSocio + MenorInter + MenorInvitado > 0)
+            {
+                InfoValorHabitacion = InfoValorHabitacion + " - MENORES " + (MenorSocio + MenorInter + MenorInvitado);
+            }
+
 
 
 
