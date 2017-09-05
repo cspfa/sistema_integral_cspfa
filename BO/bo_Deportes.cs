@@ -414,6 +414,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
 
+
             ArrayList vector_nombres = new ArrayList();
 
 
