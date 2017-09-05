@@ -2230,9 +2230,6 @@ namespace SOCIOS
             cbBeneficiarioOP.SelectedItem = 0;
             cbBenefOpe.SelectedItem = 0;
             cbBancos.SelectedItem = 0;
-            lvChequesSeleccionados.Clear();
-            comboCheques(int.Parse(cbBancos.SelectedValue.ToString()), cbCheques);
-            limpiarTransferencia();
         }
 
         private void limpiarTransferencia()
@@ -2252,6 +2249,38 @@ namespace SOCIOS
             dpFechaTransferencia.Text = DateTime.Today.ToShortDateString();
         }
 
+        private void eliminarCheques(string CUALES)
+        {
+            string CHEQUE = "";
+            string BANCO_ID = "";
+
+            if (CUALES == "SELECCIONADOS")
+            {
+                foreach (ListViewItem itemRow in lvChequesSeleccionados.SelectedItems)
+                {
+                    CHEQUE = itemRow.SubItems[1].Text;
+                    BANCO_ID = itemRow.SubItems[7].Text;
+                    BO_COMPRAS.modificarOpTemp("0", CHEQUE, BANCO_ID);
+                    itemRow.Remove();
+                }
+            }
+
+            if (CUALES == "TODOS")
+            {
+                foreach (ListViewItem itemRow in lvChequesSeleccionados.Items)
+                {
+                    CHEQUE = itemRow.SubItems[1].Text;
+                    BANCO_ID = itemRow.SubItems[7].Text;
+                    BO_COMPRAS.modificarOpTemp("0", CHEQUE, BANCO_ID);
+                    itemRow.Remove();
+                }
+            }
+            
+            sumaCheques();
+            int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
+            comboCheques(BANCO, cbCheques);
+        }
+
         private void btnCancelarOP_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿CONFIRMA CANCELAR LA ORDEN DE PAGO?\nTODOS LOS DATOS INGRESADOS SE PERDERÁN", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -2259,6 +2288,9 @@ namespace SOCIOS
                 limpiarOrdenDePago();
                 desbloquearTabPages();
                 bloquearGrupos();
+                eliminarCheques("TODOS");
+                buscarFactura("BUSCAR");
+                tabControl1.SelectedTab = tabPage1;
             }
         }
 
@@ -2358,7 +2390,7 @@ namespace SOCIOS
 
         private void comboCheques(int BANCO, ComboBox COMBO)
         {
-            string QUERY = "SELECT NRO_CHEQUE FROM CHEQUERAS WHERE BANCO = " + BANCO + " AND OP_ASIGNADA IS NULL";
+            string QUERY = "SELECT NRO_CHEQUE FROM CHEQUERAS WHERE BANCO = " + BANCO + " AND OP_ASIGNADA IS NULL AND OP_TEMP = 0";
             COMBO.Items.Clear();
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
@@ -2398,16 +2430,16 @@ namespace SOCIOS
 
         private void bloquearGrupos()
         {
-            grupoAltaFactura.Enabled = false;
+            /*grupoAltaFactura.Enabled = false;
             grupoArticulos.Enabled = false;
-            grupoNotaDeCredito.Enabled = false;
+            grupoNotaDeCredito.Enabled = false;*/
         }
 
         private void desbloquearGrupos()
         {
-            grupoAltaFactura.Enabled = true;
+           /*grupoAltaFactura.Enabled = true;
             grupoArticulos.Enabled = true;
-            grupoNotaDeCredito.Enabled = true;
+            grupoNotaDeCredito.Enabled = true;*/
         }
 
         private bool checkFacturaEnOp(string ID_FACTURA)
@@ -3480,7 +3512,6 @@ namespace SOCIOS
 
                 string IMPORTE = string.Format("{0:n}", Convert.ToDecimal(tbImporteOP.Text.Trim()));
                 string BENEF = cbBeneficiarioOP.Text.Trim().ToUpper();
-                int CB_CHEQUES_INDEX = cbCheques.SelectedIndex;
 
                 if (lvChequesSeleccionados.Columns.Count == 0)
                 {
@@ -3491,6 +3522,7 @@ namespace SOCIOS
                     lvChequesSeleccionados.Columns.Add("IMPORTE");
                     lvChequesSeleccionados.Columns.Add("FECHA");
                     lvChequesSeleccionados.Columns.Add("BENEFICIARIO");
+                    lvChequesSeleccionados.Columns.Add("ID");
                 }
 
                 ListViewItem items = new ListViewItem(BANCO_DE);
@@ -3500,12 +3532,14 @@ namespace SOCIOS
                 items.SubItems.Add(IMPORTE);
                 items.SubItems.Add(FECHA);
                 items.SubItems.Add(BENEF);
+                items.SubItems.Add(BANCO_ID);
                 lvChequesSeleccionados.Items.Add(items);
                 lvChequesSeleccionados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 lvChequesSeleccionados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-                cbCheques.Items.RemoveAt(CB_CHEQUES_INDEX);
-                cbCheques.SelectedIndex = 0;
+                lvChequesSeleccionados.Columns[7].Width = 0;
                 sumaCheques();
+                BO_COMPRAS.modificarOpTemp("1", CHEQUE, BANCO_ID);
+                comboCheques(int.Parse(BANCO_ID), cbCheques);
             }
         }
 
@@ -3551,12 +3585,7 @@ namespace SOCIOS
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem itemRow in lvChequesSeleccionados.SelectedItems)
-            {
-                itemRow.Remove();
-            }
-
-            sumaCheques();
+            eliminarCheques("SELECCIONADOS");
         }
 
         private void lvChequesSeleccionados_MouseDown(object sender, MouseEventArgs e)

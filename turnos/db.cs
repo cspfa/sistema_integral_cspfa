@@ -219,6 +219,8 @@ namespace SOCIOS
             CloseCnn();
         }
 
+       
+
         public void Ejecuto_Consulta_Remota(string query, string rol)
         {
             OpenCnn_Remota(rol);
