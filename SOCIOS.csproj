@@ -352,10 +352,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="deportes\VencimientoAptoFisico2.Designer.cs" />
-    <Compile Include="modificarCajaDiaria.cs">
+    <Compile Include="recibos\modificarCajaDiaria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="modificarCajaDiaria.Designer.cs">
+    <Compile Include="recibos\modificarCajaDiaria.Designer.cs">
       <DependentUpon>modificarCajaDiaria.cs</DependentUpon>
     </Compile>
     <Compile Include="recibos\importarComprobantes.cs">
@@ -870,10 +870,10 @@
     <Compile Include="DA_Control_Acceso.cs" />
     <Compile Include="esMoroso.cs" />
     <Compile Include="getGrupo.cs" />
-    <Compile Include="ingresos.cs">
+    <Compile Include="recibos\ingresos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ingresos.Designer.cs">
+    <Compile Include="recibos\ingresos.Designer.cs">
       <DependentUpon>ingresos.cs</DependentUpon>
     </Compile>
     <Compile Include="recibos\planillaDeCaja.cs">
@@ -1320,7 +1320,7 @@
     <EmbeddedResource Include="interior\cargarObservacion.resx">
       <DependentUpon>cargarObservacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="modificarCajaDiaria.resx">
+    <EmbeddedResource Include="recibos\modificarCajaDiaria.resx">
       <DependentUpon>modificarCajaDiaria.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="nuevoUsuario.resx">
@@ -1452,7 +1452,7 @@
     <EmbeddedResource Include="IngresoAsamblea.resx">
       <DependentUpon>IngresoAsamblea.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ingresos.resx">
+    <EmbeddedResource Include="recibos\ingresos.resx">
       <DependentUpon>ingresos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="recibos\planillaDeCaja.resx">
