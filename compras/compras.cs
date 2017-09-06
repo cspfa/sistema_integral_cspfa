@@ -494,7 +494,48 @@ namespace SOCIOS
             SECTORES.DataSource = dlog.BO_EjecutoDataTable(query);
             SECTORES.DisplayMember = "ROL";
             SECTORES.ValueMember = "ROL";
-         }
+        }
+
+        private bool sumaFacturaHija(object SENDER, int ID_FACTURA)
+        {
+            bool RES = false;
+            decimal TOTAL_FACTURA = Convert.ToDecimal(tbImporte.Text);
+            decimal TOTAL_ROWS = 0;
+            decimal IMPORTE_ROW = 0;
+            int ID_ROW = 0;
+            int FACTURAS_HIJAS = dgFacturasHijas.Rows.Count;
+            decimal VALOR_AGREGAR = Convert.ToDecimal(tbImporteFactura.Text);
+
+            if (SENDER == btAgregarArticulo)
+            {
+                if (FACTURAS_HIJAS > 0)
+                {
+                    foreach (DataGridViewRow row in dgFacturasHijas.Rows)
+                    {
+                        IMPORTE_ROW = Convert.ToDecimal(row.Cells["IMPORTE"].Value);
+                        TOTAL_ROWS = TOTAL_ROWS + IMPORTE_ROW;
+                    }
+
+                    if (TOTAL_ROWS == TOTAL_FACTURA)
+                    {
+                        RES = true;
+                    }
+                    else
+                    {
+                        RES = false;
+                    }
+                }
+                else
+                {
+                    if (VALOR_AGREGAR <= TOTAL_FACTURA)
+                    {
+                        RES = true;
+                    }
+                }
+            }
+
+            return RES;
+        }
 
         private bool suma(object SENDER, int ID_ARTICULO)
         {
@@ -882,40 +923,90 @@ namespace SOCIOS
 
         private void btAgregarArticulo_Click(object sender, EventArgs e)
         {
-            if (gbFacturas.Visible == false)
+            if (gbFacturas.Visible == true)
             {
-                if (tbImporte.Text == "")
-                {
-                    MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
-                    tbImporte.Focus();
-                }
-                else
-                {
-                    agregarModificarArticulo("AGREGAR", 0, sender);
-                }
+                agregarModificarFactura("AGREGAR", 0, sender);
             }
             else
             {
-                if (tbImporte.Text == "")
-                {
-                    MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
-                    tbImporte.Focus();
-                }
-                else
-                {
-                    agregarModificarFactura("AGREGAR", 0, sender);
-                }
+                agregarModificarArticulo("AGREGAR", 0, sender);
             }
         }
 
         private void agregarModificarFactura(string ACCION, int FACTURA_DEUDA, object sender)
-        { 
-        
+        {
+            if (mbNumeroFactura.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO NÚMERO DE FACTURA", "ERROR");
+                mbNumeroFactura.Focus();
+            }
+            else if (tbImporteFactura.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
+                tbImporteFactura.Focus();
+            }
+            else
+            {
+                btAgregarArticulo.Enabled = false;
+                btnModArt.Enabled = false;
+                decimal IMPORTE_FACTURA_HIJA = decimal.Parse(tbImporteFactura.Text);
+                int ID_PROVEEDOR_FACTURA_HIJA = int.Parse(cbProveedorFactura.SelectedValue.ToString());
+                string PROVEEDOR_FACTURA_HIJA = cbProveedorFactura.Text;
+                string NRO_FACTURA_HIJA = mbNumeroFactura.Text;
+                int ID_TIPO_FACTURA_HIJA = int.Parse(cbTipoFactura.SelectedValue.ToString());
+                string TIPO_FACTURA_HIJA = cbTipoFactura.Text;
+                string FECHA_FACTURA_HIJA = dpDiaFactura.Text;
+                string NUM_FACTURA_HIJA = mbNumeroFactura.Text.Trim();
+                string OBS_FACTURA_HIJA = "";
+                DateTime Hoy = DateTime.Today;
+                string FE_ALTA_FACTURA_HIJA = Hoy.ToString("dd/MM/yyyy");
+                string US_ALTA_FACTURA_HIJA = VGlobales.vp_username;
+                string SECTOR_FACTURA_HIJA = cbSectores.SelectedValue.ToString();
+                int ORDEN_DE_PAGO_FACTURA_HIJA = 0;
+                string SEC_GRAL_FACTURA_HIJA = tbNumSecGral.Text.Trim();
+                int ID_FACTURA_MADRE = int.Parse(lbID.Text);
+                int DESCUENTO_FACTURA_HIJA = 0;
+
+                try
+                {
+                    if (lbID.Text != "ID_FACTURA") //GRABA EN BASE DE DATOS
+                    {
+                        if (ACCION == "AGREGAR")
+                        {
+                            if (sumaFacturaHija(sender, ID_ARTICULO) == false)
+                            {
+                                MessageBox.Show("LA SUMA DE LAS FACTURAS NO COINCIDE CON EL TOTAL DE LA RENDICION", "ERROR");
+                                btAgregarArticulo.Enabled = true;
+                                btnModArt.Enabled = true;
+                            }
+                            else
+                            {
+                                Cursor = Cursors.WaitCursor;
+                                BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
+                                OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
+                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA);
+                                Cursor = Cursors.Default;
+                            }
+                        }
+                    }
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("NO SE PUDO " + ACCION + " LA FACTURA HIJA\n" + error, "ERROR");
+                    btAgregarArticulo.Enabled = true;
+                    btnModArt.Enabled = true;
+                }
+            }
         }
 
         private void agregarModificarArticulo(string ACCION, int ID_ARTICULO, object sender)
         {
-            if (tbCantidad.Text == "")
+            if (tbImporte.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
+                tbImporte.Focus();
+            }
+            else if (tbCantidad.Text == "")
             {
                 MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD", "ERROR");
                 tbCantidad.Focus();
@@ -1130,21 +1221,72 @@ namespace SOCIOS
             }
         }
 
-        private void buscarArticulos(int FACTURA)
+        private void mostrarFacturasHijas(DataSet ds)
         {
-            string connectionString;
-            Datos_ini ini2 = new Datos_ini();
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                string ID_FACTURA = row[0].ToString().Trim();
+                string ID_PROVEEDOR = row[1].ToString().Trim();
+                string NUM_FACTURA = row[2].ToString().Trim();
+                string FECHA = row[3].ToString().Trim().Substring(0, 10);
+                string IMPORTE = string.Format("{0:n}", Convert.ToDecimal(row[4].ToString().Trim()));
+                string ID_TIPO = row[5].ToString().Trim();
+                string TIPO = row[6].ToString().Trim();
+                string RAZON_SOCIAL = row[7].ToString().Trim();
 
+                dgFacturasHijas.Rows.Add(RAZON_SOCIAL, NUM_FACTURA, TIPO, IMPORTE, FECHA, ID_TIPO, ID_PROVEEDOR, ID_FACTURA);
+            }
+        }
+
+        private void BuscarFacturasHijas(int FACTURA)
+        {
             try
             {
-                FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-                cs.DataSource = ini2.Servidor; cs.Port = int.Parse(ini2.Puerto);
-                cs.Database = ini2.Ubicacion;
-                cs.UserID = VGlobales.vp_username;
-                cs.Password = VGlobales.vp_password;
-                cs.Role = VGlobales.vp_role;
-                cs.Dialect = 3;
-                connectionString = cs.ToString();
+                conString cs = new conString();
+                string connectionString = cs.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string QUERY = "SELECT F.ID, F.PROVEEDOR AS ID_PROVEEDOR, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.TIPO AS ID_TIPO, T.TIPO, P.RAZON_SOCIAL ";
+                    QUERY += "FROM FACTURAS F, PROVEEDORES P, TIPOS_CARGA_COMPROBANTE T ";
+                    QUERY += "WHERE F.DEUDA = " + FACTURA + " AND F.PROVEEDOR = P.ID AND F.TIPO = T.ID ORDER BY F.ID";
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    cmd.CommandText = QUERY;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+                    dgFacturasHijas.Rows.Clear();
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            mostrarFacturasHijas(ds);
+                        }
+                    }
+
+                    transaction.Commit();
+                    connection.Close();
+                    cmd = null;
+                    transaction = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void buscarArticulos(int FACTURA)
+        {
+            try
+            {
+                conString cs = new conString();
+                string connectionString = cs.get();
 
                 using (FbConnection connection = new FbConnection(connectionString))
                 {
@@ -2883,6 +3025,8 @@ namespace SOCIOS
                 lbNumSolicitud.Enabled = true;
                 maxid mid = new maxid();
                 tbNumSolicitud.Text = mid.m("ID", "FACTURAS");
+                gbFacturas.Visible = true;
+                grupoArticulos.Visible = false;
             }
             else
             {
@@ -2891,6 +3035,8 @@ namespace SOCIOS
                 lbNumFactura.Enabled = true;
                 lbNumSolicitud.Enabled = false;
                 tbNumSolicitud.Text = "";
+                gbFacturas.Visible = false;
+                grupoArticulos.Visible = true;
             }
 
             grupoFacturas(sender);
@@ -3175,6 +3321,7 @@ namespace SOCIOS
         {
             btnGuardarFactura.Enabled = false;
             int ARTICULOS = dgArticulos.Rows.Count;
+            int FACTURAS_HIJAS = dgFacturasHijas.Rows.Count;
             string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();        
 
             if (cbProveedores.SelectedValue == "")
@@ -3261,6 +3408,14 @@ namespace SOCIOS
                         catch (Exception error)
                         {
                             MessageBox.Show("NO SE PUDO COPIAR EL ARCHIVO");
+                        }
+                    }
+
+                    if (FACTURAS_HIJAS > 0)
+                    {
+                        foreach (DataGridView row in dgFacturasHijas.Rows)
+                        { 
+                             
                         }
                     }
 
@@ -4905,6 +5060,7 @@ namespace SOCIOS
                 comboProveedores(cbProveedorFactura);
                 comboTipoComprobante(cbTipoFactura);
                 gbFacturas.Visible = true;
+                BuscarFacturasHijas(int.Parse(lvFacturas.SelectedItems[0].SubItems[0].Text));
             }
             else
             {
@@ -5139,6 +5295,27 @@ namespace SOCIOS
                 decimal RESTAR = (IMPORTE_TOTAL * DESCUENTO) / 100;
                 decimal TOTAL = IMPORTE_TOTAL - RESTAR;
                 tbImporte.Text = TOTAL.ToString();
+            }
+        }      
+
+        private void dgFacturasHijas_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgFacturasHijas.Rows)
+            {
+                string ID_FACTURA_FH = row.Cells["ID_FACTURA"].Value.ToString();
+                string ID_PROVEEDOR_FH = row.Cells["ID_PROVEEDOR"].Value.ToString();
+                string NUM_FACTURA_FH = row.Cells["NUMERO"].Value.ToString();
+                string FECHA_FH = row.Cells["FECHA_FACTURA"].Value.ToString();
+                string IMPORTE_FH = row.Cells["IMPORTE_FACTURA"].Value.ToString();
+                string ID_TIPO_FH = row.Cells["ID_TIPO"].Value.ToString();
+                string TIPO_FH = row.Cells["TIPO_FACTURA"].Value.ToString();
+                string RAZON_SOCIAL_FH = row.Cells["PROVEEDOR"].Value.ToString();
+                
+                cbProveedorFactura.SelectedValue = ID_PROVEEDOR_FH;
+                mbNumeroFactura.Text = NUM_FACTURA_FH;
+                cbTipoFactura.SelectedValue = ID_TIPO_FH;
+                tbImporteFactura.Text = IMPORTE_FH;
+                dpDiaFactura.Text = FECHA_FH;
             }
         }
     }
