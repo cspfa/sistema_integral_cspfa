@@ -293,7 +293,7 @@ namespace SOCIOS.bono
                        // this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
                         //30-08-2017 se cambia lbMontoTarjeta.Text por las cuotas
-                        formaPago = formaPago + ", Se va a Abonar el Bono en Efectivo $ " + lbMonto1.Text + " , Tarjeta de Credito en " +  CuotasTarjeta.ToString()  + " Cuotas";
+                        formaPago = formaPago + ", Se va a Abonar el Bono en Efectivo $ " + lbMonto1.Text + " , Tarjeta de Credito $ "+ lbMonto2.Text + " en " +  CuotasTarjeta.ToString()  + " Cuotas";
                         SaldoIngreso = Decimal.Parse(lbMonto1.Text);
                         
                       
