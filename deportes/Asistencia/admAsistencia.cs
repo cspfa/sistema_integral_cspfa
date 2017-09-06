@@ -302,6 +302,7 @@ namespace SOCIOS.deportes
             }
             else
             {
+
                 dlog.AltaAsistencia(SecAct, P, Nombre, Apellido, Fecha,ROL,DNI);
                 
             }
