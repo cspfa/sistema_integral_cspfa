@@ -418,6 +418,7 @@ namespace SOCIOS
             ArrayList vector_nombres = new ArrayList();
 
 
+
             vector_nombres.Add("@ID");
             vector_nombres.Add("@SECTACT");
             vector_nombres.Add("@P");

@@ -333,6 +333,7 @@ namespace SOCIOS.deportes
                     string DNI = row.Cells[5].Value.ToString();
                     bool bChecked=false;
 
+
                     if (null != oCell && null != oCell.Value  )
                       bChecked= Convert.ToBoolean( oCell.Value.ToString());
 
