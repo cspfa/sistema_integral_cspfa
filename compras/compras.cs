@@ -20,12 +20,14 @@ namespace SOCIOS
     public partial class compras : Form
     {
         existe existe = new existe();
+        private decimal IMPORTE_TOTAL { get; set; }
         private DataSet OP { get; set; }
         private DataSet CHEQUES { get; set; }
         private DataSet FACTURAS { get; set; }
         private int ID_ARTICULO { get; set; }
         private string BUSCO_QUERY { get; set; }
         private string ACCION { get; set; }
+
         bo dlog = new bo();
         BO.bo_Compras BO_COMPRAS = new BO.bo_Compras();
         maxid mid = new maxid();
@@ -474,7 +476,7 @@ namespace SOCIOS
                 query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE WHERE ID IN(1, 4, 5, 6, 7, 8) ORDER BY ORDEN";
 
             if (COMBO == cbTipoComprobante)
-                query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE WHERE TIPO <> '#TODOS' ORDER BY ORDEN";
+                query = "SELECT ID, TIPO FROM TIPOS_CARGA_COMPROBANTE WHERE TIPO <> 'TODOS' ORDER BY ORDEN";
 
             COMBO.DataSource = null;
             COMBO.Items.Clear();
@@ -659,6 +661,7 @@ namespace SOCIOS
                 lvFacturas.Columns.Add("TIPO");
                 lvFacturas.Columns.Add("CUIT");
                 lvFacturas.Columns.Add("TC");
+                lvFacturas.Columns.Add("DES%");
             }
             do
             {
@@ -677,6 +680,7 @@ namespace SOCIOS
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TIPO")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("CUIT")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TC")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("DESCUENTO")).Trim());
                 lvFacturas.Items.Add(listItem);
             }
 
@@ -748,12 +752,12 @@ namespace SOCIOS
                     {
                         case "BUSCAR":
                         QUERY += "SELECT F.ID, F.PROVEEDOR, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.FE_ALTA, F.US_ALTA, F.FE_MOD, ";
-                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC ";
+                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC, F.DESCUENTO ";
                         break;
 
                         case "EXCEL":
                         QUERY += "SELECT P.RAZON_SOCIAL, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, ";
-                        QUERY += "F.RETENCION, T.TIPO, P.CUIT ";
+                        QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO ";
                         break;
                     }
 
@@ -1307,11 +1311,13 @@ namespace SOCIOS
                 dpFechaFactura.Text = row[3].ToString();
                 decimal IMPORTE = Convert.ToDecimal(row[4].ToString().Trim());
                 string VALOR = string.Format("{0:n}", IMPORTE);
+                IMPORTE_TOTAL = IMPORTE;
                 tbImporte.Text = VALOR;
                 tbObservaciones.Text = row[5].ToString().Trim();
                 cbSectores.SelectedValue = row[10].ToString().Trim();
                 tbNumSecGral.Text = row[13].ToString().Trim();
                 cbTipoComprobante.SelectedValue = row[14];
+                tbDescuentoTotal.Text = row[18].ToString();
                 
 
                 if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
@@ -3177,14 +3183,11 @@ namespace SOCIOS
                 cbProveedores.Focus();
                 btnGuardarFactura.Enabled = true;
             }
-            else if (TIPO_COMPROBANTE != "2" && TIPO_COMPROBANTE != "9" && TIPO_COMPROBANTE != "12")
+            else if (TIPO_COMPROBANTE != "2" && TIPO_COMPROBANTE != "9" && TIPO_COMPROBANTE != "12" && tbNumFactura.Text == "")
             {
-                if (tbNumFactura.Text == "")
-                {
-                    MessageBox.Show("COMPLETAR EL CAMPO Nº FACTURA", "ERROR");
-                    tbNumFactura.Focus();
-                    btnGuardarFactura.Enabled = true;
-                }
+                MessageBox.Show("COMPLETAR EL CAMPO Nº FACTURA", "ERROR");
+                tbNumFactura.Focus();
+                btnGuardarFactura.Enabled = true;
             }
             else if (tbImporte.Text == "")
             {
@@ -3227,11 +3230,12 @@ namespace SOCIOS
                     string FE_ALTA_NOTA = "";
                     int REGIMEN = 0;
                     decimal RETENCION = 0;
+                    int DESCUENTO_TOTAL = int.Parse(tbDescuentoTotal.Text);
 
                     Cursor = Cursors.WaitCursor;
 
-                    BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL, TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0);
-                    
+                    BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL, TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL);
+
                     int ID_FACTURA = int.Parse(mid.m("ID", "FACTURAS"));
 
                     switch (TIPO)
@@ -3264,8 +3268,8 @@ namespace SOCIOS
                     {
                         foreach (DataGridViewRow row in dgArticulos.Rows)
                         {
-                            //string ID_ART = row.Cells["AID"].Value.ToString();
-                            //bool EXISTE = existe.check("ARTICULOS", "ID", ID_ART);
+                            string ID_ART = row.Cells["AID"].Value.ToString();
+                            bool EXISTE = existe.check("ARTICULOS", "ID", ID_ART);
                             Int32 CANTIDAD;
                             string DETALLE = string.Empty;
                             decimal PRECIO;
@@ -3278,16 +3282,15 @@ namespace SOCIOS
                             NSERIE = Convert.ToString(row.Cells["NSERIE"].Value).Trim();
                             TIPO_ART = Convert.ToInt16(row.Cells["TID"].Value);
                             DESCUENTO = row.Cells["DESC"].Value.ToString();
-                            BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
 
-                            /*if (EXISTE == false)
+                            if (EXISTE == false)
                             {
                                 BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
                             }
                             else
                             {
                                 BO_COMPRAS.modificarArticulos(int.Parse(ID_ART), DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
-                            }*/
+                            }
                         }
                     }
 
@@ -3341,8 +3344,9 @@ namespace SOCIOS
                 int TIPO = int.Parse(cbTipoComprobante.SelectedValue.ToString());
                 string TIPO_ARCHIVO = "";
                 int REGIMEN = 0;
+                int DESCUENTO = int.Parse(tbDescuentoTotal.Text);
 
-                BO_COMPRAS.modificarFactura(ID, PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_MOD, US_MOD, SECTOR, SEC_GRAL, TIPO);
+                BO_COMPRAS.modificarFactura(ID, PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_MOD, US_MOD, SECTOR, SEC_GRAL, TIPO, DESCUENTO);
 
                 switch (TIPO)
                 {
@@ -4343,6 +4347,8 @@ namespace SOCIOS
 
         private void tbImporte_Leave(object sender, EventArgs e)
         {
+            IMPORTE_TOTAL = decimal.Parse(tbImporte.Text);
+
             /*if (cbTipoComprobante.SelectedValue.ToString() == "4" && tbImporte.Text != "")
             {
                 decimal IMPORTE = Convert.ToDecimal(tbImporte.Text);
@@ -4710,6 +4716,7 @@ namespace SOCIOS
             xlWorkSheet.Cells[1, 9] = "RETENCION";
             xlWorkSheet.Cells[1, 10] = "TIPO";
             xlWorkSheet.Cells[1, 11] = "CUIT";
+            xlWorkSheet.Cells[1, 12] = "DES%";
 
             Cursor = Cursors.WaitCursor;
 
@@ -5124,9 +5131,15 @@ namespace SOCIOS
                 cbSectorBusqueda.Enabled = false;
         }
 
-        private void themedGroupBox3_Load(object sender, EventArgs e)
+        private void tbDescuentoTotal_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (tbImporte.Text != "" && tbDescuentoTotal.Text != "")
+            {
+                decimal DESCUENTO = decimal.Parse(tbDescuentoTotal.Text);
+                decimal RESTAR = (IMPORTE_TOTAL * DESCUENTO) / 100;
+                decimal TOTAL = IMPORTE_TOTAL - RESTAR;
+                tbImporte.Text = TOTAL.ToString();
+            }
         }
     }
 }
