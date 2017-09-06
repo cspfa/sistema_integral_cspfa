@@ -89,6 +89,7 @@ namespace SOCIOS.deportes
         { 
        
             string connectionString;
+
             DataTable dt1 = new DataTable("RESULTADOS");
             string Query = "select D.ID_ROL Id, D.NOMBRE Nombre,D.APELLIDO Apellido,D.FE_VENCIMIENTO Fecha,IIF(char_length(MD.DNI)>0,'SI','NO') Moroso " +
                          "from deportes_adm D left join MOROSOS_DEPORTES MD on MD.DNI = cast(D.dni as Integer) , socio_actividades A , sectact S " +
