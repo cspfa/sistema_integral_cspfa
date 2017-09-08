@@ -75,7 +75,7 @@
             // 
             // reportViewer1
             // 
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SOCIOS.deportes.Asistencia.ReporteAsistencia.rdlc";
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SOCIOS.deportes.Asistencias.ReporteAsistencia.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(15, 124);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(725, 324);
