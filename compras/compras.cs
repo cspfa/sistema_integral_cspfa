@@ -1499,7 +1499,14 @@ namespace SOCIOS
 
         private void btnModArt_Click(object sender, EventArgs e)
         {
-            agregarModificarArticulo("MODIFICAR", ID_ARTICULO, sender);
+            if (gbFacturas.Visible == true)
+            {
+                agregarModificarFactura("MODIFICAR", 0, sender);
+            }
+            else
+            {
+                agregarModificarArticulo("MODIFICAR", 0, sender);
+            }
         }
 
         private void btnAdjuntar_Click(object sender, EventArgs e)
@@ -3423,8 +3430,8 @@ namespace SOCIOS
                     {
                         foreach (DataGridViewRow row in dgArticulos.Rows)
                         {
-                            string ID_ART = row.Cells["AID"].Value.ToString();
-                            bool EXISTE = existe.check("ARTICULOS", "ID", ID_ART);
+                            //string ID_ART = row.Cells["AID"].Value.ToString();
+                            //bool EXISTE = existe.check("ARTICULOS", "ID", ID_ART);
                             Int32 CANTIDAD;
                             string DETALLE = string.Empty;
                             decimal PRECIO;
@@ -3437,15 +3444,16 @@ namespace SOCIOS
                             NSERIE = Convert.ToString(row.Cells["NSERIE"].Value).Trim();
                             TIPO_ART = Convert.ToInt16(row.Cells["TID"].Value);
                             DESCUENTO = row.Cells["DESC"].Value.ToString();
-
-                            if (EXISTE == false)
+                            BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
+                            
+                            /*if (EXISTE == false)
                             {
                                 BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
                             }
                             else
                             {
                                 BO_COMPRAS.modificarArticulos(int.Parse(ID_ART), DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
-                            }
+                            }*/
                         }
                     }
 
