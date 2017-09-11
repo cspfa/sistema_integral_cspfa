@@ -1670,6 +1670,7 @@ namespace SOCIOS
                         foreach (ListViewItem itemRow in lvOP.Items)
                         {
                             int ID_FACTURA = int.Parse(itemRow.SubItems[0].Text);
+                            BO_COMPRAS.opEnFactura(ID_FACTURA, ID_OP);
                             BO_COMPRAS.facturaXop(ID_OP, ID_FACTURA);
                         }
 
@@ -1724,9 +1725,11 @@ namespace SOCIOS
                     }
 
                     limpiarOrdenDePago();
-                    btnGuardarOP.Enabled = true;
-                    //REFRESCAR GRILLA BUSQUEDA
-                    comboCheques(int.Parse(cbBancos.SelectedValue.ToString()), cbCheques);
+                    desbloquearTabPages();
+                    bloquearGrupos();
+                    eliminarCheques("TODOS");
+                    buscarFactura("BUSCAR");
+                    tabControl1.SelectedTab = tabPage1;
                     Cursor = Cursors.Default;
                 }
             }
@@ -3844,6 +3847,10 @@ namespace SOCIOS
             else if (cbProvTrans.Text.Trim() == "")
             {
                 MessageBox.Show("SELECCIONAR UN PROVEEDOR", "ERROR");
+            }
+            else if (cbCuentaDestinoTrans.Items.Count == 0)
+            {
+                MessageBox.Show("NO SE ENCONTRÓ NINGUNA CUENTA BANCARIA ASIGNADA AL PROVEEDOR SELECCIONADO", "ERROR");
             }
             else if (lbPdfTrans.Text == "ARCHIVO PDF NO CARGADO")
             {

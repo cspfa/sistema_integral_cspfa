@@ -34,7 +34,6 @@ namespace SOCIOS.BO
             vector_nombres.Add("CHEQUE");
             vector_nombres.Add("BANCO_ID");
 
-
             string vprocedure = "CHEQUES_OP_TEMP_U";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
@@ -310,8 +309,6 @@ namespace SOCIOS.BO
         //STORED ORDEN DE PAGO EN FACTURA
         public void opEnFactura(int ID_FACTURA, int ID_OP)
         {
-            
-
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(ID_FACTURA);
             vector_contenidos.Add(ID_OP);
@@ -332,8 +329,6 @@ namespace SOCIOS.BO
         //STORED ORDEN DE PAGO X FACTURA
         public void facturaXop(int ID_OP, int ID_FACTURA)
         {
-            
-
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(ID_OP);
             vector_contenidos.Add(ID_FACTURA);
