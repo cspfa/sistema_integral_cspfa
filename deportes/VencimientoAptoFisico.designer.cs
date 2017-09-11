@@ -43,6 +43,7 @@
             this.Vencimientos = new System.Windows.Forms.DataGridView();
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.lbRol = new System.Windows.Forms.Label();
+            this.filtrar_Venc = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Grilla)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -55,9 +56,9 @@
             this.Grilla.AllowUserToAddRows = false;
             this.Grilla.AllowUserToDeleteRows = false;
             this.Grilla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grilla.Location = new System.Drawing.Point(6, 19);
+            this.Grilla.Location = new System.Drawing.Point(6, 34);
             this.Grilla.Name = "Grilla";
-            this.Grilla.Size = new System.Drawing.Size(649, 250);
+            this.Grilla.Size = new System.Drawing.Size(649, 235);
             this.Grilla.TabIndex = 0;
             // 
             // button1
@@ -90,6 +91,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.filtrar_Venc);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.Grilla);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -199,11 +201,21 @@
             this.lbRol.TabIndex = 95;
             this.lbRol.Text = "ROL:";
             // 
+            // filtrar_Venc
+            // 
+            this.filtrar_Venc.Location = new System.Drawing.Point(77, 5);
+            this.filtrar_Venc.Name = "filtrar_Venc";
+            this.filtrar_Venc.Size = new System.Drawing.Size(75, 23);
+            this.filtrar_Venc.TabIndex = 2;
+            this.filtrar_Venc.Text = "Filtrar";
+            this.filtrar_Venc.UseVisualStyleBackColor = true;
+            this.filtrar_Venc.Click += new System.EventHandler(this.filtrar_Venc_Click);
+            // 
             // VencimientoAptoFisico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 398);
+            this.ClientSize = new System.Drawing.Size(703, 426);
             this.Controls.Add(this.cbRol);
             this.Controls.Add(this.lbRol);
             this.Controls.Add(this.tabControl1);
@@ -238,5 +250,6 @@
         private System.Windows.Forms.Button fltrar;
         private System.Windows.Forms.ComboBox cbRol;
         private System.Windows.Forms.Label lbRol;
+        private System.Windows.Forms.Button filtrar_Venc;
     }
 }

@@ -151,7 +151,7 @@ namespace SOCIOS.deportes
 
                     //Obtengo Que Vencen Este Mes 
                     Query = "select Nombre,Apellido,Email,FE_Vencimiento from deportes_adm where  Extract(year from FE_VENCIMIENTO )= " +
-                            hoy.Year.ToString() + " and Extract(month from FE_VENCIMIENTO) =  " + hoy.Month.ToString();
+                            hoy.Year.ToString() + " and Extract(month from FE_VENCIMIENTO) =  " + hoy.Month.ToString()  + "AND ROL='" +  ROL+  "'";
 
 
 
@@ -257,7 +257,7 @@ namespace SOCIOS.deportes
                     //Obtengo Vencidos
 
                     Query = "select NRO_SOCIO, NRO_DEP, BARRA, Nombre,Apellido,FE_VENCIMIENTO,ROL from deportes_adm where  Extract(year from FE_VENCIMIENTO )= " +
-                            Anio.ToString() + " and Extract(month from FE_VENCIMIENTO) =  " + Mes.ToString() + " and fe_Baja is  null";
+                            Anio.ToString() + " and Extract(month from FE_VENCIMIENTO) =  " + Mes.ToString() + " and fe_Baja is  null AND ROL='" +  ROL+  "'";
 
                     
 
@@ -513,7 +513,28 @@ namespace SOCIOS.deportes
 
 
             Vencimientos.DataSource = this.ObtenerVencimiento();
+         
+        }
+
+        private void filtrar_Venc_Click(object sender, EventArgs e)
+        {
+            if (VGlobales.vp_role == "DEPORTES")
+            {
+
+
+                ROL = cbRol.Text.TrimEnd().TrimStart();
+
+            }
+            else
+            {
+
+
+                ROL = VGlobales.vp_role.TrimEnd().TrimStart();
+            }
+
+
             Vencimientos.DataSource = this.ObtenerVencimiento();
+
         }
 
         //private void InitializeComponent()

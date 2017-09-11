@@ -23,6 +23,7 @@ namespace SOCIOS.deportes
         bool Update;
         string ROL = "";
         SOCIOS.deportes.CamposService cs = new CamposService();
+        bool Mostrar_Asistencia = true;
         public admAsistencia()
         {
             InitializeComponent();
@@ -130,7 +131,7 @@ namespace SOCIOS.deportes
         { string connectionString;
             DataTable dt1 = new DataTable("RESULTADOS");
 
-            string Query = "select P , Id , Nombre,Apellido   from socio_actividades_asistencia"
+            string Query = "select P , Id , Nombre,Apellido,DNI   from socio_actividades_asistencia"
                         + " where SECTACT =" + ID +
                         " AND (Extract (DAY from  FECHA))= " + fecha.Day.ToString() +
                          " AND (Extract (MONTH from  FECHA))= " + fecha.Month.ToString() +
@@ -163,7 +164,7 @@ namespace SOCIOS.deportes
                     dt1.Columns.Add("Id", typeof(string));
                     dt1.Columns.Add("Nombre", typeof(string));
                     dt1.Columns.Add("Apellido", typeof(string));
-                  
+                    dt1.Columns.Add("DNI", typeof(string));
 
 
                     ds1.Tables.Add(dt1);
@@ -177,7 +178,8 @@ namespace SOCIOS.deportes
                         dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("P")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Id")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Nombre")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("Apellido")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("Apellido")).Trim(),
+                                      reader3.GetString(reader3.GetOrdinal("DNI")).Trim());
 
                     }
 
@@ -233,7 +235,6 @@ namespace SOCIOS.deportes
                     DataGridViewCheckBoxColumn col1 = new DataGridViewCheckBoxColumn();
 
                     dt1.Columns.Add("P", typeof(string));
-
                     dt1.Columns.Add("Id", typeof(string));
                     dt1.Columns.Add("Nombre", typeof(string));
                     dt1.Columns.Add("Apellido", typeof(string));
@@ -312,7 +313,7 @@ namespace SOCIOS.deportes
 
         private void button4_Click(object sender, EventArgs e)
         {
-            DateTime Fecha=dpFecha.Value;
+         try {   DateTime Fecha=dpFecha.Value;
             int SectAct=Int32.Parse(ID);
             string ROL = "";
             if (VGlobales.vp_role == "DEPORTES")
@@ -321,8 +322,7 @@ namespace SOCIOS.deportes
                 ROL = VGlobales.vp_role.TrimEnd().TrimStart();
 
 
-            try
-            {
+         
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
 
@@ -331,23 +331,28 @@ namespace SOCIOS.deportes
                     string Nombre = row.Cells[3].Value.ToString();
                     string Apellido = row.Cells[4].Value.ToString();
                     string DNI = row.Cells[5].Value.ToString();
-                    bool bChecked=false;
+                    bool bChecked = false;
 
 
-                    if (null != oCell && null != oCell.Value  )
-                      bChecked= Convert.ToBoolean( oCell.Value.ToString());
+                    if (null != oCell && null != oCell.Value)
+                    {
+                        if (oCell.Value.ToString() == "1")
+                            bChecked = true;
+                        else
+                            bChecked = false;
 
+                    }
                     if (bChecked == true)
-                        this.GrabarDatos(rID, SectAct, 1, Nombre, Apellido, Fecha,ROL,DNI);
+                        this.GrabarDatos(rID, SectAct, 1, Nombre, Apellido, Fecha, ROL, DNI);
                     else
-                        this.GrabarDatos(rID, SectAct, 0, Nombre, Apellido, Fecha,ROL,DNI);
+                        this.GrabarDatos(rID, SectAct, 0, Nombre, Apellido, Fecha, ROL, DNI);
 
 
                 }
                 MessageBox.Show("PROCESO REALIZADO CON EXITO", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Refrescar_Grilla(Fecha, SectAct);
 
-
+           
 
             }
 

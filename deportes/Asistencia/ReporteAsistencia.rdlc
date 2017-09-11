@@ -60,10 +60,10 @@
               <Width>0.36574in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.51156in</Width>
+              <Width>2.48031in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.87878in</Width>
+              <Width>1.42045in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1in</Width>
@@ -290,7 +290,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Day(Fields!Fecha.Value).ToString("00") &amp; "- " &amp; Month(Fields!Fecha.Value).ToString("00") &amp; "-" &amp; Year(Fields!Fecha.Value).ToString()</Value>
+                              <Value>= DateValue(Fields!Fecha.Value).ToShortDateString()</Value>
                               <Style>
                                 <FontFamily>Courier New</FontFamily>
                               </Style>
@@ -369,7 +369,7 @@
         <Top>0.92375in</Top>
         <Left>0.30916in</Left>
         <Height>0.5in</Height>
-        <Width>5.75608in</Width>
+        <Width>5.2665in</Width>
         <Style>
           <Border>
             <Style>None</Style>
