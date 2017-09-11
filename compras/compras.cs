@@ -1459,7 +1459,11 @@ namespace SOCIOS
                 cbSectores.SelectedValue = row[10].ToString().Trim();
                 tbNumSecGral.Text = row[13].ToString().Trim();
                 cbTipoComprobante.SelectedValue = row[14];
-                tbDescuentoTotal.Text = row[18].ToString();
+
+                if (row[18].ToString() == "")
+                    tbDescuentoTotal.Text = "0";
+                else
+                    tbDescuentoTotal.Text = row[18].ToString();
                 
 
                 if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
@@ -1499,7 +1503,14 @@ namespace SOCIOS
 
         private void btnModArt_Click(object sender, EventArgs e)
         {
-            agregarModificarArticulo("MODIFICAR", ID_ARTICULO, sender);
+            if (gbFacturas.Visible == true)
+            {
+                agregarModificarFactura("MODIFICAR", 0, sender);
+            }
+            else
+            {
+                agregarModificarArticulo("MODIFICAR", 0, sender);
+            }
         }
 
         private void btnAdjuntar_Click(object sender, EventArgs e)
@@ -1659,6 +1670,7 @@ namespace SOCIOS
                         foreach (ListViewItem itemRow in lvOP.Items)
                         {
                             int ID_FACTURA = int.Parse(itemRow.SubItems[0].Text);
+                            BO_COMPRAS.opEnFactura(ID_FACTURA, ID_OP);
                             BO_COMPRAS.facturaXop(ID_OP, ID_FACTURA);
                         }
 
@@ -1713,9 +1725,11 @@ namespace SOCIOS
                     }
 
                     limpiarOrdenDePago();
-                    btnGuardarOP.Enabled = true;
-                    //REFRESCAR GRILLA BUSQUEDA
-                    comboCheques(int.Parse(cbBancos.SelectedValue.ToString()), cbCheques);
+                    desbloquearTabPages();
+                    bloquearGrupos();
+                    eliminarCheques("TODOS");
+                    buscarFactura("BUSCAR");
+                    tabControl1.SelectedTab = tabPage1;
                     Cursor = Cursors.Default;
                 }
             }
@@ -3423,8 +3437,8 @@ namespace SOCIOS
                     {
                         foreach (DataGridViewRow row in dgArticulos.Rows)
                         {
-                            string ID_ART = row.Cells["AID"].Value.ToString();
-                            bool EXISTE = existe.check("ARTICULOS", "ID", ID_ART);
+                            //string ID_ART = row.Cells["AID"].Value.ToString();
+                            //bool EXISTE = existe.check("ARTICULOS", "ID", ID_ART);
                             Int32 CANTIDAD;
                             string DETALLE = string.Empty;
                             decimal PRECIO;
@@ -3437,15 +3451,16 @@ namespace SOCIOS
                             NSERIE = Convert.ToString(row.Cells["NSERIE"].Value).Trim();
                             TIPO_ART = Convert.ToInt16(row.Cells["TID"].Value);
                             DESCUENTO = row.Cells["DESC"].Value.ToString();
-
-                            if (EXISTE == false)
+                            BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
+                            
+                            /*if (EXISTE == false)
                             {
                                 BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
                             }
                             else
                             {
                                 BO_COMPRAS.modificarArticulos(int.Parse(ID_ART), DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
-                            }
+                            }*/
                         }
                     }
 
@@ -3832,6 +3847,10 @@ namespace SOCIOS
             else if (cbProvTrans.Text.Trim() == "")
             {
                 MessageBox.Show("SELECCIONAR UN PROVEEDOR", "ERROR");
+            }
+            else if (cbCuentaDestinoTrans.Items.Count == 0)
+            {
+                MessageBox.Show("NO SE ENCONTRÓ NINGUNA CUENTA BANCARIA ASIGNADA AL PROVEEDOR SELECCIONADO", "ERROR");
             }
             else if (lbPdfTrans.Text == "ARCHIVO PDF NO CARGADO")
             {

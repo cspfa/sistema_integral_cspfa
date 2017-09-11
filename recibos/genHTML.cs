@@ -437,9 +437,13 @@ namespace SOCIOS
                     string F_BAJCI = mt.GetString(mt.GetOrdinal("F_BAJCI"));
                     string JERARQUIA = mt.GetString(mt.GetOrdinal("JERARQUIA"));
                     string M_BAJPO = mt.GetString(mt.GetOrdinal("M_BAJPO"));
+                    string ID_EMPLEADO = "NO POSEE";
+
+                    if (mt.GetString(mt.GetOrdinal("ID_EMPLEADO")) != "")
+                        ID_EMPLEADO = mt.GetString(mt.GetOrdinal("ID_EMPLEADO"));
 
                     html += "<table width='100%' style='margin-top:10px;font-size:14px;' border='0' cellspacing='0' cellpadding='4'>";
-                    html += "<tr style='background:#F9F9F9;'> <td align='left'><strong>DATOS DEL <br/> TITULAR</strong></td> <td align='center'>CATEGORÍA:<BR/> <strong>" + CATEGORIA + "</strong></td> <td align='center'>NRO SOCIO:<BR/> <strong>" + NRO_SOC + "/" + NRO_DEP + "</strong></td> <td align='center'>NRO BENEFICIO:<BR/><strong>" + PCRJP1 + "/" + PCRJP2 + "/" + PCRJP3 + "</strong></td> <td align='center'>NRO AFILIADO:<BR/><strong>" + AAR + "/" + ACRJP2 + "</strong> </td> <td align='right'><img src=' " + Directory.GetCurrentDirectory() + "\\TMP_IMG\\FOTO_TEMP.JPG' height='80' width='80' style='background-color:#ececec;' /></td> </tr>";
+                    html += "<tr style='background:#F9F9F9;'> <td align='left'><strong>DATOS DEL <br/> TITULAR</strong></td> <td align='center'>CATEGORÍA:<BR/> <strong>" + CATEGORIA + "</strong></td> <td align='center'>NRO SOCIO:<BR/> <strong>" + NRO_SOC + "/" + NRO_DEP + "</strong></td> <td align='center'>NRO BENEFICIO:<BR/><strong>" + PCRJP1 + "/" + PCRJP2 + "/" + PCRJP3 + "</strong></td> <td align='center'>NRO AFILIADO:<BR/><strong>" + AAR + "/" + ACRJP2 + "</strong> </td> <td align='center'>ID EMPLEADO:<BR/><strong>" + ID_EMPLEADO + "</strong> </td> <td align='right'><img src=' " + Directory.GetCurrentDirectory() + "\\TMP_IMG\\FOTO_TEMP.JPG' height='80' width='80' style='background-color:#ececec;' /></td> </tr>";
                     html += "</table>";
                     html += "<table width='100%' style='font-size:12px;' border='0' cellspacing='0' cellpadding='4'>";
                     html += "<tr style='background:#FFF;'> <td align='left' colspan='5'> <strong>PERSONALES</strong> </td> </tr>";
