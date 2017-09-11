@@ -1459,7 +1459,11 @@ namespace SOCIOS
                 cbSectores.SelectedValue = row[10].ToString().Trim();
                 tbNumSecGral.Text = row[13].ToString().Trim();
                 cbTipoComprobante.SelectedValue = row[14];
-                tbDescuentoTotal.Text = row[18].ToString();
+
+                if (row[18].ToString() == "")
+                    tbDescuentoTotal.Text = "0";
+                else
+                    tbDescuentoTotal.Text = row[18].ToString();
                 
 
                 if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
