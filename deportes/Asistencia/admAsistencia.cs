@@ -317,7 +317,7 @@ namespace SOCIOS.deportes
             int SectAct=Int32.Parse(ID);
             string ROL = "";
             if (VGlobales.vp_role == "DEPORTES")
-                 ROL = cbRol.SelectedText.TrimEnd().TrimStart();
+                 ROL = cbRol.Text.TrimEnd().TrimStart();
             else
                 ROL = VGlobales.vp_role.TrimEnd().TrimStart();
 
