@@ -418,7 +418,7 @@ namespace SOCIOS
             try
             {
                 DataSet ds1 = new DataSet();
-                string query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4);";
+                string query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4 AND DESTINO <> 1  AND DESTINO <> 2  AND DESTINO <> 3);";
                 conString cs = new conString();
                 string connectionString = cs.get();
 
