@@ -132,8 +132,13 @@ namespace SOCIOS.deportes
                     while (reader3.Read())
                     {
                         string Titulo_Fecha;
-                      DateTime fecha =  DateTime.Parse(reader3.GetString(reader3.GetOrdinal("Fecha")).Trim());
-                      Titulo_Fecha = fecha.Day.ToString("00") + "-" + fecha.Month.ToString("00") + "-" + fecha.Year.ToString();
+                        if (reader3.GetString(reader3.GetOrdinal("Fecha")).Trim().Length > 0)
+                        {
+                            DateTime fecha = DateTime.Parse(reader3.GetString(reader3.GetOrdinal("Fecha")).Trim());
+                            Titulo_Fecha = fecha.Day.ToString("00") + "-" + fecha.Month.ToString("00") + "-" + fecha.Year.ToString();
+                        }
+                        else
+                            Titulo_Fecha = "";
 
                         dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("Id")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Nombre")).Trim(),

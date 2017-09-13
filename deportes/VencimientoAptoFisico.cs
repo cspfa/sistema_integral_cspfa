@@ -307,6 +307,108 @@ namespace SOCIOS.deportes
         }
 
 
+        public List<VencimientoXLS> Obtener_Sin_Apto()
+        {
+            List<VencimientoXLS> Vencimientos = new List<VencimientoXLS>();
+            VencimientoXLS itemVencimiento;
+            string Query;
+
+            DateTime hoy = System.DateTime.Now;
+            string connectionString;
+            DataTable dt1 = new DataTable("RESULTADOS");
+            DataSet ds1 = new DataSet();
+
+            Datos_ini ini3 = new Datos_ini();
+            int Mes = Int32.Parse(tbMes.Text.ToString());
+            int Anio = Int32.Parse(tbAnio.Text.ToString());
+
+
+            try
+            {
+                FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+                cs.DataSource = ini3.Servidor; //cs.Port = int.Parse(ini3.Puerto);
+                cs.Database = ini3.Ubicacion;
+                cs.UserID = VGlobales.vp_username;
+                cs.Password = VGlobales.vp_password;
+                cs.Role = VGlobales.vp_role;
+                cs.Dialect = 3;
+                connectionString = cs.ToString();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+
+                    FbTransaction transaction = connection.BeginTransaction();
+
+                    DataGridViewCheckBoxColumn col1 = new DataGridViewCheckBoxColumn();
+
+                    dt1.Columns.Add("NRO_SOCIO", typeof(string));
+
+                    dt1.Columns.Add("NRO_DEP", typeof(string));
+                    dt1.Columns.Add("BARRA", typeof(string));
+
+                    dt1.Columns.Add("Nombre", typeof(string));
+                    dt1.Columns.Add("Apellido", typeof(string));
+
+
+                    dt1.Columns.Add("FE_Vencimiento", typeof(string));
+                    dt1.Columns.Add("ROL", typeof(string));
+
+
+                    ds1.Tables.Add(dt1);
+
+
+                    //Obtengo Vencidos
+
+                    Query = "select NRO_SOCIO, NRO_DEP, BARRA, Nombre,Apellido,FE_VENCIMIENTO,ROL from deportes_adm where  FE_VENCIMIENTO is null AND ROL='" + ROL + "'";
+
+
+
+
+                    FbCommand cmd = new FbCommand(Query, connection, transaction);
+
+                    FbDataReader reader3 = cmd.ExecuteReader();
+
+                    while (reader3.Read())
+                    {
+                        itemVencimiento = new VencimientoXLS();
+                        itemVencimiento.NroSocio = reader3.GetString(reader3.GetOrdinal("NRO_SOCIO")).Trim();
+                        itemVencimiento.NroDepuracion = reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim();
+                        itemVencimiento.BARRA = reader3.GetString(reader3.GetOrdinal("BARRA")).Trim();
+                        itemVencimiento.Nombre = reader3.GetString(reader3.GetOrdinal("Nombre")).Trim();
+                        itemVencimiento.Apellido = reader3.GetString(reader3.GetOrdinal("Apellido")).Trim();
+
+                        itemVencimiento.Fecha = "";
+                        itemVencimiento.Rol = reader3.GetString(reader3.GetOrdinal("ROL")).Trim();
+
+                        Vencimientos.Add(itemVencimiento);
+
+                    }
+
+
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+
+
+
+
+
+
+
+
+            return Vencimientos;
+
+
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -535,6 +637,109 @@ namespace SOCIOS.deportes
 
             Vencimientos.DataSource = this.ObtenerVencimiento();
 
+        }
+
+        private void Filtar_Vencimiento_Click(object sender, EventArgs e)
+        {
+            SinFecha.DataSource = this.Obtener_Sin_Apto();
+        }
+
+        private void XLS_SIN_FECHA_Click(object sender, EventArgs e)
+        {
+            string data = null;
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+            xlApp = new Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Add();
+            xlWorkSheet = xlWorkBook.Worksheets[1];
+            xlWorkSheet.Range["A1:Z1"].Font.Bold = true;
+            xlWorkSheet.Cells[1, 1] = "NRO_SOCIO";
+            xlWorkSheet.Cells[1, 2] = "NRO_DEP";
+            xlWorkSheet.Cells[1, 3] = "BARRA";
+            xlWorkSheet.Cells[1, 4] = "NOMBRE";
+            xlWorkSheet.Cells[1, 5] = "APELLIDO";
+           
+            xlWorkSheet.Cells[1, 6] = "ROL";
+
+            // string ruta = "C://CSPFA_SOCIOS//vencimientos.xls";
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "*.xls| *.csv";
+
+
+            saveFileDialog1.Title = "Guardar Listado";
+
+
+
+
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+
+                DialogResult result = MessageBox.Show("LISTADO GENERADO CORRECTAMENTE \n\n", "LISTO!");
+                if (VGlobales.vp_role == "DEPORTES")
+                {
+
+
+                    ROL = cbRol.Text.TrimEnd().TrimStart();
+
+                }
+                else
+                {
+
+
+                    ROL = VGlobales.vp_role.TrimEnd().TrimStart();
+                }
+
+
+
+
+
+
+                int i = 2;
+
+
+                foreach (VencimientoXLS r in this.Obtener_Sin_Apto())
+                {
+                    xlWorkSheet.Cells[i, 1] = r.NroSocio;
+                    xlWorkSheet.Columns[1].AutoFit();
+
+                    xlWorkSheet.Cells[i, 2] = r.NroDepuracion;
+                    xlWorkSheet.Columns[2].AutoFit();
+
+                    xlWorkSheet.Cells[i, 3] = r.BARRA;
+                    xlWorkSheet.Columns[3].AutoFit();
+
+                    xlWorkSheet.Cells[i, 4] = r.Nombre;
+                    xlWorkSheet.Columns[4].AutoFit();
+
+                    xlWorkSheet.Cells[i, 5] = r.Apellido;
+                    xlWorkSheet.Columns[5].AutoFit();
+
+
+                    xlWorkSheet.Cells[i, 6] = r.Rol;
+                    xlWorkSheet.Columns[6].AutoFit();
+
+
+
+
+                    i = i + 1;
+                }
+
+
+               
+
+                xlWorkBook.SaveAs(saveFileDialog1.FileName, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(true, misValue, misValue);
+                xlApp.Quit();
+
+
+                SOCIOS.XLS.releaseObject(xlWorkSheet);
+                SOCIOS.XLS.releaseObject(xlWorkBook);
+                SOCIOS.XLS.releaseObject(xlApp);
+            }
         }
 
         //private void InitializeComponent()

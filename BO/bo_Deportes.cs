@@ -16,7 +16,7 @@ namespace SOCIOS
     {
         SOCIOS.bo dlog = new bo();
 
-        public int InsertDeportes(int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS,string ROL, int ID_ROL)
+        public int InsertDeportes(int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime? FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime? VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS,string ROL, int ID_ROL)
         {
             db resultado = new db();
 
@@ -26,18 +26,27 @@ namespace SOCIOS
             vector_contenidos.Add(COD_SOC);
             vector_contenidos.Add(BARRA);
             vector_contenidos.Add(ID_ADHERENTE);
+           
             if (FE_APTO !=null)
                vector_contenidos.Add(null);
             else
                 vector_contenidos.Add(FE_APTO.Value.ToShortDateString());
+            if (FE_CARNET != null)
+                vector_contenidos.Add(FE_CARNET.Value.ToShortDateString());
+            else
+                vector_contenidos.Add(null);
 
-            vector_contenidos.Add(FE_CARNET.ToShortDateString());
             vector_contenidos.Add(TIPO_CARNET);
             vector_contenidos.Add(MOROSO);
             vector_contenidos.Add(USUARIO);
             vector_contenidos.Add(FECHA.ToShortDateString());
             vector_contenidos.Add(DNI);
-            vector_contenidos.Add(VENCIMIENTO);
+          
+            if (VENCIMIENTO != null)
+                vector_contenidos.Add(VENCIMIENTO);
+            else
+                vector_contenidos.Add(null);
+
             vector_contenidos.Add(FOTO);
             vector_contenidos.Add(POC);
             vector_contenidos.Add(MONTO_MORA);
@@ -124,7 +133,7 @@ namespace SOCIOS
 
         }
 
-        public void UpdateDeportes(int ID, int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS)
+        public void UpdateDeportes(int ID, int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime? FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime? VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS)
         {
             db resultado = new db();
 
@@ -140,13 +149,21 @@ namespace SOCIOS
             else
                 vector_contenidos.Add(null);
 
-            vector_contenidos.Add(FE_CARNET.ToShortDateString());
+            if (FE_CARNET != null)
+                vector_contenidos.Add(FE_CARNET.Value.ToShortDateString());
+            else
+                vector_contenidos.Add(null);
+
             vector_contenidos.Add(TIPO_CARNET);
             vector_contenidos.Add(MOROSO);
             vector_contenidos.Add(USUARIO);
             vector_contenidos.Add(FECHA.ToShortDateString());
             vector_contenidos.Add(DNI);
-            vector_contenidos.Add(VENCIMIENTO);
+            if (VENCIMIENTO != null)
+                vector_contenidos.Add(VENCIMIENTO.Value.ToShortDateString());
+            else
+                vector_contenidos.Add(null);
+
             vector_contenidos.Add(FOTO);
             vector_contenidos.Add(POC);
             vector_contenidos.Add(MONTO_MORA);

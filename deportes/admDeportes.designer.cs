@@ -456,6 +456,7 @@
             this.cbCarnet.Name = "cbCarnet";
             this.cbCarnet.Size = new System.Drawing.Size(86, 21);
             this.cbCarnet.TabIndex = 72;
+            this.cbCarnet.SelectedIndexChanged += new System.EventHandler(this.cbCarnet_SelectedIndexChanged);
             // 
             // label1
             // 

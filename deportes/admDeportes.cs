@@ -101,6 +101,7 @@ namespace SOCIOS
 
             ArmoCodigoBarra();
             //Carga dtTipoCarnet
+            this.Setear_Vista_Fecha_Carnet();
             
 
 
@@ -685,7 +686,12 @@ namespace SOCIOS
                 ID = Int32.Parse(foundRows[0][0].ToString().Trim());
                 if (foundRows[0][1].ToString().Length >1)
                    dpApto.Value = DateTime.Parse(foundRows[0][1].ToString().Trim());
-                dpCarnet.Value = DateTime.Parse(foundRows[0][2].ToString().Trim());
+
+                if (foundRows[0][2].ToString().Length >1)
+                   dpCarnet.Value = DateTime.Parse(foundRows[0][2].ToString().Trim());
+                
+                 
+
                 cbCarnet.SelectedValue = foundRows[0][3].ToString().Trim();
 
 
@@ -815,7 +821,11 @@ namespace SOCIOS
                     dpApto.Value = System.DateTime.Now;
                 
                 }
-                dpCarnet.Value = DateTime.Parse(foundRows[0][2].ToString().Trim());
+
+                if (foundRows[0][2].ToString().Length > 1)
+                    dpCarnet.Value = DateTime.Parse(foundRows[0][2].ToString().Trim());
+
+               
                 cbCarnet.SelectedValue = foundRows[0][3].ToString().Trim();
 
 
@@ -1082,13 +1092,20 @@ namespace SOCIOS
 
         private void btnGrabar_Click(object sender, EventArgs e)
         {
-            DateTime? fechaApto = null; 
+            DateTime? fechaApto = null;
+            DateTime? fechaCarnet = null;
+            DateTime? Vencimiento = null;
             if (cbApto.Checked)
-               fecha_Apto= DateTime.Parse(dpApto.Text);
-            DateTime fechaCarnet = DateTime.Parse(dpCarnet.Text);
+            {
+                fecha_Apto = DateTime.Parse(dpApto.Text);
+                Vencimiento = DateTime.Parse(lbVencimiento.Text);
+            }
+            
             DateTime fechaActual = System.DateTime.Now;
             DateTime? fechaMora = null;
             decimal monto = decimal.Parse(tbMoraMonto.Text);
+
+
             
             //si tiene mora marcar fecha mora, sino fecha en null
             if (lbMoraAnio.Visible == true)
@@ -1096,7 +1113,7 @@ namespace SOCIOS
 
             int TipoCarnet = Int32.Parse(cbCarnet.SelectedValue.ToString());
             int Moroso = Int32.Parse(cbMora.SelectedValue.ToString());
-            DateTime Vencimiento = DateTime.Parse(lbVencimiento.Text);
+            
             string FormaPago = cbPago.SelectedValue.ToString();
 
             string Mail = "";
@@ -1108,6 +1125,12 @@ namespace SOCIOS
             else if ((lbEmail.Text.Length > 0) && !(lbEmail.Text.Contains("NO DISPONIBLE")))
                 Mail = lbEmail.Text;
 
+            // 13-09 Fecha Carnet y Fecha De Vencimiento. todo en null dado el caso
+
+            if (TipoCarnet !=4)
+                fechaCarnet = DateTime.Parse(dpCarnet.Text);
+
+            
 
 
             try
@@ -1115,7 +1138,7 @@ namespace SOCIOS
                 if (Mode == "INSERT")
                 {
 
-                    ID = dlog.InsertDeportes(titular_id, barra, adherente_id, fecha_Apto, fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text, VGlobales.vp_role, dlog.Proximo_ID(VGlobales.vp_role));
+                    ID = dlog.InsertDeportes(titular_id, barra, adherente_id, fecha_Apto,fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text, VGlobales.vp_role, dlog.Proximo_ID(VGlobales.vp_role));
                     MessageBox.Show("REGISTRO DEPORTES CARGADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblEstado.Text = "REGISTRO GRABADO CON EXITO!";
                     Mode = "UPDATE";
@@ -1363,6 +1386,27 @@ namespace SOCIOS
               lbVencimiento.Visible = false;
             }
         }
+
+        private void cbCarnet_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Setear_Vista_Fecha_Carnet();
+
+
+        }
+            private void Setear_Vista_Fecha_Carnet()
+        {
+            if (cbCarnet.Text.Contains("NO"))
+            {
+                lblFechaCarnet.Visible = false;
+                dpCarnet.Visible = false;
+            }
+            else
+            {
+                lblFechaCarnet.Visible = true;
+                dpCarnet.Visible = true;
+
+            }
+            }
 
     }
 }
