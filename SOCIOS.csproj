@@ -159,6 +159,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="abmCargos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="abmCargos.Designer.cs">
+      <DependentUpon>abmCargos.cs</DependentUpon>
+    </Compile>
     <Compile Include="bono\BonosOdontologia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,7 @@
     <Compile Include="BO\bo_Compras.cs" />
     <Compile Include="BO\bo_Deportes.cs" />
     <Compile Include="BO\bo_Descuentos.cs" />
+    <Compile Include="BO\bo_IngresosPersonas.cs" />
     <Compile Include="BO\bo_RegSoc.cs" />
     <Compile Include="BO\bo_Tecnica.cs" />
     <Compile Include="copyFiles\CopyFiles.cs" />
@@ -298,23 +305,23 @@
     <Compile Include="deportes\admDeportes.designer.cs">
       <DependentUpon>admDeportes.cs</DependentUpon>
     </Compile>
-    <Compile Include="deportes\Asistencias\admAsistencia.cs">
+    <Compile Include="deportes\Asistencia\admAsistencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="deportes\Asistencias\admAsistencia.designer.cs">
+    <Compile Include="deportes\Asistencia\admAsistencia.designer.cs">
       <DependentUpon>admAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="deportes\Asistencias\AsistenciaService.cs" />
-    <Compile Include="deportes\Asistencias\ReporteAsistencia.cs">
+    <Compile Include="deportes\Asistencia\AsistenciaService.cs" />
+    <Compile Include="deportes\Asistencia\ReporteAsistencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="deportes\Asistencias\ReporteAsistencia.designer.cs">
+    <Compile Include="deportes\Asistencia\ReporteAsistencia.designer.cs">
       <DependentUpon>ReporteAsistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="deportes\Asistencias\VerificacionAsistencia.cs">
+    <Compile Include="deportes\Asistencia\VerificacionAsistencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="deportes\Asistencias\VerificacionAsistencia.designer.cs">
+    <Compile Include="deportes\Asistencia\VerificacionAsistencia.designer.cs">
       <DependentUpon>VerificacionAsistencia.cs</DependentUpon>
     </Compile>
     <Compile Include="deportes\CadetesMayores.cs">
@@ -1117,6 +1124,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Utils\XLS.cs" />
+    <EmbeddedResource Include="abmCargos.resx">
+      <DependentUpon>abmCargos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bono\BonoHotel.rdlc" />
     <EmbeddedResource Include="bono\BonoOdontologico.rdlc" />
     <EmbeddedResource Include="bono\BonoPaquete.rdlc" />
@@ -1185,16 +1195,16 @@
     <EmbeddedResource Include="deportes\admDeportes.resx">
       <DependentUpon>admDeportes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="deportes\Asistencias\admAsistencia.resx">
+    <EmbeddedResource Include="deportes\Asistencia\admAsistencia.resx">
       <DependentUpon>admAsistencia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="deportes\Asistencias\Asistencia.rdlc" />
-    <EmbeddedResource Include="deportes\Asistencias\ReporteAsistencia.rdlc" />
-    <EmbeddedResource Include="deportes\Asistencias\ReporteAsistencia.resx">
+    <EmbeddedResource Include="deportes\Asistencia\Asistencia.rdlc" />
+    <EmbeddedResource Include="deportes\Asistencia\ReporteAsistencia.rdlc" />
+    <EmbeddedResource Include="deportes\Asistencia\ReporteAsistencia.resx">
       <DependentUpon>ReporteAsistencia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="deportes\Asistencias\VerificacionAsistencia.rdlc" />
-    <EmbeddedResource Include="deportes\Asistencias\VerificacionAsistencia.resx">
+    <EmbeddedResource Include="deportes\Asistencia\VerificacionAsistencia.rdlc" />
+    <EmbeddedResource Include="deportes\Asistencia\VerificacionAsistencia.resx">
       <DependentUpon>VerificacionAsistencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="deportes\CadetesMayores.resx">

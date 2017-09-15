@@ -2081,5 +2081,11 @@ namespace SOCIOS
             SOCIOS.Turismo.TipoHabitacion tp = new Turismo.TipoHabitacion();
             tp.ShowDialog();
         }
+
+        private void aBMPersonasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            abmPersonas ap = new abmPersonas();
+            ap.ShowDialog();
+        }
     }
 }

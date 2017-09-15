@@ -58,16 +58,10 @@
             this.sectoresYActividadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.profesionalesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cargaEscuelaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registroDeLlamadasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empleadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.empleadosDesvinculadosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.crearUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresosPersonalYDirectivosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importarDatosCamposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importarBienestarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iDEmpleadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.noEstanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afiliacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirAutorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renunciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,6 +112,7 @@
             this.aBMTrasladoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMTipoSalidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMSalidasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBMTipoHabitaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.arancelesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.confiteríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,7 +149,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.aBMTipoHabitaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aBMPersonasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -361,16 +356,10 @@
             this.sectoresYActividadesToolStripMenuItem,
             this.profesionalesToolStripMenuItem1,
             this.cargaEscuelaToolStripMenuItem,
-            this.registroDeLlamadasToolStripMenuItem,
-            this.empleadosToolStripMenuItem,
             this.empleadosDesvinculadosToolStripMenuItem,
-            this.vToolStripMenuItem,
-            this.crearUsuarioToolStripMenuItem,
             this.ingresosPersonalYDirectivosToolStripMenuItem,
             this.importarDatosCamposToolStripMenuItem,
-            this.importarBienestarToolStripMenuItem,
-            this.iDEmpleadoToolStripMenuItem,
-            this.noEstanToolStripMenuItem});
+            this.importarBienestarToolStripMenuItem});
             this.procesosToolStripMenuItem.Enabled = false;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -442,22 +431,6 @@
             this.cargaEscuelaToolStripMenuItem.Text = "Carga Escuela";
             this.cargaEscuelaToolStripMenuItem.Click += new System.EventHandler(this.cargaEscuelaToolStripMenuItem_Click);
             // 
-            // registroDeLlamadasToolStripMenuItem
-            // 
-            this.registroDeLlamadasToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("registroDeLlamadasToolStripMenuItem.Image")));
-            this.registroDeLlamadasToolStripMenuItem.Name = "registroDeLlamadasToolStripMenuItem";
-            this.registroDeLlamadasToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.registroDeLlamadasToolStripMenuItem.Text = "Registro de llamadas";
-            this.registroDeLlamadasToolStripMenuItem.Click += new System.EventHandler(this.registroDeLlamadasToolStripMenuItem_Click);
-            // 
-            // empleadosToolStripMenuItem
-            // 
-            this.empleadosToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.group;
-            this.empleadosToolStripMenuItem.Name = "empleadosToolStripMenuItem";
-            this.empleadosToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.empleadosToolStripMenuItem.Text = "Empleados";
-            this.empleadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosToolStripMenuItem_Click);
-            // 
             // empleadosDesvinculadosToolStripMenuItem
             // 
             this.empleadosDesvinculadosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("empleadosDesvinculadosToolStripMenuItem.Image")));
@@ -466,24 +439,10 @@
             this.empleadosDesvinculadosToolStripMenuItem.Text = "Empleados Desvinculados";
             this.empleadosDesvinculadosToolStripMenuItem.Click += new System.EventHandler(this.empleadosDesvinculadosToolStripMenuItem_Click);
             // 
-            // vToolStripMenuItem
-            // 
-            this.vToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("vToolStripMenuItem.Image")));
-            this.vToolStripMenuItem.Name = "vToolStripMenuItem";
-            this.vToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.vToolStripMenuItem.Text = "Volvé a formar parte";
-            this.vToolStripMenuItem.Click += new System.EventHandler(this.vToolStripMenuItem_Click);
-            // 
-            // crearUsuarioToolStripMenuItem
-            // 
-            this.crearUsuarioToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("crearUsuarioToolStripMenuItem.Image")));
-            this.crearUsuarioToolStripMenuItem.Name = "crearUsuarioToolStripMenuItem";
-            this.crearUsuarioToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.crearUsuarioToolStripMenuItem.Text = "Crear Usuario";
-            this.crearUsuarioToolStripMenuItem.Click += new System.EventHandler(this.crearUsuarioToolStripMenuItem_Click);
-            // 
             // ingresosPersonalYDirectivosToolStripMenuItem
             // 
+            this.ingresosPersonalYDirectivosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aBMPersonasToolStripMenuItem});
             this.ingresosPersonalYDirectivosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresosPersonalYDirectivosToolStripMenuItem.Image")));
             this.ingresosPersonalYDirectivosToolStripMenuItem.Name = "ingresosPersonalYDirectivosToolStripMenuItem";
             this.ingresosPersonalYDirectivosToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
@@ -505,20 +464,6 @@
             this.importarBienestarToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
             this.importarBienestarToolStripMenuItem.Text = "Importar Bienestar";
             this.importarBienestarToolStripMenuItem.Click += new System.EventHandler(this.importarBienestarToolStripMenuItem_Click);
-            // 
-            // iDEmpleadoToolStripMenuItem
-            // 
-            this.iDEmpleadoToolStripMenuItem.Name = "iDEmpleadoToolStripMenuItem";
-            this.iDEmpleadoToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.iDEmpleadoToolStripMenuItem.Text = "ID Empleado";
-            this.iDEmpleadoToolStripMenuItem.Click += new System.EventHandler(this.iDEmpleadoToolStripMenuItem_Click);
-            // 
-            // noEstanToolStripMenuItem
-            // 
-            this.noEstanToolStripMenuItem.Name = "noEstanToolStripMenuItem";
-            this.noEstanToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.noEstanToolStripMenuItem.Text = "No estan";
-            this.noEstanToolStripMenuItem.Click += new System.EventHandler(this.noEstanToolStripMenuItem_Click);
             // 
             // afiliacionesToolStripMenuItem
             // 
@@ -958,6 +903,13 @@
             this.aBMSalidasToolStripMenuItem.Text = "ABM Salidas";
             this.aBMSalidasToolStripMenuItem.Click += new System.EventHandler(this.aBMSalidasToolStripMenuItem_Click);
             // 
+            // aBMTipoHabitaciónToolStripMenuItem
+            // 
+            this.aBMTipoHabitaciónToolStripMenuItem.Name = "aBMTipoHabitaciónToolStripMenuItem";
+            this.aBMTipoHabitaciónToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.aBMTipoHabitaciónToolStripMenuItem.Text = "ABM Tipo Habitación";
+            this.aBMTipoHabitaciónToolStripMenuItem.Click += new System.EventHandler(this.aBMTipoHabitaciónToolStripMenuItem_Click);
+            // 
             // proveedoresToolStripMenuItem1
             // 
             this.proveedoresToolStripMenuItem1.Name = "proveedoresToolStripMenuItem1";
@@ -1266,12 +1218,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // aBMTipoHabitaciónToolStripMenuItem
+            // aBMPersonasToolStripMenuItem
             // 
-            this.aBMTipoHabitaciónToolStripMenuItem.Name = "aBMTipoHabitaciónToolStripMenuItem";
-            this.aBMTipoHabitaciónToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.aBMTipoHabitaciónToolStripMenuItem.Text = "ABM Tipo Habitación";
-            this.aBMTipoHabitaciónToolStripMenuItem.Click += new System.EventHandler(this.aBMTipoHabitaciónToolStripMenuItem_Click);
+            this.aBMPersonasToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.user;
+            this.aBMPersonasToolStripMenuItem.Name = "aBMPersonasToolStripMenuItem";
+            this.aBMPersonasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aBMPersonasToolStripMenuItem.Text = "ABM Personas";
+            this.aBMPersonasToolStripMenuItem.Click += new System.EventHandler(this.aBMPersonasToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1361,12 +1314,9 @@
         private System.Windows.Forms.ToolStripMenuItem cargaEscuelaToolStripMenuItem;
         private System.Windows.Forms.PictureBox pbFoto;
         private System.Windows.Forms.ToolStripStatusLabel lbServidor;
-        private System.Windows.Forms.ToolStripMenuItem registroDeLlamadasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsListadoEscuela;
         private System.Windows.Forms.ToolStripMenuItem cargarObservaciones;
         private System.Windows.Forms.ToolStripMenuItem ingresosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem vToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteAsistenciaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cargaAsistenciaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem enviarVencimientosToolStripMenuItem;
@@ -1394,7 +1344,6 @@
         private System.Windows.Forms.ToolStripMenuItem contaduríaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ingresosPersonalYDirectivosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem crearUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem soporteTñecnicoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abrirTicketToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jardínMaternalToolStripMenuItem;
@@ -1425,8 +1374,6 @@
         private System.Windows.Forms.ToolStripMenuItem aBMToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem importarBienestarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ingresoXCantidadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem iDEmpleadoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem noEstanToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cajasAnterioresToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem verTicketsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaDePreciosToolStripMenuItem;
@@ -1441,5 +1388,6 @@
         private System.Windows.Forms.ToolStripMenuItem generalBelgranoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aBMTipoHabitaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem aBMPersonasToolStripMenuItem;
     }
 }
