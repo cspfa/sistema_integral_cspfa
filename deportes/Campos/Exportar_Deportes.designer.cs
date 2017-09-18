@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.gpRed = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.cbAsistencia = new System.Windows.Forms.CheckBox();
+            this.cb_Deportes = new System.Windows.Forms.CheckBox();
+            this.lbRol = new System.Windows.Forms.Label();
             this.cbROLES = new System.Windows.Forms.ComboBox();
             this.regRed = new System.Windows.Forms.Button();
             this.pnlID = new System.Windows.Forms.Panel();
@@ -46,25 +48,51 @@
             // 
             // gpRed
             // 
-            this.gpRed.Controls.Add(this.label2);
+            this.gpRed.Controls.Add(this.cbAsistencia);
+            this.gpRed.Controls.Add(this.cb_Deportes);
+            this.gpRed.Controls.Add(this.lbRol);
             this.gpRed.Controls.Add(this.cbROLES);
             this.gpRed.Controls.Add(this.regRed);
             this.gpRed.Controls.Add(this.pnlID);
             this.gpRed.Location = new System.Drawing.Point(12, 12);
             this.gpRed.Name = "gpRed";
-            this.gpRed.Size = new System.Drawing.Size(491, 110);
+            this.gpRed.Size = new System.Drawing.Size(882, 110);
             this.gpRed.TabIndex = 30;
             this.gpRed.TabStop = false;
             this.gpRed.Text = "Filtros Datos de Red";
             // 
-            // label2
+            // cbAsistencia
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "ROL";
+            this.cbAsistencia.AutoSize = true;
+            this.cbAsistencia.Checked = true;
+            this.cbAsistencia.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbAsistencia.Location = new System.Drawing.Point(444, 42);
+            this.cbAsistencia.Name = "cbAsistencia";
+            this.cbAsistencia.Size = new System.Drawing.Size(89, 17);
+            this.cbAsistencia.TabIndex = 36;
+            this.cbAsistencia.Text = "ASISTENCIA";
+            this.cbAsistencia.UseVisualStyleBackColor = true;
+            // 
+            // cb_Deportes
+            // 
+            this.cb_Deportes.AutoSize = true;
+            this.cb_Deportes.Checked = true;
+            this.cb_Deportes.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb_Deportes.Location = new System.Drawing.Point(444, 14);
+            this.cb_Deportes.Name = "cb_Deportes";
+            this.cb_Deportes.Size = new System.Drawing.Size(169, 17);
+            this.cb_Deportes.TabIndex = 35;
+            this.cb_Deportes.Text = "DEPORTES Y ACTIVIDADES";
+            this.cb_Deportes.UseVisualStyleBackColor = true;
+            // 
+            // lbRol
+            // 
+            this.lbRol.AutoSize = true;
+            this.lbRol.Location = new System.Drawing.Point(6, 19);
+            this.lbRol.Name = "lbRol";
+            this.lbRol.Size = new System.Drawing.Size(29, 13);
+            this.lbRol.TabIndex = 34;
+            this.lbRol.Text = "ROL";
             // 
             // cbROLES
             // 
@@ -168,7 +196,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gpRed;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbRol;
         private System.Windows.Forms.ComboBox cbROLES;
         private System.Windows.Forms.Button regRed;
         private System.Windows.Forms.Panel pnlID;
@@ -178,5 +206,7 @@
         private System.Windows.Forms.DateTimePicker fechaHasta;
         private System.Windows.Forms.DateTimePicker fechaDesde;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox cbAsistencia;
+        private System.Windows.Forms.CheckBox cb_Deportes;
     }
 }
