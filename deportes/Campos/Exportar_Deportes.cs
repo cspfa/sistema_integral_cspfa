@@ -13,17 +13,30 @@ namespace SOCIOS.deportes.Campos
     {
         SOCIOS.deportes.DeportesService ds = new DeportesService();
         List<Deporte_Importacion> lista = new List<Deporte_Importacion>();
+        string ROL = "";
 
-        public Exportar_Deportes()
+        public Exportar_Deportes(string pROL)
         {
             InitializeComponent();
-            this.InicializarCombos();
+            this.InicializarCombos(pROL);
 
         }
 
-        private void InicializarCombos()
+        private void InicializarCombos(string pROL)
         {
-            cbROLES.Items.Add("CPOCABA");
+            if (pROL.Length == 0)
+            {
+                cbROLES.Visible = true;
+
+                cbROLES.Items.Add("CPOCABA");
+            }
+            else
+            {
+                cbROLES.Visible = false;
+                ROL = pROL;
+                lbRol.Text = ROL;
+            }
+
             fechaDesde.Value = System.DateTime.Now.AddDays(-1);
             fechaHasta.Value = System.DateTime.Now.AddDays(1);
 
@@ -31,7 +44,15 @@ namespace SOCIOS.deportes.Campos
 
         private void regRed_Click(object sender, EventArgs e)
         {
-            lista = ds.Importar_Exportar_Deporte(FECHAS.fechaUSA(fechaDesde.Value), FECHAS.fechaUSA(fechaHasta.Value), cbROLES.Text.TrimEnd().TrimStart());
+
+            string ROL_IMPORTACION = "";
+
+            if (ROL.Length == 0)
+                ROL_IMPORTACION = cbROLES.Text.TrimEnd().TrimStart();
+            else
+                ROL_IMPORTACION = ROL;
+
+            lista = ds.Importar_Exportar_Deporte(FECHAS.fechaUSA(fechaDesde.Value), FECHAS.fechaUSA(fechaHasta.Value),ROL_IMPORTACION ,cb_Deportes.Checked);
             dgDeportes.Visible = true;
             dgDeportes.DataSource = lista;
          
@@ -43,7 +64,7 @@ namespace SOCIOS.deportes.Campos
             try
             {
 
-                ds.Proceso_Importar_Exportar(lista,fechaDesde.Value,fechaHasta.Value,cbROLES.Text);
+                ds.Proceso_Importar_Exportar(lista, fechaDesde.Value, fechaHasta.Value, cbROLES.Text, cb_Deportes.Checked, cbAsistencia.Checked);
                 dgDeportes.Visible = false;
                 MessageBox.Show("Proceso de Importacion Con Exito");
             }

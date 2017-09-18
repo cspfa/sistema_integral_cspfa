@@ -1147,7 +1147,7 @@ namespace SOCIOS
                 }
                 else
                 {
-                    dlog.UpdateDeportes(ID_REGISTRO, titular_id, barra, adherente_id, fechaApto, fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text);
+                    dlog.UpdateDeportes(ID_REGISTRO, titular_id, barra, adherente_id, fecha_Apto, fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text);
                     MessageBox.Show("REGISTRO DEPORTES GRABADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblEstado.Text = "REGISTRO GRABADO CON EXITO!";
 
