@@ -337,7 +337,7 @@ namespace SOCIOS.deportes
 
                     if (null != oCell && null != oCell.Value)
                     {
-                        if (oCell.Value.ToString() == "1")
+                        if (oCell.Value.ToString() == "True")
                             bChecked = true;
                         else
                             bChecked = false;
