@@ -591,12 +591,15 @@ namespace SOCIOS.deportes
 
 
       }
-      public List<SOCIOS.deportes.Deporte_Importacion> Importar_Exportar_Deporte(string DESDE, string  HASTA, string ROL_REMOTO)
+      public List<SOCIOS.deportes.Deporte_Importacion> Importar_Exportar_Deporte(string DESDE, string  HASTA, string ROL_REMOTO, bool Deportes)
       {
           List<SOCIOS.deportes.Deporte_Importacion> Altas          = new List<SOCIOS.deportes.Deporte_Importacion>();
           List<SOCIOS.deportes.Deporte_Importacion> Modificaciones = new List<SOCIOS.deportes.Deporte_Importacion>();
           List<SOCIOS.deportes.Deporte_Importacion> Bajas          = new List<SOCIOS.deportes.Deporte_Importacion>();
           List<SOCIOS.deportes.Deporte_Importacion> Total = new List<Deporte_Importacion>();
+          
+          if (Deportes == false)
+              return Total;
 
           Altas          = this.Registros_Importar("ALTAS", DESDE, HASTA, ROL_REMOTO);
           Modificaciones = this.Registros_Importar("MODIFICACIONES", DESDE, HASTA, ROL_REMOTO);
@@ -729,59 +732,112 @@ namespace SOCIOS.deportes
           }
           return lista;
 
+
           return null;
 
       
       }
 
-      public void Proceso_Importar_Exportar(List<SOCIOS.deportes.Deporte_Importacion> lista,DateTime Desde, DateTime Hasta,string ROL)
-
+      public void Proceso_Importar_Exportar(List<SOCIOS.deportes.Deporte_Importacion> lista,DateTime Desde, DateTime Hasta,string ROL,bool Deportes, bool Asistencia)
       {
-          this.Procesar_Deportes(lista,Desde,Hasta,ROL);
+          bool Importa = false;
+
+          if (Deportes && !(Control_Topes(Desde)))
+          {
+
+              if (MessageBox.Show("Tiene informacion en la base del Servidor con fechas ya existentes en los filtros, podria duplicarse informacion,Desea Continuar?", "ATENCION ", MessageBoxButtons.YesNo) == DialogResult.Yes)
+              {
+                  Importa = true;
+              }
+
+             
+          }
+
+
+          if (Importa)
+              this.Procesar_Deportes(lista, Desde, Hasta, ROL, Deportes, Asistencia);
+
 
        
       }
 
-
-      public void Procesar_Deportes(List<SOCIOS.deportes.Deporte_Importacion> lista,DateTime Desde,DateTime Hasta,string ROL)
+      public bool Control_Topes(DateTime Desde)
 
       {
-          foreach (Deporte_Importacion item in lista)
+          bool OK;
+         
+          List<SOCIOS.deportes.Deporte_Importacion> lista = new List<Deporte_Importacion>();
+          string QUERY = @"select   ID,FE_ALTA  from deportes_Adm WHERE FE_ALTA <'" + fechaUSA( Desde) + "'  order by FE_ALTA desc   ";
+
+              DataRow[] foundRows;
+          foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+        //  foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+
+          if (foundRows.Length > 0)
           {
-              if (item.TIPO == "ALTAS")
+
+              return false;
+
+          }
+          else
+              return true;
+
+
+      
+      }
+
+
+
+
+
+      public void Procesar_Deportes(List<SOCIOS.deportes.Deporte_Importacion> lista,DateTime Desde,DateTime Hasta,string ROL,bool Deportes, bool Asistencia)
+
+      {
+
+          if (Deportes)
+          {
+              foreach (Deporte_Importacion item in lista)
               {
-                  Thread.Sleep(50);
-                  dlog.InsertDeportes(item.ID_TTULAR, item.BARRA, item.ID_ADHERENTE, item.FE_APTO, item.FE_CARNET, item.TIPO_CARNET, item.MOROSO, item.FE_ALTA, item.USR_ALTA,item.NRO_SOCIO, item.NRO_DEP, item.DNI, item.FE_VENCIMIENTO, null, item.POC, item.MONTO_MORA, item.ANIO_MORA, item.NOMBRE, item.APELLIDO, item.EMAIL.TrimEnd(), item.OBS.TrimEnd(),item.ROL,item.ID_ROL);
+                  if (item.TIPO == "ALTAS")
+                  {
+                      Thread.Sleep(50);
+                      dlog.InsertDeportes(item.ID_TTULAR, item.BARRA, item.ID_ADHERENTE, item.FE_APTO, item.FE_CARNET, item.TIPO_CARNET, item.MOROSO, item.FE_ALTA, item.USR_ALTA, item.NRO_SOCIO, item.NRO_DEP, item.DNI, item.FE_VENCIMIENTO, null, item.POC, item.MONTO_MORA, item.ANIO_MORA, item.NOMBRE, item.APELLIDO, item.EMAIL.TrimEnd(), item.OBS.TrimEnd(), item.ROL, item.ID_ROL);
+
+                  }
+                  else
+                  {
+                      dlog.Importacion_Deportes(item.ID_BASE, item.ID_ROL, item.ID_TTULAR, item.ROL, item.NRO_SOCIO, item.NRO_DEP, item.BARRA, item.DNI, item.NOMBRE, item.APELLIDO, item.EMAIL, item.ID_ADHERENTE, item.SUSPENDIDO, item.FE_APTO, item.FE_CARNET, item.TIPO_CARNET, item.FE_VENCIMIENTO, item.MOROSO, item.MONTO_MORA, item.ANIO_MORA, item.POC, item.USR_ALTA, item.FE_ALTA, item.USR_MODIFICACION, item.FE_MODIFICACION, item.USR_BAJA, item.FE_BAJA, item.ID_TITULAR_ANT, item.NRO_SOCIO_ANT, item.NRO_DEP_ANT, item.OBS);
+
+                      dlog.Eliminar_Actividades(item.ID_ROL, item.ROL);
+
+                  }
+
+                  // hacer el insert de las actividades
+
+                  foreach (ActividadItem a in this.RegistrosActividad_Remoto(item.ID_ROL, item.ROL))
+                  {
+                      Thread.Sleep(50);
+                      dlog.Importacion_Actividad(a.ID_DEPORTE, a.NRO_SOCIO, a.NRO_DEP, a.BARRA, a.ANIO_DTO, a.CAT_SOC, a.SECTACT, a.PROFESIONAL, a.ID_ARANCEL, a.ARANCEL, Int32.Parse(a.ESTADO), a.USR_ALTA, a.FE_ALTA, a.USR_U, a.FE_U, a.USR_BAJA, a.FE_BAJA, a.ID_ROL, a.ROL, a.POR_DTO);
+
+
+                  }
+
+
+
+
+
+
 
               }
-              else
-              {    
-                  dlog.Importacion_Deportes(item.ID_BASE, item.ID_ROL, item.ID_TTULAR, item.ROL, item.NRO_SOCIO, item.NRO_DEP, item.BARRA, item.DNI, item.NOMBRE, item.APELLIDO, item.EMAIL, item.ID_ADHERENTE, item.SUSPENDIDO, item.FE_APTO, item.FE_CARNET, item.TIPO_CARNET, item.FE_VENCIMIENTO, item.MOROSO, item.MONTO_MORA, item.ANIO_MORA, item.POC, item.USR_ALTA, item.FE_ALTA, item.USR_MODIFICACION, item.FE_MODIFICACION, item.USR_BAJA, item.FE_BAJA, item.ID_TITULAR_ANT, item.NRO_SOCIO_ANT, item.NRO_DEP_ANT, item.OBS);
+          }
 
-                  dlog.Eliminar_Actividades(item.ID_ROL, item.ROL);
-
-              }
-
-              // hacer el insert de las actividades
-
-              foreach (ActividadItem a in this.RegistrosActividad_Remoto(item.ID_ROL, item.ROL))
-              {
-                  Thread.Sleep(50);
-                  dlog.Importacion_Actividad(a.ID_DEPORTE, a.NRO_SOCIO, a.NRO_DEP, a.BARRA,a.ANIO_DTO, a.CAT_SOC, a.SECTACT, a.PROFESIONAL, a.ID_ARANCEL, a.ARANCEL, Int32.Parse(a.ESTADO), a.USR_ALTA, a.FE_ALTA, a.USR_U, a.FE_U, a.USR_BAJA, a.FE_BAJA, a.ID_ROL, a.ROL, a.POR_DTO);
-
-
-              }
-
+          if (Asistencia)
+          {
               //hacer el insert de los presentes
 
               this.Procesar_Asistencia(lista, Desde, Hasta, ROL);
-
-             
-
-
-
           }
-
          
       
       }
