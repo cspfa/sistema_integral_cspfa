@@ -16,11 +16,12 @@ namespace SOCIOS.Entrada_Campo
         List<SOCIOS.EntradaCampo> LISTA = new List<SOCIOS.EntradaCampo>();
         bo_Entrada_Campo dlog = new bo_Entrada_Campo();
         EntradaCampoService entradaCampoService = new EntradaCampoService();
-        
-        public Procesar_Registros()
+        string ROL = "";
+        public Procesar_Registros(string ROLE)
         {
             InitializeComponent();
             this.InicializarCombos();
+            ROL = ROLE;
            
         }
 
@@ -196,6 +197,17 @@ namespace SOCIOS.Entrada_Campo
         private void procesarRed_Click(object sender, EventArgs e)
         {
             gpRed.Visible = true;
+            if (ROL.Length > 0)
+            {
+                cbROLES.Visible = false;
+                lbROL.Text = ROL;
+            }
+            else
+            {
+                cbROLES.Visible = true;
+                lbROL.Text = "ROL";
+            
+            }
         }
 
         private void cbID_CheckedChanged(object sender, EventArgs e)
@@ -208,8 +220,14 @@ namespace SOCIOS.Entrada_Campo
 
         private void regRed_Click(object sender, EventArgs e)
         {
+            string ROL_SELECCIONADO = "";
 
-             LISTA= entradaCampoService.InfoExportar(chkFiltro.Checked, cbID.Checked, tbDESDE.Text, tbHASTA.Text, cbROLES.Text);
+            if (ROL.Length > 0)
+               ROL_SELECCIONADO = ROL;
+            else
+                ROL_SELECCIONADO = cbROLES.Text;
+
+             LISTA= entradaCampoService.InfoExportar(chkFiltro.Checked, cbID.Checked, tbDESDE.Text, tbHASTA.Text,ROL_SELECCIONADO);
          
             dgvIngresos.DataSource = LISTA.OrderBy(x => x.ID_INTERNO).ToList();
 

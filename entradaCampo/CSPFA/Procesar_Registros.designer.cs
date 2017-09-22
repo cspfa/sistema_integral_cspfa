@@ -38,7 +38,7 @@
             this.lbGrabar = new System.Windows.Forms.Label();
             this.procesarRed = new System.Windows.Forms.Button();
             this.gpRed = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbROL = new System.Windows.Forms.Label();
             this.cbROLES = new System.Windows.Forms.ComboBox();
             this.regRed = new System.Windows.Forms.Button();
             this.pnlID = new System.Windows.Forms.Panel();
@@ -137,7 +137,7 @@
             // 
             // gpRed
             // 
-            this.gpRed.Controls.Add(this.label2);
+            this.gpRed.Controls.Add(this.lbROL);
             this.gpRed.Controls.Add(this.cbROLES);
             this.gpRed.Controls.Add(this.regRed);
             this.gpRed.Controls.Add(this.pnlID);
@@ -151,19 +151,19 @@
             this.gpRed.Text = "Filtros Datos de Red";
             this.gpRed.Visible = false;
             // 
-            // label2
+            // lbROL
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "ROL";
+            this.lbROL.AutoSize = true;
+            this.lbROL.Location = new System.Drawing.Point(6, 53);
+            this.lbROL.Name = "lbROL";
+            this.lbROL.Size = new System.Drawing.Size(29, 13);
+            this.lbROL.TabIndex = 34;
+            this.lbROL.Text = "ROL";
             // 
             // cbROLES
             // 
             this.cbROLES.FormattingEnabled = true;
-            this.cbROLES.Location = new System.Drawing.Point(41, 45);
+            this.cbROLES.Location = new System.Drawing.Point(9, 69);
             this.cbROLES.Name = "cbROLES";
             this.cbROLES.Size = new System.Drawing.Size(88, 21);
             this.cbROLES.TabIndex = 33;
@@ -296,7 +296,7 @@
         private System.Windows.Forms.TextBox tbDESDE;
         private System.Windows.Forms.CheckBox chkFiltro;
         private System.Windows.Forms.CheckBox cbID;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbROL;
         private System.Windows.Forms.ComboBox cbROLES;
     }
 }
