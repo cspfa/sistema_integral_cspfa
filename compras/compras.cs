@@ -41,6 +41,9 @@ namespace SOCIOS
             comboTipoComprobante(cbTipoComprobante);
             comboSectores(cbSectorBusqueda);
             comboSectores(cbSectores);
+            comboSectores(cbSectOrigenSolicitud);
+            comboSectores(cbSectDestSolicitudes);
+            comboPrioridadesSolicitudes();
             lvFacturas.MultiSelect = true;
             comboEstadosCheques();
             comboBeneficiarios();
@@ -486,9 +489,21 @@ namespace SOCIOS
             COMBO.SelectedIndex = 0;
         }
 
+        private void comboPrioridadesSolicitudes()
+        {
+            cbPrioridadSolicitud.Items.Add("MEDIA");
+            cbPrioridadSolicitud.Items.Add("ALTA");
+            cbPrioridadSolicitud.Items.Add("BAJA");
+            cbPrioridadSolicitud.SelectedItem = "MEDIA";
+        }
+
         private void comboSectores(ComboBox SECTORES)
         {
             string query = "SELECT DISTINCT TRIM(ROL) AS ROL FROM SECTACT WHERE ESTADO = 1 ORDER BY ROL;";
+
+            if (SECTORES == cbSectDestSolicitudes)
+                query = "SELECT DISTINCT TRIM(ROL) AS ROL FROM SECTACT WHERE ESTADO = 1 AND COMPRA = 1 ORDER BY ROL;";
+
             SECTORES.DataSource = null;
             SECTORES.Items.Clear();
             SECTORES.DataSource = dlog.BO_EjecutoDataTable(query);
@@ -1000,6 +1015,13 @@ namespace SOCIOS
                 }
             }
         }
+
+        private void agregarArticuloSolicitud()
+        { 
+        
+        }
+
+
 
         private void agregarModificarArticulo(string ACCION, int ID_ARTICULO, object sender)
         {

@@ -30,14 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(compras));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lbIdArticulo = new System.Windows.Forms.Label();
@@ -94,27 +98,6 @@
             this.btnBuscarFactura = new System.Windows.Forms.Button();
             this.tbBuscarFactura = new System.Windows.Forms.TextBox();
             this.tbBuscarNumeroSolicitud = new System.Windows.Forms.MaskedTextBox();
-            this.gbFacturas = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
-            this.dgFacturasHijas = new System.Windows.Forms.DataGridView();
-            this.PROVEEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NUMERO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IMPORTE_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_PROVEEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dpDiaFactura = new System.Windows.Forms.DateTimePicker();
-            this.label104 = new System.Windows.Forms.Label();
-            this.label102 = new System.Windows.Forms.Label();
-            this.mbNumeroFactura = new System.Windows.Forms.MaskedTextBox();
-            this.cbTipoFactura = new System.Windows.Forms.ComboBox();
-            this.tbImporteFactura = new System.Windows.Forms.TextBox();
-            this.label101 = new System.Windows.Forms.Label();
-            this.label103 = new System.Windows.Forms.Label();
-            this.cbProveedorFactura = new System.Windows.Forms.ComboBox();
-            this.label99 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
             this.grupoArticulos = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
             this.cbDescuento = new System.Windows.Forms.ComboBox();
             this.tbDescuento = new System.Windows.Forms.TextBox();
@@ -140,6 +123,27 @@
             this.tbDetalle = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tbCantidad = new System.Windows.Forms.TextBox();
+            this.gbFacturas = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.dgFacturasHijas = new System.Windows.Forms.DataGridView();
+            this.PROVEEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NUMERO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IMPORTE_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_PROVEEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dpDiaFactura = new System.Windows.Forms.DateTimePicker();
+            this.label104 = new System.Windows.Forms.Label();
+            this.label102 = new System.Windows.Forms.Label();
+            this.mbNumeroFactura = new System.Windows.Forms.MaskedTextBox();
+            this.cbTipoFactura = new System.Windows.Forms.ComboBox();
+            this.tbImporteFactura = new System.Windows.Forms.TextBox();
+            this.label101 = new System.Windows.Forms.Label();
+            this.label103 = new System.Windows.Forms.Label();
+            this.cbProveedorFactura = new System.Windows.Forms.ComboBox();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
             this.tabOrdenesDePago = new System.Windows.Forms.TabPage();
             this.btnListadoBusqueda = new System.Windows.Forms.Button();
             this.tbTotalBusqueda = new System.Windows.Forms.Label();
@@ -395,6 +399,28 @@
             this.label37 = new System.Windows.Forms.Label();
             this.cbBancosChequeras = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.themedGroupBox14 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.themedGroupBox6 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.btnDelArtSol = new System.Windows.Forms.Button();
+            this.btnAddArtSol = new System.Windows.Forms.Button();
+            this.cbTipoArtSol = new System.Windows.Forms.ComboBox();
+            this.label116 = new System.Windows.Forms.Label();
+            this.label115 = new System.Windows.Forms.Label();
+            this.label119 = new System.Windows.Forms.Label();
+            this.tbDetArtSol = new System.Windows.Forms.TextBox();
+            this.label120 = new System.Windows.Forms.Label();
+            this.tbCantArtSol = new System.Windows.Forms.TextBox();
+            this.btnAltaSolicitud = new System.Windows.Forms.Button();
+            this.cbPrioridadSolicitud = new System.Windows.Forms.ComboBox();
+            this.label114 = new System.Windows.Forms.Label();
+            this.cbSectDestSolicitudes = new System.Windows.Forms.ComboBox();
+            this.label113 = new System.Windows.Forms.Label();
+            this.cbSectOrigenSolicitud = new System.Windows.Forms.ComboBox();
+            this.label112 = new System.Windows.Forms.Label();
+            this.dpFechaSolicitud = new System.Windows.Forms.DateTimePicker();
+            this.label109 = new System.Windows.Forms.Label();
+            this.dgvArtSol = new System.Windows.Forms.DataGridView();
             this.cmEstadoOP = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.enCalle = new System.Windows.Forms.ToolStripMenuItem();
             this.cobrado = new System.Windows.Forms.ToolStripMenuItem();
@@ -404,14 +430,19 @@
             this.cmFactura = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAgregarOp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAbrirAdjunto = new System.Windows.Forms.ToolStripMenuItem();
+            this.aCTIVRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aNULARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmAdjuntos = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cmCheques = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.aNULARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aCTIVRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -420,12 +451,12 @@
             this.grupoAltaFactura.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox3)).BeginInit();
             this.themedGroupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gbFacturas)).BeginInit();
-            this.gbFacturas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgFacturasHijas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoArticulos)).BeginInit();
             this.grupoArticulos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgArticulos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbFacturas)).BeginInit();
+            this.gbFacturas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFacturasHijas)).BeginInit();
             this.tabOrdenesDePago.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gbTransSeleccionadas)).BeginInit();
             this.gbTransSeleccionadas.SuspendLayout();
@@ -470,6 +501,11 @@
             this.themedGroupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox11)).BeginInit();
             this.themedGroupBox11.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox6)).BeginInit();
+            this.themedGroupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArtSol)).BeginInit();
             this.cmEstadoOP.SuspendLayout();
             this.cmFactura.SuspendLayout();
             this.cmAdjuntos.SuspendLayout();
@@ -484,6 +520,7 @@
             this.tabControl1.Controls.Add(this.tabAdjuntos);
             this.tabControl1.Controls.Add(this.tpProveedores);
             this.tabControl1.Controls.Add(this.tpBancosCuentasCheques);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -506,8 +543,8 @@
             this.tabPage1.Controls.Add(this.grupoAltaFactura);
             this.tabPage1.Controls.Add(this.btAgregarArticulo);
             this.tabPage1.Controls.Add(this.themedGroupBox3);
-            this.tabPage1.Controls.Add(this.gbFacturas);
             this.tabPage1.Controls.Add(this.grupoArticulos);
+            this.tabPage1.Controls.Add(this.gbFacturas);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -1121,238 +1158,6 @@
             this.tbBuscarNumeroSolicitud.TabStop = false;
             this.tbBuscarNumeroSolicitud.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarNumeroSolicitud_KeyUp);
             // 
-            // gbFacturas
-            // 
-            this.gbFacturas.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbFacturas.BorderColor = System.Drawing.Color.SteelBlue;
-            this.gbFacturas.Controls.Add(this.dgFacturasHijas);
-            this.gbFacturas.Controls.Add(this.dpDiaFactura);
-            this.gbFacturas.Controls.Add(this.label104);
-            this.gbFacturas.Controls.Add(this.label102);
-            this.gbFacturas.Controls.Add(this.mbNumeroFactura);
-            this.gbFacturas.Controls.Add(this.cbTipoFactura);
-            this.gbFacturas.Controls.Add(this.tbImporteFactura);
-            this.gbFacturas.Controls.Add(this.label101);
-            this.gbFacturas.Controls.Add(this.label103);
-            this.gbFacturas.Controls.Add(this.cbProveedorFactura);
-            this.gbFacturas.Controls.Add(this.label99);
-            this.gbFacturas.Controls.Add(this.label100);
-            this.gbFacturas.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
-            this.gbFacturas.GradientBegin = System.Drawing.Color.White;
-            this.gbFacturas.GradientEnd = System.Drawing.Color.White;
-            this.gbFacturas.Location = new System.Drawing.Point(2, 375);
-            this.gbFacturas.Name = "gbFacturas";
-            this.gbFacturas.Size = new System.Drawing.Size(1039, 239);
-            this.gbFacturas.TabIndex = 55;
-            this.gbFacturas.Title = "FACTURAS";
-            this.gbFacturas.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
-            this.gbFacturas.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
-            this.gbFacturas.TitleShadow = false;
-            this.gbFacturas.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
-            this.gbFacturas.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbFacturas.Visible = false;
-            // 
-            // dgFacturasHijas
-            // 
-            this.dgFacturasHijas.AllowUserToAddRows = false;
-            this.dgFacturasHijas.AllowUserToDeleteRows = false;
-            this.dgFacturasHijas.AllowUserToResizeColumns = false;
-            this.dgFacturasHijas.AllowUserToResizeRows = false;
-            dataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgFacturasHijas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
-            this.dgFacturasHijas.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgFacturasHijas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgFacturasHijas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgFacturasHijas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
-            this.dgFacturasHijas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgFacturasHijas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PROVEEDOR,
-            this.NUMERO,
-            this.TIPO_FACTURA,
-            this.IMPORTE_FACTURA,
-            this.FECHA_FACTURA,
-            this.ID_TIPO,
-            this.ID_PROVEEDOR,
-            this.ID_FACTURA});
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgFacturasHijas.DefaultCellStyle = dataGridViewCellStyle27;
-            this.dgFacturasHijas.Location = new System.Drawing.Point(2, 65);
-            this.dgFacturasHijas.Margin = new System.Windows.Forms.Padding(5);
-            this.dgFacturasHijas.Name = "dgFacturasHijas";
-            this.dgFacturasHijas.ReadOnly = true;
-            this.dgFacturasHijas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgFacturasHijas.RowHeadersDefaultCellStyle = dataGridViewCellStyle28;
-            this.dgFacturasHijas.RowHeadersVisible = false;
-            this.dgFacturasHijas.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
-            this.dgFacturasHijas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgFacturasHijas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgFacturasHijas.Size = new System.Drawing.Size(1023, 171);
-            this.dgFacturasHijas.TabIndex = 48;
-            this.dgFacturasHijas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFacturasHijas_CellClick);
-            // 
-            // PROVEEDOR
-            // 
-            this.PROVEEDOR.HeaderText = "PROVEEDOR";
-            this.PROVEEDOR.Name = "PROVEEDOR";
-            this.PROVEEDOR.ReadOnly = true;
-            // 
-            // NUMERO
-            // 
-            this.NUMERO.HeaderText = "NUMERO";
-            this.NUMERO.Name = "NUMERO";
-            this.NUMERO.ReadOnly = true;
-            // 
-            // TIPO_FACTURA
-            // 
-            this.TIPO_FACTURA.HeaderText = "TIPO_FACTURA";
-            this.TIPO_FACTURA.Name = "TIPO_FACTURA";
-            this.TIPO_FACTURA.ReadOnly = true;
-            // 
-            // IMPORTE_FACTURA
-            // 
-            this.IMPORTE_FACTURA.HeaderText = "IMPORTE";
-            this.IMPORTE_FACTURA.Name = "IMPORTE_FACTURA";
-            this.IMPORTE_FACTURA.ReadOnly = true;
-            // 
-            // FECHA_FACTURA
-            // 
-            this.FECHA_FACTURA.HeaderText = "FECHA";
-            this.FECHA_FACTURA.Name = "FECHA_FACTURA";
-            this.FECHA_FACTURA.ReadOnly = true;
-            // 
-            // ID_TIPO
-            // 
-            this.ID_TIPO.HeaderText = "ID_TIPO";
-            this.ID_TIPO.Name = "ID_TIPO";
-            this.ID_TIPO.ReadOnly = true;
-            // 
-            // ID_PROVEEDOR
-            // 
-            this.ID_PROVEEDOR.HeaderText = "ID_PROVEEDOR";
-            this.ID_PROVEEDOR.Name = "ID_PROVEEDOR";
-            this.ID_PROVEEDOR.ReadOnly = true;
-            // 
-            // ID_FACTURA
-            // 
-            this.ID_FACTURA.HeaderText = "ID_FACTURA";
-            this.ID_FACTURA.Name = "ID_FACTURA";
-            this.ID_FACTURA.ReadOnly = true;
-            // 
-            // dpDiaFactura
-            // 
-            this.dpDiaFactura.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpDiaFactura.Location = new System.Drawing.Point(802, 32);
-            this.dpDiaFactura.Name = "dpDiaFactura";
-            this.dpDiaFactura.Size = new System.Drawing.Size(103, 20);
-            this.dpDiaFactura.TabIndex = 30;
-            // 
-            // label104
-            // 
-            this.label104.AutoSize = true;
-            this.label104.Location = new System.Drawing.Point(753, 36);
-            this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(42, 13);
-            this.label104.TabIndex = 29;
-            this.label104.Text = "FECHA";
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Location = new System.Drawing.Point(460, 36);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(32, 13);
-            this.label102.TabIndex = 32;
-            this.label102.Text = "TIPO";
-            // 
-            // mbNumeroFactura
-            // 
-            this.mbNumeroFactura.Location = new System.Drawing.Point(350, 32);
-            this.mbNumeroFactura.Mask = "0000-00000000";
-            this.mbNumeroFactura.Name = "mbNumeroFactura";
-            this.mbNumeroFactura.Size = new System.Drawing.Size(103, 20);
-            this.mbNumeroFactura.TabIndex = 30;
-            // 
-            // cbTipoFactura
-            // 
-            this.cbTipoFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipoFactura.FormattingEnabled = true;
-            this.cbTipoFactura.Location = new System.Drawing.Point(499, 32);
-            this.cbTipoFactura.Name = "cbTipoFactura";
-            this.cbTipoFactura.Size = new System.Drawing.Size(137, 21);
-            this.cbTipoFactura.TabIndex = 30;
-            // 
-            // tbImporteFactura
-            // 
-            this.tbImporteFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbImporteFactura.Location = new System.Drawing.Point(663, 32);
-            this.tbImporteFactura.Name = "tbImporteFactura";
-            this.tbImporteFactura.Size = new System.Drawing.Size(83, 20);
-            this.tbImporteFactura.TabIndex = 31;
-            // 
-            // label101
-            // 
-            this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(324, 36);
-            this.label101.Name = "label101";
-            this.label101.Size = new System.Drawing.Size(19, 13);
-            this.label101.TabIndex = 29;
-            this.label101.Text = "Nº";
-            // 
-            // label103
-            // 
-            this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(643, 36);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(13, 13);
-            this.label103.TabIndex = 29;
-            this.label103.Text = "$";
-            // 
-            // cbProveedorFactura
-            // 
-            this.cbProveedorFactura.FormattingEnabled = true;
-            this.cbProveedorFactura.Location = new System.Drawing.Point(95, 32);
-            this.cbProveedorFactura.Name = "cbProveedorFactura";
-            this.cbProveedorFactura.Size = new System.Drawing.Size(222, 21);
-            this.cbProveedorFactura.TabIndex = 30;
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(13, 36);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(75, 13);
-            this.label99.TabIndex = 29;
-            this.label99.Text = "PROVEEDOR";
-            // 
-            // label100
-            // 
-            this.label100.AutoSize = true;
-            this.label100.Location = new System.Drawing.Point(962, 4);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(13, 13);
-            this.label100.TabIndex = 47;
-            this.label100.Text = "0";
-            // 
             // grupoArticulos
             // 
             this.grupoArticulos.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
@@ -1426,19 +1231,19 @@
             this.dgArticulos.AllowUserToDeleteRows = false;
             this.dgArticulos.AllowUserToResizeColumns = false;
             this.dgArticulos.AllowUserToResizeRows = false;
-            dataGridViewCellStyle29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgArticulos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgArticulos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgArticulos.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgArticulos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgArticulos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgArticulos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CANTIDAD,
@@ -1450,27 +1255,27 @@
             this.TIPO,
             this.TID,
             this.AID});
-            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgArticulos.DefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgArticulos.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgArticulos.Location = new System.Drawing.Point(2, 65);
             this.dgArticulos.Margin = new System.Windows.Forms.Padding(5);
             this.dgArticulos.Name = "dgArticulos";
             this.dgArticulos.ReadOnly = true;
             this.dgArticulos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgArticulos.RowHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgArticulos.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgArticulos.RowHeadersVisible = false;
             this.dgArticulos.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgArticulos.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -1622,6 +1427,238 @@
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(35, 20);
             this.tbCantidad.TabIndex = 1;
+            // 
+            // gbFacturas
+            // 
+            this.gbFacturas.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gbFacturas.BorderColor = System.Drawing.Color.SteelBlue;
+            this.gbFacturas.Controls.Add(this.dgFacturasHijas);
+            this.gbFacturas.Controls.Add(this.dpDiaFactura);
+            this.gbFacturas.Controls.Add(this.label104);
+            this.gbFacturas.Controls.Add(this.label102);
+            this.gbFacturas.Controls.Add(this.mbNumeroFactura);
+            this.gbFacturas.Controls.Add(this.cbTipoFactura);
+            this.gbFacturas.Controls.Add(this.tbImporteFactura);
+            this.gbFacturas.Controls.Add(this.label101);
+            this.gbFacturas.Controls.Add(this.label103);
+            this.gbFacturas.Controls.Add(this.cbProveedorFactura);
+            this.gbFacturas.Controls.Add(this.label99);
+            this.gbFacturas.Controls.Add(this.label100);
+            this.gbFacturas.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
+            this.gbFacturas.GradientBegin = System.Drawing.Color.White;
+            this.gbFacturas.GradientEnd = System.Drawing.Color.White;
+            this.gbFacturas.Location = new System.Drawing.Point(2, 375);
+            this.gbFacturas.Name = "gbFacturas";
+            this.gbFacturas.Size = new System.Drawing.Size(1039, 239);
+            this.gbFacturas.TabIndex = 55;
+            this.gbFacturas.Title = "FACTURAS";
+            this.gbFacturas.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
+            this.gbFacturas.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
+            this.gbFacturas.TitleShadow = false;
+            this.gbFacturas.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
+            this.gbFacturas.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gbFacturas.Visible = false;
+            // 
+            // dgFacturasHijas
+            // 
+            this.dgFacturasHijas.AllowUserToAddRows = false;
+            this.dgFacturasHijas.AllowUserToDeleteRows = false;
+            this.dgFacturasHijas.AllowUserToResizeColumns = false;
+            this.dgFacturasHijas.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgFacturasHijas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgFacturasHijas.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgFacturasHijas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgFacturasHijas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgFacturasHijas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgFacturasHijas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgFacturasHijas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PROVEEDOR,
+            this.NUMERO,
+            this.TIPO_FACTURA,
+            this.IMPORTE_FACTURA,
+            this.FECHA_FACTURA,
+            this.ID_TIPO,
+            this.ID_PROVEEDOR,
+            this.ID_FACTURA});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgFacturasHijas.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgFacturasHijas.Location = new System.Drawing.Point(2, 65);
+            this.dgFacturasHijas.Margin = new System.Windows.Forms.Padding(5);
+            this.dgFacturasHijas.Name = "dgFacturasHijas";
+            this.dgFacturasHijas.ReadOnly = true;
+            this.dgFacturasHijas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgFacturasHijas.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgFacturasHijas.RowHeadersVisible = false;
+            this.dgFacturasHijas.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
+            this.dgFacturasHijas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgFacturasHijas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgFacturasHijas.Size = new System.Drawing.Size(1023, 171);
+            this.dgFacturasHijas.TabIndex = 48;
+            this.dgFacturasHijas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFacturasHijas_CellClick);
+            // 
+            // PROVEEDOR
+            // 
+            this.PROVEEDOR.HeaderText = "PROVEEDOR";
+            this.PROVEEDOR.Name = "PROVEEDOR";
+            this.PROVEEDOR.ReadOnly = true;
+            // 
+            // NUMERO
+            // 
+            this.NUMERO.HeaderText = "NUMERO";
+            this.NUMERO.Name = "NUMERO";
+            this.NUMERO.ReadOnly = true;
+            // 
+            // TIPO_FACTURA
+            // 
+            this.TIPO_FACTURA.HeaderText = "TIPO_FACTURA";
+            this.TIPO_FACTURA.Name = "TIPO_FACTURA";
+            this.TIPO_FACTURA.ReadOnly = true;
+            // 
+            // IMPORTE_FACTURA
+            // 
+            this.IMPORTE_FACTURA.HeaderText = "IMPORTE";
+            this.IMPORTE_FACTURA.Name = "IMPORTE_FACTURA";
+            this.IMPORTE_FACTURA.ReadOnly = true;
+            // 
+            // FECHA_FACTURA
+            // 
+            this.FECHA_FACTURA.HeaderText = "FECHA";
+            this.FECHA_FACTURA.Name = "FECHA_FACTURA";
+            this.FECHA_FACTURA.ReadOnly = true;
+            // 
+            // ID_TIPO
+            // 
+            this.ID_TIPO.HeaderText = "ID_TIPO";
+            this.ID_TIPO.Name = "ID_TIPO";
+            this.ID_TIPO.ReadOnly = true;
+            // 
+            // ID_PROVEEDOR
+            // 
+            this.ID_PROVEEDOR.HeaderText = "ID_PROVEEDOR";
+            this.ID_PROVEEDOR.Name = "ID_PROVEEDOR";
+            this.ID_PROVEEDOR.ReadOnly = true;
+            // 
+            // ID_FACTURA
+            // 
+            this.ID_FACTURA.HeaderText = "ID_FACTURA";
+            this.ID_FACTURA.Name = "ID_FACTURA";
+            this.ID_FACTURA.ReadOnly = true;
+            // 
+            // dpDiaFactura
+            // 
+            this.dpDiaFactura.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpDiaFactura.Location = new System.Drawing.Point(802, 32);
+            this.dpDiaFactura.Name = "dpDiaFactura";
+            this.dpDiaFactura.Size = new System.Drawing.Size(103, 20);
+            this.dpDiaFactura.TabIndex = 30;
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(753, 36);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(42, 13);
+            this.label104.TabIndex = 29;
+            this.label104.Text = "FECHA";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(460, 36);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(32, 13);
+            this.label102.TabIndex = 32;
+            this.label102.Text = "TIPO";
+            // 
+            // mbNumeroFactura
+            // 
+            this.mbNumeroFactura.Location = new System.Drawing.Point(350, 32);
+            this.mbNumeroFactura.Mask = "0000-00000000";
+            this.mbNumeroFactura.Name = "mbNumeroFactura";
+            this.mbNumeroFactura.Size = new System.Drawing.Size(103, 20);
+            this.mbNumeroFactura.TabIndex = 30;
+            // 
+            // cbTipoFactura
+            // 
+            this.cbTipoFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoFactura.FormattingEnabled = true;
+            this.cbTipoFactura.Location = new System.Drawing.Point(499, 32);
+            this.cbTipoFactura.Name = "cbTipoFactura";
+            this.cbTipoFactura.Size = new System.Drawing.Size(137, 21);
+            this.cbTipoFactura.TabIndex = 30;
+            // 
+            // tbImporteFactura
+            // 
+            this.tbImporteFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbImporteFactura.Location = new System.Drawing.Point(663, 32);
+            this.tbImporteFactura.Name = "tbImporteFactura";
+            this.tbImporteFactura.Size = new System.Drawing.Size(83, 20);
+            this.tbImporteFactura.TabIndex = 31;
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(324, 36);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(19, 13);
+            this.label101.TabIndex = 29;
+            this.label101.Text = "Nº";
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(643, 36);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(13, 13);
+            this.label103.TabIndex = 29;
+            this.label103.Text = "$";
+            // 
+            // cbProveedorFactura
+            // 
+            this.cbProveedorFactura.FormattingEnabled = true;
+            this.cbProveedorFactura.Location = new System.Drawing.Point(95, 32);
+            this.cbProveedorFactura.Name = "cbProveedorFactura";
+            this.cbProveedorFactura.Size = new System.Drawing.Size(222, 21);
+            this.cbProveedorFactura.TabIndex = 30;
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Location = new System.Drawing.Point(13, 36);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(75, 13);
+            this.label99.TabIndex = 29;
+            this.label99.Text = "PROVEEDOR";
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Location = new System.Drawing.Point(962, 4);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(13, 13);
+            this.label100.TabIndex = 47;
+            this.label100.Text = "0";
             // 
             // tabOrdenesDePago
             // 
@@ -4456,6 +4493,283 @@
             this.label33.TabIndex = 13;
             this.label33.Text = "BANCO";
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.themedGroupBox14);
+            this.tabPage2.Controls.Add(this.themedGroupBox6);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1043, 659);
+            this.tabPage2.TabIndex = 10;
+            this.tabPage2.Text = "SOLICITUD DE COMPRA";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // themedGroupBox14
+            // 
+            this.themedGroupBox14.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.themedGroupBox14.BorderColor = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox14.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
+            this.themedGroupBox14.GradientBegin = System.Drawing.Color.White;
+            this.themedGroupBox14.GradientEnd = System.Drawing.Color.White;
+            this.themedGroupBox14.Location = new System.Drawing.Point(6, 289);
+            this.themedGroupBox14.Name = "themedGroupBox14";
+            this.themedGroupBox14.Size = new System.Drawing.Size(1031, 150);
+            this.themedGroupBox14.TabIndex = 51;
+            this.themedGroupBox14.Title = "SOLICITUDES ANTERIORES";
+            this.themedGroupBox14.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox14.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox14.TitleShadow = false;
+            this.themedGroupBox14.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
+            this.themedGroupBox14.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
+            // 
+            // themedGroupBox6
+            // 
+            this.themedGroupBox6.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.themedGroupBox6.BorderColor = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox6.Controls.Add(this.btnDelArtSol);
+            this.themedGroupBox6.Controls.Add(this.btnAddArtSol);
+            this.themedGroupBox6.Controls.Add(this.cbTipoArtSol);
+            this.themedGroupBox6.Controls.Add(this.label116);
+            this.themedGroupBox6.Controls.Add(this.label115);
+            this.themedGroupBox6.Controls.Add(this.label119);
+            this.themedGroupBox6.Controls.Add(this.tbDetArtSol);
+            this.themedGroupBox6.Controls.Add(this.label120);
+            this.themedGroupBox6.Controls.Add(this.tbCantArtSol);
+            this.themedGroupBox6.Controls.Add(this.btnAltaSolicitud);
+            this.themedGroupBox6.Controls.Add(this.cbPrioridadSolicitud);
+            this.themedGroupBox6.Controls.Add(this.label114);
+            this.themedGroupBox6.Controls.Add(this.cbSectDestSolicitudes);
+            this.themedGroupBox6.Controls.Add(this.label113);
+            this.themedGroupBox6.Controls.Add(this.cbSectOrigenSolicitud);
+            this.themedGroupBox6.Controls.Add(this.label112);
+            this.themedGroupBox6.Controls.Add(this.dpFechaSolicitud);
+            this.themedGroupBox6.Controls.Add(this.label109);
+            this.themedGroupBox6.Controls.Add(this.dgvArtSol);
+            this.themedGroupBox6.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
+            this.themedGroupBox6.GradientBegin = System.Drawing.Color.White;
+            this.themedGroupBox6.GradientEnd = System.Drawing.Color.White;
+            this.themedGroupBox6.Location = new System.Drawing.Point(6, 6);
+            this.themedGroupBox6.Name = "themedGroupBox6";
+            this.themedGroupBox6.Size = new System.Drawing.Size(1031, 223);
+            this.themedGroupBox6.TabIndex = 50;
+            this.themedGroupBox6.Title = "NUEVA SOLICITUD DE COMPRA";
+            this.themedGroupBox6.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox6.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox6.TitleShadow = false;
+            this.themedGroupBox6.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
+            this.themedGroupBox6.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
+            // 
+            // btnDelArtSol
+            // 
+            this.btnDelArtSol.Image = global::SOCIOS.Properties.Resources.delete;
+            this.btnDelArtSol.Location = new System.Drawing.Point(147, 185);
+            this.btnDelArtSol.Name = "btnDelArtSol";
+            this.btnDelArtSol.Size = new System.Drawing.Size(26, 26);
+            this.btnDelArtSol.TabIndex = 70;
+            this.btnDelArtSol.Tag = "Eliminar Artículo";
+            this.btnDelArtSol.UseVisualStyleBackColor = true;
+            // 
+            // btnAddArtSol
+            // 
+            this.btnAddArtSol.Image = global::SOCIOS.Properties.Resources.add;
+            this.btnAddArtSol.Location = new System.Drawing.Point(115, 185);
+            this.btnAddArtSol.Name = "btnAddArtSol";
+            this.btnAddArtSol.Size = new System.Drawing.Size(26, 26);
+            this.btnAddArtSol.TabIndex = 69;
+            this.btnAddArtSol.Tag = "Agregar Artículo";
+            this.btnAddArtSol.UseVisualStyleBackColor = true;
+            // 
+            // cbTipoArtSol
+            // 
+            this.cbTipoArtSol.FormattingEnabled = true;
+            this.cbTipoArtSol.Location = new System.Drawing.Point(197, 132);
+            this.cbTipoArtSol.Name = "cbTipoArtSol";
+            this.cbTipoArtSol.Size = new System.Drawing.Size(185, 21);
+            this.cbTipoArtSol.TabIndex = 64;
+            // 
+            // label116
+            // 
+            this.label116.AutoSize = true;
+            this.label116.Location = new System.Drawing.Point(159, 136);
+            this.label116.Name = "label116";
+            this.label116.Size = new System.Drawing.Size(32, 13);
+            this.label116.TabIndex = 66;
+            this.label116.Text = "TIPO";
+            // 
+            // label115
+            // 
+            this.label115.AutoSize = true;
+            this.label115.Location = new System.Drawing.Point(112, 111);
+            this.label115.Name = "label115";
+            this.label115.Size = new System.Drawing.Size(124, 13);
+            this.label115.TabIndex = 59;
+            this.label115.Text = "AGREGAR ARTICULOS";
+            // 
+            // label119
+            // 
+            this.label119.AutoSize = true;
+            this.label119.Location = new System.Drawing.Point(54, 163);
+            this.label119.Name = "label119";
+            this.label119.Size = new System.Drawing.Size(55, 13);
+            this.label119.TabIndex = 59;
+            this.label119.Text = "DETALLE";
+            // 
+            // tbDetArtSol
+            // 
+            this.tbDetArtSol.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbDetArtSol.Location = new System.Drawing.Point(115, 159);
+            this.tbDetArtSol.Name = "tbDetArtSol";
+            this.tbDetArtSol.Size = new System.Drawing.Size(267, 20);
+            this.tbDetArtSol.TabIndex = 56;
+            // 
+            // label120
+            // 
+            this.label120.AutoSize = true;
+            this.label120.Location = new System.Drawing.Point(47, 136);
+            this.label120.Name = "label120";
+            this.label120.Size = new System.Drawing.Size(62, 13);
+            this.label120.TabIndex = 57;
+            this.label120.Text = "CANTIDAD";
+            // 
+            // tbCantArtSol
+            // 
+            this.tbCantArtSol.Location = new System.Drawing.Point(115, 132);
+            this.tbCantArtSol.Name = "tbCantArtSol";
+            this.tbCantArtSol.Size = new System.Drawing.Size(35, 20);
+            this.tbCantArtSol.TabIndex = 55;
+            // 
+            // btnAltaSolicitud
+            // 
+            this.btnAltaSolicitud.Location = new System.Drawing.Point(179, 185);
+            this.btnAltaSolicitud.Name = "btnAltaSolicitud";
+            this.btnAltaSolicitud.Size = new System.Drawing.Size(203, 26);
+            this.btnAltaSolicitud.TabIndex = 27;
+            this.btnAltaSolicitud.Text = "ENVIAR SOLICITUD";
+            this.btnAltaSolicitud.UseVisualStyleBackColor = true;
+            // 
+            // cbPrioridadSolicitud
+            // 
+            this.cbPrioridadSolicitud.FormattingEnabled = true;
+            this.cbPrioridadSolicitud.Location = new System.Drawing.Point(289, 29);
+            this.cbPrioridadSolicitud.Name = "cbPrioridadSolicitud";
+            this.cbPrioridadSolicitud.Size = new System.Drawing.Size(93, 21);
+            this.cbPrioridadSolicitud.TabIndex = 26;
+            // 
+            // label114
+            // 
+            this.label114.AutoSize = true;
+            this.label114.Location = new System.Drawing.Point(216, 33);
+            this.label114.Name = "label114";
+            this.label114.Size = new System.Drawing.Size(67, 13);
+            this.label114.TabIndex = 25;
+            this.label114.Text = "PRIORIDAD";
+            // 
+            // cbSectDestSolicitudes
+            // 
+            this.cbSectDestSolicitudes.FormattingEnabled = true;
+            this.cbSectDestSolicitudes.Location = new System.Drawing.Point(115, 82);
+            this.cbSectDestSolicitudes.Name = "cbSectDestSolicitudes";
+            this.cbSectDestSolicitudes.Size = new System.Drawing.Size(267, 21);
+            this.cbSectDestSolicitudes.TabIndex = 24;
+            // 
+            // label113
+            // 
+            this.label113.AutoSize = true;
+            this.label113.Location = new System.Drawing.Point(7, 86);
+            this.label113.Name = "label113";
+            this.label113.Size = new System.Drawing.Size(102, 13);
+            this.label113.TabIndex = 23;
+            this.label113.Text = "SECTOR DESTINO";
+            // 
+            // cbSectOrigenSolicitud
+            // 
+            this.cbSectOrigenSolicitud.FormattingEnabled = true;
+            this.cbSectOrigenSolicitud.Location = new System.Drawing.Point(115, 55);
+            this.cbSectOrigenSolicitud.Name = "cbSectOrigenSolicitud";
+            this.cbSectOrigenSolicitud.Size = new System.Drawing.Size(267, 21);
+            this.cbSectOrigenSolicitud.TabIndex = 22;
+            // 
+            // label112
+            // 
+            this.label112.AutoSize = true;
+            this.label112.Location = new System.Drawing.Point(13, 59);
+            this.label112.Name = "label112";
+            this.label112.Size = new System.Drawing.Size(96, 13);
+            this.label112.TabIndex = 2;
+            this.label112.Text = "SECTOR ORIGEN";
+            // 
+            // dpFechaSolicitud
+            // 
+            this.dpFechaSolicitud.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpFechaSolicitud.Location = new System.Drawing.Point(115, 29);
+            this.dpFechaSolicitud.Name = "dpFechaSolicitud";
+            this.dpFechaSolicitud.Size = new System.Drawing.Size(93, 20);
+            this.dpFechaSolicitud.TabIndex = 1;
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.Location = new System.Drawing.Point(67, 33);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(42, 13);
+            this.label109.TabIndex = 0;
+            this.label109.Text = "FECHA";
+            // 
+            // dgvArtSol
+            // 
+            this.dgvArtSol.AllowUserToAddRows = false;
+            this.dgvArtSol.AllowUserToDeleteRows = false;
+            this.dgvArtSol.AllowUserToResizeColumns = false;
+            this.dgvArtSol.AllowUserToResizeRows = false;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvArtSol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgvArtSol.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgvArtSol.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvArtSol.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArtSol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgvArtSol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvArtSol.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvArtSol.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dgvArtSol.Location = new System.Drawing.Point(390, 21);
+            this.dgvArtSol.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvArtSol.Name = "dgvArtSol";
+            this.dgvArtSol.ReadOnly = true;
+            this.dgvArtSol.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArtSol.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgvArtSol.RowHeadersVisible = false;
+            this.dgvArtSol.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
+            this.dgvArtSol.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArtSol.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvArtSol.Size = new System.Drawing.Size(638, 201);
+            this.dgvArtSol.TabIndex = 67;
+            // 
             // cmEstadoOP
             // 
             this.cmEstadoOP.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -4515,13 +4829,13 @@
             this.aCTIVRToolStripMenuItem,
             this.aNULARToolStripMenuItem});
             this.cmFactura.Name = "cmFactura";
-            this.cmFactura.Size = new System.Drawing.Size(153, 114);
+            this.cmFactura.Size = new System.Drawing.Size(150, 92);
             // 
             // tsmAgregarOp
             // 
             this.tsmAgregarOp.Image = global::SOCIOS.Properties.Resources.add;
             this.tsmAgregarOp.Name = "tsmAgregarOp";
-            this.tsmAgregarOp.Size = new System.Drawing.Size(152, 22);
+            this.tsmAgregarOp.Size = new System.Drawing.Size(149, 22);
             this.tsmAgregarOp.Text = "AGREGAR A OP";
             this.tsmAgregarOp.Click += new System.EventHandler(this.tsmAgregarOp_Click);
             // 
@@ -4529,8 +4843,24 @@
             // 
             this.tsmAbrirAdjunto.Image = global::SOCIOS.Properties.Resources.calculator_add;
             this.tsmAbrirAdjunto.Name = "tsmAbrirAdjunto";
-            this.tsmAbrirAdjunto.Size = new System.Drawing.Size(152, 22);
+            this.tsmAbrirAdjunto.Size = new System.Drawing.Size(149, 22);
             this.tsmAbrirAdjunto.Text = "CONTABILIZAR";
+            // 
+            // aCTIVRToolStripMenuItem
+            // 
+            this.aCTIVRToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.add;
+            this.aCTIVRToolStripMenuItem.Name = "aCTIVRToolStripMenuItem";
+            this.aCTIVRToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aCTIVRToolStripMenuItem.Text = "ACTIVAR";
+            this.aCTIVRToolStripMenuItem.Click += new System.EventHandler(this.aCTIVRToolStripMenuItem_Click);
+            // 
+            // aNULARToolStripMenuItem
+            // 
+            this.aNULARToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aNULARToolStripMenuItem.Image")));
+            this.aNULARToolStripMenuItem.Name = "aNULARToolStripMenuItem";
+            this.aNULARToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.aNULARToolStripMenuItem.Text = "ANULAR";
+            this.aNULARToolStripMenuItem.Click += new System.EventHandler(this.aNULARToolStripMenuItem_Click);
             // 
             // cmAdjuntos
             // 
@@ -4582,21 +4912,40 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // aNULARToolStripMenuItem
+            // dataGridViewTextBoxColumn1
             // 
-            this.aNULARToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aNULARToolStripMenuItem.Image")));
-            this.aNULARToolStripMenuItem.Name = "aNULARToolStripMenuItem";
-            this.aNULARToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aNULARToolStripMenuItem.Text = "ANULAR";
-            this.aNULARToolStripMenuItem.Click += new System.EventHandler(this.aNULARToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn1.HeaderText = "#";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 58;
             // 
-            // aCTIVRToolStripMenuItem
+            // dataGridViewTextBoxColumn2
             // 
-            this.aCTIVRToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.add;
-            this.aCTIVRToolStripMenuItem.Name = "aCTIVRToolStripMenuItem";
-            this.aCTIVRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aCTIVRToolStripMenuItem.Text = "ACTIVAR";
-            this.aCTIVRToolStripMenuItem.Click += new System.EventHandler(this.aCTIVRToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn2.HeaderText = "DETALLE";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 300;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "TIPO";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "TID";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "AID";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Visible = false;
             // 
             // compras
             // 
@@ -4620,14 +4969,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox3)).EndInit();
             this.themedGroupBox3.ResumeLayout(false);
             this.themedGroupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gbFacturas)).EndInit();
-            this.gbFacturas.ResumeLayout(false);
-            this.gbFacturas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgFacturasHijas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grupoArticulos)).EndInit();
             this.grupoArticulos.ResumeLayout(false);
             this.grupoArticulos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgArticulos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbFacturas)).EndInit();
+            this.gbFacturas.ResumeLayout(false);
+            this.gbFacturas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgFacturasHijas)).EndInit();
             this.tabOrdenesDePago.ResumeLayout(false);
             this.tabOrdenesDePago.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gbTransSeleccionadas)).EndInit();
@@ -4693,6 +5042,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox11)).EndInit();
             this.themedGroupBox11.ResumeLayout(false);
             this.themedGroupBox11.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox6)).EndInit();
+            this.themedGroupBox6.ResumeLayout(false);
+            this.themedGroupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvArtSol)).EndInit();
             this.cmEstadoOP.ResumeLayout(false);
             this.cmFactura.ResumeLayout(false);
             this.cmAdjuntos.ResumeLayout(false);
@@ -5078,5 +5433,32 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_FACTURA;
         private System.Windows.Forms.ToolStripMenuItem aNULARToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aCTIVRToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage2;
+        private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox themedGroupBox14;
+        private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox themedGroupBox6;
+        private System.Windows.Forms.DateTimePicker dpFechaSolicitud;
+        private System.Windows.Forms.Label label109;
+        private System.Windows.Forms.ComboBox cbSectOrigenSolicitud;
+        private System.Windows.Forms.Label label112;
+        private System.Windows.Forms.ComboBox cbSectDestSolicitudes;
+        private System.Windows.Forms.Label label113;
+        private System.Windows.Forms.ComboBox cbPrioridadSolicitud;
+        private System.Windows.Forms.Label label114;
+        private System.Windows.Forms.Button btnAltaSolicitud;
+        private System.Windows.Forms.Button btnDelArtSol;
+        private System.Windows.Forms.Button btnAddArtSol;
+        private System.Windows.Forms.DataGridView dgvArtSol;
+        private System.Windows.Forms.ComboBox cbTipoArtSol;
+        private System.Windows.Forms.Label label116;
+        private System.Windows.Forms.Label label119;
+        private System.Windows.Forms.TextBox tbDetArtSol;
+        private System.Windows.Forms.Label label120;
+        private System.Windows.Forms.TextBox tbCantArtSol;
+        private System.Windows.Forms.Label label115;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
     }
 }
