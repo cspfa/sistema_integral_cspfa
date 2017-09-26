@@ -105,6 +105,8 @@
             this.btnAgregarCheque = new System.Windows.Forms.Button();
             this.dgCheques = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tbPtoVta = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tbNroHasta = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -929,6 +931,8 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.tbPtoVta);
+            this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.btnBuscar);
             this.tabPage4.Controls.Add(this.tbNroHasta);
             this.tabPage4.Controls.Add(this.label12);
@@ -945,27 +949,43 @@
             this.tabPage4.Text = "BUSCADOR";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // tbPtoVta
+            // 
+            this.tbPtoVta.Location = new System.Drawing.Point(340, 9);
+            this.tbPtoVta.Name = "tbPtoVta";
+            this.tbPtoVta.Size = new System.Drawing.Size(61, 20);
+            this.tbPtoVta.TabIndex = 77;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(273, 13);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(53, 13);
+            this.label13.TabIndex = 81;
+            this.label13.Text = "PTO VTA";
+            // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(436, 9);
+            this.btnBuscar.Location = new System.Drawing.Point(596, 8);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 80;
+            this.btnBuscar.TabIndex = 79;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // tbNroHasta
             // 
-            this.tbNroHasta.Location = new System.Drawing.Point(189, 10);
+            this.tbNroHasta.Location = new System.Drawing.Point(198, 9);
             this.tbNroHasta.Name = "tbNroHasta";
             this.tbNroHasta.Size = new System.Drawing.Size(61, 20);
-            this.tbNroHasta.TabIndex = 79;
+            this.tbNroHasta.TabIndex = 76;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(135, 14);
+            this.label12.Location = new System.Drawing.Point(141, 13);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(43, 13);
             this.label12.TabIndex = 78;
@@ -975,15 +995,15 @@
             // 
             this.cbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipos.FormattingEnabled = true;
-            this.cbTipos.Location = new System.Drawing.Point(304, 10);
+            this.cbTipos.Location = new System.Drawing.Point(461, 9);
             this.cbTipos.Name = "cbTipos";
             this.cbTipos.Size = new System.Drawing.Size(121, 21);
-            this.cbTipos.TabIndex = 77;
+            this.cbTipos.TabIndex = 78;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(261, 14);
+            this.label11.Location = new System.Drawing.Point(415, 13);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 13);
             this.label11.TabIndex = 76;
@@ -991,7 +1011,7 @@
             // 
             // tbNroDesde
             // 
-            this.tbNroDesde.Location = new System.Drawing.Point(63, 10);
+            this.tbNroDesde.Location = new System.Drawing.Point(66, 9);
             this.tbNroDesde.Name = "tbNroDesde";
             this.tbNroDesde.Size = new System.Drawing.Size(61, 20);
             this.tbNroDesde.TabIndex = 75;
@@ -999,7 +1019,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 14);
+            this.label10.Location = new System.Drawing.Point(8, 13);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 74;
@@ -1146,6 +1166,8 @@
         private System.Windows.Forms.TextBox tbNroHasta;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.TextBox tbPtoVta;
+        private System.Windows.Forms.Label label13;
 
 
 

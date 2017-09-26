@@ -42,12 +42,12 @@ namespace SOCIOS
             cargaInicial(0);
         }
 
-        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID)
+        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID, string PTO)
         {
             try
             {
                 DataSet ds1 = new DataSet();
-                string query = "SELECT * FROM BUSCAR_COMPROBANTES (" + DESDE + ", " + HASTA + ", '" + COMPROBANTE + "');";
+                string query = "SELECT * FROM BUSCAR_COMPROBANTES (" + DESDE + ", " + HASTA + ", '" + COMPROBANTE + "', '" + PTO + "');";
                 conString cs = new conString();
                 string connectionString = cs.get();
 
@@ -3241,6 +3241,7 @@ namespace SOCIOS
         {
             int DESDE = 0;
             int HASTA = 0;
+            string PTO_VTA = "";
             string COMPROBANTE = "";
             COMPROBANTE = cbTipos.SelectedItem.ToString();
             string COMP_MIN = COMPROBANTE.Substring(0, 1);
@@ -3253,6 +3254,10 @@ namespace SOCIOS
             {
                 MessageBox.Show("INGRESAR UN NRO HASTA", "ERROR!");
             }
+            else if (tbPtoVta.Text.Trim() == "")
+            {
+                MessageBox.Show("INGRESAR UN PUNTO DE VENTA", "ERROR!");
+            }
             else if (COMPROBANTE == "")
             {
                 MessageBox.Show("SELECCIONAR UN TIPO DE COMPROBANTE", "ERROR!");
@@ -3261,12 +3266,11 @@ namespace SOCIOS
             {
                 DESDE = int.Parse(tbNroDesde.Text.Trim());
                 HASTA = int.Parse(tbNroHasta.Text.Trim());
+                PTO_VTA = tbPtoVta.Text.Trim();
             }
-
-
-
+            
             DataGridView GRID = dgBuscador;
-            buscador(DESDE, HASTA, COMP_MIN, GRID);
+            buscador(DESDE, HASTA, COMP_MIN, GRID, PTO_VTA);
         }
 
         private void dgCajasAnteriores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
