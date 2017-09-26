@@ -2673,7 +2673,7 @@ namespace SOCIOS
 
         private void comboCheques(int BANCO, ComboBox COMBO)
         {
-            string QUERY = "SELECT NRO_CHEQUE FROM CHEQUERAS WHERE BANCO = " + BANCO + " AND OP_ASIGNADA IS NULL AND OP_TEMP = 0";
+            string QUERY = "SELECT NRO_CHEQUE FROM CHEQUERAS WHERE BANCO = " + BANCO + " AND OP_ASIGNADA IS NULL AND OP_TEMP = 0 ORDER BY NRO_CHEQUE ASC;";
             COMBO.Items.Clear();
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
