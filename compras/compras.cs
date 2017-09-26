@@ -703,6 +703,7 @@ namespace SOCIOS
                 lvFacturas.Columns.Add("CUIT");
                 lvFacturas.Columns.Add("TC");
                 lvFacturas.Columns.Add("DES%");
+                lvFacturas.Columns.Add("ANULADO");
             }
             do
             {
@@ -722,6 +723,7 @@ namespace SOCIOS
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("CUIT")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TC")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("DESCUENTO")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ANULADO")).Trim());
                 lvFacturas.Items.Add(listItem);
             }
 
@@ -793,12 +795,12 @@ namespace SOCIOS
                     {
                         case "BUSCAR":
                         QUERY += "SELECT F.ID, F.PROVEEDOR, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.FE_ALTA, F.US_ALTA, F.FE_MOD, ";
-                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC, F.DESCUENTO ";
+                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC, F.DESCUENTO, F.ANULADO ";
                         break;
 
                         case "EXCEL":
                         QUERY += "SELECT P.RAZON_SOCIAL, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, ";
-                        QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO ";
+                        QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO, F.ANULADO ";
                         break;
                     }
 
@@ -2123,116 +2125,235 @@ namespace SOCIOS
             #endregion
 
             #region TABLA CHEQUES
-            PdfPTable TABLA_CHEQUES = new PdfPTable(7);
-            TABLA_CHEQUES.WidthPercentage = 100;
-            TABLA_CHEQUES.SpacingAfter = 5;
-            TABLA_CHEQUES.SpacingBefore = 5;
-            TABLA_CHEQUES.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f });
-
-            PdfPCell CELDA_BANCO = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
-            CELDA_BANCO.BackgroundColor = topo;
-            CELDA_BANCO.BorderColor = blanco;
-            CELDA_BANCO.HorizontalAlignment = 1;
-            CELDA_BANCO.FixedHeight = 16f;
-            TABLA_CHEQUES.AddCell(CELDA_BANCO);
-
-            PdfPCell CELDA_SERIE = new PdfPCell(new Phrase("SERIE", _mediumFontBoldWhite));
-            CELDA_SERIE.BackgroundColor = topo;
-            CELDA_SERIE.BorderColor = blanco;
-            CELDA_SERIE.HorizontalAlignment = 1;
-            CELDA_SERIE.FixedHeight = 16f;
-            TABLA_CHEQUES.AddCell(CELDA_SERIE);
-
-            PdfPCell CELDA_NRO_CHEQUE = new PdfPCell(new Phrase("CHEQUE", _mediumFontBoldWhite));
-            CELDA_NRO_CHEQUE.BackgroundColor = topo;
-            CELDA_NRO_CHEQUE.BorderColor = blanco;
-            CELDA_NRO_CHEQUE.HorizontalAlignment = 1;
-            CELDA_NRO_CHEQUE.FixedHeight = 16f;
-            TABLA_CHEQUES.AddCell(CELDA_NRO_CHEQUE);
-
-            PdfPCell CELDA_IMPORTE_CHEQUE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-            CELDA_IMPORTE_CHEQUE.BackgroundColor = topo;
-            CELDA_IMPORTE_CHEQUE.BorderColor = blanco;
-            CELDA_IMPORTE_CHEQUE.HorizontalAlignment = 1;
-            CELDA_IMPORTE_CHEQUE.FixedHeight = 16f;
-            TABLA_CHEQUES.AddCell(CELDA_IMPORTE_CHEQUE);
-
-            PdfPCell CELDA_FECHA_CHEQUE = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
-            CELDA_FECHA_CHEQUE.BackgroundColor = topo;
-            CELDA_FECHA_CHEQUE.BorderColor = blanco;
-            CELDA_FECHA_CHEQUE.HorizontalAlignment = 1;
-            CELDA_FECHA_CHEQUE.FixedHeight = 16f;
-            TABLA_CHEQUES.AddCell(CELDA_FECHA_CHEQUE);
-
-            PdfPCell CELDA_FECHA_TIPO = new PdfPCell(new Phrase("TIPO", _mediumFontBoldWhite));
-            CELDA_FECHA_TIPO.BackgroundColor = topo;
-            CELDA_FECHA_TIPO.BorderColor = blanco;
-            CELDA_FECHA_TIPO.HorizontalAlignment = 1;
-            CELDA_FECHA_TIPO.FixedHeight = 16f;
-            TABLA_CHEQUES.AddCell(CELDA_FECHA_TIPO);
-
-            PdfPCell CELDA_VENCIMIENTO = new PdfPCell(new Phrase("VENCIMIENTO", _mediumFontBoldWhite));
-            CELDA_VENCIMIENTO.BackgroundColor = topo;
-            CELDA_VENCIMIENTO.BorderColor = blanco;
-            CELDA_VENCIMIENTO.HorizontalAlignment = 1;
-            CELDA_VENCIMIENTO.FixedHeight = 16f;
-            TABLA_CHEQUES.AddCell(CELDA_VENCIMIENTO);
-
-            for (int i = 0; i <= CHEQUES.Length - 1; i++)
+            if (CHEQUES.Length > 0)
             {
-                string BANCO = CHEQUES[i][0].ToString();
-                string SERIE = CHEQUES[i][1].ToString();
-                string NRO_CHEQUE = CHEQUES[i][2].ToString();
-                string IMPORTE = "$ " + string.Format("{0:n}", CHEQUES[i][3]).ToString();
-                string FECHA_CHEQUE = Convert.ToDateTime(CHEQUES[i][4]).ToShortDateString();
-                string TIPO = CHEQUES[i][5].ToString();
-                string VENCIMIENTO = CHEQUES[i][6].ToString();
-                string BENEF_CHEQUE = CHEQUES[i][7].ToString();
-                
-                PdfPCell DATO_BANCO = new PdfPCell(new Phrase(BANCO, _mediumFont));
-                DATO_BANCO.BackgroundColor = blanco;
-                DATO_BANCO.BorderColor = blanco;
-                DATO_BANCO.HorizontalAlignment = 1;
-                TABLA_CHEQUES.AddCell(DATO_BANCO);
+                PdfPTable TABLA_CHEQUES = new PdfPTable(7);
+                TABLA_CHEQUES.WidthPercentage = 100;
+                TABLA_CHEQUES.SpacingAfter = 5;
+                TABLA_CHEQUES.SpacingBefore = 5;
+                TABLA_CHEQUES.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f });
 
-                PdfPCell DATO_SERIE = new PdfPCell(new Phrase(SERIE, _mediumFont));
-                DATO_SERIE.BackgroundColor = blanco;
-                DATO_SERIE.BorderColor = blanco;
-                DATO_SERIE.HorizontalAlignment = 1;
-                TABLA_CHEQUES.AddCell(DATO_SERIE);
+                PdfPCell CELDA_BANCO = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
+                CELDA_BANCO.BackgroundColor = topo;
+                CELDA_BANCO.BorderColor = blanco;
+                CELDA_BANCO.HorizontalAlignment = 1;
+                CELDA_BANCO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_BANCO);
 
-                PdfPCell DATO_NRO_CHEQUE = new PdfPCell(new Phrase(NRO_CHEQUE, _mediumFont));
-                DATO_NRO_CHEQUE.BackgroundColor = blanco;
-                DATO_NRO_CHEQUE.BorderColor = blanco;
-                DATO_NRO_CHEQUE.HorizontalAlignment = 1;
-                TABLA_CHEQUES.AddCell(DATO_NRO_CHEQUE);
+                PdfPCell CELDA_SERIE = new PdfPCell(new Phrase("SERIE", _mediumFontBoldWhite));
+                CELDA_SERIE.BackgroundColor = topo;
+                CELDA_SERIE.BorderColor = blanco;
+                CELDA_SERIE.HorizontalAlignment = 1;
+                CELDA_SERIE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_SERIE);
 
-                PdfPCell DATO_IMPORTE = new PdfPCell(new Phrase(IMPORTE, _mediumFont));
-                DATO_IMPORTE.BackgroundColor = blanco;
-                DATO_IMPORTE.BorderColor = blanco;
-                DATO_IMPORTE.HorizontalAlignment = 1;
-                TABLA_CHEQUES.AddCell(DATO_IMPORTE);
+                PdfPCell CELDA_NRO_CHEQUE = new PdfPCell(new Phrase("CHEQUE", _mediumFontBoldWhite));
+                CELDA_NRO_CHEQUE.BackgroundColor = topo;
+                CELDA_NRO_CHEQUE.BorderColor = blanco;
+                CELDA_NRO_CHEQUE.HorizontalAlignment = 1;
+                CELDA_NRO_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_NRO_CHEQUE);
 
-                PdfPCell DATO_FECHA_CHEQUE = new PdfPCell(new Phrase(FECHA_CHEQUE, _mediumFont));
-                DATO_FECHA_CHEQUE.BackgroundColor = blanco;
-                DATO_FECHA_CHEQUE.BorderColor = blanco;
-                DATO_FECHA_CHEQUE.HorizontalAlignment = 1;
-                TABLA_CHEQUES.AddCell(DATO_FECHA_CHEQUE);
+                PdfPCell CELDA_IMPORTE_CHEQUE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_CHEQUE.BackgroundColor = topo;
+                CELDA_IMPORTE_CHEQUE.BorderColor = blanco;
+                CELDA_IMPORTE_CHEQUE.HorizontalAlignment = 1;
+                CELDA_IMPORTE_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_IMPORTE_CHEQUE);
 
-                PdfPCell DATO_TIPO = new PdfPCell(new Phrase(TIPO, _mediumFont));
-                DATO_TIPO.BackgroundColor = blanco;
-                DATO_TIPO.BorderColor = blanco;
-                DATO_TIPO.HorizontalAlignment = 1;
-                TABLA_CHEQUES.AddCell(DATO_TIPO);
+                PdfPCell CELDA_FECHA_CHEQUE = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_CHEQUE.BackgroundColor = topo;
+                CELDA_FECHA_CHEQUE.BorderColor = blanco;
+                CELDA_FECHA_CHEQUE.HorizontalAlignment = 1;
+                CELDA_FECHA_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_FECHA_CHEQUE);
 
-                PdfPCell DATO_VENCIMIENTO = new PdfPCell(new Phrase(VENCIMIENTO, _mediumFont));
-                DATO_VENCIMIENTO.BackgroundColor = blanco;
-                DATO_VENCIMIENTO.BorderColor = blanco;
-                DATO_VENCIMIENTO.HorizontalAlignment = 1;
-                TABLA_CHEQUES.AddCell(DATO_VENCIMIENTO);
+                PdfPCell CELDA_FECHA_TIPO = new PdfPCell(new Phrase("TIPO", _mediumFontBoldWhite));
+                CELDA_FECHA_TIPO.BackgroundColor = topo;
+                CELDA_FECHA_TIPO.BorderColor = blanco;
+                CELDA_FECHA_TIPO.HorizontalAlignment = 1;
+                CELDA_FECHA_TIPO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_FECHA_TIPO);
+
+                PdfPCell CELDA_VENCIMIENTO = new PdfPCell(new Phrase("VENCIMIENTO", _mediumFontBoldWhite));
+                CELDA_VENCIMIENTO.BackgroundColor = topo;
+                CELDA_VENCIMIENTO.BorderColor = blanco;
+                CELDA_VENCIMIENTO.HorizontalAlignment = 1;
+                CELDA_VENCIMIENTO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_VENCIMIENTO);
+
+                for (int i = 0; i <= CHEQUES.Length - 1; i++)
+                {
+                    string BANCO = CHEQUES[i][0].ToString();
+                    string SERIE = CHEQUES[i][1].ToString();
+                    string NRO_CHEQUE = CHEQUES[i][2].ToString();
+                    string IMPORTE = "$ " + string.Format("{0:n}", CHEQUES[i][3]).ToString();
+                    string FECHA_CHEQUE = Convert.ToDateTime(CHEQUES[i][4]).ToShortDateString();
+                    string TIPO = CHEQUES[i][5].ToString();
+                    string VENCIMIENTO = CHEQUES[i][6].ToString();
+                    string BENEF_CHEQUE = CHEQUES[i][7].ToString();
+
+                    PdfPCell DATO_BANCO = new PdfPCell(new Phrase(BANCO, _mediumFont));
+                    DATO_BANCO.BackgroundColor = blanco;
+                    DATO_BANCO.BorderColor = blanco;
+                    DATO_BANCO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_BANCO);
+
+                    PdfPCell DATO_SERIE = new PdfPCell(new Phrase(SERIE, _mediumFont));
+                    DATO_SERIE.BackgroundColor = blanco;
+                    DATO_SERIE.BorderColor = blanco;
+                    DATO_SERIE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_SERIE);
+
+                    PdfPCell DATO_NRO_CHEQUE = new PdfPCell(new Phrase(NRO_CHEQUE, _mediumFont));
+                    DATO_NRO_CHEQUE.BackgroundColor = blanco;
+                    DATO_NRO_CHEQUE.BorderColor = blanco;
+                    DATO_NRO_CHEQUE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_NRO_CHEQUE);
+
+                    PdfPCell DATO_IMPORTE = new PdfPCell(new Phrase(IMPORTE, _mediumFont));
+                    DATO_IMPORTE.BackgroundColor = blanco;
+                    DATO_IMPORTE.BorderColor = blanco;
+                    DATO_IMPORTE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_IMPORTE);
+
+                    PdfPCell DATO_FECHA_CHEQUE = new PdfPCell(new Phrase(FECHA_CHEQUE, _mediumFont));
+                    DATO_FECHA_CHEQUE.BackgroundColor = blanco;
+                    DATO_FECHA_CHEQUE.BorderColor = blanco;
+                    DATO_FECHA_CHEQUE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_FECHA_CHEQUE);
+
+                    PdfPCell DATO_TIPO = new PdfPCell(new Phrase(TIPO, _mediumFont));
+                    DATO_TIPO.BackgroundColor = blanco;
+                    DATO_TIPO.BorderColor = blanco;
+                    DATO_TIPO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_TIPO);
+
+                    PdfPCell DATO_VENCIMIENTO = new PdfPCell(new Phrase(VENCIMIENTO, _mediumFont));
+                    DATO_VENCIMIENTO.BackgroundColor = blanco;
+                    DATO_VENCIMIENTO.BorderColor = blanco;
+                    DATO_VENCIMIENTO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_VENCIMIENTO);
+                }
+
+                doc.Add(TABLA_CHEQUES);
             }
+            #endregion
 
-            doc.Add(TABLA_CHEQUES);
+            #region TABLA TRANSFERENCIAS
+            /*if (TRANSFERENCIAS.Length > 0)
+            {
+                PdfPTable TABLA_TRANSFERENCIAS = new PdfPTable(7);
+                TABLA_CHEQUES.WidthPercentage = 100;
+                TABLA_CHEQUES.SpacingAfter = 5;
+                TABLA_CHEQUES.SpacingBefore = 5;
+                TABLA_CHEQUES.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f });
+
+                PdfPCell CELDA_BANCO = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
+                CELDA_BANCO.BackgroundColor = topo;
+                CELDA_BANCO.BorderColor = blanco;
+                CELDA_BANCO.HorizontalAlignment = 1;
+                CELDA_BANCO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_BANCO);
+
+                PdfPCell CELDA_SERIE = new PdfPCell(new Phrase("SERIE", _mediumFontBoldWhite));
+                CELDA_SERIE.BackgroundColor = topo;
+                CELDA_SERIE.BorderColor = blanco;
+                CELDA_SERIE.HorizontalAlignment = 1;
+                CELDA_SERIE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_SERIE);
+
+                PdfPCell CELDA_NRO_CHEQUE = new PdfPCell(new Phrase("CHEQUE", _mediumFontBoldWhite));
+                CELDA_NRO_CHEQUE.BackgroundColor = topo;
+                CELDA_NRO_CHEQUE.BorderColor = blanco;
+                CELDA_NRO_CHEQUE.HorizontalAlignment = 1;
+                CELDA_NRO_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_NRO_CHEQUE);
+
+                PdfPCell CELDA_IMPORTE_CHEQUE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_CHEQUE.BackgroundColor = topo;
+                CELDA_IMPORTE_CHEQUE.BorderColor = blanco;
+                CELDA_IMPORTE_CHEQUE.HorizontalAlignment = 1;
+                CELDA_IMPORTE_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_IMPORTE_CHEQUE);
+
+                PdfPCell CELDA_FECHA_CHEQUE = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_CHEQUE.BackgroundColor = topo;
+                CELDA_FECHA_CHEQUE.BorderColor = blanco;
+                CELDA_FECHA_CHEQUE.HorizontalAlignment = 1;
+                CELDA_FECHA_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_FECHA_CHEQUE);
+
+                PdfPCell CELDA_FECHA_TIPO = new PdfPCell(new Phrase("TIPO", _mediumFontBoldWhite));
+                CELDA_FECHA_TIPO.BackgroundColor = topo;
+                CELDA_FECHA_TIPO.BorderColor = blanco;
+                CELDA_FECHA_TIPO.HorizontalAlignment = 1;
+                CELDA_FECHA_TIPO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_FECHA_TIPO);
+
+                PdfPCell CELDA_VENCIMIENTO = new PdfPCell(new Phrase("VENCIMIENTO", _mediumFontBoldWhite));
+                CELDA_VENCIMIENTO.BackgroundColor = topo;
+                CELDA_VENCIMIENTO.BorderColor = blanco;
+                CELDA_VENCIMIENTO.HorizontalAlignment = 1;
+                CELDA_VENCIMIENTO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_VENCIMIENTO);
+
+                for (int i = 0; i <= CHEQUES.Length - 1; i++)
+                {
+                    string BANCO = CHEQUES[i][0].ToString();
+                    string SERIE = CHEQUES[i][1].ToString();
+                    string NRO_CHEQUE = CHEQUES[i][2].ToString();
+                    string IMPORTE = "$ " + string.Format("{0:n}", CHEQUES[i][3]).ToString();
+                    string FECHA_CHEQUE = Convert.ToDateTime(CHEQUES[i][4]).ToShortDateString();
+                    string TIPO = CHEQUES[i][5].ToString();
+                    string VENCIMIENTO = CHEQUES[i][6].ToString();
+                    string BENEF_CHEQUE = CHEQUES[i][7].ToString();
+
+                    PdfPCell DATO_BANCO = new PdfPCell(new Phrase(BANCO, _mediumFont));
+                    DATO_BANCO.BackgroundColor = blanco;
+                    DATO_BANCO.BorderColor = blanco;
+                    DATO_BANCO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_BANCO);
+
+                    PdfPCell DATO_SERIE = new PdfPCell(new Phrase(SERIE, _mediumFont));
+                    DATO_SERIE.BackgroundColor = blanco;
+                    DATO_SERIE.BorderColor = blanco;
+                    DATO_SERIE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_SERIE);
+
+                    PdfPCell DATO_NRO_CHEQUE = new PdfPCell(new Phrase(NRO_CHEQUE, _mediumFont));
+                    DATO_NRO_CHEQUE.BackgroundColor = blanco;
+                    DATO_NRO_CHEQUE.BorderColor = blanco;
+                    DATO_NRO_CHEQUE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_NRO_CHEQUE);
+
+                    PdfPCell DATO_IMPORTE = new PdfPCell(new Phrase(IMPORTE, _mediumFont));
+                    DATO_IMPORTE.BackgroundColor = blanco;
+                    DATO_IMPORTE.BorderColor = blanco;
+                    DATO_IMPORTE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_IMPORTE);
+
+                    PdfPCell DATO_FECHA_CHEQUE = new PdfPCell(new Phrase(FECHA_CHEQUE, _mediumFont));
+                    DATO_FECHA_CHEQUE.BackgroundColor = blanco;
+                    DATO_FECHA_CHEQUE.BorderColor = blanco;
+                    DATO_FECHA_CHEQUE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_FECHA_CHEQUE);
+
+                    PdfPCell DATO_TIPO = new PdfPCell(new Phrase(TIPO, _mediumFont));
+                    DATO_TIPO.BackgroundColor = blanco;
+                    DATO_TIPO.BorderColor = blanco;
+                    DATO_TIPO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_TIPO);
+
+                    PdfPCell DATO_VENCIMIENTO = new PdfPCell(new Phrase(VENCIMIENTO, _mediumFont));
+                    DATO_VENCIMIENTO.BackgroundColor = blanco;
+                    DATO_VENCIMIENTO.BorderColor = blanco;
+                    DATO_VENCIMIENTO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_VENCIMIENTO);
+                }
+
+                doc.Add(TABLA_CHEQUES);
+            }*/
             #endregion
 
             #region TABLA TOTAL OP
@@ -5079,7 +5200,7 @@ namespace SOCIOS
                 comboProveedores(cbProveedorFactura);
                 comboTipoComprobante(cbTipoFactura);
                 gbFacturas.Visible = true;
-                BuscarFacturasHijas(int.Parse(lvFacturas.SelectedItems[0].SubItems[0].Text));
+                //BuscarFacturasHijas(int.Parse(lvFacturas.SelectedItems[0].SubItems[0].Text));
             }
             else
             {
@@ -5102,6 +5223,18 @@ namespace SOCIOS
             {
                 if (lvFacturas.FocusedItem.Bounds.Contains(e.Location) == true)
                 {
+                    if (lvFacturas.SelectedItems[0].SubItems[12].Text != "")
+                    { 
+                        aCTIVRToolStripMenuItem.Visible = true;
+                        aNULARToolStripMenuItem.Visible = false;
+                        
+                    }
+                    else
+                    {
+                        aCTIVRToolStripMenuItem.Visible = false;
+                        aNULARToolStripMenuItem.Visible = true;
+                    }
+
                     cmFactura.Show(Cursor.Position);
                 }
             }
@@ -5335,6 +5468,46 @@ namespace SOCIOS
                 cbTipoFactura.SelectedValue = ID_TIPO_FH;
                 tbImporteFactura.Text = IMPORTE_FH;
                 dpDiaFactura.Text = FECHA_FH;
+            }
+        }
+
+        private void aNULARToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA ANULAR EL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    string ID = lvFacturas.SelectedItems[0].SubItems[0].Text;
+                    string ANULADO = DateTime.Today.ToShortDateString();
+                    string USR_ANULADO = VGlobales.vp_username;
+                    BO_COMPRAS.anularFactura(ID, ANULADO, USR_ANULADO);
+                    MessageBox.Show("COMPROBANTE AULADO", "LISTO!");
+                    buscarFactura("BUSCAR");
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("NO SE PUDO ANULAR EL COMPROBANTE\n" + error, "ERROR!");
+                }
+            }
+        }
+
+        private void aCTIVRToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA ACTIVAR EL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    string ID = lvFacturas.SelectedItems[0].SubItems[0].Text;
+                    string ANULADO = "";
+                    string USR_ANULADO = "";
+                    BO_COMPRAS.anularFactura(ID, ANULADO, USR_ANULADO);
+                    MessageBox.Show("COMPROBANTE ACTIVADO", "LISTO!");
+                    buscarFactura("BUSCAR");
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("NO SE PUDO ACTIVAR EL COMPROBANTE\n" + error, "ERROR!");
+                }
             }
         }
     }

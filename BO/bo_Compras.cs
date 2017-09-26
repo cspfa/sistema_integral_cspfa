@@ -17,6 +17,29 @@ namespace SOCIOS.BO
         db resultado = new db();
 
         //MODIFICA CAMPO OP_TEMP EN CHEQUERAS
+        public void anularFactura(string ID, string ANULADO, string USR_ANULADO)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(ANULADO);
+            vector_contenidos.Add(USR_ANULADO);
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Date");
+            vector_tipos.Add("FbDbType.Char");
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("ID");
+            vector_nombres.Add("ANULADO");
+            vector_nombres.Add("USR_ANULADO");
+
+            string vprocedure = "FACTURAS_ANULADO";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //MODIFICA CAMPO OP_TEMP EN CHEQUERAS
         public void modificarOpTemp(string VALOR, string CHEQUE, string BANCO_ID)
         {
             ArrayList vector_contenidos = new ArrayList();
