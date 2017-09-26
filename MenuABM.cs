@@ -1792,7 +1792,7 @@ namespace SOCIOS
 
         private void importarDatosCamposToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SOCIOS.Entrada_Campo.Procesar_Registros rp = new Entrada_Campo.Procesar_Registros();
+            SOCIOS.Entrada_Campo.Procesar_Registros rp = new Entrada_Campo.Procesar_Registros("CPOCABA");
             rp.ShowDialog();
         }
 
@@ -2058,12 +2058,6 @@ namespace SOCIOS
             }
         }
 
-        private void delfoCabreraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO DELFO CABRERA", "CPOCABA");
-            ic.ShowDialog();
-        }
-
         private void generalBelgranoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO GENERAL BELGRANO", "CPOPOLVORINES");
@@ -2072,7 +2066,7 @@ namespace SOCIOS
 
         private void exportarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SOCIOS.deportes.Campos.Exportar_Deportes ed = new deportes.Campos.Exportar_Deportes();
+            SOCIOS.deportes.Campos.Exportar_Deportes ed = new deportes.Campos.Exportar_Deportes("DEPORTES");
             ed.ShowDialog();
         }
 
@@ -2086,6 +2080,48 @@ namespace SOCIOS
         {
             abmPersonas ap = new abmPersonas();
             ap.ShowDialog();
+        }
+
+        private void comprobantesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO DELFO CABRERA", "CPOCABA");
+            ic.ShowDialog();
+        }
+
+        private void entradasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.Entrada_Campo.Procesar_Registros rp = new Entrada_Campo.Procesar_Registros("CPOCABA");
+            rp.ShowDialog();
+        }
+
+        private void movimientosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            importarMovimientos im = new importarMovimientos("CPOCABA");
+            im.ShowDialog();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO GENERAL BELGRANO", "CPORANELAGH");
+            ic.ShowDialog();
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            SOCIOS.Entrada_Campo.Procesar_Registros rp = new Entrada_Campo.Procesar_Registros("CPOCABA");
+            rp.ShowDialog();
+        }
+
+        private void toolStripMenuItem12_Click_1(object sender, EventArgs e)
+        {
+            importarMovimientos im = new importarMovimientos("CPORANELAGH");
+            im.ShowDialog();
+        }
+
+        private void listadoIngresosPersonalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listadoMovimientos lm = new listadoMovimientos();
+            lm.ShowDialog();
         }
     }
 }
