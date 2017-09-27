@@ -1064,6 +1064,7 @@ namespace SOCIOS.bono
         {
             this.Ingreso(BONO, DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, BARRA, 1);
             this.Ingreso(BONO, DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, BARRA, 2);
+
             this.Ingreso(BONO, DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, BARRA, 3);
 
 

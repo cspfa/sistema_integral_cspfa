@@ -78,8 +78,7 @@ namespace SOCIOS
            else
                DatosSocio = new SOCIOS.bono.handlerDatosSocios(pNro_Socio.ToString(), pNro_Dep.ToString()).CAB;
             //Grabo Ingreso
-
-            dlog.Inserto_Ingreso(Apellido,Nombre,"Tit", VGlobales.vp_role, Titulo, DESTINO.ToString(),pNro_Socio.ToString(),pNro_Dep.ToString(), pNRo_SocioADH.ToString(), pNro_DepADH.ToString(), pBarra.ToString(),Int32.Parse (Dni), "0", PROF.ToString(),"", VGlobales.vp_username, 1, Monto, ID);
+             dlog.Inserto_Ingreso(Apellido,Nombre,"Tit", VGlobales.vp_role, Titulo, DESTINO.ToString(),pNro_Socio.ToString(),pNro_Dep.ToString(), pNRo_SocioADH.ToString(), pNro_DepADH.ToString(), pBarra.ToString(),Int32.Parse (Dni), "0", PROF.ToString(),"", VGlobales.vp_username, 1, Monto, ID);
         }
 
 
