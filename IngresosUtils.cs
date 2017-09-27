@@ -53,7 +53,7 @@ namespace SOCIOS
         bo dlog = new bo();
 
         CabeceraTitular DatosSocio = new CabeceraTitular();
-        public IngresoBono(int ID, string ROL, bool Pago, decimal Monto,int pNro_Socio,int pNro_Dep,int pBarra,int pNRo_SocioADH, int pNro_DepADH,string Dni,string Nombre,string Apellido,int Destino,int Prof,string Titulo)
+        public IngresoBono(int ID, string ROL, bool Pago, decimal Monto,int pNro_Socio,int pNro_Dep,int pBarra,int pNRo_SocioADH, int pNro_DepADH,string Dni,string Nombre,string Apellido,int Destino,int Prof,string Titulo,int BONO)
         {
             //Defino si es un pago, uno de turismo u odontologico
             DESTINO = Destino;
@@ -65,11 +65,11 @@ namespace SOCIOS
             }
             else if (ROL.Contains("MEDICOS"))
             {
-                this.Init_BonoOdontologico(ID,Destino,Prof);
+                this.Init_BonoOdontologico(BONO,Destino,Prof);
             }
             else if (ROL.Contains("TURISMO"))
             {
-                this.Init_Turismo(ID);
+                this.Init_Turismo(BONO);
 
             }
             //Obtengo Datos del Titular
@@ -79,9 +79,7 @@ namespace SOCIOS
                DatosSocio = new SOCIOS.bono.handlerDatosSocios(pNro_Socio.ToString(), pNro_Dep.ToString()).CAB;
             //Grabo Ingreso
 
-          
-
-            dlog.Inserto_Ingreso(Apellido,Nombre,"Tit", VGlobales.vp_role, Titulo, DESTINO.ToString(),pNro_Socio.ToString(),pNro_Dep.ToString(), pNRo_SocioADH.ToString(), pNro_DepADH.ToString(), pBarra.ToString(),Int32.Parse (Dni), "0", Prof.ToString(),"", VGlobales.vp_username, 1, Monto, ID);
+            dlog.Inserto_Ingreso(Apellido,Nombre,"Tit", VGlobales.vp_role, Titulo, DESTINO.ToString(),pNro_Socio.ToString(),pNro_Dep.ToString(), pNRo_SocioADH.ToString(), pNro_DepADH.ToString(), pBarra.ToString(),Int32.Parse (Dni), "0", PROF.ToString(),"", VGlobales.vp_username, 1, Monto, ID);
         }
 
 
@@ -92,6 +90,7 @@ namespace SOCIOS
             DataRow[] foundRows;
 
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
 
 
             if (foundRows.Length > 0)
