@@ -40,10 +40,7 @@ namespace SOCIOS
             comboTipoComprobante(cbTipoBusqueda);
             comboTipoComprobante(cbTipoComprobante);
             comboSectores(cbSectorBusqueda);
-            comboSectores(cbSectores);
-            comboSectores(cbSectOrigenSolicitud);
-            comboSectores(cbSectDestSolicitudes);
-            comboPrioridadesSolicitudes();
+            comboSectores(cbSectores);            
             lvFacturas.MultiSelect = true;
             comboEstadosCheques();
             comboBeneficiarios();
@@ -378,9 +375,8 @@ namespace SOCIOS
         {
             tbBuscarFactura.Focus();
             comboProveedores(cbProveedores);
-            comboTipoArticulo();
+            comboTipoArticulo(cbTipoArticulo);
             toggleBotones("MOSTRAR");
-
         }
 
         private void comboAnticipos()
@@ -416,15 +412,15 @@ namespace SOCIOS
             cbTiposExistentes.SelectedIndex = -1;
         }
 
-        private void comboTipoArticulo()
+        private void comboTipoArticulo(ComboBox COMBO)
         {
             string query = "SELECT ID, TRIM(DETALLE) AS DETALLE FROM TIPOS_ARTICULOS ORDER BY DETALLE ASC;";
-            cbTipoArticulo.DataSource = null;
-            cbTipoArticulo.Items.Clear();
-            cbTipoArticulo.DataSource = dlog.BO_EjecutoDataTable(query);
-            cbTipoArticulo.DisplayMember = "DETALLE";
-            cbTipoArticulo.ValueMember = "ID";
-            cbTipoArticulo.SelectedItem = 0;
+            COMBO.DataSource = null;
+            COMBO.Items.Clear();
+            COMBO.DataSource = dlog.BO_EjecutoDataTable(query);
+            COMBO.DisplayMember = "DETALLE";
+            COMBO.ValueMember = "ID";
+            COMBO.SelectedItem = 0;
         }
 
         private void comboTipoProveedor()
@@ -1020,8 +1016,6 @@ namespace SOCIOS
         { 
         
         }
-
-
 
         private void agregarModificarArticulo(string ACCION, int ID_ARTICULO, object sender)
         {
@@ -5531,6 +5525,57 @@ namespace SOCIOS
                     MessageBox.Show("NO SE PUDO ACTIVAR EL COMPROBANTE\n" + error, "ERROR!");
                 }
             }
+        }
+
+        private void btnAddArtSol_Click(object sender, EventArgs e)
+        {
+            if (tbCantArtSol.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD", "ERROR");
+                tbCantArtSol.Focus();
+            }
+            else if (tbDetArtSol.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO DETALLE", "ERROR");
+                tbDetArtSol.Focus();
+            }
+            else
+            {
+                string CANTIDAD_SOL = tbCantArtSol.Text.Trim();
+                string DETALLE_SOL = tbDetArtSol.Text.Trim();
+                string TIPO_SOL = cbTipoArtSol.Text;
+                string ID_TIPO_SOL = cbTipoArtSol.SelectedValue.ToString();
+                dgvArtSol.Rows.Add(CANTIDAD_SOL, DETALLE_SOL, TIPO_SOL, ID_TIPO_SOL);
+            }
+        }
+
+        private void btnDelArtSol_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvArtSol.SelectedRows)
+            {
+                int ID = int.Parse(row.Index.ToString());
+                dgvArtSol.Rows.RemoveAt(ID);
+            }
+        }
+
+        private void btnAltaSolicitud_Click(object sender, EventArgs e)
+        {
+            if (dgvArtSol.Rows.Count == 0)
+            {
+                MessageBox.Show("AGREGAR POR LO MENOS UN ARTÍCULO", "ERROR!");
+            }
+            else
+            { 
+                
+            }
+        }
+
+        private void tpSolicitud_Enter(object sender, EventArgs e)
+        {
+            comboSectores(cbSectOrigenSolicitud);
+            comboSectores(cbSectDestSolicitudes);
+            comboPrioridadesSolicitudes();
+            comboTipoArticulo(cbTipoArtSol);
         }
     }
 }
