@@ -29,6 +29,10 @@ namespace SOCIOS
         private void comboPersonas()
         {
             string QUERY = "SELECT ID, NOMBRE FROM PERSONAS WHERE ESTADO = 1 ORDER BY NOMBRE ASC;";
+
+            if (VGlobales.vp_role != "SISTEMAS")
+                QUERY = "SELECT ID, NOMBRE FROM PERSONAS WHERE ESTADO = 1 AND ROL = '" + VGlobales.vp_role + "' ORDER BY NOMBRE ASC;";
+
             cbPersonas.DataSource = null;
             cbPersonas.Items.Clear();
             cbPersonas.DataSource = dlog.BO_EjecutoDataTable(QUERY);
@@ -78,6 +82,7 @@ namespace SOCIOS
                     if (MOVIMIENTO == "ENTRADA")
                     {
                         HORA_DESDE = Convert.ToDateTime(FECHA_HORA);
+                        listItem.SubItems.Add("-");
                     }
 
                     if (MOVIMIENTO == "SALIDA")
@@ -180,8 +185,8 @@ namespace SOCIOS
             string HASTA = dpHasta.Text;
             string[] HA = HASTA.Split(SEP);
             string FECHA_HASTA = HA[1]+"/"+HA[0]+"/"+HA[2];
-
             buscarListado(PERSONA, FECHA_DESDE, FECHA_HASTA);
+            btnImprimir.Enabled = true;
         }
 
         private void cbTodos_CheckedChanged(object sender, EventArgs e)
@@ -211,6 +216,8 @@ namespace SOCIOS
             BaseColor topo = new BaseColor(100, 100, 100);
             BaseColor blanco = new BaseColor(255, 255, 255);
             BaseColor colorFondo = new BaseColor(255, 255, 255);
+            string PERSONA_LISTADA = cbPersonas.Text.ToUpper();
+            string TOTAL_HORAS = lbTotalHoras.Text;
 
             SaveFileDialog SFD = new SaveFileDialog();
             SFD.Filter = "Archivo PDF|*.pdf";
@@ -228,14 +235,27 @@ namespace SOCIOS
             doc.AddCreator("CSPFA");
             doc.Open();
 
-            Paragraph TITULO = new Paragraph("INGRESOS Y EGRESOS DEL DIA " + DateTime.Today.ToShortDateString(), _mediumFont);
+            Paragraph TITULO = new Paragraph("INGRESOS Y EGRESOS DESDE EL " + dpDesde.Text + " HASTA EL " + dpHasta.Text, _mediumFont);
             TITULO.Alignment = Element.ALIGN_LEFT;
             TITULO.SpacingAfter = 5;
             doc.Add(TITULO);
 
-            PdfPTable TABLA_HEADER = new PdfPTable(4);
+            if (cbTodos.Checked == false)
+            {
+                Paragraph PERSONA = new Paragraph(PERSONA_LISTADA, _mediumFont);
+                PERSONA.Alignment = Element.ALIGN_LEFT;
+                PERSONA.SpacingAfter = 5;
+                doc.Add(PERSONA);
+
+                Paragraph TOTAL_HS = new Paragraph(TOTAL_HORAS, _mediumFont);
+                TOTAL_HS.Alignment = Element.ALIGN_LEFT;
+                TOTAL_HS.SpacingAfter = 5;
+                doc.Add(TOTAL_HS);
+            }
+
+            PdfPTable TABLA_HEADER = new PdfPTable(5);
             TABLA_HEADER.WidthPercentage = 100;
-            TABLA_HEADER.SetWidths(new float[] { 1f, 1f, 1f, 1f });
+            TABLA_HEADER.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f });
 
             PdfPCell CELDA_NOMBRE = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
             CELDA_NOMBRE.BackgroundColor = topo;
@@ -258,12 +278,20 @@ namespace SOCIOS
             CELDA_MOVIMIENTO.FixedHeight = 16f;
             TABLA_HEADER.AddCell(CELDA_MOVIMIENTO);
 
-            PdfPCell CELDA_FECHA_HORA = new PdfPCell(new Phrase("FECHA Y HORA", _mediumFontBoldWhite));
+            PdfPCell CELDA_FECHA_HORA = new PdfPCell(new Phrase("DIA Y HORA", _mediumFontBoldWhite));
             CELDA_FECHA_HORA.BackgroundColor = topo;
             CELDA_FECHA_HORA.BorderColor = blanco;
             CELDA_FECHA_HORA.HorizontalAlignment = 0;
             CELDA_FECHA_HORA.FixedHeight = 16f;
             TABLA_HEADER.AddCell(CELDA_FECHA_HORA);
+
+            PdfPCell CELDA_CARGA = new PdfPCell(new Phrase("CARGA", _mediumFontBoldWhite));
+            CELDA_CARGA.BackgroundColor = topo;
+            CELDA_CARGA.BorderColor = blanco;
+            CELDA_CARGA.HorizontalAlignment = 0;
+            CELDA_CARGA.FixedHeight = 16f;
+            TABLA_HEADER.AddCell(CELDA_CARGA);
+            
             int X = 0;
 
             foreach (ListViewItem itemRow in lvMovimientos.Items)
@@ -272,6 +300,7 @@ namespace SOCIOS
                 string CARGO = itemRow.SubItems[1].Text;
                 string MOVIMIENTO = itemRow.SubItems[2].Text;
                 string FECHA_HORA = itemRow.SubItems[3].Text;
+                string CARGA = itemRow.SubItems[4].Text;
 
                 if (X == 0)
                 {
@@ -311,6 +340,13 @@ namespace SOCIOS
                 DATO_FECHA_HORA.HorizontalAlignment = 0;
                 DATO_FECHA_HORA.FixedHeight = 16f;
                 TABLA_HEADER.AddCell(DATO_FECHA_HORA);
+
+                PdfPCell DATO_CARGA = new PdfPCell(new Phrase(CARGA, _mediumFont));
+                DATO_CARGA.BackgroundColor = colorFondo;
+                DATO_CARGA.BorderColor = colorFondo;
+                DATO_CARGA.HorizontalAlignment = 0;
+                DATO_CARGA.FixedHeight = 16f;
+                TABLA_HEADER.AddCell(DATO_CARGA);
             }
 
             doc.Add(TABLA_HEADER);

@@ -899,7 +899,7 @@ namespace SOCIOS
             {
                 nuevo.Enabled = true;
 
-                if (maskedTextBox2.Text == "12")
+                if (maskedTextBox2.Text == "012")
                 {
                     editar.Enabled = true;
                 }
@@ -1467,8 +1467,10 @@ namespace SOCIOS
         private void nuevo_Click(object sender, EventArgs e)
         {
             if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA")
-                || (VGlobales.vp_role.Trim() == "CONTADURIA"))
+                || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") 
+                || (VGlobales.vp_role.Trim() == "CONFITERIA")
+                || (VGlobales.vp_role.Trim() == "CONTADURIA")
+                || (VGlobales.vp_role.Trim() == "TURISMO"))
             {
                 maskedTextBox2.Text = "012";
                 maskedTextBox2.ReadOnly = true;
@@ -1511,11 +1513,11 @@ namespace SOCIOS
             maskedTextBox1.ReadOnly = true;
 
             if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA" 
-                || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "CONTADURIA")))
+                || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA"
+                || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "CONTADURIA")))
             {
                 maskedTextBox2.ReadOnly = true;
-                maskedTextBox2.Text = "12";
+                maskedTextBox2.Text = "012";
             }
             else
             {
@@ -1795,7 +1797,7 @@ namespace SOCIOS
                         string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA')";
 
                         if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                            || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA")
+                            || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA")
                             || (VGlobales.vp_role.Trim() == "CONFITERIA") || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "CONTADURIA"))
                         {
                             string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO = '0005';";
@@ -1809,6 +1811,11 @@ namespace SOCIOS
                         if ((VGlobales.vp_role.Trim() == "CPOPOLVORINES"))
                         {
                             string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO = '0014';";
+                        }
+
+                        if ((VGlobales.vp_role.Trim() == "TURISMO"))
+                        {
+                            string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO IN ('0005', '0008');";
                         }
                     }
                     else
