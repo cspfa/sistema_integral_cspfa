@@ -130,7 +130,7 @@ namespace SOCIOS.CuentaSocio
             {
 
              
-                IngresoBono ingreso = new IngresoBono(CuotaID, ROL, true, Importe,NRO_SOCIO_TIT, NRO_DEP_TIT,BARRA,NRO_SOCIO,NRO_DEP, DNI, Nombre, Apellido, 0, 0, "Ingreso Automatico Generado Por Pago de Cuota");
+                //IngresoBono ingreso = new IngresoBono(CuotaID, ROL, true, Importe,NRO_SOCIO_TIT, NRO_DEP_TIT,BARRA,NRO_SOCIO,NRO_DEP, DNI, Nombre, Apellido, 0, 0, "Ingreso Automatico Generado Por Pago de Cuota");
 
 
 
