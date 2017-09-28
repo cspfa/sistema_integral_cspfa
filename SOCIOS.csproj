@@ -359,6 +359,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="deportes\VencimientoAptoFisico2.Designer.cs" />
+    <Compile Include="ingresos\importarMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ingresos\importarMovimientos.Designer.cs">
+      <DependentUpon>importarMovimientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="recibos\modificarCajaDiaria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1231,6 +1237,9 @@
       <DependentUpon>EntradaEvento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="entradaCampo\Reporte\repoTicket.resx" />
+    <EmbeddedResource Include="ingresos\importarMovimientos.resx">
+      <DependentUpon>importarMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ingresos\abmPersonas.resx">
       <DependentUpon>abmPersonas.cs</DependentUpon>
     </EmbeddedResource>
