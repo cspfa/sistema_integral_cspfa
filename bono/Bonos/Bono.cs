@@ -602,7 +602,12 @@ namespace SOCIOS.bono
                 item.Mail = "";
                 item.Telefono = tit.Telefonos;
                 item.Nacimiento = tit.FechaNac;
-               
+                if (item.Nacimiento.Length != 0)
+                {
+                    item.Edad = (System.DateTime.Now - DateTime.Parse(item.Nacimiento)).Days.ToString();
+                    if (item.Edad.Length > 0)
+                        item.Edad = Decimal.Round(Int32.Parse(item.Edad) / 365).ToString(); 
+                }
                 item.NroSocioTitular =Int32.Parse( tit.NroSocioTitular);
                 item.NroSocio = Int32.Parse(tit.NroSocioTitular);
                 item.NroDep = Int32.Parse(tit.NroDepTitular);
@@ -871,7 +876,8 @@ namespace SOCIOS.bono
             {
 
 
-
+                if (item.Edad == null)
+                    throw new Exception("Existen Personas Sin Edad Cargada en la Lista De Personas");
 
                 if ( item.Origen ==1) //Origen 1, familiares
                 {
