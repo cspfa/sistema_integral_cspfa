@@ -598,8 +598,8 @@ namespace SOCIOS.Entrada_Campo.CSPFA
         private void Imprimir()
 
         {
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false);
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false);
            // this.Imprimir_Pileta();
         }
 

@@ -95,7 +95,6 @@ namespace SOCIOS.Entrada_Campo
                 //lnk_Familiar_Estacionamiento.Visible = false;
                 //lnk_InterCirculo_Estacionamiento.Visible = false;
                 //lnk_Invitado_Estacionamiento.Visible = false;
-
                 lnkFamiliar.Visible = false;
               
                 gpSinCargo.Visible = false;
@@ -544,7 +543,7 @@ namespace SOCIOS.Entrada_Campo
         private void Imprimir()
 
         {
-            int ID = entradaCampoService.GetMaxID_ROL(DNI);
+            int ID = entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
             entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false);
             entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa,ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false);
             this.Imprimir_Pileta();

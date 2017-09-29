@@ -166,7 +166,7 @@ namespace SOCIOS.entradaCampo.Campo
 
         public void Imprimir()
         {
-            int ID = es.GetMaxID_ROL(DNI);
+            int ID = es.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
             int cantidad = lista.Count;
             es.Imprimir(0,0,0,0,0,0,0,0,0,0,0,0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", cantidad,false);
             es.Imprimir(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", cantidad,false);

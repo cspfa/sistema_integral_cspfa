@@ -771,9 +771,9 @@ namespace SOCIOS
 
 
 
-        public int GetMaxID_ROL(string DNI)
+        public int GetMaxID_ROL(string DNI,string ROL)
         {
-            string QUERY = "SELECT coalesce (MAX(ID_ROL),0) from entrada_campo WHERE DNI='" + DNI+"'";
+            string QUERY = "SELECT coalesce (MAX(ID_ROL),0) from entrada_campo WHERE DNI='" + DNI + "'" + " and ROL='" + ROL + "'"; ;
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
@@ -789,7 +789,7 @@ namespace SOCIOS
 
         public int GetMaxID(string DNI)
         {
-            string QUERY = "SELECT coalesce (MAX(ID),0) from entrada_campo WHERE DNI='" + DNI + "'";
+            string QUERY = "SELECT coalesce (MAX(ID),0) from entrada_campo WHERE DNI='" + DNI;
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
