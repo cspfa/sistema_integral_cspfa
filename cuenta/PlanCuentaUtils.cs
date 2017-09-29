@@ -11,7 +11,6 @@ namespace SOCIOS.CuentaSocio
     {
         public string Plan               { get; set; }
         public string Bono               { get; set; }
-      
         public string Fecha              { get; set; }
         public string Tipo               { get; set; }
         public string NombreCompleto     { get; set; }
@@ -36,21 +35,28 @@ namespace SOCIOS.CuentaSocio
 
     public class CuotaPlan
     {
-        public int      ID          { get; set; }
-        public string   Detalle     { get; set; }
-        public decimal  Monto       { get; set; }
-        public int      RECIBO      { get; set; }
-        public string   FechaPago   { get; set; }
-        public string   Nro_Soc     { get; set; }
-        public string   Nro_Dep     { get; set; }
-        public string   Rol         { get; set; }
-        public int      Plan        { get; set; }
+        public int      ID              { get; set; }
+        public string   Detalle         { get; set; }
+        public decimal  Monto           { get; set; }
+        public int      RECIBO_CAJA     { get; set; }
+        public string   FechaPago       { get; set; }
+        public string   FechaDTO        { get; set; }
+        public string   FormaPago       { get; set; }
+        public string Rol                { get; set; }
+        public string   Nro_Soc         { get; set; }
+        public string   Nro_Dep         { get; set; }
+   
+        public int      Plan            { get; set; }
+        public int      Bono_CAJA       { get; set; }
+        public string FormaDescuento { get; set; }
     }
 
 
     public class PlanCuentaUtils
     {
-        bo dlog = new bo();
+        bo_Bonos dlog = new bo_Bonos();
+        SOCIOS.descuentos.DescuentoUtils du = new descuentos.DescuentoUtils();
+
         public List<PLanDeCuenta> GetCuentas(int Modo)
         {
             string query;
@@ -140,7 +146,7 @@ namespace SOCIOS.CuentaSocio
         public List<CuotaPlan> Cuotas(int PLan)
 
         {
-            string query = " select ID,Cuota,Monto,Nro_Recibo Recibo, F_Pago FechaPago,Nro_Soc,Nro_Dep,Rol   from pagos_Bono where PLan_Cuenta=" +PLan.ToString() ;
+            string query = " select P.ID,P.Cuota,P.Monto,P.Nro_Recibo_Caja, P.F_Pago FechaPago,P.Nro_Soc,P.Nro_Dep,P.Rol,P.nro_bono_Caja,tipopago,forma_dto DTO, fecha_dto DTO_FECHA     from pagos_Bono P WHERE  P.PLan_Cuenta=" + PLan.ToString();
 
 
             List<CuotaPlan> Cuotas = new List<CuotaPlan>();
@@ -177,11 +183,25 @@ namespace SOCIOS.CuentaSocio
                     pc.Detalle = reader3.GetString(reader3.GetOrdinal("CUOTA")).Trim();
                     pc.Nro_Soc = reader3.GetString(reader3.GetOrdinal("NRO_SOC")).Trim();
                     pc.Nro_Dep = reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim();
-                    string recibo = reader3.GetString(reader3.GetOrdinal("RECIBO")).Trim();
+                    pc.FechaDTO = reader3.GetString(reader3.GetOrdinal("DTO_FECHA")).Trim();
+                    string recibo = reader3.GetString(reader3.GetOrdinal("NRO_RECIBO_CAJA")).Trim();
                     if (recibo.Length >0)
-                        pc.RECIBO =  Int32.Parse(recibo);
+                        pc.RECIBO_CAJA =  Int32.Parse(recibo);
+
                     pc.FechaPago = reader3.GetString(reader3.GetOrdinal("FECHAPAGO")).Trim();
+                    
                     pc.Rol       = reader3.GetString(reader3.GetOrdinal("ROL")).Trim();
+                    string bono_caja = reader3.GetString(reader3.GetOrdinal("NRO_BONO_CAJA")).Trim();
+                    if (bono_caja.Length > 0)
+                        pc.Bono_CAJA = Int32.Parse(bono_caja);
+                    
+                   // if (reader3.GetString(reader3.GetOrdinal("TIPOPAGO")).Trim().Length > 1)
+                     //   pc.FormaPago = SOCIOS.formasPago.DETALLE_FORMA_PAGO(Int32.Parse(reader3.GetString(reader3.GetOrdinal("TIPOPAGO")).Trim()));
+                    if (reader3.GetString(reader3.GetOrdinal("DTO")).Trim().Length > 1)
+                    {
+                        int dto = Int32.Parse(reader3.GetString(reader3.GetOrdinal("DTO")).Trim());
+                        pc.FormaDescuento = du.Observaciones(dto).First().OBS;
+                    }
                     Cuotas.Add(pc);
 
 
@@ -202,7 +222,7 @@ namespace SOCIOS.CuentaSocio
 
         public CuotaPlan getCuota(int Cuota)
         {
-            string query = " select ID,Cuota,Monto,Nro_Recibo Recibo, F_Pago FechaPago,Nro_Soc,Nro_Dep,Rol,PLan_Cuenta Plan   from pagos_Bono where ID=" + Cuota.ToString();
+            string query = " select ID,Cuota,Monto,Nro_Recibo Recibo, F_Pago FechaPago,Nro_Soc,Nro_Dep,Rol,PLan_Cuenta Plan , FORMA_PAGO FP   from pagos_Bono where ID=" + Cuota.ToString();
 
 
             List<CuotaPlan> Cuotas = new List<CuotaPlan>();
@@ -241,11 +261,17 @@ namespace SOCIOS.CuentaSocio
                     pc.Nro_Dep = reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim();
                     string recibo = reader3.GetString(reader3.GetOrdinal("RECIBO")).Trim();
                     if (recibo.Length > 0)
-                        pc.RECIBO = Int32.Parse(recibo);
+                        pc.RECIBO_CAJA = Int32.Parse(recibo);
+
                     pc.FechaPago = reader3.GetString(reader3.GetOrdinal("FECHAPAGO")).Trim();
                     pc.Rol = reader3.GetString(reader3.GetOrdinal("ROL")).Trim();
                     pc.Plan  =Int32.Parse( reader3.GetString(reader3.GetOrdinal("PLAN")).Trim());
-               
+                    string bono_caja = reader3.GetString(reader3.GetOrdinal("BONO")).Trim();
+                    if (bono_caja.Length > 0)
+                        pc.Bono_CAJA = Int32.Parse(bono_caja);
+                    //if (reader3.GetString(reader3.GetOrdinal("RECIBO")).Trim().Length > 1)
+                       // pc.FormaPago = formasPago.DETALLE_FORMA_PAGO(Int32.Parse(reader3.GetString(reader3.GetOrdinal("RECIBO")).Trim()));
+
                    
 
 
@@ -264,13 +290,20 @@ namespace SOCIOS.CuentaSocio
 
         }
 
-        public void MarcarPaga(int IdCuota, int Recibo,DateTime fechaPago)
+        public void MarcarPagaCuota(int IdCuota, int NRO_COMPROBANTE,bool esBono,int TipoPago,DateTime fechaPago)
 
         {
+            int recibo=0;
+            int bono =0;
+            if (esBono)
+                 bono =NRO_COMPROBANTE;
+            else
+                recibo = NRO_COMPROBANTE;
+
 
                CuotaPlan pc = new CuotaPlan();
              pc = this.getCuota(IdCuota);
-            dlog.Pagar_Cuota(pc.Plan, Recibo, fechaPago);
+          //   dlog.Pagar_Cuota(IdCuota, TipoPago, recibo, bono, fechaPago);
           
             dlog.PlanCuenta_Update(pc.Plan, pc.Monto);
 
