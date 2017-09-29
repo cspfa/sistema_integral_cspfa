@@ -1188,7 +1188,7 @@ namespace SOCIOS
             bindingNavigator1.MoveLastItem.Enabled = false;
             bindingNavigator1.MoveNextItem.Enabled = false;
             bindingNavigator1.MovePreviousItem.Enabled = false;
-            tbCUIL.ReadOnly = false;
+            //tbCUIL.ReadOnly = false;
             cancelar.Enabled = true;
             grabar.Enabled = true;
             buscar.Enabled = false;
@@ -1383,7 +1383,7 @@ namespace SOCIOS
                 tbIdEmp.ReadOnly = true;
                 tbTraspasado.ReadOnly = true;
                 tbCiudad.ReadOnly = true;
-                tbCUIL.ReadOnly = true;
+                //tbCUIL.ReadOnly = true;
 
                 comboBox1.PreventDropDown = true;
                 comboBox1.BackColor = Color.FromName("Control");
@@ -2859,7 +2859,7 @@ namespace SOCIOS
             tbIdEmp.ReadOnly = true;
             tbTraspasado.ReadOnly = true;
             tbCiudad.ReadOnly = true;
-            tbCUIL.ReadOnly = true;
+            //tbCUIL.ReadOnly = true;
 
             comboBox1.PreventDropDown = true;
             comboBox1.BackColor = Color.FromName("Control");
