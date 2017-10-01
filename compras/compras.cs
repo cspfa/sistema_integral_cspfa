@@ -28,6 +28,9 @@ namespace SOCIOS
         private string BUSCO_QUERY { get; set; }
         private string ACCION { get; set; }
 
+        List<ART_SOL> LISTA_ART_SOL;
+        List<ART_SOL_FILTRO> LISTA_ART_SOL_FILTRO;
+
         bo dlog = new bo();
         BO.bo_Compras BO_COMPRAS = new BO.bo_Compras();
         maxid mid = new maxid();
@@ -72,6 +75,71 @@ namespace SOCIOS
             {
                 tbBuscarNumeroFactura.Visible = true;
                 tbBuscarNumeroSolicitud.Visible = false;
+            }
+        }
+
+        public class ART_SOL
+        {
+            public string ID { get; set; }
+            public string DETALLE { get; set; }
+            public string TIPO { get; set; }
+            public string ID_TIPO { get; set; }
+
+            public ART_SOL(string id, string detalle, string tipo, string id_tipo)
+            {
+                this.ID = id;
+                this.DETALLE = detalle;
+                this.TIPO = tipo;
+                this.ID_TIPO = id_tipo;
+            }
+        }
+
+        public class ART_SOL_FILTRO
+        {
+            public string ID { get; set; }
+            public string DETALLE { get; set; }
+            public string TIPO { get; set; }
+            public string ID_TIPO { get; set; }
+
+            public ART_SOL_FILTRO(string id, string detalle, string tipo, string id_tipo)
+            {
+                this.ID = id;
+                this.DETALLE = detalle;
+                this.TIPO = tipo;
+                this.ID_TIPO = id_tipo;
+            }
+        }
+
+        private void generarListaArtSol()
+        {
+            try
+            {
+                LISTA_ART_SOL = new List<ART_SOL>();
+                string QUERY = "SELECT A.ID, A.DETALLE, T.DETALLE AS TIPO, A.TIPO AS ID_TIPO FROM ARTICULOS A, TIPOS_ARTICULOS T WHERE A.TIPO = T.ID;";
+                DataSet ds1 = new DataSet();
+                conString conString = new conString();
+                string connectionString = conString.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    FbDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string ID = reader.GetString(reader.GetOrdinal("ID")).Trim();
+                        string DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
+                        string TIPO = reader.GetString(reader.GetOrdinal("TIPO")).Trim();
+                        string ID_TIPO = reader.GetString(reader.GetOrdinal("ID_TIPO")).Trim();
+                        LISTA_ART_SOL.Add(new ART_SOL(ID, DETALLE, TIPO, ID_TIPO));
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS");
             }
         }
 
@@ -5541,12 +5609,23 @@ namespace SOCIOS
             }
             else
             {
+                dgResArtSol.Visible = false;
                 string CANTIDAD_SOL = tbCantArtSol.Text.Trim();
                 string DETALLE_SOL = tbDetArtSol.Text.Trim();
                 string TIPO_SOL = cbTipoArtSol.Text;
                 string ID_TIPO_SOL = cbTipoArtSol.SelectedValue.ToString();
-                dgvArtSol.Rows.Add(CANTIDAD_SOL, DETALLE_SOL, TIPO_SOL, ID_TIPO_SOL);
+                string ID_ART = lbIdArtSol.Text;
+                dgvArtSol.Rows.Add(CANTIDAD_SOL, DETALLE_SOL, TIPO_SOL, ID_TIPO_SOL, ID_ART);
+                limpiarArtSol();
             }
+        }
+
+        private void limpiarArtSol()
+        {
+            tbCantArtSol.Text = "";
+            tbDetArtSol.Text = "";
+            cbTipoArtSol.SelectedIndex = 0;
+            lbIdArtSol.Text = "ID_ART";
         }
 
         private void btnDelArtSol_Click(object sender, EventArgs e)
@@ -5556,6 +5635,8 @@ namespace SOCIOS
                 int ID = int.Parse(row.Index.ToString());
                 dgvArtSol.Rows.RemoveAt(ID);
             }
+
+            btnDelArtSol.Enabled = false;
         }
 
         private void btnAltaSolicitud_Click(object sender, EventArgs e)
@@ -5565,17 +5646,113 @@ namespace SOCIOS
                 MessageBox.Show("AGREGAR POR LO MENOS UN ARTÍCULO", "ERROR!");
             }
             else
-            { 
-                
+            {
+                string FECHA_SOL = dpFechaSolicitud.Text;
+                string PRIORIDAD_SOL = cbPrioridadSolicitud.Text;
+                string SECTOR_ORIGEN = cbSectOrigenSolicitud.SelectedValue.ToString();
+                string SECTOR_DESTINO = cbSectDestSolicitudes.SelectedValue.ToString();
+                string DETALLE_ART_SOL = "";
+                int ID_TIPO_ART_SOL = 1;
+                int ID_NUEVO_ART_SOL = 0;
+                int CANTIDAD_ART_SOL = 0;
+
+                try
+                {
+                    BO_COMPRAS.nuevaSolicitudCompra(FECHA_SOL, PRIORIDAD_SOL, SECTOR_ORIGEN, SECTOR_DESTINO);
+                    string ID_SOL = mid.m("ID", "SOLICITUDES_COMPRAS");
+
+                    foreach (DataGridViewRow row in dgvArtSol.Rows)
+                    {
+                        if (row.Cells[4].Value.ToString() == "ID_ART")
+                        {
+                            DETALLE_ART_SOL = row.Cells[1].Value.ToString();
+                            ID_TIPO_ART_SOL = int.Parse(row.Cells[3].Value.ToString());
+                            BO_COMPRAS.nuevoArticulo(0, DETALLE_ART_SOL, 0, 0, "0", ID_TIPO_ART_SOL, "0");
+                            ID_NUEVO_ART_SOL = int.Parse(mid.m("ID", "ARTICULOS"));
+                            row.Cells[4].Value = ID_NUEVO_ART_SOL.ToString();
+                        }
+                    }
+
+                    foreach (DataGridViewRow row in dgvArtSol.Rows)
+                    {
+                        ID_NUEVO_ART_SOL = int.Parse(row.Cells[4].Value.ToString());
+                        CANTIDAD_ART_SOL = int.Parse(row.Cells[0].Value.ToString());
+                        BO_COMPRAS.altaSolicitudArticulos(int.Parse(ID_SOL), ID_NUEVO_ART_SOL, CANTIDAD_ART_SOL);
+                    }
+                    
+                    MessageBox.Show("SOLICITUD DE COMPRA ENVIAD", "LISTO!");
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("NO SE PUDO ENVIAR LA SOLICITUD\n" + error, "ERROR!");
+                }
             }
         }
 
         private void tpSolicitud_Enter(object sender, EventArgs e)
         {
+            generarListaArtSol();
             comboSectores(cbSectOrigenSolicitud);
             comboSectores(cbSectDestSolicitudes);
             comboPrioridadesSolicitudes();
             comboTipoArticulo(cbTipoArtSol);
+        }
+
+        private void tbDetArtSol_KeyUp(object sender, KeyEventArgs e)
+        {
+            string CONDICION = tbDetArtSol.Text.Trim();
+            buscarArticulos(CONDICION);
+        }
+
+        public void buscarArticulos(string CONDICION)
+        {
+            var FILTRO = LISTA_ART_SOL.Where(x => x.DETALLE.Contains(CONDICION)).ToList();
+
+            if (FILTRO.Count > 0)
+            {
+                dgResArtSol.Visible = true;
+                btnAddArtSol.Enabled = false;
+                dgResArtSol.DataSource = null;
+                dgResArtSol.DataSource = FILTRO;
+                dgResArtSol.Columns[0].Visible = false;
+                dgResArtSol.Columns[1].Width = 400;
+                dgResArtSol.Columns[2].Width = 150;
+                dgResArtSol.Columns[3].Visible = false;
+            }
+            else
+            {
+                dgResArtSol.Visible = false;
+                lbIdArtSol.Text = "ID_ART";
+                btnAddArtSol.Enabled = true;
+            }
+        }
+
+        private void dgResArtSol_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgResArtSol.SelectedRows)
+            {
+                string ID_ART_SOL = row.Cells["ID"].Value.ToString();
+                string DETALLE = row.Cells["DETALLE"].Value.ToString();
+                string TIPO = row.Cells["TIPO"].Value.ToString();
+                string ID_TIPO = row.Cells["ID_TIPO"].Value.ToString();
+                tbDetArtSol.Text = DETALLE;
+                cbTipoArtSol.SelectedValue = ID_TIPO;
+                lbIdArtSol.Text = ID_ART_SOL;
+                dgResArtSol.Visible = false;
+                btnAddArtSol.Enabled = true;
+            }
+        }
+
+        private void dgvArtSol_Click(object sender, EventArgs e)
+        {
+            if (dgvArtSol.SelectedRows.Count > 0)
+            {
+                btnDelArtSol.Enabled = true;
+            }
+            else
+            {
+                btnDelArtSol.Enabled = false;
+            }
         }
     }
 }
