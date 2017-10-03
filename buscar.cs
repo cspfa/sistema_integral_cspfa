@@ -2252,7 +2252,7 @@ namespace SOCIOS
 
         public void habilitarBotonAsamblea()
         {
-            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995")
+            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995" && listView1.SelectedItems[0].SubItems[1].Text != "020")
             {
                 btnIngresoAsamblea.Enabled = false;
             }
