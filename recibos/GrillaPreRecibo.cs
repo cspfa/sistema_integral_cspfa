@@ -30,7 +30,7 @@ namespace SOCIOS
                 v_consulta = "SELECT CASE TIP_SOCIO WHEN 'ADH' THEN A.NRO_ADH WHEN 'INP' THEN A.NRO_ADH WHEN 'VIS' THEN A.NRO_SOC ELSE A.NRO_SOC END AS NRO_SOC,";
                 v_consulta = v_consulta + " CASE TIP_SOCIO WHEN 'ADH' THEN A.NRO_DEPADH WHEN 'INP' THEN A.NRO_DEPADH WHEN 'VIS' THEN A.NRO_DEP ELSE A.NRO_DEP END AS NRO_DEP,";
                 v_consulta = v_consulta + " A.APELLIDO, A.NOMBRE, A.TIP_SOCIO, A.ROL, A.ID_DESTINO, A.ID_PROFESIONAL, A.SECUENCIA, A.BARRA, A.COD_DTO, SA.DETALLE, P.NOMBRE AS NOMBREPROF,";
-                v_consulta = v_consulta + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.IMPORTE";
+                v_consulta = v_consulta + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.IMPORTE , A.NRO_PAGO NRO_PAGO";
                 v_consulta = v_consulta + " FROM INGRESOS_A_PROCESAR A, SECTACT SA, PROFESIONALES P";
                 v_consulta = v_consulta + " WHERE A.ID_DESTINO IN (SELECT C.SECTACT FROM ARANCELES C WHERE C.FE_BAJA IS NULL GROUP BY C.SECTACT) AND A.ID_DESTINO <> 50 AND A.SECUENCIA > 268461";
 
@@ -122,6 +122,7 @@ namespace SOCIOS
                     dt1.Columns.Add("DNI", typeof(string));
                     dt1.Columns.Add("GRUPO", typeof(string));
                     dt1.Columns.Add("IMPORTE", typeof(string));
+                    dt1.Columns.Add("NRO_PAGO", typeof(string));
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(v_consulta, connection, transaction);
                     FbDataReader reader3 = cmd.ExecuteReader();
@@ -149,7 +150,8 @@ namespace SOCIOS
                                      reader3.GetString(reader3.GetOrdinal("CUENTA")).Trim(), //18
                                      reader3.GetString(reader3.GetOrdinal("DNI")), //19
                                      reader3.GetString(reader3.GetOrdinal("GRUPO")), //20
-                                     reader3.GetString(reader3.GetOrdinal("IMPORTE"))); //21
+                                     reader3.GetString(reader3.GetOrdinal("IMPORTE")),//21
+                                     reader3.GetString(reader3.GetOrdinal("NRO_PAGO")));//22 
                     }
 
                     reader3.Close();
@@ -389,6 +391,8 @@ namespace SOCIOS
             VGlobales.vp_TipSoc = dataGridView1[4, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             VGlobales.vp_Barra = dataGridView1[9, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             VGlobales.vp_CodDto = dataGridView1[10, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+
+
             string RB = dataGridView1[17, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
             if (RB == "R")
@@ -406,6 +410,12 @@ namespace SOCIOS
             int GRUPO = int.Parse(dataGridView1[20, dataGridView1.CurrentCell.RowIndex].Value.ToString());
             int CUENTA = 0;
             decimal IMPORTE = decimal.Parse(dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+
+            string ID_PAGO = dataGridView1[22, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+
+            if (ID_PAGO.Length > 0)
+                VGlobales.ID_CUOTA_PAGO = Int32.Parse(ID_PAGO);
+
 
             if (dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString() != "")
             {

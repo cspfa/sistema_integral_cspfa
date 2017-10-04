@@ -1352,5 +1352,10 @@ namespace SOCIOS.BO
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
+
+
+
+
+
     }
 }

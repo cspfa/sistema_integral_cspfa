@@ -7,11 +7,13 @@ using System.Text;
 using System.Windows.Forms;
 using FirebirdSql.Data.Firebird;
 
+
 namespace SOCIOS
 {
     public partial class recibos : Form
     {
         BO.bo_Caja BO_CAJA = new BO.bo_Caja();
+        SOCIOS.CuentaSocio.PlanCuentaUtils pcu = new CuentaSocio.PlanCuentaUtils();
         bo dlog = new bo();
         nombreSocio ns = new nombreSocio();
         tipoSocio ts = new tipoSocio();
@@ -559,7 +561,12 @@ namespace SOCIOS
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE);
 
                             if (reintegro == "NO")
+                            {
                                 BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP, IMPORTE);
+                                if (VGlobales.ID_CUOTA_PAGO != 0)
+                                  this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, true, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));
+                            }
+
                         }
 
                         if (RECIBO_BONO == "B")
@@ -570,7 +577,13 @@ namespace SOCIOS
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE);
 
                             if (reintegro == "NO")
+                            {
                                 BO_CAJA.bonoEnIngresos(secuencia, NRO_COMP, IMPORTE);
+                                if (VGlobales.ID_CUOTA_PAGO != 0)
+                                   this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, false, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));
+                            }
+
+
                         }
 
                         string DETALLE = lbSectAct.Text + " - " + lbNombreProf.Text;
@@ -882,6 +895,21 @@ namespace SOCIOS
                 modificarImprimirRecibo("TICKET", "IMPRIMIR");
                 Cursor = Cursors.Default;
             }
+
+        }
+
+        private void Marcar_Cuota(int ID_PAGO,bool EsRecibo,int NroPago,int FormaPago,DateTime FechaPago)
+
+        {
+            int bono=0;
+            int recibo=0;
+            recibo = EsRecibo==true?NroPago:0;
+            bono   = EsRecibo==false?NroPago:0;
+
+            pcu.MarcarPagaCuota(ID_PAGO, NroPago, EsRecibo, FormaPago, FechaPago);
+
+           
+        
         }
     }
 }

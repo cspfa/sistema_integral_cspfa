@@ -463,7 +463,7 @@ namespace SOCIOS.bono
 
                 decimal Saldo = decimal.Parse(lblSaldoTotal.Text);
 
-                //Parche Pa Probar, en realidad es <> 0
+             
                 if (Saldo != 0)
                 {
 
