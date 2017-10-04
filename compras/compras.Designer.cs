@@ -42,6 +42,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lbIdArticulo = new System.Windows.Forms.Label();
@@ -403,6 +407,8 @@
             this.themedGroupBox14 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
             this.listView1 = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.themedGroupBox6 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.lbIdArtSol = new System.Windows.Forms.Label();
+            this.dgResArtSol = new System.Windows.Forms.DataGridView();
             this.btnDelArtSol = new System.Windows.Forms.Button();
             this.btnAddArtSol = new System.Windows.Forms.Button();
             this.cbTipoArtSol = new System.Windows.Forms.ComboBox();
@@ -443,6 +449,7 @@
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AID_SOL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -506,6 +513,7 @@
             this.themedGroupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox6)).BeginInit();
             this.themedGroupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgResArtSol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtSol)).BeginInit();
             this.cmEstadoOP.SuspendLayout();
             this.cmFactura.SuspendLayout();
@@ -4540,15 +4548,18 @@
             this.listView1.Name = "listView1";
             this.listView1.ParentContainer = null;
             this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(1028, 356);
+            this.listView1.Size = new System.Drawing.Size(1028, 355);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.Click += new System.EventHandler(this.dgResArtSol_Click);
             // 
             // themedGroupBox6
             // 
             this.themedGroupBox6.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.themedGroupBox6.BorderColor = System.Drawing.Color.SteelBlue;
+            this.themedGroupBox6.Controls.Add(this.lbIdArtSol);
+            this.themedGroupBox6.Controls.Add(this.dgResArtSol);
             this.themedGroupBox6.Controls.Add(this.btnDelArtSol);
             this.themedGroupBox6.Controls.Add(this.btnAddArtSol);
             this.themedGroupBox6.Controls.Add(this.cbTipoArtSol);
@@ -4582,8 +4593,69 @@
             this.themedGroupBox6.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
             this.themedGroupBox6.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
             // 
+            // lbIdArtSol
+            // 
+            this.lbIdArtSol.AutoSize = true;
+            this.lbIdArtSol.Location = new System.Drawing.Point(61, 192);
+            this.lbIdArtSol.Name = "lbIdArtSol";
+            this.lbIdArtSol.Size = new System.Drawing.Size(46, 13);
+            this.lbIdArtSol.TabIndex = 75;
+            this.lbIdArtSol.Text = "ID_ART";
+            // 
+            // dgResArtSol
+            // 
+            this.dgResArtSol.AllowUserToAddRows = false;
+            this.dgResArtSol.AllowUserToDeleteRows = false;
+            this.dgResArtSol.AllowUserToResizeColumns = false;
+            this.dgResArtSol.AllowUserToResizeRows = false;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgResArtSol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.dgResArtSol.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgResArtSol.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgResArtSol.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgResArtSol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.dgResArtSol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgResArtSol.ColumnHeadersVisible = false;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgResArtSol.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dgResArtSol.Location = new System.Drawing.Point(389, 130);
+            this.dgResArtSol.Margin = new System.Windows.Forms.Padding(5);
+            this.dgResArtSol.Name = "dgResArtSol";
+            this.dgResArtSol.ReadOnly = true;
+            this.dgResArtSol.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgResArtSol.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.dgResArtSol.RowHeadersVisible = false;
+            this.dgResArtSol.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
+            this.dgResArtSol.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgResArtSol.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgResArtSol.Size = new System.Drawing.Size(641, 89);
+            this.dgResArtSol.TabIndex = 74;
+            this.dgResArtSol.Visible = false;
+            this.dgResArtSol.Click += new System.EventHandler(this.dgResArtSol_Click);
+            // 
             // btnDelArtSol
             // 
+            this.btnDelArtSol.Enabled = false;
             this.btnDelArtSol.Image = global::SOCIOS.Properties.Resources.delete;
             this.btnDelArtSol.Location = new System.Drawing.Point(147, 185);
             this.btnDelArtSol.Name = "btnDelArtSol";
@@ -4607,7 +4679,7 @@
             // cbTipoArtSol
             // 
             this.cbTipoArtSol.FormattingEnabled = true;
-            this.cbTipoArtSol.Location = new System.Drawing.Point(197, 132);
+            this.cbTipoArtSol.Location = new System.Drawing.Point(197, 158);
             this.cbTipoArtSol.Name = "cbTipoArtSol";
             this.cbTipoArtSol.Size = new System.Drawing.Size(185, 21);
             this.cbTipoArtSol.TabIndex = 64;
@@ -4615,7 +4687,7 @@
             // label116
             // 
             this.label116.AutoSize = true;
-            this.label116.Location = new System.Drawing.Point(159, 136);
+            this.label116.Location = new System.Drawing.Point(159, 162);
             this.label116.Name = "label116";
             this.label116.Size = new System.Drawing.Size(32, 13);
             this.label116.TabIndex = 66;
@@ -4633,7 +4705,7 @@
             // label119
             // 
             this.label119.AutoSize = true;
-            this.label119.Location = new System.Drawing.Point(54, 163);
+            this.label119.Location = new System.Drawing.Point(54, 134);
             this.label119.Name = "label119";
             this.label119.Size = new System.Drawing.Size(55, 13);
             this.label119.TabIndex = 59;
@@ -4642,15 +4714,16 @@
             // tbDetArtSol
             // 
             this.tbDetArtSol.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbDetArtSol.Location = new System.Drawing.Point(115, 159);
+            this.tbDetArtSol.Location = new System.Drawing.Point(115, 130);
             this.tbDetArtSol.Name = "tbDetArtSol";
             this.tbDetArtSol.Size = new System.Drawing.Size(267, 20);
-            this.tbDetArtSol.TabIndex = 56;
+            this.tbDetArtSol.TabIndex = 54;
+            this.tbDetArtSol.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbDetArtSol_KeyUp);
             // 
             // label120
             // 
             this.label120.AutoSize = true;
-            this.label120.Location = new System.Drawing.Point(47, 136);
+            this.label120.Location = new System.Drawing.Point(47, 162);
             this.label120.Name = "label120";
             this.label120.Size = new System.Drawing.Size(62, 13);
             this.label120.TabIndex = 57;
@@ -4658,7 +4731,7 @@
             // 
             // tbCantArtSol
             // 
-            this.tbCantArtSol.Location = new System.Drawing.Point(115, 132);
+            this.tbCantArtSol.Location = new System.Drawing.Point(115, 158);
             this.tbCantArtSol.Name = "tbCantArtSol";
             this.tbCantArtSol.Size = new System.Drawing.Size(35, 20);
             this.tbCantArtSol.TabIndex = 55;
@@ -4747,52 +4820,54 @@
             this.dgvArtSol.AllowUserToDeleteRows = false;
             this.dgvArtSol.AllowUserToResizeColumns = false;
             this.dgvArtSol.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgvArtSol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgvArtSol.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvArtSol.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvArtSol.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvArtSol.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvArtSol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArtSol.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvArtSol.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvArtSol.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvArtSol.DefaultCellStyle = dataGridViewCellStyle11;
+            this.dataGridViewTextBoxColumn8,
+            this.AID_SOL});
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvArtSol.DefaultCellStyle = dataGridViewCellStyle15;
             this.dgvArtSol.Location = new System.Drawing.Point(390, 21);
             this.dgvArtSol.Margin = new System.Windows.Forms.Padding(5);
             this.dgvArtSol.Name = "dgvArtSol";
             this.dgvArtSol.ReadOnly = true;
             this.dgvArtSol.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvArtSol.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArtSol.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvArtSol.RowHeadersVisible = false;
             this.dgvArtSol.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgvArtSol.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvArtSol.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArtSol.Size = new System.Drawing.Size(638, 201);
             this.dgvArtSol.TabIndex = 67;
+            this.dgvArtSol.Click += new System.EventHandler(this.dgvArtSol_Click);
             // 
             // cmEstadoOP
             // 
@@ -4964,6 +5039,12 @@
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.Visible = false;
             // 
+            // AID_SOL
+            // 
+            this.AID_SOL.HeaderText = "AID";
+            this.AID_SOL.Name = "AID_SOL";
+            this.AID_SOL.ReadOnly = true;
+            // 
             // compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5065,6 +5146,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox6)).EndInit();
             this.themedGroupBox6.ResumeLayout(false);
             this.themedGroupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgResArtSol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtSol)).EndInit();
             this.cmEstadoOP.ResumeLayout(false);
             this.cmFactura.ResumeLayout(false);
@@ -5474,9 +5556,12 @@
         private System.Windows.Forms.TextBox tbCantArtSol;
         private System.Windows.Forms.Label label115;
         private MicroFour.StrataFrame.UI.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.DataGridView dgResArtSol;
+        private System.Windows.Forms.Label lbIdArtSol;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AID_SOL;
     }
 }

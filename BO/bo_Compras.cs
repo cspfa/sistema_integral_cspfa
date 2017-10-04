@@ -16,6 +16,64 @@ namespace SOCIOS.BO
     {
         db resultado = new db();
 
+        //ALTA SOLICITUD X ARTICULOS
+        public void altaSolicitudArticulos(int ID_SOLICITUD, int ID_ARTICULO, int CANTIDAD)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(0);
+            vector_contenidos.Add(ID_SOLICITUD);
+            vector_contenidos.Add(ID_ARTICULO);
+            vector_contenidos.Add(CANTIDAD);
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("PIN_ID");
+            vector_nombres.Add("PIN_ID_SOLICITUD");
+            vector_nombres.Add("PIN_ID_ARTICULO");
+            vector_nombres.Add("PIN_CANTIDAD");
+
+            string vprocedure = "SOLICITUD_ARTICULOS_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //ALTA SOLICITUD DE COMPRA
+        public void nuevaSolicitudCompra(string FECHA, string PRIORIDAD, string SECTOR_ORIGEN, string SECTOR_DESTINO)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(FECHA);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(SECTOR_ORIGEN);
+            vector_contenidos.Add(SECTOR_DESTINO);
+            vector_contenidos.Add("ENVIADA");
+            vector_contenidos.Add(PRIORIDAD);
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Date");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("PIN_FECHA_ALTA");
+            vector_nombres.Add("PIN_USR_ALTA");
+            vector_nombres.Add("PIN_SECTOR_ORIGEN");
+            vector_nombres.Add("PIN_SECTOR_DESTINO");
+            vector_nombres.Add("PIN_ESTADO");
+            vector_nombres.Add("PIN_PRIORIDAD");
+
+            string vprocedure = "SOLICITUDES_COMPRAS_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
         //MODIFICA CAMPO OP_TEMP EN CHEQUERAS
         public void anularFactura(string ID, string ANULADO, string USR_ANULADO)
         {
