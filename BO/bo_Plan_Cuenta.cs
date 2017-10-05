@@ -15,6 +15,7 @@ namespace SOCIOS.BO
 {
     public class bo_Plan_Cuenta :bo
     {
+
         public void Pagar_Cuota(int ID, int Recibo, int Bono, int FormaPago, DateTime FechaPago)
         {
             db resultado = new db();
