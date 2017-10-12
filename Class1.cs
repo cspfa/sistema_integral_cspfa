@@ -452,6 +452,11 @@ namespace SOCIOS
         public static string ID_PTO_VTA_N = "";
         public static string ID_PTO_VTA_M = "";
 
+        public static int ID_CUOTA_PAGO = 0;
+
+
+       
+
     }
 
 
