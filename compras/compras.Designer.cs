@@ -404,8 +404,8 @@
             this.cbBancosChequeras = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
             this.tpSolicitud = new System.Windows.Forms.TabPage();
-            this.themedGroupBox14 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
-            this.listView1 = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
+            this.gbSolicitudesEnviadas = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.lvSolicitudesEnviadas = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.themedGroupBox6 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
             this.lbIdArtSol = new System.Windows.Forms.Label();
             this.dgResArtSol = new System.Windows.Forms.DataGridView();
@@ -450,6 +450,8 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AID_SOL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gbSolicitudesRecibidas = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.lvSolicitudesRecibidas = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -509,8 +511,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox11)).BeginInit();
             this.themedGroupBox11.SuspendLayout();
             this.tpSolicitud.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox14)).BeginInit();
-            this.themedGroupBox14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gbSolicitudesEnviadas)).BeginInit();
+            this.gbSolicitudesEnviadas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox6)).BeginInit();
             this.themedGroupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResArtSol)).BeginInit();
@@ -520,6 +522,8 @@
             this.cmAdjuntos.SuspendLayout();
             this.cmCheques.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbSolicitudesRecibidas)).BeginInit();
+            this.gbSolicitudesRecibidas.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -4504,7 +4508,8 @@
             // 
             // tpSolicitud
             // 
-            this.tpSolicitud.Controls.Add(this.themedGroupBox14);
+            this.tpSolicitud.Controls.Add(this.gbSolicitudesRecibidas);
+            this.tpSolicitud.Controls.Add(this.gbSolicitudesEnviadas);
             this.tpSolicitud.Controls.Add(this.themedGroupBox6);
             this.tpSolicitud.Location = new System.Drawing.Point(4, 22);
             this.tpSolicitud.Name = "tpSolicitud";
@@ -4515,44 +4520,44 @@
             this.tpSolicitud.UseVisualStyleBackColor = true;
             this.tpSolicitud.Enter += new System.EventHandler(this.tpSolicitud_Enter);
             // 
-            // themedGroupBox14
+            // gbSolicitudesEnviadas
             // 
-            this.themedGroupBox14.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.themedGroupBox14.BorderColor = System.Drawing.Color.SteelBlue;
-            this.themedGroupBox14.Controls.Add(this.listView1);
-            this.themedGroupBox14.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
-            this.themedGroupBox14.GradientBegin = System.Drawing.Color.White;
-            this.themedGroupBox14.GradientEnd = System.Drawing.Color.White;
-            this.themedGroupBox14.Location = new System.Drawing.Point(6, 235);
-            this.themedGroupBox14.Name = "themedGroupBox14";
-            this.themedGroupBox14.Size = new System.Drawing.Size(1031, 380);
-            this.themedGroupBox14.TabIndex = 51;
-            this.themedGroupBox14.Title = "SOLICITUDES ENVIADAS";
-            this.themedGroupBox14.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
-            this.themedGroupBox14.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
-            this.themedGroupBox14.TitleShadow = false;
-            this.themedGroupBox14.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
-            this.themedGroupBox14.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gbSolicitudesEnviadas.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gbSolicitudesEnviadas.BorderColor = System.Drawing.Color.SteelBlue;
+            this.gbSolicitudesEnviadas.Controls.Add(this.lvSolicitudesEnviadas);
+            this.gbSolicitudesEnviadas.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
+            this.gbSolicitudesEnviadas.GradientBegin = System.Drawing.Color.White;
+            this.gbSolicitudesEnviadas.GradientEnd = System.Drawing.Color.White;
+            this.gbSolicitudesEnviadas.Location = new System.Drawing.Point(6, 235);
+            this.gbSolicitudesEnviadas.Name = "gbSolicitudesEnviadas";
+            this.gbSolicitudesEnviadas.Size = new System.Drawing.Size(1031, 201);
+            this.gbSolicitudesEnviadas.TabIndex = 51;
+            this.gbSolicitudesEnviadas.Title = "SOLICITUDES ENVIADAS";
+            this.gbSolicitudesEnviadas.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
+            this.gbSolicitudesEnviadas.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
+            this.gbSolicitudesEnviadas.TitleShadow = false;
+            this.gbSolicitudesEnviadas.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
+            this.gbSolicitudesEnviadas.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
             // 
-            // listView1
+            // lvSolicitudesEnviadas
             // 
-            this.listView1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listView1.CausesValidation = false;
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(1, 21);
-            this.listView1.Margin = new System.Windows.Forms.Padding(0);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.ParentContainer = null;
-            this.listView1.ShowItemToolTips = true;
-            this.listView1.Size = new System.Drawing.Size(1028, 355);
-            this.listView1.TabIndex = 4;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Click += new System.EventHandler(this.dgResArtSol_Click);
+            this.lvSolicitudesEnviadas.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvSolicitudesEnviadas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvSolicitudesEnviadas.CausesValidation = false;
+            this.lvSolicitudesEnviadas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvSolicitudesEnviadas.FullRowSelect = true;
+            this.lvSolicitudesEnviadas.HideSelection = false;
+            this.lvSolicitudesEnviadas.Location = new System.Drawing.Point(1, 21);
+            this.lvSolicitudesEnviadas.Margin = new System.Windows.Forms.Padding(0);
+            this.lvSolicitudesEnviadas.MultiSelect = false;
+            this.lvSolicitudesEnviadas.Name = "lvSolicitudesEnviadas";
+            this.lvSolicitudesEnviadas.ParentContainer = null;
+            this.lvSolicitudesEnviadas.ShowItemToolTips = true;
+            this.lvSolicitudesEnviadas.Size = new System.Drawing.Size(1028, 178);
+            this.lvSolicitudesEnviadas.TabIndex = 4;
+            this.lvSolicitudesEnviadas.UseCompatibleStateImageBehavior = false;
+            this.lvSolicitudesEnviadas.View = System.Windows.Forms.View.Details;
+            this.lvSolicitudesEnviadas.Click += new System.EventHandler(this.dgResArtSol_Click);
             // 
             // themedGroupBox6
             // 
@@ -5045,6 +5050,44 @@
             this.AID_SOL.Name = "AID_SOL";
             this.AID_SOL.ReadOnly = true;
             // 
+            // gbSolicitudesRecibidas
+            // 
+            this.gbSolicitudesRecibidas.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
+            this.gbSolicitudesRecibidas.BorderColor = System.Drawing.Color.SteelBlue;
+            this.gbSolicitudesRecibidas.Controls.Add(this.lvSolicitudesRecibidas);
+            this.gbSolicitudesRecibidas.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
+            this.gbSolicitudesRecibidas.GradientBegin = System.Drawing.Color.White;
+            this.gbSolicitudesRecibidas.GradientEnd = System.Drawing.Color.White;
+            this.gbSolicitudesRecibidas.Location = new System.Drawing.Point(6, 442);
+            this.gbSolicitudesRecibidas.Name = "gbSolicitudesRecibidas";
+            this.gbSolicitudesRecibidas.Size = new System.Drawing.Size(1031, 178);
+            this.gbSolicitudesRecibidas.TabIndex = 52;
+            this.gbSolicitudesRecibidas.Title = "SOLICITUDES RECIBIDAS";
+            this.gbSolicitudesRecibidas.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
+            this.gbSolicitudesRecibidas.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
+            this.gbSolicitudesRecibidas.TitleShadow = false;
+            this.gbSolicitudesRecibidas.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
+            this.gbSolicitudesRecibidas.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
+            // 
+            // lvSolicitudesRecibidas
+            // 
+            this.lvSolicitudesRecibidas.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lvSolicitudesRecibidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvSolicitudesRecibidas.CausesValidation = false;
+            this.lvSolicitudesRecibidas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvSolicitudesRecibidas.FullRowSelect = true;
+            this.lvSolicitudesRecibidas.HideSelection = false;
+            this.lvSolicitudesRecibidas.Location = new System.Drawing.Point(1, 21);
+            this.lvSolicitudesRecibidas.Margin = new System.Windows.Forms.Padding(0);
+            this.lvSolicitudesRecibidas.MultiSelect = false;
+            this.lvSolicitudesRecibidas.Name = "lvSolicitudesRecibidas";
+            this.lvSolicitudesRecibidas.ParentContainer = null;
+            this.lvSolicitudesRecibidas.ShowItemToolTips = true;
+            this.lvSolicitudesRecibidas.Size = new System.Drawing.Size(1028, 155);
+            this.lvSolicitudesRecibidas.TabIndex = 4;
+            this.lvSolicitudesRecibidas.UseCompatibleStateImageBehavior = false;
+            this.lvSolicitudesRecibidas.View = System.Windows.Forms.View.Details;
+            // 
             // compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5141,8 +5184,8 @@
             this.themedGroupBox11.ResumeLayout(false);
             this.themedGroupBox11.PerformLayout();
             this.tpSolicitud.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox14)).EndInit();
-            this.themedGroupBox14.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gbSolicitudesEnviadas)).EndInit();
+            this.gbSolicitudesEnviadas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox6)).EndInit();
             this.themedGroupBox6.ResumeLayout(false);
             this.themedGroupBox6.PerformLayout();
@@ -5153,6 +5196,8 @@
             this.cmAdjuntos.ResumeLayout(false);
             this.cmCheques.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbSolicitudesRecibidas)).EndInit();
+            this.gbSolicitudesRecibidas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -5534,7 +5579,7 @@
         private System.Windows.Forms.ToolStripMenuItem aNULARToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aCTIVRToolStripMenuItem;
         private System.Windows.Forms.TabPage tpSolicitud;
-        private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox themedGroupBox14;
+        private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox gbSolicitudesEnviadas;
         private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox themedGroupBox6;
         private System.Windows.Forms.DateTimePicker dpFechaSolicitud;
         private System.Windows.Forms.Label label109;
@@ -5555,7 +5600,7 @@
         private System.Windows.Forms.Label label120;
         private System.Windows.Forms.TextBox tbCantArtSol;
         private System.Windows.Forms.Label label115;
-        private MicroFour.StrataFrame.UI.Windows.Forms.ListView listView1;
+        private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvSolicitudesEnviadas;
         private System.Windows.Forms.DataGridView dgResArtSol;
         private System.Windows.Forms.Label lbIdArtSol;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -5563,5 +5608,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn AID_SOL;
+        private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox gbSolicitudesRecibidas;
+        private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvSolicitudesRecibidas;
     }
 }

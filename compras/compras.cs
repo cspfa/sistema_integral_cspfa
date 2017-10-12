@@ -78,6 +78,19 @@ namespace SOCIOS
             }
         }
 
+        private bool recibeCompras()
+        {
+            bool RECIBE = false;
+            string QUERY = "SELECT PARAM FROM CONFIG WHERE ROL = '" + VGlobales.vp_role + "' AND PARAM = 'RECIBE_COMPRAS';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+                RECIBE = true;
+
+            return RECIBE;
+        }
+
         public class ART_SOL
         {
             public string ID { get; set; }
@@ -5696,6 +5709,19 @@ namespace SOCIOS
             comboSectores(cbSectDestSolicitudes);
             comboPrioridadesSolicitudes();
             comboTipoArticulo(cbTipoArtSol);
+
+            if (recibeCompras() == true)
+            {
+                buscarSolicitudesEnviadas();
+                buscarSolicitudesRecibidas();
+            }
+            else
+            {
+                gbSolicitudesRecibidas.Visible = false;
+                gbSolicitudesEnviadas.Height = 390;
+                lvSolicitudesEnviadas.Height = 360;
+                buscarSolicitudesEnviadas();
+            }
         }
 
         private void tbDetArtSol_KeyUp(object sender, KeyEventArgs e)
@@ -5753,6 +5779,126 @@ namespace SOCIOS
             {
                 btnDelArtSol.Enabled = false;
             }
+        }
+
+        private void buscarSolicitudesEnviadas()
+        {
+            conString cs = new conString();
+            string connectionString = cs.get();
+
+            try
+            {
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string busco = "SELECT * FROM SOLICITUDES_COMPRAS WHERE SECTOR_ORIGEN = '" + VGlobales.vp_role + "' ORDER BY ID DESC;";             
+                    FbCommand cmd = new FbCommand(busco, connection, transaction);
+                    cmd.CommandText = busco;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            mostrarSolicitudes(reader, lvSolicitudesEnviadas);
+                        }
+                       
+                        reader.Close();
+                        transaction.Commit();
+                        connection.Close();
+                        cmd = null;
+                        transaction = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void buscarSolicitudesRecibidas()
+        {
+            conString cs = new conString();
+            string connectionString = cs.get();
+
+            try
+            {
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string busco = "SELECT * FROM SOLICITUDES_COMPRAS WHERE SECTOR_DESTINO = '" + VGlobales.vp_role + "' ORDER BY ID DESC;";
+                    FbCommand cmd = new FbCommand(busco, connection, transaction);
+                    cmd.CommandText = busco;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            mostrarSolicitudes(reader, lvSolicitudesRecibidas);
+                        }
+
+                        reader.Close();
+                        transaction.Commit();
+                        connection.Close();
+                        cmd = null;
+                        transaction = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void mostrarSolicitudes(FbDataReader reader, ListView LV)
+        {
+            LV.Items.Clear();
+            LV.Columns.Clear();
+            LV.BeginUpdate();
+
+            if (LV.Columns.Count == 0)
+            {
+                LV.Columns.Add("ID");
+                LV.Columns.Add("ALTA");
+                LV.Columns.Add("USUARIO");
+                LV.Columns.Add("SECTOR ORIGEN");
+                LV.Columns.Add("SECTOR DESTINO");
+                LV.Columns.Add("PRIORIDAD");
+                LV.Columns.Add("ESTADO");
+                LV.Columns.Add("BAJA");
+                LV.Columns.Add("USUARIO");
+            }
+            do
+            {
+                ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("ID")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_ALTA")).Trim().ToLower());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_ALTA")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_ORIGEN")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_DESTINO")).Trim().ToLower());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ESTADO")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("PRIORIDAD")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_BAJA")));
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_BAJA")).Trim());
+                LV.Items.Add(listItem);
+            }
+
+            while (reader.Read());
+            LV.EndUpdate();
+            LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
     }
 }
