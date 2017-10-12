@@ -38,7 +38,8 @@ namespace SOCIOS
         public compras()
         {
             InitializeComponent();
-            comboDescuento();
+            comboDescuento(cbDescuento);
+            comboDescuento(cbDescGlobal);
             comboTipoProveedor();
             comboTipoComprobante(cbTipoBusqueda);
             comboTipoComprobante(cbTipoComprobante);
@@ -156,11 +157,11 @@ namespace SOCIOS
             }
         }
 
-        private void comboDescuento()
+        private void comboDescuento(ComboBox COMBO)
         {
-            cbDescuento.Items.Add("%");
-            cbDescuento.Items.Add("$");
-            cbDescuento.SelectedIndex = 0;
+            COMBO.Items.Add("%");
+            COMBO.Items.Add("$");
+            COMBO.SelectedIndex = 1;
         }
 
         private void mostrarResultados(FbDataReader reader)
@@ -1060,6 +1061,7 @@ namespace SOCIOS
                 string SEC_GRAL_FACTURA_HIJA = tbNumSecGral.Text.Trim();
                 int ID_FACTURA_MADRE = int.Parse(lbID.Text);
                 int DESCUENTO_FACTURA_HIJA = 0;
+                string TIPO_DESC_FACTURA_HIJA = "";
 
                 try
                 {
@@ -1078,7 +1080,7 @@ namespace SOCIOS
                                 Cursor = Cursors.WaitCursor;
                                 BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
                                 OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
-                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA);
+                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA);
                                 Cursor = Cursors.Default;
                             }
                         }
@@ -3610,10 +3612,12 @@ namespace SOCIOS
                     int REGIMEN = 0;
                     decimal RETENCION = 0;
                     int DESCUENTO_TOTAL = int.Parse(tbDescuentoTotal.Text);
+                    string TIPO_DESCUENTO = cbDescGlobal.SelectedItem.ToString();
 
                     Cursor = Cursors.WaitCursor;
 
-                    BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL, TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL);
+                    BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL,
+                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO);
 
                     int ID_FACTURA = int.Parse(mid.m("ID", "FACTURAS"));
 
@@ -5540,10 +5544,20 @@ namespace SOCIOS
         {
             if (tbImporte.Text != "" && tbDescuentoTotal.Text != "")
             {
-                decimal DESCUENTO = decimal.Parse(tbDescuentoTotal.Text);
-                decimal RESTAR = (IMPORTE_TOTAL * DESCUENTO) / 100;
-                decimal TOTAL = IMPORTE_TOTAL - RESTAR;
-                tbImporte.Text = TOTAL.ToString();
+                if (cbDescGlobal.SelectedItem == "%")
+                {
+                    decimal DESCUENTO = decimal.Parse(tbDescuentoTotal.Text);
+                    decimal RESTAR = (IMPORTE_TOTAL * DESCUENTO) / 100;
+                    decimal TOTAL = IMPORTE_TOTAL - RESTAR;
+                    tbImporte.Text = TOTAL.ToString();
+                }
+
+                if (cbDescGlobal.SelectedItem == "$")
+                {
+                    decimal DESCUENTO = decimal.Parse(tbDescuentoTotal.Text);
+                    decimal TOTAL = IMPORTE_TOTAL - DESCUENTO;
+                    tbImporte.Text = TOTAL.ToString();
+                }
             }
         }      
 
@@ -5899,6 +5913,12 @@ namespace SOCIOS
             LV.EndUpdate();
             LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void cbDescGlobal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            tbDescuentoTotal.Text = "0";
+            tbImporte.Text = IMPORTE_TOTAL.ToString();
         }
     }
 }
