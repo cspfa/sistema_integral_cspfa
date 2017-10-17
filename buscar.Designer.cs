@@ -134,6 +134,8 @@
             this.cmDeportes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.sUSPENDERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rEANUDARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mtbIdEmpleado = new MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox();
+            this.label21 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox1)).BeginInit();
             this.themedGroupBox1.SuspendLayout();
@@ -194,7 +196,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(11, 7);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(264, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(295, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -998,6 +1000,8 @@
             this.themedContainer1.BodyBackgroundSecondaryColor = System.Drawing.Color.White;
             this.themedContainer1.BorderColor = System.Drawing.Color.Gray;
             this.themedContainer1.CloseButtonStyle = MicroFour.StrataFrame.UI.CloseButtonType.None;
+            this.themedContainer1.Controls.Add(this.mtbIdEmpleado);
+            this.themedContainer1.Controls.Add(this.label21);
             this.themedContainer1.Controls.Add(this.textBox14);
             this.themedContainer1.Controls.Add(this.label11);
             this.themedContainer1.Controls.Add(this.label10);
@@ -1476,6 +1480,28 @@
             this.rEANUDARToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.rEANUDARToolStripMenuItem.Text = "REANUDAR";
             // 
+            // mtbIdEmpleado
+            // 
+            this.mtbIdEmpleado.BusinessObjectEvaluated = true;
+            this.mtbIdEmpleado.DisabledBackColor = System.Drawing.Color.White;
+            this.mtbIdEmpleado.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.mtbIdEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtbIdEmpleado.Location = new System.Drawing.Point(855, 34);
+            this.mtbIdEmpleado.Mask = "9999999999";
+            this.mtbIdEmpleado.Name = "mtbIdEmpleado";
+            this.mtbIdEmpleado.Size = new System.Drawing.Size(67, 20);
+            this.mtbIdEmpleado.TabIndex = 45;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(808, 38);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(44, 13);
+            this.label21.TabIndex = 46;
+            this.label21.Text = "ID EMP";
+            // 
             // buscar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1643,6 +1669,8 @@
         private System.Windows.Forms.Label lbIngresosRecibos;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label lbRestablecer994;
+        private MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox mtbIdEmpleado;
+        private System.Windows.Forms.Label label21;
 
 
     }
