@@ -2799,7 +2799,7 @@ namespace SOCIOS
                 else
                     Invitado = true;
 
-                if (TIPO.Contains("INT"))
+                if (TIPO.Contains("INT") && !TIPO.Contains("ADH"))
                     Inter = true;
 
                 if (BAJA.Length > 0)
