@@ -12,9 +12,30 @@ using FirebirdSql.Data.Firebird;
 
 namespace SOCIOS.BO
 {
-    class bo_Compras:bo
+    class bo_Compras
     {
         db resultado = new db();
+
+        //MODIFICACION DE ESTADO DE SOLICITUD DE COMPRA
+
+        public void modificarEstadoSolicitud(int ID, string ESTADO)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(ESTADO);
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
+            
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("PIN_ID");
+            vector_nombres.Add("PIN_ESTADO");
+
+            string vprocedure = "SOLICITUDES_COMPRAS_E";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
 
         //ALTA SOLICITUD X ARTICULOS
         public void altaSolicitudArticulos(int ID_SOLICITUD, int ID_ARTICULO, int CANTIDAD)
@@ -50,7 +71,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(VGlobales.vp_username);
             vector_contenidos.Add(SECTOR_ORIGEN);
             vector_contenidos.Add(SECTOR_DESTINO);
-            vector_contenidos.Add("ENVIADA");
+            vector_contenidos.Add("PENDIENTE");
             vector_contenidos.Add(PRIORIDAD);
 
             ArrayList vector_tipos = new ArrayList();
