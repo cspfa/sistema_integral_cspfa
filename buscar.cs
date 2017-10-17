@@ -491,8 +491,7 @@ namespace SOCIOS
                 (textBox6.Text == "") && (textBox13.Text == "") &&
                 (textBox12.Text == "0") && (textBox14.Text == "0")) &&
                 ((maskedTextbox1.Text == "0") && (textBox2.Text == "") && (textBox3.Text == "") &&
-                 (maskedTextbox3.Text == "0") && (maskedTextbox2.Text == "0")
-                ))
+                (maskedTextbox3.Text == "0") && (maskedTextbox2.Text == "0") && (mtbIdEmpleado.Text == "")))
             {
                 MessageBox.Show("DEBE INGRESAR UNA CONDICION DE BUSQUEDA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
@@ -521,7 +520,7 @@ namespace SOCIOS
 
                     busco = "SELECT * FROM P_BUSCO_UN_TITULAR2 (@P_APE_SOC,@P_NOM_SOC,";
                     busco = busco + "@P_NRO_LEGAJO,@P_NRO_DEPURACION,@P_AAR,";
-                    busco = busco + "@P_ACRJP2,@P_LEG_PER,@VPCRJP3,@VPCRJP2,@VPCRJP1,@VNRODOC)";
+                    busco = busco + "@P_ACRJP2,@P_LEG_PER,@VPCRJP3,@VPCRJP2,@VPCRJP1,@VNRODOC,@VID_EMPLEADO)";
                     FbCommand cmd = new FbCommand(busco, connection, transaction);
                     cmd.CommandText = busco;
                     cmd.Connection = connection;
@@ -539,7 +538,8 @@ namespace SOCIOS
                     cmd.Parameters.Add(new FbParameter("@VPCRJP2", FbDbType.Integer));
                     cmd.Parameters.Add(new FbParameter("@VPCRJP1", FbDbType.Integer));
                     cmd.Parameters.Add(new FbParameter("@VNRODOC", FbDbType.Integer));
-                        
+                    cmd.Parameters.Add(new FbParameter("@VID_EMPLEADO", FbDbType.Integer));
+
                     // SE CARGAN LOS PARAMETROS CON LOS VALORES DEL WINFORM.-
                     cmd.Parameters["@P_NRO_LEGAJO"].Value = ((textBox1.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox1.Text))));
                     cmd.Parameters["@P_NRO_DEPURACION"].Value = ((textBox5.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox5.Text))));
@@ -552,6 +552,7 @@ namespace SOCIOS
                     cmd.Parameters["@VPCRJP2"].Value = ((textBox9.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox9.Text))));
                     cmd.Parameters["@VPCRJP1"].Value = ((textBox8.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox8.Text))));
                     cmd.Parameters["@VNRODOC"].Value = ((textBox14.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox14.Text))));
+                    cmd.Parameters["@VID_EMPLEADO"].Value = ((mtbIdEmpleado.Text == "" ? 0 : (int?)(System.Convert.ToInt32(mtbIdEmpleado.Text))));
                         
                     // SE EJECUTA EL COMANDO DE LECTURA CON TODOS LOS PARAMETROS.-
                     FbDataReader reader = cmd.ExecuteReader();
@@ -2252,7 +2253,7 @@ namespace SOCIOS
 
         public void habilitarBotonAsamblea()
         {
-            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995")
+            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995" && listView1.SelectedItems[0].SubItems[1].Text != "020")
             {
                 btnIngresoAsamblea.Enabled = false;
             }
@@ -2910,6 +2911,11 @@ namespace SOCIOS
             {
                 MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
             }
+        }
+
+        private void MSK_Enter(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
