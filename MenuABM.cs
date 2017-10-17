@@ -96,12 +96,11 @@ namespace SOCIOS
                         confiteríaToolStripMenuItem.Enabled = true;
                         tesoreríaToolStripMenuItem.Enabled = true;
                         contaduríaToolStripMenuItem.Enabled = true;
-                        jardínMaternalToolStripMenuItem.Enabled = true;
                         turismoToolStripMenuItem.Enabled = true;
-                        tsSubsedePadua.Enabled = true;
                         interiorToolStripMenuItem.Enabled = true;
                         camposToolStripMenuItem1.Enabled = true;
                         patrimonioToolStripMenuItem.Enabled = true;
+                        comprasToolStripMenuItem.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "PATRIMONIO")
@@ -140,18 +139,7 @@ namespace SOCIOS
                         cajaToolStripMenuItem.Enabled = true;
                         servToolStrip.Enabled = false;
                     }
-
-                    if (VGlobales.vp_role.Trim() == "SSADPADUA")
-                    {
-                        tsSubsedePadua.Enabled = true;
-                    }
-                        
-                    if (VGlobales.vp_role.Trim() == "JARDIN MATERNAL")
-                    {
-                        jardínMaternalToolStripMenuItem.Enabled = true;
-                        tsSubsedePadua.Enabled = true;
-                    }
-
+                    
                     if (VGlobales.vp_role.Trim() == "CONFITERIA")
                     {
                         confiteríaToolStripMenuItem.Enabled = true;
@@ -182,8 +170,6 @@ namespace SOCIOS
                     if (VGlobales.vp_role.Trim() == "CONTADURIA")
                     {
                         contaduríaToolStripMenuItem.Enabled = true;
-                        jardínMaternalToolStripMenuItem.Enabled = true;
-                        tsSubsedePadua.Enabled = true;
                         confiteríaToolStripMenuItem.Enabled = true;
                     }
 
@@ -191,6 +177,11 @@ namespace SOCIOS
                     {
                         camposToolStripMenuItem1.Enabled = true;
                         deportesToolStrip.Enabled = true;
+                    }
+
+                    if (VGlobales.vp_role.Trim() == "COMPRAS")
+                    {
+                        comprasToolStripMenuItem.Enabled = true;
                     }
 
                     break;
@@ -2122,6 +2113,14 @@ namespace SOCIOS
         {
             listadoMovimientos lm = new listadoMovimientos();
             lm.ShowDialog();
+        }
+
+        private void toolStripMenuItem4_Click_1(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            compras co = new compras();
+            co.ShowDialog();
+            Cursor = Cursors.Default;
         }
     }
 }
