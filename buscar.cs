@@ -2252,7 +2252,7 @@ namespace SOCIOS
 
         public void habilitarBotonAsamblea()
         {
-            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995" && listView1.SelectedItems[0].SubItems[1].Text != "020")
+            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995")
             {
                 btnIngresoAsamblea.Enabled = false;
             }
@@ -2798,7 +2798,7 @@ namespace SOCIOS
                 else
                     Invitado = true;
 
-                if (TIPO.Contains("INT"))
+                if (TIPO.Contains("INT") && !TIPO.Contains("ADH"))
                     Inter = true;
 
                 if (BAJA.Length > 0)
