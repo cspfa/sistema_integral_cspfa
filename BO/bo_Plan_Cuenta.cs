@@ -13,7 +13,7 @@ using FirebirdSql.Data.Firebird;
 
 namespace SOCIOS.BO
 {
-    public class bo_Plan_Cuenta :bo
+    public class bo_Plan_Cuenta : bo
     {
 
         public void Pagar_Cuota(int ID, int Recibo, int Bono, int FormaPago, DateTime FechaPago)
@@ -67,7 +67,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(ID);
             vector_contenidos.Add(VGlobales.vp_username);
             vector_contenidos.Add(System.DateTime.Now);
-            
+
 
             ArrayList vector_tipos = new ArrayList();
 
@@ -75,13 +75,13 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Varchar");
 
-           
+
             ArrayList vector_nombres = new ArrayList();
 
             vector_nombres.Add("@ID");
             vector_nombres.Add("@USR_A");
             vector_nombres.Add("@FE_A");
-           
+
             string vprocedure = "P_PAGO_BONO_ANULO_CUOTA";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);

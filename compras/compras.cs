@@ -38,7 +38,8 @@ namespace SOCIOS
         public compras()
         {
             InitializeComponent();
-            comboDescuento();
+            comboDescuento(cbDescuento);
+            comboDescuento(cbDescGlobal);
             comboTipoProveedor();
             comboTipoComprobante(cbTipoBusqueda);
             comboTipoComprobante(cbTipoComprobante);
@@ -76,6 +77,19 @@ namespace SOCIOS
                 tbBuscarNumeroFactura.Visible = true;
                 tbBuscarNumeroSolicitud.Visible = false;
             }
+        }
+
+        private bool recibeCompras()
+        {
+            bool RECIBE = false;
+            string QUERY = "SELECT PARAM FROM CONFIG WHERE ROL = '" + VGlobales.vp_role + "' AND PARAM = 'RECIBE_COMPRAS';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+                RECIBE = true;
+
+            return RECIBE;
         }
 
         public class ART_SOL
@@ -143,11 +157,11 @@ namespace SOCIOS
             }
         }
 
-        private void comboDescuento()
+        private void comboDescuento(ComboBox COMBO)
         {
-            cbDescuento.Items.Add("%");
-            cbDescuento.Items.Add("$");
-            cbDescuento.SelectedIndex = 0;
+            COMBO.Items.Add("%");
+            COMBO.Items.Add("$");
+            COMBO.SelectedIndex = 1;
         }
 
         private void mostrarResultados(FbDataReader reader)
@@ -1047,6 +1061,7 @@ namespace SOCIOS
                 string SEC_GRAL_FACTURA_HIJA = tbNumSecGral.Text.Trim();
                 int ID_FACTURA_MADRE = int.Parse(lbID.Text);
                 int DESCUENTO_FACTURA_HIJA = 0;
+                string TIPO_DESC_FACTURA_HIJA = "";
 
                 try
                 {
@@ -1065,7 +1080,7 @@ namespace SOCIOS
                                 Cursor = Cursors.WaitCursor;
                                 BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
                                 OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
-                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA);
+                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA);
                                 Cursor = Cursors.Default;
                             }
                         }
@@ -3597,10 +3612,12 @@ namespace SOCIOS
                     int REGIMEN = 0;
                     decimal RETENCION = 0;
                     int DESCUENTO_TOTAL = int.Parse(tbDescuentoTotal.Text);
+                    string TIPO_DESCUENTO = cbDescGlobal.SelectedItem.ToString();
 
                     Cursor = Cursors.WaitCursor;
 
-                    BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL, TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL);
+                    BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL,
+                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO);
 
                     int ID_FACTURA = int.Parse(mid.m("ID", "FACTURAS"));
 
@@ -5527,10 +5544,20 @@ namespace SOCIOS
         {
             if (tbImporte.Text != "" && tbDescuentoTotal.Text != "")
             {
-                decimal DESCUENTO = decimal.Parse(tbDescuentoTotal.Text);
-                decimal RESTAR = (IMPORTE_TOTAL * DESCUENTO) / 100;
-                decimal TOTAL = IMPORTE_TOTAL - RESTAR;
-                tbImporte.Text = TOTAL.ToString();
+                if (cbDescGlobal.SelectedItem == "%")
+                {
+                    decimal DESCUENTO = decimal.Parse(tbDescuentoTotal.Text);
+                    decimal RESTAR = (IMPORTE_TOTAL * DESCUENTO) / 100;
+                    decimal TOTAL = IMPORTE_TOTAL - RESTAR;
+                    tbImporte.Text = TOTAL.ToString();
+                }
+
+                if (cbDescGlobal.SelectedItem == "$")
+                {
+                    decimal DESCUENTO = decimal.Parse(tbDescuentoTotal.Text);
+                    decimal TOTAL = IMPORTE_TOTAL - DESCUENTO;
+                    tbImporte.Text = TOTAL.ToString();
+                }
             }
         }      
 
@@ -5696,6 +5723,19 @@ namespace SOCIOS
             comboSectores(cbSectDestSolicitudes);
             comboPrioridadesSolicitudes();
             comboTipoArticulo(cbTipoArtSol);
+
+            if (recibeCompras() == true)
+            {
+                buscarSolicitudesEnviadas();
+                buscarSolicitudesRecibidas();
+            }
+            else
+            {
+                gbSolicitudesRecibidas.Visible = false;
+                gbSolicitudesEnviadas.Height = 390;
+                lvSolicitudesEnviadas.Height = 360;
+                buscarSolicitudesEnviadas();
+            }
         }
 
         private void tbDetArtSol_KeyUp(object sender, KeyEventArgs e)
@@ -5753,6 +5793,132 @@ namespace SOCIOS
             {
                 btnDelArtSol.Enabled = false;
             }
+        }
+
+        private void buscarSolicitudesEnviadas()
+        {
+            conString cs = new conString();
+            string connectionString = cs.get();
+
+            try
+            {
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string busco = "SELECT * FROM SOLICITUDES_COMPRAS WHERE SECTOR_ORIGEN = '" + VGlobales.vp_role + "' ORDER BY ID DESC;";             
+                    FbCommand cmd = new FbCommand(busco, connection, transaction);
+                    cmd.CommandText = busco;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            mostrarSolicitudes(reader, lvSolicitudesEnviadas);
+                        }
+                       
+                        reader.Close();
+                        transaction.Commit();
+                        connection.Close();
+                        cmd = null;
+                        transaction = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void buscarSolicitudesRecibidas()
+        {
+            conString cs = new conString();
+            string connectionString = cs.get();
+
+            try
+            {
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string busco = "SELECT * FROM SOLICITUDES_COMPRAS WHERE SECTOR_DESTINO = '" + VGlobales.vp_role + "' ORDER BY ID DESC;";
+                    FbCommand cmd = new FbCommand(busco, connection, transaction);
+                    cmd.CommandText = busco;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            mostrarSolicitudes(reader, lvSolicitudesRecibidas);
+                        }
+
+                        reader.Close();
+                        transaction.Commit();
+                        connection.Close();
+                        cmd = null;
+                        transaction = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void mostrarSolicitudes(FbDataReader reader, ListView LV)
+        {
+            LV.Items.Clear();
+            LV.Columns.Clear();
+            LV.BeginUpdate();
+
+            if (LV.Columns.Count == 0)
+            {
+                LV.Columns.Add("ID");
+                LV.Columns.Add("ALTA");
+                LV.Columns.Add("USUARIO");
+                LV.Columns.Add("SECTOR ORIGEN");
+                LV.Columns.Add("SECTOR DESTINO");
+                LV.Columns.Add("PRIORIDAD");
+                LV.Columns.Add("ESTADO");
+                LV.Columns.Add("BAJA");
+                LV.Columns.Add("USUARIO");
+            }
+            do
+            {
+                ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("ID")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_ALTA")).Trim().ToLower());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_ALTA")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_ORIGEN")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_DESTINO")).Trim().ToLower());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ESTADO")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("PRIORIDAD")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_BAJA")));
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_BAJA")).Trim());
+                LV.Items.Add(listItem);
+            }
+
+            while (reader.Read());
+            LV.EndUpdate();
+            LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            LV.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
+        private void cbDescGlobal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            tbDescuentoTotal.Text = "0";
+            tbImporte.Text = IMPORTE_TOTAL.ToString();
         }
     }
 }
