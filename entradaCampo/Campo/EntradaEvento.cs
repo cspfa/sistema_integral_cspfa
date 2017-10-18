@@ -25,7 +25,7 @@ namespace SOCIOS.entradaCampo.Campo
         string LEGAJO = "";
         string TIPO = "";
         decimal MontoMaximo = 0;
-        public EntradaEvento(string pDNI, string pNOMBRE, string pAPELLIDO, int pNRO_Socio,int pNRO_DEP,string pTIPO,string pLegajo, bool pReintegro,decimal pMontoMaximo)
+        public EntradaEvento(string pDNI, string pNOMBRE, string pAPELLIDO, int pNRO_Socio,int pNRO_DEP,string pTIPO,string pLegajo, bool pReintegro,decimal pMontoMaximo, bool Manual)
         {
 
             InitializeComponent();
@@ -57,6 +57,10 @@ namespace SOCIOS.entradaCampo.Campo
                 gpReintegro.Visible = false;
             
             }
+
+            chkSocio.Visible = Manual;
+            chkPersonalPolicial.Visible = Manual;
+
 
         }
 
@@ -139,6 +143,12 @@ namespace SOCIOS.entradaCampo.Campo
                         }
                     
                     }
+
+                    if (chkPersonalPolicial.Checked || chkSocio.Checked)
+                    {
+                        if (tbLegajoNroSocio.Text.Length > 0)
+                            NRO_SOCIO = Int32.Parse(tbLegajoNroSocio.Text);
+                    }
                     dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, Cantidad, MontoTotal, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, 0, 0, 0, Cantidad, MontoTotal, ID_INT, Tipo_reg, 0, "INGRESO EVENTO DEPORTIVO", 0, "", "");
 
 
@@ -170,6 +180,45 @@ namespace SOCIOS.entradaCampo.Campo
             int cantidad = lista.Count;
             es.Imprimir(0,0,0,0,0,0,0,0,0,0,0,0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", cantidad,false);
             es.Imprimir(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", cantidad,false);
+        }
+
+        private void chkSocio_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkPersonalPolicial_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPersonalPolicial.Checked)
+            {
+                chkSocio.Checked = false;
+                lbLegajoNroSocio.Text = "LEGAJO";
+                lbLegajoNroSocio.Visible = true;
+                tbLegajoNroSocio.Visible = true;
+
+            }
+            else if (chkSocio.Checked == false)
+            {
+                lbLegajoNroSocio.Visible = false;
+                tbLegajoNroSocio.Visible = false;
+            }
+        }
+
+        private void chkSocio_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (chkSocio.Checked)
+            {
+                chkPersonalPolicial.Checked = false;
+                lbLegajoNroSocio.Text = "NRO SOCIO";
+                lbLegajoNroSocio.Visible = true;
+                tbLegajoNroSocio.Visible = true;
+
+            }
+            else if (chkPersonalPolicial.Checked == false)
+            {
+                lbLegajoNroSocio.Visible = false;
+                tbLegajoNroSocio.Visible = false;
+            }
         }
 
     }

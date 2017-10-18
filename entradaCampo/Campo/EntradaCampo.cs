@@ -62,8 +62,8 @@ namespace SOCIOS.Entrada_Campo
         
         List<SOCIOS.RegistroEntradaCampo> lista = new List<RegistroEntradaCampo>();
         EntradaCampoService entradaCampoService = new EntradaCampoService();
-
-        public EntradaCampoIngresoTotales(string pDNI, string pNOMBRE, string pAPELLIDO, int pNRO_Socio,int pNRO_DEP,string pTIPO,bool soloInvitado,bool SoloInterCirculo,bool resta,int pLegajo )
+        bool IngresoManual;
+        public EntradaCampoIngresoTotales(string pDNI, string pNOMBRE, string pAPELLIDO, int pNRO_Socio,int pNRO_DEP,string pTIPO,bool soloInvitado,bool SoloInterCirculo,bool resta,int pLegajo,bool pIngresoManual )
         {
             DNI       = pDNI;
             NOMBRE    = pNOMBRE;
@@ -74,10 +74,11 @@ namespace SOCIOS.Entrada_Campo
             TIPO      = pTIPO.TrimEnd();
             ModoIntercirculo = SoloInterCirculo;
             InitializeComponent();
-            this.Iniciar(soloInvitado,resta);
+            IngresoManual = pIngresoManual;
+            this.Iniciar(soloInvitado,resta,IngresoManual);
         }
 
-        private void Iniciar(bool Invitado, bool reintegro)
+        private void Iniciar(bool Invitado, bool reintegro,bool IngresoManual)
 
         {
             lbDatos.Text = DNI + " - " + APELLIDO + ", " + NOMBRE + " - " + TIPO;
@@ -85,7 +86,7 @@ namespace SOCIOS.Entrada_Campo
           
             ModoInvitado =Invitado;
 
-            MostrarControles(true,reintegro);
+            MostrarControles(true,reintegro,IngresoManual);
             esReintegro = reintegro;
 
 
@@ -126,6 +127,8 @@ namespace SOCIOS.Entrada_Campo
 
 
             }
+
+         
 
 
 
@@ -436,7 +439,7 @@ namespace SOCIOS.Entrada_Campo
                     dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Discapacitado_Acompa,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","");
 
                 
-                MostrarControles(false,esReintegro);
+                MostrarControles(false,esReintegro,IngresoManual);
 
                 if (Anular_Ingreso == false)
                 {
@@ -479,7 +482,7 @@ namespace SOCIOS.Entrada_Campo
          }
         }
 
-        public void MostrarControles(bool Mostrar,bool reintegro)
+        public void MostrarControles(bool Mostrar,bool reintegro,bool Manual)
 
         {
            
@@ -522,6 +525,9 @@ namespace SOCIOS.Entrada_Campo
                     gpInterCirculo.Visible = true;
 
                 }
+
+                chkSocio.Visible = Manual;
+                chkPersonalPolicial.Visible = Manual;
 
             
 
@@ -614,6 +620,27 @@ namespace SOCIOS.Entrada_Campo
         private void chkCumple_CheckedChanged(object sender, EventArgs e)
         {
             tbCumple.Visible = chkCumple.Checked;
+        }
+
+        private void chkPersonalPolicial_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPersonalPolicial.Checked)
+                gpInterCirculo.Visible = true;
+            else
+                gpInterCirculo.Visible = false;
+              
+        }
+
+        private void chkSocio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSocio.Checked)
+                gpFamiliares.Visible = true;
+            else
+                gpFamiliares.Visible = false;
+
+                    
+                   
+
         }
     }
 }

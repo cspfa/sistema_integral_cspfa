@@ -71,6 +71,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.chkCumple = new System.Windows.Forms.CheckBox();
             this.tbCumple = new System.Windows.Forms.TextBox();
+            this.chkSocio = new System.Windows.Forms.CheckBox();
+            this.chkPersonalPolicial = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.Personas)).BeginInit();
             this.gpFamiliares.SuspendLayout();
             this.gpInvitados.SuspendLayout();
@@ -569,12 +571,36 @@
             this.tbCumple.TabIndex = 30;
             this.tbCumple.Visible = false;
             // 
+            // chkSocio
+            // 
+            this.chkSocio.AutoSize = true;
+            this.chkSocio.Location = new System.Drawing.Point(441, 42);
+            this.chkSocio.Name = "chkSocio";
+            this.chkSocio.Size = new System.Drawing.Size(68, 17);
+            this.chkSocio.TabIndex = 32;
+            this.chkSocio.Text = "Es Socio";
+            this.chkSocio.UseVisualStyleBackColor = true;
+            this.chkSocio.CheckedChanged += new System.EventHandler(this.chkSocio_CheckedChanged);
+            // 
+            // chkPersonalPolicial
+            // 
+            this.chkPersonalPolicial.AutoSize = true;
+            this.chkPersonalPolicial.Location = new System.Drawing.Point(441, 19);
+            this.chkPersonalPolicial.Name = "chkPersonalPolicial";
+            this.chkPersonalPolicial.Size = new System.Drawing.Size(170, 17);
+            this.chkPersonalPolicial.TabIndex = 31;
+            this.chkPersonalPolicial.Text = "Personal Policial / InterCirculo ";
+            this.chkPersonalPolicial.UseVisualStyleBackColor = true;
+            this.chkPersonalPolicial.CheckedChanged += new System.EventHandler(this.chkPersonalPolicial_CheckedChanged);
+            // 
             // EntradaCampoIngresoTotales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(779, 760);
+            this.ClientSize = new System.Drawing.Size(779, 743);
+            this.Controls.Add(this.chkSocio);
+            this.Controls.Add(this.chkPersonalPolicial);
             this.Controls.Add(this.tbCumple);
             this.Controls.Add(this.chkCumple);
             this.Controls.Add(this.lbInterPileta);
@@ -667,5 +693,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox chkCumple;
         private System.Windows.Forms.TextBox tbCumple;
+        private System.Windows.Forms.CheckBox chkSocio;
+        private System.Windows.Forms.CheckBox chkPersonalPolicial;
     }
 }

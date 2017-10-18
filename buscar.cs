@@ -2805,13 +2805,17 @@ namespace SOCIOS
                 if (BAJA.Length > 0)
                     Invitado = true;
 
-                Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, Invitado, Inter, false, 0);
+                Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, Invitado, Inter, false, 0,false);
                 ec.ShowDialog();
             }
             else
             {
-                SOCIOS.Entrada_Campo.IngresoDatos ingreso_entrada_Campo = new Entrada_Campo.IngresoDatos(false);
-                ingreso_entrada_Campo.ShowDialog();
+
+                Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales("9999", VGlobales.vp_role.TrimEnd().TrimStart(), VGlobales.vp_role.TrimEnd().TrimStart(), 0, 0,"", true, false, false, 0,true);
+                ec.ShowDialog();
+                
+                //  SOCIOS.Entrada_Campo.IngresoDatos ingreso_entrada_Campo = new Entrada_Campo.IngresoDatos(false);
+              //  ingreso_entrada_Campo.ShowDialog();
             }
         }
 
@@ -2823,9 +2827,10 @@ namespace SOCIOS
 
         private void label20_Click(object sender, EventArgs e)
         {
-           
-            
-            
+
+
+
+            decimal Monto_Reintegro = 0;
 
              if (listView1.SelectedItems.Count == 1)
             {
@@ -2851,10 +2856,7 @@ namespace SOCIOS
                }
 
 
-
-
-
-
+                 
 
 
                if (TIPO.ToUpper().Contains("FAM") || TIPO.ToUpper().Contains("ADH") || TIPO.ToUpper().Contains("INP") || TIPO.ToUpper().Contains("TIT") || TIPO.ToUpper().Contains("VITAL") || TIPO.ToUpper().Contains("INT") || TIPO.ToUpper().Contains("ACTIVO") || TIPO.ToUpper().Contains("CIUDAD"))
@@ -2878,15 +2880,27 @@ namespace SOCIOS
                 }
                 else
                 {
-                    Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, Invitado, Inter, true, 0);
+                    Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, Invitado, Inter, true, 0,false);
                     ec.ShowDialog();
                 }
 
             }
             else
-            {
-                SOCIOS.Entrada_Campo.IngresoDatos ingreso_entrada_Campo = new Entrada_Campo.IngresoDatos(true);
-                ingreso_entrada_Campo.ShowDialog();
+             {
+                 Monto_Reintegro = entradaCampoService.Monto_Maximo_Reintegrar("9999", System.DateTime.Now);
+
+                 if ((Monto_Reintegro == 0))
+                 {
+                     throw new Exception("No existen movimientos a Reintegrar en el dia de la fecha  ");
+
+                 }
+
+
+
+
+                 Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales("9999", VGlobales.vp_role.TrimEnd().TrimStart(), VGlobales.vp_role.TrimEnd().TrimStart(), 0, 0, "", true, false,true,0 , true);
+                 ec.ShowDialog();
+                 
             }
         }
 
@@ -2916,6 +2930,105 @@ namespace SOCIOS
         private void MSK_Enter(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void lbIngresoEvento_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 1)
+            {
+                int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                int NRO_DEP = int.Parse(listView1.SelectedItems[0].SubItems[1].Text);
+                string DNI = listView1.SelectedItems[0].SubItems[11].Text;
+                string NOMBRE = listView1.SelectedItems[0].SubItems[5].Text;
+                string APELLIDO = listView1.SelectedItems[0].SubItems[4].Text;
+                string BAJA = listView1.SelectedItems[0].SubItems[13].Text;
+                string TIPO = listView1.SelectedItems[0].SubItems[3].Text;
+                // esto es para que tome el formato de la grilla de familiares 
+                if (!themedContainer1.IsBodyVisible)
+                {
+                    TIPO = listView1.SelectedItems[0].SubItems[2].Text;
+                    DNI = listView1.SelectedItems[0].SubItems[13].Text;
+                    BAJA = listView1.SelectedItems[0].SubItems[14].Text;
+                    NOMBRE = listView1.SelectedItems[0].SubItems[6].Text;
+                    APELLIDO = listView1.SelectedItems[0].SubItems[5].Text;
+                }
+
+
+         
+                SOCIOS.entradaCampo.Campo.EntradaEvento ee = new entradaCampo.Campo.EntradaEvento(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, "", false, 0,false);
+
+              
+                ee.ShowDialog();
+            }
+            else
+            {
+                SOCIOS.entradaCampo.Campo.EntradaEvento ec = new entradaCampo.Campo.EntradaEvento("9999", VGlobales.vp_role.TrimEnd().TrimStart(), VGlobales.vp_role.TrimEnd().TrimStart(),0,0,"MANUAL", "", false, 0,true);
+
+
+                ec.ShowDialog();
+            }
+
+
+        }
+
+        private void lbReintegroEvento_Click(object sender, EventArgs e)
+        {
+            try
+            {   decimal Monto_Reintegro=0;
+
+                if (listView1.SelectedItems.Count == 1)
+                {
+                    int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                    int NRO_DEP = int.Parse(listView1.SelectedItems[0].SubItems[1].Text);
+                    string DNI = listView1.SelectedItems[0].SubItems[11].Text;
+                    string NOMBRE = listView1.SelectedItems[0].SubItems[5].Text;
+                    string APELLIDO = listView1.SelectedItems[0].SubItems[4].Text;
+                    string BAJA = listView1.SelectedItems[0].SubItems[13].Text;
+                    string TIPO = listView1.SelectedItems[0].SubItems[3].Text;
+                    // esto es para que tome el formato de la grilla de familiares 
+                    if (!themedContainer1.IsBodyVisible)
+                    {
+                        TIPO = listView1.SelectedItems[0].SubItems[2].Text;
+                        DNI = listView1.SelectedItems[0].SubItems[13].Text;
+                        BAJA = listView1.SelectedItems[0].SubItems[14].Text;
+                        NOMBRE = listView1.SelectedItems[0].SubItems[6].Text;
+                        APELLIDO = listView1.SelectedItems[0].SubItems[5].Text;
+                    }
+                     Monto_Reintegro = entradaCampoService.Monto_Maximo_Reintegrar(DNI, System.DateTime.Now);
+
+                    if (( Monto_Reintegro == 0) )
+                    {
+                        throw new Exception("No existen movimientos a Reintegrar en el dia de la fecha  ");
+
+                    }
+
+                    SOCIOS.entradaCampo.Campo.EntradaEvento ee = new entradaCampo.Campo.EntradaEvento(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, "", true, Monto_Reintegro,false);
+
+
+                    ee.ShowDialog();
+                }
+                else
+                {
+                    Monto_Reintegro = entradaCampoService.Monto_Maximo_Reintegrar("9999", System.DateTime.Now);
+                    
+                    if ((Monto_Reintegro == 0))
+                    {
+                        throw new Exception("No existen movimientos a Reintegrar en el dia de la fecha  ");
+
+                    }
+
+                    SOCIOS.entradaCampo.Campo.EntradaEvento ec = new entradaCampo.Campo.EntradaEvento("9999", VGlobales.vp_role.TrimEnd().TrimStart(), VGlobales.vp_role.TrimEnd().TrimStart(), 0, 0, "MANUAL", "", true, Monto_Reintegro,true);
+
+
+                    ec.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
+            }
         }
     }
 }

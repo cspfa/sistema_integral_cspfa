@@ -90,7 +90,7 @@ namespace SOCIOS.Entrada_Campo
 
                  if (cbEvento.Checked == false)
                  {
-                     EntradaCampoIngresoTotales ent = new EntradaCampoIngresoTotales(tbDni.Text, tbNombre.Text, tbApellido.Text, NroSocio, 0, "", Invitado, Intercirculo, Resta, Legajo);
+                     EntradaCampoIngresoTotales ent = new EntradaCampoIngresoTotales(tbDni.Text, tbNombre.Text, tbApellido.Text, NroSocio, 0, "", Invitado, Intercirculo, Resta, Legajo,false);
                      tbDni.Text = "";
                      tbApellido.Text = "";
                      tbNombre.Text = "";
@@ -100,7 +100,7 @@ namespace SOCIOS.Entrada_Campo
                  else
 
                  {
-                     SOCIOS.entradaCampo.Campo.EntradaEvento ee = new entradaCampo.Campo.EntradaEvento(tbDni.Text, tbNombre.Text, tbApellido.Text, NroSocio, 0, "", tbLegajoNroSocio.Text, false,0);
+                     SOCIOS.entradaCampo.Campo.EntradaEvento ee = new entradaCampo.Campo.EntradaEvento(tbDni.Text, tbNombre.Text, tbApellido.Text, NroSocio, 0, "", tbLegajoNroSocio.Text, false,0,false);
                      tbDni.Text = "";
                      tbApellido.Text = "";
                      tbNombre.Text = "";

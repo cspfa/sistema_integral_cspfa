@@ -100,6 +100,8 @@
             this.lbRB = new System.Windows.Forms.Label();
             this.lbCuenta = new System.Windows.Forms.Label();
             this.themedContainer1 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedContainer();
+            this.mtbIdEmpleado = new MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox();
+            this.label21 = new System.Windows.Forms.Label();
             this.textBox14 = new MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -134,8 +136,8 @@
             this.cmDeportes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.sUSPENDERToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rEANUDARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mtbIdEmpleado = new MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox();
-            this.label21 = new System.Windows.Forms.Label();
+            this.lbIngresoEvento = new System.Windows.Forms.Label();
+            this.lbReintegroEvento = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox1)).BeginInit();
             this.themedGroupBox1.SuspendLayout();
@@ -196,7 +198,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(11, 7);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(295, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(279, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -205,7 +207,7 @@
             this.toolStripButton1.Image = global::SOCIOS.Properties.Resources.magnifier;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(90, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(94, 22);
             this.toolStripButton1.Text = "[F1] BUSCAR";
             this.toolStripButton1.ToolTipText = "[F1] - Buscar datos segun lo informado ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
@@ -220,7 +222,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(91, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(95, 22);
             this.toolStripButton2.Text = "[F2] LIMPIAR";
             this.toolStripButton2.ToolTipText = "Limpiar Campos";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
@@ -235,7 +237,7 @@
             this.toolStripButton3.Image = global::SOCIOS.Properties.Resources.add;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(61, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(66, 22);
             this.toolStripButton3.Text = "NUEVO";
             this.toolStripButton3.ToolTipText = "Nuevo Titular";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click_1);
@@ -282,7 +284,7 @@
             this.lbRestablecer994.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbRestablecer994.Enabled = false;
             this.lbRestablecer994.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbRestablecer994.Location = new System.Drawing.Point(725, 164);
+            this.lbRestablecer994.Location = new System.Drawing.Point(871, 164);
             this.lbRestablecer994.Name = "lbRestablecer994";
             this.lbRestablecer994.Size = new System.Drawing.Size(76, 13);
             this.lbRestablecer994.TabIndex = 49;
@@ -295,7 +297,7 @@
             this.label20.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label20.Enabled = false;
             this.label20.ForeColor = System.Drawing.Color.Gray;
-            this.label20.Location = new System.Drawing.Point(597, 164);
+            this.label20.Location = new System.Drawing.Point(558, 164);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(112, 13);
             this.label20.TabIndex = 48;
@@ -320,7 +322,7 @@
             this.lbIngresoCampo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lbIngresoCampo.Enabled = false;
             this.lbIngresoCampo.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lbIngresoCampo.Location = new System.Drawing.Point(463, 164);
+            this.lbIngresoCampo.Location = new System.Drawing.Point(444, 164);
             this.lbIngresoCampo.Name = "lbIngresoCampo";
             this.lbIngresoCampo.Size = new System.Drawing.Size(107, 13);
             this.lbIngresoCampo.TabIndex = 46;
@@ -500,7 +502,7 @@
             this.LimpiarListView});
             this.toolStrip2.Location = new System.Drawing.Point(498, 8);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(151, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(161, 25);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             this.toolStrip2.Visible = false;
@@ -511,7 +513,7 @@
             this.BuscarListView.Image = ((System.Drawing.Image)(resources.GetObject("BuscarListView.Image")));
             this.BuscarListView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BuscarListView.Name = "BuscarListView";
-            this.BuscarListView.Size = new System.Drawing.Size(67, 22);
+            this.BuscarListView.Size = new System.Drawing.Size(71, 22);
             this.BuscarListView.Text = "BUSCAR";
             this.BuscarListView.ToolTipText = "BUSCAR EN RESULTADO";
             this.BuscarListView.Click += new System.EventHandler(this.BuscarListView_Click);
@@ -527,7 +529,7 @@
             this.LimpiarListView.Image = ((System.Drawing.Image)(resources.GetObject("LimpiarListView.Image")));
             this.LimpiarListView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LimpiarListView.Name = "LimpiarListView";
-            this.LimpiarListView.Size = new System.Drawing.Size(68, 22);
+            this.LimpiarListView.Size = new System.Drawing.Size(72, 22);
             this.LimpiarListView.Text = "LIMPIAR";
             this.LimpiarListView.ToolTipText = "LIMPIAR SELECCIONADOS";
             this.LimpiarListView.Click += new System.EventHandler(this.LimpiarListView_Click);
@@ -1040,6 +1042,28 @@
             this.themedContainer1.BodyRestored += new MicroFour.StrataFrame.UI.Windows.Forms.ThemedContainer.BodyRestoredEventHandler(this.themedContainer1_BodyRestored);
             this.themedContainer1.BodyHidden += new MicroFour.StrataFrame.UI.Windows.Forms.ThemedContainer.BodyHiddenEventHandler(this.themedContainer1_BodyHidden);
             // 
+            // mtbIdEmpleado
+            // 
+            this.mtbIdEmpleado.BusinessObjectEvaluated = true;
+            this.mtbIdEmpleado.DisabledBackColor = System.Drawing.Color.White;
+            this.mtbIdEmpleado.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.mtbIdEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mtbIdEmpleado.Location = new System.Drawing.Point(855, 34);
+            this.mtbIdEmpleado.Mask = "9999999999";
+            this.mtbIdEmpleado.Name = "mtbIdEmpleado";
+            this.mtbIdEmpleado.Size = new System.Drawing.Size(67, 20);
+            this.mtbIdEmpleado.TabIndex = 45;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(808, 38);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(44, 13);
+            this.label21.TabIndex = 46;
+            this.label21.Text = "ID EMP";
+            // 
             // textBox14
             // 
             this.textBox14.BusinessObjectEvaluated = true;
@@ -1432,13 +1456,13 @@
             this.cmEncuesta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsEncuesta});
             this.cmEncuesta.Name = "cmServiciosMedicos";
-            this.cmEncuesta.Size = new System.Drawing.Size(155, 26);
+            this.cmEncuesta.Size = new System.Drawing.Size(160, 26);
             // 
             // tsEncuesta
             // 
             this.tsEncuesta.Image = ((System.Drawing.Image)(resources.GetObject("tsEncuesta.Image")));
             this.tsEncuesta.Name = "tsEncuesta";
-            this.tsEncuesta.Size = new System.Drawing.Size(154, 22);
+            this.tsEncuesta.Size = new System.Drawing.Size(159, 22);
             this.tsEncuesta.Text = "Cargar Encuesta";
             this.tsEncuesta.Click += new System.EventHandler(this.tsEncuesta_Click);
             // 
@@ -1447,14 +1471,14 @@
             this.cmObservacionesInterior.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cargarObservaciónToolStripMenuItem});
             this.cmObservacionesInterior.Name = "cmObservacionesInterior";
-            this.cmObservacionesInterior.Size = new System.Drawing.Size(159, 26);
+            this.cmObservacionesInterior.Size = new System.Drawing.Size(165, 26);
             this.cmObservacionesInterior.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // cargarObservaciónToolStripMenuItem
             // 
             this.cargarObservaciónToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cargarObservaciónToolStripMenuItem.Image")));
             this.cargarObservaciónToolStripMenuItem.Name = "cargarObservaciónToolStripMenuItem";
-            this.cargarObservaciónToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.cargarObservaciónToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.cargarObservaciónToolStripMenuItem.Text = "OBSERVACIONES";
             this.cargarObservaciónToolStripMenuItem.Click += new System.EventHandler(this.cargarObservaciónToolStripMenuItem_Click);
             // 
@@ -1464,50 +1488,59 @@
             this.sUSPENDERToolStripMenuItem,
             this.rEANUDARToolStripMenuItem});
             this.cmDeportes.Name = "cmDeportes";
-            this.cmDeportes.Size = new System.Drawing.Size(133, 48);
+            this.cmDeportes.Size = new System.Drawing.Size(138, 48);
             // 
             // sUSPENDERToolStripMenuItem
             // 
             this.sUSPENDERToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sUSPENDERToolStripMenuItem.Image")));
             this.sUSPENDERToolStripMenuItem.Name = "sUSPENDERToolStripMenuItem";
-            this.sUSPENDERToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.sUSPENDERToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.sUSPENDERToolStripMenuItem.Text = "SUSPENDER";
             // 
             // rEANUDARToolStripMenuItem
             // 
             this.rEANUDARToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rEANUDARToolStripMenuItem.Image")));
             this.rEANUDARToolStripMenuItem.Name = "rEANUDARToolStripMenuItem";
-            this.rEANUDARToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.rEANUDARToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.rEANUDARToolStripMenuItem.Text = "REANUDAR";
             // 
-            // mtbIdEmpleado
+            // lbIngresoEvento
             // 
-            this.mtbIdEmpleado.BusinessObjectEvaluated = true;
-            this.mtbIdEmpleado.DisabledBackColor = System.Drawing.Color.White;
-            this.mtbIdEmpleado.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.mtbIdEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mtbIdEmpleado.Location = new System.Drawing.Point(855, 34);
-            this.mtbIdEmpleado.Mask = "9999999999";
-            this.mtbIdEmpleado.Name = "mtbIdEmpleado";
-            this.mtbIdEmpleado.Size = new System.Drawing.Size(67, 20);
-            this.mtbIdEmpleado.TabIndex = 45;
+            this.lbIngresoEvento.AutoSize = true;
+            this.lbIngresoEvento.ForeColor = System.Drawing.Color.Gray;
+            this.lbIngresoEvento.Location = new System.Drawing.Point(690, 358);
+            this.lbIngresoEvento.Name = "lbIngresoEvento";
+            this.lbIngresoEvento.Size = new System.Drawing.Size(78, 13);
+            this.lbIngresoEvento.TabIndex = 46;
+            this.lbIngresoEvento.Text = "EST. EVENTO";
+            this.lbIngresoEvento.Click += new System.EventHandler(this.lbIngresoEvento_Click);
             // 
-            // label21
+            // lbReintegroEvento
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(808, 38);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(44, 13);
-            this.label21.TabIndex = 46;
-            this.label21.Text = "ID EMP";
+            this.lbReintegroEvento.AutoSize = true;
+            this.lbReintegroEvento.ForeColor = System.Drawing.Color.Gray;
+            this.lbReintegroEvento.Location = new System.Drawing.Point(782, 358);
+            this.lbReintegroEvento.Name = "lbReintegroEvento";
+            this.lbReintegroEvento.Size = new System.Drawing.Size(86, 13);
+            this.lbReintegroEvento.TabIndex = 47;
+            this.lbReintegroEvento.Text = "R.EST.EVENTO";
+            this.lbReintegroEvento.Click += new System.EventHandler(this.lbReintegroEvento_Click);
             // 
             // buscar
             // 
+            this.AutoDeleteMessage = "Business_AutoDeleteMessage";
+            this.AutoDeleteTitle = "Business_AutoDeleteTitle";
+            this.AutoSaveChangesMessage = "Business_AutoSaveChangesMessage";
+            this.AutoSaveChangesTitle = "Business_AutoSaveChangesTitle";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BrokenRulesAlertText = "Business_BrokenRulesAlertText";
+            this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
+            this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
             this.ClientSize = new System.Drawing.Size(1108, 651);
+            this.Controls.Add(this.lbReintegroEvento);
+            this.Controls.Add(this.lbIngresoEvento);
             this.Controls.Add(this.themedGroupBox6);
             this.Controls.Add(this.themedGroupBox5);
             this.Controls.Add(this.pictureBox1);
@@ -1524,6 +1557,7 @@
             this.Controls.Add(this.toolStrip2);
             this.ErrorProviderBlinkStyle = System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError;
             this.ErrorProviderIconAlignment = System.Windows.Forms.ErrorIconAlignment.MiddleRight;
+            this.ErrorProviderRequiredFieldDesc = "Business_ErrorProviderRequiredFieldDesc";
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1671,6 +1705,8 @@
         private System.Windows.Forms.Label lbRestablecer994;
         private MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox mtbIdEmpleado;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label lbReintegroEvento;
+        private System.Windows.Forms.Label lbIngresoEvento;
 
 
     }

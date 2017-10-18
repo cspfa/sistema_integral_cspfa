@@ -42,6 +42,10 @@
             this.lbTexto = new System.Windows.Forms.Label();
             this.gpReintegro = new System.Windows.Forms.GroupBox();
             this.lbReintegro = new System.Windows.Forms.Label();
+            this.chkSocio = new System.Windows.Forms.CheckBox();
+            this.lbLegajoNroSocio = new System.Windows.Forms.Label();
+            this.tbLegajoNroSocio = new System.Windows.Forms.TextBox();
+            this.chkPersonalPolicial = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.gpCantidad.SuspendLayout();
             this.gpReintegro.SuspendLayout();
@@ -95,7 +99,7 @@
             // lbCantidad
             // 
             this.lbCantidad.AutoSize = true;
-            this.lbCantidad.Location = new System.Drawing.Point(59, 270);
+            this.lbCantidad.Location = new System.Drawing.Point(396, 196);
             this.lbCantidad.Name = "lbCantidad";
             this.lbCantidad.Size = new System.Drawing.Size(13, 13);
             this.lbCantidad.TabIndex = 35;
@@ -104,7 +108,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 270);
+            this.label2.Location = new System.Drawing.Point(349, 196);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 36;
@@ -113,7 +117,7 @@
             // lbMonto
             // 
             this.lbMonto.AutoSize = true;
-            this.lbMonto.Location = new System.Drawing.Point(59, 289);
+            this.lbMonto.Location = new System.Drawing.Point(396, 215);
             this.lbMonto.Name = "lbMonto";
             this.lbMonto.Size = new System.Drawing.Size(13, 13);
             this.lbMonto.TabIndex = 37;
@@ -122,7 +126,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 289);
+            this.label3.Location = new System.Drawing.Point(377, 215);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(13, 13);
             this.label3.TabIndex = 38;
@@ -132,7 +136,7 @@
             // 
             this.gpCantidad.Controls.Add(this.tbCantidad);
             this.gpCantidad.Controls.Add(this.lbTexto);
-            this.gpCantidad.Location = new System.Drawing.Point(15, 305);
+            this.gpCantidad.Location = new System.Drawing.Point(343, 106);
             this.gpCantidad.Name = "gpCantidad";
             this.gpCantidad.Size = new System.Drawing.Size(122, 66);
             this.gpCantidad.TabIndex = 39;
@@ -177,11 +181,57 @@
             this.lbReintegro.TabIndex = 0;
             this.lbReintegro.Text = "0";
             // 
+            // chkSocio
+            // 
+            this.chkSocio.AutoSize = true;
+            this.chkSocio.Location = new System.Drawing.Point(124, 312);
+            this.chkSocio.Name = "chkSocio";
+            this.chkSocio.Size = new System.Drawing.Size(68, 17);
+            this.chkSocio.TabIndex = 44;
+            this.chkSocio.Text = "Es Socio";
+            this.chkSocio.UseVisualStyleBackColor = true;
+            this.chkSocio.CheckedChanged += new System.EventHandler(this.chkSocio_CheckedChanged_1);
+            // 
+            // lbLegajoNroSocio
+            // 
+            this.lbLegajoNroSocio.AutoSize = true;
+            this.lbLegajoNroSocio.Location = new System.Drawing.Point(15, 342);
+            this.lbLegajoNroSocio.Name = "lbLegajoNroSocio";
+            this.lbLegajoNroSocio.Size = new System.Drawing.Size(48, 13);
+            this.lbLegajoNroSocio.TabIndex = 43;
+            this.lbLegajoNroSocio.Text = "LEGAJO";
+            this.lbLegajoNroSocio.Visible = false;
+            // 
+            // tbLegajoNroSocio
+            // 
+            this.tbLegajoNroSocio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbLegajoNroSocio.Location = new System.Drawing.Point(119, 339);
+            this.tbLegajoNroSocio.Name = "tbLegajoNroSocio";
+            this.tbLegajoNroSocio.Size = new System.Drawing.Size(205, 20);
+            this.tbLegajoNroSocio.TabIndex = 42;
+            this.tbLegajoNroSocio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.tbLegajoNroSocio.Visible = false;
+            // 
+            // chkPersonalPolicial
+            // 
+            this.chkPersonalPolicial.AutoSize = true;
+            this.chkPersonalPolicial.Location = new System.Drawing.Point(12, 312);
+            this.chkPersonalPolicial.Name = "chkPersonalPolicial";
+            this.chkPersonalPolicial.Size = new System.Drawing.Size(106, 17);
+            this.chkPersonalPolicial.TabIndex = 41;
+            this.chkPersonalPolicial.Text = "Personal Policial ";
+            this.chkPersonalPolicial.UseVisualStyleBackColor = true;
+            this.chkPersonalPolicial.CheckedChanged += new System.EventHandler(this.chkPersonalPolicial_CheckedChanged);
+            // 
             // EntradaEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(330, 380);
+            this.ClientSize = new System.Drawing.Size(477, 380);
+            this.Controls.Add(this.chkSocio);
+            this.Controls.Add(this.lbLegajoNroSocio);
+            this.Controls.Add(this.tbLegajoNroSocio);
+            this.Controls.Add(this.chkPersonalPolicial);
             this.Controls.Add(this.gpReintegro);
             this.Controls.Add(this.gpCantidad);
             this.Controls.Add(this.label3);
@@ -220,5 +270,9 @@
         private System.Windows.Forms.Label lbTexto;
         private System.Windows.Forms.GroupBox gpReintegro;
         private System.Windows.Forms.Label lbReintegro;
+        private System.Windows.Forms.CheckBox chkSocio;
+        private System.Windows.Forms.Label lbLegajoNroSocio;
+        private System.Windows.Forms.TextBox tbLegajoNroSocio;
+        private System.Windows.Forms.CheckBox chkPersonalPolicial;
     }
 }
