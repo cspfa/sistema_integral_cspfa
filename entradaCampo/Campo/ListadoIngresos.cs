@@ -256,7 +256,7 @@ namespace SOCIOS.Entrada_Campo
                     else
                     {
 
-                        Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, Invitado, Inter, true, 0);
+                        Entrada_Campo.EntradaCampoIngresoTotales ec = new Entrada_Campo.EntradaCampoIngresoTotales(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO, Invitado, Inter, true, 0,false);
 
                         ec.ShowDialog();
                     }
@@ -328,7 +328,7 @@ namespace SOCIOS.Entrada_Campo
                     else
                     {
 
-                       SOCIOS.entradaCampo.Campo.EntradaEvento ee = new SOCIOS.entradaCampo.Campo.EntradaEvento(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO,"",true,MontoReintegro);
+                       SOCIOS.entradaCampo.Campo.EntradaEvento ee = new SOCIOS.entradaCampo.Campo.EntradaEvento(DNI, NOMBRE, APELLIDO, NRO_SOC, NRO_DEP, TIPO,"",true,MontoReintegro,false);
 
                         ee.ShowDialog();
                     }
