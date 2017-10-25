@@ -198,6 +198,7 @@ namespace SOCIOS
             comboFormasDePago(cbNuevoPagoEfectivo);
             comboFormasDePago(cbNuevoPagoOtros);
 
+            buscar("E", dgEgresos, CAJA);
             buscar("1", dgEfectivo, CAJA);
             buscarCajas(0, dgCajasAnteriores);
             buscarCajas(1, dgCajasDepositadas);
@@ -207,7 +208,6 @@ namespace SOCIOS
             agregarCambio();
 
             buscar("0", dgOtros, CAJA);
-            buscar("E", dgEgresos, CAJA);
             buscar("2", dgCheques, CAJA);
 
             totalEgresos();
@@ -413,6 +413,21 @@ namespace SOCIOS
             }
         }
 
+        private decimal sumarReintegros()
+        {
+            decimal TOTAL = 0;
+
+            foreach (DataGridViewRow row in dgEgresos.Rows)
+            {
+                if (row.Cells[5].Value.ToString().Contains("REINTEGRO"))
+                {
+                    TOTAL = TOTAL + decimal.Parse(row.Cells[4].Value.ToString());
+                }
+            }
+
+            return TOTAL;
+        }
+
         private void buscar(string PAGO, DataGridView GRID, int CAJA)
         {
             try
@@ -509,11 +524,12 @@ namespace SOCIOS
                     GRID.Columns[8].Width = 110;
                     GRID.Columns[9].Width = 50;
                     GRID.Columns[10].Width = 40;
-                    transaction.Commit();
+                    transaction.Commit();                 
 
                     if (PAGO == "1") //EFECTIVO
                     {
-                        dgTotalesDelDia.Rows.Add("INGRESOS EFECTIVO", string.Format("{0:n}", TOTAL));
+                        decimal REINTEGROS = sumarReintegros();
+                        dgTotalesDelDia.Rows.Add("INGRESOS EFECTIVO", string.Format("{0:n}", TOTAL - REINTEGROS));
                         INGRESOS_EFECTIVO = TOTAL;
                     }
                     else if (PAGO != "1" && GRID.Name.ToString() == "dgOtros")
@@ -732,6 +748,34 @@ namespace SOCIOS
             {
                 int ID = int.Parse(row.Cells[9].Value.ToString());
                 string F_PAGO = row.Cells[8].Value.ToString();
+                string NRO = row.Cells[0].Value.ToString();
+
+                if (NRO.Contains("R"))
+                {
+                    try
+                    {
+                        BO_CAJA.cajaEnRecibos(ID, CAJA_DIARIA);
+                    }
+                    catch (Exception error)
+                    {
+                        BO_CAJA.borrarCajaDeComprobante("RECIBOS_CAJA", CAJA_DIARIA);
+                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL RECIBO " + NRO + "\n" + error);
+                    }
+                }
+                else if (NRO.Contains("B"))
+                {
+                    try
+                    {
+                        BO_CAJA.cajaEnBonos(ID, CAJA_DIARIA);
+                    }
+                    catch (Exception error)
+                    {
+                        BO_CAJA.borrarCajaDeComprobante("BONOS_CAJA", CAJA_DIARIA);
+                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL BONO " + NRO + "\n" + error);
+                    }
+                }
 
                 if (F_PAGO == "CHEQUE")
                 {
@@ -1441,7 +1485,7 @@ namespace SOCIOS
                 TABLA_INGRESOS_OTROS.WidthPercentage = 100;
                 TABLA_INGRESOS_OTROS.SpacingAfter = 10;
                 TABLA_INGRESOS_OTROS.SpacingBefore = 10;
-                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f, 2f });
+                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.6f, 4f, 6f, 1f, 2f, 5f, 2f, 2f });
                 PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
                 PdfPCell CELDA_CONCEPTO_OTROS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
