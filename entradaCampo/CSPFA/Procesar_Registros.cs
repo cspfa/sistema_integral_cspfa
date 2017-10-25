@@ -129,8 +129,9 @@ namespace SOCIOS.Entrada_Campo
                 ec.DISCAPACITADO = Int32.Parse(table.Rows[i][38].ToString());
                 ec.DISCAPACITADO_ACOM = Int32.Parse(table.Rows[i][39].ToString());
                 ec.LEGAJO = Int32.Parse(table.Rows[i][41].ToString());
-                ec.OBS_CUMPLE = table.Rows[i][42].ToString();
-
+                ec.OBS_CUMPLE   = table.Rows[i][42].ToString();
+                ec.EVENTO       = Int32.Parse(table.Rows[i][43].ToString());
+                ec.MONTO_EVENTO = Decimal.Parse( table.Rows[i][44].ToString());
 
                 LISTA.Add(ec);
                

@@ -299,7 +299,9 @@ namespace SOCIOS.Entrada_Campo
             xlWorkSheet.Cells[1, 41] = "";
             xlWorkSheet.Cells[1, 42] = "LEGAJO";
             xlWorkSheet.Cells[1, 43] = "OBS REUNION";
-          
+            xlWorkSheet.Cells[1, 44] = "EVENTO";
+            xlWorkSheet.Cells[1, 45] = "MONTO EVENTO";
+
 
             for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
             {
