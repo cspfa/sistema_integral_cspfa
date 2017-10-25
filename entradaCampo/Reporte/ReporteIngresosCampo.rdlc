@@ -129,11 +129,11 @@
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="EVENTO">
-          <DataField>MONTO_TOTAL</DataField>
+          <DataField>EVENTO</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="MONTO_EVENTO">
-          <DataField>MONTO_TOTAL</DataField>
+          <DataField>MONTO_EVENTO</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -266,11 +266,11 @@
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="EVENTO">
-          <DataField>MONTO_TOTAL</DataField>
+          <DataField>EVENTO</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="MONTO_EVENTO">
-          <DataField>MONTO_TOTAL</DataField>
+          <DataField>MONTO_EVENTO</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
       </Fields>
@@ -2868,6 +2868,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -3053,7 +3054,7 @@
         <Top>0.69228in</Top>
         <Left>0.03342in</Left>
         <Height>0.9375in</Height>
-        <Width>8.12413in</Width>
+        <Width>8.12412in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -5902,7 +5903,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>

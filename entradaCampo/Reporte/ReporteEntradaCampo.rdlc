@@ -5659,7 +5659,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!MONTO_INTERCIRCULO_EST.Value, "DataSetReintegros")</Value>
+                              <Value>=Sum(Fields!MONTO_EVENTO.Value, "DataSetReintegros")</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -5682,7 +5682,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
