@@ -379,9 +379,10 @@ namespace SOCIOS.bono
                             TipoPasaje = "AEREO";
                         }
 
-                        string Nombre = persona.NOMBRE;
-                        string Apellido = persona.APELLIDO;
-                        string Dni = persona.NUM_DOC;
+                        string Nombre = this.srvDatosSocio.CAB.NOMBRE;
+                        string Apellido = this.srvDatosSocio.CAB.APELLIDO;
+                        string Dni = this.srvDatosSocio.CAB.Dni;
+
                         string fechaNacimiento = this.srvDatosSocio.CAB.FechaNac;
                  
                         string Telefono = this.srvDatosSocio.CAB.Telefonos;
