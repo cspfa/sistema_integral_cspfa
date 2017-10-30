@@ -59,6 +59,8 @@ namespace SOCIOS.bono
         public string ApellidoTitular     { get;set;}
         public string Procedencia         { get; set; }
         public string COD_DTO             { get; set; }
+        public string NOMBRE              { get; set; }
+        public string APELLIDO            { get; set; }
 
     }
 
@@ -130,7 +132,8 @@ namespace SOCIOS.bono
         public string   POC         {get;set;}
         public DateTime FECHA       {get;set;}
         public int TIPO             {get;set;}
-        public DateTime FECHA_DTO   {get;set;}         
+        public DateTime FECHA_DTO   {get;set;}
+        public bool Ingreso_Caja    {get;set;}
     
     
     }
@@ -220,6 +223,8 @@ namespace SOCIOS.bono
                 CAB.NroSocioTitular = foundRows[0][11].ToString().Trim();
                 CAB.NroDepTitular = foundRows[0][12].ToString().Trim();
                 CAB.NombreTitular = foundRows[0][10].ToString().Trim() + "   " + foundRows[0][9].ToString().Trim();
+                CAB.NOMBRE = foundRows[0][10].ToString().Trim();
+                CAB.APELLIDO = foundRows[0][9].ToString().Trim();
                 CAB.TipoTitular = foundRows[0][88].ToString().Trim();
                 CAB.NroAfiliadoTitular = foundRows[0][1].ToString().Trim() + '/' + foundRows[0][3].ToString().Trim();
                 CAB.AAR                = foundRows[0][1].ToString().Trim().Length >0 ? Int32.Parse(foundRows[0][1].ToString().Trim()):0;

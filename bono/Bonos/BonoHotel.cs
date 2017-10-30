@@ -476,15 +476,16 @@ namespace SOCIOS.bono
 
 
 
-                        string Nombre = persona.NOMBRE;
-                        string Apellido = persona.APELLIDO;
-                        string Dni = persona.NUM_DOC;
+                        string Nombre = this.srvDatosSocio.CAB.NOMBRE;
+                        string Apellido = this.srvDatosSocio.CAB.APELLIDO;
+                        string Dni = this.srvDatosSocio.CAB.Dni;
                         string fechaNacimiento = this.srvDatosSocio.CAB.FechaNac;
                        
                         string Telefono = this.srvDatosSocio.CAB.Telefonos;
 
                         decimal Pago = decimal.Parse(lblSaldoTotal.Text);
                         string OBS = "";
+                        
                         if (cbHabitacion.Text.ToUpper().Contains("PERSONA"))
                             OBS = tbObs.Text + " - " + lbMenores.Text;
                         else
