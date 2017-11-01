@@ -28,19 +28,53 @@ namespace SOCIOS.CuentaSocio
         int NRO_SOCIO_TIT;
         int NRO_DEP_TIT;
         int ID_PLAN;
+        
+        int MODO = 1;
 
-        public PlanCuenta()
+
+        public PlanCuenta(string ROL)
         {
             InitializeComponent();
             utilsCuenta = new PlanCuentaUtils();
             this.ComboTipo();
-            this.BindGrillaPLan();
+
+            this.Determinar_Modo(ROL);
+
             
         }
 
-        private void BindGrillaPLan()
+        private void Determinar_Modo(string ROL)
+
         {
-            dgvPlanes.DataSource = utilsCuenta.GetCuentas(Int32.Parse(cbTipo.SelectedValue.ToString()));
+            if (ROL == "SISTEMAS")
+            {
+                MODO = 2;
+               
+                gpRol.Visible = true;
+            }
+            else
+            {
+                gpRol.Visible = false;
+                if (ROL.Contains("TURISMO"))
+                {
+                    MODO = 2;
+                  
+                }
+                else if (ROL.Contains("SERVICIOS MEDICOS"))
+                {
+                    MODO = 1;
+                    
+                }
+
+                this.BindGrillaPLan(MODO);
+            
+            }
+        }
+
+        private void BindGrillaPLan(int Modo)
+        {
+
+            dgvPlanes.DataSource = utilsCuenta.GetCuentas(Modo);
             this.FormatoGrilla();
         }
 
@@ -78,29 +112,30 @@ namespace SOCIOS.CuentaSocio
 
         }
 
-        private void  BindCuotas(int Plan)
-
+        private void BindCuotas(int Plan)
         {
-           dgvCuotas.DataSource =  utilsCuenta.Cuotas(Plan);
+            dgvCuotas.DataSource = null;
+            dgvCuotas.DataSource = utilsCuenta.Cuotas(Plan);
 
-           dgvPlanes.Columns[3].Width = 500;
-           dgvPlanes.Columns[6].Width = 1000;
+            dgvPlanes.Columns[3].Width = 500;
+            dgvPlanes.Columns[6].Width = 1000;
 
-           foreach (DataGridViewRow row in dgvCuotas.Rows)
-           {
+            foreach (DataGridViewRow row in dgvCuotas.Rows)
+            {
 
-               if (row.Cells[4].Value.ToString().Length > 1)
-               {
+                if (row.Cells[4].Value.ToString().Length > 1)
+                {
 
-                   row.DefaultCellStyle.BackColor = Color.Red;
-                   if (row.Cells[4].Value.ToString().Trim()!="OK")
-                       row.DefaultCellStyle.BackColor = Color.YellowGreen;
-               }
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+                }
+                if (row.Cells[5].Value.ToString().Length > 1)
+                {
 
-           } 
+                    row.DefaultCellStyle.BackColor = System.Drawing.Color.Yellow;
+                }
 
 
-        
+            }
         }
 
         private void dgvPlanes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -128,8 +163,24 @@ namespace SOCIOS.CuentaSocio
             gpPlanCuota.Visible = true;
 
 
-            this.FormatoGrilla();
+            //this.FormatoGrilla();
         
+        
+        }
+
+        private void FormateoCuotas()
+
+        {
+
+            foreach (DataGridViewRow dr in dgvCuotas.Rows)
+            {
+                if (dr.Cells[6].Value.ToString().Trim() != "0")
+                    dr.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+
+
+
+            }
+            dgvCuotas.ClearSelection();
         
         }
 
@@ -198,7 +249,8 @@ namespace SOCIOS.CuentaSocio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.BindGrillaPLan();
+            MODO = Int32.Parse(cbTipo.SelectedValue.ToString());
+            this.BindGrillaPLan(MODO);
         }
 
         private void butonInfoDescuento_Click(object sender, EventArgs e)
@@ -247,6 +299,29 @@ namespace SOCIOS.CuentaSocio
         private void Seleccion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.Cargar_Plan();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            
+            var x =  utilsCuenta.GetCuentas(MODO).ToList();
+            if (x != null)
+            {
+                if (tbNombre.Text.Length > 0)
+                    x = x.Where(v=>v.Nombre.Contains(tbNombre.Text)).ToList();
+                if (tbApellido.Text.Length > 0)
+                    x = x.Where(v => v.Apellido.Contains(tbApellido.Text)).ToList();
+                if (tbSocio.Text.Length > 0)
+                   x = x.Where(v => v.Nro_Socio.Contains(tbSocio.Text)).ToList();
+                if (tbDepuracion.Text.Length > 0)
+                    x = x.Where(v => v.Nro_Dep.Contains(tbDepuracion.Text)).ToList();
+                if (tbDni.Text.Length > 0)
+                    x = x.Where(v => v.Dni.Contains(tbDni.Text)).ToList();
+
+                dgvPlanes.DataSource = x;
+                this.FormatoGrilla();
+
+            }
         }
 
       

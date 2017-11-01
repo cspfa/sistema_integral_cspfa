@@ -564,7 +564,13 @@ namespace SOCIOS
                             {
                                 BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP, IMPORTE);
                                 if (VGlobales.ID_CUOTA_PAGO != 0)
-                                  this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, true, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));
+                                    this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, true, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));
+                            }
+                            else
+                            {
+                                if (VGlobales.ID_CUOTA_PAGO != 0)
+                                    this.Desmarcar_Cuota(VGlobales.ID_CUOTA_PAGO,IMPORTE);
+                              
                             }
 
                         }
@@ -581,6 +587,12 @@ namespace SOCIOS
                                 BO_CAJA.bonoEnIngresos(secuencia, NRO_COMP, IMPORTE);
                                 if (VGlobales.ID_CUOTA_PAGO != 0)
                                    this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, false, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));
+                            }
+                            else
+                            {
+                                if (VGlobales.ID_CUOTA_PAGO != 0)
+                                    this.Desmarcar_Cuota(VGlobales.ID_CUOTA_PAGO,IMPORTE);
+
                             }
 
 
@@ -910,6 +922,12 @@ namespace SOCIOS
 
            
         
+        }
+        private void Desmarcar_Cuota(int ID_PAGO,decimal MONTO)
+
+        {
+            pcu.DesmarcarPagaCuota(ID_PAGO,MONTO);
+
         }
     }
 }

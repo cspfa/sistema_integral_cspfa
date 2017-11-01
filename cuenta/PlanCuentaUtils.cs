@@ -35,21 +35,33 @@ namespace SOCIOS.CuentaSocio
 
     public class CuotaPlan
     {
-        public int      ID              { get; set; }
-        public string   Detalle         { get; set; }
-        public decimal  Monto           { get; set; }
-        public int      RECIBO_CAJA     { get; set; }
-        public string   FechaPago       { get; set; }
-        public string   FechaDTO        { get; set; }
-        public string   FormaPago       { get; set; }
-        public string Rol               { get; set; }
-        public string   Nro_Soc         { get; set; }
-        public string   Nro_Dep         { get; set; }
-   
-        public int      Plan            { get; set; }
-        public int      Bono_CAJA       { get; set; }
-        public string FormaDescuento    { get; set; }
-        public decimal SaldoPlan        { get; set; }
+        public int      ID               { get; set; }
+        public string   Detalle          { get; set; }
+        public decimal  Monto            { get; set; }
+        public int      RECIBO_CAJA      { get; set; }
+        public string   FechaPago        { get; set; }
+        public string   FechaDTO         { get; set; }
+        public string   FormaPago        { get; set; }
+        public string Rol                { get; set; }
+        public int    Nro_Soc          { get; set; }
+        public int   Nro_Dep          { get; set; }
+        public int  Barra              { get; set; }
+        public int      Plan             { get; set; }
+        public int      Bono_CAJA        { get; set; }
+        public string  FormaDescuento    { get; set; }
+        public decimal SaldoPlan         { get; set; }
+
+        public int Bono                  { get; set; }
+        public int TipoPago              { get; set; }
+        public string Cuota              { get; set; }
+
+        public    string POC            { get; set; }
+        public int COD_INT              { get; set; }
+        public int COD_CP               { get; set; }
+        public string NRO_BENEFICIO     { get; set; }
+        public int NRO_SOC_TITULAR      { get; set; }
+        public int NRO_DEP_TITULAR      { get; set; }
+          
     }
 
 
@@ -57,6 +69,7 @@ namespace SOCIOS.CuentaSocio
     {
         bo_Bonos dlog = new bo_Bonos();
         BO.bo_Plan_Cuenta BO_PLANCUENTA = new BO.bo_Plan_Cuenta();
+       
         SOCIOS.descuentos.DescuentoUtils du = new descuentos.DescuentoUtils();
 
         public List<PLanDeCuenta> GetCuentas(int Modo)
@@ -81,6 +94,7 @@ namespace SOCIOS.CuentaSocio
        
             else
                 query = query + " and  P.ROL ='SERVICIOS MEDICOS'";
+            query = query + " order by P.Id descending ";
          
 
             List<PLanDeCuenta> Planes = new List<PLanDeCuenta>();
@@ -183,8 +197,8 @@ namespace SOCIOS.CuentaSocio
                     pc.ID    = Int32.Parse(reader3.GetString(reader3.GetOrdinal("ID")).Trim());
                     pc.Monto   = Decimal.Round( Decimal.Parse(reader3.GetString(reader3.GetOrdinal("MONTO")).Trim()),2);
                     pc.Detalle = reader3.GetString(reader3.GetOrdinal("CUOTA")).Trim();
-                    pc.Nro_Soc = reader3.GetString(reader3.GetOrdinal("NRO_SOC")).Trim();
-                    pc.Nro_Dep = reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim();
+                    pc.Nro_Soc = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_SOC")).Trim());
+                    pc.Nro_Dep = Int32.Parse( reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim());
                     pc.FechaDTO = reader3.GetString(reader3.GetOrdinal("DTO_FECHA")).Trim();
                     string recibo = reader3.GetString(reader3.GetOrdinal("NRO_RECIBO_CAJA")).Trim();
                     if (recibo.Length >0)
@@ -224,8 +238,8 @@ namespace SOCIOS.CuentaSocio
 
         public CuotaPlan getCuota(int Cuota)
         {
-            string query = @" select P.ID,P.Cuota,P.Monto,P.Nro_Recibo_caja Recibo,P.Nro_Bono_Caja Bono, P.F_Pago FechaPago,P.Nro_Soc,P.Nro_Dep,P.Rol, P.Plan_Cuenta Plan_Cuenta ,
-                                    P.FORMA_PAGO_CAJA FP ,PL.SALDO SALDO_PC   from pagos_Bono P ,PLan_Cuenta PL  WHERE P.PLAN_CUENTA=PL.ID and
+            string query = @" select P.ID,P.Cuota,P.Monto,P.Nro_Recibo_caja Recibo,P.Nro_Bono_Caja Bono, P.F_Pago FechaPago,P.Nro_Soc NRO_SOCIO ,P.Nro_Dep NRO_DEP, P.BARRA BARRA, P.Rol, P.Plan_Cuenta Plan_Cuenta ,
+                                    P.FORMA_PAGO_CAJA FP ,PL.SALDO SALDO_PC, P.CODINT CODINT, P.CODCP CODCP, P.NRO_SOCIO_TITULAR NRO_SOCIO_TITULAR, P.NRO_DEP_TITULAR NRO_DEP_TITULAR   from pagos_Bono P ,PLan_Cuenta PL  WHERE P.PLAN_CUENTA=PL.ID and
                                     P.ID=" + Cuota.ToString();
 
 
@@ -261,8 +275,9 @@ namespace SOCIOS.CuentaSocio
                     pc.ID = Int32.Parse(reader3.GetString(reader3.GetOrdinal("ID")).Trim());
                     pc.Monto = Decimal.Round(Decimal.Parse(reader3.GetString(reader3.GetOrdinal("MONTO")).Trim()), 2);
                     pc.Detalle = reader3.GetString(reader3.GetOrdinal("CUOTA")).Trim();
-                    pc.Nro_Soc = reader3.GetString(reader3.GetOrdinal("NRO_SOC")).Trim();
-                    pc.Nro_Dep = reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim();
+                    pc.Nro_Soc = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_SOC")).Trim());
+                    pc.Nro_Dep = Int32.Parse( reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim());
+                    pc.Barra = Int32.Parse(reader3.GetString(reader3.GetOrdinal("BARRA")).Trim());
                     string recibo = reader3.GetString(reader3.GetOrdinal("RECIBO")).Trim();
                     if (recibo.Length > 0)
                         pc.RECIBO_CAJA = Int32.Parse(recibo);
@@ -279,6 +294,10 @@ namespace SOCIOS.CuentaSocio
                     if (reader3.GetString(reader3.GetOrdinal("SALDO_PC")).Trim().Length > 0)
                         pc.SaldoPlan = Decimal.Parse(reader3.GetString(reader3.GetOrdinal("SALDO_PC")).Trim());
 
+                    pc.COD_INT = Int32.Parse(reader3.GetString(reader3.GetOrdinal("CODINT")).Trim());
+                    pc.COD_CP = Int32.Parse(reader3.GetString(reader3.GetOrdinal("CODCP")).Trim());
+                    pc.NRO_SOC_TITULAR = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_SOCIO_TITULAR")).Trim());
+                    pc.NRO_DEP_TITULAR = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_DEP_TITULAR")).Trim());
 
                 }
 
@@ -318,6 +337,26 @@ namespace SOCIOS.CuentaSocio
 
         
         }
+
+        public void DesmarcarPagaCuota(int IdCuota,decimal Monto)
+        {
+        
+
+
+            CuotaPlan pc = new CuotaPlan();
+            pc = this.getCuota(IdCuota);
+
+            //BO_PLANCUENTA.Anular_Cuota(IdCuota);
+            dlog.InsertPagoBono(pc.Bono, pc.TipoPago, (-1) * Monto, pc.Cuota, pc.POC, System.DateTime.Now, pc.COD_INT, pc.COD_CP,DateTime.Parse(pc.FechaDTO), VGlobales.vp_username, System.DateTime.Now.ToString(), pc.NRO_BENEFICIO, pc.Rol, pc.Nro_Soc, pc.Nro_Dep, pc.Barra, pc.NRO_SOC_TITULAR, pc.NRO_DEP_TITULAR, pc.Plan);
+
+
+            pc.SaldoPlan = decimal.Round(pc.SaldoPlan + (pc.Monto), 2);
+            dlog.PlanCuenta_Update(pc.Plan, pc.SaldoPlan);
+
+
+        }
+
+
 
     }
 }
