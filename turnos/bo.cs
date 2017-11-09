@@ -5559,7 +5559,7 @@ namespace SOCIOS
 
         //Agregado por Sebastian 19/10/2015
 
-        public void InsertBonoTurismo(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR)
+        public void InsertBonoTurismo(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR,string ROL)
         {
             db resultado = new db();
 
@@ -5605,7 +5605,8 @@ namespace SOCIOS
             vector_contenidos.Add(CONTRALOR);
             vector_contenidos.Add(SALDO_NETO);
             vector_contenidos.Add(INTERES);
-            ArrayList vector_tipos = new ArrayList();
+            vector_contenidos.Add(ROL);
+            ArrayList vector_tipos = new  ArrayList();
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -5647,6 +5648,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Float");
             vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.VarChar");
 
             ArrayList vector_nombres = new ArrayList();
 
@@ -5691,6 +5693,7 @@ namespace SOCIOS
             vector_nombres.Add("@CONTRALOR");
             vector_nombres.Add("@SALDO_NETO");
             vector_nombres.Add("@SALDO_INTERES");
+            vector_nombres.Add("@ROL");
             string vprocedure = "P_BONO_TURISMO_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 

@@ -456,7 +456,7 @@ namespace SOCIOS.bono
             int Hotel = Int32.Parse(cbHotel.SelectedValue.ToString());
             int Regimen = Int32.Parse(cbRegimen.SelectedValue.ToString());
             int Habit = Int32.Parse(cbHabitacion.SelectedValue.ToString());
-
+            int ID_ROL = 0;
 
             if (MessageBox.Show("Generar Bono de Estadia en  Hotel: " + cbHotel.Text + "  , Forma de Pago : " + fpago.Text, "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -492,10 +492,13 @@ namespace SOCIOS.bono
                             OBS = tbObs.Text;
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart());
                        
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
-                        //VER CODINT
+                       
+                        //Obtener Proximo ID_ROL
+                        ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart()) + 1;
+                        
 
 
                         int CodInt = 0;
@@ -588,7 +591,7 @@ namespace SOCIOS.bono
 
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0,Saldo + Recargo,Saldo,Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text,Contralor);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart());
 
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "SOC");
                         //VER CODINT
