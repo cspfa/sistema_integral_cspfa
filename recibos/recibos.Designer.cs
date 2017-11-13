@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbBancoDepo = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnImprimirTicket = new System.Windows.Forms.Button();
             this.dpFechaRecibo = new System.Windows.Forms.DateTimePicker();
             this.labeFechaRecibo = new System.Windows.Forms.Label();
@@ -75,8 +77,8 @@
             this.lbPtoVta = new System.Windows.Forms.Label();
             this.cbPtoVta = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lbDisponibles = new System.Windows.Forms.Label();
             this.lbReintegro = new System.Windows.Forms.Label();
+            this.lbDisponibles = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -89,6 +91,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbBancoDepo);
+            this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnImprimirTicket);
             this.groupBox1.Controls.Add(this.dpFechaRecibo);
             this.groupBox1.Controls.Add(this.labeFechaRecibo);
@@ -124,11 +128,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS DEL RECIBO";
             // 
+            // cbBancoDepo
+            // 
+            this.cbBancoDepo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBancoDepo.FormattingEnabled = true;
+            this.cbBancoDepo.Location = new System.Drawing.Point(121, 211);
+            this.cbBancoDepo.Name = "cbBancoDepo";
+            this.cbBancoDepo.Size = new System.Drawing.Size(119, 21);
+            this.cbBancoDepo.TabIndex = 82;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 215);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 83;
+            this.label2.Text = "BANCO DEPO:";
+            // 
             // btnImprimirTicket
             // 
-            this.btnImprimirTicket.Location = new System.Drawing.Point(121, 216);
+            this.btnImprimirTicket.Location = new System.Drawing.Point(121, 264);
             this.btnImprimirTicket.Name = "btnImprimirTicket";
-            this.btnImprimirTicket.Size = new System.Drawing.Size(119, 32);
+            this.btnImprimirTicket.Size = new System.Drawing.Size(119, 25);
             this.btnImprimirTicket.TabIndex = 81;
             this.btnImprimirTicket.Text = "IMPRIMIR TICKET";
             this.btnImprimirTicket.UseVisualStyleBackColor = true;
@@ -137,7 +159,7 @@
             // dpFechaRecibo
             // 
             this.dpFechaRecibo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpFechaRecibo.Location = new System.Drawing.Point(121, 259);
+            this.dpFechaRecibo.Location = new System.Drawing.Point(121, 238);
             this.dpFechaRecibo.Name = "dpFechaRecibo";
             this.dpFechaRecibo.Size = new System.Drawing.Size(119, 20);
             this.dpFechaRecibo.TabIndex = 80;
@@ -145,7 +167,7 @@
             // labeFechaRecibo
             // 
             this.labeFechaRecibo.AutoSize = true;
-            this.labeFechaRecibo.Location = new System.Drawing.Point(21, 262);
+            this.labeFechaRecibo.Location = new System.Drawing.Point(21, 241);
             this.labeFechaRecibo.Name = "labeFechaRecibo";
             this.labeFechaRecibo.Size = new System.Drawing.Size(88, 13);
             this.labeFechaRecibo.TabIndex = 79;
@@ -561,6 +583,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "COMPROBANTE";
             // 
+            // lbReintegro
+            // 
+            this.lbReintegro.AutoSize = true;
+            this.lbReintegro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbReintegro.Location = new System.Drawing.Point(228, 21);
+            this.lbReintegro.Name = "lbReintegro";
+            this.lbReintegro.Size = new System.Drawing.Size(106, 18);
+            this.lbReintegro.TabIndex = 84;
+            this.lbReintegro.Text = "REINTEGRO";
+            this.lbReintegro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbReintegro.Visible = false;
+            // 
             // lbDisponibles
             // 
             this.lbDisponibles.AutoSize = true;
@@ -573,18 +607,6 @@
             this.lbDisponibles.Text = "DISPONIBLES";
             this.lbDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbDisponibles.Visible = false;
-            // 
-            // lbReintegro
-            // 
-            this.lbReintegro.AutoSize = true;
-            this.lbReintegro.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbReintegro.Location = new System.Drawing.Point(228, 21);
-            this.lbReintegro.Name = "lbReintegro";
-            this.lbReintegro.Size = new System.Drawing.Size(106, 18);
-            this.lbReintegro.TabIndex = 84;
-            this.lbReintegro.Text = "REINTEGRO";
-            this.lbReintegro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbReintegro.Visible = false;
             // 
             // recibos
             // 
@@ -666,5 +688,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label lbDisponibles;
         private System.Windows.Forms.Label lbReintegro;
+        private System.Windows.Forms.ComboBox cbBancoDepo;
+        private System.Windows.Forms.Label label2;
     }
 }
