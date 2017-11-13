@@ -321,6 +321,22 @@ namespace SOCIOS.Turismo
 
         }
 
+        public int GetMax_ID_ROL(string ROL)
+        {
+            string QUERY = "SELECT coalesce (MAX(ID_ROL),0) FROM Bono_Turismo WHERE ROL='" + ROL + "'";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                return Int32.Parse(foundRows[0][0].ToString().Trim()) ;
+            }
+            else
+                return 0;
+
+
+        }
+
 
        
 
