@@ -498,6 +498,8 @@ namespace SOCIOS
                 dadp.TableMappings.Add("DNI", "NOMBRE");
                 dadp.Fill(dset);
                 DataTable table = dset.Tables[0];
+                int DNI = 0;
+                string NOMBRE = "";
 
                 try
                 {
@@ -509,10 +511,13 @@ namespace SOCIOS
                     Cursor = Cursors.WaitCursor;
                     bo dlog = new bo();
                     dlog.vaciarTabla("MOROSOS_DEPORTES");
+                    
 
                     for (int i = 0; i < table.Rows.Count; i++)
                     {
-                        dlog.cargarMorososDeportes(table.Rows[i][1].ToString(), int.Parse(table.Rows[i][0].ToString()));
+                        DNI = int.Parse(table.Rows[i][0].ToString().Replace(",", ""));
+                        NOMBRE = table.Rows[i][1].ToString();
+                        dlog.cargarMorososDeportes(NOMBRE, DNI);
                         progressBar1.PerformStep();
                     }
 
@@ -522,7 +527,7 @@ namespace SOCIOS
                 }
                 catch (Exception error)
                 {
-                    MessageBox.Show("SE PRODUJO UN ERROR\n\n" + error, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("SE PRODUJO UN ERROR\n\nDNI " + DNI.ToString() + "\n\n" + error, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
