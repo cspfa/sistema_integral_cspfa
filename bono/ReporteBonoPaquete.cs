@@ -80,6 +80,7 @@ namespace SOCIOS.bono
             string Actividad;
 
             SOCIOS.Turismo.Salida  objSalida = ut.GetSalida(Salida);
+            
             if (objSalida == null)
                 throw new Exception("el paquete no tiene salida!");
             FechaS = Fecha.Day.ToString("00") + "-" + Fecha.Month.ToString("00") + "-" + Fecha.Year.ToString();
@@ -90,7 +91,9 @@ namespace SOCIOS.bono
             //determinar si el bono es Anulado o No
 
             BonoAnulado = ub.Anulado(ID);
-           
+            // ID_ROL
+            SOCIOS.Turismo.ID_ROL ID_ROL = new SOCIOS.Turismo.ID_ROL(ID);
+            
             bo dlog = new bo();
             //Codigo Barra
             string Barra = "TU" + ID.ToString("0000000000");
@@ -99,7 +102,7 @@ namespace SOCIOS.bono
             //Establecemos el valor de los parámetros
 
             parameters[0] = new ReportParameter("Fecha", FechaS);
-            parameters[1] = new ReportParameter("Bono", ID.ToString("000000"));
+            parameters[1] = new ReportParameter("Bono", ID_ROL.INFO);
             parameters[2] = new ReportParameter("Socio", CAB.NroSocioTitular);
             parameters[3] = new ReportParameter("Dni", CAB.Dni);
             parameters[4] = new ReportParameter("Afiliado", CAB.NroAfiliadoTitular);

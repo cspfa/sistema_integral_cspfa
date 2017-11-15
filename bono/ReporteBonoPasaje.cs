@@ -30,6 +30,8 @@ namespace SOCIOS.bono
         string Empresa;
         string Tipo;
         string Clase;
+        int ID_ROL ;
+        string ROL;
         
         public ReporteBonoPasaje(CabeceraTitular pCAB,DateTime pfecha, int pBono,string pFormaPago,string pObs,decimal pTotal)
         {
@@ -76,7 +78,7 @@ namespace SOCIOS.bono
             //Establecemos el valor de los parámetros
                       
             parameters[0] = new ReportParameter("Fecha", FechaS);
-            parameters[1] = new ReportParameter("Bono", ID.ToString("000000"));
+            parameters[1] = new ReportParameter("Bono", ID_ROL.ToString("000000") + "-" + ROL.Substring(0,3));
             parameters[2] = new ReportParameter("Socio", CAB.NroSocioTitular);
             parameters[3] = new ReportParameter("Dni", CAB.Dni);
             parameters[4] = new ReportParameter("Afiliado", CAB.NroAfiliadoTitular);
@@ -280,7 +282,7 @@ namespace SOCIOS.bono
 
         private void DatosPasaje (int ID)
         {
-            string QUERY = " select B.Tipo_pasaje, B.Clase_Pasaje,T.Razon_Social from bono_turismo  B, Proveedores T where T.ID = B.OPERADOR and B.ID= " + ID.ToString();
+            string QUERY = " select B.Tipo_pasaje, B.Clase_Pasaje,T.Razon_Social,B.ID_ROL, B.ROL from bono_turismo  B, Proveedores T where T.ID = B.OPERADOR and B.ID= " + ID.ToString();
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
@@ -289,6 +291,8 @@ namespace SOCIOS.bono
                Tipo= foundRows[0][0].ToString().Trim();
                Clase = foundRows[0][1].ToString().Trim();
                Empresa = foundRows[0][2].ToString().Trim();
+               ID_ROL = Int32.Parse(foundRows[0][3].ToString().Trim());
+               ROL = foundRows[0][4].ToString();
             }
            
                

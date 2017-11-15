@@ -32,6 +32,7 @@ namespace SOCIOS.bono
         string TIPO;
         SOCIOS.arancel arancelService = new arancel();
         decimal Recargo = 0;
+        int SUBCODIGO = 0;
 
         
         public BonoOdontologico(DataGridViewSelectedRowCollection Personas,string pSocTitular,string pdepTitular,bool pMuestro):base(Personas,pSocTitular,pdepTitular,pMuestro)
@@ -597,7 +598,7 @@ namespace SOCIOS.bono
             {
 
 
-                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO, p.CUOTA, p.POC, dpFecha.Value, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), srvDatosSocio.CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA), Nro_Socio_titular, Nro_Dep_Titular, Plan);
+                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO, p.CUOTA, p.POC, dpFecha.Value, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), srvDatosSocio.CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA), Nro_Socio_titular, Nro_Dep_Titular, Plan,SUBCODIGO);
         
             }
         

@@ -104,7 +104,7 @@ namespace SOCIOS.bono
             //Establecemos el valor de los parámetros
 
             parameters[0] = new ReportParameter("Fecha", FechaS);
-            parameters[1] = new ReportParameter("Bono", ID.ToString("000000"));
+            parameters[1] = new ReportParameter("Bono", objVoucher.ID_ROL_BONO.ToString("000000") + "-" + objVoucher.ROL.ToString() );
             parameters[2] = new ReportParameter("Socio", CAB.NroSocioTitular);
             parameters[3] = new ReportParameter("Dni", CAB.Dni);
             parameters[4] = new ReportParameter("Afiliado", CAB.NroAfiliadoTitular.TrimEnd());

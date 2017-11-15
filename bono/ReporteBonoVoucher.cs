@@ -93,7 +93,7 @@ namespace SOCIOS.bono
           
 
            
-            parameters[0] = new ReportParameter("Bono", ID.ToString("000000"));
+            parameters[0] = new ReportParameter("Bono", objVoucher.ID_ROL_BONO.ToString("000000") + "-" + objVoucher.ROL.Substring(0,3));
             parameters[1] = new ReportParameter("Localidad", objVoucher.Lugar);
             parameters[2] = new ReportParameter("Barra", Barra);
              parameters[3] = new ReportParameter("Habitacion", objVoucher.Habitacion_Nombre);

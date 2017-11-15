@@ -74,6 +74,8 @@ namespace SOCIOS.Turismo
         public string Nro_Habitacion     { get; set; }
         public string Motivo             { get; set; }
         public string OBS                { get; set; }
+        public int ID_ROL_BONO           { get; set; }
+        public string ROL                { get; set; }
 
     }
 
@@ -98,6 +100,33 @@ namespace SOCIOS.Turismo
          
     }
 
+    public class ID_ROL
+    {
+        public string ROL  { get; set; }
+        public int ID  { get; set; }
+        public string INFO { get; set; }
+
+        public ID_ROL(int ID)
+
+        {
+            bo dlog = new bo();
+            string QUERY = "Select ID_ROL,ROL  from BONO_TURISMO  WHERE ID= " + ID.ToString();
+            DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                ID =  Int32.Parse(foundRows[0][0].ToString().Trim());
+                ROL    = foundRows[0][1].ToString().Trim();
+                INFO = ID.ToString() + "-" + ROL.Substring(0, 3);
+
+            }
+           
+          
+        
+        }
+    }
    public class TurismoUtils
     {
 
@@ -419,7 +448,7 @@ namespace SOCIOS.Turismo
         
         }
 
-        public void GrabarPagos(int idBono,List<bono.PagoBono> PagosBono,DateTime Fecha,int CodInt,bono.CabeceraTitular CAB,decimal Saldo,int TipoPago)
+        public void GrabarPagos(int idBono,List<bono.PagoBono> PagosBono,DateTime Fecha,int CodInt,bono.CabeceraTitular CAB,decimal Saldo,int TipoPago,int SUBCODIGO)
         {
 
             
@@ -433,7 +462,7 @@ namespace SOCIOS.Turismo
 
             foreach (bono.PagoBono p in PagosBono)
             {
-                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO, p.CUOTA, p.POC, Fecha, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), 0, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Plan);
+                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO, p.CUOTA, p.POC, Fecha, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), 0, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Plan,SUBCODIGO);
 
             }
 
@@ -633,6 +662,7 @@ namespace SOCIOS.Turismo
         
         }
 
+        
 
     }
 }
