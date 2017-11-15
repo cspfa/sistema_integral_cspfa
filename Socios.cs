@@ -899,7 +899,7 @@ namespace SOCIOS
             {
                 nuevo.Enabled = true;
 
-                if (maskedTextBox2.Text == "012")
+                if (maskedTextBox2.Text == "012" || maskedTextBox2.Text == "12")
                 {
                     editar.Enabled = true;
                 }

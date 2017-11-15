@@ -1537,14 +1537,13 @@ namespace SOCIOS
                 #endregion
 
                 #region CABECERA EGRESOS
-                PdfPTable TABLA_EGRESOS = new PdfPTable(7);
+                PdfPTable TABLA_EGRESOS = new PdfPTable(6);
                 TABLA_EGRESOS.WidthPercentage = 100;
                 TABLA_EGRESOS.SpacingAfter = 10;
                 TABLA_EGRESOS.SpacingBefore = 10;
-                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 6f, 1f, 2f, 5f, 2f });
+                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f });
                 PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
-                PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
-                PdfPCell CELDA_CONCEPTO_EGRESOS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
+                PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPUTACION_EGRESOS = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPORTE_EGRESOS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
                 PdfPCell CELDA_OBS_EGRESOS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
@@ -1557,10 +1556,6 @@ namespace SOCIOS
                 CELDA_APENOM_EGRESOS.BorderColor = blanco;
                 CELDA_APENOM_EGRESOS.HorizontalAlignment = 1;
                 CELDA_APENOM_EGRESOS.FixedHeight = 16f;
-                CELDA_CONCEPTO_EGRESOS.BackgroundColor = topo;
-                CELDA_CONCEPTO_EGRESOS.BorderColor = blanco;
-                CELDA_CONCEPTO_EGRESOS.HorizontalAlignment = 1;
-                CELDA_CONCEPTO_EGRESOS.FixedHeight = 16f;
                 CELDA_IMPUTACION_EGRESOS.BackgroundColor = topo;
                 CELDA_IMPUTACION_EGRESOS.BorderColor = blanco;
                 CELDA_IMPUTACION_EGRESOS.HorizontalAlignment = 1;
@@ -1579,7 +1574,6 @@ namespace SOCIOS
                 CELDA_ANULADO_EGRESOS.FixedHeight = 16f;
                 TABLA_EGRESOS.AddCell(CELDA_NUM_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_APENOM_EGRESOS);
-                TABLA_EGRESOS.AddCell(CELDA_CONCEPTO_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_IMPUTACION_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_IMPORTE_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_OBS_EGRESOS);
@@ -1892,12 +1886,23 @@ namespace SOCIOS
                     NUM = row[0].ToString();
                     NOMBRE = row[1].ToString();
                     CONCEPTO = row[2].ToString();
-                    DEBE = "301207";
+                    DEBE = row[3].ToString();
                     IMPORTE = Convert.ToDecimal(row[4]);
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString();
                     PTO_VTA = row[12].ToString();
+                    string BANCO_DEPO = row[13].ToString();
+
+                    if (BANCO_DEPO.Trim() == "PATAGONIA")
+                    {
+                        DEBE = "301207";
+                    }
+
+                    if (BANCO_DEPO.Trim() == "NACIÓN")
+                    {
+                        DEBE = "301205";
+                    }
 
                     if (X == 0)
                     {
@@ -1917,13 +1922,7 @@ namespace SOCIOS
                     CELL_NUM_EGRESOS.FixedHeight = 14f;
                     TABLA_EGRESOS.AddCell(CELL_NUM_EGRESOS);
 
-                    PdfPCell CELL_NOMBRE_EGRESOS = new PdfPCell(new Phrase(NOMBRE, _mediumFont));
-                    CELL_NOMBRE_EGRESOS.BorderWidth = 0;
-                    CELL_NOMBRE_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_NOMBRE_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_NOMBRE_EGRESOS);
-
-                    PdfPCell CELL_CONCEPTO_EGRESOS = new PdfPCell(new Phrase(CONCEPTO, _mediumFont));
+                    PdfPCell CELL_CONCEPTO_EGRESOS = new PdfPCell(new Phrase(BANCO_DEPO, _mediumFont));
                     CELL_CONCEPTO_EGRESOS.BorderWidth = 0;
                     CELL_CONCEPTO_EGRESOS.BackgroundColor = colorFondo;
                     CELL_CONCEPTO_EGRESOS.FixedHeight = 14f;
@@ -2061,37 +2060,40 @@ namespace SOCIOS
 
                 foreach (DataRow cheques in CHEQUES.Tables[0].Rows)
                 {
-                    IMPORTE_CHEQUE = string.Format("{0:n}", Convert.ToDecimal(cheques[3].ToString()));
-                    DETALLE_CHEQUE = cheques[1].ToString();
-                    FECHA_CHEQUE = cheques[2].ToString().Substring(0, 9);
-
-                    if (X == 0)
+                    if (cheques[3].ToString() != "")
                     {
-                        colorFondo = new BaseColor(255, 255, 255);
-                        X++;
+                        IMPORTE_CHEQUE = string.Format("{0:n}", Convert.ToDecimal(cheques[3].ToString()));
+                        DETALLE_CHEQUE = cheques[1].ToString();
+                        FECHA_CHEQUE = cheques[2].ToString().Substring(0, 9);
+
+                        if (X == 0)
+                        {
+                            colorFondo = new BaseColor(255, 255, 255);
+                            X++;
+                        }
+                        else
+                        {
+                            colorFondo = new BaseColor(240, 240, 240);
+                            X--;
+                        }
+
+                        PdfPCell CELL_CHEQUE = new PdfPCell(new Phrase(DETALLE_CHEQUE + " " + FECHA_CHEQUE, _mediumFont));
+                        CELL_CHEQUE.HorizontalAlignment = 0;
+                        CELL_CHEQUE.BorderWidth = 0;
+                        CELL_CHEQUE.BackgroundColor = colorFondo;
+                        CELL_CHEQUE.FixedHeight = 14f;
+                        TABLA_COMPOSICION.AddCell(CELL_CHEQUE);
+
+                        PdfPCell CELL_IMPORTE_CHEQUE = new PdfPCell(new Phrase("$ " + IMPORTE_CHEQUE, _mediumFont));
+                        CELL_IMPORTE_CHEQUE.HorizontalAlignment = 2;
+                        CELL_IMPORTE_CHEQUE.BorderWidth = 0;
+                        CELL_IMPORTE_CHEQUE.BackgroundColor = colorFondo;
+                        CELL_IMPORTE_CHEQUE.FixedHeight = 14f;
+                        TABLA_COMPOSICION.AddCell(CELL_IMPORTE_CHEQUE);
+
+                        //SUMA
+                        TOTAL_CHEQUES = TOTAL_CHEQUES + Convert.ToDecimal(IMPORTE_CHEQUE);
                     }
-                    else
-                    {
-                        colorFondo = new BaseColor(240, 240, 240);
-                        X--;
-                    }
-
-                    PdfPCell CELL_CHEQUE = new PdfPCell(new Phrase(DETALLE_CHEQUE + " " + FECHA_CHEQUE, _mediumFont));
-                    CELL_CHEQUE.HorizontalAlignment = 0;
-                    CELL_CHEQUE.BorderWidth = 0;
-                    CELL_CHEQUE.BackgroundColor = colorFondo;
-                    CELL_CHEQUE.FixedHeight = 14f;
-                    TABLA_COMPOSICION.AddCell(CELL_CHEQUE);
-
-                    PdfPCell CELL_IMPORTE_CHEQUE = new PdfPCell(new Phrase("$ " + IMPORTE_CHEQUE, _mediumFont));
-                    CELL_IMPORTE_CHEQUE.HorizontalAlignment = 2;
-                    CELL_IMPORTE_CHEQUE.BorderWidth = 0;
-                    CELL_IMPORTE_CHEQUE.BackgroundColor = colorFondo;
-                    CELL_IMPORTE_CHEQUE.FixedHeight = 14f;
-                    TABLA_COMPOSICION.AddCell(CELL_IMPORTE_CHEQUE);
-
-                    //SUMA
-                    TOTAL_CHEQUES = TOTAL_CHEQUES + Convert.ToDecimal(IMPORTE_CHEQUE);
                 }
 
                 foreach (DataRow row in COMPOSICION_DS.Tables[0].Rows)

@@ -5920,5 +5920,64 @@ namespace SOCIOS
             tbDescuentoTotal.Text = "0";
             tbImporte.Text = IMPORTE_TOTAL.ToString();
         }
+
+        private void lvSolicitudesRecibidas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lvSolicitudesRecibidas.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    cmEstadoCompra.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void pENDIENTEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            string ESTADO = "PENDIENTE";
+            BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
+            buscarSolicitudesRecibidas();
+        }
+
+        private void aCTIVAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            string ESTADO = "ACTIVA";
+            BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
+            buscarSolicitudesRecibidas();
+        }
+
+        private void rECHAZADAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            string ESTADO = "RECHAZADA";
+            BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
+            buscarSolicitudesRecibidas();
+        }
+
+        private void aNULADAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            string ESTADO = "ANULADA";
+            BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
+            buscarSolicitudesRecibidas();
+        }
+
+        private void cOMPLETADAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            string ESTADO = "COMPLETA";
+            BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
+            buscarSolicitudesRecibidas();
+        }
+
+        private void eNTREGADAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            string ESTADO = "ENTREGADA";
+            BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
+            buscarSolicitudesRecibidas();
+        }
     }
 }

@@ -351,16 +351,16 @@ namespace SOCIOS
                     int ID = int.Parse(maxid.m("ID", "PROFESIONALES"));
                     dlog.nuevoProfEsp(ID, ESPECIALIDAD);
                     MessageBox.Show("NUEVO PROFESIONAL AGREGADO CORRECTAMENTE", "LISTO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    buscarProfesionales("XXX", 0);
-                    limpiarFormulario();
+                    //buscarProfesionales("XXX", 0);
+                    //limpiarFormulario();
                     btModificar.Enabled = false;
                     button2.Enabled = false;
                 }
                 catch (Exception error)
                 {
                     MessageBox.Show("NO SE PUDO AGREGAR EL NUEVO PROFESIONAL\n" + error.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    buscarProfesionales("XXX", 0);
-                    limpiarFormulario();
+                    //buscarProfesionales("XXX", 0);
+                    //limpiarFormulario();
                     btModificar.Enabled = false;
                     button2.Enabled = false;
                 }
