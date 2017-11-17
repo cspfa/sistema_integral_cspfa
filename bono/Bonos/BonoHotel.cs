@@ -17,7 +17,7 @@ namespace SOCIOS.bono
 {
     public partial class BonoHotel : SOCIOS.bono.Bono
     {
-        bo dlog = new bo();
+        bo_Turismo dlog = new bo_Turismo();
         SOCIOS.Turismo.TurismoUtils utilsTurismo = new TurismoUtils();
         SOCIOS.arancel arancelService = new arancel();
         public DatoSocio persona = new DatoSocio();
@@ -502,8 +502,9 @@ namespace SOCIOS.bono
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
                        
                         //Obtener Proximo ID_ROL
-                        ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart()) + 1;
-                        
+                        ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(),CODINT) + 1;
+
+                        dlog.Seteo_Id_ROL(ID, ID_ROL);
 
 
                         int CodInt = 0;
