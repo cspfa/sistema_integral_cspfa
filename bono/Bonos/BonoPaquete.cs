@@ -63,7 +63,7 @@ namespace SOCIOS.bono
             Inicio = 1;
 
             utilsTurismo.ComboSalida(cbPaquete);
-            CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 1));
+            CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 0));
             
         
         }

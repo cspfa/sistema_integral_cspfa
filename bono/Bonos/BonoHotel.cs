@@ -73,7 +73,7 @@ namespace SOCIOS.bono
 
              if (srvDatosSocio.CAB.Telefonos.Length > 0)
                  tbContacto.Text = srvDatosSocio.CAB.Telefonos;
-             CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 1));
+             CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 0));
 
 
          }

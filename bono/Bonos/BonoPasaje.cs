@@ -63,7 +63,7 @@ namespace SOCIOS.bono
             utilsTurismo.ComboOperador(cbEmpresa,true);
             lbSaldoTotal.Text = "0";
 
-            CODINT = Int32.Parse(Config.getValor("TURISMO","COD_TURISMO", 2));
+            CODINT = Int32.Parse(Config.getValor("TURISMO","COD_TURISMO", 1));
 
          
             
