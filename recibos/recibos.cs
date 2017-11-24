@@ -685,6 +685,7 @@ namespace SOCIOS
                     int ID_SOCIO = ((NRO_SOC_INT * 1000) + NRO_DEP_INT);
                     string PTO_VTA = cbPtoVta.SelectedValue.ToString();
                     string MSG = "";
+                    string BANCO_DEPO = cbBancoDepo.SelectedValue.ToString();
 
                     if (ACCION == "MODIFICAR")
                     {
@@ -703,7 +704,7 @@ namespace SOCIOS
                             {
                                 BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
-                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA);
+                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
                                 if (PTO_VTA == "0004")
                                 {
@@ -738,7 +739,7 @@ namespace SOCIOS
                             {
                                 BO_CAJA.modificarBonosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
-                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA);
+                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
                                 if (PTO_VTA == "0004")
                                 {

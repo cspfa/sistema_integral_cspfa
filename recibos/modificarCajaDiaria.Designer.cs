@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.gbCaja = new System.Windows.Forms.GroupBox();
-            this.lbDiferencia = new System.Windows.Forms.Label();
             this.btnModificar = new System.Windows.Forms.Button();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.tbSaldo = new System.Windows.Forms.TextBox();
@@ -54,7 +53,6 @@
             // 
             // gbCaja
             // 
-            this.gbCaja.Controls.Add(this.lbDiferencia);
             this.gbCaja.Controls.Add(this.btnModificar);
             this.gbCaja.Controls.Add(this.tbTotal);
             this.gbCaja.Controls.Add(this.tbSaldo);
@@ -79,16 +77,7 @@
             this.gbCaja.Size = new System.Drawing.Size(688, 115);
             this.gbCaja.TabIndex = 0;
             this.gbCaja.TabStop = false;
-            this.gbCaja.Text = "groupBox1";
-            // 
-            // lbDiferencia
-            // 
-            this.lbDiferencia.AutoSize = true;
-            this.lbDiferencia.Location = new System.Drawing.Point(593, 58);
-            this.lbDiferencia.Name = "lbDiferencia";
-            this.lbDiferencia.Size = new System.Drawing.Size(71, 13);
-            this.lbDiferencia.TabIndex = 13;
-            this.lbDiferencia.Text = "DIFERENCIA";
+            this.gbCaja.Text = "SALDOS";
             // 
             // btnModificar
             // 
@@ -98,6 +87,7 @@
             this.btnModificar.TabIndex = 12;
             this.btnModificar.Text = "MODIFICAR";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // tbTotal
             // 
@@ -133,7 +123,6 @@
             this.tbOtros.Name = "tbOtros";
             this.tbOtros.Size = new System.Drawing.Size(78, 20);
             this.tbOtros.TabIndex = 7;
-            this.tbOtros.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbOtros_KeyUp);
             // 
             // tbEfectivo
             // 
@@ -141,7 +130,6 @@
             this.tbEfectivo.Name = "tbEfectivo";
             this.tbEfectivo.Size = new System.Drawing.Size(78, 20);
             this.tbEfectivo.TabIndex = 6;
-            this.tbEfectivo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbEfectivo_KeyUp);
             // 
             // lbTotal
             // 
@@ -289,6 +277,5 @@
         private System.Windows.Forms.Label lbSubtotal;
         private System.Windows.Forms.Label lbOtros;
         private System.Windows.Forms.Label lbEfectivo;
-        private System.Windows.Forms.Label lbDiferencia;
     }
 }
