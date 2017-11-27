@@ -947,11 +947,11 @@ namespace SOCIOS
             if (CAJA == 0)
                 cerrarCaja();
 
-            if (CAJA > 0)
-                modificarCaja(CAJA);
+            //if (CAJA > 0)
+              //  modificarCaja(CAJA);
         }
 
-        private void modificarCaja(int CAJA)
+        /*private void modificarCaja(int CAJA)
         {
             decimal INGRESOS_EFECTIVO = Convert.ToDecimal(dgTotalesDelDia.Rows[0].Cells[1].Value.ToString());
             decimal INGRESOS_OTROS = Convert.ToDecimal(dgTotalesDelDia.Rows[1].Cells[1].Value.ToString());
@@ -970,7 +970,7 @@ namespace SOCIOS
             {
                 MessageBox.Show("NO SE PUDO MODIFICAR LA CAJA DIARIA\n " + error);
             }
-        }
+        }*/
 
         private void agregarCajas()
         {
@@ -3344,6 +3344,7 @@ namespace SOCIOS
 
             modificarCajaDiaria mcd = new modificarCajaDiaria(ID, FECHA, EFECTIVO, OTROS, SUBTOTAL, EGRESOS, SALDO, TOTAL);
             mcd.ShowDialog();
+            cargaInicial(0);
         }
     }
 }

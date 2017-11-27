@@ -685,6 +685,7 @@ namespace SOCIOS
                     int ID_SOCIO = ((NRO_SOC_INT * 1000) + NRO_DEP_INT);
                     string PTO_VTA = cbPtoVta.SelectedValue.ToString();
                     string MSG = "";
+                    string BANCO_DEPO = cbBancoDepo.SelectedValue.ToString();
 
                     if (ACCION == "MODIFICAR")
                     {
@@ -703,7 +704,7 @@ namespace SOCIOS
                             {
                                 BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
-                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA);
+                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
                                 if (PTO_VTA == "0004")
                                 {
@@ -717,6 +718,11 @@ namespace SOCIOS
                                         DateTime Hoy = DateTime.Today;
                                         gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
                                         lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO");
+                                    }
+
+                                    if (ENBLANCO == "BLANCO")
+                                    {
+                                        BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                     }
 
                                     MessageBox.Show(MSG);
@@ -738,7 +744,7 @@ namespace SOCIOS
                             {
                                 BO_CAJA.modificarBonosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
-                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA);
+                                barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
                                 if (PTO_VTA == "0004")
                                 {
@@ -747,16 +753,25 @@ namespace SOCIOS
                                 }
                                 else
                                 {
-                                    BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
-                                    DateTime Hoy = DateTime.Today;
-                                    gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                    lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO");
+                                    if (ENBLANCO == "RESERVADO")
+                                    {
+                                        BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
+                                        DateTime Hoy = DateTime.Today;
+                                        gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
+                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO");
+                                    }
+
+                                    if (ENBLANCO == "BLANCO")
+                                    {
+                                        BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
+                                    }
+
+                                    MessageBox.Show(MSG);
                                 }
 
                                 this.Close();
                             }
                         }
-
                     }
 
                     if (ACCION == "IMPRIMIR")
