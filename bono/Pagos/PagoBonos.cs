@@ -84,10 +84,10 @@ namespace SOCIOS.bono
 
             dpSeniaFecha.Format = DateTimePickerFormat.Custom;
             dpSeniaFecha.CustomFormat = "MMMM yyyy";
-            int AnioDto =Int32.Parse(Config.getValor("CREDITOS", "FECHA_DTO", 0));
-            int MesDto = Int32.Parse(Config.getValor("CREDITOS", "FECHA_DTO", 1));
+            //int AnioDto =Int32.Parse(Config.getValor("CREDITOS", "FECHA_DTO", 0));
+            //int MesDto = Int32.Parse(Config.getValor("CREDITOS", "FECHA_DTO", 1));
             
-            dpSeniaFecha.Value =  new DateTime(AnioDto,MesDto,1);
+            dpSeniaFecha.Value =  new DateTime(System.DateTime.Now.AddMonths(1).Year,System.DateTime.Now.AddMonths(1).Month,1);
 
 
 
@@ -680,32 +680,33 @@ namespace SOCIOS.bono
             //1 Pago  Todo En Efectivo
             if (tipoPago == 1)
             {
-                this.GraboPago(tipoPago, Saldo, System.DateTime.Now, "UNICO PAGO", "C");
+                this.GraboPago(tipoPago, Saldo,System.DateTime.Now,"UNICO PAGO","C",true);
 
             }
             else if (tipoPago == 2 || tipoPago == 3)
             {
-                this.GraboPago(1, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "UNICO PAGO", "C");
+                this.GraboPago(1, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "UNICO PAGO", "C",true);
                 if (tipoPago==2)
-                   this.GraboPago(9, decimal.Parse(lbMonto2.Text), System.DateTime.Now, "RESTO EN DEBITO", "C");
+                   this.GraboPago(9, decimal.Parse(lbMonto2.Text), System.DateTime.Now, "RESTO EN DEBITO", "C",true);
                 else
-                    this.GraboPago(10, decimal.Parse(lbMonto2.Text), System.DateTime.Now, "RESTO EN CREDITO", "C");
+                    this.GraboPago(10, decimal.Parse(lbMonto2.Text), System.DateTime.Now, "RESTO EN CREDITO", "C",true);
             }
             else if (tipoPago == 4 || tipoPago==7 || tipoPago==8)
             {
 
                if (tipoPago==4)
-                   this.GraboPago(1, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN EFECTIVO", "C");
+                   this.GraboPago(1, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN EFECTIVO", "C",true);
                else if (tipoPago == 7 )
-                   this.GraboPago(9, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN DEBITO", "C");
+                   this.GraboPago(9, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN DEBITO", "C",true);
                 else
-                    this.GraboPago(10, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN CREDITO", "C");
+                    this.GraboPago(10, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN CREDITO", "C",true);
 
                 this.GenerarPLanDePago(tipoPago,tbCantidadCuotas,tbMontoCuotas,dpFecha);
             }
             else if (tipoPago == 6)
             //
             {
+                this.GraboPago(1, Decimal.Parse(lbSeniaMonto.Text), System.DateTime.Now, "Seña ", "C", true);
                 this.GenerarPLanDePago(tipoPago,tbSeniaCantidadCuotas,lbMontoCuotaSenia,dpSeniaFecha);
             }
             else
@@ -735,13 +736,13 @@ namespace SOCIOS.bono
             for (i = 1; i <= CantidadCuotas; i++)
             {
                 fecha = fecha.AddMonths(1);
-                this.GraboPago(tipo, MontoCuota, fecha, "Cuota :" + i.ToString(), "P");
+                this.GraboPago(tipo, MontoCuota, fecha, "Cuota :" + i.ToString(), "P",false);
 
 
             }
 
         }
-        private void GraboPago(int TipoPago, decimal Monto, DateTime A_DTO, string desCuota, string POC)
+        private void GraboPago(int TipoPago, decimal Monto, DateTime A_DTO, string desCuota, string POC,bool IngresoCaja)
         {
             bono.PagoBono item = new PagoBono();
             item.FECHA = dpFecha.Value;
@@ -754,6 +755,8 @@ namespace SOCIOS.bono
             item.DES_TIPO = this.getTipoPago(TipoPago);
             item.MONTO = Monto;
             item.POC = POC;
+            item.Ingreso_Caja = false;
+
             Pagos.Add(item);
             this.Refrescar_Grilla_Memoria();
 
