@@ -811,9 +811,19 @@ namespace SOCIOS
                 ID_REGISTRO = Int32.Parse(foundRows[0][0].ToString().Trim());
                 if (foundRows[0][1].ToString().Trim().Length > 0)
                 {
-                    dpApto.Value = DateTime.Parse(foundRows[0][1].ToString().Trim());
-                    cbApto.Checked = true;
-                    dpApto.Visible=true;
+                    DateTime fecha_apto = DateTime.Parse(foundRows[0][1].ToString().Trim());
+                    if (fecha_Apto.Year != 1) //para las fechas vacias 
+                    {
+                        dpApto.Value = fecha_apto;
+                        cbApto.Checked = true;
+                        dpApto.Visible = true;
+                    }
+                    else
+                    {
+                        cbApto.Checked = false;
+                        dpApto.Value = System.DateTime.Now;
+                    
+                    }
                 }
                 else
                 {
