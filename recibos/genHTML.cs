@@ -198,7 +198,8 @@ namespace SOCIOS
         #endregion
 
         public void reciboTicket(string NRO_RECIBO, string NOMBRE_SOCIO, string FORMAPAGO, string SECTACT, string VALOR, int ID_PROFESIONAL, string SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, 
-            string OBSERVACIONES, string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, string COMPROBANTE, string PTO_VTA, string FECHA, string REINTEGRO)
+            string OBSERVACIONES, string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, 
+            string COMPROBANTE, string PTO_VTA, string FECHA, string REINTEGRO)
         {
             nombreProf np = new nombreProf();
             string PROFESIONAL = np.nombre(ID_PROFESIONAL);
@@ -285,7 +286,8 @@ namespace SOCIOS
 
             if (REINTEGRO == "SI")
             {
-                RR = "Reintegré a ";   
+                RR = "Reintegré a ";
+                TITULO = "REINTEGRO";
             }
 
             Bitmap bm = new Bitmap(code39.CreateDrawingImage(Color.Black, Color.White));

@@ -100,7 +100,9 @@ namespace SOCIOS
             comboBancoDepo();
 
             if (REINTEGRO == "NO")
+            {
                 numero_de_recibo = NUMERO_DE_RECIBO;
+            }
             else
             {
                 numero_de_recibo = "";
@@ -615,9 +617,9 @@ namespace SOCIOS
                     if (COMPROBANTE == "TICKET")
                     {
                         DateTime Hoy = DateTime.Today;
-                        gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, IMPORTE.ToString(), idprof,
-                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA, 
-                                Hoy.ToString("dd/MM/yyyy"), reintegro);
+                        gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, 
+                            IMPORTE.ToString(), idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, 
+                            NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), reintegro);
                     }
 
                     this.Close();
@@ -921,21 +923,15 @@ namespace SOCIOS
                 modificarImprimirRecibo("TICKET", "IMPRIMIR");
                 Cursor = Cursors.Default;
             }
-
         }
 
         private void Marcar_Cuota(int ID_PAGO,bool EsRecibo,int NroPago,int FormaPago,DateTime FechaPago)
-
         {
             int bono=0;
             int recibo=0;
             recibo = EsRecibo==true?NroPago:0;
             bono   = EsRecibo==false?NroPago:0;
-
             pcu.MarcarPagaCuota(ID_PAGO, NroPago, EsRecibo, FormaPago, FechaPago);
-
-           
-        
         }
     }
 }
