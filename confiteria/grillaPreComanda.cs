@@ -1473,7 +1473,7 @@ namespace SOCIOS.confiteria
                     case "ESPECIALES":
                             QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO ";
                             QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                            QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.TIPO_COMANDA = 2 ";
+                            QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.TIPO_COMANDA = 2 AND C.NRO_SOC != 75022";
                             
                             if (RENDIDA > 0)
                                 QUERY += "AND RENDIDA = " + RENDIDA + " ";
