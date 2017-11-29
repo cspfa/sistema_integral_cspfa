@@ -51,15 +51,13 @@ namespace SOCIOS
             comboTipoCheques();
             ACCION = "NUEVA";
 
-            if (VGlobales.vp_role == "TESORERIA")
+            if (VGlobales.vp_role == "COMPRAS")
             {
-                /*tabControl1.TabPages.Remove(tabAdjuntos);
+                tabControl1.TabPages.Remove(tabAdjuntos);
                 tabControl1.TabPages.Remove(tpProveedores);
-                grupoAltaFactura.Enabled = false;
-                grupoArticulos.Enabled = false;
-                btnGuardarFactura.Enabled = false;
-                btnModFactura.Enabled = false;
-                btnCancelarFactura.Enabled = false;*/
+                tabControl1.TabPages.Remove(tabAdjuntos);
+                tabControl1.TabPages.Remove(tabOrdenesDePago);
+                tabControl1.TabPages.Remove(tpBancosCuentasCheques);
             }
 
             string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
