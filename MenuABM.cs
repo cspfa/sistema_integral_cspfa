@@ -2127,5 +2127,17 @@ namespace SOCIOS
             co.ShowDialog();
             Cursor = Cursors.Default;
         }
+
+        private void planDeCuentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
+            pc.ShowDialog();
+        }
+
+        private void planDeCuentaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
+            pc.ShowDialog();
+        }
     }
 }
