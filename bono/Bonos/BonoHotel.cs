@@ -525,7 +525,7 @@ namespace SOCIOS.bono
                         Seleccion.Enabled = false;
 
                         this.IngresoCaja(ID,Dni,Nombre,Apellido,Int32.Parse(persona.NRO_SOCIO),Int32.Parse(persona.NRO_DEP),Int32.Parse(persona.BARRA),InfoTarjeta);
-
+                        Grabar.Enabled = false;
                         MessageBox.Show("Bono Grabado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 

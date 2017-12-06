@@ -250,7 +250,7 @@ namespace SOCIOS.bono
                         string fechaNacimiento = this.srvDatosSocio.CAB.FechaNac;
                   
                         string Telefono = this.srvDatosSocio.CAB.Telefonos;
-
+                        
                         decimal Pago = decimal.Parse(lbSaldoTotal.Text);
 
 
@@ -273,7 +273,7 @@ namespace SOCIOS.bono
                             gpDatos.Enabled = false;
                             InfoPaquete.Enabled = false;
                             Seleccion.Enabled = true;
-                        
+                            Grabar.Enabled = false;
                         MessageBox.Show("Bono Grabado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)

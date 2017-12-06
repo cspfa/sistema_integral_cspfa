@@ -57,11 +57,27 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnPago = new System.Windows.Forms.Button();
+            this.gpPago = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.cbFormaDePago = new System.Windows.Forms.ComboBox();
+            this.chkRecibo = new System.Windows.Forms.CheckBox();
+            this.chkBono = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbNroPago = new System.Windows.Forms.TextBox();
+            this.dpFecha = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lbMonto = new System.Windows.Forms.Label();
+            this.lbSaldo = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCuotas)).BeginInit();
             this.gpDescuento.SuspendLayout();
             this.gpPlanCuota.SuspendLayout();
             this.gpRol.SuspendLayout();
+            this.gpPago.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPlanes
@@ -82,7 +98,7 @@
             this.dgvCuotas.AllowUserToAddRows = false;
             this.dgvCuotas.AllowUserToDeleteRows = false;
             this.dgvCuotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCuotas.Location = new System.Drawing.Point(12, 54);
+            this.dgvCuotas.Location = new System.Drawing.Point(12, 59);
             this.dgvCuotas.Name = "dgvCuotas";
             this.dgvCuotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCuotas.Size = new System.Drawing.Size(692, 150);
@@ -110,7 +126,7 @@
             // 
             // Genero_Ingreso
             // 
-            this.Genero_Ingreso.Location = new System.Drawing.Point(726, 54);
+            this.Genero_Ingreso.Location = new System.Drawing.Point(726, 14);
             this.Genero_Ingreso.Name = "Genero_Ingreso";
             this.Genero_Ingreso.Size = new System.Drawing.Size(131, 23);
             this.Genero_Ingreso.TabIndex = 4;
@@ -149,7 +165,7 @@
             // 
             // butonInfoDescuento
             // 
-            this.butonInfoDescuento.Location = new System.Drawing.Point(726, 83);
+            this.butonInfoDescuento.Location = new System.Drawing.Point(726, 42);
             this.butonInfoDescuento.Name = "butonInfoDescuento";
             this.butonInfoDescuento.Size = new System.Drawing.Size(238, 23);
             this.butonInfoDescuento.TabIndex = 87;
@@ -163,7 +179,7 @@
             this.gpDescuento.Controls.Add(this.GrabarNovedad);
             this.gpDescuento.Controls.Add(this.label2);
             this.gpDescuento.Controls.Add(this.cbDescuento);
-            this.gpDescuento.Location = new System.Drawing.Point(726, 112);
+            this.gpDescuento.Location = new System.Drawing.Point(726, 98);
             this.gpDescuento.Name = "gpDescuento";
             this.gpDescuento.Size = new System.Drawing.Size(311, 92);
             this.gpDescuento.TabIndex = 88;
@@ -221,6 +237,12 @@
             // 
             // gpPlanCuota
             // 
+            this.gpPlanCuota.Controls.Add(this.label14);
+            this.gpPlanCuota.Controls.Add(this.label13);
+            this.gpPlanCuota.Controls.Add(this.lbSaldo);
+            this.gpPlanCuota.Controls.Add(this.lbMonto);
+            this.gpPlanCuota.Controls.Add(this.gpPago);
+            this.gpPlanCuota.Controls.Add(this.btnPago);
             this.gpPlanCuota.Controls.Add(this.dgvCuotas);
             this.gpPlanCuota.Controls.Add(this.gpDescuento);
             this.gpPlanCuota.Controls.Add(this.label4);
@@ -230,7 +252,7 @@
             this.gpPlanCuota.Controls.Add(this.butonInfoDescuento);
             this.gpPlanCuota.Location = new System.Drawing.Point(10, 303);
             this.gpPlanCuota.Name = "gpPlanCuota";
-            this.gpPlanCuota.Size = new System.Drawing.Size(1043, 271);
+            this.gpPlanCuota.Size = new System.Drawing.Size(1043, 345);
             this.gpPlanCuota.TabIndex = 91;
             this.gpPlanCuota.TabStop = false;
             this.gpPlanCuota.Text = "Plan de Cuotas";
@@ -379,11 +401,160 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // btnPago
+            // 
+            this.btnPago.Location = new System.Drawing.Point(726, 69);
+            this.btnPago.Name = "btnPago";
+            this.btnPago.Size = new System.Drawing.Size(238, 23);
+            this.btnPago.TabIndex = 91;
+            this.btnPago.Text = "Actualizar Pago";
+            this.btnPago.UseVisualStyleBackColor = true;
+            this.btnPago.Visible = false;
+            this.btnPago.Click += new System.EventHandler(this.btnPago_Click);
+            // 
+            // gpPago
+            // 
+            this.gpPago.Controls.Add(this.label12);
+            this.gpPago.Controls.Add(this.dpFecha);
+            this.gpPago.Controls.Add(this.tbNroPago);
+            this.gpPago.Controls.Add(this.label9);
+            this.gpPago.Controls.Add(this.label8);
+            this.gpPago.Controls.Add(this.chkBono);
+            this.gpPago.Controls.Add(this.chkRecibo);
+            this.gpPago.Controls.Add(this.button2);
+            this.gpPago.Controls.Add(this.cbFormaDePago);
+            this.gpPago.Location = new System.Drawing.Point(710, 196);
+            this.gpPago.Name = "gpPago";
+            this.gpPago.Size = new System.Drawing.Size(327, 141);
+            this.gpPago.TabIndex = 90;
+            this.gpPago.TabStop = false;
+            this.gpPago.Text = "Pago Cuota";
+            this.gpPago.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(90, 110);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(131, 23);
+            this.button2.TabIndex = 89;
+            this.button2.Text = "Grabar Novedad";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // cbFormaDePago
+            // 
+            this.cbFormaDePago.FormattingEnabled = true;
+            this.cbFormaDePago.Location = new System.Drawing.Point(101, 76);
+            this.cbFormaDePago.Name = "cbFormaDePago";
+            this.cbFormaDePago.Size = new System.Drawing.Size(168, 21);
+            this.cbFormaDePago.TabIndex = 0;
+            // 
+            // chkRecibo
+            // 
+            this.chkRecibo.AutoSize = true;
+            this.chkRecibo.Location = new System.Drawing.Point(9, 19);
+            this.chkRecibo.Name = "chkRecibo";
+            this.chkRecibo.Size = new System.Drawing.Size(66, 17);
+            this.chkRecibo.TabIndex = 90;
+            this.chkRecibo.Text = "RECIBO";
+            this.chkRecibo.UseVisualStyleBackColor = true;
+            this.chkRecibo.CheckedChanged += new System.EventHandler(this.chkRecibo_CheckedChanged);
+            // 
+            // chkBono
+            // 
+            this.chkBono.AutoSize = true;
+            this.chkBono.Location = new System.Drawing.Point(77, 19);
+            this.chkBono.Name = "chkBono";
+            this.chkBono.Size = new System.Drawing.Size(57, 17);
+            this.chkBono.TabIndex = 91;
+            this.chkBono.Text = "BONO";
+            this.chkBono.UseVisualStyleBackColor = true;
+            this.chkBono.CheckedChanged += new System.EventHandler(this.chkBono_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(140, 20);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 90;
+            this.label8.Text = "NUMERO";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 79);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(78, 13);
+            this.label9.TabIndex = 92;
+            this.label9.Text = "FORMA PAGO";
+            // 
+            // tbNroPago
+            // 
+            this.tbNroPago.Location = new System.Drawing.Point(201, 14);
+            this.tbNroPago.Name = "tbNroPago";
+            this.tbNroPago.Size = new System.Drawing.Size(100, 20);
+            this.tbNroPago.TabIndex = 93;
+            // 
+            // dpFecha
+            // 
+            this.dpFecha.Location = new System.Drawing.Point(101, 50);
+            this.dpFecha.Name = "dpFecha";
+            this.dpFecha.Size = new System.Drawing.Size(200, 20);
+            this.dpFecha.TabIndex = 94;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 56);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(42, 13);
+            this.label12.TabIndex = 95;
+            this.label12.Text = "FECHA";
+            // 
+            // lbMonto
+            // 
+            this.lbMonto.AutoSize = true;
+            this.lbMonto.ForeColor = System.Drawing.Color.Gold;
+            this.lbMonto.Location = new System.Drawing.Point(173, 24);
+            this.lbMonto.Name = "lbMonto";
+            this.lbMonto.Size = new System.Drawing.Size(13, 13);
+            this.lbMonto.TabIndex = 92;
+            this.lbMonto.Text = "0";
+            // 
+            // lbSaldo
+            // 
+            this.lbSaldo.AutoSize = true;
+            this.lbSaldo.ForeColor = System.Drawing.Color.Red;
+            this.lbSaldo.Location = new System.Drawing.Point(328, 24);
+            this.lbSaldo.Name = "lbSaldo";
+            this.lbSaldo.Size = new System.Drawing.Size(13, 13);
+            this.lbSaldo.TabIndex = 93;
+            this.lbSaldo.Text = "0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(86, 24);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(81, 13);
+            this.label13.TabIndex = 94;
+            this.label13.Text = "MONTO PLAN:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(246, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(43, 13);
+            this.label14.TabIndex = 95;
+            this.label14.Text = "SALDO";
+            // 
             // PlanCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 586);
+            this.ClientSize = new System.Drawing.Size(1067, 652);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.tbDni);
             this.Controls.Add(this.label11);
@@ -410,6 +581,8 @@
             this.gpPlanCuota.PerformLayout();
             this.gpRol.ResumeLayout(false);
             this.gpRol.PerformLayout();
+            this.gpPago.ResumeLayout(false);
+            this.gpPago.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -446,5 +619,20 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.GroupBox gpPago;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox chkBono;
+        private System.Windows.Forms.CheckBox chkRecibo;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ComboBox cbFormaDePago;
+        private System.Windows.Forms.Button btnPago;
+        private System.Windows.Forms.TextBox tbNroPago;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DateTimePicker dpFecha;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lbSaldo;
+        private System.Windows.Forms.Label lbMonto;
     }
 }

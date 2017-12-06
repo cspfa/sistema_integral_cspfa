@@ -37,7 +37,7 @@ namespace SOCIOS.CuentaSocio
             InitializeComponent();
             utilsCuenta = new PlanCuentaUtils();
             this.ComboTipo();
-
+            comboFormasDePago();
             this.Determinar_Modo(ROL);
 
             
@@ -119,7 +119,7 @@ namespace SOCIOS.CuentaSocio
 
             dgvPlanes.Columns[3].Width = 500;
             dgvPlanes.Columns[6].Width = 1000;
-
+             Montos_PLan m = new Montos_PLan();
             foreach (DataGridViewRow row in dgvCuotas.Rows)
             {
 
@@ -136,6 +136,10 @@ namespace SOCIOS.CuentaSocio
 
 
             }
+
+            m = utilsCuenta.getMontos(Plan);
+            lbMonto.Text = m.Inicial.ToString();
+            lbSaldo.Text = m.Saldo.ToString();
         }
 
         private void dgvPlanes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -215,11 +219,13 @@ namespace SOCIOS.CuentaSocio
             {
                 Genero_Ingreso.Visible = true;
                 butonInfoDescuento.Visible = true;
+                btnPago.Visible = true;
             } 
             else
             {
                 Genero_Ingreso.Visible = false;
                 butonInfoDescuento.Visible = false;
+                btnPago.Visible = false;
             }
 
 
@@ -256,7 +262,9 @@ namespace SOCIOS.CuentaSocio
         private void butonInfoDescuento_Click(object sender, EventArgs e)
         {
             gpDescuento.Visible = true;
+            gpPago.Visible = false;
             this.ComboDTO();
+           
 
         }
 
@@ -269,6 +277,7 @@ namespace SOCIOS.CuentaSocio
                 MessageBox.Show("Cuota Actualizada con Exito");
                 this.BindCuotas(ID_PLAN);
                 gpDescuento.Visible = false;
+                gpPago.Visible = false;
             }
             catch (Exception ex)
             {
@@ -322,6 +331,68 @@ namespace SOCIOS.CuentaSocio
                 this.FormatoGrilla();
 
             }
+        }
+
+        private void comboFormasDePago()
+        {
+            string query = "SELECT * FROM FORMAS_DE_PAGO ORDER BY ID ASC;";
+            cbFormaDePago.DataSource = null;
+            cbFormaDePago.Items.Clear();
+            cbFormaDePago.SelectedItem = 0;
+            cbFormaDePago.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbFormaDePago.DisplayMember = "DETALLE";
+            cbFormaDePago.ValueMember = "ID";
+        }
+
+        private void chkRecibo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkRecibo.Checked)
+                chkBono.Checked = false;
+            else
+                chkBono.Checked = true;
+        }
+
+        private void chkBono_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkBono.Checked)
+                chkRecibo.Checked = false;
+            else
+                chkRecibo.Checked = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                bool EsRecibo;
+                if (chkBono.Checked)
+                    EsRecibo = false;
+                else
+                    EsRecibo = true;
+                if (tbNroPago.Text.Length == 0)
+                    throw new Exception("Ingrese Numero de Recibo/Bono");
+                int NroPago = Int32.Parse(tbNroPago.Text);
+
+                int FormaPago = Int32.Parse(cbFormaDePago.SelectedValue.ToString());
+
+                utilsCuenta.MarcarPagaCuota(CuotaID, NroPago, EsRecibo, FormaPago, dpFecha.Value);
+                gpPago.Visible = false;
+                gpDescuento.Visible = false;
+                this.BindCuotas(ID_PLAN);
+                MessageBox.Show("Pago Realizado Con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
+
+        private void btnPago_Click(object sender, EventArgs e)
+        {
+            gpPago.Visible = true;
         }
 
       

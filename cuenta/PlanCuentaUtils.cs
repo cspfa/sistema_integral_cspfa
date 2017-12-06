@@ -11,6 +11,7 @@ namespace SOCIOS.CuentaSocio
     {
         public string Plan               { get; set; }
         public string Bono               { get; set; }
+        public int CODINT                { get; set; }
         public string Fecha              { get; set; }
         public string Tipo               { get; set; }
         public string NombreCompleto     { get; set; }
@@ -64,7 +65,13 @@ namespace SOCIOS.CuentaSocio
           
     }
 
+    public class Montos_PLan
 
+    {
+        public decimal Inicial { get; set; }
+        public decimal Saldo   { get; set; }
+        
+    }
     public class PlanCuentaUtils
     {
         bo_Bonos dlog = new bo_Bonos();
@@ -77,7 +84,7 @@ namespace SOCIOS.CuentaSocio
             string query;
             
             //Modo 1 , Turismo Modo 2 , Odonto
-            query = "select distinct P.ID  ID ,B.ID BONO , P.F_ALTA FECHA,PBT.DES TIPO,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP , trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, B.NRO_SOCIO_TITULAR NRO_SOCIO_TIT , B.NRO_DEP_TITULAR NRO_DEP_TIT " +
+            query = "select distinct P.ID  ID ,B.ID_ROL BONO , B.CODINT CODINT, P.F_ALTA FECHA,PBT.DES TIPO,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP , trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, B.NRO_SOCIO_TITULAR NRO_SOCIO_TIT , B.NRO_DEP_TITULAR NRO_DEP_TIT " +
                     "from plan_cuenta P," ;
 
             if (Modo == 2)
@@ -126,8 +133,9 @@ namespace SOCIOS.CuentaSocio
                 while (reader3.Read())
                 {
                     PLanDeCuenta pc = new PLanDeCuenta();
-                    pc.Plan = reader3.GetString(reader3.GetOrdinal("ID")).Trim();
-                    pc.Bono = reader3.GetString(reader3.GetOrdinal("BONO")).Trim();
+                    pc.Plan   = reader3.GetString(reader3.GetOrdinal("ID")).Trim();
+                    pc.Bono   = reader3.GetString(reader3.GetOrdinal("BONO")).Trim();
+                    pc.CODINT =Int32.Parse( reader3.GetString(reader3.GetOrdinal("BONO")).Trim());
                     pc.Fecha =DateTime.Parse( reader3.GetString(reader3.GetOrdinal("FECHA")).Trim()).ToShortDateString();
                     pc.Socio  = reader3.GetString(reader3.GetOrdinal("SOCIO")).Trim();
                     pc.Nro_Socio = reader3.GetString(reader3.GetOrdinal("NRO_SOCIO")).Trim();
@@ -275,7 +283,7 @@ namespace SOCIOS.CuentaSocio
                     pc.ID = Int32.Parse(reader3.GetString(reader3.GetOrdinal("ID")).Trim());
                     pc.Monto = Decimal.Round(Decimal.Parse(reader3.GetString(reader3.GetOrdinal("MONTO")).Trim()), 2);
                     pc.Detalle = reader3.GetString(reader3.GetOrdinal("CUOTA")).Trim();
-                    pc.Nro_Soc = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_SOC")).Trim());
+                    pc.Nro_Soc = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_SOCIO")).Trim());
                     pc.Nro_Dep = Int32.Parse( reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim());
                     pc.Barra = Int32.Parse(reader3.GetString(reader3.GetOrdinal("BARRA")).Trim());
                     string recibo = reader3.GetString(reader3.GetOrdinal("RECIBO")).Trim();
@@ -331,7 +339,7 @@ namespace SOCIOS.CuentaSocio
                CuotaPlan pc = new CuotaPlan();
                pc = this.getCuota(IdCuota);
                
-               BO_PLANCUENTA.Pagar_Cuota(IdCuota, TipoPago, recibo, bono, fechaPago);
+               BO_PLANCUENTA.Pagar_Cuota(IdCuota, recibo,TipoPago, bono, fechaPago);
                pc.SaldoPlan = decimal.Round( pc.SaldoPlan + (pc.Monto * (-1)),2);
             dlog.PlanCuenta_Update(pc.Plan, pc.SaldoPlan);
 
@@ -354,6 +362,58 @@ namespace SOCIOS.CuentaSocio
             dlog.PlanCuenta_Update(pc.Plan, pc.SaldoPlan);
 
 
+        }
+
+        public Montos_PLan getMontos(int ID)
+
+        {
+            string query = @" select  SALDO_INICIAL INICIAL, SALDO SALDO from PLAN_CUENTA WHERE  ID =" + ID.ToString();
+
+
+    
+            string connectionString;
+            DataSet ds1 = new DataSet();
+            Datos_ini ini3 = new Datos_ini();
+
+            FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+            cs.DataSource = ini3.Servidor;
+            cs.Database = ini3.Ubicacion;
+            cs.UserID = VGlobales.vp_username;
+            cs.Password = VGlobales.vp_password;
+            cs.Role = VGlobales.vp_role;
+            cs.Dialect = 3;
+            connectionString = cs.ToString();
+            Montos_PLan plan = new Montos_PLan();
+            using (FbConnection connection = new FbConnection(connectionString))
+            {
+                connection.Open();
+
+                FbTransaction transaction = connection.BeginTransaction();
+
+
+
+                FbCommand cmd = new FbCommand(query, connection, transaction);
+
+                FbDataReader reader3 = cmd.ExecuteReader();
+
+                while (reader3.Read())
+                {
+
+                   plan.Inicial =  Decimal.Parse(reader3.GetString(reader3.GetOrdinal("INICIAL")).Trim());
+                   plan.Saldo = Decimal.Parse(reader3.GetString(reader3.GetOrdinal("SALDO")).Trim());
+
+                }
+
+
+
+
+            }
+
+            return plan;
+
+
+
+        
         }
 
 

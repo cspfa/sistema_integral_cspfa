@@ -416,6 +416,7 @@ namespace SOCIOS.bono
 
                             MostrarControles(false);
                             bntImprimir.Visible = true;
+                            Grabar.Enabled = false;
                         }
                         MessageBox.Show("Bono Grabado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
