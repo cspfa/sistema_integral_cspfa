@@ -9,14 +9,19 @@ namespace SOCIOS.CuentaSocio
 {
     public class PLanDeCuenta
     {
+
         public string Plan               { get; set; }
-        public string Bono               { get; set; }
-        public int CODINT                { get; set; }
         public string Fecha              { get; set; }
         public string Tipo               { get; set; }
         public string NombreCompleto     { get; set; }
         public string Inicial            { get; set; }
         public string Saldo              { get; set; }
+
+     
+        public string Bono               { get; set; }
+        public int CODINT                { get; set; }
+      
+ 
         public string Obs                { get; set; }
         public string Socio              { get; set; }
         public string Nro_Socio          { get; set; }
@@ -84,7 +89,7 @@ namespace SOCIOS.CuentaSocio
             string query;
             
             //Modo 1 , Turismo Modo 2 , Odonto
-            query = "select distinct P.ID  ID ,B.ID_ROL BONO , B.CODINT CODINT, P.F_ALTA FECHA,PBT.DES TIPO,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP , trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, B.NRO_SOCIO_TITULAR NRO_SOCIO_TIT , B.NRO_DEP_TITULAR NRO_DEP_TIT " +
+            query = "select distinct  P.F_ALTA FECHA, trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO, B.CODINT CODINT,PBT.DES TIPO,P.ID  ID ,B.ID_ROL BONO ,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP ,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, B.NRO_SOCIO_TITULAR NRO_SOCIO_TIT , B.NRO_DEP_TITULAR NRO_DEP_TIT " +
                     "from plan_cuenta P," ;
 
             if (Modo == 2)
