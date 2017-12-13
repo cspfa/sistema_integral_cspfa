@@ -54,7 +54,7 @@ namespace SOCIOS.bono
             string Desde = this.fechaUSA(DateTime.Parse(dpDesde.Text));
             string Hasta = this.fechaUSA(DateTime.Parse(dpHasta.Text));
 
-            string query = @"select B.ID ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA   from Bono_Turismo B, Proveedores P
+            string query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.ROL ROL, B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA   from Bono_Turismo B, Proveedores P
             where    B.Operador = P.ID
             AND    B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
            
@@ -102,7 +102,9 @@ namespace SOCIOS.bono
 
                     DataTable dt1 = new DataTable("RESULTADOS");
 
-                    dt1.Columns.Add("ID", typeof(string));
+                    dt1.Columns.Add("ID_ROL", typeof(string));
+                    dt1.Columns.Add("CODINT", typeof(string));
+                    dt1.Columns.Add("ROL", typeof(string));
                     dt1.Columns.Add("FECHA", typeof(string));
                     dt1.Columns.Add("NOMBRE", typeof(string));
                     dt1.Columns.Add("APELLIDO", typeof(string));
@@ -117,7 +119,9 @@ namespace SOCIOS.bono
 
                     while (reader3.Read())
                     {
-                        dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ID")).Trim(),
+                        dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ID_ROL")).Trim(),
+                                     reader3.GetString(reader3.GetOrdinal("CODINT")).Trim(),
+                                      reader3.GetString(reader3.GetOrdinal("ROL")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("FECHA")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("NOMBRE")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("APELLIDO")).Trim(),
