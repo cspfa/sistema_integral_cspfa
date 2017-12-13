@@ -120,8 +120,13 @@ namespace SOCIOS.CuentaSocio
             dgvPlanes.Columns[3].Width = 500;
             dgvPlanes.Columns[6].Width = 1000;
              Montos_PLan m = new Montos_PLan();
+            int contRow=0;
+
             foreach (DataGridViewRow row in dgvCuotas.Rows)
             {
+                  if (contRow ==0)
+                      ID_PLAN = Int32.Parse((row.Cells[0].Value.ToString()));
+                contRow++;
 
                 if (row.Cells[4].Value.ToString().Length > 1)
                 {
@@ -138,8 +143,12 @@ namespace SOCIOS.CuentaSocio
             }
 
             m = utilsCuenta.getMontos(Plan);
+
             lbMonto.Text = m.Inicial.ToString();
             lbSaldo.Text = m.Saldo.ToString();
+
+           
+             
         }
 
         private void dgvPlanes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -217,7 +226,7 @@ namespace SOCIOS.CuentaSocio
 
             if (dgvCuotas.SelectedRows[0].Cells[4].Value.ToString().Length == 0) 
             {
-                Genero_Ingreso.Visible = true;
+               // Genero_Ingreso.Visible = true;
                 butonInfoDescuento.Visible = true;
                 btnPago.Visible = true;
             } 
