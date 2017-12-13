@@ -389,6 +389,8 @@ namespace SOCIOS.CuentaSocio
                 gpPago.Visible = false;
                 gpDescuento.Visible = false;
                 this.BindCuotas(ID_PLAN);
+                gpPlanCuota.Visible = false;
+                gpPago.Visible = false;
                 MessageBox.Show("Pago Realizado Con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
@@ -402,6 +404,9 @@ namespace SOCIOS.CuentaSocio
         private void btnPago_Click(object sender, EventArgs e)
         {
             gpPago.Visible = true;
+            tbNroPago.Text = "";
+            chkRecibo.Checked = false;
+            chkBono.Checked = false;
         }
 
       
