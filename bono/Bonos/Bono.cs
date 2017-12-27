@@ -1105,19 +1105,19 @@ namespace SOCIOS.bono
             if (Tipo == 1) //Efectivo
             {
                 QUERY = "select ID,MONTO from PAGOS_BONO WHERE TIPOPAGO=1 AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'";
-                Mensaje = "Ingreso Automatico Generado Por Pago  Efectivo de Bono";
+                Mensaje = "Efectivo, ";
             }
             else if (Tipo == 2) // Debito
             {
                 QUERY = "select ID,MONTO from PAGOS_BONO WHERE (TIPOPAGO=2 or TIPOPAGO=9) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
-                Mensaje = "Ingreso Automatico Generado Por Pago  Tarjeta Debito de Bono";
+                Mensaje = "Tarjeta Debito, ";
 
             }
             else  // Credito
             {
                 QUERY = "select ID,MONTO from PAGOS_BONO WHERE (TIPOPAGO=3 or TIPOPAGO=10) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
                 
-                Mensaje = "Ingreso Automatico Generado Por Pago  Tarjeta Credito de Bono,"+ InfoTarjeta;
+                Mensaje = "Tarjeta Credito, "+ InfoTarjeta;
             }
 
             DataRow[] foundRows;
@@ -1131,6 +1131,8 @@ namespace SOCIOS.bono
 
             if (ID_CUOTA != 0)
             {
+                Mensaje = Mensaje + " Bono Nro: " + BONO.ToString();
+                    
                 ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false, Monto, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL, Mensaje,BONO);
             }
 

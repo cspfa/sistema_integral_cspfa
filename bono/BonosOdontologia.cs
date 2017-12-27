@@ -45,7 +45,7 @@ namespace SOCIOS.bono
             string Desde = this.fechaUSA(DateTime.Parse(dpDesde.Text));
             string Hasta = this.fechaUSA(DateTime.Parse(dpHasta.Text));
 
-            string query = @"select B.ID ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA   from turnos_medicos  TM, Bono_Odontologico B ,SECTACT S
+            string query = @"select B.ID_ROL ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA   from turnos_medicos  TM, Bono_Odontologico B ,SECTACT S
             where    B.turno = TM.ID AND TM.ESPECIALIDAD=S.ID 
             AND    B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
            

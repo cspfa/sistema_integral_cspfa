@@ -53,5 +53,21 @@ namespace SOCIOS.bono.Odontologia
       }
 
 
+      public int GetMax_ID_ROL(string ROL, int CODINT)
+      {
+          string QUERY = "SELECT coalesce (MAX(ID_ROL),0) FROM Bono_Odontologico WHERE ROL='" + ROL + "' and CODINT=" + CODINT.ToString();
+          DataRow[] foundRows;
+          foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+          if (foundRows.Length > 0)
+          {
+              return Int32.Parse(foundRows[0][0].ToString().Trim())+1;
+          }
+          else
+              return 1;
+
+
+      }
+
     }
 }
