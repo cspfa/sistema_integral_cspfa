@@ -161,6 +161,7 @@ namespace SOCIOS.CuentaSocio
 
         {
             ID_PLAN = Convert.ToInt32(dgvPlanes[0, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
+         
             this.BindCuotas(ID_PLAN);
 
             Nombre = dgvPlanes[12, dgvPlanes.CurrentCell.RowIndex].Value.ToString();

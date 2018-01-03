@@ -603,7 +603,7 @@ namespace SOCIOS.bono
                         //VER CODINT
 
 
-                        int CodInt = 0;
+                        int CodInt = 1008;
                         // Grabar Pagos 
                         // HAsta no saber como lo manejamos, todavia no
 

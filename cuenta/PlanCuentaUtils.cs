@@ -93,7 +93,7 @@ namespace SOCIOS.CuentaSocio
                     "from plan_cuenta P," ;
 
             if (Modo == 2)
-                query = query + "Bono_Turismo B ";
+               query = query + "Bono_Turismo B ";
             else
                 query = query + "Bono_Odontologico B ";
             

@@ -639,6 +639,7 @@ namespace SOCIOS.bono
             if (MessageBox.Show("Esta Seguro de Limpiar Los Datos de la Pantalla?", "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Tratamientos = new List<Tratamiento>();
+
                 PagosBono = new List<PagoBono>();
                 gvTratamientos.DataSource = Tratamientos;
                 gpOdonto.Visible = false;
