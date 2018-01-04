@@ -12,12 +12,13 @@ namespace SOCIOS.bono
     {
         BO.bo_ServiciosMedicos dlog = new BO.bo_ServiciosMedicos();
         public DatoSocio persona = new DatoSocio();
+        SOCIOS.bono.Odontologia.ServicioOdonto odontoService = new Odontologia.ServicioOdonto();
         int CodInt;
         int SecAct;
         int Profesional;
         string Actividad;
         decimal Saldo=0;
-        
+        int ID_ROL=0;
         public string nombreProfesional;
         public int idProfesional;
         int idBono;
@@ -151,7 +152,7 @@ namespace SOCIOS.bono
 
                 try
                 {
-                    dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0,Decimal.Round(Recargo + Saldo,2) ,Saldo,Recargo , srvDatosSocio.CAB.NOMBRE,srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor,VGlobales.vp_role);
+                    dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0,Decimal.Round(Recargo + Saldo,2) ,Saldo,Recargo , srvDatosSocio.CAB.NOMBRE,srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor,VGlobales.vp_role,CodInt,SUBCODIGO);
                     idBono = this.GetMaxID();
                     if (idBono != 0)
                     {
@@ -160,9 +161,13 @@ namespace SOCIOS.bono
 
                         bntImprimir.Visible = true;
                         this.GrabarTratamientos();
+                        ID_ROL = odontoService.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CodInt);
+                        dlog.Seteo_Id_ROL(idBono, ID_ROL);
                         this.GrabarPagos();
 
                         
+
+                   
 
 
                         this.IngresoCaja(idBono, persona.NUM_DOC, persona.NOMBRE, persona.APELLIDO, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA),InfoTarjeta);
@@ -380,12 +385,33 @@ namespace SOCIOS.bono
             {
                 idProfesional = Int32.Parse(Config.getValor("SERVICIOS_MEDICOS", "ANER", 1));
             }
+
+            switch (idProfesional)
+            {
+                case 27:
+                    CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-TAVELLA", "COD_ODONTO", 2));  
+                    break;
+                case 28:
+                    {
+                     if (SecAct ==110)
+                         CodInt= Int32.Parse(Config.getValor("ODON-GENERAL-VILLAGRAN", "COD_ODONTO", 2));
+                     else
+                         CodInt = Int32.Parse(Config.getValor("ODON-PROTESIS-VILLAGRAN", "COD_ODONTO", 2));
+                    }
+                    break;
+                case 170:
+
+                    CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-ANER", "COD_ODONTO", 2));
+                    break;
+            }
+            
+            
         }
 
         private void ComboTratamiento()
 
         {   //Se agrega el campo codcp
-            string Query = "select  ID,DETALLE FROM SECTACT WHERE ROL='TRATAMIENTO_ODONTOLOGICO' AND  CODINT=" + CodInt.ToString() + " and     ID in (select Especialidad from prof_esp where PROFESIONAL="+ idProfesional +")";
+            string Query = "select  ID,DETALLE FROM SECTACT WHERE ROL='TRATAMIENTO_ODONTOLOGICO'   and     ID in (select Especialidad from prof_esp where PROFESIONAL="+ idProfesional +")";
 
             cbTratamiento.DataSource = null;
             cbTratamiento.Items.Clear();
@@ -613,6 +639,7 @@ namespace SOCIOS.bono
             if (MessageBox.Show("Esta Seguro de Limpiar Los Datos de la Pantalla?", "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Tratamientos = new List<Tratamiento>();
+
                 PagosBono = new List<PagoBono>();
                 gvTratamientos.DataSource = Tratamientos;
                 gpOdonto.Visible = false;

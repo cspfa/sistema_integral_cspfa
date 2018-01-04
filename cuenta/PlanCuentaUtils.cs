@@ -93,7 +93,7 @@ namespace SOCIOS.CuentaSocio
                     "from plan_cuenta P," ;
 
             if (Modo == 2)
-                query = query + "Bono_Turismo B ";
+               query = query + "Bono_Turismo B ";
             else
                 query = query + "Bono_Odontologico B ";
             
@@ -139,8 +139,15 @@ namespace SOCIOS.CuentaSocio
                 {
                     PLanDeCuenta pc = new PLanDeCuenta();
                     pc.Plan   = reader3.GetString(reader3.GetOrdinal("ID")).Trim();
-                    pc.Bono   = reader3.GetString(reader3.GetOrdinal("BONO")).Trim();
-                    pc.CODINT =Int32.Parse( reader3.GetString(reader3.GetOrdinal("BONO")).Trim());
+                   if (reader3.GetString(reader3.GetOrdinal("BONO")).Trim().Length >0)
+                       pc.Bono   = reader3.GetString(reader3.GetOrdinal("BONO")).Trim();
+                    else
+                       pc.Bono ="0";
+                   if (reader3.GetString(reader3.GetOrdinal("CODINT")).Trim().Length > 1)
+                       pc.CODINT = Int32.Parse(reader3.GetString(reader3.GetOrdinal("CODINT")).Trim());
+                   else
+                       pc.CODINT = 0;
+
                     pc.Fecha =DateTime.Parse( reader3.GetString(reader3.GetOrdinal("FECHA")).Trim()).ToShortDateString();
                     pc.Socio  = reader3.GetString(reader3.GetOrdinal("SOCIO")).Trim();
                     pc.Nro_Socio = reader3.GetString(reader3.GetOrdinal("NRO_SOCIO")).Trim();
