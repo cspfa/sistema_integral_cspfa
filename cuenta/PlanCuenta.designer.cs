@@ -72,6 +72,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.LBCUOTA = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCuotas)).BeginInit();
             this.gpDescuento.SuspendLayout();
@@ -236,6 +237,7 @@
             // 
             // gpPlanCuota
             // 
+            this.gpPlanCuota.Controls.Add(this.LBCUOTA);
             this.gpPlanCuota.Controls.Add(this.label14);
             this.gpPlanCuota.Controls.Add(this.label13);
             this.gpPlanCuota.Controls.Add(this.lbSaldo);
@@ -548,6 +550,16 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // LBCUOTA
+            // 
+            this.LBCUOTA.AutoSize = true;
+            this.LBCUOTA.ForeColor = System.Drawing.Color.Red;
+            this.LBCUOTA.Location = new System.Drawing.Point(887, 19);
+            this.LBCUOTA.Name = "LBCUOTA";
+            this.LBCUOTA.Size = new System.Drawing.Size(44, 13);
+            this.LBCUOTA.TabIndex = 96;
+            this.LBCUOTA.Text = "CUOTA";
+            // 
             // PlanCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -632,5 +644,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lbSaldo;
         private System.Windows.Forms.Label lbMonto;
+        private System.Windows.Forms.Label LBCUOTA;
     }
 }

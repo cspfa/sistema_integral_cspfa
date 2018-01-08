@@ -334,6 +334,62 @@ namespace SOCIOS.CuentaSocio
 
         }
 
+
+        public bool Validar_Pagos_Anteriores(int Cuota,int Plan)
+        {
+            string query = @"select F_PAGO F from pagos_bono  where PLan_cuenta= " + Plan.ToString() + " and ID < " + Cuota.ToString(); ;
+
+            bool Result = true;
+            
+            string connectionString;
+            DataSet ds1 = new DataSet();
+            Datos_ini ini3 = new Datos_ini();
+
+            FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+            cs.DataSource = ini3.Servidor;
+            cs.Database = ini3.Ubicacion;
+            cs.UserID = VGlobales.vp_username;
+            cs.Password = VGlobales.vp_password;
+            cs.Role = VGlobales.vp_role;
+            cs.Dialect = 3;
+            connectionString = cs.ToString();
+            CuotaPlan pc = new CuotaPlan();
+            using (FbConnection connection = new FbConnection(connectionString))
+            {
+                connection.Open();
+
+                FbTransaction transaction = connection.BeginTransaction();
+
+
+
+                FbCommand cmd = new FbCommand(query, connection, transaction);
+
+                FbDataReader reader3 = cmd.ExecuteReader();
+
+                while (reader3.Read())
+                {
+                    if (reader3.GetString(reader3.GetOrdinal("F")).Trim().Length > 0)
+                    {
+                        Result = true;
+                    }
+                    else
+                        Result = false;
+
+                }
+
+
+
+
+            }
+
+            return Result;
+
+
+
+
+
+        }
+
         
         public void MarcarPagaCuota(int IdCuota, int NRO_COMPROBANTE,bool esRecibo,int TipoPago,DateTime fechaPago)
 

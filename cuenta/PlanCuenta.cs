@@ -161,7 +161,7 @@ namespace SOCIOS.CuentaSocio
 
         {
             ID_PLAN = Convert.ToInt32(dgvPlanes[0, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
-         
+            LBCUOTA.Text = "";
             this.BindCuotas(ID_PLAN);
 
             Nombre = dgvPlanes[12, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
@@ -223,7 +223,7 @@ namespace SOCIOS.CuentaSocio
             Importe = Convert.ToDecimal(dgvCuotas.SelectedRows[0].Cells[2].Value.ToString());
 
             ROL = dgvCuotas.SelectedRows[0].Cells[7].Value.ToString();
-
+            LBCUOTA.Text = "ID CUOTA:" + CuotaID.ToString();
 
             if (dgvCuotas.SelectedRows[0].Cells[4].Value.ToString().Length == 0) 
             {
@@ -375,6 +375,9 @@ namespace SOCIOS.CuentaSocio
 
             try
             {
+               if  (!(utilsCuenta.Validar_Pagos_Anteriores(CuotaID, ID_PLAN)))
+                   throw new Exception("No puede pagar la cuota seleccionada con cuotas anteriores no pagas");
+
                 bool EsRecibo;
                 if (chkBono.Checked)
                     EsRecibo = false;
