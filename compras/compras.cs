@@ -1132,9 +1132,7 @@ namespace SOCIOS
                 string DETALLE = tbDetalle.Text.Trim();
                 string NSERIE = tbSerie.Text.Trim();
                 int TIPO = int.Parse(cbTipoArticulo.SelectedValue.ToString());
-                string VALOR_S = string.Format("{0:n}", valor);
-                string IMPORTE_S = string.Format("{0:n}", importe);
-
+                
                 if (tbDescuento.Text != "" && cbDescuento.Text == "%")
                 {
                     descuento = tbDescuento.Text + cbDescuento.Text;
@@ -1153,6 +1151,9 @@ namespace SOCIOS
                     importe = decimal.Round(importe, 2);
                 }
 
+                string VALOR_S = string.Format("{0:n}", valor);
+                string IMPORTE_S = string.Format("{0:n}", importe);
+
                 try
                 {
                     if (lbID.Text != "ID_FACTURA") //GRABA EN BASE DE DATOS
@@ -1167,7 +1168,7 @@ namespace SOCIOS
                             }
                             else
                             {
-                                BO_COMPRAS.nuevoArticulo(int.Parse(lbID.Text), DETALLE, valor, CANTIDAD, NSERIE, TIPO, descuento);
+                                BO_COMPRAS.nuevoArticulo(int.Parse(lbID.Text), DETALLE, importe, CANTIDAD, NSERIE, TIPO, descuento);
                                 limpiarArticulo();
                             }
                         }
@@ -1182,7 +1183,7 @@ namespace SOCIOS
                             }
                             else
                             {
-                                BO_COMPRAS.modificarArticulos(ID_ARTICULO, DETALLE, valor, CANTIDAD, NSERIE, TIPO, descuento);
+                                BO_COMPRAS.modificarArticulos(ID_ARTICULO, DETALLE, importe, CANTIDAD, NSERIE, TIPO, descuento);
                                 limpiarArticulo();
                             }
                         }

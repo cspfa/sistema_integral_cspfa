@@ -127,6 +127,10 @@ namespace SOCIOS
             {
                 query = "SELECT DISTINCT ROL FROM SECTACT WHERE ROL = 'SERVICIOS MEDICOS' OR ROL = 'RECETAS' ORDER BY ROL;";
             }
+            else if (VGlobales.vp_role == "CPOCABA")
+            {
+                query = "SELECT DISTINCT ROL FROM SECTACT WHERE ROL = 'CPOCABA' OR ROL = 'PROSECRETARIA' ORDER BY ROL;";
+            }
             else
             {
                 query = "SELECT DISTINCT ROL FROM SECTACT WHERE ROL = '" + VGlobales.vp_role + "' ORDER BY ROL;";

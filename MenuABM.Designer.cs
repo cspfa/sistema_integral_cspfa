@@ -69,6 +69,7 @@
             this.ingresosPersonalYDirectivosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aBMPersonasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importarBienestarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afiliacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirAutorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renunciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,6 +123,7 @@
             this.aBMTipoHabitaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.arancelesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.planDeCuentaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tesoreríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.confiteríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,8 +149,6 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.planDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planDeCuentaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -406,7 +406,7 @@
             // 
             this.comprobantesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("comprobantesToolStripMenuItem.Image")));
             this.comprobantesToolStripMenuItem.Name = "comprobantesToolStripMenuItem";
-            this.comprobantesToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.comprobantesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.comprobantesToolStripMenuItem.Text = "Comprobantes";
             this.comprobantesToolStripMenuItem.Click += new System.EventHandler(this.comprobantesToolStripMenuItem_Click);
             // 
@@ -414,7 +414,7 @@
             // 
             this.entradasToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.bullet_green;
             this.entradasToolStripMenuItem.Name = "entradasToolStripMenuItem";
-            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.entradasToolStripMenuItem.Text = "Entradas";
             this.entradasToolStripMenuItem.Click += new System.EventHandler(this.entradasToolStripMenuItem_Click);
             // 
@@ -422,8 +422,8 @@
             // 
             this.movimientosToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.bullet_green;
             this.movimientosToolStripMenuItem.Name = "movimientosToolStripMenuItem";
-            this.movimientosToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.movimientosToolStripMenuItem.Text = "Movimientos";
+            this.movimientosToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.movimientosToolStripMenuItem.Text = "Movimientos Personal";
             this.movimientosToolStripMenuItem.Click += new System.EventHandler(this.movimientosToolStripMenuItem_Click);
             // 
             // generalBelgranoToolStripMenuItem
@@ -535,6 +535,13 @@
             this.importarBienestarToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.importarBienestarToolStripMenuItem.Text = "Importar Bienestar";
             this.importarBienestarToolStripMenuItem.Click += new System.EventHandler(this.importarBienestarToolStripMenuItem_Click);
+            // 
+            // planDeCuentaToolStripMenuItem
+            // 
+            this.planDeCuentaToolStripMenuItem.Name = "planDeCuentaToolStripMenuItem";
+            this.planDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.planDeCuentaToolStripMenuItem.Text = "Plan de Cuenta";
+            this.planDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem_Click);
             // 
             // afiliacionesToolStripMenuItem
             // 
@@ -1003,6 +1010,13 @@
             this.arancelesToolStripMenuItem1.Text = "Aranceles";
             this.arancelesToolStripMenuItem1.Click += new System.EventHandler(this.arancelesToolStripMenuItem1_Click);
             // 
+            // planDeCuentaToolStripMenuItem1
+            // 
+            this.planDeCuentaToolStripMenuItem1.Name = "planDeCuentaToolStripMenuItem1";
+            this.planDeCuentaToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
+            this.planDeCuentaToolStripMenuItem1.Text = "Plan de Cuenta";
+            this.planDeCuentaToolStripMenuItem1.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem1_Click);
+            // 
             // tesoreríaToolStripMenuItem
             // 
             this.tesoreríaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1225,20 +1239,6 @@
             this.pbFoto.TabIndex = 10;
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
-            // 
-            // planDeCuentaToolStripMenuItem
-            // 
-            this.planDeCuentaToolStripMenuItem.Name = "planDeCuentaToolStripMenuItem";
-            this.planDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.planDeCuentaToolStripMenuItem.Text = "Plan de Cuenta";
-            this.planDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem_Click);
-            // 
-            // planDeCuentaToolStripMenuItem1
-            // 
-            this.planDeCuentaToolStripMenuItem1.Name = "planDeCuentaToolStripMenuItem1";
-            this.planDeCuentaToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
-            this.planDeCuentaToolStripMenuItem1.Text = "Plan de Cuenta";
-            this.planDeCuentaToolStripMenuItem1.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem1_Click);
             // 
             // MenuABM
             // 

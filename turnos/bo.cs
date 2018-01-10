@@ -2830,7 +2830,43 @@ namespace SOCIOS
             string vprocedure = "TIPOS_ARTICULOS_I";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
-        }     
+        }
+
+        public void importarMovimientos(int PERSONA, int ACCION, string FECHA_HORA, string ALTA, string USUARIO, string EXPORTADO)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(0);
+            vector_contenidos.Add(PERSONA);
+            vector_contenidos.Add(ACCION);
+            vector_contenidos.Add(FECHA_HORA);
+            vector_contenidos.Add(ALTA);
+            vector_contenidos.Add(USUARIO);
+            vector_contenidos.Add(EXPORTADO);
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Date");
+            vector_tipos.Add("FbDbType.Date");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("@PIN_ID");
+            vector_nombres.Add("@PIN_PERSONA");
+            vector_nombres.Add("@PIN_ACCION");
+            vector_nombres.Add("@PIN_FECHA_HORA");
+            vector_nombres.Add("@PIN_ALTA");
+            vector_nombres.Add("@PIN_USUARIO");
+            vector_nombres.Add("@PIN_EXPORTADO");
+
+            string vprocedure = "IMPORTAR_MOVIMIENTOS";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
 
         public void guardarMovimiento(int PERSONA, int ACCION, string FECHA_HORA, string USUARIO)
         {
