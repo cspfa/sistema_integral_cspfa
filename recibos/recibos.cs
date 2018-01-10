@@ -781,6 +781,9 @@ namespace SOCIOS
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, lbArancel.Text, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE.ToString(), 
                                 HABER.ToString(), RECIBO_BONO, PTO_VTA, FECHA_RECIBO, "NO");
+                      string NRO_COMP = lbNroRecibo.Text;
+                        if (VGlobales.ID_CUOTA_PAGO != 0)
+                            this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, false, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));
 
                         this.Close();
                     }
@@ -928,6 +931,7 @@ namespace SOCIOS
         private void Marcar_Cuota(int ID_PAGO,bool EsRecibo,int NroPago,int FormaPago,DateTime FechaPago)
         {
             int bono=0;
+
             int recibo=0;
             recibo = EsRecibo==true?NroPago:0;
             bono   = EsRecibo==false?NroPago:0;

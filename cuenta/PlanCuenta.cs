@@ -114,6 +114,7 @@ namespace SOCIOS.CuentaSocio
 
         private void BindCuotas(int Plan)
         {
+            
             dgvCuotas.DataSource = null;
             dgvCuotas.DataSource = utilsCuenta.Cuotas(Plan);
 
@@ -147,7 +148,8 @@ namespace SOCIOS.CuentaSocio
             lbMonto.Text = m.Inicial.ToString();
             lbSaldo.Text = m.Saldo.ToString();
 
-           
+            dgvCuotas.ClearSelection();
+            dgvCuotas.Rows[0].Selected = false;
              
         }
 
@@ -160,13 +162,15 @@ namespace SOCIOS.CuentaSocio
         void Cargar_Plan()
 
         {
+
+            dgvCuotas.ClearSelection();
             ID_PLAN = Convert.ToInt32(dgvPlanes[0, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
             LBCUOTA.Text = "";
             this.BindCuotas(ID_PLAN);
 
-            Nombre = dgvPlanes[12, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
-            Apellido = dgvPlanes[13, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
-            DNI = dgvPlanes[14, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
+            Nombre = dgvPlanes[13, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
+            Apellido = dgvPlanes[14, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
+            DNI = dgvPlanes[15, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
             NRO_SOCIO = Int32.Parse(dgvPlanes[9, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
             NRO_DEP = Int32.Parse(dgvPlanes[10, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
             BARRA = Int32.Parse(dgvPlanes[15, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
@@ -176,6 +180,15 @@ namespace SOCIOS.CuentaSocio
 
             gpPlanCuota.Visible = true;
 
+
+            foreach (DataGridViewRow row in dgvCuotas.Rows)
+            {
+                row.Selected = false;
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    cell.Selected = false;
+                }
+            }
 
             //this.FormatoGrilla();
         
@@ -304,7 +317,7 @@ namespace SOCIOS.CuentaSocio
             Importe = Convert.ToDecimal(dgvCuotas.SelectedRows[0].Cells[2].Value.ToString());
 
             ROL = dgvCuotas.SelectedRows[0].Cells[7].Value.ToString();
-
+            LBCUOTA.Text = CuotaID.ToString();
             Genero_Ingreso.Visible = true;
             butonInfoDescuento.Visible = true;
 

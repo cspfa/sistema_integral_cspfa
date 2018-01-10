@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.gpPlanCuota = new System.Windows.Forms.GroupBox();
+            this.LBCUOTA = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lbSaldo = new System.Windows.Forms.Label();
@@ -72,7 +73,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.LBCUOTA = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCuotas)).BeginInit();
             this.gpDescuento.SuspendLayout();
@@ -98,6 +98,8 @@
             // 
             this.dgvCuotas.AllowUserToAddRows = false;
             this.dgvCuotas.AllowUserToDeleteRows = false;
+            this.dgvCuotas.AllowUserToResizeColumns = false;
+            this.dgvCuotas.AllowUserToResizeRows = false;
             this.dgvCuotas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCuotas.Location = new System.Drawing.Point(12, 59);
             this.dgvCuotas.Name = "dgvCuotas";
@@ -258,6 +260,16 @@
             this.gpPlanCuota.TabStop = false;
             this.gpPlanCuota.Text = "Plan de Cuotas";
             this.gpPlanCuota.Visible = false;
+            // 
+            // LBCUOTA
+            // 
+            this.LBCUOTA.AutoSize = true;
+            this.LBCUOTA.ForeColor = System.Drawing.Color.Red;
+            this.LBCUOTA.Location = new System.Drawing.Point(887, 19);
+            this.LBCUOTA.Name = "LBCUOTA";
+            this.LBCUOTA.Size = new System.Drawing.Size(44, 13);
+            this.LBCUOTA.TabIndex = 96;
+            this.LBCUOTA.Text = "CUOTA";
             // 
             // label14
             // 
@@ -549,16 +561,6 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // LBCUOTA
-            // 
-            this.LBCUOTA.AutoSize = true;
-            this.LBCUOTA.ForeColor = System.Drawing.Color.Red;
-            this.LBCUOTA.Location = new System.Drawing.Point(887, 19);
-            this.LBCUOTA.Name = "LBCUOTA";
-            this.LBCUOTA.Size = new System.Drawing.Size(44, 13);
-            this.LBCUOTA.TabIndex = 96;
-            this.LBCUOTA.Text = "CUOTA";
             // 
             // PlanCuenta
             // 
