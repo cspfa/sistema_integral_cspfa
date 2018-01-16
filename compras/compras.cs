@@ -634,6 +634,27 @@ namespace SOCIOS
             decimal TOTAL_ROWS = 0;
             decimal VALOR_AGREGAR = Convert.ToDecimal(tbValor.Text);
             int CANTIDAD_AGREGAR = int.Parse(tbCantidad.Text);
+            string descuento;
+            decimal importe = 0;
+
+            if (tbDescuento.Text != "" && cbDescuento.Text == "%")
+            {
+                descuento = tbDescuento.Text + cbDescuento.Text;
+                decimal aDescontar = Convert.ToDecimal(tbValor.Text) * Convert.ToDecimal(tbDescuento.Text) / 100;
+                decimal valorConDescuento = Convert.ToDecimal(tbValor.Text) - aDescontar;
+                importe = valorConDescuento * Convert.ToDecimal(tbCantidad.Text.Trim());
+                importe = decimal.Round(importe, 2);
+            }
+
+            if (tbDescuento.Text != "" && cbDescuento.Text == "$")
+            {
+                descuento = cbDescuento.Text + tbDescuento.Text;
+                decimal aDescontar = Convert.ToDecimal(tbDescuento.Text);
+                decimal valorConDescuento = Convert.ToDecimal(tbValor.Text) - aDescontar;
+                importe = valorConDescuento * Convert.ToDecimal(tbCantidad.Text.Trim());
+                importe = decimal.Round(importe, 2);
+            }
+
             decimal IMPORTE_ROW = 0;
             int ID_ROW = 0;
             bool RES = false;
@@ -649,14 +670,14 @@ namespace SOCIOS
                         TOTAL_ROWS = TOTAL_ROWS + IMPORTE_ROW;
                     }
 
-                    if (TOTAL_ROWS + (VALOR_AGREGAR * CANTIDAD_AGREGAR) <= TOTAL_FACTURA)
+                    if (TOTAL_ROWS + (importe * CANTIDAD_AGREGAR) <= TOTAL_FACTURA)
                     {
                         RES = true;
                     }
                 }
                 else
                 {
-                    if ((VALOR_AGREGAR * CANTIDAD_AGREGAR) <= TOTAL_FACTURA)
+                    if ((importe * CANTIDAD_AGREGAR) <= TOTAL_FACTURA)
                     {
                         RES = true;
                     }
@@ -691,14 +712,14 @@ namespace SOCIOS
                         }
                     }
 
-                    if (TOTAL_ROWS + (VALOR_AGREGAR * CANTIDAD_AGREGAR) <= TOTAL_FACTURA)
+                    if (TOTAL_ROWS + (importe * CANTIDAD_AGREGAR) <= TOTAL_FACTURA)
                     {
                         RES = true;
                     }
                 }
                 else
                 {
-                    if (VALOR_AGREGAR <= TOTAL_FACTURA)
+                    if (importe <= TOTAL_FACTURA)
                     {
                         RES = true;
                     }
