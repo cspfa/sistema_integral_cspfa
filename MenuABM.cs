@@ -2139,5 +2139,11 @@ namespace SOCIOS
             SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
             pc.ShowDialog();
         }
+
+        private void planDeCuentaToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
+            pc.ShowDialog();
+        }
     }
 }
