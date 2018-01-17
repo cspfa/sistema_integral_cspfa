@@ -149,6 +149,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.planDeCuentaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -634,7 +635,8 @@
             this.listadoPresentesToolStripMenuItem,
             this.listadoDeTurnosCanceladosToolStripMenuItem,
             this.cargarObservaciones,
-            this.bonosOdontologicosToolStripMenuItem});
+            this.bonosOdontologicosToolStripMenuItem,
+            this.planDeCuentaToolStripMenuItem2});
             this.servToolStrip.Enabled = false;
             this.servToolStrip.Name = "servToolStrip";
             this.servToolStrip.Size = new System.Drawing.Size(117, 18);
@@ -1240,6 +1242,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
+            // planDeCuentaToolStripMenuItem2
+            // 
+            this.planDeCuentaToolStripMenuItem2.Name = "planDeCuentaToolStripMenuItem2";
+            this.planDeCuentaToolStripMenuItem2.Size = new System.Drawing.Size(190, 22);
+            this.planDeCuentaToolStripMenuItem2.Text = "Plan de Cuenta";
+            this.planDeCuentaToolStripMenuItem2.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem2_Click);
+            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1402,5 +1411,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem2;
     }
 }

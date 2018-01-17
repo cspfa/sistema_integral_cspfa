@@ -53,17 +53,45 @@ namespace SOCIOS
             BTNNUEVO.Enabled = true;
         }
 
-        private void secuenciaDatosBancarios(FbDataReader reader)
+        private void secuenciaDatosBancarios()
         {
-            int SECUENCIA = 1;
+            conString conString = new conString();
+            string connectionString = conString.get();
 
-            if (reader.Read())
+            try
             {
-                maxid mid = new maxid();
-                SECUENCIA = int.Parse(mid.m("SECUENCIA", "TITULAR_CBU")) + 1;
-            }
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    string QUERY = "SELECT SECUENCIA FROM TITULAR_CBU WHERE ID_TITULAR = " + ID_T;
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    cmd.CommandText = QUERY;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataReader reader = cmd.ExecuteReader();
 
-            TBSECUENCIA.Text = SECUENCIA.ToString();
+                    if (reader.Read())
+                    {
+                        int SECUENCIA = int.Parse(reader.GetString(reader.GetOrdinal("SECUENCIA"))) + 1;
+                        TBSECUENCIA.Text = SECUENCIA.ToString(); 
+                    }
+                    else
+                    {
+                        TBSECUENCIA.Text = "1"; 
+                    }
+
+                    reader.Close();
+                    transaction.Commit();
+                    connection.Close();
+                    cmd = null;
+                    transaction = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void buscarDatosBancarios(int ID_TITULAR)
@@ -111,7 +139,7 @@ namespace SOCIOS
                         label60.Text = "DATOS BANCARIOS CARGADOS: NO SE ENCONTRARON DATOS";
                     }
 
-                    secuenciaDatosBancarios(reader);
+                    secuenciaDatosBancarios();
                     reader.Close();
                     transaction.Commit();
                     connection.Close();

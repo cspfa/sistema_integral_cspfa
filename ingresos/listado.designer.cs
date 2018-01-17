@@ -51,9 +51,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(6, 26);
+            this.panel1.Location = new System.Drawing.Point(8, 22);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(169, 519);
+            this.panel1.Size = new System.Drawing.Size(171, 530);
             this.panel1.TabIndex = 2;
             // 
             // groupBox1
@@ -69,18 +69,18 @@
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(9, 26);
+            this.panel2.Location = new System.Drawing.Point(9, 22);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(191, 213);
+            this.panel2.Size = new System.Drawing.Size(191, 70);
             this.panel2.TabIndex = 2;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.panel2);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(216, 14);
+            this.groupBox2.Location = new System.Drawing.Point(207, 472);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(210, 255);
+            this.groupBox2.Size = new System.Drawing.Size(210, 103);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Personal Jerárquico";
@@ -89,9 +89,9 @@
             // 
             this.groupBox3.Controls.Add(this.panel3);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(216, 282);
+            this.groupBox3.Location = new System.Drawing.Point(207, 14);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(210, 255);
+            this.groupBox3.Size = new System.Drawing.Size(210, 236);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Personal de Supervisión";
@@ -100,16 +100,16 @@
             // 
             this.panel3.Location = new System.Drawing.Point(9, 26);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(191, 211);
+            this.panel3.Size = new System.Drawing.Size(191, 198);
             this.panel3.TabIndex = 2;
             // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.panel4);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(442, 14);
+            this.groupBox4.Location = new System.Drawing.Point(207, 256);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(210, 255);
+            this.groupBox4.Size = new System.Drawing.Size(210, 210);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Personal Profesional";
@@ -118,14 +118,14 @@
             // 
             this.panel4.Location = new System.Drawing.Point(9, 26);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(191, 213);
+            this.panel4.Size = new System.Drawing.Size(191, 172);
             this.panel4.TabIndex = 2;
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(216, 543);
+            this.btnActualizar.Location = new System.Drawing.Point(13, 583);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(98, 32);
+            this.btnActualizar.Size = new System.Drawing.Size(98, 25);
             this.btnActualizar.TabIndex = 7;
             this.btnActualizar.Text = "ACTUALIZAR";
             this.btnActualizar.UseVisualStyleBackColor = true;
@@ -135,9 +135,9 @@
             // 
             this.groupBox5.Controls.Add(this.panel5);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(442, 282);
+            this.groupBox5.Location = new System.Drawing.Point(423, 14);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(210, 255);
+            this.groupBox5.Size = new System.Drawing.Size(210, 602);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Personal Contratado";
@@ -146,14 +146,14 @@
             // 
             this.panel5.Location = new System.Drawing.Point(9, 26);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(191, 211);
+            this.panel5.Size = new System.Drawing.Size(191, 563);
             this.panel5.TabIndex = 2;
             // 
             // btnListado
             // 
-            this.btnListado.Location = new System.Drawing.Point(328, 543);
+            this.btnListado.Location = new System.Drawing.Point(117, 583);
             this.btnListado.Name = "btnListado";
-            this.btnListado.Size = new System.Drawing.Size(98, 32);
+            this.btnListado.Size = new System.Drawing.Size(98, 25);
             this.btnListado.TabIndex = 8;
             this.btnListado.Text = "LISTADOS";
             this.btnListado.UseVisualStyleBackColor = true;
@@ -162,9 +162,9 @@
             // button1
             // 
             this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(442, 543);
+            this.button1.Location = new System.Drawing.Point(221, 583);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(210, 32);
+            this.button1.Size = new System.Drawing.Size(126, 26);
             this.button1.TabIndex = 9;
             this.button1.Text = "ABM PERSONAS";
             this.button1.UseVisualStyleBackColor = true;
@@ -175,7 +175,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(665, 602);
+            this.ClientSize = new System.Drawing.Size(642, 621);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnListado);
             this.Controls.Add(this.groupBox5);
@@ -186,7 +186,6 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(459, 626);
             this.Name = "listadoPresentes";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

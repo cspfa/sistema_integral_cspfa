@@ -503,8 +503,28 @@ namespace SOCIOS.confiteria
             {
                 Cursor = Cursors.WaitCursor;
                 int D_ADTO = 1;
-                int M_ADTO = DateTime.Today.Month + 1;
+                int M_ADTO = DateTime.Today.Month;
+
+                if (M_ADTO < 12)
+                {
+                    M_ADTO = M_ADTO + 1;
+                }
+                else if (M_ADTO == 12)
+                {
+                    M_ADTO = 1;
+                }
+                
                 int Y_ADTO = DateTime.Today.Year;
+
+                if (M_ADTO < 12)
+                {
+                    Y_ADTO = Y_ADTO;
+                }
+                else if (M_ADTO == 12)
+                {
+                    Y_ADTO = Y_ADTO + 1;
+                }
+
                 string A_DTO = D_ADTO.ToString() + "/" + M_ADTO.ToString() + "/" + Y_ADTO.ToString();
                 string FECHA = DateTime.Today.ToShortDateString();
 
