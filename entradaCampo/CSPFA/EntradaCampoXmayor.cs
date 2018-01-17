@@ -598,8 +598,8 @@ namespace SOCIOS.Entrada_Campo.CSPFA
         private void Imprimir()
 
         {
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false);
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, false);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, false);
            // this.Imprimir_Pileta();
         }
 
@@ -614,7 +614,7 @@ namespace SOCIOS.Entrada_Campo.CSPFA
 
             for (int I = 0; I < CantidadPiletas; I++)
             {
-               entradaCampoService.Imprimir_Pileta(DNI + "-" + APELLIDO + "," + NOMBRE, "Pileta " + (I + 1).ToString() + " de " + CantidadPiletas.ToString());
+                entradaCampoService.Imprimir_Pileta(DNI + "-" + APELLIDO + "," + NOMBRE, "Pileta " + (I + 1).ToString() + " de " + CantidadPiletas.ToString(), false);
             }
         
         }

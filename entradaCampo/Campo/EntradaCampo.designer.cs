@@ -73,6 +73,7 @@
             this.tbCumple = new System.Windows.Forms.TextBox();
             this.chkSocio = new System.Windows.Forms.CheckBox();
             this.chkPersonalPolicial = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Personas)).BeginInit();
             this.gpFamiliares.SuspendLayout();
             this.gpInvitados.SuspendLayout();
@@ -229,7 +230,7 @@
             // btnImprimir
             // 
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImprimir.Location = new System.Drawing.Point(292, 479);
+            this.btnImprimir.Location = new System.Drawing.Point(288, 447);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(136, 30);
             this.btnImprimir.TabIndex = 11;
@@ -241,7 +242,7 @@
             // 
             this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Delete.Location = new System.Drawing.Point(84, 479);
+            this.Delete.Location = new System.Drawing.Point(70, 479);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(161, 30);
             this.Delete.TabIndex = 7;
@@ -593,12 +594,24 @@
             this.chkPersonalPolicial.UseVisualStyleBackColor = true;
             this.chkPersonalPolicial.CheckedChanged += new System.EventHandler(this.chkPersonalPolicial_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(237, 483);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(232, 23);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "IMPRIMIR TICKET DIRECTO";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // EntradaCampoIngresoTotales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(779, 743);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.chkSocio);
             this.Controls.Add(this.chkPersonalPolicial);
             this.Controls.Add(this.tbCumple);
@@ -695,5 +708,6 @@
         private System.Windows.Forms.TextBox tbCumple;
         private System.Windows.Forms.CheckBox chkSocio;
         private System.Windows.Forms.CheckBox chkPersonalPolicial;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -414,6 +414,8 @@ namespace SOCIOS.Entrada_Campo
                     throw new Exception("El Monto Total no puede Exceder el Monto Maximo de Reintegro  ");
                 }
 
+                button1.Visible = true;
+
                 bool Ya_Ingreso = entradaCampoService.Persona_Ya_Ingresada(DNI, System.DateTime.Now);
                 bool Anular_Ingreso = false;
                 if (Ya_Ingreso && esReintegro ==false)
@@ -443,13 +445,16 @@ namespace SOCIOS.Entrada_Campo
 
                 if (Anular_Ingreso == false)
                 {
-                    DialogResult dr = MessageBox.Show("Ingreso Exitoso del Ticket Nro :  "+ ID_INT.ToString() + "  , imprimir Cupon ", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult dr = MessageBox.Show("Ingreso Exitoso del Ticket Nro :  "+ ID_INT.ToString() + "  , Presione el Boton  de  imprimir Cupon! ", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
                     if (dr == DialogResult.OK)
                     {
-                        this.Imprimir();
+                        this.Imprimir_Directo();
                         this.Close();
+                      
+                     
+
                     }
                 }
                 else
@@ -544,22 +549,35 @@ namespace SOCIOS.Entrada_Campo
             
             
             this.Imprimir();
+            this.Close();
         }
 
         private void Imprimir()
 
         {
             int ID = entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false);
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa,ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false);
-            this.Imprimir_Pileta();
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false,false);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa,ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false,false);
+            this.Imprimir_Pileta(false);
+
+        }
+
+
+        private void Imprimir_Directo()
+        {
+            int ID = entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, true);
+            
+           entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, true);
+           this.Imprimir_Pileta(true);
+            
 
         }
 
 
 
 
-        private void Imprimir_Pileta()
+        private void Imprimir_Pileta(bool Directo)
 
         { 
             int CantidadPiletas = Invitado_Pileta + Socio_Pileta + Intercirculo_Pileta;
@@ -567,7 +585,7 @@ namespace SOCIOS.Entrada_Campo
 
             for (int I = 0; I < CantidadPiletas; I++)
             {
-               entradaCampoService.Imprimir_Pileta(DNI + "-" + APELLIDO + "," + NOMBRE, "Pileta " + (I + 1).ToString() + " de " + CantidadPiletas.ToString());
+               entradaCampoService.Imprimir_Pileta(DNI + "-" + APELLIDO + "," + NOMBRE, "Pileta " + (I + 1).ToString() + " de " + CantidadPiletas.ToString(),Directo);
             }
         
         }
@@ -641,6 +659,12 @@ namespace SOCIOS.Entrada_Campo
                     
                    
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Imprimir_Directo();
+            this.Close();
         }
     }
 }

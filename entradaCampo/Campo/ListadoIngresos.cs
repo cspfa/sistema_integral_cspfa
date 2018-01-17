@@ -198,7 +198,7 @@ namespace SOCIOS.Entrada_Campo
                 if (ID==0)
                     ID = Int32.Parse(dgvIngresos.SelectedRows[0].Cells[0].Value.ToString());
 
-                es.Imprimir(ID);
+                es.Imprimir(ID,false);
 
                 MessageBox.Show("Re-Impreso con Exito");
                     this.Filtrar();

@@ -209,7 +209,7 @@ namespace SOCIOS
         }
 
 
-        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pDiscaAcom, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales)
+        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pDiscaAcom, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales,bool ImpresionDirecta)
 
         {
 
@@ -267,41 +267,49 @@ namespace SOCIOS
              Dato2 = pDato2;
              PrintDialog pd = new PrintDialog(); 
              PrintDocument pdoc = new PrintDocument();
-             PaperSize psize = new PaperSize();
+
+             if (ImpresionDirecta)
+                pdoc.PrintController = new System.Drawing.Printing.StandardPrintController();
+             
+            PaperSize psize = new PaperSize();
+             
              pd.Document = pdoc;
              pd.Document.DefaultPageSettings.PaperSize = psize;
-            
+
+          
+
             if (!Totales_reintegro)
                 pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
              else
                  pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print_Reintegro);
             
-            DialogResult result = pd.ShowDialog();
+            //DialogResult result = pd.ShowDialog();
 
 
-            if (result == DialogResult.OK)
-            {
+            //if (result == DialogResult.OK)
+            //{
                 pdoc.Print();
                 Titulo = Config.getValor(VGlobales.vp_role, "TICKET", 0);
-            }
+            //}
 
          
         
         }
 
-        public void Imprimir(int ID)
+        public void Imprimir(int ID,bool Directo)
 
         {
             EntradaCampo ec = this.getRegistroEntradaCampo(ID);
 
-            this.Imprimir(ec.SOCIO, ec.SOCIO_PILETA, ec.SOCIO_ESTACIONAMIENTO, ec.INVITADO, ec.INVITADO_PILETA, ec.INVITADO_ESTACIONAMIENTO, ec.INTERCIRCULO, ec.INTERCIRCULO_PILETA, ec.INTERCIRCULO_ESTACIONAMIENTO, ec.MENOR, ec.DISCAPACITADO, ec.DISCAPACITADO_ACOM, ec.ID, ec.DNI + "-" + ec.APELLIDO + "," + ec.NOMBRE, ec.Tipo, false, false, false,"",ec.EVENTO,false);
+            
+            this.Imprimir(ec.SOCIO, ec.SOCIO_PILETA, ec.SOCIO_ESTACIONAMIENTO, ec.INVITADO, ec.INVITADO_PILETA, ec.INVITADO_ESTACIONAMIENTO, ec.INTERCIRCULO, ec.INTERCIRCULO_PILETA, ec.INTERCIRCULO_ESTACIONAMIENTO, ec.MENOR, ec.DISCAPACITADO, ec.DISCAPACITADO_ACOM, ec.ID, ec.DNI + "-" + ec.APELLIDO + "," + ec.NOMBRE, ec.Tipo, false, false, false,"",ec.EVENTO,false,Directo);
 
         }
 
 
 
 
-        public void Imprimir_Pileta(string pDatosSocio,string pLeyenda)
+        public void Imprimir_Pileta(string pDatosSocio,string pLeyenda,bool ImpresionDirecta)
         {
 
             
@@ -311,6 +319,10 @@ namespace SOCIOS
         
             PrintDialog pd = new PrintDialog();
             PrintDocument pdoc = new PrintDocument();
+            
+            if (ImpresionDirecta)
+               pdoc.PrintController = new System.Drawing.Printing.StandardPrintController();
+
             PaperSize psize = new PaperSize();
             pd.Document = pdoc;
             pd.Document.DefaultPageSettings.PaperSize = psize;
@@ -323,13 +335,13 @@ namespace SOCIOS
             pdoc.PrintPage += new PrintPageEventHandler(pPileta_Print);
            
 
-            DialogResult result = pd.ShowDialog();
+            //DialogResult result = pd.ShowDialog();
 
 
-            if (result == DialogResult.OK)
-            {
+            //if (result == DialogResult.OK)
+            //{
                 pdoc.Print();
-            }
+            //}
 
 
 
@@ -360,7 +372,7 @@ namespace SOCIOS
             LeyendaTotales = "TOTALES DE " + lista.OrderBy(x => x.ID).FirstOrDefault().ID.ToString() + " A " + lista.OrderByDescending(x => x.ID).FirstOrDefault().ID.ToString(); 
 
 
-            this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom,0, LeyendaTotales , System.DateTime.Now.ToString(), false,false,true,User,Evento,true);
+            this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom,0, LeyendaTotales , System.DateTime.Now.ToString(), false,false,true,User,Evento,true,false);
 
         
         }
@@ -392,7 +404,7 @@ namespace SOCIOS
             {
                 LeyendaTotales = "TOTALES REINT " + lista.OrderBy(x => x.ID).FirstOrDefault().ID.ToString() + " A " + lista.OrderByDescending(x => x.ID).FirstOrDefault().ID.ToString(); 
 
-                this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom, 0, LeyendaTotales, System.DateTime.Now.ToString(), false, true, true,"",Evento,false);
+                this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom, 0, LeyendaTotales, System.DateTime.Now.ToString(), false, true, true,"",Evento,false,false);
             }
 
 
