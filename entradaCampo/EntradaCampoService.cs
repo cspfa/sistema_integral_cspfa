@@ -383,11 +383,11 @@ namespace SOCIOS
 
             lista = lista.Where(x => x.MONTO_TOTAL < 0).ToList();
 
-            int Socio = lista.Sum(x => x.SOCIO);
+            int Socio = lista.Sum(x => x.SOCIO) ;
             int Socio_Pileta = lista.Sum(x => x.SOCIO_PILETA);
             int Socio_Estacionamiento = lista.Sum(x => x.SOCIO_ESTACIONAMIENTO);
-            int Invitado = lista.Sum(x => x.INVITADO);
-            int Invitado_Pileta = lista.Sum(x => x.INVITADO_PILETA);
+            int Invitado = lista.Sum(x => x.INVITADO) ;
+            int Invitado_Pileta = lista.Sum(x => x.INVITADO_PILETA) ;
             int Invitado_Estacionamiento = lista.Sum(x => x.INVITADO_ESTACIONAMIENTO);
             int Inter = lista.Sum(x => x.INTERCIRCULO);
             int Inter_Pileta = lista.Sum(x => x.INTERCIRCULO_PILETA);
@@ -396,6 +396,8 @@ namespace SOCIOS
             int Disca = lista.Sum(x => x.DISCAPACITADO);
             int Disca_Acom = lista.Sum(x => x.DISCAPACITADO_ACOM);
             string LeyendaTotales = "";
+
+           
 
 
 
@@ -817,7 +819,7 @@ namespace SOCIOS
 
 
 
-        public void  Reintegrar(int ID)
+        public void  Reintegrar(int ID,string ROL)
         {
 
             List<EntradaCampo> Lista = new List<EntradaCampo>();
@@ -827,7 +829,7 @@ namespace SOCIOS
                                       MONTO_INVITADO_PIL,INVITADO_EST, MONTO_INVITADO_EST, SOCIO, MONTO_SOCIO, SOCIO_PILETA, MONTO_SOCIO_PIL,
                                       SOCIO_EST, MONTO_SOCIO_EST, INTER, MONTO_INTER, INTER_PILETA, MONTO_INTER_PILETA, INTER_EST, MONTO_INTER_EST,
                                       CANTIDAD_TOTAL,MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION,
-                                      ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,EVENTO,MONTO_EVENTO FROM  ENTRADA_CAMPO WHERE ID=  " + ID.ToString();
+                                      ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,EVENTO,MONTO_EVENTO FROM  ENTRADA_CAMPO WHERE ID_ROL=  " + ID.ToString() + " and ROL ='"+ROL+"'" ;
 
             
 
@@ -904,7 +906,7 @@ namespace SOCIOS
 
                     
                       int ID_INT = this.Ultimo_ID(VGlobales.vp_role);
-                    dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO, item.MONTO_INVITADO* (-1), item.INVITADO_PILETA, item.MONTO_INVITADO_PILETA * (-1),  item.INVITADO_ESTACIONAMIENTO, item.MONTO_INVITADO_EST * (-1), item.SOCIO, item.MONTO_SOCIO * (-1), item.SOCIO_PILETA, item.MONTO_SOCIO_PILETA * (-1), item.SOCIO_ESTACIONAMIENTO, item.MONTO_SOCIO_EST * (-1), item.INTERCIRCULO, item.MONTO_INTER * (-1),item.INTERCIRCULO_PILETA, item.MONTO_INTERCIRCULO_PILETA * (-1), item.INTERCIRCULO_ESTACIONAMIENTO, item.MONTO_INTERCIRCULO_PILETA * (-1), item.TOTAL, item.MONTO_TOTAL * (-1), System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, item.MENOR , item.DISCAPACITADO, item.DISCAPACITADO_ACOM,item.EVENTO ,item.MONTO_EVENTO * (-1),ID_INT, "BAJA",item.LEGAJO,item.OBS_CUMPLE,0,"","");
+                      dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO * (-1), item.MONTO_INVITADO * (-1), item.INVITADO_PILETA * (-1), item.MONTO_INVITADO_PILETA * (-1), item.INVITADO_ESTACIONAMIENTO * (-1), item.MONTO_INVITADO_EST * (-1), item.SOCIO * (-1), item.MONTO_SOCIO * (-1), item.SOCIO_PILETA * (-1), item.MONTO_SOCIO_PILETA * (-1), item.SOCIO_ESTACIONAMIENTO * (-1), item.MONTO_SOCIO_EST * (-1), item.INTERCIRCULO * (-1), item.MONTO_INTER * (-1), item.INTERCIRCULO_PILETA * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.INTERCIRCULO_ESTACIONAMIENTO * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.TOTAL * (-1), item.MONTO_TOTAL * (-1), System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM, item.EVENTO, item.MONTO_EVENTO * (-1), ID_INT, "BAJA", item.LEGAJO, item.OBS_CUMPLE, 0, "", "");
                   
 
                     Lista.Add(item);
