@@ -414,7 +414,7 @@ namespace SOCIOS.Entrada_Campo
                     throw new Exception("El Monto Total no puede Exceder el Monto Maximo de Reintegro  ");
                 }
 
-                button1.Visible = true;
+            
 
                 bool Ya_Ingreso = entradaCampoService.Persona_Ya_Ingresada(DNI, System.DateTime.Now);
                 bool Anular_Ingreso = false;
