@@ -737,14 +737,23 @@ namespace SOCIOS
 
             if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
             {
-                if (PROVEEDOR != 814 && PROVEEDOR != 1089 && PROVEEDOR != 1073)
-                {
-                    string NUM_FACTURA = tbNumFactura.Text.Trim();
-                    string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "';";
-                    DataRow[] foundRows;
-                    foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+                string NUM_FACTURA = tbNumFactura.Text.Trim();
+                string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "';";
+                DataRow[] foundRows;
+                foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
-                    if (foundRows.Length > 0)
+                if (foundRows.Length > 0)
+                {
+                    RES = true;
+                }
+
+                if (RES == true && (PROVEEDOR == 814 || PROVEEDOR == 1089 || PROVEEDOR == 1073))
+                {
+                    if (MessageBox.Show("¿CONFIRMA CARGAR DOS FACTURAS CON EL NRO " + NUM_FACTURA + "?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        RES = false;
+                    }
+                    else
                     {
                         RES = true;
                     }
@@ -3576,7 +3585,8 @@ namespace SOCIOS
             btnGuardarFactura.Enabled = false;
             int ARTICULOS = dgArticulos.Rows.Count;
             int FACTURAS_HIJAS = dgFacturasHijas.Rows.Count;
-            string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();        
+            string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
+            bool CHECK_P_F = checkProveedorFactura();
 
             if (cbProveedores.SelectedValue == "")
             {
@@ -3596,7 +3606,7 @@ namespace SOCIOS
                 tbImporte.Focus();
                 btnGuardarFactura.Enabled = true;
             }
-            else if (checkProveedorFactura() == true)
+            else if (CHECK_P_F == true)
             {
                 MessageBox.Show("LA FACTURA " + tbNumFactura.Text.Trim() + " YA EXISTE PARA ESTE PROVEEDOR", "ERROR");
                 btnGuardarFactura.Enabled = true;
