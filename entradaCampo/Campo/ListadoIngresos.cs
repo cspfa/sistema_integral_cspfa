@@ -15,6 +15,7 @@ namespace SOCIOS.Entrada_Campo
         bo_Entrada_Campo dlog = new bo_Entrada_Campo();
         EntradaCampoService es = new EntradaCampoService();
         bool filtroRol = false;
+        string ROL;
         public ListadoIngresos()
         {
             InitializeComponent();
@@ -90,11 +91,13 @@ namespace SOCIOS.Entrada_Campo
         private void dgvIngresos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = Int32.Parse(dgvIngresos.SelectedRows[0].Cells[0].Value.ToString());
+            ROL = dgvIngresos.SelectedRows[0].Cells[1].Value.ToString().TrimEnd().TrimStart();
         }
 
         private void dgvIngresos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = Int32.Parse(dgvIngresos.SelectedRows[0].Cells[0].Value.ToString());
+            ROL = dgvIngresos.SelectedRows[0].Cells[1].Value.ToString().TrimEnd().TrimStart();
          
         }
 
@@ -126,7 +129,7 @@ namespace SOCIOS.Entrada_Campo
             {
                 if (MessageBox.Show("Esta Seguro de Reintegrar  el Ingreso? va a generar informacion en el dia que reste en los montos ", "Reintegrar Ingreso ", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    es.Reintegrar(ID);
+                    es.Reintegrar(ID,ROL);
                    
                     MessageBox.Show("Reintegrado con Exito");
                     this.Filtrar();
