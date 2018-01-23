@@ -546,14 +546,14 @@ namespace SOCIOS
 
              if (Disca > 0)
              {
-                 graphics.DrawString(Menor.ToString("00") + txtUtils.CompletarBlancos("-Pil DISC      ", true, 15), courier_big, black, startX, startY + Offset);
+                 graphics.DrawString(Disca.ToString("00") + txtUtils.CompletarBlancos("-Pil DISC      ", true, 15), courier_big, black, startX, startY + Offset);
                  graphics.DrawString(":$0", courier_big, black, startX + 150, startY + Offset);
                  Offset = Offset + 20;
              }
 
              if (DiscAcom > 0)
              {
-                 graphics.DrawString(Menor.ToString("00") + txtUtils.CompletarBlancos("-Vitalicio Oro.", true, 15), courier_big, black, startX, startY + Offset);
+                 graphics.DrawString(DiscAcom.ToString("00") + txtUtils.CompletarBlancos("-Disc.Acom.", true, 15), courier_big, black, startX, startY + Offset);
                  graphics.DrawString(":$0", courier_big, black, startX + 150, startY + Offset);
                  Offset = Offset + 20;
              }
