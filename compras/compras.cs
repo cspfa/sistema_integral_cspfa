@@ -1108,7 +1108,7 @@ namespace SOCIOS
                                 Cursor = Cursors.WaitCursor;
                                 BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
                                 OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
-                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA);
+                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA, "0");
                                 Cursor = Cursors.Default;
                             }
                         }
@@ -3643,11 +3643,12 @@ namespace SOCIOS
                     decimal RETENCION = 0;
                     int DESCUENTO_TOTAL = int.Parse(tbDescuentoTotal.Text);
                     string TIPO_DESCUENTO = cbDescGlobal.SelectedItem.ToString();
+                    string SOL_COMP = tbSolComp.Text.Trim();
 
                     Cursor = Cursors.WaitCursor;
 
                     BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL,
-                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO);
+                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO, SOL_COMP);
 
                     int ID_FACTURA = int.Parse(mid.m("ID", "FACTURAS"));
 
