@@ -98,6 +98,7 @@ namespace SOCIOS
         public string Vcarnet_adh_menor;
         public string Vcarnet_invitado;
         public string Vcarnet_socio_invitado;
+        public string Vcarnet_socio_invitado_vto;
         public string Vcarnet_socio_empleado;
         public string vp_FecTope;
         public string Vcarnet_metro;
@@ -122,6 +123,7 @@ namespace SOCIOS
             Vcarnet_adh_menor = ini.ReadString("CARNET_ADH_MENOR");
             Vcarnet_invitado = ini.ReadString("CARNET_INVITADO");
             Vcarnet_socio_invitado = ini.ReadString("CARNET_SOCIO_INVITADO");
+            Vcarnet_socio_invitado_vto = ini.ReadString("CARNET_SOCIO_INVITADO_VTO");
             Vcarnet_socio_empleado = ini.ReadString("CARNET_SOCIO_EMPLEADO");
             Vcarnet_metro = ini.ReadString("CARNET_METRO");
             Vcarnet_adh_interfuerza = ini.ReadString("CARNET_ADH_INTERFUERZA");

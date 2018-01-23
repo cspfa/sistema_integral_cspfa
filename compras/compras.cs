@@ -737,14 +737,23 @@ namespace SOCIOS
 
             if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
             {
-                if (PROVEEDOR != 814 && PROVEEDOR != 1089 && PROVEEDOR != 1073)
-                {
-                    string NUM_FACTURA = tbNumFactura.Text.Trim();
-                    string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "';";
-                    DataRow[] foundRows;
-                    foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+                string NUM_FACTURA = tbNumFactura.Text.Trim();
+                string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "';";
+                DataRow[] foundRows;
+                foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
-                    if (foundRows.Length > 0)
+                if (foundRows.Length > 0)
+                {
+                    RES = true;
+                }
+
+                if (RES == true && (PROVEEDOR == 814 || PROVEEDOR == 1089 || PROVEEDOR == 1073))
+                {
+                    if (MessageBox.Show("¿CONFIRMA CARGAR DOS FACTURAS CON EL NRO " + NUM_FACTURA + "?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        RES = false;
+                    }
+                    else
                     {
                         RES = true;
                     }
@@ -1099,7 +1108,7 @@ namespace SOCIOS
                                 Cursor = Cursors.WaitCursor;
                                 BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
                                 OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
-                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA);
+                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA, "0");
                                 Cursor = Cursors.Default;
                             }
                         }
@@ -3576,7 +3585,8 @@ namespace SOCIOS
             btnGuardarFactura.Enabled = false;
             int ARTICULOS = dgArticulos.Rows.Count;
             int FACTURAS_HIJAS = dgFacturasHijas.Rows.Count;
-            string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();        
+            string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
+            bool CHECK_P_F = checkProveedorFactura();
 
             if (cbProveedores.SelectedValue == "")
             {
@@ -3596,7 +3606,7 @@ namespace SOCIOS
                 tbImporte.Focus();
                 btnGuardarFactura.Enabled = true;
             }
-            else if (checkProveedorFactura() == true)
+            else if (CHECK_P_F == true)
             {
                 MessageBox.Show("LA FACTURA " + tbNumFactura.Text.Trim() + " YA EXISTE PARA ESTE PROVEEDOR", "ERROR");
                 btnGuardarFactura.Enabled = true;
@@ -3633,11 +3643,12 @@ namespace SOCIOS
                     decimal RETENCION = 0;
                     int DESCUENTO_TOTAL = int.Parse(tbDescuentoTotal.Text);
                     string TIPO_DESCUENTO = cbDescGlobal.SelectedItem.ToString();
+                    string SOL_COMP = tbSolComp.Text.Trim();
 
                     Cursor = Cursors.WaitCursor;
 
                     BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL,
-                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO);
+                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO, SOL_COMP);
 
                     int ID_FACTURA = int.Parse(mid.m("ID", "FACTURAS"));
 
