@@ -29,7 +29,8 @@ namespace SOCIOS
             dpDesde.Text = DateTime.Today.ToShortDateString();
             dpHasta.Text = DateTime.Today.ToShortDateString();
             comboRoles();
-            comboDestinos(cbRoles.SelectedValue.ToString());
+            string ROLE = cbRoles.SelectedValue.ToString().Trim();
+            comboDestinos(ROLE);
             comboAnulado();
         }
 
@@ -106,7 +107,14 @@ namespace SOCIOS
 
         public void comboDestinos(string ROL)
         {
-            string QUERY = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + ROL + "' AND ESTADO = 1 ORDER BY DETALLE ASC;";
+            string QUERY = "";
+            QUERY = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + ROL + "' AND ESTADO = 1 ORDER BY DETALLE ASC;";
+
+            if (ROL.Trim() == "PROSECRETARIA")
+            {
+                QUERY = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + ROL + "' AND ESTADO = 1 AND ID=160 ORDER BY DETALLE ASC;";
+            }
+            
             cbDest.DataSource = null;
             cbDest.Items.Clear();
             cbDest.SelectedItem = 0;
