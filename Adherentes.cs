@@ -2369,8 +2369,6 @@ namespace SOCIOS
 
         private void Generar_Carnet_ODBC()
         { 
-            string vobservac;
-
             if (VGlobales.vp_adh_inp == "A")
             {
                 if (maskedTextbox4.Text == "")
@@ -2392,11 +2390,8 @@ namespace SOCIOS
                     DateTime vvto;
                     string vpaso;
                     string id_empleado = "";
-
                     vfecha = ObtenerFecha(maskedTextbox14.Text);
-
                     Datos_ini ini_carnet = new Datos_ini();
-
                     vvto = vfecha.AddYears(18);
 
                     if (DateTime.Compare(DateTime.Today, vvto) < 0)
@@ -2408,7 +2403,6 @@ namespace SOCIOS
                         MessageBox.Show("EL ADHERENTE CADETE ES MAYOR A 18 AÑOS, NO SE PUEDE EMITIR CARNET");
                         return;
                     }
-
                     if (maskedTextBox2.Text == "17" || maskedTextBox2.Text == "017")
                     {
                         v_coneccion_acces = ini_carnet.Vcarnet_metro;
@@ -2440,11 +2434,9 @@ namespace SOCIOS
 
                     vaux = maskedTextBox11.Text.Trim();
                     vaux = vaux.PadLeft(2, '0');
-
                     vcodigobarra = maskedTextBox3.Text.Trim();
                     vcodigobarra = vcodigobarra.PadLeft(6, '0');
                     vcodigobarra = vcodigobarra + maskedTextBox13.Text.Trim().PadLeft(3, '0') + vaux;
-
                     vcadena = "INSERT INTO IDProjectData (IDCf_altci,IDCBarCodeField1,";
                     vcadena = vcadena + "IDCnro_soc,IDCape_soc,IDCNOM_SOC,IDCnro_doc,IDCTIP_DOC,IDCCRJP1,";
                     vcadena = vcadena + "IDCCRJP2,IDCsbarra,IDCcrjp3,IDCfoto,IDCvto) values ( '" + maskedTextbox4.Text.Substring(2, 2) + "/" + maskedTextbox4.Text.Substring(4, 4) + "', ";
@@ -2465,7 +2457,6 @@ namespace SOCIOS
                     }
 
                     OleDbParameter parImagen = new OleDbParameter("@imagen", OleDbType.LongVarBinary, imageToByteArray(pictureBox1.Image).Length);
-
                     parImagen.Value = imageToByteArray(pictureBox1.Image);
                     OleDbCommand aCommand = new OleDbCommand(vcadena, aConnection);
                     aCommand.Parameters.Add(parImagen);
@@ -2505,13 +2496,11 @@ namespace SOCIOS
 
                     OleDbConnection aConnection = new OleDbConnection(v_provider);
 
-
-                    // NUEVA REGLA DE NEGOCIO AL 16-12-2009
                     if (Socios.v_par == 2)
                     {
                         vp1 = Socios.v_pcrjp1.ToString();
                         vp2 = Socios.v_pcrjp2.ToString();
-                        vp3 = Socios.v_pcrjp3.ToString(); ;
+                        vp3 = Socios.v_pcrjp3.ToString();
                     }
                     else
                     {
@@ -2522,11 +2511,9 @@ namespace SOCIOS
 
                     vaux = maskedTextBox11.Text.Trim();
                     vaux = vaux.PadLeft(2, '0');
-
                     vcodigobarra = maskedTextBox3.Text.Trim();
                     vcodigobarra = vcodigobarra.PadLeft(6, '0');
                     vcodigobarra = vcodigobarra + maskedTextBox13.Text.Trim().PadLeft(3, '0') + vaux;
-
                     vcadena = "INSERT INTO IDProjectData (IDCf_altci,IDCBarCodeField1,";
                     vcadena = vcadena + "IDCnro_soc,IDCape_soc,IDCNOM_SOC,IDCnro_doc,IDCTIP_DOC,IDCCRJP1,";
                     vcadena = vcadena + "IDCCRJP2,IDCsbarra,IDCcrjp3,IDCfoto) values ( '" + maskedTextbox4.Text.Substring(2, 2) + "/" + maskedTextbox4.Text.Substring(4, 4) + "', ";
@@ -2564,12 +2551,8 @@ namespace SOCIOS
                     MessageBox.Show("NO SE PUEDE EMITIR UN CARNET SIN FECHA DE ALTA AL CIRCULO");
                     return;
                 }
-
-                else
-                    if (Convert.ToInt32(maskedTextBox11.Text) > 1)
-                    {
-                        // adh simil cadete hasta 18 años
-                        // VALIDACION DE CADETE SI ES MAYOR A 18 NO SE IMPRIME
+                else if (Convert.ToInt32(maskedTextBox11.Text) > 1)
+                {
                         string v_coneccion_acces;
                         string v_provider;
                         string vcadena;
@@ -2581,16 +2564,18 @@ namespace SOCIOS
                         DateTime vfecha;
                         DateTime vvto;
                         string vpaso;
-
-
+                        string vobservac="";
+                        
                         vfecha = ObtenerFecha(maskedTextbox14.Text);
 
-                        vobservac = listBox1.Items[0].ToString().TrimEnd();
-
+                        if (listBox1.Items.Count > 0) 
+                        {
+                            vobservac = listBox1.Items[0].ToString().TrimEnd();
+                        }
 
                         Datos_ini ini_carnet = new Datos_ini();
-
                         vvto = vfecha.AddYears(18);
+
                         if (DateTime.Compare(DateTime.Today, vvto) < 0)
                         {
                             vpaso = vvto.ToString();
@@ -2600,15 +2585,17 @@ namespace SOCIOS
                             MessageBox.Show("EL INVITADO PARTICIPATIVO CADETE ES MAYOR A 18 AÑOS, NO SE PUEDE EMITIR CARNET");
                             return;
                         }
+
                         v_coneccion_acces = ini_carnet.Vcarnet_invitado;
 
+                        if (Convert.ToInt32(maskedTextBox11.Text) >= 2)
+                        {
+                            v_coneccion_acces = ini_carnet.Vcarnet_socio_invitado_vto;
+                        }
+                        
                         v_provider = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + v_coneccion_acces;
-
                         OleDbConnection aConnection = new OleDbConnection(v_provider);
 
-                        // falta el resto...................
-
-                        // NUEVA REGLA DE NEGOCIO AL 16-12-2009
                         if (Socios.v_par == 2)
                         {
                             vp1 = Socios.v_pcrjp1.ToString();
@@ -2624,11 +2611,9 @@ namespace SOCIOS
 
                         vaux = maskedTextBox11.Text.Trim();
                         vaux = vaux.PadLeft(2, '0');
-
                         vcodigobarra = maskedTextBox3.Text.Trim();
                         vcodigobarra = vcodigobarra.PadLeft(6, '0');
                         vcodigobarra = vcodigobarra + maskedTextBox13.Text.Trim().PadLeft(3, '0') + vaux;
-
 
                         vcadena = "INSERT INTO IDProjectData (IDCf_altci,IDCBarCodeField1,";
                         vcadena = vcadena + "IDCnro_soc,IDCape_soc,IDCNOM_SOC,IDCnro_doc,IDCTIP_DOC,IDCCRJP1,";
@@ -2638,28 +2623,29 @@ namespace SOCIOS
                         vcadena = vcadena + "','" + maskedTextBox9.Text + "'," + "'DNI'" + "," + "'" + vp1 + "','" + vp2 + "','" + vaux;
                         vcadena = vcadena + "','" + vp3 + "',?," + "'" + vpaso + "','" + vobservac + "')";
 
-                        OleDbParameter parImagen = new OleDbParameter("@imagen", OleDbType.LongVarBinary, imageToByteArray(pictureBox1.Image).Length);
+                        if (Convert.ToInt32(maskedTextBox11.Text) >= 2)
+                        {
+                            vcadena = "INSERT INTO IDProjectData (IDCf_altci,IDCBarCodeField1,";
+                            vcadena = vcadena + "IDCnro_soc,IDCape_soc,IDCNOM_SOC,IDCnro_doc,IDCTIP_DOC,IDCCRJP1,";
+                            vcadena = vcadena + "IDCCRJP2,IDCsbarra,IDCcrjp3,IDCfoto,IDCobservaciones, IDCvto1) values ( '" + maskedTextbox4.Text.Substring(2, 2) + "/" + maskedTextbox4.Text.Substring(4, 4) + "', ";
+                            vcadena = vcadena + "'" + "A" + vcodigobarra;
+                            vcadena = vcadena + "','" + maskedTextBox3.Text + "','" + textBox15.Text + "','" + textBox14.Text;
+                            vcadena = vcadena + "','" + maskedTextBox9.Text + "'," + "'DNI'" + "," + "'" + vp1 + "','" + vp2 + "','" + vaux;
+                            vcadena = vcadena + "','" + vp3 + "',?,'" + vobservac + "', '" + vvto.ToShortDateString().Substring(3) + "')";
+                        }
 
+                        OleDbParameter parImagen = new OleDbParameter("@imagen", OleDbType.LongVarBinary, imageToByteArray(pictureBox1.Image).Length);
                         parImagen.Value = imageToByteArray(pictureBox1.Image);
                         OleDbCommand aCommand = new OleDbCommand(vcadena, aConnection);
-
                         aCommand.Parameters.Add(parImagen);
-
                         aConnection.Open();
-
                         aCommand.ExecuteNonQuery();
-
                         aConnection.Close();
-
                         Actualizar_F_Carnet();
-
                         MessageBox.Show("CARNET LISTO PARA IMPRIMIR.");
-
-
                     }
                     else
                     {
-
                         string v_coneccion_acces;
                         string v_provider;
                         string vcadena;
@@ -2668,15 +2654,12 @@ namespace SOCIOS
                         string vp1 = "";
                         string vp2 = "";
                         string vp3 = "";
-
                         Datos_ini ini_carnet = new Datos_ini();
                         v_coneccion_acces = ini_carnet.Vcarnet_invitado;
                         v_provider = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + v_coneccion_acces;
 
                         OleDbConnection aConnection = new OleDbConnection(v_provider);
 
-
-                        // NUEVA REGLA DE NEGOCIO AL 16-12-2009
                         if (Socios.v_par == 2)
                         {
                             vp1 = Socios.v_pcrjp1.ToString();
@@ -2692,12 +2675,9 @@ namespace SOCIOS
 
                         vaux = maskedTextBox11.Text.Trim();
                         vaux = vaux.PadLeft(2, '0');
-
                         vcodigobarra = maskedTextBox3.Text.Trim();
                         vcodigobarra = vcodigobarra.PadLeft(6, '0');
                         vcodigobarra = vcodigobarra + maskedTextBox13.Text.Trim().PadLeft(3, '0') + vaux;
-
-
                         vcadena = "INSERT INTO IDProjectData (IDCf_altci,IDCBarCodeField1,";
                         vcadena = vcadena + "IDCnro_soc,IDCape_soc,IDCNOM_SOC,IDCnro_doc,IDCTIP_DOC,IDCCRJP1,";
                         vcadena = vcadena + "IDCCRJP2,IDCsbarra,IDCcrjp3,IDCfoto) values ( '" + maskedTextbox4.Text.Substring(2, 2) + "/" + maskedTextbox4.Text.Substring(4, 4) + "', ";
@@ -2707,33 +2687,17 @@ namespace SOCIOS
                         vcadena = vcadena + "','" + vp3 +  "',?)";
 
                         OleDbParameter parImagen = new OleDbParameter("@imagen", OleDbType.LongVarBinary, imageToByteArray(pictureBox1.Image).Length);
-
                         parImagen.Value = imageToByteArray(pictureBox1.Image);
                         OleDbCommand aCommand = new OleDbCommand(vcadena, aConnection);
-
                         aCommand.Parameters.Add(parImagen);
-
                         aConnection.Open();
-
                         aCommand.ExecuteNonQuery();
-
                         aConnection.Close();
-
-
                         Actualizar_F_Carnet();
-
                         MessageBox.Show("CARNET LISTO PARA IMPRIMIR.");
-
                     }
-
-
-
             }
-        
         }
-        // Modificado SEbastian 17-02-2016 >
-
-
 
         private void Actualizar_F_Carnet()
         {
