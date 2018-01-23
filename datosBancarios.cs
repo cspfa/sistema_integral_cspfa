@@ -268,7 +268,7 @@ namespace SOCIOS
                     }
 
                     bo dlog = new bo();
-                    dlog.altaCbuSocios(IDTITULAR, SECUENCIA, CBU, ALTA, CODIGO, BAJA, TC, BANCO, VENCIMIENTO, ID_ADHERENTE, ID_FAMILIAR, TIPO_TARJETA);
+                    dlog.altaCbuSocios(IDTITULAR, 3, CBU, ALTA, CODIGO, BAJA, TC, BANCO, VENCIMIENTO, ID_ADHERENTE, ID_FAMILIAR, TIPO_TARJETA);
                     buscarDatosBancarios(IDTITULAR);
                     limpiarDatosBancarios();
                     MessageBox.Show("DATOS BANCARIOS CARGADOS CORRECTAMENTE", "LISTO!");
