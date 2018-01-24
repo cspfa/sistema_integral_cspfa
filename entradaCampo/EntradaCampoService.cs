@@ -165,6 +165,8 @@ namespace SOCIOS
 
        int Evento = 0;
 
+       string Hora = "";
+
        public string ORIGINAL_DUPLICADO = "";
        
        SOCIOS.descuentos.TXT_Utils txtUtils = new descuentos.TXT_Utils();
@@ -210,7 +212,7 @@ namespace SOCIOS
         }
 
 
-        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pOro, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales,bool ImpresionDirecta)
+        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pOro, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales,bool ImpresionDirecta,string pHora)
 
         {
 
@@ -244,6 +246,7 @@ namespace SOCIOS
              Menor = pMenor;
              Disca = pDisca;
              Oro = pOro;
+             Hora = pHora;
 
              if (Evento > 0 && !Totales)
                  Titulo = "EST. EVENTO " + VGlobales.vp_role.TrimEnd().TrimStart();
@@ -303,7 +306,7 @@ namespace SOCIOS
             EntradaCampo ec = this.getRegistroEntradaCampo(ID);
 
             
-            this.Imprimir(ec.SOCIO, ec.SOCIO_PILETA, ec.SOCIO_ESTACIONAMIENTO, ec.INVITADO, ec.INVITADO_PILETA, ec.INVITADO_ESTACIONAMIENTO, ec.INTERCIRCULO, ec.INTERCIRCULO_PILETA, ec.INTERCIRCULO_ESTACIONAMIENTO, ec.MENOR, ec.DISCAPACITADO, ec.DISCAPACITADO_ACOM, ec.ID, ec.DNI + "-" + ec.APELLIDO + "," + ec.NOMBRE, ec.Tipo, false, false, false,"",ec.EVENTO,false,Directo);
+            this.Imprimir(ec.SOCIO, ec.SOCIO_PILETA, ec.SOCIO_ESTACIONAMIENTO, ec.INVITADO, ec.INVITADO_PILETA, ec.INVITADO_ESTACIONAMIENTO, ec.INTERCIRCULO, ec.INTERCIRCULO_PILETA, ec.INTERCIRCULO_ESTACIONAMIENTO, ec.MENOR, ec.DISCAPACITADO, ec.DISCAPACITADO_ACOM, ec.ID, ec.DNI + "-" + ec.APELLIDO + "," + ec.NOMBRE, ec.Tipo, false, false, false,"",ec.EVENTO,false,Directo,ec.HORA);
 
         }
 
@@ -373,7 +376,7 @@ namespace SOCIOS
             LeyendaTotales = "TOTALES DE " + lista.OrderBy(x => x.ID).FirstOrDefault().ID.ToString() + " A " + lista.OrderByDescending(x => x.ID).FirstOrDefault().ID.ToString(); 
 
 
-            this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom,0, LeyendaTotales , System.DateTime.Now.ToString(), false,false,true,User,Evento,true,false);
+            this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom,0, LeyendaTotales , System.DateTime.Now.ToString(), false,false,true,User,Evento,true,false,"");
 
         
         }
@@ -407,7 +410,7 @@ namespace SOCIOS
             {
                 LeyendaTotales = "TOTALES REINT " + lista.OrderBy(x => x.ID).FirstOrDefault().ID.ToString() + " A " + lista.OrderByDescending(x => x.ID).FirstOrDefault().ID.ToString(); 
 
-                this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom, 0, LeyendaTotales, System.DateTime.Now.ToString(), false, true, true,"",Evento,false,false);
+                this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom, 0, LeyendaTotales, System.DateTime.Now.ToString(), false, true, true,"",Evento,false,false,"");
             }
 
 
@@ -432,7 +435,14 @@ namespace SOCIOS
             string TOTAL = "";
 
             DateTime hoy = System.DateTime.Now;
-            graphics.DrawString(hoy.Day.ToString() + "-" + hoy.Month.ToString() + "-" + hoy.Year.ToString() + "-" + hoy.Hour.ToString()+":"+ hoy.Minute.ToString() + ORIGINAL_DUPLICADO, courier_big, black, startX, startY + Offset);
+            string Horalocal =  hoy.Hour.ToString() + ":" + hoy.Minute.ToString();
+
+            if (Hora != null)
+            {  if (Hora.Length ==0)
+                  Hora = Horalocal;
+
+            }
+            graphics.DrawString(hoy.Day.ToString() + "-" + hoy.Month.ToString() + "-" + hoy.Year.ToString() + "-" + Hora + ORIGINAL_DUPLICADO, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
 
             graphics.DrawString(Titulo, courier_big, black, startX, startY + Offset);
@@ -599,7 +609,8 @@ namespace SOCIOS
             string TOTAL = "";
 
             DateTime hoy = System.DateTime.Now;
-            graphics.DrawString(hoy.Day.ToString() + "-" + hoy.Month.ToString() + "-" + hoy.Year.ToString(), courier_big, black, startX, startY + Offset);
+            string Hora = hoy.Hour.ToString() + ":" + hoy.Minute.ToString();
+            graphics.DrawString(hoy.Day.ToString() + "-" + hoy.Month.ToString() + "-" + hoy.Year.ToString() + "-" + Hora, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
 
             graphics.DrawString(Titulo, courier_big, black, startX, startY + Offset);
@@ -933,7 +944,7 @@ namespace SOCIOS
 
             string QUERY = @"SELECT   ID_ROL,DNI,NOMBRE,APELLIDO, NRO_SOC, NRO_DEP,TIPO,INVITADO, MONTO_INVITADO, INVITADO_PILETA, MONTO_INVITADO_PIL,INVITADO_EST, MONTO_INVITADO_EST,
            SOCIO, MONTO_SOCIO, SOCIO_PILETA, MONTO_SOCIO_PIL, SOCIO_EST, MONTO_SOCIO_EST, INTER, MONTO_INTER, INTER_PILETA, MONTO_INTER_PILETA, INTER_EST, MONTO_INTER_EST, CANTIDAD_TOTAL,
-            MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION, ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,EVENTO,MONTO_EVENTO FROM  ENTRADA_CAMPO WHERE ID_ROL =" +ID.ToString() + " AND ROL ='" + VGlobales.vp_role + "'";
+            MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION, ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,EVENTO,MONTO_EVENTO,HORA FROM  ENTRADA_CAMPO WHERE ID_ROL =" +ID.ToString() + " AND ROL ='" + VGlobales.vp_role + "'";
 
             //AND ROL = '" + VGlobales.vp_role + "'";
 
@@ -988,6 +999,10 @@ namespace SOCIOS
                     item.DISCAPACITADO_ACOM = Int32.Parse(foundRows[0][38].ToString().Trim());
                     item.LEGAJO = Int32.Parse(foundRows[0][39].ToString().Trim());
                     item.OBS_CUMPLE = foundRows[0][40].ToString().Trim();
+                    if (foundRows[0][43].ToString().Length > 0)
+                        item.HORA = foundRows[0][43].ToString();
+                    else
+                        item.HORA = "";
                     if (foundRows[0][32].ToString().Trim().Length > 1) ;
                     {
                         try
