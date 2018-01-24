@@ -435,7 +435,7 @@
             this.gpSinCargo.Size = new System.Drawing.Size(416, 47);
             this.gpSinCargo.TabIndex = 7;
             this.gpSinCargo.TabStop = false;
-            this.gpSinCargo.Text = "SIN CARGO";
+            this.gpSinCargo.Text = "PILETAS SIN CARGO";
             // 
             // lnkDiscaAcom
             // 

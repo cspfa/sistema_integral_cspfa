@@ -186,7 +186,7 @@ namespace SOCIOS
 
         }
 
-        public void Entrada_Campo_Ins(string DNI, string NOMBRE, string APELLIDO, int NRO_SOCIO, int NRO_DEP, string TIPO, int INVITADO, decimal INVITADO_MONTO, int INVITADO_PILETA, decimal INVITADO_PILETA_MONTO, int INVITADO_EST, decimal INVITADO_EST_MONTO, int SOCIO, decimal SOCIO_MONTO, int SOCIO_PILETA, decimal SOCIO_PILETA_MONTO, int SOCIO_EST, decimal SOCIO_EST_MONTO, int INT, decimal INT_MONTO, int INT_PILETA, decimal INT_PILETA_MONTO, int INT_EST, decimal INT_EST_MONTO, int CANTIDAD, decimal MONTO_TOTAL, DateTime FECHA, string ROL, string USUARIO, int MENOR, int DISCA, int DISCA_ACOM,int EVENTO,decimal MONTO_EVENTO, int ID_ROL, string TIPO_REG,int Legajo,string OBS_CUMPLE,int EXPORTADO,string USUARIO_I,string ROL_I)
+        public void Entrada_Campo_Ins(string DNI, string NOMBRE, string APELLIDO, int NRO_SOCIO, int NRO_DEP, string TIPO, int INVITADO, decimal INVITADO_MONTO, int INVITADO_PILETA, decimal INVITADO_PILETA_MONTO, int INVITADO_EST, decimal INVITADO_EST_MONTO, int SOCIO, decimal SOCIO_MONTO, int SOCIO_PILETA, decimal SOCIO_PILETA_MONTO, int SOCIO_EST, decimal SOCIO_EST_MONTO, int INT, decimal INT_MONTO, int INT_PILETA, decimal INT_PILETA_MONTO, int INT_EST, decimal INT_EST_MONTO, int CANTIDAD, decimal MONTO_TOTAL, DateTime FECHA, string ROL, string USUARIO, int MENOR, int DISCA, int DISCA_ACOM,int EVENTO,decimal MONTO_EVENTO, int ID_ROL, string TIPO_REG,int Legajo,string OBS_CUMPLE,int EXPORTADO,string USUARIO_I,string ROL_I,string HORA)
         {
             db resultado = new db();
             ArrayList vector_contenidos = new ArrayList();
@@ -314,7 +314,7 @@ namespace SOCIOS
 
 
             vector_contenidos.Add(FECHA);
-            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Datetime");
             vector_nombres.Add("@FECHA");
 
             vector_contenidos.Add(ROL);
@@ -376,7 +376,10 @@ namespace SOCIOS
             vector_contenidos.Add(MONTO_EVENTO);
             vector_nombres.Add("@MONTO_EVENTO");
             vector_tipos.Add("FbDbType.Float");
-         
+
+            vector_contenidos.Add(HORA);
+            vector_nombres.Add("@HORA");
+            vector_tipos.Add("FbDbType.VarChar");
 
             string vprocedure = "P_ENTRADA_CAMPO_I";
 

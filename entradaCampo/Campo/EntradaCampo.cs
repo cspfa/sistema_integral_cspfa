@@ -49,7 +49,7 @@ namespace SOCIOS.Entrada_Campo
 
         int Menor = 0;
         int Discapacitado = 0;
-        int Discapacitado_Acompa = 0;
+        int Oro = 0;
         bool ModoInvitado=false;
         bool ModoIntercirculo = false;
         bool esReintegro = false;
@@ -352,8 +352,8 @@ namespace SOCIOS.Entrada_Campo
 
                 Menor = lista.Where(x => x.TipoValor == 10).Count();
                 Discapacitado = lista.Where(x => x.TipoValor == 11).Count();
-                Discapacitado_Acompa = lista.Where(x => x.TipoValor == 12).Count();
-
+                Oro = lista.Where(x => x.TipoValor == 12).Count();
+               
                 if (esReintegro)
                 {
                     Socio = Socio * (-1);
@@ -370,7 +370,7 @@ namespace SOCIOS.Entrada_Campo
 
                     Menor = Menor * (-1);
                     Discapacitado = Discapacitado * (-1);
-                    Discapacitado_Acompa = Discapacitado_Acompa * (-1);
+                    Oro  = Oro * (-1);
 
                 }
 
@@ -434,11 +434,13 @@ namespace SOCIOS.Entrada_Campo
 
                 }
 
+                string Hora = System.DateTime.Now.Hour.ToString() +":" + System.DateTime.Now.Minute.ToString(); 
+
 
                 int ID_INT = entradaCampoService.Ultimo_ID(VGlobales.vp_role);
                
-
-                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Discapacitado_Acompa,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","");
+                
+                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Oro,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","",Hora);
 
                 
                 MostrarControles(false,esReintegro,IngresoManual);
@@ -556,8 +558,8 @@ namespace SOCIOS.Entrada_Campo
 
         {
             int ID = entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false,false);
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa,ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false,false);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false,false);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro,ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false,false);
             this.Imprimir_Pileta(false);
 
         }
@@ -566,9 +568,9 @@ namespace SOCIOS.Entrada_Campo
         private void Imprimir_Directo()
         {
             int ID = entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, true);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, true);
             
-           entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, true);
+           entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, true);
            this.Imprimir_Pileta(true);
             
 
@@ -580,7 +582,7 @@ namespace SOCIOS.Entrada_Campo
         private void Imprimir_Pileta(bool Directo)
 
         { 
-            int CantidadPiletas = Invitado_Pileta + Socio_Pileta + Intercirculo_Pileta;
+            int CantidadPiletas = Invitado_Pileta + Socio_Pileta + Intercirculo_Pileta + Menor + Discapacitado + Oro;
 
 
             for (int I = 0; I < CantidadPiletas; I++)

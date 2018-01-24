@@ -488,9 +488,9 @@ namespace SOCIOS.Entrada_Campo.CSPFA
 
 
                 int ID_INT = entradaCampoService.Ultimo_ID(VGlobales.vp_role);
-               
 
-                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Discapacitado_Acompa,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","");
+                string Hora = System.DateTime.Now.Hour.ToString() + ":" + System.DateTime.Now.Minute.ToString(); 
+                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Discapacitado_Acompa,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","",Hora);
 
                 
                 MostrarControles(false,esReintegro);

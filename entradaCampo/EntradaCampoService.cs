@@ -81,6 +81,7 @@ namespace SOCIOS
         public int      ID_REAL                       { get; set; }
         public int      EVENTO                        { get; set; }
         public decimal  MONTO_EVENTO                  { get; set; }
+        public string   HORA                          { get; set; }
 
     }
 
@@ -160,7 +161,7 @@ namespace SOCIOS
 
        int Menor = 0;
        int Disca = 0;
-       int DiscAcom = 0;
+       int Oro = 0;
 
        int Evento = 0;
 
@@ -209,7 +210,7 @@ namespace SOCIOS
         }
 
 
-        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pDiscaAcom, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales,bool ImpresionDirecta)
+        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pOro, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales,bool ImpresionDirecta)
 
         {
 
@@ -242,7 +243,7 @@ namespace SOCIOS
 
              Menor = pMenor;
              Disca = pDisca;
-             DiscAcom = pDiscaAcom;
+             Oro = pOro;
 
              if (Evento > 0 && !Totales)
                  Titulo = "EST. EVENTO " + VGlobales.vp_role.TrimEnd().TrimStart();
@@ -431,7 +432,7 @@ namespace SOCIOS
             string TOTAL = "";
 
             DateTime hoy = System.DateTime.Now;
-            graphics.DrawString(hoy.Day.ToString() + "-" + hoy.Month.ToString() + "-" + hoy.Year.ToString() + ORIGINAL_DUPLICADO, courier_big, black, startX, startY + Offset);
+            graphics.DrawString(hoy.Day.ToString() + "-" + hoy.Month.ToString() + "-" + hoy.Year.ToString() + "-" + hoy.Hour.ToString()+":"+ hoy.Minute.ToString() + ORIGINAL_DUPLICADO, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
 
             graphics.DrawString(Titulo, courier_big, black, startX, startY + Offset);
@@ -551,9 +552,9 @@ namespace SOCIOS
                  Offset = Offset + 20;
              }
 
-             if (DiscAcom > 0)
+             if (Oro > 0)
              {
-                 graphics.DrawString(DiscAcom.ToString("00") + txtUtils.CompletarBlancos("-Disc.Acom.", true, 15), courier_big, black, startX, startY + Offset);
+                 graphics.DrawString(Oro.ToString("00") + txtUtils.CompletarBlancos("-Pil Vit.Oro", true, 15), courier_big, black, startX, startY + Offset);
                  graphics.DrawString(":$0", courier_big, black, startX + 150, startY + Offset);
                  Offset = Offset + 20;
              }
@@ -572,7 +573,10 @@ namespace SOCIOS
             Offset = Offset + 40;
             
             graphics.DrawString(".", courier_med, black, startX, startY + Offset);
+            Offset = Offset + 10;
+            graphics.DrawString("LOS REINTEGROS SE EFECTUAN", courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
+            graphics.DrawString("DENTRO DE LAS  2 HS", courier_big, black, startX, startY + Offset);
 
 
         }
@@ -607,7 +611,11 @@ namespace SOCIOS
             Offset = Offset + 20;
 
             graphics.DrawString(Dato2, courier_big, black, startX, startY + Offset);
+          
             Offset = Offset + 20;
+            graphics.DrawString("LOS REINTEGROS SE EFECTUAN", courier_big, black, startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("DENTRO DE LAS 2 HS", courier_big, black, startX, startY + Offset);
 
 
 
@@ -756,7 +764,7 @@ namespace SOCIOS
                 Offset = Offset + 20;
             }
 
-            if (DiscAcom != 0)
+            if (Oro != 0)
             {
                 graphics.DrawString(Menor.ToString("00") + txtUtils.CompletarBlancos("-R.Vitalicio ORO.", true, 15), courier_big, black, startX, startY + Offset);
                 graphics.DrawString(":$0", courier_big, black, startX + 150, startY + Offset);
@@ -906,7 +914,9 @@ namespace SOCIOS
 
                     
                       int ID_INT = this.Ultimo_ID(VGlobales.vp_role);
-                      dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO * (-1), item.MONTO_INVITADO * (-1), item.INVITADO_PILETA * (-1), item.MONTO_INVITADO_PILETA * (-1), item.INVITADO_ESTACIONAMIENTO * (-1), item.MONTO_INVITADO_EST * (-1), item.SOCIO * (-1), item.MONTO_SOCIO * (-1), item.SOCIO_PILETA * (-1), item.MONTO_SOCIO_PILETA * (-1), item.SOCIO_ESTACIONAMIENTO * (-1), item.MONTO_SOCIO_EST * (-1), item.INTERCIRCULO * (-1), item.MONTO_INTER * (-1), item.INTERCIRCULO_PILETA * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.INTERCIRCULO_ESTACIONAMIENTO * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.TOTAL * (-1), item.MONTO_TOTAL * (-1), System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM, item.EVENTO, item.MONTO_EVENTO * (-1), ID_INT, "BAJA", item.LEGAJO, item.OBS_CUMPLE, 0, "", "");
+                      string Hora = System.DateTime.Now.Hour.ToString() + ":" + System.DateTime.Now.Minute.ToString(); 
+
+                      dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO * (-1), item.MONTO_INVITADO * (-1), item.INVITADO_PILETA * (-1), item.MONTO_INVITADO_PILETA * (-1), item.INVITADO_ESTACIONAMIENTO * (-1), item.MONTO_INVITADO_EST * (-1), item.SOCIO * (-1), item.MONTO_SOCIO * (-1), item.SOCIO_PILETA * (-1), item.MONTO_SOCIO_PILETA * (-1), item.SOCIO_ESTACIONAMIENTO * (-1), item.MONTO_SOCIO_EST * (-1), item.INTERCIRCULO * (-1), item.MONTO_INTER * (-1), item.INTERCIRCULO_PILETA * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.INTERCIRCULO_ESTACIONAMIENTO * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.TOTAL * (-1), item.MONTO_TOTAL * (-1), System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM, item.EVENTO, item.MONTO_EVENTO * (-1), ID_INT, "BAJA", item.LEGAJO, item.OBS_CUMPLE, 0, "", "",Hora);
                   
 
                     Lista.Add(item);
@@ -1025,7 +1035,7 @@ namespace SOCIOS
 
             string QUERY = @"SELECT   ID_ROL,DNI,NOMBRE,APELLIDO, NRO_SOC, NRO_DEP,TIPO,INVITADO, MONTO_INVITADO, INVITADO_PILETA, MONTO_INVITADO_PIL,INVITADO_EST, MONTO_INVITADO_EST,
   SOCIO, MONTO_SOCIO, SOCIO_PILETA, MONTO_SOCIO_PIL, SOCIO_EST, MONTO_SOCIO_EST, INTER, MONTO_INTER, INTER_PILETA, MONTO_INTER_PILETA, INTER_EST, MONTO_INTER_EST, CANTIDAD_TOTAL,
-  MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION, ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,ID,EVENTO,MONTO_EVENTO FROM  ENTRADA_CAMPO WHERE 1=1";
+  MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION, ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,ID,EVENTO,MONTO_EVENTO,HORA FROM  ENTRADA_CAMPO WHERE 1=1";
   
    //AND ROL = '" + VGlobales.vp_role + "'";
 
@@ -1103,6 +1113,11 @@ namespace SOCIOS
                 // item.Tipo                          = foundRows[I][41].ToString().Trim();
                 item.EVENTO = Int32.Parse(foundRows[I][42].ToString().Trim());
                 item.MONTO_EVENTO = Decimal.Parse(foundRows[I][43].ToString().Trim());
+                if (foundRows[I][43].ToString().Length > 0)
+                    item.HORA = foundRows[I][43].ToString().TrimEnd().TrimStart();
+                else
+                    item.HORA = "";
+
                     
                     if (foundRows[I][32].ToString().Trim().Length >1 );
                 {

@@ -149,7 +149,8 @@ namespace SOCIOS.entradaCampo.Campo
                         if (tbLegajoNroSocio.Text.Length > 0)
                             NRO_SOCIO = Int32.Parse(tbLegajoNroSocio.Text);
                     }
-                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, Cantidad, MontoTotal, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, 0, 0, 0, Cantidad, MontoTotal, ID_INT, Tipo_reg, 0, "INGRESO EVENTO DEPORTIVO", 0, "", "");
+                    string Hora = System.DateTime.Now.Hour.ToString() + ":" + System.DateTime.Now.Minute.ToString(); 
+                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, Cantidad, MontoTotal, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, 0, 0, 0, Cantidad, MontoTotal, ID_INT, Tipo_reg, 0, "INGRESO EVENTO DEPORTIVO", 0, "", "",Hora);
 
 
 
