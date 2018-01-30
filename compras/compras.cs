@@ -3768,8 +3768,9 @@ namespace SOCIOS
                 string TIPO_ARCHIVO = "";
                 int REGIMEN = 0;
                 int DESCUENTO = int.Parse(tbDescuentoTotal.Text);
+                string SOL_COMP = tbSolComp.Text.Trim();
 
-                BO_COMPRAS.modificarFactura(ID, PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_MOD, US_MOD, SECTOR, SEC_GRAL, TIPO, DESCUENTO);
+                BO_COMPRAS.modificarFactura(ID, PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_MOD, US_MOD, SECTOR, SEC_GRAL, TIPO, DESCUENTO, SOL_COMP);
 
                 switch (TIPO)
                 {
