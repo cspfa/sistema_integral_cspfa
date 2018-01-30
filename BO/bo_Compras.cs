@@ -380,8 +380,6 @@ namespace SOCIOS.BO
         //STORED GUARDA CHEQUERAS
         public void guardarChequeras(int BANCO, string SERIE, int NRO_CHEQUE, string ESTADO, string TIPO)
         {
-            
-
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(BANCO);
             vector_contenidos.Add(SERIE);

@@ -6011,5 +6011,10 @@ namespace SOCIOS
             BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
             buscarSolicitudesRecibidas();
         }
+
+        private void cbBancos_SizeChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
