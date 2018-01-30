@@ -2061,6 +2061,7 @@ namespace SOCIOS
                 doc.Add(TABLA_EGRESOS);
                 #endregion
 
+
                 #region CAJAS DEPOSITADAS
 
                 if (CAJAS_DEPOSITADAS.Tables[0].Rows.Count > 0)
