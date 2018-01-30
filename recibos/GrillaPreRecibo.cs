@@ -392,7 +392,6 @@ namespace SOCIOS
             VGlobales.vp_Barra = dataGridView1[9, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             VGlobales.vp_CodDto = dataGridView1[10, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
-
             string RB = dataGridView1[17, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
             if (RB == "R")

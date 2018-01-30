@@ -102,14 +102,20 @@ namespace SOCIOS
             if (REINTEGRO == "NO")
             {
                 numero_de_recibo = NUMERO_DE_RECIBO;
+                comboPtoVta(0);
+                cbPtoVta.Enabled = true;
             }
             else
             {
                 numero_de_recibo = "";
+                lbReciboBono.Text = "REINTEGRO Nº";
+                comboPtoVta(0);
+                cbPtoVta.SelectedValue = "0005";
                 lbReintegro.Visible = true;
                 lbReintegro.Text = "REINTEGRO DE " + VGlobales.PTO_VTA_N + "-" + NUMERO_DE_RECIBO + " - IMPORTE $ " + IMPORTE.ToString();
                 reintegro_de = int.Parse(NUMERO_DE_RECIBO);
                 label5.Text = "REINTEGRO:";
+                lbNroRecibo.Left = 140;
                 label5.Left = 35;
                 cbSinCargo.Enabled = false;
                 cbCuentasDebe.Enabled = false;
@@ -240,12 +246,23 @@ namespace SOCIOS
                 {
                     if (VGlobales.PTO_VTA_N == "0004")
                     {
+                        //RECIBO NUEVO
                         numero_recibo = nr.obtenerNroComprobante("RECIBO", VGlobales.PTO_VTA_N);
                         recibo_id = int.Parse(mid.m("ID", "RECIBOS_CAJA")) + 1;
                         lbNroRecibo.Text = (numero_recibo + 1).ToString();
+                        cbPtoVta.SelectedValue = VGlobales.PTO_VTA_N;
+
+                        if (REINTEGRO == "SI")
+                        {
+                            numero_recibo = nr.obtenerNroComprobante("RECIBO", "0005");
+                            recibo_id = int.Parse(mid.m("ID", "RECIBOS_CAJA")) + 1;
+                            lbNroRecibo.Text = (numero_recibo + 1).ToString();
+                            cbPtoVta.SelectedValue = "0005";
+                        }
                     }
                     else
                     {
+                        //RECIBOS RESERVADOS
                         numero_recibo = nr.obtenerNumeracionReservada(VGlobales.PTO_VTA_N, "RECIBOS_CAJA");
                         recibo_id = nr.obtenerIdReservado(VGlobales.PTO_VTA_N, "RECIBOS_CAJA", numero_recibo);
                         lbDisponibles.Text = "DISPONIBLES - " + comprobantesRestantes("RECIBOS_CAJA", VGlobales.PTO_VTA_N).ToString();
@@ -275,12 +292,23 @@ namespace SOCIOS
                 {
                     if (VGlobales.PTO_VTA_N == "0004")
                     {
+                        //BONO
                         numero_recibo = nr.obtenerNroComprobante("BONO", VGlobales.PTO_VTA_N);
                         recibo_id = int.Parse(mid.m("ID", "BONOS_CAJA")) + 1;
                         lbNroRecibo.Text = (numero_recibo + 1).ToString();
+                        cbPtoVta.SelectedValue = VGlobales.PTO_VTA_N;
+
+                        if (REINTEGRO == "SI")
+                        {
+                            numero_recibo = nr.obtenerNroComprobante("BONO", "0005");
+                            recibo_id = int.Parse(mid.m("ID", "BONOS_CAJA")) + 1;
+                            lbNroRecibo.Text = (numero_recibo + 1).ToString();
+                            cbPtoVta.SelectedValue = "0005";
+                        }
                     }
                     else
                     {
+                        //BONOS RESERVADOS
                         numero_recibo = nr.obtenerNumeracionReservada(VGlobales.PTO_VTA_N, "BONOS_CAJA");
                         recibo_id = nr.obtenerIdReservado(VGlobales.PTO_VTA_N, "BONOS_CAJA", numero_recibo);
                         lbDisponibles.Text = "DISPONIBLES - " + comprobantesRestantes("BONOS_CAJA", VGlobales.PTO_VTA_N).ToString();
@@ -459,6 +487,7 @@ namespace SOCIOS
         {
             bool RET = false;
             string QUERY = "";
+            string PLUS = "";
 
             if (reintegro == "SI")
             {
@@ -480,20 +509,16 @@ namespace SOCIOS
 
                     DataRow[] FOUND = null;
                     FOUND = dlog.BO_EjecutoDataTable(QUERY).Select();
+                    PLUS = FOUND[0][0].ToString();
 
-                    if (FOUND.Length > 0)
+                    if (PLUS  != "")
                     {
-                        string SUMA = FOUND[0][0].ToString();
+                        decimal PLUS_D = decimal.Parse(PLUS);
+                        decimal DISPONIBLE = importe_traido - PLUS_D;
 
-                        if (SUMA != "")
+                        if (IMPORTE > DISPONIBLE)
                         {
-                            decimal SUMA_D = decimal.Parse(SUMA);
-                            decimal DISPONIBLE = importe_traido - SUMA_D;
-
-                            if (IMPORTE > DISPONIBLE)
-                            {
-                                RET = true;
-                            }
+                            RET = true;
                         }
                     }
                 }
@@ -509,6 +534,17 @@ namespace SOCIOS
             decimal IMPORTE = 0;
             int REINTEGRO_DE = 0;
             string BANCO_DEPO = cbBancoDepo.SelectedValue.ToString();
+            string PTO_VTA_N = "";
+
+            if (cbPtoVta.SelectedValue.ToString() == "0005")
+            {
+                PTO_VTA_N = "0005";
+            }
+            else
+            {
+                PTO_VTA_N = VGlobales.PTO_VTA_N;
+            }
+
             
             if (cbDobleDuplicado.Checked == true)
             {
@@ -566,7 +602,6 @@ namespace SOCIOS
                     {
                         string NRO_COMP = (int.Parse(lbNroRecibo.Text)).ToString();
                         int NUM_COMP = int.Parse(lbNroRecibo.Text);
-                        string PTO_VTA_N = VGlobales.PTO_VTA_N;
 
                         if (RECIBO_BONO == "R")
                         {
@@ -604,12 +639,10 @@ namespace SOCIOS
                         int BONO = 0;
                     }
 
-                    string PTO_VTA = VGlobales.PTO_VTA_N;
-
                     if (COMPROBANTE == "RECIBO")
                     {
                         gh.gHTML(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, IMPORTE.ToString(), idprof,
-                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, PTO_VTA, RECIBO_BONO);
+                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, PTO_VTA_N, RECIBO_BONO);
                         printhtml p = new printhtml();
                         p.printHTML("recibo_temp.html");
                     }
@@ -619,7 +652,7 @@ namespace SOCIOS
                         DateTime Hoy = DateTime.Today;
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, 
                             IMPORTE.ToString(), idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, 
-                            NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), reintegro);
+                            NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA_N, Hoy.ToString("dd/MM/yyyy"), reintegro);
                     }
 
                     this.Close();
