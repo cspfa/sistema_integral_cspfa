@@ -17,7 +17,8 @@ namespace SOCIOS.bono
 {
     public partial class BonoHotel : SOCIOS.bono.Bono
     {
-        bo dlog = new bo();
+        bo_Turismo dlog = new bo_Turismo();
+        SOCIOS.BO.bo_interior dlogI = new BO.bo_interior();
         SOCIOS.Turismo.TurismoUtils utilsTurismo = new TurismoUtils();
         SOCIOS.arancel arancelService = new arancel();
         public DatoSocio persona = new DatoSocio();
@@ -29,6 +30,10 @@ namespace SOCIOS.bono
         VoucherUtils vu = new VoucherUtils();
         Hotel_Dias_Utils hotel_Dias_Utils = new Hotel_Dias_Utils();
         string InfoValorHabitacion = "";
+        
+        int CODINT = 0;
+        int SUBCODIGO = 0;
+
         public BonoHotel()
         {
         
@@ -69,6 +74,7 @@ namespace SOCIOS.bono
 
              if (srvDatosSocio.CAB.Telefonos.Length > 0)
                  tbContacto.Text = srvDatosSocio.CAB.Telefonos;
+             CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 0));
 
 
          }
@@ -257,6 +263,11 @@ namespace SOCIOS.bono
             this.TotalizarTipo("-SOCIOS", Socios, arancelSocio, totalSocio);
             this.TotalizarTipo("-INTER", Intercirculo, arancelInter, totalInter);
             this.TotalizarTipo("-INV", Invitado, arancelInvitado, totalInvi);
+
+            if (MenorSocio + MenorInter + MenorInvitado > 0)
+            {
+                InfoValorHabitacion = InfoValorHabitacion + " - MENORES " + (MenorSocio + MenorInter + MenorInvitado);
+            }
 
 
 
@@ -451,14 +462,14 @@ namespace SOCIOS.bono
             int Hotel = Int32.Parse(cbHotel.SelectedValue.ToString());
             int Regimen = Int32.Parse(cbRegimen.SelectedValue.ToString());
             int Habit = Int32.Parse(cbHabitacion.SelectedValue.ToString());
-
+            int ID_ROL = 0;
 
             if (MessageBox.Show("Generar Bono de Estadia en  Hotel: " + cbHotel.Text + "  , Forma de Pago : " + fpago.Text, "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
 
                 decimal Saldo = decimal.Parse(lblSaldoTotal.Text);
 
-                //Parche Pa Probar, en realidad es <> 0
+             
                 if (Saldo != 0)
                 {
 
@@ -471,30 +482,35 @@ namespace SOCIOS.bono
 
 
 
-                        string Nombre = persona.NOMBRE;
-                        string Apellido = persona.APELLIDO;
-                        string Dni = persona.NUM_DOC;
+                        string Nombre = this.srvDatosSocio.CAB.NOMBRE;
+                        string Apellido = this.srvDatosSocio.CAB.APELLIDO;
+                        string Dni = this.srvDatosSocio.CAB.Dni;
                         string fechaNacimiento = this.srvDatosSocio.CAB.FechaNac;
                        
                         string Telefono = this.srvDatosSocio.CAB.Telefonos;
 
                         decimal Pago = decimal.Parse(lblSaldoTotal.Text);
                         string OBS = "";
+                        
                         if (cbHabitacion.Text.ToUpper().Contains("PERSONA"))
                             OBS = tbObs.Text + " - " + lbMenores.Text;
                         else
                             OBS = tbObs.Text;
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO");
                        
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
-                        //VER CODINT
+                       
+                        //Obtener Proximo ID_ROL
+                        ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(),CODINT) + 1;
+
+                        dlog.Seteo_Id_ROL(ID, ID_ROL);
 
 
                         int CodInt = 0;
                         // Grabar Pagos
-                        utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB, Saldo + Recargo,TipoPago);
+                        utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB, Saldo + Recargo,TipoPago,SUBCODIGO);
                         //Grabar Personas 
                         utilsTurismo.GrabarPersonas(ID, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), listaPersonas,"TURISMO");
                                                   
@@ -510,7 +526,7 @@ namespace SOCIOS.bono
                         Seleccion.Enabled = false;
 
                         this.IngresoCaja(ID,Dni,Nombre,Apellido,Int32.Parse(persona.NRO_SOCIO),Int32.Parse(persona.NRO_DEP),Int32.Parse(persona.BARRA),InfoTarjeta);
-
+                        Grabar.Enabled = false;
                         MessageBox.Show("Bono Grabado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
@@ -582,24 +598,32 @@ namespace SOCIOS.bono
 
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0,Saldo + Recargo,Saldo,Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text,Contralor);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO");
 
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "SOC");
                         //VER CODINT
 
 
                         int CodInt = 0;
+                        if (VGlobales.vp_role.Contains("TURISMO"))
+                             CodInt=1001;
+                        else
+                             CodInt = 1008; //Codint De Interior
+
+                        int ID_ROL = vu.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CodInt);
+
+                        dlogI.Seteo_Id_ROL(ID, ID_ROL);
+                        
                         // Grabar Pagos 
                         // HAsta no saber como lo manejamos, todavia no
 
                        // utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB, Saldo);
 
                         //Grabar Personas 
-                        utilsTurismo.GrabarPersonas(ID, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), listaPersonas,"TURISMO");
+                        utilsTurismo.GrabarPersonas(ID, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), listaPersonas,VGlobales.vp_role.TrimEnd().TrimStart());
 
                         //Grabar Voucher si es propio
-
-
+                        
                         vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text, "SOC", MotivoViaje);
                         
                         gpDatos.Visible = false;

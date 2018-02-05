@@ -11,7 +11,7 @@ namespace SOCIOS.bono
   
     public partial class BonoPasaje : Bono
     {
-        bo dlog = new bo();
+        bo_Turismo dlog = new bo_Turismo();
         public DatoSocio persona = new DatoSocio();
         SOCIOS.Turismo.TurismoUtils utilsTurismo;
         List<Pasaje> pasajes = new List<Pasaje>();
@@ -63,7 +63,7 @@ namespace SOCIOS.bono
             utilsTurismo.ComboOperador(cbEmpresa,true);
             lbSaldoTotal.Text = "0";
 
-            CODINT = Int32.Parse(Config.getValor("TURISMO","COD_TURISMO", 2));
+            CODINT = Int32.Parse(Config.getValor("TURISMO","COD_TURISMO", 1));
 
          
             
@@ -395,9 +395,13 @@ namespace SOCIOS.bono
                         decimal Pago = decimal.Parse(lbSaldoTotal.Text) ;
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFecha.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, TipoPasaje, ClasePasaje, VGlobales.vp_username, "PAS", 0, 0, "", Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFecha.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, TipoPasaje, ClasePasaje, VGlobales.vp_username, "PAS", 0, 0, "", Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO");
                          ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "PAS");
-                        //VER CODINT
+                         //Obtener Proximo ID_ROL
+                         int ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CODINT) + 1;
+
+                         dlog.Seteo_Id_ROL(ID, ID_ROL);
+                      
                         if (ID != 0)
                         {
                             int CodInt = 0;
@@ -412,6 +416,7 @@ namespace SOCIOS.bono
 
                             MostrarControles(false);
                             bntImprimir.Visible = true;
+                            Grabar.Enabled = false;
                         }
                         MessageBox.Show("Bono Grabado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

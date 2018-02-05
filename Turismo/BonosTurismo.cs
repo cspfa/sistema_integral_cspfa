@@ -53,10 +53,20 @@ namespace SOCIOS.bono
         {
             string Desde = this.fechaUSA(DateTime.Parse(dpDesde.Text));
             string Hasta = this.fechaUSA(DateTime.Parse(dpHasta.Text));
+            string query ="";
 
-            string query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.ROL ROL, B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA   from Bono_Turismo B, Proveedores P
-            where    B.Operador = P.ID
-            AND    B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
+            if (!chkBlanco.Checked)
+            {
+                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO, B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA   from Bono_Turismo B, Proveedores P
+            where    B.Operador = P.ID";
+            }
+            else
+            {
+                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO,B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,'S/C' OPERADOR,coalesce(B.FE_BAJA,'0') BAJA   from Bono_Turismo B WHERE 1=1 ";
+        
+            
+            }
+            query = query + " AND    B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
            
             if (cbEstado.Text.Contains("IMPRESOS"))
                 query = query + " AND coalesce(B.FE_BAJA,'1') ='1' ";
@@ -104,8 +114,11 @@ namespace SOCIOS.bono
 
                     dt1.Columns.Add("ID_ROL", typeof(string));
                     dt1.Columns.Add("CODINT", typeof(string));
+                    dt1.Columns.Add("TIPO", typeof(string));
                     dt1.Columns.Add("ROL", typeof(string));
                     dt1.Columns.Add("FECHA", typeof(string));
+                    dt1.Columns.Add("NRO_SOCIO", typeof(string));
+                    dt1.Columns.Add("NRO_DEP", typeof(string));
                     dt1.Columns.Add("NOMBRE", typeof(string));
                     dt1.Columns.Add("APELLIDO", typeof(string));
                     dt1.Columns.Add("SALDO", typeof(string));
@@ -121,6 +134,7 @@ namespace SOCIOS.bono
                     {
                         dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ID_ROL")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("CODINT")).Trim(),
+                                     reader3.GetString(reader3.GetOrdinal("TIPO")).Trim(),
                                       reader3.GetString(reader3.GetOrdinal("ROL")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("FECHA")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("NOMBRE")).Trim(),
@@ -168,7 +182,7 @@ namespace SOCIOS.bono
         {
             foreach (DataGridViewRow dr in dgBonos.Rows)
             {
-                if (dr.Cells[6].Value.ToString().Trim() != "0")
+                if (dr.Cells[11].Value.ToString().Trim() != "0")
                     dr.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
 
 

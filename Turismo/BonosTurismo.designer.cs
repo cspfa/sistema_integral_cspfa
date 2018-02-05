@@ -40,6 +40,7 @@
             this.btnFiltro = new System.Windows.Forms.Button();
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkBlanco = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgBonos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,10 +48,10 @@
             // 
             this.dgBonos.AllowUserToAddRows = false;
             this.dgBonos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgBonos.Location = new System.Drawing.Point(16, 54);
+            this.dgBonos.Location = new System.Drawing.Point(16, 80);
             this.dgBonos.Name = "dgBonos";
             this.dgBonos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBonos.Size = new System.Drawing.Size(829, 349);
+            this.dgBonos.Size = new System.Drawing.Size(829, 323);
             this.dgBonos.TabIndex = 0;
             this.dgBonos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBonos_CellClick);
             this.dgBonos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBonos_CellContentClick);
@@ -155,11 +156,22 @@
             this.label4.TabIndex = 89;
             this.label4.Text = "ESTADO";
             // 
+            // chkBlanco
+            // 
+            this.chkBlanco.AutoSize = true;
+            this.chkBlanco.Location = new System.Drawing.Point(607, 57);
+            this.chkBlanco.Name = "chkBlanco";
+            this.chkBlanco.Size = new System.Drawing.Size(128, 17);
+            this.chkBlanco.TabIndex = 91;
+            this.chkBlanco.Text = "BONOS EN BLANCO";
+            this.chkBlanco.UseVisualStyleBackColor = true;
+            // 
             // BonosTurismo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(857, 450);
+            this.Controls.Add(this.chkBlanco);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnFiltro);
@@ -194,5 +206,6 @@
         private System.Windows.Forms.Button btnFiltro;
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkBlanco;
     }
 }
