@@ -147,14 +147,21 @@ namespace SOCIOS
                 label7.Enabled = true;
                 label8.Enabled = true;
                 label9.Enabled = true;
+                label14.Enabled = true;
+                label15.Enabled = true;
                 cbNuevoPagoEfectivo.Enabled = true;
                 cbNuevoPagoOtros.Enabled = true;
+                cbFormaPagoBuscador.Enabled = true;
+                btnFormaPagoBuscador.Enabled = true;
                 btnNuevoPagoEfectivo.Enabled = true;
                 btnNuevoPagoOtros.Enabled = true;
                 tbNuevoImporteEfectivo.Enabled = true;
                 tbNuevoImporteOtros.Enabled = true;
+                tbImporteBuscador.Enabled = true;
                 btnNuevoImporteEfectivo.Enabled = true;
                 btnNuevoImporteOtros.Enabled = true;
+                btnFormaPagoBuscador.Enabled = true;
+                btnImporteBuscador.Enabled = true;
             }
         }
 
@@ -197,6 +204,7 @@ namespace SOCIOS
             comboBancos(cbBancosCheques);
             comboFormasDePago(cbNuevoPagoEfectivo);
             comboFormasDePago(cbNuevoPagoOtros);
+            comboFormasDePago(cbFormaPagoBuscador);
 
             buscar("E", dgEgresos, CAJA);
             buscar("1", dgEfectivo, CAJA);
@@ -2061,6 +2069,7 @@ namespace SOCIOS
                 doc.Add(TABLA_EGRESOS);
                 #endregion
 
+
                 #region CAJAS DEPOSITADAS
 
                 if (CAJAS_DEPOSITADAS.Tables[0].Rows.Count > 0)
@@ -3204,24 +3213,23 @@ namespace SOCIOS
             }
         }
 
-        private void nuevaFormaDePago(object SENDER, int FORMA_DE_PAGO)
+        private void nuevaFormaDePago(DataGridView GRID, int FORMA_DE_PAGO)
         {
             string COMPROBANTE = "X";
             int ID_COMP = 0;
+            int X = 0;
 
-            //EFECTIVO
-            if (SENDER == btnNuevoPagoEfectivo)
+            foreach (DataGridViewRow ROW in GRID.SelectedRows)
             {
-                foreach (DataGridViewRow ROW in dgEfectivo.SelectedRows)
+                COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
+
+                if (X == 0)
                 {
-                    COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
-                    
                     if (COMPROBANTE == "R")
                     {
                         ID_COMP = int.Parse(ROW.Cells[9].Value.ToString());
                         BO_CAJA.modificarFormaPagoRecibos(ID_COMP, FORMA_DE_PAGO);
                     }
-
                     if (COMPROBANTE == "B")
                     {
                         ID_COMP = int.Parse(ROW.Cells[9].Value.ToString());
@@ -3230,123 +3238,53 @@ namespace SOCIOS
                             BO_CAJA.modificarFormaPagoBonos(ID_COMP, FORMA_DE_PAGO);
                     }
                 }
-            }
-
-            //OTROS
-            if (SENDER == btnNuevoPagoOtros)
-            {
-                foreach (DataGridViewRow ROW in dgOtros.SelectedRows)
-                {
-                    COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
-
-                    if (COMPROBANTE == "R")
-                    {
-                        ID_COMP = int.Parse(ROW.Cells[9].Value.ToString());
-                        BO_CAJA.modificarFormaPagoRecibos(ID_COMP, FORMA_DE_PAGO);
-                    }
-
-                    if (COMPROBANTE == "B")
-                    {
-                        ID_COMP = int.Parse(ROW.Cells[9].Value.ToString());
-
-                        if (FORMA_DE_PAGO != 2 && FORMA_DE_PAGO != 7 && FORMA_DE_PAGO != 8 && FORMA_DE_PAGO != 9)
-                            BO_CAJA.modificarFormaPagoBonos(ID_COMP, FORMA_DE_PAGO);
-                    }
-                }
+                X++;
             }
         }
 
-        private bool nuevoImporte(object SENDER)
+        private bool nuevoImporte(DataGridView GRID, TextBox IMPORTE)
         { 
             string COMPROBANTE = "X";
             int ID = 0;
             int SELECCION = 0;
             decimal NUEVO_IMPORTE = 0;
+            SELECCION = GRID.SelectedRows.Count;
 
-            //EFECTIVO
-            if (SENDER == btnNuevoImporteEfectivo)
+            if (SELECCION == 1)
             {
-                SELECCION = dgEfectivo.SelectedRows.Count;
-
-                if (SELECCION == 1)
+                if (IMPORTE.Text != "")
                 {
-                    if (tbNuevoImporteEfectivo.Text != "")
+                    NUEVO_IMPORTE = decimal.Parse(IMPORTE.Text);
+
+                    foreach (DataGridViewRow ROW in GRID.SelectedRows)
                     {
-                        NUEVO_IMPORTE = decimal.Parse(tbNuevoImporteEfectivo.Text);
+                        COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
 
-                        foreach (DataGridViewRow ROW in dgEfectivo.SelectedRows)
+                        if (COMPROBANTE == "R")
                         {
-                            COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
-
-                            if (COMPROBANTE == "R")
-                            {
-                                ID = int.Parse(ROW.Cells[9].Value.ToString());
-                                BO_CAJA.modificarImporteComprobante(ID, NUEVO_IMPORTE, "MOD_IMPORTE_RECIBO");
-                            }
-
-                            if (COMPROBANTE == "B")
-                            {
-                                ID = int.Parse(ROW.Cells[9].Value.ToString());
-                                BO_CAJA.modificarImporteComprobante(ID, NUEVO_IMPORTE, "MOD_IMPORTE_BONO");
-                            }
+                            ID = int.Parse(ROW.Cells[9].Value.ToString());
+                            BO_CAJA.modificarImporteComprobante(ID, NUEVO_IMPORTE, "MOD_IMPORTE_RECIBO");
                         }
 
-                        return true;
+                        if (COMPROBANTE == "B")
+                        {
+                            ID = int.Parse(ROW.Cells[9].Value.ToString());
+                            BO_CAJA.modificarImporteComprobante(ID, NUEVO_IMPORTE, "MOD_IMPORTE_BONO");
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("INGRESAR UN NUEVO IMPORTE", "ERROR");
-                        return false;
-                    }
+
+                    return true;
                 }
                 else
                 {
-                    MessageBox.Show("SELECCIONAR SOLO UN COMPROBATE PARA MODIFICAR EL IMPORTE", "ERROR");
+                    MessageBox.Show("INGRESAR UN NUEVO IMPORTE", "ERROR");
                     return false;
                 }
             }
-
-            //OTROS
-            if (SENDER == btnNuevoImporteOtros)
+            else
             {
-                SELECCION = dgOtros.SelectedRows.Count;
-
-                if (SELECCION == 1)
-                {
-                    if (tbNuevoImporteOtros.Text != "")
-                    {
-                        NUEVO_IMPORTE = decimal.Parse(tbNuevoImporteOtros.Text);
-
-                        foreach (DataGridViewRow ROW in dgOtros.SelectedRows)
-                        {
-                            COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
-
-                            if (COMPROBANTE == "R")
-                            {
-                                ID = int.Parse(ROW.Cells[9].Value.ToString());
-                                BO_CAJA.modificarImporteComprobante(ID, NUEVO_IMPORTE, "MOD_IMPORTE_RECIBO");
-                            }
-
-                            if (COMPROBANTE == "B")
-                            {
-                                ID = int.Parse(ROW.Cells[9].Value.ToString());
-                                BO_CAJA.modificarImporteComprobante(ID, NUEVO_IMPORTE, "MOD_IMPORTE_BONO");
-                            }
-                        }
-
-                        return true;
-                    }
-                    else
-                    {
-                        MessageBox.Show("INGRESAR UN NUEVO IMPORTE", "ERROR");
-                        return false;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("SELECCIONAR SOLO UN COMPROBATE PARA MODIFICAR EL IMPORTE", "ERROR");
-                    return false;
-                }
+                MessageBox.Show("SELECCIONAR SOLO UN COMPROBATE PARA MODIFICAR EL IMPORTE", "ERROR");
+                return false;
             }
 
             return false;
@@ -3355,26 +3293,26 @@ namespace SOCIOS
         private void btnNuevoPagoEfectivo_Click(object sender, EventArgs e)
         {
             int FORMA_DE_PAGO = int.Parse(cbNuevoPagoEfectivo.SelectedValue.ToString());
-            nuevaFormaDePago(sender, FORMA_DE_PAGO);
+            nuevaFormaDePago(dgEfectivo, FORMA_DE_PAGO);
             cargaInicial(CAJA);
         }
 
         private void btnNuevoPagoOtros_Click(object sender, EventArgs e)
         {
             int FORMA_DE_PAGO = int.Parse(cbNuevoPagoOtros.SelectedValue.ToString());
-            nuevaFormaDePago(sender, FORMA_DE_PAGO);
+            nuevaFormaDePago(dgOtros, FORMA_DE_PAGO);
             cargaInicial(CAJA);
         }
 
         private void btnNuevoImporteEfectivo_Click(object sender, EventArgs e)
         {
-            if (nuevoImporte(sender) == true)
+            if (nuevoImporte(dgEfectivo, tbNuevoImporteEfectivo) == true)
                 cargaInicial(CAJA);
         }
 
         private void btnNuevoImporteOtros_Click(object sender, EventArgs e)
         {
-            if (nuevoImporte(sender) == true)
+            if (nuevoImporte(dgOtros, tbNuevoImporteOtros) == true)
                 cargaInicial(CAJA);
         }
 
@@ -3454,7 +3392,7 @@ namespace SOCIOS
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void buscarComprobantes()
         {
             int DESDE = 0;
             int HASTA = 0;
@@ -3485,9 +3423,14 @@ namespace SOCIOS
                 HASTA = int.Parse(tbNroHasta.Text.Trim());
                 PTO_VTA = tbPtoVta.Text.Trim();
             }
-            
+
             DataGridView GRID = dgBuscador;
             buscador(DESDE, HASTA, COMP_MIN, GRID, PTO_VTA);
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            buscarComprobantes();            
         }
 
         private void dgCajasAnteriores_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -3516,6 +3459,23 @@ namespace SOCIOS
             modificarCajaDiaria mcd = new modificarCajaDiaria(ID, FECHA, EFECTIVO, OTROS, SUBTOTAL, EGRESOS, SALDO, TOTAL);
             mcd.ShowDialog();
             cargaInicial(0);
+        }
+
+        private void btnFormaPagoBuscador_Click(object sender, EventArgs e)
+        {
+            int FORMA_DE_PAGO = int.Parse(cbFormaPagoBuscador.SelectedValue.ToString());
+            nuevaFormaDePago(dgBuscador, FORMA_DE_PAGO);
+            buscarComprobantes();            
+            cargaInicial(CAJA);
+        }
+
+        private void btnImporteBuscador_Click(object sender, EventArgs e)
+        {
+            if (nuevoImporte(dgBuscador, tbImporteBuscador) == true)
+            {
+                buscarComprobantes();
+                cargaInicial(CAJA);
+            }
         }
     }
 }

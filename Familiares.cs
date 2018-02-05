@@ -2055,7 +2055,8 @@ namespace SOCIOS
                     }
                     else
                     {
-                        vcadena = "INSERT INTO IDProjectData (IDCf_altci, IDCBarCodeField1, IDCnro_soc, IDCape_soc, IDCNOM_SOC, IDCnro_doc, IDCTIP_DOC, IDCCRJP1, IDCCRJP2, IDCcrjp3, IDCfoto, IDCsbarra) ";
+                        //aqui
+                        vcadena = "INSERT INTO IDProjectData (IDCf_altci, IDCBarCodeField1, IDCnro_soc, IDCape_soc, IDCNOM_SOC, IDCnro_doc, IDCTIP_DOC, IDCCRJP1, IDCCRJP2, IDCcrjp3, IDCfoto, IDCbarr_1) ";
                         vcadena += " VALUES ('" + IDCf_altci + "', '" + IDCBarCodeField1 + "', '" + IDCnro_soc + "','" + IDCape_soc + "','" + IDCNOM_SOC + "', '" + IDCnro_doc + "', '" + IDCTIP_DOC + "', '" + vp1 + "', '" + vp2 + "', '" + vp3 + "', ?, '" + vaux + "')";
 
                         if (maskedTextBox2.Text == "17" || maskedTextBox2.Text == "017")

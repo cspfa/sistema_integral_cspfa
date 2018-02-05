@@ -60,6 +60,8 @@
             this.themedGroupBox2 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
             this.lvAdjuntos = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.grupoAltaFactura = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.tbSolComp = new System.Windows.Forms.MaskedTextBox();
+            this.label117 = new System.Windows.Forms.Label();
             this.cbDescGlobal = new System.Windows.Forms.ComboBox();
             this.tbDescuentoTotal = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -460,8 +462,6 @@
             this.aNULADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMPLETADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eNTREGADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tbSolComp = new System.Windows.Forms.MaskedTextBox();
-            this.label117 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -750,6 +750,24 @@
             this.grupoAltaFactura.TitleShadow = false;
             this.grupoAltaFactura.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
             this.grupoAltaFactura.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
+            // 
+            // tbSolComp
+            // 
+            this.tbSolComp.Enabled = false;
+            this.tbSolComp.Location = new System.Drawing.Point(550, 51);
+            this.tbSolComp.Name = "tbSolComp";
+            this.tbSolComp.Size = new System.Drawing.Size(64, 20);
+            this.tbSolComp.TabIndex = 56;
+            // 
+            // label117
+            // 
+            this.label117.AutoSize = true;
+            this.label117.Enabled = false;
+            this.label117.Location = new System.Drawing.Point(523, 55);
+            this.label117.Name = "label117";
+            this.label117.Size = new System.Drawing.Size(21, 13);
+            this.label117.TabIndex = 57;
+            this.label117.Text = "SC";
             // 
             // cbDescGlobal
             // 
@@ -2433,6 +2451,7 @@
             this.cbBancos.Size = new System.Drawing.Size(199, 21);
             this.cbBancos.TabIndex = 12;
             this.cbBancos.SelectionChangeCommitted += new System.EventHandler(this.cbBancos_SelectionChangeCommitted);
+            this.cbBancos.SizeChanged += new System.EventHandler(this.cbBancos_SizeChanged);
             // 
             // label31
             // 
@@ -5173,24 +5192,6 @@
             this.eNTREGADAToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.eNTREGADAToolStripMenuItem.Text = "Entregada";
             this.eNTREGADAToolStripMenuItem.Click += new System.EventHandler(this.eNTREGADAToolStripMenuItem_Click);
-            // 
-            // tbSolComp
-            // 
-            this.tbSolComp.Enabled = false;
-            this.tbSolComp.Location = new System.Drawing.Point(550, 51);
-            this.tbSolComp.Name = "tbSolComp";
-            this.tbSolComp.Size = new System.Drawing.Size(64, 20);
-            this.tbSolComp.TabIndex = 56;
-            // 
-            // label117
-            // 
-            this.label117.AutoSize = true;
-            this.label117.Enabled = false;
-            this.label117.Location = new System.Drawing.Point(523, 55);
-            this.label117.Name = "label117";
-            this.label117.Size = new System.Drawing.Size(21, 13);
-            this.label117.TabIndex = 57;
-            this.label117.Text = "SC";
             // 
             // compras
             // 

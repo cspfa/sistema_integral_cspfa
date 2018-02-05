@@ -380,8 +380,6 @@ namespace SOCIOS.BO
         //STORED GUARDA CHEQUERAS
         public void guardarChequeras(int BANCO, string SERIE, int NRO_CHEQUE, string ESTADO, string TIPO)
         {
-            
-
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(BANCO);
             vector_contenidos.Add(SERIE);
@@ -831,7 +829,8 @@ namespace SOCIOS.BO
         }
 
         //STORED MODIFICAR FACTURA
-        public void modificarFactura(int ID, int PROVEEDOR, string NUM_FACTURA, string FECHA, decimal IMPORTE, string OBSERVACIONES, string FE_MOD, string US_MOD, string SECTOR, string SEC_GRAL, int TIPO, int DESCUENTO)
+        public void modificarFactura(int ID, int PROVEEDOR, string NUM_FACTURA, string FECHA, decimal IMPORTE, string OBSERVACIONES, string FE_MOD, string US_MOD, string SECTOR, string SEC_GRAL,
+            int TIPO, int DESCUENTO, string SOL_COMP)
         {
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(ID);
@@ -846,6 +845,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(SEC_GRAL);
             vector_contenidos.Add(TIPO);
             vector_contenidos.Add(DESCUENTO);
+            vector_contenidos.Add(SOL_COMP);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
@@ -860,6 +860,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("ID");
@@ -874,6 +875,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("SEC_GRAL");
             vector_nombres.Add("TIPO");
             vector_nombres.Add("DESCUENTO");
+            vector_nombres.Add("SOL_COMP");
 
             string vprocedure = "FACTURAS_U";
 
