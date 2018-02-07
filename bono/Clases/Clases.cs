@@ -196,9 +196,44 @@ namespace SOCIOS.bono
         #region Constructor
         public handlerDatosSocios(string pSocTitular, string pDepTitular)
         {
+            if (!((pSocTitular.Length==pDepTitular.Length && pDepTitular.Length==0)))
             //Obtengo Datos de Cliente
-            this.SetearDatosCabecera(pSocTitular, pDepTitular);
+            {
+                this.SetearDatosCabecera(pSocTitular, pDepTitular);
+            }
+            else
+            {
 
+                CAB = new CabeceraTitular();
+                CAB.NroSocioTitular = "";
+                CAB.NroDepTitular = "";
+                CAB.NombreTitular = "";
+                CAB.NOMBRE = "";
+                CAB.APELLIDO = "";
+                CAB.TipoTitular = "";
+                CAB.NroAfiliadoTitular = "";
+                CAB.AAR = 0;
+                CAB.ACRJP1 = 0;
+                CAB.ACRJP2 = 0;
+                CAB.ACRJP3 = 0;
+                CAB.PAR = 0;
+                CAB.PCRJP1 = 0;
+                CAB.PCRJP2 = 0;
+                CAB.PCRJP3 = 0;
+                CAB.NroBeneficioTitular = "";
+                CAB.FechaNac = "";
+                CAB.Dni = "";
+                CAB.Ci = "";
+                CAB.COD_DTO = "";
+                CAB.Sexo = "";
+                CAB.Domicilio = "";
+
+                CAB.Localidad = "";
+                CAB.Procedencia = "";
+                CAB.Telefonos = "";
+                
+            
+            }
 
 
 
@@ -455,6 +490,13 @@ namespace SOCIOS.bono
 
 
 
+    }
+
+    public class Codigo_Dto_Bono
+    {
+        public int CODIGO { get; set; }
+        public string DES { get; set; }
+    
     }
 }
 

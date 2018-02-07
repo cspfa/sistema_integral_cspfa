@@ -19,6 +19,7 @@ namespace SOCIOS.bono
         DateTime Fecha;
 
 
+
         public Odontologico(int ID, bool Directo)
         {
             this.Datos(ID, Directo);
@@ -90,6 +91,8 @@ namespace SOCIOS.bono
         int SECACT=0, TURNO=0, Salida =0;
         decimal Saldo = 0;
         DateTime Fecha;
+        bool Blanco = false;
+        int ID_ROL = 0;
 
 
         public Turismo(int ID)
@@ -98,22 +101,45 @@ namespace SOCIOS.bono
             Socio = new handlerDatosSocios(Nro_Socio, Nro_Dep);
             if (Tipo.Contains("PAS"))
             {
-                ReporteBonoPasaje rb = new ReporteBonoPasaje(Socio.CAB, Fecha, ID, formaPago, Obs, Saldo);
-                rb.ShowDialog();
-                rb.Focus();
+                if (!Blanco)
+                {
+                    ReporteBonoPasaje rb = new ReporteBonoPasaje(Socio.CAB, Fecha, ID, formaPago, Obs, Saldo);
+                    rb.ShowDialog();
+                    rb.Focus();
+                }
+                else
+                {  ReporteBonoPasaje_Blanco rbb = new ReporteBonoPasaje_Blanco(ID_ROL, ID, Fecha, Socio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
+                    rbb.ShowDialog();
+                
+                }
             }
             else if (Tipo.Contains("PAQ"))
             {
-                ReporteBonoPaquete rp = new ReporteBonoPaquete(Socio.CAB, Fecha, ID, formaPago, Obs, Saldo, Salida);
-                rp.ShowDialog();
-                rp.Focus();
+                if (!Blanco)
+                {
+                    ReporteBonoPaquete rp = new ReporteBonoPaquete(Socio.CAB, Fecha, ID, formaPago, Obs, Saldo, Salida);
+                    rp.ShowDialog();
+                    rp.Focus();
+                }
+                else
+                {
+                    ReporteBonoPaquete_Blanco rpb = new ReporteBonoPaquete_Blanco(ID_ROL, ID, Fecha, Socio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
+                    rpb.ShowDialog();
+                }
 
             }
             else //hotel!
             {
-                ReporteBonoHotel rp = new ReporteBonoHotel(Socio.CAB, Fecha, ID, formaPago, Obs, Saldo);
-                rp.ShowDialog();
-                rp.Focus();
+                if (!Blanco)
+                {
+                    ReporteBonoHotel rp = new ReporteBonoHotel(Socio.CAB, Fecha, ID, formaPago, Obs, Saldo);
+                    rp.ShowDialog();
+                    rp.Focus();
+                }
+                else
+                { ReporteBonoHotel_Blanco rhb = new ReporteBonoHotel_Blanco(ID_ROL, ID, Fecha, Socio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
+                rhb.ShowDialog();
+                }
 
             }
         }
@@ -125,7 +151,7 @@ namespace SOCIOS.bono
 
         {
 
-            string QUERY = "SELECT  ID,Fe_Bono,SALDO_INICIAL,Nro_Socio_Titular,Nro_Dep_Titular,Pago,Obs,TIPO,coalesce(SALIDA,'0') FROM BONO_TURISMO WHERE ID=" + ID.ToString();
+            string QUERY = "SELECT  ID,Fe_Bono,SALDO_INICIAL,Nro_Socio_Titular,Nro_Dep_Titular,Pago,Obs,TIPO,coalesce(SALIDA,'0'),ID_ROL,BONO_BLANCO  FROM BONO_TURISMO WHERE ID=" + ID.ToString();
             
        
 
@@ -143,7 +169,11 @@ namespace SOCIOS.bono
                 Obs               = foundRows[0][6].ToString();
                 Tipo              = foundRows[0][7].ToString();
                 Salida            = Int32.Parse( foundRows[0][8].ToString());
-               // bono = new BonoPasaje  (null,Nro_Socio,Nro_Dep,false);
+                ID_ROL = Int32.Parse(foundRows[0][9].ToString());
+                if (foundRows[0][10].ToString().Contains("SI"))
+                    Blanco =true;
+
+              // bono = new BonoPasaje  (null,Nro_Socio,Nro_Dep,false);
                
 
             }
