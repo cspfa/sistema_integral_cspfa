@@ -18,11 +18,15 @@ namespace SOCIOS
     public partial class importarMovimientos : Form
     {
         bo dlog = new bo();
+        db db = new db();
+
+        public string ROL { get; set; }
 
         public importarMovimientos(string ROLE)
         {
             InitializeComponent();
             buscarMovimientos(ROLE);
+            ROL = ROLE;
         }
 
         private void buscarMovimientos(string ROLE)
@@ -100,6 +104,19 @@ namespace SOCIOS
             }
         }
 
+        private void marcarExportadoRemoto(int ID)
+        {
+            try
+            {
+                string QUERY = "UPDATE MOVIMIENTOS SET EXPORTADO = 'S' WHERE ID = " + ID + ";";
+                db.Ejecuto_Consulta_Remota(QUERY, ROL);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
+            }
+        }
+
         private void btnImportar_Click(object sender, EventArgs e) 
         {
             if(MessageBox.Show("¿IMPORTAR TODOS LOS MOVIMIENTOS?", "PREGUNTA", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes) 
@@ -115,6 +132,7 @@ namespace SOCIOS
                     if (row.Cells[0].Value.ToString() != "") 
                     {
                         Cursor = Cursors.WaitCursor;
+                        int ID=int.Parse(row.Cells[0].Value.ToString());
                         int PERSONA=int.Parse(row.Cells[1].Value.ToString());
                         int ACCION=int.Parse(row.Cells[2].Value.ToString());
                         string FECHA_HORA=row.Cells[3].Value.ToString();
@@ -125,6 +143,7 @@ namespace SOCIOS
                         try
                         {
                             dlog.importarMovimientos(PERSONA, ACCION, FECHA_HORA, ALTA, USUARIO, EXPORTADO);
+                            marcarExportadoRemoto(ID);
                             pb.PerformStep();
                             Thread.Sleep(100);
                             Cursor = Cursors.Default;
