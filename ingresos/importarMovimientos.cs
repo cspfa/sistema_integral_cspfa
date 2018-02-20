@@ -147,6 +147,7 @@ namespace SOCIOS
                             pb.PerformStep();
                             Thread.Sleep(100);
                             Cursor = Cursors.Default;
+                            buscarMovimientos(ROL);
                         }
                         catch (Exception error) 
                         {
