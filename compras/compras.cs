@@ -27,7 +27,8 @@ namespace SOCIOS
         private int ID_ARTICULO { get; set; }
         private string BUSCO_QUERY { get; set; }
         private string ACCION { get; set; }
-
+        private decimal SUMA_ART { get; set; }
+        
         List<ART_SOL> LISTA_ART_SOL;
         List<ART_SOL_FILTRO> LISTA_ART_SOL_FILTRO;
 
@@ -3588,27 +3589,48 @@ namespace SOCIOS
             string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
             bool CHECK_P_F = checkProveedorFactura();
 
+            decimal IMPORTE_FACTURA = decimal.Parse(tbImporte.Text.Trim());
+            string IF = string.Format("{0:n}", IMPORTE_FACTURA);
+
+            foreach (DataGridViewRow row in dgArticulos.Rows)
+            {
+                SUMA_ART = SUMA_ART + decimal.Parse(row.Cells["IMPORTE"].Value.ToString());
+            }
+
+            string SA = string.Format("{0:n}", SUMA_ART);
+            //MessageBox.Show(SA.ToString());
+
             if (cbProveedores.SelectedValue == "")
             {
                 MessageBox.Show("SELECCIONAR UN PROVEEDOR", "ERROR");
+                SUMA_ART = 0;
                 cbProveedores.Focus();
                 btnGuardarFactura.Enabled = true;
             }
             else if (TIPO_COMPROBANTE != "2" && TIPO_COMPROBANTE != "9" && TIPO_COMPROBANTE != "12" && tbNumFactura.Text == "")
             {
                 MessageBox.Show("COMPLETAR EL CAMPO Nº FACTURA", "ERROR");
+                SUMA_ART = 0;
                 tbNumFactura.Focus();
                 btnGuardarFactura.Enabled = true;
             }
             else if (tbImporte.Text == "")
             {
                 MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
+                SUMA_ART = 0;
                 tbImporte.Focus();
+                btnGuardarFactura.Enabled = true;
+            }
+            else if (dgArticulos.Rows.Count > 0 && IF != SA)
+            {
+                MessageBox.Show("EL IMPORTE DE LA FACTURA Y LA SUMA DE LOS ARTICULOS NO COINCIDEN", "ERROR");
+                SUMA_ART = 0;
                 btnGuardarFactura.Enabled = true;
             }
             else if (CHECK_P_F == true)
             {
                 MessageBox.Show("LA FACTURA " + tbNumFactura.Text.Trim() + " YA EXISTE PARA ESTE PROVEEDOR", "ERROR");
+                SUMA_ART = 0;
                 btnGuardarFactura.Enabled = true;
             }
             else
@@ -3681,8 +3703,8 @@ namespace SOCIOS
                     if (FACTURAS_HIJAS > 0)
                     {
                         foreach (DataGridView row in dgFacturasHijas.Rows)
-                        { 
-                             
+                        {
+
                         }
                     }
 
@@ -3705,7 +3727,7 @@ namespace SOCIOS
                             TIPO_ART = Convert.ToInt16(row.Cells["TID"].Value);
                             DESCUENTO = row.Cells["DESC"].Value.ToString();
                             BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
-                            
+
                             /*if (EXISTE == false)
                             {
                                 BO_COMPRAS.nuevoArticulo(ID_FACTURA, DETALLE, PRECIO, CANTIDAD, NSERIE, TIPO_ART, DESCUENTO);
@@ -3718,6 +3740,7 @@ namespace SOCIOS
                     }
 
                     limpiarFactura();
+                    SUMA_ART = 0;
                     dgArticulos.Rows.Clear();
                     btnGuardarFactura.Enabled = true;
                     comboProveedores(cbProveedores);
