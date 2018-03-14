@@ -12,6 +12,7 @@ using FirebirdSql.Data.Isql;
 using FirebirdSql.Data.Services;
 using FirebirdSql.Data.Server;
 
+
 namespace SOCIOS.bono
 {
     public partial class PagoBonos : Form

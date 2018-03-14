@@ -31,7 +31,9 @@
             this.lblSaldo = new System.Windows.Forms.Label();
             this.lblBono = new System.Windows.Forms.Label();
             this.gpPago = new System.Windows.Forms.GroupBox();
+            this.lbMontoTarjeta = new System.Windows.Forms.Label();
             this.lbMonto2 = new System.Windows.Forms.Label();
+            this.btnTarjeta = new System.Windows.Forms.Button();
             this.lbMonto1 = new System.Windows.Forms.Label();
             this.lbFp2 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -39,8 +41,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tbPorcentaje = new System.Windows.Forms.TextBox();
             this.gpPlanilla = new System.Windows.Forms.GroupBox();
-            this.lbMontoTarjeta = new System.Windows.Forms.Label();
-            this.btnTarjeta = new System.Windows.Forms.Button();
             this.lbGestion = new System.Windows.Forms.Label();
             this.tbContralor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -112,6 +112,17 @@
             this.gpPago.TabStop = false;
             this.gpPago.Visible = false;
             // 
+            // lbMontoTarjeta
+            // 
+            this.lbMontoTarjeta.AutoSize = true;
+            this.lbMontoTarjeta.ForeColor = System.Drawing.Color.DarkGoldenrod;
+            this.lbMontoTarjeta.Location = new System.Drawing.Point(33, 170);
+            this.lbMontoTarjeta.Name = "lbMontoTarjeta";
+            this.lbMontoTarjeta.Size = new System.Drawing.Size(13, 13);
+            this.lbMontoTarjeta.TabIndex = 90;
+            this.lbMontoTarjeta.Text = "0";
+            this.lbMontoTarjeta.Visible = false;
+            // 
             // lbMonto2
             // 
             this.lbMonto2.AutoSize = true;
@@ -120,6 +131,16 @@
             this.lbMonto2.Size = new System.Drawing.Size(47, 13);
             this.lbMonto2.TabIndex = 87;
             this.lbMonto2.Text = "MONTO";
+            // 
+            // btnTarjeta
+            // 
+            this.btnTarjeta.Location = new System.Drawing.Point(16, 129);
+            this.btnTarjeta.Name = "btnTarjeta";
+            this.btnTarjeta.Size = new System.Drawing.Size(99, 31);
+            this.btnTarjeta.TabIndex = 89;
+            this.btnTarjeta.Text = "Calcular Tarjeta";
+            this.btnTarjeta.UseVisualStyleBackColor = true;
+            this.btnTarjeta.Click += new System.EventHandler(this.btnTarjeta_Click);
             // 
             // lbMonto1
             // 
@@ -191,27 +212,6 @@
             this.gpPlanilla.TabStop = false;
             this.gpPlanilla.Text = "Financiacion Planilla";
             this.gpPlanilla.Visible = false;
-            // 
-            // lbMontoTarjeta
-            // 
-            this.lbMontoTarjeta.AutoSize = true;
-            this.lbMontoTarjeta.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.lbMontoTarjeta.Location = new System.Drawing.Point(33, 170);
-            this.lbMontoTarjeta.Name = "lbMontoTarjeta";
-            this.lbMontoTarjeta.Size = new System.Drawing.Size(13, 13);
-            this.lbMontoTarjeta.TabIndex = 90;
-            this.lbMontoTarjeta.Text = "0";
-            this.lbMontoTarjeta.Visible = false;
-            // 
-            // btnTarjeta
-            // 
-            this.btnTarjeta.Location = new System.Drawing.Point(16, 129);
-            this.btnTarjeta.Name = "btnTarjeta";
-            this.btnTarjeta.Size = new System.Drawing.Size(99, 31);
-            this.btnTarjeta.TabIndex = 89;
-            this.btnTarjeta.Text = "Calcular Tarjeta";
-            this.btnTarjeta.UseVisualStyleBackColor = true;
-            this.btnTarjeta.Click += new System.EventHandler(this.btnTarjeta_Click);
             // 
             // lbGestion
             // 
@@ -328,7 +328,7 @@
             // 
             this.cbTipoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoPago.FormattingEnabled = true;
-            this.cbTipoPago.Location = new System.Drawing.Point(303, 19);
+            this.cbTipoPago.Location = new System.Drawing.Point(302, 19);
             this.cbTipoPago.Name = "cbTipoPago";
             this.cbTipoPago.Size = new System.Drawing.Size(209, 21);
             this.cbTipoPago.TabIndex = 78;
