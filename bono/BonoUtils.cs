@@ -11,6 +11,7 @@ namespace SOCIOS.bono
        public List<Codigo_Dto_Bono> getCodigos(string ROL)
 
        {
+
            List<Codigo_Dto_Bono> lista = new List<Codigo_Dto_Bono>();
            if ( ROL.Contains("TUR"))
            {
