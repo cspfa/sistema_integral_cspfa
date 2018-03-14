@@ -57,7 +57,10 @@ namespace SOCIOS.bono.Bonos
 
         private void Imprimir_Click(object sender, EventArgs e)
         {
-            int CODINT = Int32.Parse(cbCODIGOS.SelectedValue.ToString());
+            int CODINT = Int32.Parse(cbCODIGOS.SelectedValue.ToString())
+
+
+
             string Nombre = this.srvDatosSocio.CAB.NOMBRE;
             string Apellido = this.srvDatosSocio.CAB.APELLIDO;
             string Dni = this.srvDatosSocio.CAB.Dni;
@@ -88,7 +91,6 @@ namespace SOCIOS.bono.Bonos
             {
                 ReporteBonoHotel_Blanco bb = new ReporteBonoHotel_Blanco(ID_ROL, ID, System.DateTime.Now, srvDatosSocio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
                 bb.ShowDialog();
-
 
             }
             else if (TIPO == "PAQ")

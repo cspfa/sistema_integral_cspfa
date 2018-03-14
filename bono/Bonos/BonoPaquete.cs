@@ -253,7 +253,6 @@ namespace SOCIOS.bono
                         
                         decimal Pago = decimal.Parse(lbSaldoTotal.Text);
 
-
                         dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, TipoPasaje, ClasePasaje, VGlobales.vp_username, "PAQ", salida.ID, 0, "", Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO");
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "PAQ");
                         //Obtener Proximo ID_ROL

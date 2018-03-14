@@ -13,6 +13,7 @@ namespace SOCIOS.bono.Bonos
     {
         BonoUtils bu = new BonoUtils();
         bo_Turismo dlog = new bo_Turismo();
+
         SOCIOS.Turismo.TurismoUtils utilsTurismo = new SOCIOS.Turismo.TurismoUtils();
         public Carga_Bonos_Blanco_Turismo()
         {

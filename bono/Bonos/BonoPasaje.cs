@@ -400,6 +400,7 @@ namespace SOCIOS.bono
                          //Obtener Proximo ID_ROL
                          int ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CODINT) + 1;
 
+
                          dlog.Seteo_Id_ROL(ID, ID_ROL);
                       
                         if (ID != 0)
