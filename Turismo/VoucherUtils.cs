@@ -13,6 +13,7 @@ namespace SOCIOS.Turismo
        public void GenerarVoucher(int Bono,int Hotel, DateTime Desde, DateTime Hasta,int Regimen,int Habitacion,string NumeroHabitacion,string TipoBono,string Motivo)
 
        {
+        
            try
            {
                dlog.Voucher_HOTEL_Insert(Bono, Desde, Hasta, Hotel, this.Diferencia_Dias(Desde, Hasta), this.Cantidadpersonas(Bono), Regimen, Habitacion, NumeroHabitacion, TipoBono, Motivo);
@@ -113,6 +114,22 @@ namespace SOCIOS.Turismo
        
        }
 
+
+       public int GetMax_ID_ROL(string ROL, int CODINT)
+       {
+           string QUERY = "SELECT coalesce (MAX(ID_ROL),0) FROM voucher_bono_Hotel WHERE ROL='" + ROL + "' and CODINT=" + CODINT.ToString();
+           DataRow[] foundRows;
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+           if (foundRows.Length > 0)
+           {
+               return Int32.Parse(foundRows[0][0].ToString().Trim());
+           }
+           else
+               return 0;
+
+
+       }
       
     
 
