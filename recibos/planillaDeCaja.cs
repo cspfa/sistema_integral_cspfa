@@ -141,7 +141,7 @@ namespace SOCIOS
             tbNuevoImporteEfectivo.Text = "";
             tbNuevoImporteOtros.Text = "";
 
-            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO" || VGlobales.vp_username == "KMARTIN")
+            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO" || VGlobales.vp_username == "KMARTIN" || VGlobales.vp_username == "MORELLANO")
             {
                 label1.Enabled = true;
                 label7.Enabled = true;
@@ -205,11 +205,11 @@ namespace SOCIOS
             comboFormasDePago(cbNuevoPagoEfectivo);
             comboFormasDePago(cbNuevoPagoOtros);
             comboFormasDePago(cbFormaPagoBuscador);
-
+            
+            buscarCajas(1, dgCajasDepositadas);
             buscar("E", dgEgresos, CAJA);
             buscar("1", dgEfectivo, CAJA);
             buscarCajas(0, dgCajasAnteriores);
-            buscarCajas(1, dgCajasDepositadas);
             pintarCajas();
             tbTotal.Text = INGRESOS_EFECTIVO.ToString();
             tbCambio.Text = obtenerCambio().ToString();
@@ -235,7 +235,11 @@ namespace SOCIOS
             cajaDeHoyEnComposicion();
 
             if (CAJA > 0)
+            {
                 cajasEnComposicion(CAJA);
+                DataSet CAJAS_DEPOSITADAS = buscarCajasDepositadas(CAJA);
+                dgCajasDepositadas.DataSource = CAJAS_DEPOSITADAS.Tables[0];
+            }
 
             if (CAJA == 0)
                 agregarCajas();
@@ -545,11 +549,10 @@ namespace SOCIOS
                         dgTotalesDelDia.Rows.Add("INGRESOS CHEQUES Y OTROS", string.Format("{0:n}", TOTAL));
                         INGRESOS_OTROS = TOTAL;
                     }
-                    else if (PAGO != "1" && PAGO != "2")
+                    else if (PAGO != "1" && PAGO != "2" && GRID.Name.ToString() == "dgEgresos")
                     {
                         CAJAS_DEPOSITADAS = totalCajasDepositadas();
                         EGRESOS = TOTAL + CAJAS_DEPOSITADAS;
-                        //EGRESOS = TOTAL;
                     }
                 }
             }
@@ -562,12 +565,12 @@ namespace SOCIOS
         private decimal totalCajasDepositadas()
         {
             decimal TOTAL = 0;
-            decimal CAJA = 0;
+            decimal EFECTIVO = 0;
 
             foreach (DataGridViewRow row in dgCajasDepositadas.Rows)
             {
-                CAJA = decimal.Parse(row.Cells[4].Value.ToString());
-                TOTAL = TOTAL + CAJA;
+                EFECTIVO = decimal.Parse(row.Cells[4].Value.ToString());
+                TOTAL = TOTAL + EFECTIVO;
             }
 
             return TOTAL;
@@ -916,6 +919,7 @@ namespace SOCIOS
                         dt1.Rows.Add(ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA);
                     }
 
+
                     reader.Close();
                     GRILLA.DataSource = dt1;
                     GRILLA.Columns[0].Width = 0;
@@ -1038,22 +1042,7 @@ namespace SOCIOS
                 string DIA = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(0, 2);
                 string MES = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(3, 2);
                 string ANIO = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(6, 4);
-                //string PATH = @"\\192.168.1.6\planillascaja\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
-                //string DIR = @"\\192.168.1.6\planillascaja\";
                 string PATH = "SAVEAS";
-
-                /*if (VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES")
-                {
-                    //PATH = @"C:\PlanillasCaja\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
-                    //DIR = @"C:\PlanillasCaja";
-                    PATH = "SAVEAS";
-                }
-
-                if (!Directory.Exists(DIR))
-                {
-                    PATH = "SAVEAS";
-                }*/
-
                 imprimirPlanilla(CAJA, PATH);
                 Cursor = Cursors.Default;
             }
@@ -2068,8 +2057,7 @@ namespace SOCIOS
                 doc.Add(sub3);
                 doc.Add(TABLA_EGRESOS);
                 #endregion
-
-
+                
                 #region CAJAS DEPOSITADAS
 
                 if (CAJAS_DEPOSITADAS.Tables[0].Rows.Count > 0)
@@ -2502,6 +2490,27 @@ namespace SOCIOS
                 TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_SALDO_CAJA_DIA);
 
                 doc.Add(TABLA_TOTALES_DIA);
+                #endregion
+
+                #region FIRMAS
+                PdfPTable TABLA_FIRMAS = new PdfPTable(2);
+                TABLA_FIRMAS.WidthPercentage = 100;
+                TABLA_FIRMAS.SpacingAfter = 0;
+                TABLA_FIRMAS.SpacingBefore = 60;
+                TABLA_FIRMAS.SetWidths(new float[] { 2f, 2f });
+                PdfPCell CELDA_CAJERO = new PdfPCell(new Phrase("FIRMA CAJERO", _mediumFontBold));
+                PdfPCell CELDA_TESORERO = new PdfPCell(new Phrase("FIRMA TESORERO", _mediumFontBold));
+                CELDA_CAJERO.BackgroundColor = blanco;
+                CELDA_CAJERO.BorderColor = blanco;
+                CELDA_CAJERO.HorizontalAlignment = 1;
+                CELDA_CAJERO.FixedHeight = 16f;
+                CELDA_TESORERO.BackgroundColor = blanco;
+                CELDA_TESORERO.BorderColor = blanco;
+                CELDA_TESORERO.HorizontalAlignment = 1;
+                CELDA_TESORERO.FixedHeight = 16f;
+                TABLA_FIRMAS.AddCell(CELDA_CAJERO);
+                TABLA_FIRMAS.AddCell(CELDA_TESORERO);
+                doc.Add(TABLA_FIRMAS);
                 #endregion
 
                 doc.Close();
@@ -3132,6 +3141,7 @@ namespace SOCIOS
             int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
             string CODIGO = "0";
             int IMPUTACION = cuentaBanco(BANCO);
+            decimal EFECTIVO = 0;
 
             if (SELECCION == 0)
             {
@@ -3152,6 +3162,7 @@ namespace SOCIOS
                     {
                         DEPOSITADA = ROW.Cells[10].Value.ToString();
                         CAJA = int.Parse(ROW.Cells[0].Value.ToString());
+                        EFECTIVO = decimal.Parse(ROW.Cells[4].Value.ToString());
 
                         if (DEPOSITADA == "0")
                         {
