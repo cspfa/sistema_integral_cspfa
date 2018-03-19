@@ -1586,17 +1586,18 @@ namespace SOCIOS
                 #endregion
 
                 #region CABECERA EGRESOS
-                PdfPTable TABLA_EGRESOS = new PdfPTable(6);
+                PdfPTable TABLA_EGRESOS = new PdfPTable(7);
                 TABLA_EGRESOS.WidthPercentage = 100;
                 TABLA_EGRESOS.SpacingAfter = 10;
                 TABLA_EGRESOS.SpacingBefore = 10;
-                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f });
+                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f, 2f });
                 PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPUTACION_EGRESOS = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPORTE_EGRESOS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
                 PdfPCell CELDA_OBS_EGRESOS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
                 PdfPCell CELDA_ANULADO_EGRESOS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
+                PdfPCell CELDA_PAGO_EGRESOS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
                 CELDA_NUM_EGRESOS.BackgroundColor = topo;
                 CELDA_NUM_EGRESOS.BorderColor = blanco;
                 CELDA_NUM_EGRESOS.HorizontalAlignment = 1;
@@ -1621,12 +1622,17 @@ namespace SOCIOS
                 CELDA_ANULADO_EGRESOS.BorderColor = blanco;
                 CELDA_ANULADO_EGRESOS.HorizontalAlignment = 1;
                 CELDA_ANULADO_EGRESOS.FixedHeight = 16f;
+                CELDA_PAGO_EGRESOS.BackgroundColor = topo;
+                CELDA_PAGO_EGRESOS.BorderColor = blanco;
+                CELDA_PAGO_EGRESOS.HorizontalAlignment = 2;
+                CELDA_PAGO_EGRESOS.FixedHeight = 16f;
                 TABLA_EGRESOS.AddCell(CELDA_NUM_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_APENOM_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_IMPUTACION_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_IMPORTE_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_OBS_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_ANULADO_EGRESOS);
+                TABLA_EGRESOS.AddCell(CELDA_PAGO_EGRESOS);
                 #endregion
 
                 #region CABECERA CAJAS DEPOSITADAS
@@ -1989,6 +1995,7 @@ namespace SOCIOS
                     ANULADO = row[10].ToString();
                     PTO_VTA = row[12].ToString();
                     string BANCO_DEPO = row[13].ToString();
+                    F_PAGO = row[11].ToString();
 
                     if (BANCO_DEPO.Trim() == "PATAGONIA")
                     {
@@ -2049,6 +2056,13 @@ namespace SOCIOS
                     CELL_ANULADO_EGRESOS.BackgroundColor = colorFondo;
                     CELL_ANULADO_EGRESOS.FixedHeight = 14f;
                     TABLA_EGRESOS.AddCell(CELL_ANULADO_EGRESOS);
+
+                    PdfPCell CELL_PAGO_EGRESOS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
+                    CELL_PAGO_EGRESOS.HorizontalAlignment = 2;
+                    CELL_PAGO_EGRESOS.BorderWidth = 0;
+                    CELL_PAGO_EGRESOS.BackgroundColor = colorFondo;
+                    CELL_PAGO_EGRESOS.FixedHeight = 14f;
+                    TABLA_EGRESOS.AddCell(CELL_PAGO_EGRESOS);
                 }
 
                 Paragraph sub3 = new Paragraph("EGRESOS", _standardFontBold);
