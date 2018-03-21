@@ -583,13 +583,29 @@ namespace SOCIOS.Entrada_Campo
 
         { 
             int CantidadPiletas = Invitado_Pileta + Socio_Pileta + Intercirculo_Pileta + Menor + Discapacitado + Oro;
+            int contador = 0;
 
-
-            for (int I = 0; I < CantidadPiletas; I++)
-            {
-               entradaCampoService.Imprimir_Pileta(DNI + "-" + APELLIDO + "," + NOMBRE, "Pileta " + (I + 1).ToString() + " de " + CantidadPiletas.ToString(),Directo);
-            }
+            contador = Impresion_piletas(contador, CantidadPiletas, "SOC", Socio_Pileta, Directo);
+            contador = Impresion_piletas(contador, CantidadPiletas, "INV", Invitado_Pileta, Directo);
+            contador = Impresion_piletas(contador, CantidadPiletas, "MEN", Menor, Directo);
+            contador = Impresion_piletas(contador, CantidadPiletas, "DIS", Discapacitado, Directo);
+            contador = Impresion_piletas(contador, CantidadPiletas, "ORO", Oro, Directo);
+            contador = Impresion_piletas(contador, CantidadPiletas, "INT", Intercirculo_Pileta, Directo);
+           
         
+        
+        }
+
+        private int Impresion_piletas(int contador, int Total, string TIPO, int Tope, bool Directo)
+        {
+           
+            for (int I=0; I<Tope;I++)
+            {
+                contador = contador + 1;
+                entradaCampoService.Imprimir_Pileta(DNI + "-" + APELLIDO + "," + NOMBRE, TIPO +"-Pileta " + (contador).ToString() + " de " + Total.ToString(), Directo);
+               }
+
+            return contador;
         }
 
         private void lnk_Familiar_Estacionamiento_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
