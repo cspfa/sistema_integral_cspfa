@@ -141,7 +141,7 @@ namespace SOCIOS
             tbNuevoImporteEfectivo.Text = "";
             tbNuevoImporteOtros.Text = "";
 
-            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO" || VGlobales.vp_username == "KMARTIN")
+            if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO" || VGlobales.vp_username == "KMARTIN" || VGlobales.vp_username == "MORELLANO")
             {
                 label1.Enabled = true;
                 label7.Enabled = true;
@@ -205,11 +205,11 @@ namespace SOCIOS
             comboFormasDePago(cbNuevoPagoEfectivo);
             comboFormasDePago(cbNuevoPagoOtros);
             comboFormasDePago(cbFormaPagoBuscador);
-
+            
+            buscarCajas(1, dgCajasDepositadas);
             buscar("E", dgEgresos, CAJA);
             buscar("1", dgEfectivo, CAJA);
             buscarCajas(0, dgCajasAnteriores);
-            buscarCajas(1, dgCajasDepositadas);
             pintarCajas();
             tbTotal.Text = INGRESOS_EFECTIVO.ToString();
             tbCambio.Text = obtenerCambio().ToString();
@@ -235,7 +235,11 @@ namespace SOCIOS
             cajaDeHoyEnComposicion();
 
             if (CAJA > 0)
+            {
                 cajasEnComposicion(CAJA);
+                DataSet CAJAS_DEPOSITADAS = buscarCajasDepositadas(CAJA);
+                dgCajasDepositadas.DataSource = CAJAS_DEPOSITADAS.Tables[0];
+            }
 
             if (CAJA == 0)
                 agregarCajas();
@@ -545,11 +549,10 @@ namespace SOCIOS
                         dgTotalesDelDia.Rows.Add("INGRESOS CHEQUES Y OTROS", string.Format("{0:n}", TOTAL));
                         INGRESOS_OTROS = TOTAL;
                     }
-                    else if (PAGO != "1" && PAGO != "2")
+                    else if (PAGO != "1" && PAGO != "2" && GRID.Name.ToString() == "dgEgresos")
                     {
                         CAJAS_DEPOSITADAS = totalCajasDepositadas();
                         EGRESOS = TOTAL + CAJAS_DEPOSITADAS;
-                        //EGRESOS = TOTAL;
                     }
                 }
             }
@@ -562,12 +565,12 @@ namespace SOCIOS
         private decimal totalCajasDepositadas()
         {
             decimal TOTAL = 0;
-            decimal CAJA = 0;
+            decimal EFECTIVO = 0;
 
             foreach (DataGridViewRow row in dgCajasDepositadas.Rows)
             {
-                CAJA = decimal.Parse(row.Cells[4].Value.ToString());
-                TOTAL = TOTAL + CAJA;
+                EFECTIVO = decimal.Parse(row.Cells[4].Value.ToString());
+                TOTAL = TOTAL + EFECTIVO;
             }
 
             return TOTAL;
@@ -916,6 +919,7 @@ namespace SOCIOS
                         dt1.Rows.Add(ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA);
                     }
 
+
                     reader.Close();
                     GRILLA.DataSource = dt1;
                     GRILLA.Columns[0].Width = 0;
@@ -1038,22 +1042,7 @@ namespace SOCIOS
                 string DIA = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(0, 2);
                 string MES = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(3, 2);
                 string ANIO = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(6, 4);
-                //string PATH = @"\\192.168.1.6\planillascaja\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
-                //string DIR = @"\\192.168.1.6\planillascaja\";
                 string PATH = "SAVEAS";
-
-                /*if (VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES")
-                {
-                    //PATH = @"C:\PlanillasCaja\" + VGlobales.vp_role + "_CAJA_DEL_" + DIA + "_" + MES + "_" + ANIO + ".pdf";
-                    //DIR = @"C:\PlanillasCaja";
-                    PATH = "SAVEAS";
-                }
-
-                if (!Directory.Exists(DIR))
-                {
-                    PATH = "SAVEAS";
-                }*/
-
                 imprimirPlanilla(CAJA, PATH);
                 Cursor = Cursors.Default;
             }
@@ -1597,17 +1586,18 @@ namespace SOCIOS
                 #endregion
 
                 #region CABECERA EGRESOS
-                PdfPTable TABLA_EGRESOS = new PdfPTable(6);
+                PdfPTable TABLA_EGRESOS = new PdfPTable(7);
                 TABLA_EGRESOS.WidthPercentage = 100;
                 TABLA_EGRESOS.SpacingAfter = 10;
                 TABLA_EGRESOS.SpacingBefore = 10;
-                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f });
+                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f, 2f });
                 PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPUTACION_EGRESOS = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
                 PdfPCell CELDA_IMPORTE_EGRESOS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
                 PdfPCell CELDA_OBS_EGRESOS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
                 PdfPCell CELDA_ANULADO_EGRESOS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
+                PdfPCell CELDA_PAGO_EGRESOS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
                 CELDA_NUM_EGRESOS.BackgroundColor = topo;
                 CELDA_NUM_EGRESOS.BorderColor = blanco;
                 CELDA_NUM_EGRESOS.HorizontalAlignment = 1;
@@ -1632,12 +1622,17 @@ namespace SOCIOS
                 CELDA_ANULADO_EGRESOS.BorderColor = blanco;
                 CELDA_ANULADO_EGRESOS.HorizontalAlignment = 1;
                 CELDA_ANULADO_EGRESOS.FixedHeight = 16f;
+                CELDA_PAGO_EGRESOS.BackgroundColor = topo;
+                CELDA_PAGO_EGRESOS.BorderColor = blanco;
+                CELDA_PAGO_EGRESOS.HorizontalAlignment = 2;
+                CELDA_PAGO_EGRESOS.FixedHeight = 16f;
                 TABLA_EGRESOS.AddCell(CELDA_NUM_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_APENOM_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_IMPUTACION_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_IMPORTE_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_OBS_EGRESOS);
                 TABLA_EGRESOS.AddCell(CELDA_ANULADO_EGRESOS);
+                TABLA_EGRESOS.AddCell(CELDA_PAGO_EGRESOS);
                 #endregion
 
                 #region CABECERA CAJAS DEPOSITADAS
@@ -2000,6 +1995,7 @@ namespace SOCIOS
                     ANULADO = row[10].ToString();
                     PTO_VTA = row[12].ToString();
                     string BANCO_DEPO = row[13].ToString();
+                    F_PAGO = row[11].ToString();
 
                     if (BANCO_DEPO.Trim() == "PATAGONIA")
                     {
@@ -2060,6 +2056,13 @@ namespace SOCIOS
                     CELL_ANULADO_EGRESOS.BackgroundColor = colorFondo;
                     CELL_ANULADO_EGRESOS.FixedHeight = 14f;
                     TABLA_EGRESOS.AddCell(CELL_ANULADO_EGRESOS);
+
+                    PdfPCell CELL_PAGO_EGRESOS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
+                    CELL_PAGO_EGRESOS.HorizontalAlignment = 2;
+                    CELL_PAGO_EGRESOS.BorderWidth = 0;
+                    CELL_PAGO_EGRESOS.BackgroundColor = colorFondo;
+                    CELL_PAGO_EGRESOS.FixedHeight = 14f;
+                    TABLA_EGRESOS.AddCell(CELL_PAGO_EGRESOS);
                 }
 
                 Paragraph sub3 = new Paragraph("EGRESOS", _standardFontBold);
@@ -2068,8 +2071,7 @@ namespace SOCIOS
                 doc.Add(sub3);
                 doc.Add(TABLA_EGRESOS);
                 #endregion
-
-
+                
                 #region CAJAS DEPOSITADAS
 
                 if (CAJAS_DEPOSITADAS.Tables[0].Rows.Count > 0)
@@ -2502,6 +2504,27 @@ namespace SOCIOS
                 TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_SALDO_CAJA_DIA);
 
                 doc.Add(TABLA_TOTALES_DIA);
+                #endregion
+
+                #region FIRMAS
+                PdfPTable TABLA_FIRMAS = new PdfPTable(2);
+                TABLA_FIRMAS.WidthPercentage = 100;
+                TABLA_FIRMAS.SpacingAfter = 0;
+                TABLA_FIRMAS.SpacingBefore = 60;
+                TABLA_FIRMAS.SetWidths(new float[] { 2f, 2f });
+                PdfPCell CELDA_CAJERO = new PdfPCell(new Phrase("FIRMA CAJERO", _mediumFontBold));
+                PdfPCell CELDA_TESORERO = new PdfPCell(new Phrase("FIRMA TESORERO", _mediumFontBold));
+                CELDA_CAJERO.BackgroundColor = blanco;
+                CELDA_CAJERO.BorderColor = blanco;
+                CELDA_CAJERO.HorizontalAlignment = 1;
+                CELDA_CAJERO.FixedHeight = 16f;
+                CELDA_TESORERO.BackgroundColor = blanco;
+                CELDA_TESORERO.BorderColor = blanco;
+                CELDA_TESORERO.HorizontalAlignment = 1;
+                CELDA_TESORERO.FixedHeight = 16f;
+                TABLA_FIRMAS.AddCell(CELDA_CAJERO);
+                TABLA_FIRMAS.AddCell(CELDA_TESORERO);
+                doc.Add(TABLA_FIRMAS);
                 #endregion
 
                 doc.Close();
@@ -3132,6 +3155,7 @@ namespace SOCIOS
             int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
             string CODIGO = "0";
             int IMPUTACION = cuentaBanco(BANCO);
+            decimal EFECTIVO = 0;
 
             if (SELECCION == 0)
             {
@@ -3152,6 +3176,7 @@ namespace SOCIOS
                     {
                         DEPOSITADA = ROW.Cells[10].Value.ToString();
                         CAJA = int.Parse(ROW.Cells[0].Value.ToString());
+                        EFECTIVO = decimal.Parse(ROW.Cells[4].Value.ToString());
 
                         if (DEPOSITADA == "0")
                         {
