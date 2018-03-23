@@ -459,20 +459,82 @@ namespace SOCIOS.registroSocios
 
         private void button2_Click_2(object sender, EventArgs e)
         {
-            string QUERY = "SELECT LEG_PER, APE_SOC, NOM_SOC, SEX, FE_ALTA, NUM_DOC, F_NACIM, OBRA_SOCIAL, DESTINO, ACRJP2, NRO_SOC, NCOD_DTO, A_DTO FROM TITULAR WHERE NUM_DOC IN (";
+            Cursor = Cursors.WaitCursor;
             int DNI = 0;
+            int DNI_BASE = 0;
+            int NRO_SOC = 0;
 
-            foreach (DataGridViewRow row in dgAspirantes.Rows)
+            try
             {
-                DNI = int.Parse(row.Cells[6].Value.ToString());
-                QUERY += DNI + ",";
+                conString cs = new conString();
+                string connectionString = cs.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string QUERY = "SELECT NUM_DOC, NRO_SOC FROM TITULAR WHERE NUM_DOC IN (";
+
+                    foreach (DataGridViewRow row in dgAspirantes.Rows)
+                    {
+                        DNI = int.Parse(row.Cells[6].Value.ToString());
+                        QUERY += DNI + ",";
+                    }
+
+                    QUERY = QUERY.TrimEnd(',');
+                    QUERY = QUERY + ");";
+
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    cmd.CommandText = QUERY;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            foreach (DataGridViewRow row in dgAspirantes.Rows)
+                            {
+                                DNI = int.Parse(row.Cells[6].Value.ToString());
+                                
+                                foreach (DataRow dr in ds.Tables[0].Rows)
+                                {
+                                    DNI_BASE = int.Parse(dr[0].ToString().Trim());
+                                    NRO_SOC = int.Parse(dr[1].ToString().Trim());
+
+                                    if (DNI_BASE == DNI)
+                                    {
+                                        row.Cells[8].Value = NRO_SOC.ToString();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("NO EXISTEN REGISTROS CON LA CONDICION INDICADA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            Cursor = Cursors.Default;
+                        }
+
+                        reader.Close();
+                    }
+
+                    transaction.Commit();
+                    connection.Close();
+                    cmd = null;
+                    transaction = null;
+                    Cursor = Cursors.Default;
+                    //Clipboard.SetData(DataFormats.Text, (Object)QUERY);
+                    //MessageBox.Show("CONSULTA COPIADA");
+                }
             }
-
-            QUERY = QUERY.TrimEnd(',');
-            QUERY = QUERY + ");";
-
-            //Clipboard.SetData(DataFormats.Text, (Object)QUERY);
-            //MessageBox.Show("CONSULTA COPIADA");
+            catch (Exception error)
+            {
+                MessageBox.Show("OCURRIO UN ERROR AL EJECUTAR LA CONSULTA\n"+error, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Cursor = Cursors.Default;
+            }
         }
 
         private void btnImportarRegistros_Click_1(object sender, EventArgs e)
@@ -536,6 +598,11 @@ namespace SOCIOS.registroSocios
 
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void btnAbrirXLSPros_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
