@@ -1318,6 +1318,60 @@ namespace SOCIOS.BO
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
 
+        //STORED MODIFICAR ROLE Y DESTINO RECIBOS
+        public void modificarRoleDestRecibos(int ID_COMP, int SECTACT, int ID_PROF, int CUENTA_HABER)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(ID_COMP);
+            vector_contenidos.Add(SECTACT);
+            vector_contenidos.Add(ID_PROF);
+            vector_contenidos.Add(CUENTA_HABER);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@SECTACT");
+            vector_nombres.Add("@ID_PROF");
+            vector_nombres.Add("@CUENTA_HABER");
+
+            string vprocedure = "MOD_ROLE_DEST_RECIBOS";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //STORED MODIFICAR ROLE Y DESTINO BONOS
+        public void modificarRoleDestBonos(int ID_COMP, int SECTACT, int ID_PROF, int CUENTA_HABER)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(ID_COMP);
+            vector_contenidos.Add(SECTACT);
+            vector_contenidos.Add(ID_PROF);
+            vector_contenidos.Add(CUENTA_HABER);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@SECTACT");
+            vector_nombres.Add("@ID_PROF");
+            vector_nombres.Add("@CUENTA_HABER");
+
+            string vprocedure = "MOD_ROL_DEST_BONOS";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
         //STORED ACTUALIZA CAJA_DIARIA EN RECIBOS_CAJA
         public void cajaEnRecibos(int ID_RECIBO, int CAJA_DIARIA)
         {
