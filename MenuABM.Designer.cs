@@ -88,6 +88,7 @@
             this.listadoDeTurnosCanceladosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cargarObservaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.bonosOdontologicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planDeCuentaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recibosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirRecibosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -149,7 +150,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.planDeCuentaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bonosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -707,6 +708,13 @@
             this.bonosOdontologicosToolStripMenuItem.Text = "Bonos Odontologicos";
             this.bonosOdontologicosToolStripMenuItem.Click += new System.EventHandler(this.bonosOdontologicosToolStripMenuItem_Click);
             // 
+            // planDeCuentaToolStripMenuItem2
+            // 
+            this.planDeCuentaToolStripMenuItem2.Name = "planDeCuentaToolStripMenuItem2";
+            this.planDeCuentaToolStripMenuItem2.Size = new System.Drawing.Size(190, 22);
+            this.planDeCuentaToolStripMenuItem2.Text = "Plan de Cuenta";
+            this.planDeCuentaToolStripMenuItem2.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem2_Click);
+            // 
             // cajaToolStripMenuItem
             // 
             this.cajaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -942,7 +950,8 @@
             this.aBMTipoHabitaciónToolStripMenuItem,
             this.proveedoresToolStripMenuItem1,
             this.arancelesToolStripMenuItem1,
-            this.planDeCuentaToolStripMenuItem1});
+            this.planDeCuentaToolStripMenuItem1,
+            this.bonosEnBlancoToolStripMenuItem});
             this.turismoToolStripMenuItem.Enabled = false;
             this.turismoToolStripMenuItem.Name = "turismoToolStripMenuItem";
             this.turismoToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
@@ -1242,12 +1251,12 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // planDeCuentaToolStripMenuItem2
+            // bonosEnBlancoToolStripMenuItem
             // 
-            this.planDeCuentaToolStripMenuItem2.Name = "planDeCuentaToolStripMenuItem2";
-            this.planDeCuentaToolStripMenuItem2.Size = new System.Drawing.Size(190, 22);
-            this.planDeCuentaToolStripMenuItem2.Text = "Plan de Cuenta";
-            this.planDeCuentaToolStripMenuItem2.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem2_Click);
+            this.bonosEnBlancoToolStripMenuItem.Name = "bonosEnBlancoToolStripMenuItem";
+            this.bonosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.bonosEnBlancoToolStripMenuItem.Text = "Bonos en blanco";
+            this.bonosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.bonosEnBlancoToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1412,5 +1421,6 @@
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem;
     }
 }
