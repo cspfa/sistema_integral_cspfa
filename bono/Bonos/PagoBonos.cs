@@ -16,7 +16,7 @@ namespace SOCIOS.bono
 {
     public partial class PagoBonos : Form
     {
-        bo dlog;
+        /*bo dlog;
         bool esFinanciable;
         bool Inicio;
         decimal MontoPlanilla;
@@ -956,6 +956,6 @@ namespace SOCIOS.bono
                 CuotasTarjeta = tar.CUOTAS;
                 Tarjeta = true;
              }
-        }
+        }*/
     }
 }
