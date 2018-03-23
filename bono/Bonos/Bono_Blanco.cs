@@ -57,7 +57,7 @@ namespace SOCIOS.bono.Bonos
 
         private void Imprimir_Click(object sender, EventArgs e)
         {
-            int CODINT = Int32.Parse(cbCODIGOS.SelectedValue.ToString())
+            int CODINT = Int32.Parse(cbCODIGOS.SelectedValue.ToString());
 
 
 
