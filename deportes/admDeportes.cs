@@ -27,8 +27,9 @@ namespace SOCIOS
         int ID_REGISTRO = 0;
         
         bool  Copio_Apto = false;
-       
+        List<SOCIOS.deportes.Registro_Responsables> Responsables = new List<deportes.Registro_Responsables>();
         DateTime fecha_Apto;
+        deportes.DeportesService ds = new deportes.DeportesService();
 
         public admDeportes(string var_NombreTabla, string var_Numero, string var_Depuracion, string var_Barra, string var_Numero_Titular, string var_Depuracion_Titular, int var_Id_Socio, string DNI, string var_Nombre, string var_Apellido, Image imagenTitular, string var_Role,int ID,bool pCopioApto,DateTime? pFechaApto)
         {
@@ -98,12 +99,12 @@ namespace SOCIOS
                 DatosDeportes();
             else
                 DatosDeportes(ID);
-
+            
             ArmoCodigoBarra();
             //Carga dtTipoCarnet
             this.Setear_Vista_Fecha_Carnet();
             
-
+            Responsables = ds.Get_Responsables(ID_ROL,ROL);
 
 
 
@@ -111,6 +112,8 @@ namespace SOCIOS
 
         }
 
+
+      
 
 
 
@@ -744,6 +747,7 @@ namespace SOCIOS
                 ROL = foundRows[0][11].ToString();
                 
                 Mode = "UPDATE";
+
                 lblEstado.Text = "Se modificarán los datos ya cargados ,esta persona ya se encuentra asociada a Deportes";
                 lblEstado.Visible = true;
                 btnActividades.Visible = true;
@@ -811,19 +815,9 @@ namespace SOCIOS
                 ID_REGISTRO = Int32.Parse(foundRows[0][0].ToString().Trim());
                 if (foundRows[0][1].ToString().Trim().Length > 0)
                 {
-                    DateTime fecha_apto = DateTime.Parse(foundRows[0][1].ToString().Trim());
-                    if (fecha_Apto.Year != 1) //para las fechas vacias 
-                    {
-                        dpApto.Value = fecha_apto;
-                        cbApto.Checked = true;
-                        dpApto.Visible = true;
-                    }
-                    else
-                    {
-                        cbApto.Checked = false;
-                        dpApto.Value = System.DateTime.Now;
-                    
-                    }
+                    dpApto.Value = DateTime.Parse(foundRows[0][1].ToString().Trim());
+                    cbApto.Checked = true;
+                    dpApto.Visible=true;
                 }
                 else
                 {
@@ -949,6 +943,23 @@ namespace SOCIOS
         {
             string Query = "SELECT  max(ID_ROL) FROM  DEPORTES_ADM" +
               " WHERE NRO_DEP= " + nro_dep.ToString() + "AND NRO_SOCIO = " + nro_soc.ToString() + " AND BARRA= " + barra.ToString() + " AND ROL='" +VGlobales.vp_role.TrimEnd() +"'";
+            DataRow[] foundRows;
+
+
+            foundRows = dlog.BO_EjecutoDataTable(Query).Select();
+            if (foundRows.Length > 0)
+            {
+                ID = Int32.Parse(foundRows[0][0].ToString().Trim());
+            }
+
+
+
+        }
+
+        private void getID_ROL_deportes()
+        {
+            string Query = "SELECT  ID_ROL FROM  DEPORTES_ADM" +
+              " WHERE NRO_DEP= " + nro_dep.ToString() + "AND NRO_SOCIO = " + nro_soc.ToString() + " AND BARRA= " + barra.ToString() + " AND ROL='" + VGlobales.vp_role.TrimEnd() + "'";
             DataRow[] foundRows;
 
 
@@ -1149,7 +1160,7 @@ namespace SOCIOS
                 {
 
                     ID = dlog.InsertDeportes(titular_id, barra, adherente_id, fecha_Apto,fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text, VGlobales.vp_role, dlog.Proximo_ID(VGlobales.vp_role));
-                    MessageBox.Show("REGISTRO DEPORTES CARGADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     lblEstado.Text = "REGISTRO GRABADO CON EXITO!";
                     Mode = "UPDATE";
                     this.getIDdeportes();
@@ -1158,20 +1169,37 @@ namespace SOCIOS
                 else
                 {
                     dlog.UpdateDeportes(ID_REGISTRO, titular_id, barra, adherente_id, fecha_Apto, fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text);
-                    MessageBox.Show("REGISTRO DEPORTES GRABADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.getID_ROL_deportes();
+                    
                     lblEstado.Text = "REGISTRO GRABADO CON EXITO!";
 
 
 
                 }
+
+                //grabar Responsables
+                foreach (SOCIOS.deportes.Registro_Responsables rr in Responsables)
+                {
+                    if (rr.NUEVO)
+                        dlog.Insert_Persona_Responsable(ID, rr.ROL, rr.APELLIDO, rr.NOMBRE, rr.TELEFONO, rr.EMAIL, DateTime.Parse(rr.FECHA), rr.VINCULO, rr.DNI);
+                    if (rr.BORRAR)
+                        dlog.Borro_Persona_Responsable(rr.ID_BASE, VGlobales.vp_username, System.DateTime.Now);
+
+                }
+
+
+
                 btnActividades.Visible = true;
                 btnCarnet.Visible = true;
 
+                MessageBox.Show("REGISTRO DEPORTES GRABADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          
+               
 
             }
             catch (Exception error)
             {
-                MessageBox.Show("NO SE PUDO CARGAR EL REGISTRO DEPORTES\n" + error, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("NO SE PUDO CARGAR EL REGISTRO DEPORTES\n" + error, "ERROR",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
 
@@ -1187,8 +1215,7 @@ namespace SOCIOS
 
             SOCIOS.deportes.admActividades frmActividades = new deportes.admActividades(ID_ROL, lbROL.Text, categoria_social, nro_soc, nro_dep, barra, COD_DTO);
             DialogResult res = frmActividades.ShowDialog();
-
-
+            
 
             this.DatosDeportes();
 
@@ -1416,6 +1443,20 @@ namespace SOCIOS
                 dpCarnet.Visible = true;
 
             }
+            }
+
+            private void btn_Responsable_Click(object sender, EventArgs e)
+            {
+                SOCIOS.deportes.Responsables res= new SOCIOS.deportes.Responsables(Responsables);
+                DialogResult dr = res.ShowDialog();
+                if (dr==DialogResult.OK)
+                {
+                    Responsables =null;
+
+                    Responsables = res.Lista;
+                }
+
+                
             }
 
     }

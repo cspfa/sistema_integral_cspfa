@@ -919,6 +919,53 @@ namespace SOCIOS.deportes
 
       #endregion
 
+
+
+
+      public List<SOCIOS.deportes.Registro_Responsables> Get_Responsables(int ID, string ROL)
+      {
+          string QUERY = @"SELECT   ID,ID_ROL_DEPORTE,ROL,APELLIDO,NOMBRE,TELEFONO,EMAIL,FECHA,ANULADO,USR_ANULADO,USR,VINCULO,DNI
+                           FROM  DEPORTES_RESPONSABLE WHERE ID_ROL_DEPORTE=" + ID.ToString() + " AND ROL='" + ROL.TrimEnd().TrimStart() + "' AND   (ANULADO is null )";
+
+          List<SOCIOS.deportes.Registro_Responsables> LISTA = new List<Registro_Responsables>();
+
+
+          DataRow[] foundRows;
+
+          foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+          // foundRows = dlog.BO_EjecutoDataTable_Remota(QUERY,RolRemoto).Select();
+          if (foundRows.Length > 0)
+          {
+              int I = 0;
+              for (int i = 0; i < foundRows.Length; i++)
+              {
+                  Registro_Responsables item = new Registro_Responsables();
+                  item.ID_BASE         = Int32.Parse(foundRows[I][0].ToString().Trim());
+                  item.ID_ROL     = Int32.Parse(foundRows[I][1].ToString().Trim());
+
+                  item.ROL        = foundRows[I][2].ToString().Trim();
+                  item.APELLIDO   = foundRows[I][3].ToString().Trim();
+                  item.NOMBRE     = foundRows[I][4].ToString().Trim();
+                  item.TELEFONO   = foundRows[I][5].ToString().Trim();
+                  item.EMAIL      = foundRows[I][6].ToString().Trim();
+                  item.FECHA      = DateTime.Parse(foundRows[I][7].ToString().Trim()).ToShortDateString();
+                  item.USUARIO = foundRows[I][10].ToString().Trim();
+                  item.VINCULO = foundRows[I][11].ToString().Trim();
+                  item.DNI = foundRows[I][12].ToString().Trim();
+                  item.NUEVO = false;
+                  item.BORRAR = false;
+                 
+                  LISTA.Add(item);
+                  I = I + 1;
+
+              }
+          }
+
+          return LISTA;
+
+      }
+
       #region TraerFoto_Apto
     
 

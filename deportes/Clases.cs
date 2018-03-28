@@ -248,6 +248,24 @@ namespace SOCIOS.deportes
        public DateTime?             FechaApto      { get; set; }
    }
 
+   public class Registro_Responsables 
+   {
+       public string DNI        { get; set; }
+       public string NOMBRE     { get; set; }
+       public string APELLIDO   { get; set; }
+       public string VINCULO    { get; set; }
+       public string TELEFONO   { get; set; }
+       public string EMAIL      { get; set; }
+       public string ROL        { get; set; }
+       public int    ID_ROL     { get; set; }
+       public string FECHA      { get; set; }
+       public string USUARIO    { get; set; }
+       public bool   NUEVO      { get; set; }
+       public bool   BORRAR     { get; set; }
+       public int    ID_BASE         { get; set; }
+
+   }
+
 
    
 
