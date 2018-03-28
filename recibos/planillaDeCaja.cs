@@ -42,6 +42,135 @@ namespace SOCIOS
             cargaInicial(0);
         }
 
+        private void comboRoles(ComboBox CB)
+        {
+            string query = "SELECT DISTINCT TRIM(ROL) AS ROL FROM SECTACT ORDER BY ROL;";
+            CB.DataSource = null;
+            CB.Items.Clear();
+            CB.DataSource = dlog.BO_EjecutoDataTable(query);
+            CB.DisplayMember = "ROL";
+            CB.ValueMember = "ROL";
+            CB.SelectedItem = 0;
+        }
+
+        private void comboProfesionales(ComboBox COMBO, int SECTACT, ComboBox CB_DESTINOS)
+        {
+            if (CB_DESTINOS.SelectedValue != null)
+            {
+                string query = "SELECT P.ID, P.NOMBRE, P.BONO_RECIBO, P.CUENTA FROM PROFESIONALES P, PROF_ESP E, SECTACT S WHERE P.ID=E.PROFESIONAL AND E.ESPECIALIDAD=S.ID AND S.ID=" + SECTACT + ";";
+                //Clipboard.SetData(DataFormats.Text, (Object)query);
+                string connectionString;
+                DataSet ds2 = new DataSet();
+                Datos_ini ini4 = new Datos_ini();
+
+                try
+                {
+                    FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+                    cs.DataSource = ini4.Servidor; 
+                    cs.Port = int.Parse(ini4.Puerto);
+                    cs.Database = ini4.Ubicacion;
+                    cs.UserID = VGlobales.vp_username;
+                    cs.Password = VGlobales.vp_password;
+                    cs.Role = VGlobales.vp_role;
+                    cs.Dialect = 3;
+                    connectionString = cs.ToString();
+
+                    using (FbConnection connection = new FbConnection(connectionString))
+                    {
+                        connection.Open();
+                        FbTransaction transaction = connection.BeginTransaction();
+                        DataTable dt2 = new DataTable("PROFESIONALES");
+                        dt2.Columns.Add("ID", typeof(string));
+                        dt2.Columns.Add("NOMBRE", typeof(string));
+                        dt2.Columns.Add("BONO_RECIBO", typeof(string));
+                        dt2.Columns.Add("CUENTA", typeof(string));
+                        ds2.Tables.Add(dt2);
+                        FbCommand cmd2 = new FbCommand(query, connection, transaction);
+                        FbDataReader reader4 = cmd2.ExecuteReader();
+                        DataRow fila;
+
+                        while (reader4.Read())
+                        {
+                            fila = dt2.NewRow();
+                            fila["ID"] = reader4.GetString(reader4.GetOrdinal("ID")).Trim();
+                            fila["NOMBRE"] = reader4.GetString(reader4.GetOrdinal("NOMBRE")).Trim() + "-" + reader4.GetString(reader4.GetOrdinal("BONO_RECIBO")).Trim() + "-" + reader4.GetString(reader4.GetOrdinal("CUENTA")).Trim();
+                            dt2.Rows.Add(fila);
+                        }
+                        
+                        reader4.Close();
+                        COMBO.DataSource = dt2;
+                        COMBO.DisplayMember = "NOMBRE";
+                        COMBO.ValueMember = "ID";
+                        COMBO.SelectedIndex = 0;
+                        transaction.Commit();
+                    }
+                }
+                catch(Exception e)
+                {
+                    //MessageBox.Show("ERROR AL CARGAR EL COMBO DETALLE\n"+e);
+                }
+            }
+        }
+
+        private void cambioComboRoles(ComboBox COMBO, ComboBox CB_ROLES)
+        {
+            if (CB_ROLES.SelectedValue != null)
+            {
+                string paso = CB_ROLES.SelectedValue.ToString().Trim();
+                string dato2 = "SELECT DESTINO, ID, ID_DESTINO FROM P_TMP_CURSOR('" + paso + "')";
+                string connectionString;
+                DataSet ds2 = new DataSet();
+                Datos_ini ini4 = new Datos_ini();
+
+                try
+                {
+                    FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+                    cs.DataSource = ini4.Servidor; cs.Port = int.Parse(ini4.Puerto);
+                    cs.Database = ini4.Ubicacion;
+                    cs.UserID = VGlobales.vp_username;
+                    cs.Password = VGlobales.vp_password;
+                    cs.Role = VGlobales.vp_role;
+                    cs.Dialect = 3;
+                    connectionString = cs.ToString();
+
+                    using (FbConnection connection = new FbConnection(connectionString))
+                    {
+                        connection.Open();
+                        FbTransaction transaction = connection.BeginTransaction();
+                        DataTable dt2 = new DataTable("DESTINOS");
+                        dt2.Columns.Add("DESTINO", typeof(string));
+                        dt2.Columns.Add("ID", typeof(string));
+                        dt2.Columns.Add("ID_DESTINO", typeof(string));
+                        ds2.Tables.Add(dt2);
+                        FbCommand cmd2 = new FbCommand(dato2, connection, transaction);
+                        FbDataReader reader4 = cmd2.ExecuteReader();
+                        DataRow fila;
+
+                        while (reader4.Read())
+                        {
+                            fila = dt2.NewRow();
+                            fila["ID"] = reader4.GetString(reader4.GetOrdinal("ID")).Trim();
+                            fila["DESTINO"] = reader4.GetString(reader4.GetOrdinal("DESTINO")).Trim() + "-" + reader4.GetString(reader4.GetOrdinal("ID_DESTINO")).Trim();
+                            fila["ID_DESTINO"] = reader4.GetString(reader4.GetOrdinal("ID_DESTINO")).Trim();
+                            dt2.Rows.Add(fila);
+                        }
+
+                        reader4.Close();
+                        COMBO.DataSource = dt2;
+                        COMBO.DisplayMember = "DESTINO";
+                        COMBO.ValueMember = "ID";
+                        COMBO.SelectedIndex = 0;
+                        transaction.Commit();
+                    }
+                }
+                catch
+                {
+                    //MessageBox.Show("ERROR AL CARGAR EL COMBO DETALLE");
+                    //return ds1;
+                }
+            }
+        }
+
         private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID, string PTO)
         {
             try
@@ -143,12 +272,6 @@ namespace SOCIOS
 
             if (VGlobales.vp_username == "SVALLEJOS" || VGlobales.vp_username == "PDEREYES" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO" || VGlobales.vp_username == "KMARTIN" || VGlobales.vp_username == "MORELLANO")
             {
-                label1.Enabled = true;
-                label7.Enabled = true;
-                label8.Enabled = true;
-                label9.Enabled = true;
-                label14.Enabled = true;
-                label15.Enabled = true;
                 cbNuevoPagoEfectivo.Enabled = true;
                 cbNuevoPagoOtros.Enabled = true;
                 cbFormaPagoBuscador.Enabled = true;
@@ -162,6 +285,19 @@ namespace SOCIOS
                 btnNuevoImporteOtros.Enabled = true;
                 btnFormaPagoBuscador.Enabled = true;
                 btnImporteBuscador.Enabled = true;
+                cbRolesEfectivo.Enabled = true;
+                cbDestinosEfectivo.Enabled = true;
+                btnModRoleDestEfectivo.Enabled = true;
+                cbProfEfectivo.Enabled = true;
+                cbRolesOtros.Enabled = true;
+                cbProfOtros.Enabled = true;
+                cbDestinosOtros.Enabled = true;
+                btnModRoleDestOtros.Enabled = true;
+                cbProfBuscador.Enabled = true;
+                cbRoleBuscador.Enabled = true;
+                cbDestinoBuscador.Enabled = true;
+                btnModRoleDestBuscador.Enabled = true;
+                cbProfBuscador.Enabled = true;
             }
         }
 
@@ -171,6 +307,7 @@ namespace SOCIOS
             cbTipos.Items.Add("BONOS");
         }
         
+
         private void cargaInicial(int CAJA)
         {
             Cursor = Cursors.WaitCursor;
@@ -200,6 +337,9 @@ namespace SOCIOS
             dgComposicion.Columns[2].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             habilitarEdicion();
+            comboRoles(cbRolesEfectivo);
+            comboRoles(cbRolesOtros);
+            comboRoles(cbRoleBuscador);
             comboBancos(cbBancos);
             comboBancos(cbBancosCheques);
             comboFormasDePago(cbNuevoPagoEfectivo);
@@ -3315,30 +3455,197 @@ namespace SOCIOS
             return false;
         }
 
+        private bool nuevoRoleDest(DataGridView GRID, string SECTACT, string ID_PROF, string RECIBO_BONO, string CUENTA)
+        {
+            string COMPROBANTE = "X";
+            int ID = 0;
+            int ID_COMP = 0;
+            bool RES = false;
+
+            foreach (DataGridViewRow ROW in GRID.SelectedRows)
+            {
+                COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
+
+                if (COMPROBANTE != RECIBO_BONO)
+                {
+                    MessageBox.Show("NO SE PUEDE ASIGNAR UN PROFESIONAL CON UN TIPO DE COMPROBANTE DIFERENTE AL CREADO");
+                    RES = false;
+                }
+                else
+                {
+                    ID_COMP = int.Parse(ROW.Cells[9].Value.ToString());
+
+                    if (COMPROBANTE == "R")
+                    {
+                        try
+                        {
+                            BO_CAJA.modificarRoleDestRecibos(ID_COMP, int.Parse(SECTACT), int.Parse(ID_PROF), int.Parse(CUENTA));
+                            RES = true;
+                        }
+                        catch
+                        {
+                            RES = false;
+                        }
+                        
+                    }
+                    if (COMPROBANTE == "B")
+                    {
+                        try
+                        {
+                            BO_CAJA.modificarRoleDestBonos(ID_COMP, int.Parse(SECTACT), int.Parse(ID_PROF), int.Parse(CUENTA));
+                            RES = true;
+                        }
+                        catch
+                        {
+                            RES = false;
+                        }
+                    }
+                }
+            }
+            return RES;
+        }
+
+        //MODIFICAR COMPROBANTES EFECTIVO
         private void btnNuevoPagoEfectivo_Click(object sender, EventArgs e)
         {
-            int FORMA_DE_PAGO = int.Parse(cbNuevoPagoEfectivo.SelectedValue.ToString());
-            nuevaFormaDePago(dgEfectivo, FORMA_DE_PAGO);
-            cargaInicial(CAJA);
-        }
-
-        private void btnNuevoPagoOtros_Click(object sender, EventArgs e)
-        {
-            int FORMA_DE_PAGO = int.Parse(cbNuevoPagoOtros.SelectedValue.ToString());
-            nuevaFormaDePago(dgOtros, FORMA_DE_PAGO);
-            cargaInicial(CAJA);
-        }
-
-        private void btnNuevoImporteEfectivo_Click(object sender, EventArgs e)
-        {
-            if (nuevoImporte(dgEfectivo, tbNuevoImporteEfectivo) == true)
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR LA FORMA DE PAGO DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int FORMA_DE_PAGO = int.Parse(cbNuevoPagoEfectivo.SelectedValue.ToString());
+                nuevaFormaDePago(dgEfectivo, FORMA_DE_PAGO);
                 cargaInicial(CAJA);
+            }
         }
 
-        private void btnNuevoImporteOtros_Click(object sender, EventArgs e)
+        private void btnNuevoImporteEfectivo_Click_1(object sender, EventArgs e)
         {
-            if (nuevoImporte(dgOtros, tbNuevoImporteOtros) == true)
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR EL IMPORTE DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (nuevoImporte(dgEfectivo, tbNuevoImporteEfectivo) == true)
+                    cargaInicial(CAJA);
+            }
+        }
+
+        private void btnModRoleDestEfectivo_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR ROLE Y DESTINO DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string[] destino = cbDestinosEfectivo.Text.Split('-');
+                string[] profesional = cbProfEfectivo.Text.Split('-');
+                string SECTACT = "";
+                foreach (string d in destino)
+                {
+                    SECTACT = d;
+                }
+                string ID_PROF = cbProfEfectivo.SelectedValue.ToString();
+                string RECIBO_BONO = profesional[1];
+                string CUENTA = profesional[2];
+                if (nuevoRoleDest(dgEfectivo, SECTACT, ID_PROF, RECIBO_BONO, CUENTA) == true)
+                {
+                    MessageBox.Show("COMPROBANTE MODIFICADO CORRECTAMENTE", "LISTO!");
+                    cargaInicial(0);
+                }
+                else
+                {
+                    MessageBox.Show("NO SE PUDO MODIFICAR EL COMPROBANTE", "ERROR!");
+                }
+            }
+        }
+
+        //MODIFICAR COMPROBANTES OTROS
+        private void btnNuevoPagoOtros_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR LA FORMA DE PAGO DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int FORMA_DE_PAGO = int.Parse(cbNuevoPagoOtros.SelectedValue.ToString());
+                nuevaFormaDePago(dgOtros, FORMA_DE_PAGO);
                 cargaInicial(CAJA);
+            }
+        }
+
+        private void btnNuevoImporteOtros_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR EL IMPORTE DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (nuevoImporte(dgOtros, tbNuevoImporteOtros) == true)
+                    cargaInicial(CAJA);
+            }
+        }
+
+        private void btnModRoleDestOtros_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR ROLE Y DESTINO DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string[] destino = cbDestinosOtros.Text.Split('-');
+                string[] profesional = cbProfOtros.Text.Split('-');
+                string SECTACT = "";
+                foreach (string d in destino)
+                {
+                    SECTACT = d;
+                }
+                string ID_PROF = cbProfOtros.SelectedValue.ToString();
+                string RECIBO_BONO = profesional[1];
+                string CUENTA = profesional[2];
+                if (nuevoRoleDest(dgOtros, SECTACT, ID_PROF, RECIBO_BONO, CUENTA) == true)
+                {
+                    MessageBox.Show("COMPROBANTE MODIFICADO CORRECTAMENTE", "LISTO!");
+                    cargaInicial(0);
+                }
+                else
+                {
+                    MessageBox.Show("NO SE PUDO MODIFICAR EL COMPROBANTE", "ERROR!");
+                }
+            }
+        }
+
+        //MODIFICAR COMPROBANTES BUSCADOR
+        private void btnFormaPagoBuscador_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR LA FORMA DE PAGO DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int FORMA_DE_PAGO = int.Parse(cbFormaPagoBuscador.SelectedValue.ToString());
+                nuevaFormaDePago(dgBuscador, FORMA_DE_PAGO);
+                cargaInicial(CAJA);
+                buscarComprobantes();
+            }
+        }
+
+        private void btnImporteBuscador_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR EL IMPORTE DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (nuevoImporte(dgBuscador, tbImporteBuscador) == true)
+                {
+                    cargaInicial(CAJA);
+                    buscarComprobantes();
+                }
+            }
+        }
+
+        private void btnModRoleDestBuscador_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿CONFIRMA MODIFICAR ROLE Y DESTINO DEL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string[] destino = cbDestinoBuscador.Text.Split('-');
+                string[] profesional = cbProfBuscador.Text.Split('-');
+                string SECTACT = "";
+                foreach (string d in destino)
+                {
+                    SECTACT = d;
+                }
+                string ID_PROF = cbProfBuscador.SelectedValue.ToString();
+                string RECIBO_BONO = profesional[1];
+                string CUENTA = profesional[2];
+                if (nuevoRoleDest(dgBuscador, SECTACT, ID_PROF, RECIBO_BONO, CUENTA) == true)
+                {
+                    MessageBox.Show("COMPROBANTE MODIFICADO CORRECTAMENTE", "LISTO!");
+                    cargaInicial(CAJA);
+                    buscarComprobantes();
+                }
+                else
+                {
+                    MessageBox.Show("NO SE PUDO MODIFICAR EL COMPROBANTE", "ERROR!");
+                }
+            }
         }
 
         private void btnMostrarCaja_Click(object sender, EventArgs e)
@@ -3500,6 +3807,72 @@ namespace SOCIOS
             {
                 buscarComprobantes();
                 cargaInicial(CAJA);
+            }
+        }
+
+        private void cbRolesEfectivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cambioComboRoles(cbDestinosEfectivo, cbRolesEfectivo);
+        }
+
+        private void cbDestinosEfectivo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbDestinosEfectivo.SelectedValue.ToString() != "")
+            {
+                string vIdDestino = "";
+                string[] words = cbDestinosEfectivo.Text.Split('-');
+
+                foreach (string word in words)
+                {
+                    vIdDestino = word;
+                }
+
+                int SECTACT = int.Parse(vIdDestino.TrimEnd());
+                comboProfesionales(cbProfEfectivo, SECTACT, cbDestinosEfectivo);
+            }
+        }
+
+        private void cbRolesOtros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cambioComboRoles(cbDestinosOtros, cbRolesOtros);
+        }
+
+        private void cbDestinosOtros_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbDestinosOtros.SelectedValue.ToString() != "")
+            {
+                string vIdDestino = "";
+                string[] words = cbDestinosOtros.Text.Split('-');
+
+                foreach (string word in words)
+                {
+                    vIdDestino = word;
+                }
+
+                int SECTACT = int.Parse(vIdDestino.TrimEnd());
+                comboProfesionales(cbProfOtros, SECTACT, cbDestinosOtros);
+            }
+        }
+
+        private void cbRoleBuscador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cambioComboRoles(cbDestinoBuscador, cbRoleBuscador);
+        }
+
+        private void cbDestinoBuscador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbDestinoBuscador.SelectedValue.ToString() != "")
+            {
+                string vIdDestino = "";
+                string[] words = cbDestinoBuscador.Text.Split('-');
+
+                foreach (string word in words)
+                {
+                    vIdDestino = word;
+                }
+
+                int SECTACT = int.Parse(vIdDestino.TrimEnd());
+                comboProfesionales(cbProfBuscador, SECTACT, cbDestinoBuscador);
             }
         }
     }

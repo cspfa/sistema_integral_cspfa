@@ -108,7 +108,7 @@ namespace SOCIOS.bono
                     rb.Focus();
                 }
                 else
-                {  ReporteBonoPasaje_Blanco rbb = new ReporteBonoPasaje_Blanco(ID_ROL, ID, Fecha, Socio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
+                {   ReporteBonoPasaje_Blanco rbb = new ReporteBonoPasaje_Blanco(ID_ROL, ID, Fecha, Socio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
                     rbb.ShowDialog();
                 
                 }
@@ -137,8 +137,8 @@ namespace SOCIOS.bono
                     rp.Focus();
                 }
                 else
-                { ReporteBonoHotel_Blanco rhb = new ReporteBonoHotel_Blanco(ID_ROL, ID, Fecha, Socio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
-                rhb.ShowDialog();
+                { //ReporteBonoHotel_Blanco rhb = new ReporteBonoHotel_Blanco(ID_ROL, ID, Fecha, Socio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
+                //rhb.ShowDialog();
                 }
 
             }

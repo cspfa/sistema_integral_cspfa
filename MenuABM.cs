@@ -2145,5 +2145,11 @@ namespace SOCIOS
             SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
             pc.ShowDialog();
         }
+
+        private void bonosEnBlancoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.bono.Bonos.Carga_Bonos_Blanco_Turismo b = new bono.Bonos.Carga_Bonos_Blanco_Turismo();
+            b.ShowDialog();
+        }
     }
 }
