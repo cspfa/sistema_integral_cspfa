@@ -281,15 +281,15 @@ namespace SOCIOS.registroSocios
 
             for (int i = 0; i < table.Rows.Count; i++)
             {
-                string ORDEN = table.Rows[i][0].ToString().Replace(".", "");
-                string ELEPE = table.Rows[i][1].ToString().Replace(".", "");
+                string ORDEN =     table.Rows[i][0].ToString().Replace(".", "");
+                string ELEPE =     table.Rows[i][1].ToString().Replace(".", "");
                 string APELLIDOS = table.Rows[i][2].ToString().Trim().ToUpper();
-                string NOMBRES = table.Rows[i][3].ToString().Trim().ToUpper();
-                string GENERO = table.Rows[i][4].ToString().Trim().ToUpper();
-                string ESCALAFON = table.Rows[i][5].ToString().Trim().ToUpper();
-                string ALTA = table.Rows[i][6].ToString();
-                string S_DNI = table.Rows[i][7].ToString().Replace(".", "");
-                string AFIL = table.Rows[i][8].ToString().Replace(".", "");
+                string NOMBRES =   table.Rows[i][3].ToString().Trim().ToUpper();
+                string GENERO =    table.Rows[i][4].ToString().Trim().ToUpper();
+                string ALTA =      table.Rows[i][5].ToString();
+                string S_DNI =     table.Rows[i][6].ToString().Replace(".", "");
+                string AFIL =      table.Rows[i][7].ToString().Replace(".", "");
+                //string ESCALAFON = table.Rows[i][5].ToString().Trim().ToUpper();
 
                 if (ORDEN != "")
                     ORD = int.Parse(ORDEN);
