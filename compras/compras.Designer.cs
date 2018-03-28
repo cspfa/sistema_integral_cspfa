@@ -442,8 +442,9 @@
             this.enCalle = new System.Windows.Forms.ToolStripMenuItem();
             this.cobrado = new System.Windows.Forms.ToolStripMenuItem();
             this.enCartera = new System.Windows.Forms.ToolStripMenuItem();
-            this.vERPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iMPRIMIRCHEQUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vERPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aNULARORDENDEPAGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmFactura = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAgregarOp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAbrirAdjunto = new System.Windows.Forms.ToolStripMenuItem();
@@ -2451,7 +2452,6 @@
             this.cbBancos.Size = new System.Drawing.Size(199, 21);
             this.cbBancos.TabIndex = 12;
             this.cbBancos.SelectionChangeCommitted += new System.EventHandler(this.cbBancos_SelectionChangeCommitted);
-            this.cbBancos.SizeChanged += new System.EventHandler(this.cbBancos_SizeChanged);
             // 
             // label31
             // 
@@ -4996,50 +4996,59 @@
             this.enCalle,
             this.cobrado,
             this.enCartera,
+            this.iMPRIMIRCHEQUEToolStripMenuItem,
             this.vERPDFToolStripMenuItem,
-            this.iMPRIMIRCHEQUEToolStripMenuItem});
+            this.aNULARORDENDEPAGOToolStripMenuItem});
             this.cmEstadoOP.Name = "cmEstadoOP";
-            this.cmEstadoOP.Size = new System.Drawing.Size(167, 114);
+            this.cmEstadoOP.Size = new System.Drawing.Size(201, 158);
             // 
             // enCalle
             // 
             this.enCalle.Image = ((System.Drawing.Image)(resources.GetObject("enCalle.Image")));
             this.enCalle.Name = "enCalle";
-            this.enCalle.Size = new System.Drawing.Size(166, 22);
-            this.enCalle.Text = "EN CALLE";
+            this.enCalle.Size = new System.Drawing.Size(200, 22);
+            this.enCalle.Text = "CHEQUE EN CALLE";
             this.enCalle.Click += new System.EventHandler(this.enCalle_Click);
             // 
             // cobrado
             // 
             this.cobrado.Image = ((System.Drawing.Image)(resources.GetObject("cobrado.Image")));
             this.cobrado.Name = "cobrado";
-            this.cobrado.Size = new System.Drawing.Size(166, 22);
-            this.cobrado.Text = "COBRADO";
+            this.cobrado.Size = new System.Drawing.Size(200, 22);
+            this.cobrado.Text = "CHEQUE COBRADO";
             this.cobrado.Click += new System.EventHandler(this.cobrado_Click);
             // 
             // enCartera
             // 
             this.enCartera.Image = ((System.Drawing.Image)(resources.GetObject("enCartera.Image")));
             this.enCartera.Name = "enCartera";
-            this.enCartera.Size = new System.Drawing.Size(166, 22);
-            this.enCartera.Text = "EN CARTERA";
+            this.enCartera.Size = new System.Drawing.Size(200, 22);
+            this.enCartera.Text = "CHEQUE EN CARTERA";
             this.enCartera.Click += new System.EventHandler(this.enCartera_Click);
-            // 
-            // vERPDFToolStripMenuItem
-            // 
-            this.vERPDFToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("vERPDFToolStripMenuItem.Image")));
-            this.vERPDFToolStripMenuItem.Name = "vERPDFToolStripMenuItem";
-            this.vERPDFToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.vERPDFToolStripMenuItem.Text = "VER PDF";
-            this.vERPDFToolStripMenuItem.Click += new System.EventHandler(this.vERPDFToolStripMenuItem_Click);
             // 
             // iMPRIMIRCHEQUEToolStripMenuItem
             // 
             this.iMPRIMIRCHEQUEToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.printer;
             this.iMPRIMIRCHEQUEToolStripMenuItem.Name = "iMPRIMIRCHEQUEToolStripMenuItem";
-            this.iMPRIMIRCHEQUEToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.iMPRIMIRCHEQUEToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.iMPRIMIRCHEQUEToolStripMenuItem.Text = "IMPRIMIR CHEQUE";
             this.iMPRIMIRCHEQUEToolStripMenuItem.Click += new System.EventHandler(this.iMPRIMIRCHEQUEToolStripMenuItem_Click);
+            // 
+            // vERPDFToolStripMenuItem
+            // 
+            this.vERPDFToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("vERPDFToolStripMenuItem.Image")));
+            this.vERPDFToolStripMenuItem.Name = "vERPDFToolStripMenuItem";
+            this.vERPDFToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.vERPDFToolStripMenuItem.Text = "VER PDF ORDEN DE PAGO";
+            this.vERPDFToolStripMenuItem.Click += new System.EventHandler(this.vERPDFToolStripMenuItem_Click);
+            // 
+            // aNULARORDENDEPAGOToolStripMenuItem
+            // 
+            this.aNULARORDENDEPAGOToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aNULARORDENDEPAGOToolStripMenuItem.Image")));
+            this.aNULARORDENDEPAGOToolStripMenuItem.Name = "aNULARORDENDEPAGOToolStripMenuItem";
+            this.aNULARORDENDEPAGOToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.aNULARORDENDEPAGOToolStripMenuItem.Text = "ANULAR ORDEN DE PAGO";
+            this.aNULARORDENDEPAGOToolStripMenuItem.Click += new System.EventHandler(this.aNULARORDENDEPAGOToolStripMenuItem_Click);
             // 
             // cmFactura
             // 
@@ -5726,5 +5735,6 @@
         private System.Windows.Forms.ToolStripMenuItem eNTREGADAToolStripMenuItem;
         private System.Windows.Forms.MaskedTextBox tbSolComp;
         private System.Windows.Forms.Label label117;
+        private System.Windows.Forms.ToolStripMenuItem aNULARORDENDEPAGOToolStripMenuItem;
     }
 }

@@ -6035,9 +6035,23 @@ namespace SOCIOS
             buscarSolicitudesRecibidas();
         }
 
-        private void cbBancos_SizeChanged(object sender, EventArgs e)
+        private void aNULARORDENDEPAGOToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string OP = "0";
 
+            if (lvBuscarOP.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("SELECCIONAR SOLAMENTE UNA ORDEN DE PAGO PARA ANULAR", "ERROR");
+            }
+            else
+            {
+                foreach (ListViewItem itemRow in lvBuscarOP.SelectedItems)
+                {
+                    OP = itemRow.SubItems[0].Text;
+                    anular_op aop = new anular_op(OP);
+                    aop.ShowDialog();
+                }
+            }
         }
     }
 }
