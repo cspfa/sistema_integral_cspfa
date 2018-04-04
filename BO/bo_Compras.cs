@@ -16,8 +16,88 @@ namespace SOCIOS.BO
     {
         db resultado = new db();
 
-        //MODIFICACION DE ESTADO DE SOLICITUD DE COMPRA
+        //CANCELA ANULACION ORDEN DE PAGO
+        public void cancelaAnulacionOrdenDePago(int OP, string USR, string OBS, string FEC)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
 
+            vector_contenidos.Add(OP);
+            vector_contenidos.Add(USR);
+            vector_contenidos.Add(OBS);
+            vector_contenidos.Add(FEC);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_nombres.Add("OP");
+            vector_nombres.Add("USR");
+            vector_nombres.Add("OBS");
+            vector_nombres.Add("FEC");
+
+            string vprocedure = "CANCELA_ANULACION_OP";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //CONFIRMA ANULACION ORDEN DE PAGO
+        public void confirmaAnulacionOrdenDePago(int OP, string USR, string OBS, string FEC)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(OP);
+            vector_contenidos.Add(USR);
+            vector_contenidos.Add(OBS);
+            vector_contenidos.Add(FEC);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_nombres.Add("OP");
+            vector_nombres.Add("USR");
+            vector_nombres.Add("OBS");
+            vector_nombres.Add("FEC");
+
+            string vprocedure = "CONF_ANULA_OP";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //ANULAR ORDEN DE PAGO
+        public void anularOrdenDePago(int OP, string USR, string OBS, string FEC)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(OP);
+            vector_contenidos.Add(USR);
+            vector_contenidos.Add(OBS);
+            vector_contenidos.Add(FEC);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_nombres.Add("OP");
+            vector_nombres.Add("USR");
+            vector_nombres.Add("OBS");
+            vector_nombres.Add("FEC");
+
+            string vprocedure = "ANULA_OP";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //MODIFICACION DE ESTADO DE SOLICITUD DE COMPRA
         public void modificarEstadoSolicitud(int ID, string ESTADO)
         {
             ArrayList vector_contenidos = new ArrayList();

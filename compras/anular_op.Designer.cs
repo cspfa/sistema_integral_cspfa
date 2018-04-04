@@ -44,6 +44,7 @@
             // 
             // tbObsAnulaOp
             // 
+            this.tbObsAnulaOp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbObsAnulaOp.Location = new System.Drawing.Point(12, 28);
             this.tbObsAnulaOp.Multiline = true;
             this.tbObsAnulaOp.Name = "tbObsAnulaOp";

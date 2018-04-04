@@ -445,6 +445,7 @@
             this.iMPRIMIRCHEQUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vERPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aNULARORDENDEPAGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cONFIRMARANULACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmFactura = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAgregarOp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAbrirAdjunto = new System.Windows.Forms.ToolStripMenuItem();
@@ -4998,9 +4999,10 @@
             this.enCartera,
             this.iMPRIMIRCHEQUEToolStripMenuItem,
             this.vERPDFToolStripMenuItem,
-            this.aNULARORDENDEPAGOToolStripMenuItem});
+            this.aNULARORDENDEPAGOToolStripMenuItem,
+            this.cONFIRMARANULACIÓNToolStripMenuItem});
             this.cmEstadoOP.Name = "cmEstadoOP";
-            this.cmEstadoOP.Size = new System.Drawing.Size(201, 158);
+            this.cmEstadoOP.Size = new System.Drawing.Size(201, 180);
             // 
             // enCalle
             // 
@@ -5049,6 +5051,15 @@
             this.aNULARORDENDEPAGOToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
             this.aNULARORDENDEPAGOToolStripMenuItem.Text = "ANULAR ORDEN DE PAGO";
             this.aNULARORDENDEPAGOToolStripMenuItem.Click += new System.EventHandler(this.aNULARORDENDEPAGOToolStripMenuItem_Click);
+            // 
+            // cONFIRMARANULACIÓNToolStripMenuItem
+            // 
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.accept;
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Name = "cONFIRMARANULACIÓNToolStripMenuItem";
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Text = "CONFIRMAR ANULACIÓN";
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Visible = false;
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Click += new System.EventHandler(this.cONFIRMARANULACIÓNToolStripMenuItem_Click);
             // 
             // cmFactura
             // 
@@ -5736,5 +5747,6 @@
         private System.Windows.Forms.MaskedTextBox tbSolComp;
         private System.Windows.Forms.Label label117;
         private System.Windows.Forms.ToolStripMenuItem aNULARORDENDEPAGOToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cONFIRMARANULACIÓNToolStripMenuItem;
     }
 }
