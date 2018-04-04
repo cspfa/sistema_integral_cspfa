@@ -171,6 +171,7 @@ namespace SOCIOS
                     {
                         contaduríaToolStripMenuItem.Enabled = true;
                         confiteríaToolStripMenuItem.Enabled = true;
+                        comprasToolStripMenuItem.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "CPOCABA" || VGlobales.vp_role.Trim() == "CPOPOLVORINES" || VGlobales.vp_role.Trim() == "CPORANELAGH")
