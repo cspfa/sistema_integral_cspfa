@@ -84,6 +84,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_Responsable = new System.Windows.Forms.Button();
             this.EditarFoto = new System.Windows.Forms.Button();
+            this.Ficha = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gpDeportes.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -217,6 +218,7 @@
             // 
             // gpDeportes
             // 
+            this.gpDeportes.Controls.Add(this.Ficha);
             this.gpDeportes.Controls.Add(this.cbApto);
             this.gpDeportes.Controls.Add(this.btnBaja);
             this.gpDeportes.Controls.Add(this.tbObs);
@@ -246,7 +248,7 @@
             this.gpDeportes.Controls.Add(this.FechaApto);
             this.gpDeportes.Location = new System.Drawing.Point(12, 305);
             this.gpDeportes.Name = "gpDeportes";
-            this.gpDeportes.Size = new System.Drawing.Size(755, 266);
+            this.gpDeportes.Size = new System.Drawing.Size(755, 297);
             this.gpDeportes.TabIndex = 66;
             this.gpDeportes.TabStop = false;
             this.gpDeportes.Text = "DATOS DEPORTES";
@@ -675,11 +677,21 @@
             this.EditarFoto.UseVisualStyleBackColor = true;
             this.EditarFoto.Click += new System.EventHandler(this.EditarFoto_Click);
             // 
+            // Ficha
+            // 
+            this.Ficha.Location = new System.Drawing.Point(552, 253);
+            this.Ficha.Name = "Ficha";
+            this.Ficha.Size = new System.Drawing.Size(186, 23);
+            this.Ficha.TabIndex = 98;
+            this.Ficha.Text = "Ficha";
+            this.Ficha.UseVisualStyleBackColor = true;
+            this.Ficha.Click += new System.EventHandler(this.Ficha_Click);
+            // 
             // admDeportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 576);
+            this.ClientSize = new System.Drawing.Size(781, 614);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gpDeportes);
@@ -756,6 +768,7 @@
         private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.CheckBox cbApto;
         private System.Windows.Forms.Button btn_Responsable;
+        private System.Windows.Forms.Button Ficha;
 
 
     }

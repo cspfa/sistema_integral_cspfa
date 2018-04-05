@@ -1459,5 +1459,11 @@ namespace SOCIOS
                 
             }
 
+            private void Ficha_Click(object sender, EventArgs e)
+            {
+                deportes.ReporteFicha rf = new deportes.ReporteFicha(lbNombre.Text, lbDni.Text, lbNroSocio.Text, lbTelefono.Text, "", lbEmail.Text, "", "", tbObs.Text, Responsables, ID_ROL, ROL);
+                rf.ShowDialog();
+            }
+
     }
 }
