@@ -1078,6 +1078,10 @@ namespace SOCIOS
 
         }
 
+
+
+      
+
         public void Actualizo_Fecha_Update(int ID_ROL, string ROL)
 
         {
@@ -1109,5 +1113,89 @@ namespace SOCIOS
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         
         }
+
+        public void Insert_Persona_Responsable(int ID_ROL, string ROL, string APELLIDO, string NOMBRE, string TELEFONO, string EMAIL, DateTime FECHA,string VINCULO,string DNI)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(ID_ROL);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_ID_ROL_DEPORTE");
+
+            vector_contenidos.Add(ROL);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_ROL");
+
+            vector_contenidos.Add(APELLIDO);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_APELLIDO");
+
+            vector_contenidos.Add(NOMBRE);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_NOMBRE");
+
+
+            vector_contenidos.Add(TELEFONO);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_TELEFONO");
+
+            vector_contenidos.Add(EMAIL);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_EMAIL");
+
+
+            vector_contenidos.Add(FECHA);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_FECHA");
+            
+            vector_contenidos.Add(VGlobales.vp_username.TrimEnd().TrimStart());
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_USR");
+
+            vector_contenidos.Add(VINCULO);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_VINCULO");
+
+            vector_contenidos.Add(DNI);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_DNI");
+
+            string vprocedure = "P_DEPORTES_RESPONSABLE_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+
+        public void Borro_Persona_Responsable(int ID,string USER,DateTime Fecha)
+        {
+
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_contenidos.Add(ID);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_ID");
+
+            vector_contenidos.Add(Fecha);
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_nombres.Add("@PIN_ANULADO");
+
+            vector_contenidos.Add(USER);
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_nombres.Add("@PIN_USR_ANULADO");
+
+
+            string vprocedure = "P_DEPORTES_RESPONSABLE_D";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+        
+       
     }
 }

@@ -82,6 +82,7 @@
             this.pictureBox = new MicroFour.StrataFrame.UI.Windows.Forms.PictureBox();
             this.btnCamera = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_Responsable = new System.Windows.Forms.Button();
             this.EditarFoto = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gpDeportes.SuspendLayout();
@@ -243,7 +244,7 @@
             this.gpDeportes.Controls.Add(this.lblFechaCarnet);
             this.gpDeportes.Controls.Add(this.dpApto);
             this.gpDeportes.Controls.Add(this.FechaApto);
-            this.gpDeportes.Location = new System.Drawing.Point(12, 275);
+            this.gpDeportes.Location = new System.Drawing.Point(12, 305);
             this.gpDeportes.Name = "gpDeportes";
             this.gpDeportes.Size = new System.Drawing.Size(755, 266);
             this.gpDeportes.TabIndex = 66;
@@ -523,7 +524,7 @@
             this.groupBox2.Controls.Add(this.lbTelefono);
             this.groupBox2.Location = new System.Drawing.Point(12, 112);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(453, 152);
+            this.groupBox2.Size = new System.Drawing.Size(453, 187);
             this.groupBox2.TabIndex = 79;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "DATOS PERSONALES";
@@ -640,6 +641,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btn_Responsable);
             this.groupBox3.Controls.Add(this.EditarFoto);
             this.groupBox3.Controls.Add(this.btnCarnet);
             this.groupBox3.Controls.Add(this.pictureBox);
@@ -647,11 +649,21 @@
             this.groupBox3.Controls.Add(this.ADQUIRIR);
             this.groupBox3.Location = new System.Drawing.Point(471, 112);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(296, 152);
+            this.groupBox3.Size = new System.Drawing.Size(296, 187);
             this.groupBox3.TabIndex = 83;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "CARNET";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // btn_Responsable
+            // 
+            this.btn_Responsable.Location = new System.Drawing.Point(160, 152);
+            this.btn_Responsable.Name = "btn_Responsable";
+            this.btn_Responsable.Size = new System.Drawing.Size(122, 23);
+            this.btn_Responsable.TabIndex = 84;
+            this.btn_Responsable.Text = "RESPONSABLES";
+            this.btn_Responsable.UseVisualStyleBackColor = true;
+            this.btn_Responsable.Click += new System.EventHandler(this.btn_Responsable_Click);
             // 
             // EditarFoto
             // 
@@ -667,7 +679,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 553);
+            this.ClientSize = new System.Drawing.Size(781, 576);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gpDeportes);
@@ -743,6 +755,7 @@
         private System.Windows.Forms.Label lbROL;
         private System.Windows.Forms.Button btnBaja;
         private System.Windows.Forms.CheckBox cbApto;
+        private System.Windows.Forms.Button btn_Responsable;
 
 
     }
