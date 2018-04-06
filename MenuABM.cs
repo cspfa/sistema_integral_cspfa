@@ -10,6 +10,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Collections.Generic;
+using Convenios;
 
 namespace SOCIOS
 {
@@ -101,6 +102,7 @@ namespace SOCIOS
                         camposToolStripMenuItem1.Enabled = true;
                         patrimonioToolStripMenuItem.Enabled = true;
                         comprasToolStripMenuItem.Enabled = true;
+                        conveniosToolStripMenuItem.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "PATRIMONIO")
@@ -165,6 +167,7 @@ namespace SOCIOS
                         tesoreríaToolStripMenuItem.Enabled = true;
                         cajaToolStripMenuItem.Enabled = true;
                         confiteríaToolStripMenuItem.Enabled = true;
+                        conveniosToolStripMenuItem.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "CONTADURIA")
@@ -172,6 +175,7 @@ namespace SOCIOS
                         contaduríaToolStripMenuItem.Enabled = true;
                         confiteríaToolStripMenuItem.Enabled = true;
                         comprasToolStripMenuItem.Enabled = true;
+                        conveniosToolStripMenuItem.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "CPOCABA" || VGlobales.vp_role.Trim() == "CPOPOLVORINES" || VGlobales.vp_role.Trim() == "CPORANELAGH")
@@ -183,6 +187,11 @@ namespace SOCIOS
                     if (VGlobales.vp_role.Trim() == "COMPRAS")
                     {
                         comprasToolStripMenuItem.Enabled = true;
+                    }
+
+                    if (VGlobales.vp_role.Trim() == "SECGRAL")
+                    {
+                        conveniosToolStripMenuItem.Enabled = true;
                     }
 
                     break;
@@ -2151,6 +2160,12 @@ namespace SOCIOS
         {
             SOCIOS.bono.Bonos.Carga_Bonos_Blanco_Turismo b = new bono.Bonos.Carga_Bonos_Blanco_Turismo();
             b.ShowDialog();
+        }
+
+        private void conveniosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Convenios.Form1 co = new Convenios.Form1();
+            co.ShowDialog();
         }
     }
 }
