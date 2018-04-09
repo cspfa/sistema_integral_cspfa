@@ -16,7 +16,7 @@ namespace SOCIOS
     {
         SOCIOS.bo dlog = new bo();
 
-        public int InsertDeportes(int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime? FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime? VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS,string ROL, int ID_ROL)
+        public int InsertDeportes(int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime? FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime? VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS,string ROL, int ID_ROL,string Direccion)
         {
             db resultado = new db();
 
@@ -58,6 +58,7 @@ namespace SOCIOS
 
             vector_contenidos.Add(ROL);
             vector_contenidos.Add(ID_ROL);
+            vector_contenidos.Add(Direccion);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
@@ -86,6 +87,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@ID_TITULAR");
             vector_nombres.Add("@NRO_DEP");
@@ -111,7 +113,7 @@ namespace SOCIOS
             vector_nombres.Add("@OBS");
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@ID_ROL");
-
+            vector_nombres.Add("@DIRECCION");
             string vprocedure = "DEPORTES_ADM_I";
 
 
@@ -133,7 +135,7 @@ namespace SOCIOS
 
         }
 
-        public void UpdateDeportes(int ID, int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime? FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime? VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS)
+        public void UpdateDeportes(int ID, int ID_TITULAR, int BARRA, int ID_ADHERENTE, DateTime? FE_APTO, DateTime? FE_CARNET, int TIPO_CARNET, int MOROSO, DateTime FECHA, string USUARIO, int COD_SOC, int COD_DEP, string DNI, DateTime? VENCIMIENTO, byte[] FOTO, string POC, decimal MONTO_MORA, DateTime? FECHA_MORA, string NOMBRE, string APELLIDO, string MAIL, string OBS,string DIRECCION)
         {
             db resultado = new db();
 
@@ -172,6 +174,7 @@ namespace SOCIOS
             vector_contenidos.Add(APELLIDO);
             vector_contenidos.Add(MAIL);
             vector_contenidos.Add(OBS);
+            vector_contenidos.Add(DIRECCION);
          
 
             ArrayList vector_tipos = new ArrayList();
@@ -196,6 +199,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Binary");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
@@ -226,7 +230,7 @@ namespace SOCIOS
             vector_nombres.Add("@APELLIDO");
             vector_nombres.Add("@MAIL");
             vector_nombres.Add("@OBS");
-          
+            vector_nombres.Add("@DIRECCION");
             string vprocedure = "DEPORTES_ADM_U";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);

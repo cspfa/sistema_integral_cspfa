@@ -26,15 +26,24 @@ namespace SOCIOS.deportes
         string TELEFONO;
         string CELULAR;
         string CP;
+
+
+        string NOMBRE_TIT;
+        string DNI_TIT;
+        string AF_TIT;
+        string TEL_TIT;
+
  
         string DIRECCION;
         string EMAIL;
         string OBS;
+        string NRO_SOCIO_TIT;
+        string VINCULO_TIT;
         List<SOCIOS.deportes.Registro_Responsables> respon= new List<Registro_Responsables>();
 
 
 
-        public ReporteFicha(string pNOMBRE,string pDNI,string pNRO_SOCIO,string pTELEFONO,string pCelular,string pEmail,string pCP,string pDireccion,string pOBS, List<SOCIOS.deportes.Registro_Responsables> prespon,int pID_ROL,string pROL)
+        public ReporteFicha(string pNOMBRE,string pDNI,string pNRO_SOCIO,string pTELEFONO,string pCelular,string pEmail,string pCP,string pDireccion,string pOBS, List<SOCIOS.deportes.Registro_Responsables> prespon,int pID_ROL,string pROL,string pDNI_TIT,string pNOMBRE_TIT,string pTEL_TIT,string pAF_TIT,string pNRO_SOCIO_TIT,string pVinculo_TIT)
         {
             InitializeComponent();
        
@@ -49,6 +58,13 @@ namespace SOCIOS.deportes
             respon = prespon;
             ID_ROL = pID_ROL;
             ROL = pROL;
+            
+            DNI_TIT = pDNI_TIT;
+            AF_TIT = pAF_TIT;
+            TEL_TIT = pTEL_TIT;
+            NRO_SOCIO_TIT = pNRO_SOCIO_TIT;
+            VINCULO_TIT = pVinculo_TIT;
+
 
 
         }
@@ -127,9 +143,9 @@ namespace SOCIOS.deportes
 
              bo dlog = new bo();
              
-             ReportParameter[] parameters = new ReportParameter[17];
+             ReportParameter[] parameters = new ReportParameter[16];
              //Establecemos el valor de los parámetros
-
+           
              parameters[0] = new ReportParameter("NOMBRE", NOMBRE);
       
              parameters[1] = new ReportParameter("FECHA", System.DateTime.Now.ToShortDateString());
@@ -142,14 +158,14 @@ namespace SOCIOS.deportes
              parameters[8] = new ReportParameter("DIRECCION",DIRECCION);
              parameters[9] = new ReportParameter("OBS",OBS);
 
-             parameters[10] = new ReportParameter("APELLIDO_R", "");
+           
 
-             parameters[11] = new ReportParameter("NOMBRE_R", "");
-             parameters[12] = new ReportParameter("VINCULO_R","");
-             parameters[13] = new ReportParameter("TELEFONO_R","");
-             parameters[14] = new ReportParameter("DNI_R", "");
-             parameters[15] = new ReportParameter("AF_BENEF_R", "");
-             parameters[16] = new ReportParameter("SOCIO_R","");
+             parameters[10] = new ReportParameter("NOMBRE_R", NOMBRE_TIT);
+             parameters[11] = new ReportParameter("VINCULO_R",VINCULO_TIT);
+             parameters[12] = new ReportParameter("TELEFONO_R",TEL_TIT);
+             parameters[13] = new ReportParameter("DNI_R", DNI_TIT);
+             parameters[14] = new ReportParameter("AF_BENEF_R", AF_TIT);
+             parameters[15] = new ReportParameter("SOCIO_R",NRO_SOCIO_TIT);
              
              this.reportViewer.LocalReport.SetParameters(parameters);
              

@@ -31,6 +31,9 @@ namespace SOCIOS
         DateTime fecha_Apto;
         deportes.DeportesService ds = new deportes.DeportesService();
 
+        private string Num_Doc_Titular="";
+        private string Num_Tel_Titular = "";
+        private string AF_Ben_Titular = "";
         public admDeportes(string var_NombreTabla, string var_Numero, string var_Depuracion, string var_Barra, string var_Numero_Titular, string var_Depuracion_Titular, int var_Id_Socio, string DNI, string var_Nombre, string var_Apellido, Image imagenTitular, string var_Role,int ID,bool pCopioApto,DateTime? pFechaApto)
         {
 
@@ -44,6 +47,7 @@ namespace SOCIOS
             
             btnGrabar.Enabled = true;
             btnActividades.Enabled = true;
+            btnGrabar.Enabled = true;
 
             SOCIOS.COD_DTO dto = new SOCIOS.COD_DTO();
             socios = new Socios();
@@ -93,7 +97,7 @@ namespace SOCIOS
     
             
             DatosSociales();
-            
+            Datos_Titular();
 
             if (ID == 0)
                 DatosDeportes();
@@ -672,6 +676,78 @@ namespace SOCIOS
         }
 
 
+        private void Datos_Titular()
+
+        {
+
+            switch (tabla)
+            {
+                case "TITULAR":
+                datos_Titular(nro_soc.ToString(), nro_dep.ToString(), "0", tabla, "0", "0");
+
+                    break;
+
+                case "ADHERENT":
+                    datos_Titular("0", "0", barra.ToString(), tabla, nro_soc.ToString(), nro_dep.ToString());
+
+                    break;
+
+                case "FAMILIAR":
+                    datos_Titular(nro_soc.ToString(), nro_dep.ToString(), barra.ToString(), tabla, "0", "0");
+
+                    break;
+            }
+        
+        }
+
+        public void datos_Titular(string NRO_SOC, string NRO_DEP, string BARRA, string TIPO, string NRO_ADH, string DEP_ADH)
+        {
+            bo dlog = new bo();
+
+            string query = "";
+
+
+            lbTipoSocio.Text = TIPO;
+            switch (TIPO)
+            {
+                case "TITULAR":
+                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Titular WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP + " AND BARRA = 0;";
+
+                    break;
+
+                case "ADHERENT":
+                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from  adherent WHERE NRO_ADH = " + NRO_ADH + " AND DEP_ADH = " + DEP_ADH + " AND BARRA = " + BARRA + " AND (EMAIL != '' OR TELEFONO != '' OR OBRA_SOCIAL != '') ORDER BY ID DESC;";
+                    lbTipoSocio.Text = "ADHERENTE";
+                    this.getIdAdherente(NRO_ADH, DEP_ADH, BARRA);
+
+                    break;
+
+                case "FAMILIAR":
+                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Familiar WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP + " AND BARRA = 0;";
+                    break;
+
+                case "EMPLEADO":
+                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Titular WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP + " AND BARRA = 0;";
+                    break;
+            }
+
+            //MessageBox.Show(query);
+
+            DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable(query).Select();
+
+            if (foundRows.Length > 0)
+            {
+                Num_Doc_Titular = foundRows[0][0].ToString();
+                Num_Tel_Titular = foundRows[0][3].ToString() +foundRows[0][4].ToString();
+                AF_Ben_Titular = foundRows[0][1].ToString() + foundRows[0][2].ToString();
+
+                //tbObraSocialContacto.Text = foundRows[0][7].ToString();
+
+            }
+        }
+
 
         private void DatosDeportes()
         {
@@ -679,7 +755,7 @@ namespace SOCIOS
             Byte[] byteBLOBData1 = new Byte[0];
             DateTime MORA;
 
-            string Query = "SELECT  ID,FE_APTO,FE_CARNET, TIPO_CARNET,MOROSO,FOTO,POC,COALESCE(MONTOMORA,0) MONTOMORA,COALESCE(A_MORA,'') A_MORA,EMAIL,OBS,ROL,ID_ROL,FE_BAJA FROM   DEPORTES_ADM" +
+            string Query = "SELECT  ID,FE_APTO,FE_CARNET, TIPO_CARNET,MOROSO,FOTO,POC,COALESCE(MONTOMORA,0) MONTOMORA,COALESCE(A_MORA,'') A_MORA,EMAIL,OBS,ROL,ID_ROL,FE_BAJA, DIRECCION FROM   DEPORTES_ADM" +
               " WHERE      coalesce(FE_BAJA,'1') = '1' AND  NRO_DEP= " + nro_dep.ToString() + "AND NRO_SOCIO = " + nro_soc.ToString() + " AND BARRA= " + barra.ToString() + " AND ROL ='" + ROL + "'";
 
             DataRow[] foundRows;
@@ -743,6 +819,11 @@ namespace SOCIOS
 
                 }
 
+                if (foundRows[0][14].ToString().Length != 0)
+                {
+                    tbDireccion.Text = foundRows[0][14].ToString();
+                }
+
                 ID_ROL = Int32.Parse(foundRows[0][12].ToString());
                 ROL = foundRows[0][11].ToString();
                 
@@ -792,6 +873,7 @@ namespace SOCIOS
                 btnBaja.Visible = false;
                 btnActividades.Enabled = false;
                 btnGrabar.Enabled = false;
+                Ficha.Enabled = false;
             }
 
 
@@ -895,6 +977,7 @@ namespace SOCIOS
                 lblEstado.Visible = true;
                 btnActividades.Visible = true;
                 btnCarnet.Visible = true;
+                Ficha.Visible = true;
 
 
                 if (VGlobales.vp_role.StartsWith("CPO") && lbROL.Text.Trim() != VGlobales.vp_role)
@@ -1159,7 +1242,7 @@ namespace SOCIOS
                 if (Mode == "INSERT")
                 {
 
-                    ID = dlog.InsertDeportes(titular_id, barra, adherente_id, fecha_Apto,fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text, VGlobales.vp_role, dlog.Proximo_ID(VGlobales.vp_role));
+                    ID = dlog.InsertDeportes(titular_id, barra, adherente_id, fecha_Apto,fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text, VGlobales.vp_role, dlog.Proximo_ID(VGlobales.vp_role),tbDireccion.Text);
                     
                     lblEstado.Text = "REGISTRO GRABADO CON EXITO!";
                     Mode = "UPDATE";
@@ -1168,7 +1251,7 @@ namespace SOCIOS
                 }
                 else
                 {
-                    dlog.UpdateDeportes(ID_REGISTRO, titular_id, barra, adherente_id, fecha_Apto, fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text);
+                    dlog.UpdateDeportes(ID_REGISTRO, titular_id, barra, adherente_id, fecha_Apto, fechaCarnet, TipoCarnet, Moroso, fechaActual, VGlobales.vp_username, nro_soc, nro_dep, num_doc, Vencimiento, socios.imageToByteArray(pictureBox.Image), FormaPago, monto, fechaMora, nombre, apellido, Mail, tbObs.Text,tbDireccion.Text);
                     this.getID_ROL_deportes();
                     
                     lblEstado.Text = "REGISTRO GRABADO CON EXITO!";
@@ -1191,6 +1274,7 @@ namespace SOCIOS
 
                 btnActividades.Visible = true;
                 btnCarnet.Visible = true;
+                Ficha.Visible = true;
 
                 MessageBox.Show("REGISTRO DEPORTES GRABADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
           
@@ -1461,7 +1545,14 @@ namespace SOCIOS
 
             private void Ficha_Click(object sender, EventArgs e)
             {
-                deportes.ReporteFicha rf = new deportes.ReporteFicha(lbNombre.Text, lbDni.Text, lbNroSocio.Text, lbTelefono.Text, "", lbEmail.Text, "", "", tbObs.Text, Responsables, ID_ROL, ROL);
+                string Vinculo = "";
+
+                if (barra >= 4)
+                    Vinculo = "PADRE";
+                else
+                    Vinculo = "OTRO";
+
+                deportes.ReporteFicha rf = new deportes.ReporteFicha(lbNombre.Text, lbDni.Text, lbNroSocio.Text, lbTelefono.Text, "", lbEmail.Text, "", "", tbObs.Text, Responsables, ID_ROL, ROL,Num_Doc_Titular,lbNombreSocioTitular.Text,Num_Tel_Titular,AF_Ben_Titular,lbNroSocTitular.Text,Vinculo);
                 rf.ShowDialog();
             }
 

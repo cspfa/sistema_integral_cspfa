@@ -79,6 +79,7 @@ namespace SOCIOS.deportes
        public string SUSPENDIDO          { get; set; }
        public string ROL                 { get; set; }
        public int ID_BASE                { get; set; }
+       public string DIRECCION { get; set; }
    }
 
     public class Deporte_Importacion : DeportesItem

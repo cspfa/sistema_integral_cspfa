@@ -294,7 +294,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.25875in</Top>
+        <Top>5.13375in</Top>
         <Left>0.46389in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -355,7 +355,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.25875in</Top>
+        <Top>5.13375in</Top>
         <Left>2.49514in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -371,7 +371,7 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>5.25875in</Top>
+        <Top>5.13375in</Top>
         <Left>2.51598in</Left>
         <Height>0in</Height>
         <Width>1.86458in</Width>
@@ -383,7 +383,7 @@
         </Style>
       </Line>
       <Line Name="Line3">
-        <Top>5.25875in</Top>
+        <Top>5.13375in</Top>
         <Left>2.37014in</Left>
         <Height>0in</Height>
         <Width>-1.94069in</Width>
@@ -902,51 +902,6 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox15">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>="&lt;B&gt;APELLIDO:&lt;/B&gt;"&amp;Parameters!APELLIDO_R.Value</Value>
-                <MarkupType>HTML</MarkupType>
-                <Style>
-                  <FontFamily>Courier New</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>Courier New</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.63646in</Top>
-        <Left>0.1514in</Left>
-        <Height>0.21181in</Height>
-        <Width>3.58333in</Width>
-        <ZIndex>19</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox34">
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
@@ -965,11 +920,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.63646in</Top>
-        <Left>3.81374in</Left>
+        <Top>2.65035in</Top>
+        <Left>0.13751in</Left>
         <Height>0.21181in</Height>
-        <Width>3.22189in</Width>
-        <ZIndex>20</ZIndex>
+        <Width>6.30836in</Width>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1014,7 +969,7 @@
         <Left>0.13751in</Left>
         <Height>0.21181in</Height>
         <Width>2.03125in</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1047,7 +1002,7 @@
         <Left>2.21042in</Left>
         <Height>0.21181in</Height>
         <Width>2.09689in</Width>
-        <ZIndex>22</ZIndex>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1080,7 +1035,7 @@
         <Left>4.34898in</Left>
         <Height>0.21181in</Height>
         <Width>2.09689in</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1125,7 +1080,7 @@
         <Left>0.1514in</Left>
         <Height>0.21181in</Height>
         <Width>2.03125in</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>23</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1158,7 +1113,7 @@
         <Left>2.22431in</Left>
         <Height>0.21181in</Height>
         <Width>2.09689in</Width>
-        <ZIndex>25</ZIndex>
+        <ZIndex>24</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1215,11 +1170,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.25875in</Top>
+        <Top>5.13375in</Top>
         <Left>4.45in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>26</ZIndex>
+        <ZIndex>25</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1231,11 +1186,11 @@
         </Style>
       </Textbox>
       <Line Name="Line4">
-        <Top>5.25875in</Top>
+        <Top>5.13375in</Top>
         <Left>4.47084in</Left>
         <Height>0in</Height>
         <Width>1.86458in</Width>
-        <ZIndex>27</ZIndex>
+        <ZIndex>26</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1688,11 +1643,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetResponsables</DataSetName>
-        <Top>4.08787in</Top>
+        <Top>4.03231in</Top>
         <Left>0.75024in</Left>
         <Height>0.44792in</Height>
-        <Width>5.80198in</Width>
-        <ZIndex>28</ZIndex>
+        <Width>5.80197in</Width>
+        <ZIndex>27</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1724,7 +1679,7 @@
         <Left>2.6675in</Left>
         <Height>0.19371in</Height>
         <Width>2.28057in</Width>
-        <ZIndex>29</ZIndex>
+        <ZIndex>28</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1756,11 +1711,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>4.56356in</Top>
+        <Top>4.43856in</Top>
         <Left>2.6675in</Left>
         <Height>0.17982in</Height>
         <Width>2.28057in</Width>
-        <ZIndex>30</ZIndex>
+        <ZIndex>29</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1867,11 +1822,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetActividades</DataSetName>
-        <Top>4.81283in</Top>
+        <Top>4.68783in</Top>
         <Left>2.80292in</Left>
         <Height>0.26472in</Height>
         <Width>1.76042in</Width>
-        <ZIndex>31</ZIndex>
+        <ZIndex>30</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1939,12 +1894,6 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="OBS">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="APELLIDO_R">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

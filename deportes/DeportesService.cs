@@ -626,7 +626,7 @@ namespace SOCIOS.deportes
           List<SOCIOS.deportes.Deporte_Importacion> lista = new List<Deporte_Importacion>();
           string QUERY = @"SELECT ID,ID_TITULAR,NRO_SOCIO,NRO_DEP,BARRA,ID_ADHERENTE,FE_APTO,FE_CARNET,TIPO_CARNET,MOROSO,USR_MODIFICACION,
                                FE_MODIFICACION,USR_ALTA,FE_ALTA,DNI,FE_VENCIMIENTO,POC,MONTOMORA,A_MORA,NOMBRE,APELLIDO,EMAIL,OBS,
-                               FE_BAJA,USR_BAJA,SUSPENDIDO,ROL,ID_ROL,ID_TITULAR_ANT,NRO_DEP_ANT,NRO_SOC_ANT FROM DEPORTES_ADM WHERE 1=1  ";
+                               FE_BAJA,USR_BAJA,SUSPENDIDO,ROL,ID_ROL,ID_TITULAR_ANT,NRO_DEP_ANT,NRO_SOC_ANT,DIRECCION FROM DEPORTES_ADM WHERE 1=1  ";
 
           if (MODO == "ALTAS")
 
@@ -711,6 +711,10 @@ namespace SOCIOS.deportes
                       item.NRO_SOCIO_ANT = Int32.Parse(foundRows[i][30].ToString());
                   else
                       item.NRO_DEP_ANT = 0;
+                  if (foundRows[i][31].ToString().Length > 0)
+                      item.DIRECCION = foundRows[i][31].ToString();
+                  else
+                      item.DIRECCION = "";
 
 
                   item.TIPO = MODO;
@@ -802,7 +806,7 @@ namespace SOCIOS.deportes
                   if (item.TIPO == "ALTAS")
                   {
                       Thread.Sleep(50);
-                      dlog.InsertDeportes(item.ID_TTULAR, item.BARRA, item.ID_ADHERENTE, item.FE_APTO, item.FE_CARNET, item.TIPO_CARNET, item.MOROSO, item.FE_ALTA, item.USR_ALTA, item.NRO_SOCIO, item.NRO_DEP, item.DNI, item.FE_VENCIMIENTO, null, item.POC, item.MONTO_MORA, item.ANIO_MORA, item.NOMBRE, item.APELLIDO, item.EMAIL.TrimEnd(), item.OBS.TrimEnd(), item.ROL, item.ID_ROL);
+                      dlog.InsertDeportes(item.ID_TTULAR, item.BARRA, item.ID_ADHERENTE, item.FE_APTO, item.FE_CARNET, item.TIPO_CARNET, item.MOROSO, item.FE_ALTA, item.USR_ALTA, item.NRO_SOCIO, item.NRO_DEP, item.DNI, item.FE_VENCIMIENTO, null, item.POC, item.MONTO_MORA, item.ANIO_MORA, item.NOMBRE, item.APELLIDO, item.EMAIL.TrimEnd(), item.OBS.TrimEnd(), item.ROL, item.ID_ROL,item.DIRECCION);
 
                   }
                   else

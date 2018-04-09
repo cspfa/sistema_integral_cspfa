@@ -42,6 +42,7 @@
             this.lbTelefono = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.gpDeportes = new System.Windows.Forms.GroupBox();
+            this.Ficha = new System.Windows.Forms.Button();
             this.cbApto = new System.Windows.Forms.CheckBox();
             this.btnBaja = new System.Windows.Forms.Button();
             this.tbObs = new System.Windows.Forms.TextBox();
@@ -84,7 +85,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_Responsable = new System.Windows.Forms.Button();
             this.EditarFoto = new System.Windows.Forms.Button();
-            this.Ficha = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbDireccion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.gpDeportes.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -218,6 +220,8 @@
             // 
             // gpDeportes
             // 
+            this.gpDeportes.Controls.Add(this.tbDireccion);
+            this.gpDeportes.Controls.Add(this.label7);
             this.gpDeportes.Controls.Add(this.Ficha);
             this.gpDeportes.Controls.Add(this.cbApto);
             this.gpDeportes.Controls.Add(this.btnBaja);
@@ -252,6 +256,17 @@
             this.gpDeportes.TabIndex = 66;
             this.gpDeportes.TabStop = false;
             this.gpDeportes.Text = "DATOS DEPORTES";
+            // 
+            // Ficha
+            // 
+            this.Ficha.Location = new System.Drawing.Point(552, 253);
+            this.Ficha.Name = "Ficha";
+            this.Ficha.Size = new System.Drawing.Size(186, 23);
+            this.Ficha.TabIndex = 98;
+            this.Ficha.Text = "Ficha";
+            this.Ficha.UseVisualStyleBackColor = true;
+            this.Ficha.Visible = false;
+            this.Ficha.Click += new System.EventHandler(this.Ficha_Click);
             // 
             // cbApto
             // 
@@ -677,15 +692,21 @@
             this.EditarFoto.UseVisualStyleBackColor = true;
             this.EditarFoto.Click += new System.EventHandler(this.EditarFoto_Click);
             // 
-            // Ficha
+            // label7
             // 
-            this.Ficha.Location = new System.Drawing.Point(552, 253);
-            this.Ficha.Name = "Ficha";
-            this.Ficha.Size = new System.Drawing.Size(186, 23);
-            this.Ficha.TabIndex = 98;
-            this.Ficha.Text = "Ficha";
-            this.Ficha.UseVisualStyleBackColor = true;
-            this.Ficha.Click += new System.EventHandler(this.Ficha_Click);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(470, 121);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 13);
+            this.label7.TabIndex = 99;
+            this.label7.Text = "DIRECCION";
+            // 
+            // tbDireccion
+            // 
+            this.tbDireccion.Location = new System.Drawing.Point(542, 118);
+            this.tbDireccion.Name = "tbDireccion";
+            this.tbDireccion.Size = new System.Drawing.Size(207, 20);
+            this.tbDireccion.TabIndex = 100;
             // 
             // admDeportes
             // 
@@ -769,6 +790,8 @@
         private System.Windows.Forms.CheckBox cbApto;
         private System.Windows.Forms.Button btn_Responsable;
         private System.Windows.Forms.Button Ficha;
+        private System.Windows.Forms.TextBox tbDireccion;
+        private System.Windows.Forms.Label label7;
 
 
     }
