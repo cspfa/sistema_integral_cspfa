@@ -93,13 +93,13 @@
             this.forzarCierreToolStripMenuItem,
             this.cambiarDeMesaToolStripMenuItem});
             this.cmMesas.Name = "cmMesas";
-            this.cmMesas.Size = new System.Drawing.Size(151, 92);
+            this.cmMesas.Size = new System.Drawing.Size(153, 114);
             // 
             // abrirMesaToolStripMenuItem
             // 
             this.abrirMesaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("abrirMesaToolStripMenuItem.Image")));
             this.abrirMesaToolStripMenuItem.Name = "abrirMesaToolStripMenuItem";
-            this.abrirMesaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.abrirMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.abrirMesaToolStripMenuItem.Text = "Abrir Mesa";
             this.abrirMesaToolStripMenuItem.Click += new System.EventHandler(this.abrirMesaToolStripMenuItem_Click);
             // 
@@ -107,7 +107,7 @@
             // 
             this.modificarMesaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("modificarMesaToolStripMenuItem.Image")));
             this.modificarMesaToolStripMenuItem.Name = "modificarMesaToolStripMenuItem";
-            this.modificarMesaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.modificarMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.modificarMesaToolStripMenuItem.Text = "Ver Comanda";
             this.modificarMesaToolStripMenuItem.Click += new System.EventHandler(this.modificarMesaToolStripMenuItem_Click);
             // 
@@ -115,7 +115,7 @@
             // 
             this.forzarCierreToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("forzarCierreToolStripMenuItem.Image")));
             this.forzarCierreToolStripMenuItem.Name = "forzarCierreToolStripMenuItem";
-            this.forzarCierreToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.forzarCierreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.forzarCierreToolStripMenuItem.Text = "Forzar Cierre";
             this.forzarCierreToolStripMenuItem.Click += new System.EventHandler(this.forzarCierreToolStripMenuItem_Click);
             // 
@@ -123,7 +123,7 @@
             // 
             this.cambiarDeMesaToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.arrow_switch;
             this.cambiarDeMesaToolStripMenuItem.Name = "cambiarDeMesaToolStripMenuItem";
-            this.cambiarDeMesaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.cambiarDeMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cambiarDeMesaToolStripMenuItem.Text = "Cambiar a Mesa";
             this.cambiarDeMesaToolStripMenuItem.MouseHover += new System.EventHandler(this.cambiarDeMesaToolStripMenuItem_MouseHover);
             // 
