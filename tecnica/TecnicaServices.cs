@@ -250,6 +250,7 @@ namespace SOCIOS.Tecnica
         public void CargoTEcnicos(ComboBox cb)
         {
             cb.Items.Add("SANTIAGO VEYGA");
+            cb.Items.Add("MANUEL CAZORLA");
             cb.Items.Add("ANDRES HERNANDEZ");
             cb.Items.Add("SUSANA BARBEITO");
             cb.Items.Add("NICOLAS PLATERO");
