@@ -6,11 +6,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Collections;
 using FirebirdSql.Data.Firebird;
 
-//ANDRES
 namespace SOCIOS
 {
     public class bo
@@ -21,6 +19,7 @@ namespace SOCIOS
         {
             datDatos = new db(this);
         }
+        
 
         public DataSet BO_EjecutoDataSet(string query)
         {
@@ -6571,5 +6570,6 @@ namespace SOCIOS
 
         }
         #endregion
+        
     }
 }
