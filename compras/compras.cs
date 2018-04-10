@@ -2926,11 +2926,11 @@ namespace SOCIOS
 
                     string busco  = "SELECT O.ID AS NRO_OP, O.FECHA, O.TOTAL, C.BENEFICIARIO AS BENEF_OP, F.NUM_FACTURA, P.RAZON_SOCIAL, C.NRO_CHEQUE, B.NOMBRE AS BANCO, C.ESTADO, ";
                            busco += "O.BENEFICIARIO AS BENEF_CHEQUE, O.OBSERVACIONES, O.US_ALTA, B.ID, O.ANULA_FECHA, O.CANULA_FECHA, O.CANCELA_FECHA FROM ORDENES_DE_PAGO O, CHEQUERAS C, FACTURAS F, PROVEEDORES P, FACTURAS_OP A, BANCOS B ";
-                           busco += "WHERE 1 = 1 AND P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID AND C.BANCO = " + BANCO ;
+                           busco += "WHERE P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID AND C.BANCO = " + BANCO ;
                     
                     if (NRO_OP != "")
                     {
-                        busco += "AND O.ID = '" + NRO_OP + "' AND A.ID_OP = '" + NRO_OP + "' AND C.OP_ASIGNADA = '" + NRO_OP + "' ";
+                        busco += " AND O.ID = '" + NRO_OP + "' AND A.ID_OP = '" + NRO_OP + "' AND C.OP_ASIGNADA = '" + NRO_OP + "' ";
                     }
 
                     if (NRO_CHEQUE != "")
@@ -2956,7 +2956,7 @@ namespace SOCIOS
                     busco += " ORDER BY O.ID DESC;";
 
                     BUSCO_QUERY = busco;
-                    //Clipboard.SetData(DataFormats.Text, (Object)BUSCO_QUERY);
+                    Clipboard.SetData(DataFormats.Text, (Object)BUSCO_QUERY);
 
                     FbCommand cmd = new FbCommand(busco, connection, transaction);
                     cmd.CommandText = busco;
