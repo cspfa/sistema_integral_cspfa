@@ -1834,8 +1834,8 @@ namespace SOCIOS
                     string CAT_SOC = listView1.SelectedItems[0].SubItems[12].Text;
                     int GRUPO = gg.get(COD_DTO, CAT_SOC);
                     string BAJA = listView1.SelectedItems[0].SubItems[13].Text;
-                    string MD = listView1.SelectedItems[0].SubItems[9].Text;
-                    string MC = listView1.SelectedItems[0].SubItems[10].Text;
+                    string MC = listView1.SelectedItems[0].SubItems[9].Text;
+                    string MD = listView1.SelectedItems[0].SubItems[10].Text;
                     decimal IMPORTE = 0;
                     int NRO_PAGO = 0;
                     bool CONTINUA = true;
