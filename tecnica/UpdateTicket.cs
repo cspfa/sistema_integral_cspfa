@@ -107,6 +107,7 @@ namespace SOCIOS.Tecnica
             try
             {
                 dlog.Asistencia_Tecnica_Update(ID, ObsActivo, ObsCancel, ObsCumpli, cbTecnico.Text, cbPrioridad.Text,objTicket.PROBLEMA);
+               
                 MessageBox.Show("Registo Modificado Con Exito");
                 this.Close();
 

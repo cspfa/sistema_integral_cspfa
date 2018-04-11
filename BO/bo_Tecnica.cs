@@ -161,6 +161,7 @@ namespace SOCIOS
             db resultado = new db();
 
             ArrayList vector_contenidos = new ArrayList();
+
             vector_contenidos.Add(ID);
             vector_contenidos.Add(ObsActivo);
             vector_contenidos.Add(ObsCumpli);
