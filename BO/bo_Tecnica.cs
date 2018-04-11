@@ -155,7 +155,7 @@ namespace SOCIOS
 
         }
 
-        public void Asistencia_Tecnica_Update(int ID, string ObsActivo, string ObsCancel, string ObsCumpli, string Tecnico, string Prioridad)
+        public void Asistencia_Tecnica_Update(int ID, string ObsActivo, string ObsCancel, string ObsCumpli, string Tecnico, string Prioridad,string Problema)
 
         {
             db resultado = new db();
@@ -169,7 +169,7 @@ namespace SOCIOS
             vector_contenidos.Add(Prioridad);
             vector_contenidos.Add(VGlobales.vp_username);
             vector_contenidos.Add(System.DateTime.Now);
-          
+            vector_contenidos.Add(Problema);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
@@ -181,8 +181,9 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Char");
   
             vector_tipos.Add("FbDbType.Date");
-  
-          
+
+            vector_tipos.Add("FbDbType.Char");
+
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@ID");
             vector_nombres.Add("@OBS_ACTIVO");
@@ -192,7 +193,7 @@ namespace SOCIOS
             vector_nombres.Add("@PRIORIDAD");
             vector_nombres.Add("@USR_U");
             vector_nombres.Add("@FECHA_U");
-            
+            vector_nombres.Add("@PROBLEMA");
             string vprocedure = "ASISTENCIAS_TECNICAS_U";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
