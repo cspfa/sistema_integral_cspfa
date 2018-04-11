@@ -398,9 +398,10 @@ namespace SOCIOS.confiteria
                 string SOCIO = dataGridView1[2, dataGridView1.CurrentCell.RowIndex].Value.ToString() + ", " + dataGridView1[3, dataGridView1.CurrentCell.RowIndex].Value.ToString();
                 int BARRA = int.Parse(dataGridView1[9, dataGridView1.CurrentCell.RowIndex].Value.ToString());
                 int SECUENCIA = int.Parse(dataGridView1[8, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+                string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
                 dlog.abrirMesa(MESA, "ABIERTA", DESDE, SOCIO, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, 1, 1);
                 llenarGrillaMesas();
-                confiteria.comanda com = new confiteria.comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1);
+                confiteria.comanda com = new confiteria.comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1, MOROSO);
                 com.ShowDialog();
             }
             else
@@ -412,7 +413,8 @@ namespace SOCIOS.confiteria
                 int SECUENCIA_M = int.Parse(dgMesas[8, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 int PERSONAS = int.Parse(dgMesas[9, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 int PAGO = int.Parse(dgMesas[10, dgMesas.CurrentCell.RowIndex].Value.ToString());
-                confiteria.comanda com = new confiteria.comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO);
+                string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+                confiteria.comanda com = new confiteria.comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO);
                 com.ShowDialog();
             }
 

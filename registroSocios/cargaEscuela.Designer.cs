@@ -217,20 +217,21 @@
             // 
             this.button2.Location = new System.Drawing.Point(12, 570);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 23);
+            this.button2.Size = new System.Drawing.Size(152, 23);
             this.button2.TabIndex = 38;
-            this.button2.Text = "SON SOCIOS";
+            this.button2.Text = "OBTENER NRO SOCIO";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_2);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(127, 570);
+            this.button3.Location = new System.Drawing.Point(170, 570);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(137, 23);
+            this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 28;
-            this.button3.Text = "EXPORTAR LISTADO";
+            this.button3.Text = "CONTROL";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2
             // 

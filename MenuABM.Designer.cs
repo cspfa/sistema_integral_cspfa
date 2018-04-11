@@ -125,6 +125,7 @@
             this.proveedoresToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.arancelesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.planDeCuentaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bonosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tesoreríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.proveedoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.confiteríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -150,7 +151,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.bonosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.conveniosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -182,7 +183,8 @@
             this.confiteríaToolStripMenuItem,
             this.contaduríaToolStripMenuItem,
             this.interiorToolStripMenuItem,
-            this.comprasToolStripMenuItem});
+            this.comprasToolStripMenuItem,
+            this.conveniosToolStripMenuItem});
             this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip1.Name = "MenuStrip1";
             this.MenuStrip1.Padding = new System.Windows.Forms.Padding(0, 10, 1, 0);
@@ -1028,6 +1030,13 @@
             this.planDeCuentaToolStripMenuItem1.Text = "Plan de Cuenta";
             this.planDeCuentaToolStripMenuItem1.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem1_Click);
             // 
+            // bonosEnBlancoToolStripMenuItem
+            // 
+            this.bonosEnBlancoToolStripMenuItem.Name = "bonosEnBlancoToolStripMenuItem";
+            this.bonosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.bonosEnBlancoToolStripMenuItem.Text = "Bonos en blanco";
+            this.bonosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.bonosEnBlancoToolStripMenuItem_Click);
+            // 
             // tesoreríaToolStripMenuItem
             // 
             this.tesoreríaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1251,12 +1260,14 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // bonosEnBlancoToolStripMenuItem
+            // conveniosToolStripMenuItem
             // 
-            this.bonosEnBlancoToolStripMenuItem.Name = "bonosEnBlancoToolStripMenuItem";
-            this.bonosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
-            this.bonosEnBlancoToolStripMenuItem.Text = "Bonos en blanco";
-            this.bonosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.bonosEnBlancoToolStripMenuItem_Click);
+            this.conveniosToolStripMenuItem.Enabled = false;
+            this.conveniosToolStripMenuItem.Name = "conveniosToolStripMenuItem";
+            this.conveniosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.conveniosToolStripMenuItem.Text = "Convenios";
+            this.conveniosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.conveniosToolStripMenuItem.Click += new System.EventHandler(this.conveniosToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1422,5 +1433,6 @@
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem conveniosToolStripMenuItem;
     }
 }

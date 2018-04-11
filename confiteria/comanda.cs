@@ -16,9 +16,19 @@ namespace SOCIOS.confiteria
     {
         bo dlog = new bo();
 
-        public comanda(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA, int GROUP, int MESA, int ID_COMANDA, int PERSONAS, int PAGO)
+        private string _MOROSO { get; set; }
+        private DataSet COMANDA { get; set; }
+        private DataSet SOLICITUD { get; set; }
+        private DataSet ITEMS { get; set; }
+        private int GRUPO { get; set; }
+        private int CANTIDAD_ITEMS { get; set; }
+        List<ITEMS_CONFITERIA> LISTA_ITEMS;
+        List<ITEMS_CONFITERIA_FILTRO> LISTA_ITEMS_FILTRO;
+
+        public comanda(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA, int GROUP, int MESA, int ID_COMANDA, int PERSONAS, int PAGO, string MOROSO)
         {
             InitializeComponent();
+            _MOROSO = MOROSO;
             this.ControlBox = false;
             llenarGrillaSocio(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA);
             comboSectAct("MENU CONFITERIA");
@@ -55,15 +65,7 @@ namespace SOCIOS.confiteria
                 }
             }
         }
-
-        private DataSet COMANDA { get; set; }
-        private DataSet SOLICITUD { get; set; }
-        private DataSet ITEMS { get; set; }
-        private int GRUPO { get; set; }
-        private int CANTIDAD_ITEMS { get; set; }
-        List<ITEMS_CONFITERIA> LISTA_ITEMS;
-        List<ITEMS_CONFITERIA_FILTRO> LISTA_ITEMS_FILTRO;
-        
+     
         private string[] obtenerDatosComanda(int ID_COMANDA)
         {
             string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
@@ -198,7 +200,20 @@ namespace SOCIOS.confiteria
 
         private void llenarGrillaSocio(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA)
         {
-            dgSocio.Rows.Add(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA);
+            afiliadoBeneficio ab = new afiliadoBeneficio();
+            string[] AFIL_BENEF = ab.get(int.Parse(NRO_SOC), int.Parse(NRO_DEP));
+            dgSocio.Rows.Add(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA, AFIL_BENEF[0], AFIL_BENEF[1]);
+
+            if (_MOROSO == "S")
+            {
+                int X = 0;
+
+                foreach (DataGridViewRow row in dgSocio.Rows)
+                {
+                    dgSocio.Rows[X].DefaultCellStyle.SelectionBackColor = Color.Red;
+                    X++;
+                }
+            }
         }
 
         public void comboTipoDeComanda()
@@ -768,6 +783,18 @@ namespace SOCIOS.confiteria
 
         private void cbFormaDePago_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgSocio.Rows)
+            {
+                string BENEFICIO = row.Cells[6].Value.ToString();
+                string FORMA_DE_PAGO = cbFormaDePago.SelectedValue.ToString();
+                
+                if ((BENEFICIO == "X" || BENEFICIO == "0/0/0") && FORMA_DE_PAGO == "8")
+                {
+                    MessageBox.Show("LOS DESCUENTOS SOLO ESTAN DISPONIBLES PARA RETIRADOS", "ERROR");
+                    cbFormaDePago.SelectedIndex = 0;
+                }
+            }
+            
             resetNroContralor();
         }
 

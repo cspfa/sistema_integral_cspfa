@@ -693,7 +693,7 @@ namespace SOCIOS.confiteria
             string NRO_SOC = dgComandas[5, dgComandas.CurrentCell.RowIndex].Value.ToString();
             string NRO_DEP = dgComandas[6, dgComandas.CurrentCell.RowIndex].Value.ToString();
             string BARRA = dgComandas[7, dgComandas.CurrentCell.RowIndex].Value.ToString();
-            comanda co = new comanda(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA, GROUP, MESA, ID_COMANDA, PERSONAS, PAGO);
+            comanda co = new comanda(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA, GROUP, MESA, ID_COMANDA, PERSONAS, PAGO, "N");
             co.ShowDialog();
             llenarGrillaComandas();
             Cursor = Cursors.Default;

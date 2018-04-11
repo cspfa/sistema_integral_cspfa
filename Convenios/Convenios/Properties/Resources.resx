@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,7 +60,6 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -69,10 +68,9 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -87,10 +85,9 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -112,43 +109,9 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="cmMesas.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>38, 34</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="abrirMesaToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAADgSURBVDhPY/j//z9FGKsgKRirICkYqyApGKsgKRir
-        oMMuKykgbrDfbnnVfrPFVdu1Zg02y0yksKnFEABhkObZ16b/P/To4P/d93f9n3pm0n+LuYYN2NRiCICw
-        /TbLqwceHvg/9dLU/51nOv4vubLov/kUvavY1GIIgLDdBvOrW+9s+d99put/66nm/3MvzPpv0qVNvAHW
-        y00app6e+H/xlYX/Z1+Y+X/CoZ7/+mWqxHvBcp6hlMV0/QbTPp2rRq2aV3WLlBu0EuWID0RSMFZBUjBW
-        QVIwVkFSMFZB4vF/BgAXIuIDd8I2KQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="modificarMesaToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAADNSURBVDhPpdA/C0FRGMfx53Xc1+U9yGIwGR8Dm8lg
-        UbLKn7pFiBKbQSknUf4z6Uq4wk0/l/U+gyfDZ/n2O6fOIQB/EaOGGDXEqCFGDTGiT5aPvS4Zt0XGsYm3
-        Rb8J20D48g+/lgzPaeJ5qOE0ZkzyxNI2ED4eHTLesYX7JgF3FoO7q2KQISNtA+HjVCPzODRwW8RxNWFc
-        VmW0U4oL9iViZ8Rw9zbO6wrmPUYhqnjCtEDWMEvcT5OpJ8jkIsTJkOYTFcSoIUYNMWqI8XegNxQo8F9N
-        xln4AAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="forzarCierreToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAD3SURBVDhPY/j//z9FGKsgKRirICkYqyApGKsgKRir
-        4JEIuYoDvnwP9zix/NvpyvwIiCuwqQNhDIEj4XLlF4stfn7f2vv/37Ud/7+uKPp/Olv3zy5nllx0tSCM
-        IbDThfnuN6Dm/5N8//8vF/z/v03x/+suh/9A8XvoakEYQwDk7H9n1wGZCPC+XuI/SBzIxFCPIQD07+Mv
-        c5P//wdq+lHG8P8dED/MYP4PFH+CrhaEMQQOh0s1nExR/f2sXPH/q0rW/3dTGP/v9WX5s8OVuQpdLQhj
-        CIDwkXDZCqCN96Gx8BiXZhDGKkgKxipICsYqSArGKkg8/s8AAAHO4Raef/PeAAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>

@@ -76,6 +76,11 @@ namespace SOCIOS
                 tbBuscarNumeroFactura.Visible = true;
                 tbBuscarNumeroSolicitud.Visible = false;
             }
+
+            if (VGlobales.vp_username == "JBUESDORFF" || VGlobales.vp_username == "CHERNANDEZ" || VGlobales.vp_username == "AHERNANDEZ" || VGlobales.vp_username == "SBARBEITO")
+            {
+                cONFIRMARANULACIÓNToolStripMenuItem.Visible = true;
+            }
         }
 
         private bool recibeCompras()
@@ -2920,12 +2925,12 @@ namespace SOCIOS
                     FbTransaction transaction = connection.BeginTransaction();
 
                     string busco  = "SELECT O.ID AS NRO_OP, O.FECHA, O.TOTAL, C.BENEFICIARIO AS BENEF_OP, F.NUM_FACTURA, P.RAZON_SOCIAL, C.NRO_CHEQUE, B.NOMBRE AS BANCO, C.ESTADO, ";
-                           busco += "O.BENEFICIARIO AS BENEF_CHEQUE, O.OBSERVACIONES, O.US_ALTA, B.ID FROM ORDENES_DE_PAGO O, CHEQUERAS C, FACTURAS F, PROVEEDORES P, FACTURAS_OP A, BANCOS B ";
-                           busco += "WHERE 1 = 1 AND P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID AND C.BANCO = " + BANCO ;
+                           busco += "O.BENEFICIARIO AS BENEF_CHEQUE, O.OBSERVACIONES, O.US_ALTA, B.ID, O.ANULA_FECHA, O.CANULA_FECHA, O.CANCELA_FECHA FROM ORDENES_DE_PAGO O, CHEQUERAS C, FACTURAS F, PROVEEDORES P, FACTURAS_OP A, BANCOS B ";
+                           busco += "WHERE P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID AND C.BANCO = " + BANCO ;
                     
                     if (NRO_OP != "")
                     {
-                        busco += "AND O.ID = '" + NRO_OP + "' AND A.ID_OP = '" + NRO_OP + "' AND C.OP_ASIGNADA = '" + NRO_OP + "' ";
+                        busco += " AND O.ID = '" + NRO_OP + "' AND A.ID_OP = '" + NRO_OP + "' AND C.OP_ASIGNADA = '" + NRO_OP + "' ";
                     }
 
                     if (NRO_CHEQUE != "")
@@ -2951,6 +2956,7 @@ namespace SOCIOS
                     busco += " ORDER BY O.ID DESC;";
 
                     BUSCO_QUERY = busco;
+                    Clipboard.SetData(DataFormats.Text, (Object)BUSCO_QUERY);
 
                     FbCommand cmd = new FbCommand(busco, connection, transaction);
                     cmd.CommandText = busco;
@@ -3001,6 +3007,8 @@ namespace SOCIOS
                 lvBuscarOP.Columns.Add("OBSERVACIONES");
                 lvBuscarOP.Columns.Add("US_ALTA");
                 lvBuscarOP.Columns.Add("ID"); //12
+                lvBuscarOP.Columns.Add("ANULADA"); //13
+                lvBuscarOP.Columns.Add("CONFIRMA"); //14
             }
             do
             {
@@ -3017,6 +3025,18 @@ namespace SOCIOS
                 string OBSERVACIONES = OPS.GetString(OPS.GetOrdinal("OBSERVACIONES")).Trim();
                 string US_ALTA = OPS.GetString(OPS.GetOrdinal("US_ALTA")).Trim();
                 string ID_BANCO = OPS.GetString(OPS.GetOrdinal("ID")).Trim();
+                string ANULADA = "";
+                string CONFIRMA = "";
+
+                if (OPS.GetString(OPS.GetOrdinal("ANULA_FECHA")) != "")
+                {
+                    ANULADA = OPS.GetString(OPS.GetOrdinal("ANULA_FECHA")).Trim().Substring(0, 10);
+                }
+
+                if (OPS.GetString(OPS.GetOrdinal("CANULA_FECHA")) != "")
+                {
+                    CONFIRMA = OPS.GetString(OPS.GetOrdinal("CANULA_FECHA")).Trim().Substring(0, 10);
+                }
 
                 ListViewItem listItem = new ListViewItem(NRO_OP);
                 listItem.SubItems.Add(FECHA);
@@ -3031,6 +3051,8 @@ namespace SOCIOS
                 listItem.SubItems.Add(OBSERVACIONES);
                 listItem.SubItems.Add(US_ALTA);
                 listItem.SubItems.Add(ID_BANCO);
+                listItem.SubItems.Add(ANULADA);
+                listItem.SubItems.Add(CONFIRMA);
                 lvBuscarOP.Items.Add(listItem);
             }
 
@@ -3053,7 +3075,27 @@ namespace SOCIOS
             return TOTAL;
         }
 
-        private void btnBuscarOP_Click(object sender, EventArgs e)
+        private void pintarOpAnulada() 
+        {
+            if (lvBuscarOP.Items.Count > 0)
+            {
+                foreach (ListViewItem row in lvBuscarOP.Items)
+                {
+                    if (row.SubItems[13].Text != "")
+                    {
+                        row.BackColor = Color.Orange;
+                        row.ForeColor = Color.White;
+                    }
+                    if (row.SubItems[14].Text != "")
+                    {
+                        row.BackColor = Color.Red;
+                        row.ForeColor = Color.White;
+                    }
+                }
+            }
+        }
+
+        private void ejecBuscarOP() 
         {
             string NRO_OP = tbBuscarOPxNum.Text.Trim();
             string NRO_CHEQUE = tbBuscarOPxCheque.Text.Trim();
@@ -3062,16 +3104,25 @@ namespace SOCIOS
             string ESTADO = cbEstadosCheques.Text;
             string BANCO = cbBancosBusca.SelectedValue.ToString();
             buscarOrdenDePago(NRO_OP, NRO_CHEQUE, NRO_FACTURA, PROVEEDOR, ESTADO, BANCO);
+            pintarOpAnulada();
             tbTotalBusqueda.Text = "TOTAL $ " + string.Format("{0:n}", sumarBusqueda());
+        }
+
+        private void btnBuscarOP_Click(object sender, EventArgs e)
+        {
+            ejecBuscarOP();
         }
 
         private void lvBuscarOP_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if(lvBuscarOP.SelectedItems.Count == 1)
             {
-                if (lvBuscarOP.FocusedItem.Bounds.Contains(e.Location) == true)
+                if (e.Button == MouseButtons.Right)
                 {
-                    cmEstadoOP.Show(Cursor.Position);
+                    if (lvBuscarOP.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmEstadoOP.Show(Cursor.Position);
+                    }
                 }
             }
         }
@@ -6035,9 +6086,75 @@ namespace SOCIOS
             buscarSolicitudesRecibidas();
         }
 
-        private void cbBancos_SizeChanged(object sender, EventArgs e)
+        private void aNULARORDENDEPAGOToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string OP = "0";
+            string ANULADA = "";
+            string CONFIRMADA = "";
 
+            if (lvBuscarOP.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("SELECCIONAR SOLAMENTE UNA ORDEN DE PAGO", "ERROR");
+            }
+            else
+            {
+                foreach (ListViewItem itemRow in lvBuscarOP.SelectedItems)
+                {
+                    OP = itemRow.SubItems[0].Text;
+                    ANULADA = itemRow.SubItems[13].Text;
+
+                    if (ANULADA != "")
+                    {
+                        MessageBox.Show("LA ORDEN DE PAGO SELECCIONADA YA SE ENCUENTRA ANULADA", "ERROR");
+                    }
+                    else if (CONFIRMADA !="")
+                    {
+                        MessageBox.Show("LA ORDEN DE PAGO SELECCIONADA YA TIENE SU ANULACIÓN CONFIRMADA", "ERROR");
+                    }
+                    else
+                    {
+                        anular_op aop = new anular_op(OP, "ANULA");
+                        aop.ShowDialog();
+                        ejecBuscarOP();
+                    }
+                }
+            }
+        }
+
+        private void cONFIRMARANULACIÓNToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string OP = "0";
+            string ANULADA = "";
+            string CONFIRMADA = "";
+
+            if (lvBuscarOP.SelectedItems.Count != 1)
+            {
+                MessageBox.Show("SELECCIONAR SOLAMENTE UNA ORDEN DE PAGO", "ERROR");
+            }
+            else
+            {
+                foreach (ListViewItem itemRow in lvBuscarOP.SelectedItems)
+                {
+                    OP = itemRow.SubItems[0].Text;
+                    ANULADA = itemRow.SubItems[13].Text;
+                    CONFIRMADA = itemRow.SubItems[14].Text;
+
+                    if (ANULADA == "")
+                    {
+                        MessageBox.Show("LA ORDEN DE PAGO SELECCIONADA NO SE ENCUENTRA ANULADA", "ERROR");
+                    }
+                    else if (CONFIRMADA != "")
+                    {
+                        MessageBox.Show("LA ORDEN DE PAGO SELECCIONADA YA TIENE SU ANULACIÓN CONFIRMADA", "ERROR");
+                    }
+                    else
+                    {
+                        anular_op aop = new anular_op(OP, "CONFIRMA");
+                        aop.ShowDialog();
+                        ejecBuscarOP();
+                    }
+                }
+            }
         }
     }
 }

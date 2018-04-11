@@ -37,11 +37,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgSocio = new System.Windows.Forms.DataGridView();
-            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SECUENCIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.tbMesa = new System.Windows.Forms.TextBox();
             this.cbSectAct = new System.Windows.Forms.ComboBox();
@@ -97,6 +92,13 @@
             this.tbDescuento = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tbComandaBorrador = new System.Windows.Forms.TextBox();
+            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SECUENCIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AFILIADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BENEFICIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgSocio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultados)).BeginInit();
@@ -127,7 +129,9 @@
             this.NRO_DEP,
             this.BARRA,
             this.NOMBRE,
-            this.SECUENCIA});
+            this.SECUENCIA,
+            this.AFILIADO,
+            this.BENEFICIO});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -157,37 +161,6 @@
             this.dgSocio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSocio.Size = new System.Drawing.Size(701, 42);
             this.dgSocio.TabIndex = 48;
-            // 
-            // NRO_SOC
-            // 
-            this.NRO_SOC.HeaderText = "NRO_SOC";
-            this.NRO_SOC.Name = "NRO_SOC";
-            this.NRO_SOC.ReadOnly = true;
-            // 
-            // NRO_DEP
-            // 
-            this.NRO_DEP.HeaderText = "NRO_DEP";
-            this.NRO_DEP.Name = "NRO_DEP";
-            this.NRO_DEP.ReadOnly = true;
-            // 
-            // BARRA
-            // 
-            this.BARRA.HeaderText = "BARRA";
-            this.BARRA.Name = "BARRA";
-            this.BARRA.ReadOnly = true;
-            // 
-            // NOMBRE
-            // 
-            this.NOMBRE.HeaderText = "NOMBRE Y APELLIDO";
-            this.NOMBRE.Name = "NOMBRE";
-            this.NOMBRE.ReadOnly = true;
-            this.NOMBRE.Width = 300;
-            // 
-            // SECUENCIA
-            // 
-            this.SECUENCIA.HeaderText = "SECUENCIA";
-            this.SECUENCIA.Name = "SECUENCIA";
-            this.SECUENCIA.ReadOnly = true;
             // 
             // label1
             // 
@@ -728,6 +701,53 @@
             this.tbComandaBorrador.TabIndex = 63;
             this.tbComandaBorrador.Text = "0";
             // 
+            // NRO_SOC
+            // 
+            this.NRO_SOC.HeaderText = "NRO_SOC";
+            this.NRO_SOC.Name = "NRO_SOC";
+            this.NRO_SOC.ReadOnly = true;
+            this.NRO_SOC.Visible = false;
+            // 
+            // NRO_DEP
+            // 
+            this.NRO_DEP.HeaderText = "NRO_DEP";
+            this.NRO_DEP.Name = "NRO_DEP";
+            this.NRO_DEP.ReadOnly = true;
+            this.NRO_DEP.Visible = false;
+            // 
+            // BARRA
+            // 
+            this.BARRA.HeaderText = "BARRA";
+            this.BARRA.Name = "BARRA";
+            this.BARRA.ReadOnly = true;
+            this.BARRA.Visible = false;
+            // 
+            // NOMBRE
+            // 
+            this.NOMBRE.HeaderText = "NOMBRE Y APELLIDO";
+            this.NOMBRE.Name = "NOMBRE";
+            this.NOMBRE.ReadOnly = true;
+            this.NOMBRE.Width = 300;
+            // 
+            // SECUENCIA
+            // 
+            this.SECUENCIA.HeaderText = "SECUENCIA";
+            this.SECUENCIA.Name = "SECUENCIA";
+            this.SECUENCIA.ReadOnly = true;
+            this.SECUENCIA.Visible = false;
+            // 
+            // AFILIADO
+            // 
+            this.AFILIADO.HeaderText = "AFILIADO";
+            this.AFILIADO.Name = "AFILIADO";
+            this.AFILIADO.ReadOnly = true;
+            // 
+            // BENEFICIO
+            // 
+            this.BENEFICIO.HeaderText = "BENEFICIO";
+            this.BENEFICIO.Name = "BENEFICIO";
+            this.BENEFICIO.ReadOnly = true;
+            // 
             // comanda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -817,11 +837,6 @@
         private System.Windows.Forms.TextBox tbPersonas;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NRO_SOC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NRO_DEP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BARRA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NOMBRE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SECUENCIA;
         private System.Windows.Forms.ComboBox cbMozo;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbFormaDePago;
@@ -856,5 +871,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn IMPRESO;
         private System.Windows.Forms.DataGridViewTextBoxColumn OBSERVACION;
         private System.Windows.Forms.TextBox tbComandaBorrador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NRO_SOC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NRO_DEP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BARRA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NOMBRE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SECUENCIA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AFILIADO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BENEFICIO;
     }
 }

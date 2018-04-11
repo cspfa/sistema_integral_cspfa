@@ -1,13 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FirebirdSql.Data.FirebirdClient;
+using System.IO;
 using System.Data;
+using System.Configuration;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
+using System.Collections;
+using FirebirdSql.Data.Firebird;
 
 namespace SOCIOS
 {
-    class conString
+    public class conString
     {
         public string get()
         {

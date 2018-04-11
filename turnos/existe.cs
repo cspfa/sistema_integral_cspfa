@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-
 using System.Text;
 
 namespace SOCIOS
 {
-    class existe
+    public class existe
     {
         bo dlog = new bo();
 

@@ -31,6 +31,12 @@ namespace SOCIOS
             }
 
             string query = "SELECT PTO_VTA FROM PUNTOS_DE_VENTA WHERE ROL = '" + ROL + "' AND ACCION = 'N';";
+
+            if (ROL == "CAJA")
+            {
+                query = "SELECT PTO_VTA FROM PUNTOS_DE_VENTA ORDER BY PTO_VTA;";
+            }
+            
             cbPtoVta.DataSource = null;
             cbPtoVta.Items.Clear();
             cbPtoVta.DataSource = dlog.BO_EjecutoDataTable(query);
