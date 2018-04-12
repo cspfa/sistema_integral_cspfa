@@ -18,6 +18,7 @@ namespace SOCIOS
 
         string ROLE { get; set; }
         string PTO_VTA { get; set; }
+        int CONECTADA { get; set; }
 
         public importarComprobantes(string TITULO, string ROL)
         {
@@ -36,10 +37,12 @@ namespace SOCIOS
             {
                 foundRows = dlog.BO_EjecutoDataTable_Remota(QUERY, ROLE).Select();
                 CONN = "BASE DE DATOS: Conectada";
+                CONECTADA = 1;
             }
             catch (Exception error)
             {
                 CONN = "BASE DE DATOS: Desconectada";
+                CONECTADA = 0;
             }
             
             return CONN;
@@ -53,12 +56,16 @@ namespace SOCIOS
         private void cargaInicial()
         {
             lbConexion.Text = testConnection();
-            buscarCajas(dgCajasAnteriores);
-            dgCajasAnteriores.ClearSelection();
-            dgCajasAnteriores.Enabled = false;
-            buscarComprobantes(dgEfectivo);
-            dgEfectivo.ClearSelection();
-            dgEfectivo.Enabled = false;
+
+            if (CONECTADA == 1)
+            {
+                buscarCajas(dgCajasAnteriores);
+                dgCajasAnteriores.ClearSelection();
+                dgCajasAnteriores.Enabled = false;
+                buscarComprobantes(dgEfectivo);
+                dgEfectivo.ClearSelection();
+                dgEfectivo.Enabled = false;
+            }
         }
 
         private void buscarCajas(DataGridView GRILLA)

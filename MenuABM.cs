@@ -2164,7 +2164,7 @@ namespace SOCIOS
 
         private void conveniosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Convenios.Form1 co = new Convenios.Form1();
+            Convenios.Convenios co = new Convenios.Convenios();
             co.ShowDialog();
         }
     }

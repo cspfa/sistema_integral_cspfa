@@ -41,7 +41,7 @@ namespace SOCIOS.Tecnica
             lbDato.Text = "TICKET NRO: " + pID.ToString() + " - " + objTicket.ESTADO ;
             ID = pID;
 
-           
+
 
 
             if (objTicket.ESTADO == "ACTIVO")
@@ -49,7 +49,7 @@ namespace SOCIOS.Tecnica
                 tbObs.Text = objTicket.OBS_ACTIVO;
                 MODO = 1;
             }
-           
+
             else if (objTicket.ESTADO == "CANCELADO")
             {
                 tbObs.Text = objTicket.OBS_CANCELADO;
@@ -61,6 +61,10 @@ namespace SOCIOS.Tecnica
                 tbObs.Text = objTicket.OBS_CUMPLIMENTADO;
                 MODO = 2;
             }
+            else if (objTicket.ESTADO == "PENDIENTE")
+               { tbObs.Text = objTicket.PROBLEMA;
+                 MODO = 4;
+                }
 
 
             if (objTicket.PRIORIDAD.Length > 0)
@@ -81,6 +85,7 @@ namespace SOCIOS.Tecnica
             string ObsActivo = "";
             string ObsCancel = "";
             string ObsCumpli = "";
+            string OBS       = "";
 
             if (MODO == 1)
             {
@@ -90,15 +95,19 @@ namespace SOCIOS.Tecnica
             {
                 ObsCumpli = tbObs.Text;
             }
-            else
+            else if (MODO == 3)
             {
                 ObsCancel = tbObs.Text;
             }
+            else if (MODO == 4)
+                objTicket.PROBLEMA = tbObs.Text;
+
 
 
             try
             {
-                dlog.Asistencia_Tecnica_Update(ID, ObsActivo, ObsCancel, ObsCumpli, cbTecnico.Text, cbPrioridad.Text);
+                dlog.Asistencia_Tecnica_Update(ID, ObsActivo, ObsCancel, ObsCumpli, cbTecnico.Text, cbPrioridad.Text,objTicket.PROBLEMA);
+               
                 MessageBox.Show("Registo Modificado Con Exito");
                 this.Close();
 

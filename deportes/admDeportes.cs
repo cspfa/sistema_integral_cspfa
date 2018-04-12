@@ -1447,14 +1447,14 @@ namespace SOCIOS
 
             private void btn_Responsable_Click(object sender, EventArgs e)
             {
-                SOCIOS.deportes.Responsables res= new SOCIOS.deportes.Responsables(Responsables);
+                /*SOCIOS.deportes.Responsables res= new SOCIOS.deportes.Responsables(Responsables);
                 DialogResult dr = res.ShowDialog();
                 if (dr==DialogResult.OK)
                 {
                     Responsables =null;
 
                     Responsables = res.Lista;
-                }
+                }*/
 
                 
             }

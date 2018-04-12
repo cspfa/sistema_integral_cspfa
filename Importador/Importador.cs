@@ -13,6 +13,8 @@ namespace Importador
 {
     public partial class Importador : Form
     {
+        //SOCIOS.conString 
+
         private string ROLE { get; set; }
 
         public Importador()

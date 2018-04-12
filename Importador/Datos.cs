@@ -11,7 +11,7 @@ namespace Importador
     public class Datos
     {
         private FbDataReader obtenerConcurrentes()
-        {
+        {           
             FbDataReader READER = null;
             return READER;            
         }

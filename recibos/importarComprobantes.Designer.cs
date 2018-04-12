@@ -140,7 +140,6 @@
             this.dgEfectivo.Location = new System.Drawing.Point(11, 21);
             this.dgEfectivo.Margin = new System.Windows.Forms.Padding(5);
             this.dgEfectivo.Name = "dgEfectivo";
-            this.dgEfectivo.ReadOnly = true;
             this.dgEfectivo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
