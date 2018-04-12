@@ -157,9 +157,7 @@ namespace SOCIOS.deportes
              parameters[7] = new ReportParameter("EMAIL",EMAIL);
              parameters[8] = new ReportParameter("DIRECCION",DIRECCION);
              parameters[9] = new ReportParameter("OBS",OBS);
-
-           
-
+                      
              parameters[10] = new ReportParameter("NOMBRE_R", NOMBRE_TIT);
              parameters[11] = new ReportParameter("VINCULO_R",VINCULO_TIT);
              parameters[12] = new ReportParameter("TELEFONO_R",TEL_TIT);

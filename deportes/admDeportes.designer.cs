@@ -42,6 +42,8 @@
             this.lbTelefono = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.gpDeportes = new System.Windows.Forms.GroupBox();
+            this.tbDireccion = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.Ficha = new System.Windows.Forms.Button();
             this.cbApto = new System.Windows.Forms.CheckBox();
             this.btnBaja = new System.Windows.Forms.Button();
@@ -85,8 +87,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btn_Responsable = new System.Windows.Forms.Button();
             this.EditarFoto = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbDireccion = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.gpDeportes.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -257,6 +257,22 @@
             this.gpDeportes.TabStop = false;
             this.gpDeportes.Text = "DATOS DEPORTES";
             // 
+            // tbDireccion
+            // 
+            this.tbDireccion.Location = new System.Drawing.Point(542, 118);
+            this.tbDireccion.Name = "tbDireccion";
+            this.tbDireccion.Size = new System.Drawing.Size(207, 20);
+            this.tbDireccion.TabIndex = 100;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(470, 121);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(66, 13);
+            this.label7.TabIndex = 99;
+            this.label7.Text = "DIRECCION";
+            // 
             // Ficha
             // 
             this.Ficha.Location = new System.Drawing.Point(552, 253);
@@ -281,7 +297,7 @@
             // btnBaja
             // 
             this.btnBaja.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.btnBaja.Location = new System.Drawing.Point(552, 224);
+            this.btnBaja.Location = new System.Drawing.Point(552, 222);
             this.btnBaja.Name = "btnBaja";
             this.btnBaja.Size = new System.Drawing.Size(186, 23);
             this.btnBaja.TabIndex = 96;
@@ -691,22 +707,6 @@
             this.EditarFoto.Text = "EDITAR  FOTO";
             this.EditarFoto.UseVisualStyleBackColor = true;
             this.EditarFoto.Click += new System.EventHandler(this.EditarFoto_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(470, 121);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 13);
-            this.label7.TabIndex = 99;
-            this.label7.Text = "DIRECCION";
-            // 
-            // tbDireccion
-            // 
-            this.tbDireccion.Location = new System.Drawing.Point(542, 118);
-            this.tbDireccion.Name = "tbDireccion";
-            this.tbDireccion.Size = new System.Drawing.Size(207, 20);
-            this.tbDireccion.TabIndex = 100;
             // 
             // admDeportes
             // 
