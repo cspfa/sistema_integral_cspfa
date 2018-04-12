@@ -239,6 +239,7 @@ namespace SOCIOS
 
         public void BajaDeportes(int ID)
         {
+
             db resultado = new db();
 
             ArrayList vector_contenidos = new ArrayList();

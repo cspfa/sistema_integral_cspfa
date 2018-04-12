@@ -1485,6 +1485,7 @@ namespace SOCIOS
 
             if (MessageBox.Show("Va a dar de Baja el Registro?", "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
+
                 dlog.BajaDeportes(ID);
 
                 MessageBox.Show("Registro Dado de Baja con Exito");
