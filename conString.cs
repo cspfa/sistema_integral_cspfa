@@ -8,8 +8,20 @@ using System.Text;
 using System.Collections;
 using FirebirdSql.Data.Firebird;
 
+
+
+namespace SOCIOS.TEST
+{ 
+   public class conString 
+       {
+       }
+
+}
+
 namespace SOCIOS
 {
+
+    
     public class conString
     {
         public string get()
@@ -29,7 +41,7 @@ namespace SOCIOS
         }
 
         public string getRemota(string ROL)
-        {
+        {   
             string connectionString = string.Empty;
             Datos_ini ini2 = new Datos_ini();
             FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
