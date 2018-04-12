@@ -830,13 +830,20 @@ namespace SOCIOS
                 lvFacturas.Columns.Add("CUIT");
                 lvFacturas.Columns.Add("TC");
                 lvFacturas.Columns.Add("DES%");
-                lvFacturas.Columns.Add("ANULADO");
+                lvFacturas.Columns.Add("ANULADA");
+                lvFacturas.Columns.Add("OP_ANULADA");
             }
             do
             {
                 decimal IMPORTE = reader.GetDecimal(reader.GetOrdinal("IMPORTE"));
                 string VALOR = string.Format("{0:n}", IMPORTE);
                 DateTime FECHA = reader.GetDateTime(reader.GetOrdinal("FECHA"));
+                DateTime OP_ANULADA;
+
+                if (reader.GetString(reader.GetOrdinal("OP_ANULADA")) != "")
+                { 
+                   // OP_ANULADA = reader.GetString(reader.GetOrdinal("ANULADO")).
+                }
 
                 ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("ID")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("RAZON_SOCIAL")).Trim());
@@ -922,12 +929,12 @@ namespace SOCIOS
                     {
                         case "BUSCAR":
                         QUERY += "SELECT F.ID, F.PROVEEDOR, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.FE_ALTA, F.US_ALTA, F.FE_MOD, ";
-                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC, F.DESCUENTO, F.ANULADO ";
+                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC, F.DESCUENTO, F.ANULADO, F.OP_ANULADA ";
                         break;
 
                         case "EXCEL":
                         QUERY += "SELECT P.RAZON_SOCIAL, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, ";
-                        QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO, F.ANULADO ";
+                        QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO, F.ANULADO, F.OP_ANULADA ";
                         break;
                     }
 
@@ -2906,6 +2913,8 @@ namespace SOCIOS
         private void buscarOrdenDePago(string NRO_OP, string NRO_CHEQUE, string NRO_FACTURA, string PROVEEDOR, string ESTADO, string BANCO)
         {
             string connectionString;
+            string busco = "";
+            string FACTURA = "N";
             Datos_ini ini2 = new Datos_ini();
 
             try
@@ -2924,13 +2933,37 @@ namespace SOCIOS
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
 
-                    string busco  = "SELECT O.ID AS NRO_OP, O.FECHA, O.TOTAL, C.BENEFICIARIO AS BENEF_OP, F.NUM_FACTURA, P.RAZON_SOCIAL, C.NRO_CHEQUE, B.NOMBRE AS BANCO, C.ESTADO, ";
-                           busco += "O.BENEFICIARIO AS BENEF_CHEQUE, O.OBSERVACIONES, O.US_ALTA, B.ID, O.ANULA_FECHA, O.CANULA_FECHA, O.CANCELA_FECHA FROM ORDENES_DE_PAGO O, CHEQUERAS C, FACTURAS F, PROVEEDORES P, FACTURAS_OP A, BANCOS B ";
-                           busco += "WHERE P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID AND C.BANCO = " + BANCO ;
+                    if (NRO_OP != "")
+                    {
+                        busco += "SELECT FIRST 1 ";
+                    }
+                    else
+                    {
+                        busco += "SELECT ";
+                    }
+
+                    busco += "O.ID AS NRO_OP, O.FECHA, O.TOTAL, C.BENEFICIARIO AS BENEF_OP, P.RAZON_SOCIAL, C.NRO_CHEQUE, B.NOMBRE AS BANCO, C.ESTADO, ";
+                    busco += "O.BENEFICIARIO AS BENEF_CHEQUE, O.OBSERVACIONES, O.US_ALTA, B.ID, O.ANULA_FECHA, O.CANULA_FECHA, O.CANCELA_FECHA ";
+                    busco += "FROM ORDENES_DE_PAGO O, CHEQUERAS C, FACTURAS F, PROVEEDORES P, FACTURAS_OP A, BANCOS B ";
+                    busco += "WHERE P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID ";
+
+                    if (NRO_FACTURA != "")
+                    {
+                        busco = "SELECT O.ID AS NRO_OP, O.FECHA, O.TOTAL, C.BENEFICIARIO AS BENEF_OP, F.NUM_FACTURA, P.RAZON_SOCIAL, C.NRO_CHEQUE, B.NOMBRE AS BANCO, C.ESTADO, ";
+                        busco += "O.BENEFICIARIO AS BENEF_CHEQUE, O.OBSERVACIONES, O.US_ALTA, B.ID, O.ANULA_FECHA, O.CANULA_FECHA, O.CANCELA_FECHA ";
+                        busco += "FROM ORDENES_DE_PAGO O, CHEQUERAS C, FACTURAS F, PROVEEDORES P, FACTURAS_OP A, BANCOS B ";
+                        busco += "WHERE P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID ";
+                        FACTURA = "S"; 
+                    }
+                    
+                    if(chBancoOP.Checked == true)
+                    {
+                        busco += " AND C.BANCO = " + BANCO;
+                    }
                     
                     if (NRO_OP != "")
                     {
-                        busco += " AND O.ID = '" + NRO_OP + "' AND A.ID_OP = '" + NRO_OP + "' AND C.OP_ASIGNADA = '" + NRO_OP + "' ";
+                        busco += " AND O.ID = '" + NRO_OP + "' AND C.OP_ASIGNADA = '" + NRO_OP + "' ";
                     }
 
                     if (NRO_CHEQUE != "")
@@ -2956,7 +2989,7 @@ namespace SOCIOS
                     busco += " ORDER BY O.ID DESC;";
 
                     BUSCO_QUERY = busco;
-                    Clipboard.SetData(DataFormats.Text, (Object)BUSCO_QUERY);
+                    //Clipboard.SetData(DataFormats.Text, (Object)BUSCO_QUERY);
 
                     FbCommand cmd = new FbCommand(busco, connection, transaction);
                     cmd.CommandText = busco;
@@ -2966,7 +2999,7 @@ namespace SOCIOS
 
                     if (reader.Read())
                     {
-                        mostrarOrdenesDePago(reader);
+                        mostrarOrdenesDePago(reader, FACTURA);
                     }
                     else
                     {
@@ -2986,11 +3019,12 @@ namespace SOCIOS
             }
         }
 
-        private void mostrarOrdenesDePago(FbDataReader OPS)
+        private void mostrarOrdenesDePago(FbDataReader OPS, string FACTURA)
         {
             lvBuscarOP.Items.Clear();
             lvBuscarOP.Columns.Clear();
             lvBuscarOP.BeginUpdate();
+            string NUM_FACTURA = "";
 
             if (lvBuscarOP.Columns.Count == 0)
             {
@@ -3016,7 +3050,7 @@ namespace SOCIOS
                 string FECHA = OPS.GetString(OPS.GetOrdinal("FECHA")).Trim().Substring(0, 10);
                 string TOTAL = string.Format("{0:n}", OPS.GetDecimal(OPS.GetOrdinal("TOTAL")));
                 string BENEF_OP = OPS.GetString(OPS.GetOrdinal("BENEF_OP")).Trim();
-                string NUM_FACTURA = OPS.GetString(OPS.GetOrdinal("NUM_FACTURA")).Trim();
+                if (FACTURA == "S") { NUM_FACTURA = OPS.GetString(OPS.GetOrdinal("NUM_FACTURA")).Trim(); }
                 string RAZON_SOCIAL = OPS.GetString(OPS.GetOrdinal("RAZON_SOCIAL")).Trim();
                 string NRO_CHEQUE = OPS.GetString(OPS.GetOrdinal("NRO_CHEQUE")).Trim();
                 string BANCO = OPS.GetString(OPS.GetOrdinal("BANCO")).Trim();
@@ -3097,9 +3131,15 @@ namespace SOCIOS
 
         private void ejecBuscarOP() 
         {
+            string NRO_FACTURA = tbBuscarOPxFactura.Text.Trim();
+
+            if (NRO_FACTURA != "")
+            {
+                tbBuscarOPxNum.Text = "";
+            }
+
             string NRO_OP = tbBuscarOPxNum.Text.Trim();
             string NRO_CHEQUE = tbBuscarOPxCheque.Text.Trim();
-            string NRO_FACTURA = tbBuscarOPxFactura.Text.Trim();
             string PROVEEDOR = tbBuscarOPxProveedor.Text.Trim();
             string ESTADO = cbEstadosCheques.Text;
             string BANCO = cbBancosBusca.SelectedValue.ToString();
@@ -5419,30 +5459,36 @@ namespace SOCIOS
         {
             if (e.Button == MouseButtons.Left)
             {
-                btnGuardarFactura.Enabled = false;
-                btnModFactura.Enabled = true;
-                int ID = Convert.ToInt16(lvFacturas.SelectedItems[0].SubItems[0].Text);
-                llenarDatosFactura(ID);
-                grupoFacturas(sender);
+                if (lvFacturas.SelectedItems.Count != 0)
+                {
+                    btnGuardarFactura.Enabled = false;
+                    btnModFactura.Enabled = true;
+                    int ID = Convert.ToInt16(lvFacturas.SelectedItems[0].SubItems[0].Text);
+                    llenarDatosFactura(ID);
+                    grupoFacturas(sender);
+                }
             }
 
             if (e.Button == MouseButtons.Right)
             {
-                if (lvFacturas.FocusedItem.Bounds.Contains(e.Location) == true)
+                if (lvFacturas.SelectedItems.Count != 0)
                 {
-                    if (lvFacturas.SelectedItems[0].SubItems[12].Text != "")
-                    { 
-                        aCTIVRToolStripMenuItem.Visible = true;
-                        aNULARToolStripMenuItem.Visible = false;
-                        
-                    }
-                    else
+                    if (lvFacturas.FocusedItem.Bounds.Contains(e.Location) == true)
                     {
-                        aCTIVRToolStripMenuItem.Visible = false;
-                        aNULARToolStripMenuItem.Visible = true;
-                    }
+                        if (lvFacturas.SelectedItems[0].SubItems[12].Text != "")
+                        {
+                            aCTIVRToolStripMenuItem.Visible = true;
+                            aNULARToolStripMenuItem.Visible = false;
 
-                    cmFactura.Show(Cursor.Position);
+                        }
+                        else
+                        {
+                            aCTIVRToolStripMenuItem.Visible = false;
+                            aNULARToolStripMenuItem.Visible = true;
+                        }
+
+                        cmFactura.Show(Cursor.Position);
+                    }
                 }
             }
         }
@@ -6154,6 +6200,18 @@ namespace SOCIOS
                         ejecBuscarOP();
                     }
                 }
+            }
+        }
+
+        private void chBancoOP_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chBancoOP.Checked == true)
+            {
+                cbBancosBusca.Enabled = true;
+            }
+            else
+            {
+                cbBancosBusca.Enabled = false;
             }
         }
     }
