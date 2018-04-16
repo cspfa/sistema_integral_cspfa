@@ -711,7 +711,7 @@ namespace SOCIOS
             switch (TIPO)
             {
                 case "TITULAR":
-                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Titular WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP + " AND BARRA = 0;";
+                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Titular WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP;
 
                     break;
 
@@ -723,11 +723,11 @@ namespace SOCIOS
                     break;
 
                 case "FAMILIAR":
-                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Familiar WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP + " AND BARRA = 0;";
+                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Titular WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP;
                     break;
 
                 case "EMPLEADO":
-                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Titular WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP + " AND BARRA = 0;";
+                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from Titular WHERE NRO_SOC = " + NRO_SOC + " AND NRO_DEP = " + NRO_DEP;
                     break;
             }
 
