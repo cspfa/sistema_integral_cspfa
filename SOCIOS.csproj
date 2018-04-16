@@ -107,11 +107,11 @@
   <ItemGroup>
     <Reference Include="AForge.Video, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>EjemploWebcam\EjemploWebcam\bin\Debug\AForge.Video.dll</HintPath>
+      <HintPath>..\..\..\MediaFire\Programas\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
     </Reference>
     <Reference Include="AForge.Video.DirectShow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>EjemploWebcam\EjemploWebcam\bin\Debug\AForge.Video.DirectShow.dll</HintPath>
+      <HintPath>..\..\..\MediaFire\Programas\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
     <Reference Include="FirebirdSql.Data.Firebird, Version=1.7.1.0, Culture=neutral, PublicKeyToken=fa843d180294369d">
       <SpecificVersion>False</SpecificVersion>
@@ -165,6 +165,12 @@
     <Compile Include="abmCargos.Designer.cs">
       <DependentUpon>abmCargos.cs</DependentUpon>
     </Compile>
+    <Compile Include="compras\anular_op.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="compras\anular_op.Designer.cs">
+      <DependentUpon>anular_op.cs</DependentUpon>
+    </Compile>
     <Compile Include="bono\BonosOdontologia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -195,6 +201,22 @@
     <Compile Include="bono\Bonos\BonoPasaje.designer.cs">
       <DependentUpon>BonoPasaje.cs</DependentUpon>
     </Compile>
+    <Compile Include="bono\Bonos\Bono_Blanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\Bonos\Bono_Blanco.Designer.cs">
+      <DependentUpon>Bono_Blanco.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bono\Bonos\Carga_Bonos_Blanco_Turismo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\Bonos\Carga_Bonos_Blanco_Turismo.Designer.cs">
+      <DependentUpon>Carga_Bonos_Blanco_Turismo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bono\Bonos\PagoBonos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\BonoUtils.cs" />
     <Compile Include="bono\Clases\Clases.cs" />
     <Compile Include="bono\Clases\Enums.cs" />
     <Compile Include="bono\Clases\Impresion.cs" />
@@ -255,6 +277,12 @@
     <Compile Include="bono\ReporteBonoHotel.designer.cs">
       <DependentUpon>ReporteBonoHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="bono\ReporteBonoHotel_Blanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\ReporteBonoHotel_Blanco.Designer.cs">
+      <DependentUpon>ReporteBonoHotel_Blanco.cs</DependentUpon>
+    </Compile>
     <Compile Include="bono\ReporteBonoOdontologico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,11 +295,23 @@
     <Compile Include="bono\ReporteBonoPaquete.designer.cs">
       <DependentUpon>ReporteBonoPaquete.cs</DependentUpon>
     </Compile>
+    <Compile Include="bono\ReporteBonoPaquete_Blanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\ReporteBonoPaquete_Blanco.Designer.cs">
+      <DependentUpon>ReporteBonoPaquete_Blanco.cs</DependentUpon>
+    </Compile>
     <Compile Include="bono\ReporteBonoPasaje.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="bono\ReporteBonoPasaje.designer.cs">
       <DependentUpon>ReporteBonoPasaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bono\ReporteBonoPasaje_Blanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\ReporteBonoPasaje_Blanco.Designer.cs">
+      <DependentUpon>ReporteBonoPasaje_Blanco.cs</DependentUpon>
     </Compile>
     <Compile Include="bono\ReporteBonoVoucher.cs">
       <SubType>Form</SubType>
@@ -284,6 +324,7 @@
     <Compile Include="BO\bo_Deportes.cs" />
     <Compile Include="BO\bo_Descuentos.cs" />
     <Compile Include="BO\bo_IngresosPersonas.cs" />
+    <Compile Include="BO\bo_interior.cs" />
     <Compile Include="BO\bo_Plan_Cuenta.cs" />
     <Compile Include="BO\bo_RegSoc.cs" />
     <Compile Include="BO\bo_ServiciosMedicos.cs" />
@@ -346,6 +387,18 @@
     </Compile>
     <Compile Include="deportes\DescuentoDeportes.designer.cs">
       <DependentUpon>DescuentoDeportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deportes\ReporteFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deportes\ReporteFicha.designer.cs">
+      <DependentUpon>ReporteFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="deportes\Responsables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="deportes\Responsables.Designer.cs">
+      <DependentUpon>Responsables.cs</DependentUpon>
     </Compile>
     <Compile Include="deportes\Selector_Deportes.cs">
       <SubType>Form</SubType>
@@ -1135,6 +1188,9 @@
     <EmbeddedResource Include="abmCargos.resx">
       <DependentUpon>abmCargos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="compras\anular_op.resx">
+      <DependentUpon>anular_op.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bono\BonoHotel.rdlc" />
     <EmbeddedResource Include="bono\BonoOdontologico.rdlc" />
     <EmbeddedResource Include="bono\BonoPaquete.rdlc" />
@@ -1153,6 +1209,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="bono\Bonos\BonoPasaje.resx">
       <DependentUpon>BonoPasaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bono\Bonos\Bono_Blanco.resx">
+      <DependentUpon>Bono_Blanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bono\Bonos\Carga_Bonos_Blanco_Turismo.resx">
+      <DependentUpon>Carga_Bonos_Blanco_Turismo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bono\BonoVoucher.rdlc" />
     <EmbeddedResource Include="bono\Odontologia\BonoOdontologico.resx">
@@ -1179,14 +1241,23 @@
     <EmbeddedResource Include="bono\ReporteBonoHotel.resx">
       <DependentUpon>ReporteBonoHotel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bono\ReporteBonoHotel_Blanco.resx">
+      <DependentUpon>ReporteBonoHotel_Blanco.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bono\ReporteBonoOdontologico.resx">
       <DependentUpon>ReporteBonoOdontologico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bono\ReporteBonoPaquete.resx">
       <DependentUpon>ReporteBonoPaquete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bono\ReporteBonoPaquete_Blanco.resx">
+      <DependentUpon>ReporteBonoPaquete_Blanco.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="bono\ReporteBonoPasaje.resx">
       <DependentUpon>ReporteBonoPasaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bono\ReporteBonoPasaje_Blanco.resx">
+      <DependentUpon>ReporteBonoPasaje_Blanco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bono\ReporteBonoVoucher.resx">
       <DependentUpon>ReporteBonoVoucher.cs</DependentUpon>
@@ -1203,6 +1274,7 @@
     <EmbeddedResource Include="deportes\admDeportes.resx">
       <DependentUpon>admDeportes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="deportes\AptoMedico.rdlc" />
     <EmbeddedResource Include="deportes\Asistencia\admAsistencia.resx">
       <DependentUpon>admAsistencia.cs</DependentUpon>
     </EmbeddedResource>
@@ -1223,6 +1295,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="deportes\DescuentoDeportes.resx">
       <DependentUpon>DescuentoDeportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="deportes\ReporteFicha.resx">
+      <DependentUpon>ReporteFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="deportes\Responsables.resx">
+      <DependentUpon>Responsables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="deportes\Selector_Deportes.resx">
       <DependentUpon>Selector_Deportes.cs</DependentUpon>
@@ -2057,9 +2135,17 @@
     <None Include="Resources\WinXPsalir1.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Convenios\Convenios\Convenios.csproj">
+      <Project>{E677B1C5-E733-4A31-89B2-A15D43514971}</Project>
+      <Name>Convenios</Name>
+    </ProjectReference>
     <ProjectReference Include="ImageResizer\ImageResizer\ImageResizer.csproj">
       <Project>{E660FA4F-B216-46DE-B387-DDE59BBAAFE6}</Project>
       <Name>ImageResizer</Name>
+    </ProjectReference>
+    <ProjectReference Include="Importador\Importador.csproj">
+      <Project>{16C6E71A-10D7-4995-8F4C-1DB569429D04}</Project>
+      <Name>Importador</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
