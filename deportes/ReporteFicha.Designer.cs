@@ -36,14 +36,14 @@
             this.reportViewer.LocalReport.ReportEmbeddedResource = "SOCIOS.deportes.AptoMedico.rdlc";
             this.reportViewer.Location = new System.Drawing.Point(12, 23);
             this.reportViewer.Name = "reportViewer";
-            this.reportViewer.Size = new System.Drawing.Size(653, 294);
+            this.reportViewer.Size = new System.Drawing.Size(724, 556);
             this.reportViewer.TabIndex = 0;
             // 
             // ReporteFicha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 329);
+            this.ClientSize = new System.Drawing.Size(754, 591);
             this.Controls.Add(this.reportViewer);
             this.Name = "ReporteFicha";
             this.Text = "ReporteFicha";
