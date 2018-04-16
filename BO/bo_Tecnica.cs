@@ -92,15 +92,15 @@ namespace SOCIOS
             }
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
-            if (Estado == 2)
-            {
-                string mail = Config.getValor(ROL, "MAIL", 0);
-                if (mail.Length > 0)
-                    mail = ";" + mail;
-                mailer.EnvioMail("cspfaweb@gmail.com;tecnicacspfa@gmail.com;admcsicspfa@gmail.com" + mail, "SOLUCION TICKET NRO:" + ID.ToString(), "Ticket Solucionado : " + Texto);
+            //if (Estado == 2)
+            //{
+            //    string mail = Config.getValor(ROL, "MAIL", 0);
+            //    if (mail.Length > 0)
+            //        mail = ";" + mail;
+            //    mailer.EnvioMail("cspfaweb@gmail.com;tecnicacspfa@gmail.com;admcsicspfa@gmail.com" + mail, "SOLUCION TICKET NRO:" + ID.ToString(), "Ticket Solucionado : " + Texto);
 
 
-            }
+            //}
         }
 
 
