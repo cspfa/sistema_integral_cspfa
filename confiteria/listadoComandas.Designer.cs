@@ -771,7 +771,6 @@
         private System.Windows.Forms.ToolStripMenuItem modificarItemsToolStripMenuItem;
         private System.Windows.Forms.CheckBox cbSoloAnuladas;
         private System.Windows.Forms.ToolStripMenuItem desanularComandaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem cambiarFormaDePagoToolStripMenuItem;
         private System.Windows.Forms.Label lbImporteTotalListado;
         private System.Windows.Forms.Label lbComensalesListados;
