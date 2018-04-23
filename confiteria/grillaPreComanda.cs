@@ -13,6 +13,7 @@ using System.Collections;
 using System.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using SOCIOS;
 
 namespace Confiteria
 {
@@ -401,7 +402,7 @@ namespace Confiteria
                 string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
                 dlog.abrirMesa(MESA, "ABIERTA", DESDE, SOCIO, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, 1, 1);
                 llenarGrillaMesas();
-                confiteria.comanda com = new confiteria.comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1, MOROSO);
+                comanda com = new comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1, MOROSO);
                 com.ShowDialog();
             }
             else
@@ -414,7 +415,7 @@ namespace Confiteria
                 int PERSONAS = int.Parse(dgMesas[9, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 int PAGO = int.Parse(dgMesas[10, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-                confiteria.comanda com = new confiteria.comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO);
+                comanda com = new comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO);
                 com.ShowDialog();
             }
 
@@ -423,7 +424,7 @@ namespace Confiteria
 
         private void btnABM_Click(object sender, EventArgs e)
         {
-            buscar bu = new buscar();
+            SOCIOS.buscar bu = new buscar();
             bu.ShowDialog();
             buscarIngresos("XXX", "NO");
             llenarGrillaIngresos(INGRESOS, dataGridView1);
@@ -1560,7 +1561,7 @@ namespace Confiteria
         {
             try
             {
-                maxid mid = new maxid();
+                SOCIOS.maxid mid = new maxid();
                 int CAJA_DIARIA = int.Parse(mid.m("ID", "CONFITERIA_CAJA_DIARIA"));
                 dlog.rendidaEnComandas(int.Parse(ID_COMANDA), CAJA_DIARIA);
             }
