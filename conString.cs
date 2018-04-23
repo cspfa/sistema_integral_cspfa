@@ -7,21 +7,15 @@ using System.ComponentModel;
 using System.Text;
 using System.Collections;
 using FirebirdSql.Data.Firebird;
-
-
-
-namespace SOCIOS.TEST
+/*namespace SOCIOS.TEST
 { 
    public class conString 
        {
        }
 
-}
-
+}*/
 namespace SOCIOS
 {
-
-    
     public class conString
     {
         public string get()
