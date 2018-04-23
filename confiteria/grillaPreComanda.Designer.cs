@@ -1,4 +1,6 @@
-﻿namespace Confiteria
+﻿using SOCIOS;
+
+namespace Confiteria
 {
     partial class grillaPreComanda
     {
