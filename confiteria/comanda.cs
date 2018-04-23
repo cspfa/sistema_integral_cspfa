@@ -24,7 +24,7 @@ namespace Confiteria
         private int GRUPO { get; set; }
         private int CANTIDAD_ITEMS { get; set; }
         List<ITEMS_CONFITERIA> LISTA_ITEMS;
-        List<ITEMS_CONFITERIA_FILTRO> LISTA_ITEMS_FILTRO;
+      
 
         public comanda(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA, int GROUP, int MESA, int ID_COMANDA, int PERSONAS, int PAGO, string MOROSO)
         {
@@ -512,7 +512,7 @@ namespace Confiteria
             }
             catch (Exception error)
             {
-                MessageBox.Show("ERROR AL INTENTAR MODIFICAR PERSONAS Y FORMA DE PAGO", "ERROR");
+                MessageBox.Show("ERROR AL INTENTAR MODIFICAR PERSONAS Y FORMA DE PAGO\n"+error, "ERROR");
             }
         }
         
