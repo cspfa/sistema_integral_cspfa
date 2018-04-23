@@ -14,6 +14,7 @@ using FirebirdSql.Data.Isql;
 using FirebirdSql.Data.Services;
 using FirebirdSql.Data.Server;
 using iTextSharp.text.pdf;
+using SOCIOS;
 
 namespace Confiteria
 {
