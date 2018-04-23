@@ -12,7 +12,7 @@ using System.Collections;
 
 namespace SOCIOS
 {
-    class maxid
+    public class maxid
     {
         bo dlog = new bo();
 
