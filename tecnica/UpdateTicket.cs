@@ -121,5 +121,20 @@ namespace SOCIOS.Tecnica
             }
 
         }
+
+        private void tbObs_KeyUp(object sender, KeyEventArgs e)
+        {
+            int DISP = 300 - tbObs.Text.Length;
+            lbDisponibles.Text = "CARACTERES DISPONIBLES: " + DISP.ToString();
+
+            if (DISP < 50)
+            {
+                lbDisponibles.ForeColor = Color.Red;
+            }
+            else
+            {
+                lbDisponibles.ForeColor = Color.Black;
+            }
+        }
     }
 }

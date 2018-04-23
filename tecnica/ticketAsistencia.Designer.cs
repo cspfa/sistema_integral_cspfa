@@ -164,6 +164,7 @@
             this.tbProblema.Name = "tbProblema";
             this.tbProblema.Size = new System.Drawing.Size(701, 91);
             this.tbProblema.TabIndex = 5;
+            this.tbProblema.TextChanged += new System.EventHandler(this.tbProblema_TextChanged);
             this.tbProblema.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbProblema_KeyUp);
             // 
             // lbNombreEq

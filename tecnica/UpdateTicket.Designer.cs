@@ -35,12 +35,13 @@
             this.lbDato = new System.Windows.Forms.Label();
             this.cbPrioridad = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.lbDisponibles = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnGrabar
             // 
             this.btnGrabar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnGrabar.Location = new System.Drawing.Point(632, 140);
+            this.btnGrabar.Location = new System.Drawing.Point(632, 155);
             this.btnGrabar.Name = "btnGrabar";
             this.btnGrabar.Size = new System.Drawing.Size(191, 23);
             this.btnGrabar.TabIndex = 9;
@@ -56,12 +57,13 @@
             this.tbObs.Name = "tbObs";
             this.tbObs.Size = new System.Drawing.Size(811, 103);
             this.tbObs.TabIndex = 7;
+            this.tbObs.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbObs_KeyUp);
             // 
             // cbTecnico
             // 
             this.cbTecnico.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTecnico.FormattingEnabled = true;
-            this.cbTecnico.Location = new System.Drawing.Point(72, 140);
+            this.cbTecnico.Location = new System.Drawing.Point(72, 155);
             this.cbTecnico.Name = "cbTecnico";
             this.cbTecnico.Size = new System.Drawing.Size(200, 21);
             this.cbTecnico.TabIndex = 8;
@@ -69,7 +71,7 @@
             // lbTecnico
             // 
             this.lbTecnico.AutoSize = true;
-            this.lbTecnico.Location = new System.Drawing.Point(12, 144);
+            this.lbTecnico.Location = new System.Drawing.Point(12, 159);
             this.lbTecnico.Name = "lbTecnico";
             this.lbTecnico.Size = new System.Drawing.Size(54, 13);
             this.lbTecnico.TabIndex = 6;
@@ -88,7 +90,7 @@
             // 
             this.cbPrioridad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPrioridad.FormattingEnabled = true;
-            this.cbPrioridad.Location = new System.Drawing.Point(380, 141);
+            this.cbPrioridad.Location = new System.Drawing.Point(380, 156);
             this.cbPrioridad.Name = "cbPrioridad";
             this.cbPrioridad.Size = new System.Drawing.Size(140, 21);
             this.cbPrioridad.TabIndex = 10;
@@ -96,17 +98,27 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(302, 145);
+            this.label3.Location = new System.Drawing.Point(302, 160);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(70, 13);
             this.label3.TabIndex = 11;
             this.label3.Text = "PRIORIDAD:";
             // 
+            // lbDisponibles
+            // 
+            this.lbDisponibles.AutoSize = true;
+            this.lbDisponibles.Location = new System.Drawing.Point(12, 138);
+            this.lbDisponibles.Name = "lbDisponibles";
+            this.lbDisponibles.Size = new System.Drawing.Size(177, 13);
+            this.lbDisponibles.TabIndex = 12;
+            this.lbDisponibles.Text = "CARACTERES DISPONIBLES: 300";
+            // 
             // UpdateTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 177);
+            this.ClientSize = new System.Drawing.Size(845, 183);
+            this.Controls.Add(this.lbDisponibles);
             this.Controls.Add(this.cbPrioridad);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGrabar);
@@ -130,5 +142,6 @@
         private System.Windows.Forms.Label lbDato;
         private System.Windows.Forms.ComboBox cbPrioridad;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbDisponibles;
     }
 }
