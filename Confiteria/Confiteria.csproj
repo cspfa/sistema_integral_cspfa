@@ -45,6 +45,26 @@
     <Reference Include="itextsharp">
       <HintPath>C:\CSPFA_SOCIOS\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="MicroFour StrataFrame Base, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Base.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame Business, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Business.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame Inherited UI, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Inherited UI.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame Security, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Security.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame UI, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame UI.dll</HintPath>
+    </Reference>
     <Reference Include="SOCIOS">
       <HintPath>C:\CSPFA_SOCIOS\SOCIOS.exe</HintPath>
     </Reference>
