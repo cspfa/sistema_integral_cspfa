@@ -388,7 +388,6 @@ namespace Confiteria
             Cursor = Cursors.WaitCursor;
             
             int GRUPO = 4;
-            string ESTADO = "ABIERTA";
             string ESTADO_MESA_SEL = dgMesas[1, dgMesas.CurrentCell.RowIndex].Value.ToString();
             DateTime DESDE = DateTime.Now;
 
@@ -506,7 +505,7 @@ namespace Confiteria
                     }
                     catch (Exception error)
                     {
-                        MessageBox.Show("NO SE PUDO CERRAR LA MESA", "ERROR");
+                        MessageBox.Show("NO SE PUDO CERRAR LA MESA\n"+error, "ERROR");
                     }
                 }
             }
