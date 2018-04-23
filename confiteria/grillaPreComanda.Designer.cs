@@ -123,7 +123,7 @@ namespace Confiteria
             // 
             // cambiarDeMesaToolStripMenuItem
             // 
-            this.cambiarDeMesaToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.arrow_switch;
+            this.cambiarDeMesaToolStripMenuItem.Image = global::Confiteria.Properties.Resources.arrow_switch;
             this.cambiarDeMesaToolStripMenuItem.Name = "cambiarDeMesaToolStripMenuItem";
             this.cambiarDeMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cambiarDeMesaToolStripMenuItem.Text = "Cambiar a Mesa";
