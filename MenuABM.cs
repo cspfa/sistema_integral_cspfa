@@ -1936,7 +1936,7 @@ namespace SOCIOS
 
         private void cajasAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cajasAnteriores ca = new cajasAnteriores();
+            Confiteria.cajasAnteriores ca = new Confiteria.cajasAnteriores();
             ca.ShowDialog();
         }
 
