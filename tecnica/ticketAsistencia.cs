@@ -276,6 +276,11 @@ namespace SOCIOS
             ti.ShowDialog();
         }
 
+        private void tbProblema_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
