@@ -1647,7 +1647,7 @@ namespace SOCIOS
         private void listadoDeSociosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            confiteria.grillaPreComanda gpc = new confiteria.grillaPreComanda();
+            Confiteria.grillaPreComanda gpc = new Confiteria.grillaPreComanda();
             gpc.ShowDialog();
             Cursor = Cursors.Default;
         }
@@ -1655,7 +1655,7 @@ namespace SOCIOS
         private void listadoDeComandasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            confiteria.listadoComandas lc = new confiteria.listadoComandas();
+            Confiteria.listadoComandas lc = new Confiteria.listadoComandas();
             lc.ShowDialog();
             Cursor = Cursors.Default;
         }
@@ -1948,7 +1948,7 @@ namespace SOCIOS
 
         private void listaDePreciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            confiteria.listadoAranceles la = new confiteria.listadoAranceles();
+            Confiteria.listadoAranceles la = new Confiteria.listadoAranceles();
             la.ShowDialog();
         }
 
