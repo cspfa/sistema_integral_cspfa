@@ -10,11 +10,11 @@ using System.IO;
 using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
 
-namespace SOCIOS.confiteria
+namespace Confiteria
 {
     public partial class comanda : Form
     {
-        bo dlog = new bo();
+        SOCIOS.bo dlog = new bo();
 
         private string _MOROSO { get; set; }
         private DataSet COMANDA { get; set; }
@@ -284,12 +284,12 @@ namespace SOCIOS.confiteria
                 MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD","ERROR");
                 tbCantidad.Focus();
             }
-            else if (cbSectAct.SelectedValue == "")
+            else if (cbSectAct.SelectedValue.ToString() == "")
             {
                 MessageBox.Show("SELECCIONAR UN TIPO", "ERROR");
                 cbSectAct.Focus();
             }
-            else if (cbProf.SelectedValue == "")
+            else if (cbProf.SelectedValue.ToString() == "")
             {
                 MessageBox.Show("SELECCIONAR UN ITEM", "ERROR");
                 cbProf.Focus();
@@ -589,16 +589,16 @@ namespace SOCIOS.confiteria
             Cursor = Cursors.WaitCursor;
             int NRO_SOC = int.Parse(dgSocio[0, dgSocio.CurrentCell.RowIndex].Value.ToString());
             int NRO_DEP = int.Parse(dgSocio[1, dgSocio.CurrentCell.RowIndex].Value.ToString());
-            afiliadoBeneficio ab = new afiliadoBeneficio();
+            SOCIOS.afiliadoBeneficio ab = new afiliadoBeneficio();
             string[] AFIL_BENEF = ab.get(NRO_SOC, NRO_DEP);
             string AFILIADO = AFIL_BENEF[0];
             string BENEFICIO = AFIL_BENEF[1];
             string NOM_SOC = dgSocio[3, dgSocio.CurrentCell.RowIndex].Value.ToString();
             decimal IMPORTE = Convert.ToDecimal(tbTotal.Text);
             string FECHA = DateTime.Today.ToShortDateString();
-            obtenerDestino od = new obtenerDestino();
+            SOCIOS.obtenerDestino od = new obtenerDestino();
             string DESTINO = od.get(NRO_SOC, NRO_DEP);
-            obtenerLegPer olp = new obtenerLegPer();
+            SOCIOS.obtenerLegPer olp = new obtenerLegPer();
             int LEG_PER = olp.get(NRO_SOC, NRO_DEP);
             string FORMA_DE_PAGO = cbFormaDePago.SelectedValue.ToString();
             int MESA = int.Parse(tbMesa.Text);

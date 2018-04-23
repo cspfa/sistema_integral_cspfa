@@ -440,12 +440,6 @@
     </Compile>
     <Compile Include="carnet\CarnetDeportes.cs" />
     <Compile Include="ClasesBase.cs" />
-    <Compile Include="confiteria\listadoAranceles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="confiteria\listadoAranceles.Designer.cs">
-      <DependentUpon>listadoAranceles.cs</DependentUpon>
-    </Compile>
     <Compile Include="descuentos\GenerarInfoDescuentos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -490,12 +484,6 @@
       <DependentUpon>abmPersonas.cs</DependentUpon>
     </Compile>
     <Compile Include="BO\bo_Bienestar.cs" />
-    <Compile Include="confiteria\cajasAnteriores.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="confiteria\cajasAnteriores.Designer.cs">
-      <DependentUpon>cajasAnteriores.cs</DependentUpon>
-    </Compile>
     <Compile Include="entradaCampo\Campo\IngresoDatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -672,25 +660,6 @@
     </Compile>
     <Compile Include="compras\compras.designer.cs">
       <DependentUpon>compras.cs</DependentUpon>
-    </Compile>
-    <Compile Include="confiteria\comanda.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="confiteria\comanda.Designer.cs">
-      <DependentUpon>comanda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="confiteria\grillaPreComanda.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="confiteria\grillaPreComanda.Designer.cs">
-      <DependentUpon>grillaPreComanda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="confiteria\imprimir.cs" />
-    <Compile Include="confiteria\listadoComandas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="confiteria\listadoComandas.Designer.cs">
-      <DependentUpon>listadoComandas.cs</DependentUpon>
     </Compile>
     <Compile Include="ingresos\checkHour.cs" />
     <Compile Include="ingresos\escribir.cs" />
@@ -1262,9 +1231,6 @@
     <EmbeddedResource Include="bono\ReporteBonoVoucher.resx">
       <DependentUpon>ReporteBonoVoucher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="confiteria\listadoAranceles.resx">
-      <DependentUpon>listadoAranceles.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="copyFiles\DIA_CopyFiles.resx">
       <DependentUpon>DIA_CopyFiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -1338,23 +1304,11 @@
     <EmbeddedResource Include="buscar.resx">
       <DependentUpon>buscar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="confiteria\cajasAnteriores.resx">
-      <DependentUpon>cajasAnteriores.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="camaras.resx">
       <DependentUpon>camaras.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="compras\compras.resx">
       <DependentUpon>compras.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="confiteria\comanda.resx">
-      <DependentUpon>comanda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="confiteria\grillaPreComanda.resx">
-      <DependentUpon>grillaPreComanda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="confiteria\listadoComandas.resx">
-      <DependentUpon>listadoComandas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultar.resx">
       <DependentUpon>Consultar.cs</DependentUpon>
@@ -2135,6 +2089,10 @@
     <None Include="Resources\WinXPsalir1.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Confiteria\Confiteria.csproj">
+      <Project>{663B9133-5EB9-4B52-AECC-1B67E896D3F8}</Project>
+      <Name>Confiteria</Name>
+    </ProjectReference>
     <ProjectReference Include="Convenios\Convenios\Convenios.csproj">
       <Project>{E677B1C5-E733-4A31-89B2-A15D43514971}</Project>
       <Name>Convenios</Name>

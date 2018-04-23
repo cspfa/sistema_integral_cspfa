@@ -14,11 +14,11 @@ using System.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-namespace SOCIOS.confiteria
+namespace Confiteria
 {
     public partial class grillaPreComanda : Form
     {
-        bo dlog = new bo();
+        SOCIOS.bo dlog = new bo();
 
         public grillaPreComanda()
         {

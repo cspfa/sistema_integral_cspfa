@@ -1,4 +1,4 @@
-﻿namespace SOCIOS.confiteria
+﻿namespace Confiteria
 {
     partial class listadoComandas
     {
@@ -502,7 +502,7 @@
             // 
             // imprimirSolicitudDeDescuentoToolStripMenuItem
             // 
-            this.imprimirSolicitudDeDescuentoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.printer;
+            this.imprimirSolicitudDeDescuentoToolStripMenuItem.Image = global::Properties.Resources.printer;
             this.imprimirSolicitudDeDescuentoToolStripMenuItem.Name = "imprimirSolicitudDeDescuentoToolStripMenuItem";
             this.imprimirSolicitudDeDescuentoToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.imprimirSolicitudDeDescuentoToolStripMenuItem.Text = "Imprimir Solicitud de Descuento";
@@ -511,7 +511,7 @@
             // 
             // anularComandaToolStripMenuItem
             // 
-            this.anularComandaToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.delete1;
+            this.anularComandaToolStripMenuItem.Image = global::Properties.Resources.delete1;
             this.anularComandaToolStripMenuItem.Name = "anularComandaToolStripMenuItem";
             this.anularComandaToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.anularComandaToolStripMenuItem.Text = "Anular Comanda";
@@ -519,7 +519,7 @@
             // 
             // modificarItemsToolStripMenuItem
             // 
-            this.modificarItemsToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_edit;
+            this.modificarItemsToolStripMenuItem.Image = global::Properties.Resources.application_edit;
             this.modificarItemsToolStripMenuItem.Name = "modificarItemsToolStripMenuItem";
             this.modificarItemsToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.modificarItemsToolStripMenuItem.Text = "Agregar o quitar items";
@@ -528,7 +528,7 @@
             // 
             // desanularComandaToolStripMenuItem
             // 
-            this.desanularComandaToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.accept;
+            this.desanularComandaToolStripMenuItem.Image = global::Properties.Resources.accept;
             this.desanularComandaToolStripMenuItem.Name = "desanularComandaToolStripMenuItem";
             this.desanularComandaToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.desanularComandaToolStripMenuItem.Text = "Desanular Comanda";
@@ -536,7 +536,7 @@
             // 
             // cambiarFormaDePagoToolStripMenuItem
             // 
-            this.cambiarFormaDePagoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.money;
+            this.cambiarFormaDePagoToolStripMenuItem.Image = global::Properties.Resources.money;
             this.cambiarFormaDePagoToolStripMenuItem.Name = "cambiarFormaDePagoToolStripMenuItem";
             this.cambiarFormaDePagoToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.cambiarFormaDePagoToolStripMenuItem.Text = "Cambiar Forma de Pago";

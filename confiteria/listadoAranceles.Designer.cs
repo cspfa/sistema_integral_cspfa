@@ -1,4 +1,4 @@
-﻿namespace SOCIOS.confiteria
+﻿namespace Confiteria
 {
     partial class listadoAranceles
     {

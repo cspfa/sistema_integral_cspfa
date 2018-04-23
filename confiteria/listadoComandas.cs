@@ -9,12 +9,13 @@ using System.IO;
 using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
 using Excel = Microsoft.Office.Interop.Excel;
+using SOCIOS;
 
-namespace SOCIOS.confiteria
+namespace Confiteria
 {
     public partial class listadoComandas : Form
     {
-        bo dlog = new bo(); 
+        SOCIOS.bo dlog = new bo();
 
         private DataSet ITEMS { get; set; }
         private DataSet COMANDA { get; set; }
@@ -208,7 +209,7 @@ namespace SOCIOS.confiteria
                     string CONSUME = row[14].ToString().Trim();
                     string PERSONAS = "";
 
-                    if (cbTipoComprobante.SelectedItem != "SOLICITUD DE DESCUENTO")
+                    if (cbTipoComprobante.SelectedItem.ToString() != "SOLICITUD DE DESCUENTO")
                     {
                         PERSONAS = row[15].ToString().Trim();
                     }
@@ -642,7 +643,7 @@ namespace SOCIOS.confiteria
 
         private void cbTipoComprobante_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cbTipoComprobante.SelectedItem == "SOLICITUD DE DESCUENTO")
+            if (cbTipoComprobante.SelectedItem.ToString() == "SOLICITUD DE DESCUENTO")
             {
                 cbFormaDePago.Enabled = false;
             }
