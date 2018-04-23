@@ -9,7 +9,7 @@ using System.IO;
 using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
 
-namespace SOCIOS.confiteria
+namespace Confiteria
 {
     public partial class listadoAranceles : Form
     {
@@ -22,7 +22,7 @@ namespace SOCIOS.confiteria
         {
             try
             {
-                conString conString = new conString();
+                SOCIOS.conString conString = new SOCIOS.conString();
                 string connectionString = conString.get();
 
                 using (FbConnection connection = new FbConnection(connectionString))

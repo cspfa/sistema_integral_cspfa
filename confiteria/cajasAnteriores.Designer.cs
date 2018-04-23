@@ -1,4 +1,4 @@
-﻿namespace SOCIOS
+﻿namespace Confiteria
 {
     partial class cajasAnteriores
     {
