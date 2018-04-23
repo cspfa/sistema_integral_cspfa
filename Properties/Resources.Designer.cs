@@ -13,16 +13,16 @@ namespace SOCIOS.Properties {
     
     
     /// <summary>
-    ///   Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
+    ///   Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
     /// </summary>
     // StronglyTypedResourceBuilder generó automáticamente esta clase
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
-    // con la opción /str o recompile su proyecto de VS.
+    // con la opción /str o vuelva a generar su proyecto de VS.
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace SOCIOS.Properties {
         ///   Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SOCIOS.Properties.Resources", typeof(Resources).Assembly);
@@ -48,10 +48,10 @@ namespace SOCIOS.Properties {
         
         /// <summary>
         ///   Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
-        ///   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
+        ///   búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _140 {
+        public static System.Drawing.Bitmap _140 {
             get {
                 object obj = ResourceManager.GetObject("140", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -71,9 +71,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap accept {
+        public static System.Drawing.Bitmap accept {
             get {
                 object obj = ResourceManager.GetObject("accept", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -81,9 +81,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap add {
+        public static System.Drawing.Bitmap add {
             get {
                 object obj = ResourceManager.GetObject("add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -91,9 +91,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap application_edit {
+        public static System.Drawing.Bitmap application_edit {
             get {
                 object obj = ResourceManager.GetObject("application_edit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -101,9 +101,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap application_go {
+        public static System.Drawing.Bitmap application_go {
             get {
                 object obj = ResourceManager.GetObject("application_go", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -111,9 +111,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap application_view_columns {
+        public static System.Drawing.Bitmap application_view_columns {
             get {
                 object obj = ResourceManager.GetObject("application_view_columns", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -121,9 +121,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_switch {
+        public static System.Drawing.Bitmap arrow_switch {
             get {
                 object obj = ResourceManager.GetObject("arrow_switch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -131,9 +131,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_undo {
+        public static System.Drawing.Bitmap arrow_undo {
             get {
                 object obj = ResourceManager.GetObject("arrow_undo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -141,9 +141,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bin {
+        public static System.Drawing.Bitmap bin {
             get {
                 object obj = ResourceManager.GetObject("bin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -151,9 +151,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap building {
+        public static System.Drawing.Bitmap building {
             get {
                 object obj = ResourceManager.GetObject("building", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -161,9 +161,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap building1 {
+        public static System.Drawing.Bitmap building1 {
             get {
                 object obj = ResourceManager.GetObject("building1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -171,9 +171,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bullet_green {
+        public static System.Drawing.Bitmap bullet_green {
             get {
                 object obj = ResourceManager.GetObject("bullet_green", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -181,9 +181,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bullet_red {
+        public static System.Drawing.Bitmap bullet_red {
             get {
                 object obj = ResourceManager.GetObject("bullet_red", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -191,9 +191,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap calculator_add {
+        public static System.Drawing.Bitmap calculator_add {
             get {
                 object obj = ResourceManager.GetObject("calculator_add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -201,9 +201,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Calendar {
+        public static System.Drawing.Bitmap Calendar {
             get {
                 object obj = ResourceManager.GetObject("Calendar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -211,9 +211,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cancel {
+        public static System.Drawing.Bitmap cancel {
             get {
                 object obj = ResourceManager.GetObject("cancel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -221,9 +221,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap chart_pie {
+        public static System.Drawing.Bitmap chart_pie {
             get {
                 object obj = ResourceManager.GetObject("chart_pie", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -231,9 +231,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Contact {
+        public static System.Drawing.Bitmap Contact {
             get {
                 object obj = ResourceManager.GetObject("Contact", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -241,9 +241,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cross {
+        public static System.Drawing.Bitmap cross {
             get {
                 object obj = ResourceManager.GetObject("cross", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -251,9 +251,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Database_Security {
+        public static System.Drawing.Bitmap Database_Security {
             get {
                 object obj = ResourceManager.GetObject("Database-Security", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -261,9 +261,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap db_find24 {
+        public static System.Drawing.Bitmap db_find24 {
             get {
                 object obj = ResourceManager.GetObject("db_find24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -271,9 +271,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete {
+        public static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -281,9 +281,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap delete1 {
+        public static System.Drawing.Bitmap delete1 {
             get {
                 object obj = ResourceManager.GetObject("delete1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -291,9 +291,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap disk {
+        public static System.Drawing.Bitmap disk {
             get {
                 object obj = ResourceManager.GetObject("disk", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -301,9 +301,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap door_out {
+        public static System.Drawing.Bitmap door_out {
             get {
                 object obj = ResourceManager.GetObject("door_out", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -311,9 +311,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap find {
+        public static System.Drawing.Bitmap find {
             get {
                 object obj = ResourceManager.GetObject("find", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -321,9 +321,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap fotonodisponible {
+        public static System.Drawing.Bitmap fotonodisponible {
             get {
                 object obj = ResourceManager.GetObject("fotonodisponible", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -331,9 +331,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Grid {
+        public static System.Drawing.Bitmap Grid {
             get {
                 object obj = ResourceManager.GetObject("Grid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -341,9 +341,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap group {
+        public static System.Drawing.Bitmap group {
             get {
                 object obj = ResourceManager.GetObject("group", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -351,9 +351,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap group_add {
+        public static System.Drawing.Bitmap group_add {
             get {
                 object obj = ResourceManager.GetObject("group_add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -361,9 +361,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap humans {
+        public static System.Drawing.Bitmap humans {
             get {
                 object obj = ResourceManager.GetObject("humans", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -371,9 +371,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon5 {
+        public static System.Drawing.Bitmap icon5 {
             get {
                 object obj = ResourceManager.GetObject("icon5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -381,9 +381,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap key {
+        public static System.Drawing.Bitmap key {
             get {
                 object obj = ResourceManager.GetObject("key", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -391,9 +391,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo {
+        public static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -401,9 +401,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo_1_ {
+        public static System.Drawing.Bitmap logo_1_ {
             get {
                 object obj = ResourceManager.GetObject("logo(1)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -411,9 +411,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Logo_Circulo {
+        public static System.Drawing.Bitmap Logo_Circulo {
             get {
                 object obj = ResourceManager.GetObject("Logo_Circulo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -421,9 +421,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo1 {
+        public static System.Drawing.Bitmap logo1 {
             get {
                 object obj = ResourceManager.GetObject("logo1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -431,9 +431,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo2 {
+        public static System.Drawing.Bitmap logo2 {
             get {
                 object obj = ResourceManager.GetObject("logo2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -441,9 +441,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap logo3 {
+        public static System.Drawing.Bitmap logo3 {
             get {
                 object obj = ResourceManager.GetObject("logo3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -451,9 +451,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap magnifier {
+        public static System.Drawing.Bitmap magnifier {
             get {
                 object obj = ResourceManager.GetObject("magnifier", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -461,9 +461,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mail_send {
+        public static System.Drawing.Bitmap mail_send {
             get {
                 object obj = ResourceManager.GetObject("mail-send", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -471,9 +471,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap money {
+        public static System.Drawing.Bitmap money {
             get {
                 object obj = ResourceManager.GetObject("money", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -481,9 +481,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap printer {
+        public static System.Drawing.Bitmap printer {
             get {
                 object obj = ResourceManager.GetObject("printer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -491,9 +491,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap product {
+        public static System.Drawing.Bitmap product {
             get {
                 object obj = ResourceManager.GetObject("product", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -501,9 +501,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap RECYFULL {
+        public static System.Drawing.Bitmap RECYFULL {
             get {
                 object obj = ResourceManager.GetObject("RECYFULL", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -511,9 +511,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap search {
+        public static System.Drawing.Bitmap search {
             get {
                 object obj = ResourceManager.GetObject("search", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -521,9 +521,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap table {
+        public static System.Drawing.Bitmap table {
             get {
                 object obj = ResourceManager.GetObject("table", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -531,9 +531,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap table1 {
+        public static System.Drawing.Bitmap table1 {
             get {
                 object obj = ResourceManager.GetObject("table1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -541,9 +541,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Untitled__101_ {
+        public static System.Drawing.Bitmap Untitled__101_ {
             get {
                 object obj = ResourceManager.GetObject("Untitled (101)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -551,9 +551,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Untitled__1048_ {
+        public static System.Drawing.Bitmap Untitled__1048_ {
             get {
                 object obj = ResourceManager.GetObject("Untitled (1048)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -561,9 +561,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Untitled__1049_ {
+        public static System.Drawing.Bitmap Untitled__1049_ {
             get {
                 object obj = ResourceManager.GetObject("Untitled (1049)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -571,9 +571,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Untitled__566_ {
+        public static System.Drawing.Bitmap Untitled__566_ {
             get {
                 object obj = ResourceManager.GetObject("Untitled (566)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -581,9 +581,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Untitled__635_ {
+        public static System.Drawing.Bitmap Untitled__635_ {
             get {
                 object obj = ResourceManager.GetObject("Untitled (635)", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -591,9 +591,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user {
+        public static System.Drawing.Bitmap user {
             get {
                 object obj = ResourceManager.GetObject("user", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -601,9 +601,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user_add {
+        public static System.Drawing.Bitmap user_add {
             get {
                 object obj = ResourceManager.GetObject("user_add", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -611,9 +611,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user_go {
+        public static System.Drawing.Bitmap user_go {
             get {
                 object obj = ResourceManager.GetObject("user_go", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -621,9 +621,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap user1 {
+        public static System.Drawing.Bitmap user1 {
             get {
                 object obj = ResourceManager.GetObject("user1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -631,9 +631,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap webcam {
+        public static System.Drawing.Bitmap webcam {
             get {
                 object obj = ResourceManager.GetObject("webcam", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -641,9 +641,9 @@ namespace SOCIOS.Properties {
         }
         
         /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap WinXPsalir {
+        public static System.Drawing.Bitmap WinXPsalir {
             get {
                 object obj = ResourceManager.GetObject("WinXPsalir", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
