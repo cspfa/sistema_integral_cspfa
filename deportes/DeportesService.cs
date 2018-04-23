@@ -607,6 +607,7 @@ namespace SOCIOS.deportes
           
           Total.AddRange(Altas);
 
+
           Total.AddRange(Modificaciones);
           Total.AddRange(Bajas);
 
