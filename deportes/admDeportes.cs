@@ -707,6 +707,7 @@ namespace SOCIOS
             string query = "";
 
 
+
             lbTipoSocio.Text = TIPO;
             switch (TIPO)
             {
