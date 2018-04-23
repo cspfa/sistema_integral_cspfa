@@ -5,7 +5,7 @@ using System.Data;
 
 namespace SOCIOS
 {
-    class obtenerLegPer
+    public class obtenerLegPer
     {
         public int get(int NRO_SOC, int NRO_DEP)
         {

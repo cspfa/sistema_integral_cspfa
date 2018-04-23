@@ -5,7 +5,7 @@ using System.Data;
 
 namespace SOCIOS
 {
-    class afiliadoBeneficio
+    public class afiliadoBeneficio
     {
         public string[] get(int NRO_SOC, int NRO_DEP)
         {
