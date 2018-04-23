@@ -165,6 +165,7 @@
     <Compile Include="abmCargos.Designer.cs">
       <DependentUpon>abmCargos.cs</DependentUpon>
     </Compile>
+    <Compile Include="actSociosUpdate.cs" />
     <Compile Include="compras\anular_op.cs">
       <SubType>Form</SubType>
     </Compile>

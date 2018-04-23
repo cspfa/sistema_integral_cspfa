@@ -10,13 +10,11 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Collections.Generic;
-using Convenios;
 
 namespace SOCIOS
 {
     public partial class MenuABM : MicroFour.StrataFrame.UI.Windows.Forms.StandardForm
     {
-
         BindingSource BindingSourceFamiliar = new BindingSource();
 
         public MenuABM()
@@ -47,6 +45,9 @@ namespace SOCIOS
             }
 
             lbVersion.Text = "VERSION " + FECHA;
+
+            actSociosUpdate asu = new actSociosUpdate();
+            asu.actualizar();
         }
 
         private void ToolStripMenuItem8_Click(object sender, EventArgs e)
