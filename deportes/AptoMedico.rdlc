@@ -294,7 +294,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.13375in</Top>
+        <Top>5.25875in</Top>
         <Left>0.46389in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -355,7 +355,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.13375in</Top>
+        <Top>5.25875in</Top>
         <Left>2.49514in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -371,7 +371,7 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>5.13375in</Top>
+        <Top>5.25875in</Top>
         <Left>2.51598in</Left>
         <Height>0in</Height>
         <Width>1.86458in</Width>
@@ -383,7 +383,7 @@
         </Style>
       </Line>
       <Line Name="Line3">
-        <Top>5.13375in</Top>
+        <Top>5.25875in</Top>
         <Left>2.37014in</Left>
         <Height>0in</Height>
         <Width>-1.94069in</Width>
@@ -1170,7 +1170,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.13375in</Top>
+        <Top>5.25875in</Top>
         <Left>4.45in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -1186,7 +1186,7 @@
         </Style>
       </Textbox>
       <Line Name="Line4">
-        <Top>5.13375in</Top>
+        <Top>5.25875in</Top>
         <Left>4.47084in</Left>
         <Height>0in</Height>
         <Width>1.86458in</Width>
@@ -1730,7 +1730,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.76042in</Width>
+              <Width>3.24978in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1823,9 +1823,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetActividades</DataSetName>
         <Top>4.68783in</Top>
-        <Left>2.80292in</Left>
+        <Left>2.22431in</Left>
         <Height>0.26472in</Height>
-        <Width>1.76042in</Width>
+        <Width>3.24978in</Width>
         <ZIndex>30</ZIndex>
         <Style>
           <Border>
@@ -1834,6 +1834,20 @@
           <FontSize>8pt</FontSize>
         </Style>
       </Tablix>
+      <Rectangle Name="Rectangle1">
+        <KeepTogether>true</KeepTogether>
+        <Top>0.26315in</Top>
+        <Left>5.69458in</Left>
+        <Height>1.08235in</Height>
+        <Width>1.0416in</Width>
+        <ZIndex>31</ZIndex>
+        <Style>
+          <Border>
+            <Style>Dotted</Style>
+            <Width>3pt</Width>
+          </Border>
+        </Style>
+      </Rectangle>
     </ReportItems>
     <Height>10.2675in</Height>
     <Style />
