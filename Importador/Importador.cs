@@ -44,7 +44,7 @@ namespace Importador
 
         private void Refrescar_EC_Click(object sender, EventArgs e)
         {
-            
+            this.Refrescar_Entrada_Campo();
         }
 
         private void Refrescar_Entrada_Campo()
@@ -56,7 +56,24 @@ namespace Importador
 
         private void Importar_EC_Click(object sender, EventArgs e)
         {
+            try {entradaCampoService.Importar_Entrada_Campo(LISTA_EC);
+                 lbResultEC.Text = "OK";
+                }
 
+            catch (Exception ex)
+
+            {
+              Error("ERROR EN ENTRADA CAMPO:"+ ex.Message);
+            }
         }
+
+        private void Error(string ERR)
+
+        {
+             gpErrores.Visible=true;
+            lBerrores.Text =ERR;
+        }
+    
     }
-}
+    }
+

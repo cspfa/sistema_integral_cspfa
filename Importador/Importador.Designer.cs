@@ -49,9 +49,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbResultEC = new System.Windows.Forms.Label();
+            this.DepoRes = new System.Windows.Forms.Label();
+            this.lbResultDeportes = new System.Windows.Forms.Label();
+            this.gpErrores = new System.Windows.Forms.GroupBox();
+            this.lBerrores = new System.Windows.Forms.Label();
             this.gpRed.SuspendLayout();
             this.pnlID.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.gpErrores.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpRed
@@ -280,11 +289,86 @@
             this.button2.Text = "Filtrar";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lbResultDeportes);
+            this.groupBox2.Controls.Add(this.DepoRes);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.lbResultEC);
+            this.groupBox2.Location = new System.Drawing.Point(461, 23);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(164, 219);
+            this.groupBox2.TabIndex = 34;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "RESULTADOS";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 28);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(100, 13);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "ENTRADA CAMPO";
+            // 
+            // lbResultEC
+            // 
+            this.lbResultEC.AutoSize = true;
+            this.lbResultEC.BackColor = System.Drawing.Color.White;
+            this.lbResultEC.ForeColor = System.Drawing.Color.Red;
+            this.lbResultEC.Location = new System.Drawing.Point(130, 28);
+            this.lbResultEC.Name = "lbResultEC";
+            this.lbResultEC.Size = new System.Drawing.Size(13, 13);
+            this.lbResultEC.TabIndex = 42;
+            this.lbResultEC.Text = "--";
+            // 
+            // DepoRes
+            // 
+            this.DepoRes.AutoSize = true;
+            this.DepoRes.Location = new System.Drawing.Point(6, 61);
+            this.DepoRes.Name = "DepoRes";
+            this.DepoRes.Size = new System.Drawing.Size(66, 13);
+            this.DepoRes.TabIndex = 43;
+            this.DepoRes.Text = "DEPORTES";
+            // 
+            // lbResultDeportes
+            // 
+            this.lbResultDeportes.AutoSize = true;
+            this.lbResultDeportes.BackColor = System.Drawing.Color.White;
+            this.lbResultDeportes.ForeColor = System.Drawing.Color.Red;
+            this.lbResultDeportes.Location = new System.Drawing.Point(130, 61);
+            this.lbResultDeportes.Name = "lbResultDeportes";
+            this.lbResultDeportes.Size = new System.Drawing.Size(13, 13);
+            this.lbResultDeportes.TabIndex = 44;
+            this.lbResultDeportes.Text = "--";
+            // 
+            // gpErrores
+            // 
+            this.gpErrores.Controls.Add(this.lBerrores);
+            this.gpErrores.Location = new System.Drawing.Point(15, 258);
+            this.gpErrores.Name = "gpErrores";
+            this.gpErrores.Size = new System.Drawing.Size(610, 100);
+            this.gpErrores.TabIndex = 35;
+            this.gpErrores.TabStop = false;
+            this.gpErrores.Text = "ERRORES";
+            this.gpErrores.Visible = false;
+            // 
+            // lBerrores
+            // 
+            this.lBerrores.AutoSize = true;
+            this.lBerrores.Location = new System.Drawing.Point(7, 20);
+            this.lBerrores.Name = "lBerrores";
+            this.lBerrores.Size = new System.Drawing.Size(10, 13);
+            this.lBerrores.TabIndex = 0;
+            this.lBerrores.Text = "-";
+            // 
             // Importador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(637, 545);
+            this.Controls.Add(this.gpErrores);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gpRed);
             this.Name = "Importador";
@@ -295,6 +379,10 @@
             this.pnlID.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.gpErrores.ResumeLayout(false);
+            this.gpErrores.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -322,6 +410,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lbResultDeportes;
+        private System.Windows.Forms.Label DepoRes;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbResultEC;
+        private System.Windows.Forms.GroupBox gpErrores;
+        private System.Windows.Forms.Label lBerrores;
 
     }
 }
