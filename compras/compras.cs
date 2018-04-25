@@ -39,6 +39,7 @@ namespace SOCIOS
         public compras()
         {
             InitializeComponent();
+            comboAjuste(cbAjuste);
             comboDescuento(cbDescuento);
             comboDescuento(cbDescGlobal);
             comboTipoProveedor();
@@ -159,6 +160,13 @@ namespace SOCIOS
             {
                 MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS");
             }
+        }
+
+        private void comboAjuste(ComboBox COMBO)
+        {
+            COMBO.Items.Add("+");
+            COMBO.Items.Add("-");
+            COMBO.SelectedIndex = 1;
         }
 
         private void comboDescuento(ComboBox COMBO)
@@ -3688,8 +3696,22 @@ namespace SOCIOS
                 SUMA_ART = SUMA_ART + decimal.Parse(row.Cells["IMPORTE"].Value.ToString());
             }
 
+            if (tbAjuste.Text != "0")
+            {
+                decimal AJUSTE = decimal.Parse(tbAjuste.Text);
+
+                if (cbAjuste.Text == "-")
+                {
+                    SUMA_ART = SUMA_ART - AJUSTE;
+                }
+
+                if (cbAjuste.Text == "+")
+                {
+                    SUMA_ART = SUMA_ART + AJUSTE;
+                }
+            }
+
             string SA = string.Format("{0:n}", SUMA_ART);
-            //MessageBox.Show(SA.ToString());
 
             if (cbProveedores.SelectedValue == "")
             {
@@ -4889,7 +4911,8 @@ namespace SOCIOS
 
         private void tbImporte_Leave(object sender, EventArgs e)
         {
-            IMPORTE_TOTAL = decimal.Parse(tbImporte.Text);
+            if (tbImporte.Text!="")
+                IMPORTE_TOTAL = decimal.Parse(tbImporte.Text);
 
             /*if (cbTipoComprobante.SelectedValue.ToString() == "4" && tbImporte.Text != "")
             {
