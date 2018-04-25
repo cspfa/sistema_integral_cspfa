@@ -18,7 +18,7 @@ namespace SOCIOS.BO
 
         //STORED IMPORTAR CAJA DIARIA
         public void importarCajaDiaria(string FECHA, string US_ALTA, decimal INGRESOS_EFECTIVO, decimal INGRESOS_OTROS, decimal SUBTOTAL_INGRESOS, decimal EGRESOS,
-        decimal SALDO_CAJA, string ROL, decimal TOTAL, int DEPOSITADA, int BANCO, int IMPUTACION, int CAJA_DEPOSITADA, string CODIGO_DEPOSITO)
+        decimal SALDO_CAJA, string ROL, decimal TOTAL, int DEPOSITADA, int BANCO, int IMPUTACION, int CAJA_DEPOSITADA, string CODIGO_DEPOSITO, int ID_ROL)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
@@ -38,6 +38,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(IMPUTACION);
             vector_contenidos.Add(CAJA_DEPOSITADA);
             vector_contenidos.Add(CODIGO_DEPOSITO);
+            vector_contenidos.Add(ID_ROL);
 
             vector_tipos.Add("FbDbType.Date");
             vector_tipos.Add("FbDbType.Char");
@@ -53,6 +54,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
 
             vector_nombres.Add("@PIN_FECHA");
             vector_nombres.Add("@PIN_US_ALTA");
@@ -68,6 +70,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@PIN_IMPUTACION");
             vector_nombres.Add("@PIN_CAJA_DEPOSITADA");
             vector_nombres.Add("@PIN_CODIGO_DEPOSITO");
+            vector_nombres.Add("@PIN_ID_ROL");
 
             string vprocedure = "CAJA_DIARIA_IMPORTAR";
 
@@ -842,7 +845,7 @@ namespace SOCIOS.BO
         }
 
         //STORED CERRAR CAJA DIARIA
-        public void cerrarCajaDiaria(string FECHA, decimal INGRESOS_EFECTIVO, decimal INGRESOS_OTROS, decimal SUBTOTAL_INGRESOS, decimal EGRESOS, decimal SALDO_CAJA, string ROL, decimal TOTAL)
+        public void cerrarCajaDiaria(string FECHA, decimal INGRESOS_EFECTIVO, decimal INGRESOS_OTROS, decimal SUBTOTAL_INGRESOS, decimal EGRESOS, decimal SALDO_CAJA, string ROL, decimal TOTAL, string ID_ROL)
         {
 
             ArrayList vector_contenidos = new ArrayList();
@@ -857,7 +860,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(SALDO_CAJA);
             vector_contenidos.Add(ROL);
             vector_contenidos.Add(TOTAL);
-
+            vector_contenidos.Add(ID_ROL);
             
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Numeric");
@@ -867,8 +870,8 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Numeric");
-
-            
+            vector_tipos.Add("FbDbType.Integer");
+                        
             vector_nombres.Add("@FECHA");
             vector_nombres.Add("@INGRESOS_EFECTIVO");
             vector_nombres.Add("@INGRESOS_OTROS");
@@ -877,6 +880,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@SALDO_CAJA");
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@TOTAL");
+            vector_nombres.Add("@ID_ROL");
 
             string vprocedure = "CAJA_DIARIA_I";
 
