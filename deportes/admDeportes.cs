@@ -108,7 +108,7 @@ namespace SOCIOS
             //Carga dtTipoCarnet
             this.Setear_Vista_Fecha_Carnet();
             
-            Responsables = ds.Get_Responsables(ID_ROL,ROL);
+            Responsables = ds.Get_Responsables(ID_ROL,ROL,false);
 
 
 

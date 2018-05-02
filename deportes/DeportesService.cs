@@ -314,7 +314,7 @@ namespace SOCIOS.deportes
 
     }
 
-   
+  
 
 
 
@@ -813,9 +813,9 @@ namespace SOCIOS.deportes
                   else
                   {
                       dlog.Importacion_Deportes(item.ID_BASE, item.ID_ROL, item.ID_TTULAR, item.ROL, item.NRO_SOCIO, item.NRO_DEP, item.BARRA, item.DNI, item.NOMBRE, item.APELLIDO, item.EMAIL, item.ID_ADHERENTE, item.SUSPENDIDO, item.FE_APTO, item.FE_CARNET, item.TIPO_CARNET, item.FE_VENCIMIENTO, item.MOROSO, item.MONTO_MORA, item.ANIO_MORA, item.POC, item.USR_ALTA, item.FE_ALTA, item.USR_MODIFICACION, item.FE_MODIFICACION, item.USR_BAJA, item.FE_BAJA, item.ID_TITULAR_ANT, item.NRO_SOCIO_ANT, item.NRO_DEP_ANT, item.OBS);
-
                       dlog.Eliminar_Actividades(item.ID_ROL, item.ROL);
-
+                      this.Eliminar_Responsables(item.ID_ROL, item.ROL);
+                      
                   }
 
                   // hacer el insert de las actividades
@@ -828,6 +828,14 @@ namespace SOCIOS.deportes
 
                   }
 
+                  // hacer el insert de los responsables 
+
+                  foreach( Registro_Responsables res in this.Get_Responsables(item.ID_ROL,item.ROL,true))
+                  {   
+                      Thread.Sleep(50);
+                      dlog.Insert_Persona_Responsable(res.ID_ROL, res.ROL, res.APELLIDO, res.NOMBRE, res.TELEFONO, res.EMAIL,DateTime.Parse( res.FECHA), res.VINCULO, res.DNI);
+                    
+                  }
 
 
 
@@ -867,6 +875,19 @@ namespace SOCIOS.deportes
       
       
       }
+
+
+       private void Eliminar_Responsables(int ID_ROL,string ROL)
+         {
+       
+           foreach (Registro_Responsables re in this.Get_Responsables(ID_ROL,ROL,false))
+            {
+
+                dlog.Borro_Persona_Responsable(re.ID_BASE,VGlobales.vp_username,System.DateTime.Now);
+           }
+
+       
+       }
 
       private DateTime menorFecha(List<SOCIOS.deportes.Deporte_Importacion> lista)
 
@@ -927,7 +948,7 @@ namespace SOCIOS.deportes
 
 
 
-      public List<SOCIOS.deportes.Registro_Responsables> Get_Responsables(int ID, string ROL)
+      public List<SOCIOS.deportes.Registro_Responsables> Get_Responsables(int ID, string ROL,bool Remoto)
       {
           string QUERY = @"SELECT   ID,ID_ROL_DEPORTE,ROL,APELLIDO,NOMBRE,TELEFONO,EMAIL,FECHA,ANULADO,USR_ANULADO,USR,VINCULO,DNI
                            FROM  DEPORTES_RESPONSABLE WHERE ID_ROL_DEPORTE=" + ID.ToString() + " AND ROL='" + ROL.TrimEnd().TrimStart() + "' AND   (ANULADO is null )";
@@ -936,9 +957,10 @@ namespace SOCIOS.deportes
 
 
           DataRow[] foundRows;
-
-          foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
-
+          if (!Remoto)
+               foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+          else
+              foundRows = dlog.BO_EjecutoDataTable_Remota(QUERY,ROL).Select();
           // foundRows = dlog.BO_EjecutoDataTable_Remota(QUERY,RolRemoto).Select();
           if (foundRows.Length > 0)
           {

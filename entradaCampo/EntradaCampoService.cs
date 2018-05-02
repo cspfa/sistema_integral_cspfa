@@ -1682,6 +1682,34 @@ namespace SOCIOS
        }
 
 
+       public void Importar_Entrada_Campo(List<SOCIOS.EntradaCampo> LISTA)
+        {
+                string ROL = LISTA.FirstOrDefault().ROL;
+                int ID_DESDE = LISTA.OrderBy(x => x.ID_INTERNO).FirstOrDefault().ID_INTERNO;
+                int ID_HASTA = LISTA.OrderByDescending(x => x.ID_INTERNO).FirstOrDefault().ID_INTERNO;
+
+                List<SOCIOS.EntradaCampo> YaProcesados = this.getIngresosXRol(ROL,ID_DESDE,ID_HASTA).ToList();
+
+              
+                    int i = 0;
+                    foreach (SOCIOS.EntradaCampo item in LISTA)
+                    {
+
+                        if (YaProcesados.Where(x => x.ID == item.ID_INTERNO).Count() == 0)
+                        {
+
+                            dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO, item.MONTO_INVITADO, item.INVITADO_PILETA, item.MONTO_INVITADO_PILETA, item.INVITADO_ESTACIONAMIENTO, item.MONTO_INVITADO_EST, item.SOCIO, item.MONTO_SOCIO, item.SOCIO_PILETA, item.MONTO_SOCIO_PILETA, item.SOCIO_ESTACIONAMIENTO, item.MONTO_SOCIO_EST, item.INTERCIRCULO, item.MONTO_INTER, item.INTERCIRCULO_PILETA, item.MONTO_INTERCIRCULO_PILETA, item.INTERCIRCULO_ESTACIONAMIENTO, item.MONTO_INTERCIRCULO_EST, item.TOTAL, item.MONTO_TOTAL, item.FECHA, item.ROL, item.USER, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM,item.EVENTO,item.MONTO_EVENTO, item.ID_INTERNO, "ALTA", item.LEGAJO, item.OBS_CUMPLE, 1,VGlobales.vp_username,VGlobales.vp_role,item.HORA);
+                          
+                        }
+                   }
+                    
+
+        
+        }
+
+
+
+
 
 
 

@@ -64,7 +64,7 @@ namespace SOCIOS.deportes.Campos
             try
             {
 
-                ds.Proceso_Importar_Exportar(lista, fechaDesde.Value, fechaHasta.Value, cbROLES.Text, cb_Deportes.Checked, cbAsistencia.Checked);
+                
                 dgDeportes.Visible = false;
                 MessageBox.Show("Proceso de Importacion Con Exito");
             }
