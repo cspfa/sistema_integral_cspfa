@@ -68,6 +68,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dpSeniaFecha = new System.Windows.Forms.DateTimePicker();
             this.lbSaldoSenia = new System.Windows.Forms.Label();
+            this.lbCantidadMaximaCuotas = new System.Windows.Forms.Label();
+            this.lbCantidadMaximaCuotas_Efectivo = new System.Windows.Forms.Label();
             this.gpPago.SuspendLayout();
             this.gpPlanilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -195,6 +197,7 @@
             // 
             // gpPlanilla
             // 
+            this.gpPlanilla.Controls.Add(this.lbCantidadMaximaCuotas);
             this.gpPlanilla.Controls.Add(this.lbGestion);
             this.gpPlanilla.Controls.Add(this.tbContralor);
             this.gpPlanilla.Controls.Add(this.label2);
@@ -207,7 +210,7 @@
             this.gpPlanilla.Controls.Add(this.tbCantidadCuotas);
             this.gpPlanilla.Location = new System.Drawing.Point(10, 226);
             this.gpPlanilla.Name = "gpPlanilla";
-            this.gpPlanilla.Size = new System.Drawing.Size(526, 82);
+            this.gpPlanilla.Size = new System.Drawing.Size(526, 96);
             this.gpPlanilla.TabIndex = 85;
             this.gpPlanilla.TabStop = false;
             this.gpPlanilla.Text = "Financiacion Planilla";
@@ -257,6 +260,7 @@
             this.dpDTO.Name = "dpDTO";
             this.dpDTO.Size = new System.Drawing.Size(127, 20);
             this.dpDTO.TabIndex = 80;
+            this.dpDTO.ValueChanged += new System.EventHandler(this.dpDTO_ValueChanged);
             // 
             // tbMontoCuotas
             // 
@@ -425,6 +429,7 @@
             // 
             // gpSenia
             // 
+            this.gpSenia.Controls.Add(this.lbCantidadMaximaCuotas_Efectivo);
             this.gpSenia.Controls.Add(this.label1);
             this.gpSenia.Controls.Add(this.dpSeniaFecha);
             this.gpSenia.Controls.Add(this.lbSaldoSenia);
@@ -434,9 +439,9 @@
             this.gpSenia.Controls.Add(this.lbSeniaMonto);
             this.gpSenia.Controls.Add(this.lbSeniaCuotas);
             this.gpSenia.Controls.Add(this.tbSeniaCantidadCuotas);
-            this.gpSenia.Location = new System.Drawing.Point(15, 313);
+            this.gpSenia.Location = new System.Drawing.Point(15, 328);
             this.gpSenia.Name = "gpSenia";
-            this.gpSenia.Size = new System.Drawing.Size(521, 85);
+            this.gpSenia.Size = new System.Drawing.Size(521, 106);
             this.gpSenia.TabIndex = 89;
             this.gpSenia.TabStop = false;
             this.gpSenia.Text = "Financiacion Efectivo";
@@ -446,7 +451,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(159, 57);
+            this.label1.Location = new System.Drawing.Point(13, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(149, 13);
             this.label1.TabIndex = 92;
@@ -455,10 +460,11 @@
             // dpSeniaFecha
             // 
             this.dpSeniaFecha.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpSeniaFecha.Location = new System.Drawing.Point(314, 54);
+            this.dpSeniaFecha.Location = new System.Drawing.Point(168, 54);
             this.dpSeniaFecha.Name = "dpSeniaFecha";
             this.dpSeniaFecha.Size = new System.Drawing.Size(130, 20);
             this.dpSeniaFecha.TabIndex = 93;
+            this.dpSeniaFecha.ValueChanged += new System.EventHandler(this.dpSeniaFecha_ValueChanged);
             // 
             // lbSaldoSenia
             // 
@@ -470,11 +476,31 @@
             this.lbSaldoSenia.TabIndex = 86;
             this.lbSaldoSenia.Text = "SALDO";
             // 
+            // lbCantidadMaximaCuotas
+            // 
+            this.lbCantidadMaximaCuotas.AutoSize = true;
+            this.lbCantidadMaximaCuotas.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbCantidadMaximaCuotas.Location = new System.Drawing.Point(14, 80);
+            this.lbCantidadMaximaCuotas.Name = "lbCantidadMaximaCuotas";
+            this.lbCantidadMaximaCuotas.Size = new System.Drawing.Size(10, 13);
+            this.lbCantidadMaximaCuotas.TabIndex = 89;
+            this.lbCantidadMaximaCuotas.Text = "-";
+            // 
+            // lbCantidadMaximaCuotas_Efectivo
+            // 
+            this.lbCantidadMaximaCuotas_Efectivo.AutoSize = true;
+            this.lbCantidadMaximaCuotas_Efectivo.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbCantidadMaximaCuotas_Efectivo.Location = new System.Drawing.Point(13, 77);
+            this.lbCantidadMaximaCuotas_Efectivo.Name = "lbCantidadMaximaCuotas_Efectivo";
+            this.lbCantidadMaximaCuotas_Efectivo.Size = new System.Drawing.Size(10, 13);
+            this.lbCantidadMaximaCuotas_Efectivo.TabIndex = 94;
+            this.lbCantidadMaximaCuotas_Efectivo.Text = "-";
+            // 
             // PagoBonos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 430);
+            this.ClientSize = new System.Drawing.Size(694, 446);
             this.Controls.Add(this.gpSenia);
             this.Controls.Add(this.OK);
             this.Controls.Add(this.gpTipoPago);
@@ -542,5 +568,7 @@
         private System.Windows.Forms.Label lbGestion;
         private System.Windows.Forms.Label lbMontoTarjeta;
         private System.Windows.Forms.Button btnTarjeta;
+        private System.Windows.Forms.Label lbCantidadMaximaCuotas;
+        private System.Windows.Forms.Label lbCantidadMaximaCuotas_Efectivo;
     }
 }

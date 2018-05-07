@@ -46,8 +46,12 @@ namespace SOCIOS.bono
        public  decimal SaldoInteres = 0;
        public int CuotasTarjeta = 0;
         decimal SaldoNeto = 0;
+        public bool Control_Fecha_Cuotas = false;
+        public int Cantidad_Control_Fechas_Cuota = 3;
+        DateTime Fecha_Referencia_Cuotas=System.DateTime.Now;
 
-        public PagoBonos(int pidBono, string pROL, decimal pSaldo, bool Financiable, int pNro_Soc, int pNro_Dep, int pBarra, int pNro_Socio_Titular, string Beneficio)
+
+        public PagoBonos(int pidBono, string pROL, decimal pSaldo, bool Financiable, int pNro_Soc, int pNro_Dep, int pBarra, int pNro_Socio_Titular, string Beneficio,DateTime? pFecha_Referencia_Cuotas )
         {
             InitializeComponent();
     
@@ -90,7 +94,12 @@ namespace SOCIOS.bono
             
             dpSeniaFecha.Value =  new DateTime(System.DateTime.Now.AddMonths(1).Year,System.DateTime.Now.AddMonths(1).Month,1);
 
-
+            if (pFecha_Referencia_Cuotas != null)
+            {
+                Control_Fecha_Cuotas = true;
+                Fecha_Referencia_Cuotas = pFecha_Referencia_Cuotas.Value;
+                Fechas_Tope();
+            }
 
 
         }
@@ -845,7 +854,7 @@ namespace SOCIOS.bono
             
             decimal CuotaPura = Decimal.Round(Saldo/Cuotas,2);
             decimal SaldoMonto=0;
-            decimal por = decimal.Parse("0,025");
+            decimal por = decimal.Parse("25");
             decimal Recargo = 0;
             decimal RecargoCuota =0;
             int contador = 0;
@@ -856,13 +865,13 @@ namespace SOCIOS.bono
              { 
                 if (I==0)
                 {
-                    Recargo = Decimal.Round(CuotaPura * por,2);
+                    Recargo = Decimal.Round( (CuotaPura * por) /100 ,2);
                     SaldoMonto = CuotaPura + Recargo;
  
                 } else
                 {
                   
-                    Recargo  =Decimal.Round( SaldoMonto * por,2);
+                    Recargo  =Decimal.Round(( SaldoMonto * por)/100,2);
                     SaldoMonto = SaldoMonto + Recargo;
                     //SaldoMonto = SaldoMonto - CuotaPura;
                 }
@@ -879,6 +888,7 @@ namespace SOCIOS.bono
             lbGestion.Text = "Gastos Gestion  $ " + Decimal.Round(SaldoMonto - CuotaPura,2).ToString();
             RecargoCuota =  Recargo;
             tbMontoCuotas.Text =  Decimal.Round(SaldoMonto,2).ToString();
+
 
 
           
@@ -960,6 +970,50 @@ namespace SOCIOS.bono
                 CuotasTarjeta = tar.CUOTAS;
                 Tarjeta = true;
              }
+        }
+
+        private void Calculo_Tope_Cuotas()
+        { 
+        
+        
+        }
+
+        private void dpDTO_ValueChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void dpSeniaFecha_ValueChanged(object sender, EventArgs e)
+        {
+         
+        }
+
+
+        private void Fechas_Tope()
+
+        {
+
+            try
+            {
+                if (Control_Fecha_Cuotas)
+                {
+                    Tope_Cuotas(Fecha_Referencia_Cuotas);
+                    lbCantidadMaximaCuotas_Efectivo.Text = "Cantidad cuotas Maximas " + Cantidad_Control_Fechas_Cuota.ToString();
+                    lbCantidadMaximaCuotas_Efectivo.Text = "Cantidad cuotas Maximas " + Cantidad_Control_Fechas_Cuota.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                lbCantidadMaximaCuotas_Efectivo.Text = "";
+                lbCantidadMaximaCuotas_Efectivo.Text = "";
+            }
+        
+        }
+        private void Tope_Cuotas(DateTime fecha)
+        {
+            Cantidad_Control_Fechas_Cuota = (fecha - System.DateTime.Now).Days;
+            if (Cantidad_Control_Fechas_Cuota == 0)
+                Cantidad_Control_Fechas_Cuota = 1;
         }
     }
 }

@@ -23,6 +23,7 @@ namespace SOCIOS.bono
         decimal Recargo = 0;
         int CODINT=0;
         int SUBCODIGO=0;
+        DateTime? Fecha_Tope_Pago_Bono;
  
         public BonoPasaje(DataGridViewSelectedRowCollection Personas, string pSocTitular, string pdepTitular,bool pMuestro): base(Personas, pSocTitular, pdepTitular,pMuestro)
         {
@@ -287,6 +288,9 @@ namespace SOCIOS.bono
                     this.ActualizarGrilla();
                     btnAddTrat.Enabled = false;
                     gpPasaje.Visible = false;
+
+                    Fecha_Tope_Pago_Bono = DateTime.Parse(Fecha.TrimEnd().TrimStart());
+
                 }
             }
             catch (Exception ex)
@@ -490,7 +494,7 @@ namespace SOCIOS.bono
 
              
 
-                    PagoBonos pb = new PagoBonos(0, "TURISMO", Saldo, true, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), 0, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), srvDatosSocio.CAB.NroBeneficioTitular);
+                    PagoBonos pb = new PagoBonos(0, "TURISMO", Saldo, true, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), 0, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), srvDatosSocio.CAB.NroBeneficioTitular,Fecha_Tope_Pago_Bono);
 
                     DialogResult res = pb.ShowDialog();
 
