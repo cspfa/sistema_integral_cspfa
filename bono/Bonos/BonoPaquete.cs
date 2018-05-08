@@ -25,6 +25,7 @@ namespace SOCIOS.bono
         decimal Recargo = 0;
         int CODINT = 0;
         int SUBCODIGO = 0;
+        DateTime Fecha_Salida;
      
  
         public BonoPaquete(DataGridViewSelectedRowCollection Personas, string pSocTitular, string pdepTitular,bool pMuestro): base(Personas, pSocTitular, pdepTitular,pMuestro)
@@ -80,7 +81,7 @@ namespace SOCIOS.bono
 
 
 
-                PagoBonos pb = new PagoBonos(0, "TURISMO", Saldo, true, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), 0, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), srvDatosSocio.CAB.NroBeneficioTitular);
+                PagoBonos pb = new PagoBonos(0, "TURISMO", Saldo, true, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), 0, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), srvDatosSocio.CAB.NroBeneficioTitular,Fecha_Salida);
 
                 DialogResult res = pb.ShowDialog();
 
@@ -206,6 +207,7 @@ namespace SOCIOS.bono
            InfoInvi.Text = salida.Invitado.ToString("0.##");
            InfoMenor.Text = salida.Menor.ToString("0.##");
            infoSocio.Text = salida.Socio.ToString("0.##");
+           Fecha_Salida = salida.Fecha;
 
         }
 

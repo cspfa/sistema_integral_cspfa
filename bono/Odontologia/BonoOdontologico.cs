@@ -284,7 +284,7 @@ namespace SOCIOS.bono
                         Saldo = 0;
                     else
                         Saldo = Decimal.Parse(lbSaldoTotal.Text);
-                PagoBonos pb = new PagoBonos( idBono, "SERVICIOS MEDICOS",Saldo, true, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA), Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), srvDatosSocio.CAB.NroBeneficioTitular);
+                PagoBonos pb = new PagoBonos( idBono, "SERVICIOS MEDICOS",Saldo, true, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA), Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), srvDatosSocio.CAB.NroBeneficioTitular,null);
 
                 DialogResult res = pb.ShowDialog();
 
