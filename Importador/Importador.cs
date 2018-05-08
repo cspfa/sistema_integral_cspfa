@@ -62,7 +62,7 @@ namespace Importador
         {
             try {
                 lBerrores.Text = "";
-                entradaCampoService.Importar_Entrada_Campo(LISTA_EC);
+               entradaCampoService.Importar_Entrada_Campo(LISTA_EC);
                  lbResultEC.Text = "OK";
                 }
 

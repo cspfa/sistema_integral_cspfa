@@ -1158,6 +1158,9 @@
     <EmbeddedResource Include="abmCargos.resx">
       <DependentUpon>abmCargos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bono\BonoHotel_Blanco.rdlc" />
+    <EmbeddedResource Include="bono\BonoPaquete_Blanco.rdlc" />
+    <EmbeddedResource Include="bono\BonoPasaje_Blanco.rdlc" />
     <EmbeddedResource Include="compras\anular_op.resx">
       <DependentUpon>anular_op.cs</DependentUpon>
     </EmbeddedResource>

@@ -41,6 +41,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbCodDto = new System.Windows.Forms.TextBox();
             this.btnRestablecer = new System.Windows.Forms.Button();
+            this.tbIdEmpleado = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -163,15 +165,33 @@
             this.btnRestablecer.Name = "btnRestablecer";
             this.btnRestablecer.Size = new System.Drawing.Size(120, 23);
             this.btnRestablecer.TabIndex = 16;
-            this.btnRestablecer.Text = "RESTABLECER";
+            this.btnRestablecer.Text = "ACEPTAR";
             this.btnRestablecer.UseVisualStyleBackColor = true;
             this.btnRestablecer.Click += new System.EventHandler(this.btnRestablecer_Click);
+            // 
+            // tbIdEmpleado
+            // 
+            this.tbIdEmpleado.Location = new System.Drawing.Point(496, 128);
+            this.tbIdEmpleado.Name = "tbIdEmpleado";
+            this.tbIdEmpleado.Size = new System.Drawing.Size(78, 20);
+            this.tbIdEmpleado.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(442, 132);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "ID EMP";
             // 
             // restablecer994
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 160);
+            this.Controls.Add(this.tbIdEmpleado);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnRestablecer);
             this.Controls.Add(this.tbCodDto);
             this.Controls.Add(this.label6);
@@ -210,5 +230,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbCodDto;
         private System.Windows.Forms.Button btnRestablecer;
+        private System.Windows.Forms.TextBox tbIdEmpleado;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -12,7 +12,7 @@ using FirebirdSql.Data.Firebird;
 
 namespace SOCIOS
 {
-    class bo_Entrada_Campo:bo
+    public class bo_Entrada_Campo:bo
     {
 
         public void Entrada_Campo_Importacion(string DNI, string NOMBRE, string APELLIDO, int NRO_SOCIO, int NRO_DEP, string TIPO, int INVITADO, decimal INVITADO_MONTO, int INVITADO_PILETA, decimal INVITADO_PILETA_MONTO, int INVITADO_EST, decimal INVITADO_EST_MONTO, int SOCIO, decimal SOCIO_MONTO, int SOCIO_PILETA, decimal SOCIO_PILETA_MONTO, int SOCIO_EST, decimal SOCIO_EST_MONTO, int INTER, decimal INTER_MONTO, int INTER_PILETA, decimal INTER_PILETA_MONTO, int INTER_EST, decimal INTER_EST_MONTO, int CANTIDAD, decimal MONTO_TOTAL, DateTime FECHA, string ROL, string USUARIO, int ID_INT, DateTime Fecha_Anul)

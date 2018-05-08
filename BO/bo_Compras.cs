@@ -1079,7 +1079,7 @@ namespace SOCIOS.BO
         //STORED NUEVA FACTURA
         public void nuevaFactura(int PROVEEDOR, string NUM_FACTURA, string FECHA, decimal IMPORTE, string OBSERVACIONES, string FE_ALTA, 
             string US_ALTA, string SECTOR, string SEC_GRAL, int TIPO, int ORDEN_DE_PAGO, int REGIMEN, decimal RETENCION, int DEUDA,
-            int DESCUENTO, string TIPO_DESCUENTO, string SOL_COMP)
+            int DESCUENTO, string TIPO_DESCUENTO, string SOL_COMP, string S_AJUSTE)
         {
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(PROVEEDOR);
@@ -1099,6 +1099,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(DESCUENTO);
             vector_contenidos.Add(TIPO_DESCUENTO);
             vector_contenidos.Add(SOL_COMP);
+            vector_contenidos.Add(S_AJUSTE);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
@@ -1116,6 +1117,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Char");
 
@@ -1137,6 +1139,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("DESCUENTO");
             vector_nombres.Add("TIPO_DESCUENTO");
             vector_nombres.Add("SOL_COMP");
+            vector_nombres.Add("AJUSTE");
 
             string vprocedure = "FACTURAS_I";
 

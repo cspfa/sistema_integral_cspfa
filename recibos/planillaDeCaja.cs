@@ -749,7 +749,7 @@ namespace SOCIOS
             decimal SALDO_CAJA = Convert.ToDecimal(dgTotalesDelDia.Rows[4].Cells[1].Value.ToString());
             decimal TOTAL = Convert.ToDecimal(tbTotal.Text);
             string ROL = VGlobales.vp_role;
-            string ID_ROL = MAX_ID.role("ID_ROL", "CAJA_DIARIA", "ROL", VGlobales.vp_role);
+            int ID_ROL = int.Parse(MAX_ID.role("ID_ROL", "CAJA_DIARIA", "ROL", VGlobales.vp_role))+1;
             pbProcesando.Visible = true;
             pbProcesando.Minimum = 0;
             pbProcesando.Step = 1;
@@ -758,7 +758,7 @@ namespace SOCIOS
 
             try
             {
-                BO_CAJA.cerrarCajaDiaria(FECHA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, ROL, TOTAL, ID_ROL);
+                BO_CAJA.cerrarCajaDiaria(FECHA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, ROL, TOTAL, ID_ROL.ToString());
             }
             catch (Exception error)
             { 
@@ -3880,6 +3880,11 @@ namespace SOCIOS
                 int SECTACT = int.Parse(vIdDestino.TrimEnd());
                 comboProfesionales(cbProfBuscador, SECTACT, cbDestinoBuscador);
             }
+        }
+
+        private void btnImprimirEfectivo_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
