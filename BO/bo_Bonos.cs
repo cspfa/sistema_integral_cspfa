@@ -98,5 +98,49 @@ namespace SOCIOS
           resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
       }
-    }
+
+      public void Update_Fecha_Nacimiento(DateTime Fecha_Nacimiento, int ID, int Nro_Soc, int Nro_Dep, int Barra, string Tipo)
+      {
+          db resultado = new db();
+
+
+
+          ArrayList vector_contenidos = new ArrayList();
+          vector_contenidos.Add(Fecha_Nacimiento);
+          vector_contenidos.Add(System.DateTime.Now);
+          vector_contenidos.Add(VGlobales.vp_username.TrimEnd().TrimStart());
+          vector_contenidos.Add(ID);
+          vector_contenidos.Add(Nro_Soc);
+          vector_contenidos.Add(Nro_Dep);
+          vector_contenidos.Add(Barra);
+        
+
+          ArrayList vector_tipos = new ArrayList();
+
+     
+          vector_tipos.Add("FbDbType.VarChar");
+          vector_tipos.Add("FbDbType.VarChar");
+          vector_tipos.Add("FbDbType.VarChar");
+          vector_tipos.Add("FbDbType.Integer");
+          vector_tipos.Add("FbDbType.Integer");
+          vector_tipos.Add("FbDbType.Integer");
+          vector_tipos.Add("FbDbType.Integer");
+         
+          ArrayList vector_nombres = new ArrayList();
+
+
+          vector_nombres.Add("@FECHA_NAC");
+          vector_nombres.Add("@FECHA");
+          vector_nombres.Add("@USR");
+          vector_nombres.Add("@ID");
+          vector_nombres.Add("@NRO_SOC");
+          vector_nombres.Add("@NRO_DEP");
+          vector_nombres.Add("@BARRA");
+          vector_nombres.Add("@TIPO");
+
+          string vprocedure = "P_FECHA_NAC_UPDATE";
+          resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+      
+      }
+  }
 }
