@@ -44,7 +44,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.themedGroupBox1 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
-            this.lbRestablecer994 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.lbIngresosRecibos = new System.Windows.Forms.Label();
             this.lbIngresoCampo = new System.Windows.Forms.Label();
@@ -138,6 +137,9 @@
             this.rEANUDARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbIngresoEvento = new System.Windows.Forms.Label();
             this.lbReintegroEvento = new System.Windows.Forms.Label();
+            this.cmProsecretaria = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.dEPFAACABAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dECABAAPFAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox1)).BeginInit();
             this.themedGroupBox1.SuspendLayout();
@@ -162,6 +164,7 @@
             this.cmEncuesta.SuspendLayout();
             this.cmObservacionesInterior.SuspendLayout();
             this.cmDeportes.SuspendLayout();
+            this.cmProsecretaria.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox4
@@ -198,7 +201,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(11, 7);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(279, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(264, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -207,7 +210,7 @@
             this.toolStripButton1.Image = global::SOCIOS.Properties.Resources.magnifier;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(94, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(90, 22);
             this.toolStripButton1.Text = "[F1] BUSCAR";
             this.toolStripButton1.ToolTipText = "[F1] - Buscar datos segun lo informado ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
@@ -222,7 +225,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(95, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(91, 22);
             this.toolStripButton2.Text = "[F2] LIMPIAR";
             this.toolStripButton2.ToolTipText = "Limpiar Campos";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
@@ -237,7 +240,7 @@
             this.toolStripButton3.Image = global::SOCIOS.Properties.Resources.add;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(66, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(61, 22);
             this.toolStripButton3.Text = "NUEVO";
             this.toolStripButton3.ToolTipText = "Nuevo Titular";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click_1);
@@ -246,7 +249,6 @@
             // 
             this.themedGroupBox1.BaseBackgroundColor = System.Drawing.SystemColors.ActiveCaption;
             this.themedGroupBox1.BorderColor = System.Drawing.Color.CornflowerBlue;
-            this.themedGroupBox1.Controls.Add(this.lbRestablecer994);
             this.themedGroupBox1.Controls.Add(this.label20);
             this.themedGroupBox1.Controls.Add(this.lbIngresosRecibos);
             this.themedGroupBox1.Controls.Add(this.lbIngresoCampo);
@@ -277,19 +279,6 @@
             this.themedGroupBox1.TitleShadow = false;
             this.themedGroupBox1.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
             this.themedGroupBox1.TitleTextColor = System.Drawing.SystemColors.ButtonHighlight;
-            // 
-            // lbRestablecer994
-            // 
-            this.lbRestablecer994.AutoSize = true;
-            this.lbRestablecer994.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lbRestablecer994.Enabled = false;
-            this.lbRestablecer994.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbRestablecer994.Location = new System.Drawing.Point(871, 164);
-            this.lbRestablecer994.Name = "lbRestablecer994";
-            this.lbRestablecer994.Size = new System.Drawing.Size(76, 13);
-            this.lbRestablecer994.TabIndex = 49;
-            this.lbRestablecer994.Text = "RES ADH INT";
-            this.lbRestablecer994.Click += new System.EventHandler(this.lbRestablecer994_Click);
             // 
             // label20
             // 
@@ -502,7 +491,7 @@
             this.LimpiarListView});
             this.toolStrip2.Location = new System.Drawing.Point(498, 8);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(161, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(151, 25);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             this.toolStrip2.Visible = false;
@@ -513,7 +502,7 @@
             this.BuscarListView.Image = ((System.Drawing.Image)(resources.GetObject("BuscarListView.Image")));
             this.BuscarListView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BuscarListView.Name = "BuscarListView";
-            this.BuscarListView.Size = new System.Drawing.Size(71, 22);
+            this.BuscarListView.Size = new System.Drawing.Size(67, 22);
             this.BuscarListView.Text = "BUSCAR";
             this.BuscarListView.ToolTipText = "BUSCAR EN RESULTADO";
             this.BuscarListView.Click += new System.EventHandler(this.BuscarListView_Click);
@@ -529,7 +518,7 @@
             this.LimpiarListView.Image = ((System.Drawing.Image)(resources.GetObject("LimpiarListView.Image")));
             this.LimpiarListView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LimpiarListView.Name = "LimpiarListView";
-            this.LimpiarListView.Size = new System.Drawing.Size(72, 22);
+            this.LimpiarListView.Size = new System.Drawing.Size(68, 22);
             this.LimpiarListView.Text = "LIMPIAR";
             this.LimpiarListView.ToolTipText = "LIMPIAR SELECCIONADOS";
             this.LimpiarListView.Click += new System.EventHandler(this.LimpiarListView_Click);
@@ -1456,13 +1445,13 @@
             this.cmEncuesta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsEncuesta});
             this.cmEncuesta.Name = "cmServiciosMedicos";
-            this.cmEncuesta.Size = new System.Drawing.Size(160, 26);
+            this.cmEncuesta.Size = new System.Drawing.Size(155, 26);
             // 
             // tsEncuesta
             // 
             this.tsEncuesta.Image = ((System.Drawing.Image)(resources.GetObject("tsEncuesta.Image")));
             this.tsEncuesta.Name = "tsEncuesta";
-            this.tsEncuesta.Size = new System.Drawing.Size(159, 22);
+            this.tsEncuesta.Size = new System.Drawing.Size(154, 22);
             this.tsEncuesta.Text = "Cargar Encuesta";
             this.tsEncuesta.Click += new System.EventHandler(this.tsEncuesta_Click);
             // 
@@ -1471,14 +1460,14 @@
             this.cmObservacionesInterior.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cargarObservaciónToolStripMenuItem});
             this.cmObservacionesInterior.Name = "cmObservacionesInterior";
-            this.cmObservacionesInterior.Size = new System.Drawing.Size(165, 26);
+            this.cmObservacionesInterior.Size = new System.Drawing.Size(159, 26);
             this.cmObservacionesInterior.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // cargarObservaciónToolStripMenuItem
             // 
             this.cargarObservaciónToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cargarObservaciónToolStripMenuItem.Image")));
             this.cargarObservaciónToolStripMenuItem.Name = "cargarObservaciónToolStripMenuItem";
-            this.cargarObservaciónToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.cargarObservaciónToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.cargarObservaciónToolStripMenuItem.Text = "OBSERVACIONES";
             this.cargarObservaciónToolStripMenuItem.Click += new System.EventHandler(this.cargarObservaciónToolStripMenuItem_Click);
             // 
@@ -1488,20 +1477,20 @@
             this.sUSPENDERToolStripMenuItem,
             this.rEANUDARToolStripMenuItem});
             this.cmDeportes.Name = "cmDeportes";
-            this.cmDeportes.Size = new System.Drawing.Size(138, 48);
+            this.cmDeportes.Size = new System.Drawing.Size(133, 48);
             // 
             // sUSPENDERToolStripMenuItem
             // 
             this.sUSPENDERToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sUSPENDERToolStripMenuItem.Image")));
             this.sUSPENDERToolStripMenuItem.Name = "sUSPENDERToolStripMenuItem";
-            this.sUSPENDERToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.sUSPENDERToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.sUSPENDERToolStripMenuItem.Text = "SUSPENDER";
             // 
             // rEANUDARToolStripMenuItem
             // 
             this.rEANUDARToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rEANUDARToolStripMenuItem.Image")));
             this.rEANUDARToolStripMenuItem.Name = "rEANUDARToolStripMenuItem";
-            this.rEANUDARToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.rEANUDARToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.rEANUDARToolStripMenuItem.Text = "REANUDAR";
             // 
             // lbIngresoEvento
@@ -1525,6 +1514,30 @@
             this.lbReintegroEvento.TabIndex = 47;
             this.lbReintegroEvento.Text = "R.EST.EVENTO";
             this.lbReintegroEvento.Click += new System.EventHandler(this.lbReintegroEvento_Click);
+            // 
+            // cmProsecretaria
+            // 
+            this.cmProsecretaria.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dEPFAACABAToolStripMenuItem,
+            this.dECABAAPFAToolStripMenuItem});
+            this.cmProsecretaria.Name = "cmProsecretaria";
+            this.cmProsecretaria.Size = new System.Drawing.Size(150, 48);
+            // 
+            // dEPFAACABAToolStripMenuItem
+            // 
+            this.dEPFAACABAToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dEPFAACABAToolStripMenuItem.Image")));
+            this.dEPFAACABAToolStripMenuItem.Name = "dEPFAACABAToolStripMenuItem";
+            this.dEPFAACABAToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.dEPFAACABAToolStripMenuItem.Text = "DE PFA A CABA";
+            this.dEPFAACABAToolStripMenuItem.Click += new System.EventHandler(this.dEPFAACABAToolStripMenuItem_Click);
+            // 
+            // dECABAAPFAToolStripMenuItem
+            // 
+            this.dECABAAPFAToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dECABAAPFAToolStripMenuItem.Image")));
+            this.dECABAAPFAToolStripMenuItem.Name = "dECABAAPFAToolStripMenuItem";
+            this.dECABAAPFAToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.dECABAAPFAToolStripMenuItem.Text = "DE CABA A PFA";
+            this.dECABAAPFAToolStripMenuItem.Click += new System.EventHandler(this.dECABAAPFAToolStripMenuItem_Click);
             // 
             // buscar
             // 
@@ -1597,6 +1610,7 @@
             this.cmEncuesta.ResumeLayout(false);
             this.cmObservacionesInterior.ResumeLayout(false);
             this.cmDeportes.ResumeLayout(false);
+            this.cmProsecretaria.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1702,11 +1716,13 @@
         private System.Windows.Forms.Label lbIngresoCampo;
         private System.Windows.Forms.Label lbIngresosRecibos;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label lbRestablecer994;
         private MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox mtbIdEmpleado;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label lbReintegroEvento;
         private System.Windows.Forms.Label lbIngresoEvento;
+        private System.Windows.Forms.ContextMenuStrip cmProsecretaria;
+        private System.Windows.Forms.ToolStripMenuItem dEPFAACABAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dECABAAPFAToolStripMenuItem;
 
 
     }

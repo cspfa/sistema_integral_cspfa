@@ -35,11 +35,6 @@ namespace SOCIOS
                 lbDatosBancarios.Enabled = true;
             }
 
-            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "PROSECRETARIA")
-            {
-                lbRestablecer994.Enabled = true;
-            }
-
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INTERIOR")
             {
                 lbObsInterior.Enabled = true;
@@ -2612,7 +2607,7 @@ namespace SOCIOS
 
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "SERVICIOS MEDICOS")
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "SERVICIOS MEDICOS")
             {
                 if (e.Button == MouseButtons.Right)
                 {
@@ -2623,7 +2618,7 @@ namespace SOCIOS
                 }
             }
 
-            if (VGlobales.vp_role == "INTERIOR")
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INTERIOR")
             {
                 if (e.Button == MouseButtons.Right)
                 {
@@ -2634,13 +2629,24 @@ namespace SOCIOS
                 }
             }
 
-            if (VGlobales.vp_role == "DEPORTES")
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "DEPORTES")
             {
                 if (e.Button == MouseButtons.Right)
                 {
                     if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
                     {
                         cmDeportes.Show(Cursor.Position);
+                    }
+                }
+            }
+
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "PROSECRETARIA")
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmProsecretaria.Show(Cursor.Position);
                     }
                 }
             }
@@ -2904,34 +2910,6 @@ namespace SOCIOS
             }
         }
 
-        private void lbRestablecer994_Click(object sender, EventArgs e)
-        {
-            if (listView1.SelectedItems.Count > 0)
-            {
-                string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
-
-                if (NRO_DEP == "020")
-                {
-                    restablecer994 r = new restablecer994(ID_TITULAR);
-                    r.ShowDialog();
-                }
-                else
-                {
-                    MessageBox.Show("NO SE PUEDE RESTABLECER SIN DEPURACION 20", "ERROR!");
-                }
-            }
-            else
-            {
-                MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
-            }
-        }
-
-        private void MSK_Enter(object sender, MouseEventArgs e)
-        {
-
-        }
-
         private void lbIngresoEvento_Click(object sender, EventArgs e)
         {
             if (listView1.SelectedItems.Count == 1)
@@ -3028,6 +3006,54 @@ namespace SOCIOS
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
+            }
+        }
+
+        private void dEPFAACABAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
+                int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
+
+                if (NRO_DEP == "994")
+                {
+                    restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
+                    r.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("LA DEPURACIÓN DEBE SER 994", "ERROR!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
+            }
+        }
+
+        private void dECABAAPFAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
+                int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
+
+                if (NRO_DEP == "020")
+                {
+                    restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
+                    r.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("LA DEPURACIÓN DEBE SER 20", "ERROR!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
             }
         }
     }

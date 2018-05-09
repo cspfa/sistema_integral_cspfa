@@ -9,7 +9,7 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace SOCIOS
 {
-    class arancel
+    public class arancel
     {
         public decimal valorCuotaSocial(int SECTACT, int GRUPO, int PROFESIONAL, string CATSOC)
         {

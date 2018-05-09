@@ -14,12 +14,13 @@ using FirebirdSql.Data.Isql;
 using FirebirdSql.Data.Services;
 using FirebirdSql.Data.Server;
 using iTextSharp.text.pdf;
+using SOCIOS;
 
-namespace SOCIOS.confiteria
+namespace Confiteria
 {
     class imprimir
     {
-        bo dlog = new bo();
+        SOCIOS.bo dlog = new bo();
 
         private DataSet COMANDA { get; set; }
         private DataSet SOLICITUD { get; set; }

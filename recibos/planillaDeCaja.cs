@@ -740,6 +740,7 @@ namespace SOCIOS
         {
             Cursor = Cursors.WaitCursor;
             DateTime Hoy = DateTime.Today;
+            maxid MAX_ID = new maxid();
             string FECHA = Hoy.ToString("dd/MM/yyyy");
             decimal INGRESOS_EFECTIVO = Convert.ToDecimal(dgTotalesDelDia.Rows[0].Cells[1].Value.ToString());
             decimal INGRESOS_OTROS = Convert.ToDecimal(dgTotalesDelDia.Rows[1].Cells[1].Value.ToString());
@@ -748,6 +749,7 @@ namespace SOCIOS
             decimal SALDO_CAJA = Convert.ToDecimal(dgTotalesDelDia.Rows[4].Cells[1].Value.ToString());
             decimal TOTAL = Convert.ToDecimal(tbTotal.Text);
             string ROL = VGlobales.vp_role;
+            int ID_ROL = int.Parse(MAX_ID.role("ID_ROL", "CAJA_DIARIA", "ROL", VGlobales.vp_role))+1;
             pbProcesando.Visible = true;
             pbProcesando.Minimum = 0;
             pbProcesando.Step = 1;
@@ -756,7 +758,7 @@ namespace SOCIOS
 
             try
             {
-                BO_CAJA.cerrarCajaDiaria(FECHA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, ROL, TOTAL);
+                BO_CAJA.cerrarCajaDiaria(FECHA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, ROL, TOTAL, ID_ROL.ToString());
             }
             catch (Exception error)
             { 
@@ -1408,14 +1410,7 @@ namespace SOCIOS
                 connection.Open();
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
-                string query = "";
-
-                if (VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA2")
-                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
-
-                if (VGlobales.vp_role != "CAJA" && VGlobales.vp_role != "INFORMES" && VGlobales.vp_role != "CAJA2")
-                    query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
-
+                string query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
                 FbCommand cmd = new FbCommand(query, connection, transaction);
                 cmd.CommandText = query;
                 cmd.Connection = connection;
@@ -1844,47 +1839,51 @@ namespace SOCIOS
                 #region CABECERA CHEQUES COMPO
 
                 PdfPTable TABLA_CHEQUES_COMPO = new PdfPTable(6);
-                TABLA_CHEQUES_COMPO.WidthPercentage = 100;
-                TABLA_CHEQUES_COMPO.SpacingAfter = 10;
-                TABLA_CHEQUES_COMPO.SpacingBefore = 10;
-                TABLA_CHEQUES_COMPO.SetWidths(new float[] { 1.6f, 4f, 6f, 1f, 2f, 5f });
-                PdfPCell CELDA_NUM_CP = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
-                PdfPCell CELDA_APENOM_CP = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
-                PdfPCell CELDA_CONCEPTO_CP = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPUTACION_CP = new PdfPCell(new Phrase("HABER", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPORTE_CP = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-                PdfPCell CELDA_OBS_CP = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
-                CELDA_NUM_CP.BackgroundColor = topo;
-                CELDA_NUM_CP.BorderColor = blanco;
-                CELDA_NUM_CP.HorizontalAlignment = 1;
-                CELDA_NUM_CP.FixedHeight = 16f;
-                CELDA_APENOM_CP.BackgroundColor = topo;
-                CELDA_APENOM_CP.BorderColor = blanco;
-                CELDA_APENOM_CP.HorizontalAlignment = 1;
-                CELDA_APENOM_CP.FixedHeight = 16f;
-                CELDA_CONCEPTO_CP.BackgroundColor = topo;
-                CELDA_CONCEPTO_CP.BorderColor = blanco;
-                CELDA_CONCEPTO_CP.HorizontalAlignment = 1;
-                CELDA_CONCEPTO_CP.FixedHeight = 16f;
-                CELDA_IMPUTACION_CP.BackgroundColor = topo;
-                CELDA_IMPUTACION_CP.BorderColor = blanco;
-                CELDA_IMPUTACION_CP.HorizontalAlignment = 1;
-                CELDA_IMPUTACION_CP.FixedHeight = 16f;
-                CELDA_IMPORTE_CP.BackgroundColor = topo;
-                CELDA_IMPORTE_CP.BorderColor = blanco;
-                CELDA_IMPORTE_CP.HorizontalAlignment = 1;
-                CELDA_IMPORTE_CP.FixedHeight = 16f;
-                CELDA_OBS_CP.BackgroundColor = topo;
-                CELDA_OBS_CP.BorderColor = blanco;
-                CELDA_OBS_CP.HorizontalAlignment = 1;
-                CELDA_OBS_CP.FixedHeight = 16f;
 
-                TABLA_CHEQUES_COMPO.AddCell(CELDA_NUM_CP);
-                TABLA_CHEQUES_COMPO.AddCell(CELDA_APENOM_CP);
-                TABLA_CHEQUES_COMPO.AddCell(CELDA_CONCEPTO_CP);
-                TABLA_CHEQUES_COMPO.AddCell(CELDA_IMPUTACION_CP);
-                TABLA_CHEQUES_COMPO.AddCell(CELDA_IMPORTE_CP);
-                TABLA_CHEQUES_COMPO.AddCell(CELDA_OBS_CP);
+                if (VGlobales.vp_role == "CAJA")
+                {
+                    TABLA_CHEQUES_COMPO.WidthPercentage = 100;
+                    TABLA_CHEQUES_COMPO.SpacingAfter = 10;
+                    TABLA_CHEQUES_COMPO.SpacingBefore = 10;
+                    TABLA_CHEQUES_COMPO.SetWidths(new float[] { 1.6f, 4f, 6f, 1f, 2f, 5f });
+                    PdfPCell CELDA_NUM_CP = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
+                    PdfPCell CELDA_APENOM_CP = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
+                    PdfPCell CELDA_CONCEPTO_CP = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
+                    PdfPCell CELDA_IMPUTACION_CP = new PdfPCell(new Phrase("HABER", _mediumFontBoldWhite));
+                    PdfPCell CELDA_IMPORTE_CP = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                    PdfPCell CELDA_OBS_CP = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
+                    CELDA_NUM_CP.BackgroundColor = topo;
+                    CELDA_NUM_CP.BorderColor = blanco;
+                    CELDA_NUM_CP.HorizontalAlignment = 1;
+                    CELDA_NUM_CP.FixedHeight = 16f;
+                    CELDA_APENOM_CP.BackgroundColor = topo;
+                    CELDA_APENOM_CP.BorderColor = blanco;
+                    CELDA_APENOM_CP.HorizontalAlignment = 1;
+                    CELDA_APENOM_CP.FixedHeight = 16f;
+                    CELDA_CONCEPTO_CP.BackgroundColor = topo;
+                    CELDA_CONCEPTO_CP.BorderColor = blanco;
+                    CELDA_CONCEPTO_CP.HorizontalAlignment = 1;
+                    CELDA_CONCEPTO_CP.FixedHeight = 16f;
+                    CELDA_IMPUTACION_CP.BackgroundColor = topo;
+                    CELDA_IMPUTACION_CP.BorderColor = blanco;
+                    CELDA_IMPUTACION_CP.HorizontalAlignment = 1;
+                    CELDA_IMPUTACION_CP.FixedHeight = 16f;
+                    CELDA_IMPORTE_CP.BackgroundColor = topo;
+                    CELDA_IMPORTE_CP.BorderColor = blanco;
+                    CELDA_IMPORTE_CP.HorizontalAlignment = 1;
+                    CELDA_IMPORTE_CP.FixedHeight = 16f;
+                    CELDA_OBS_CP.BackgroundColor = topo;
+                    CELDA_OBS_CP.BorderColor = blanco;
+                    CELDA_OBS_CP.HorizontalAlignment = 1;
+                    CELDA_OBS_CP.FixedHeight = 16f;
+
+                    TABLA_CHEQUES_COMPO.AddCell(CELDA_NUM_CP);
+                    TABLA_CHEQUES_COMPO.AddCell(CELDA_APENOM_CP);
+                    TABLA_CHEQUES_COMPO.AddCell(CELDA_CONCEPTO_CP);
+                    TABLA_CHEQUES_COMPO.AddCell(CELDA_IMPUTACION_CP);
+                    TABLA_CHEQUES_COMPO.AddCell(CELDA_IMPORTE_CP);
+                    TABLA_CHEQUES_COMPO.AddCell(CELDA_OBS_CP);
+                }
 
                 #endregion
 
@@ -2297,7 +2296,7 @@ namespace SOCIOS
                 decimal TOTAL_COMPOSICION = 0;
 
                 X = 0;
-                string CAMBIO_CAJA = "";
+                string CAMBIO_CAJA = "0";
                 decimal TOTAL_CHEQUES = 0;
                 string DETALLE_CHEQUE = "";
                 string IMPORTE_CHEQUE = "";
@@ -2308,41 +2307,44 @@ namespace SOCIOS
                     CAMBIO_CAJA = string.Format("{0:n}", Convert.ToDecimal(cambio[0].ToString()));
                 }
 
-                foreach (DataRow cheques in CHEQUES.Tables[0].Rows)
+                if (VGlobales.vp_role == "CAJA")
                 {
-                    if (cheques[3].ToString() != "")
+                    foreach (DataRow cheques in CHEQUES.Tables[0].Rows)
                     {
-                        IMPORTE_CHEQUE = string.Format("{0:n}", Convert.ToDecimal(cheques[3].ToString()));
-                        DETALLE_CHEQUE = cheques[1].ToString();
-                        FECHA_CHEQUE = cheques[2].ToString().Substring(0, 9);
-
-                        if (X == 0)
+                        if (cheques[3].ToString() != "")
                         {
-                            colorFondo = new BaseColor(255, 255, 255);
-                            X++;
+                            IMPORTE_CHEQUE = string.Format("{0:n}", Convert.ToDecimal(cheques[3].ToString()));
+                            DETALLE_CHEQUE = cheques[1].ToString();
+                            FECHA_CHEQUE = cheques[2].ToString().Substring(0, 9);
+
+                            if (X == 0)
+                            {
+                                colorFondo = new BaseColor(255, 255, 255);
+                                X++;
+                            }
+                            else
+                            {
+                                colorFondo = new BaseColor(240, 240, 240);
+                                X--;
+                            }
+
+                            PdfPCell CELL_CHEQUE = new PdfPCell(new Phrase(DETALLE_CHEQUE + " " + FECHA_CHEQUE, _mediumFont));
+                            CELL_CHEQUE.HorizontalAlignment = 0;
+                            CELL_CHEQUE.BorderWidth = 0;
+                            CELL_CHEQUE.BackgroundColor = colorFondo;
+                            CELL_CHEQUE.FixedHeight = 14f;
+                            TABLA_COMPOSICION.AddCell(CELL_CHEQUE);
+
+                            PdfPCell CELL_IMPORTE_CHEQUE = new PdfPCell(new Phrase("$ " + IMPORTE_CHEQUE, _mediumFont));
+                            CELL_IMPORTE_CHEQUE.HorizontalAlignment = 2;
+                            CELL_IMPORTE_CHEQUE.BorderWidth = 0;
+                            CELL_IMPORTE_CHEQUE.BackgroundColor = colorFondo;
+                            CELL_IMPORTE_CHEQUE.FixedHeight = 14f;
+                            TABLA_COMPOSICION.AddCell(CELL_IMPORTE_CHEQUE);
+
+                            //SUMA
+                            TOTAL_CHEQUES = TOTAL_CHEQUES + Convert.ToDecimal(IMPORTE_CHEQUE);
                         }
-                        else
-                        {
-                            colorFondo = new BaseColor(240, 240, 240);
-                            X--;
-                        }
-
-                        PdfPCell CELL_CHEQUE = new PdfPCell(new Phrase(DETALLE_CHEQUE + " " + FECHA_CHEQUE, _mediumFont));
-                        CELL_CHEQUE.HorizontalAlignment = 0;
-                        CELL_CHEQUE.BorderWidth = 0;
-                        CELL_CHEQUE.BackgroundColor = colorFondo;
-                        CELL_CHEQUE.FixedHeight = 14f;
-                        TABLA_COMPOSICION.AddCell(CELL_CHEQUE);
-
-                        PdfPCell CELL_IMPORTE_CHEQUE = new PdfPCell(new Phrase("$ " + IMPORTE_CHEQUE, _mediumFont));
-                        CELL_IMPORTE_CHEQUE.HorizontalAlignment = 2;
-                        CELL_IMPORTE_CHEQUE.BorderWidth = 0;
-                        CELL_IMPORTE_CHEQUE.BackgroundColor = colorFondo;
-                        CELL_IMPORTE_CHEQUE.FixedHeight = 14f;
-                        TABLA_COMPOSICION.AddCell(CELL_IMPORTE_CHEQUE);
-
-                        //SUMA
-                        TOTAL_CHEQUES = TOTAL_CHEQUES + Convert.ToDecimal(IMPORTE_CHEQUE);
                     }
                 }
 
@@ -2447,75 +2449,79 @@ namespace SOCIOS
                 #endregion
 
                 #region DATOS CHEQUES EN COMPO
-                X = 0;
-                foreach (DataRow row in CHEQUES_COMPOSICION.Tables[0].Rows)
+                if (VGlobales.vp_role == "CAJA")
                 {
-                    NUM = row[0].ToString();
-                    NOMBRE = row[1].ToString();
-                    CONCEPTO = row[2].ToString();
-                    DEBE = row[3].ToString();
-                    IMPORTE = Convert.ToDecimal(row[4]);
-                    OBSERVACIONES = row[5].ToString();
-
-                    if (X == 0)
+                    X = 0;
+                    foreach (DataRow row in CHEQUES_COMPOSICION.Tables[0].Rows)
                     {
-                        colorFondo = new BaseColor(255, 255, 255);
-                        X++;
+                        NUM = row[0].ToString();
+                        NOMBRE = row[1].ToString();
+                        CONCEPTO = row[2].ToString();
+                        DEBE = row[3].ToString();
+                        IMPORTE = Convert.ToDecimal(row[4]);
+                        OBSERVACIONES = row[5].ToString();
+
+                        if (X == 0)
+                        {
+                            colorFondo = new BaseColor(255, 255, 255);
+                            X++;
+                        }
+                        else
+                        {
+                            colorFondo = new BaseColor(240, 240, 240);
+                            X--;
+                        }
+
+                        PdfPCell CELL_NUM_CP = new PdfPCell(new Phrase(NUM, _mediumFont));
+                        CELL_NUM_CP.HorizontalAlignment = 1;
+                        CELL_NUM_CP.BorderWidth = 0;
+                        CELL_NUM_CP.BackgroundColor = colorFondo;
+                        CELL_NUM_CP.FixedHeight = 14f;
+                        TABLA_CHEQUES_COMPO.AddCell(CELL_NUM_CP);
+
+                        PdfPCell CELL_NOMBRE_CP = new PdfPCell(new Phrase(NOMBRE, _mediumFont));
+                        //CELL_NOMBRE.HorizontalAlignment = 1;
+                        CELL_NOMBRE_CP.BorderWidth = 0;
+                        CELL_NOMBRE_CP.BackgroundColor = colorFondo;
+                        CELL_NOMBRE_CP.FixedHeight = 14f;
+                        TABLA_CHEQUES_COMPO.AddCell(CELL_NOMBRE_CP);
+
+                        PdfPCell CELL_CONCEPTO_CP = new PdfPCell(new Phrase(CONCEPTO, _mediumFont));
+                        //CELL_CONCEPTO.HorizontalAlignment = 1;
+                        CELL_CONCEPTO_CP.BorderWidth = 0;
+                        CELL_CONCEPTO_CP.BackgroundColor = colorFondo;
+                        CELL_CONCEPTO_CP.FixedHeight = 14f;
+                        TABLA_CHEQUES_COMPO.AddCell(CELL_CONCEPTO_CP);
+
+                        PdfPCell CELL_DEBE_CP = new PdfPCell(new Phrase(DEBE, _mediumFont));
+                        CELL_DEBE_CP.HorizontalAlignment = 1;
+                        CELL_DEBE_CP.BorderWidth = 0;
+                        CELL_DEBE_CP.BackgroundColor = colorFondo;
+                        CELL_DEBE_CP.FixedHeight = 14f;
+                        TABLA_CHEQUES_COMPO.AddCell(CELL_DEBE_CP);
+
+                        PdfPCell CELL_IMPORTE_CP = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
+                        CELL_IMPORTE_CP.HorizontalAlignment = 2;
+                        CELL_IMPORTE_CP.BorderWidth = 0;
+                        CELL_IMPORTE_CP.BackgroundColor = colorFondo;
+                        CELL_IMPORTE_CP.FixedHeight = 14f;
+                        TABLA_CHEQUES_COMPO.AddCell(CELL_IMPORTE_CP);
+
+                        PdfPCell CELL_OBS_CP = new PdfPCell(new Phrase(OBSERVACIONES, _mediumFont));
+                        //CELL_OBS.HorizontalAlignment = 1;
+                        CELL_OBS_CP.BorderWidth = 0;
+                        CELL_OBS_CP.BackgroundColor = colorFondo;
+                        CELL_OBS_CP.FixedHeight = 14f;
+                        TABLA_CHEQUES_COMPO.AddCell(CELL_OBS_CP);
                     }
-                    else
-                    {
-                        colorFondo = new BaseColor(240, 240, 240);
-                        X--;
-                    }
 
-                    PdfPCell CELL_NUM_CP = new PdfPCell(new Phrase(NUM, _mediumFont));
-                    CELL_NUM_CP.HorizontalAlignment = 1;
-                    CELL_NUM_CP.BorderWidth = 0;
-                    CELL_NUM_CP.BackgroundColor = colorFondo;
-                    CELL_NUM_CP.FixedHeight = 14f;
-                    TABLA_CHEQUES_COMPO.AddCell(CELL_NUM_CP);
-
-                    PdfPCell CELL_NOMBRE_CP = new PdfPCell(new Phrase(NOMBRE, _mediumFont));
-                    //CELL_NOMBRE.HorizontalAlignment = 1;
-                    CELL_NOMBRE_CP.BorderWidth = 0;
-                    CELL_NOMBRE_CP.BackgroundColor = colorFondo;
-                    CELL_NOMBRE_CP.FixedHeight = 14f;
-                    TABLA_CHEQUES_COMPO.AddCell(CELL_NOMBRE_CP);
-
-                    PdfPCell CELL_CONCEPTO_CP = new PdfPCell(new Phrase(CONCEPTO, _mediumFont));
-                    //CELL_CONCEPTO.HorizontalAlignment = 1;
-                    CELL_CONCEPTO_CP.BorderWidth = 0;
-                    CELL_CONCEPTO_CP.BackgroundColor = colorFondo;
-                    CELL_CONCEPTO_CP.FixedHeight = 14f;
-                    TABLA_CHEQUES_COMPO.AddCell(CELL_CONCEPTO_CP);
-
-                    PdfPCell CELL_DEBE_CP = new PdfPCell(new Phrase(DEBE, _mediumFont));
-                    CELL_DEBE_CP.HorizontalAlignment = 1;
-                    CELL_DEBE_CP.BorderWidth = 0;
-                    CELL_DEBE_CP.BackgroundColor = colorFondo;
-                    CELL_DEBE_CP.FixedHeight = 14f;
-                    TABLA_CHEQUES_COMPO.AddCell(CELL_DEBE_CP);
-
-                    PdfPCell CELL_IMPORTE_CP = new PdfPCell(new Phrase("$ " +string.Format("{0:n}", IMPORTE), _mediumFont));
-                    CELL_IMPORTE_CP.HorizontalAlignment = 2;
-                    CELL_IMPORTE_CP.BorderWidth = 0;
-                    CELL_IMPORTE_CP.BackgroundColor = colorFondo;
-                    CELL_IMPORTE_CP.FixedHeight = 14f;
-                    TABLA_CHEQUES_COMPO.AddCell(CELL_IMPORTE_CP);
-
-                    PdfPCell CELL_OBS_CP = new PdfPCell(new Phrase(OBSERVACIONES, _mediumFont));
-                    //CELL_OBS.HorizontalAlignment = 1;
-                    CELL_OBS_CP.BorderWidth = 0;
-                    CELL_OBS_CP.BackgroundColor = colorFondo;
-                    CELL_OBS_CP.FixedHeight = 14f;
-                    TABLA_CHEQUES_COMPO.AddCell(CELL_OBS_CP);
+                    Paragraph subc = new Paragraph("CHEQUES EN COMPOSICION AL " + FECHA, _standardFontBold);
+                    subc.Alignment = Element.ALIGN_CENTER;
+                    subc.SpacingAfter = 5;
+                    doc.Add(subc);
+                    doc.Add(TABLA_CHEQUES_COMPO);
                 }
 
-                Paragraph subc = new Paragraph("CHEQUES EN COMPOSICION AL " + FECHA, _standardFontBold);
-                subc.Alignment = Element.ALIGN_CENTER;
-                subc.SpacingAfter = 5;
-                doc.Add(subc);
-                doc.Add(TABLA_CHEQUES_COMPO);
                 #endregion
 
                 #region TOTALES AL DIA
@@ -3874,6 +3880,11 @@ namespace SOCIOS
                 int SECTACT = int.Parse(vIdDestino.TrimEnd());
                 comboProfesionales(cbProfBuscador, SECTACT, cbDestinoBuscador);
             }
+        }
+
+        private void btnImprimirEfectivo_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

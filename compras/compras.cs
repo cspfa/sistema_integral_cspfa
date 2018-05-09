@@ -28,6 +28,7 @@ namespace SOCIOS
         private string BUSCO_QUERY { get; set; }
         private string ACCION { get; set; }
         private decimal SUMA_ART { get; set; }
+        private string S_AJUSTE { get; set; }
         
         List<ART_SOL> LISTA_ART_SOL;
         List<ART_SOL_FILTRO> LISTA_ART_SOL_FILTRO;
@@ -39,6 +40,7 @@ namespace SOCIOS
         public compras()
         {
             InitializeComponent();
+            comboAjuste(cbAjuste);
             comboDescuento(cbDescuento);
             comboDescuento(cbDescGlobal);
             comboTipoProveedor();
@@ -159,6 +161,13 @@ namespace SOCIOS
             {
                 MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS");
             }
+        }
+
+        private void comboAjuste(ComboBox COMBO)
+        {
+            COMBO.Items.Add("+");
+            COMBO.Items.Add("-");
+            COMBO.SelectedIndex = 1;
         }
 
         private void comboDescuento(ComboBox COMBO)
@@ -1103,6 +1112,7 @@ namespace SOCIOS
                 int ID_FACTURA_MADRE = int.Parse(lbID.Text);
                 int DESCUENTO_FACTURA_HIJA = 0;
                 string TIPO_DESC_FACTURA_HIJA = "";
+              
 
                 try
                 {
@@ -1121,7 +1131,7 @@ namespace SOCIOS
                                 Cursor = Cursors.WaitCursor;
                                 BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
                                 OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
-                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA, "0");
+                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA, "0", S_AJUSTE);
                                 Cursor = Cursors.Default;
                             }
                         }
@@ -3679,7 +3689,6 @@ namespace SOCIOS
             int FACTURAS_HIJAS = dgFacturasHijas.Rows.Count;
             string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
             bool CHECK_P_F = checkProveedorFactura();
-
             decimal IMPORTE_FACTURA = decimal.Parse(tbImporte.Text.Trim());
             string IF = string.Format("{0:n}", IMPORTE_FACTURA);
 
@@ -3688,8 +3697,24 @@ namespace SOCIOS
                 SUMA_ART = SUMA_ART + decimal.Parse(row.Cells["IMPORTE"].Value.ToString());
             }
 
+            if (tbAjuste.Text != "0")
+            {
+                decimal AJUSTE = decimal.Parse(tbAjuste.Text);
+                string OPERACION = cbAjuste.Text;
+                S_AJUSTE = OPERACION + AJUSTE.ToString();
+
+                if (OPERACION == "-")
+                {
+                    SUMA_ART = SUMA_ART - AJUSTE;
+                }
+
+                if (OPERACION == "+")
+                {
+                    SUMA_ART = SUMA_ART + AJUSTE;
+                }
+            }
+
             string SA = string.Format("{0:n}", SUMA_ART);
-            //MessageBox.Show(SA.ToString());
 
             if (cbProveedores.SelectedValue == "")
             {
@@ -3761,7 +3786,7 @@ namespace SOCIOS
                     Cursor = Cursors.WaitCursor;
 
                     BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL,
-                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO, SOL_COMP);
+                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO, SOL_COMP, S_AJUSTE);
 
                     int ID_FACTURA = int.Parse(mid.m("ID", "FACTURAS"));
 
@@ -4889,7 +4914,8 @@ namespace SOCIOS
 
         private void tbImporte_Leave(object sender, EventArgs e)
         {
-            IMPORTE_TOTAL = decimal.Parse(tbImporte.Text);
+            if (tbImporte.Text!="")
+                IMPORTE_TOTAL = decimal.Parse(tbImporte.Text);
 
             /*if (cbTipoComprobante.SelectedValue.ToString() == "4" && tbImporte.Text != "")
             {

@@ -14,13 +14,45 @@ namespace SOCIOS
     {
         bo dlog = new bo();
 
-        public restablecer994(int ID_TITULAR)
+        public restablecer994(int ID_TITULAR, int NRO_DEP, int NRO_SOC)
         {
             InitializeComponent();
             ID = ID_TITULAR;
+            DE = NRO_DEP;
+            SO = NRO_SOC;
+        }
+
+        private void restablecer994_Load(object sender, EventArgs e)
+        {
+            if (DE == 20)
+            {
+                this.Text = "PASAR DE CABA A PFA";
+                label7.Enabled = false;
+                tbIdEmpleado.Enabled = false;
+            }
+
+            if (DE == 994)
+            {
+                this.Text = "PASAR DE PFA A CABA";
+                label5.Enabled = false;
+                label6.Enabled = false;
+                cbCatSoc.Enabled = false;
+                tbCodDto.Enabled = false;
+            }
+
+            buscarSocio(ID);
+            //string ID_SOCIO = lvDatosSocio.Items[0].SubItems[9].Text;
+            //string NRO_DEP = right(ID_SOCIO, 3);
+            //string NRO_SOC = ID_SOCIO.Replace(NRO_DEP, "");
+            tbNroSoc.Text = SO.ToString();
+            tbNroDep.Text = DE.ToString();
+            tbIdTitular.Text = ID.ToString();
+            comboCatSoc();
         }
 
         private int ID { get; set; }
+        private int DE { get; set; }
+        private int SO { get; set; }
 
         private void buscarSocio(int ID_TITULAR)
         {
@@ -118,36 +150,35 @@ namespace SOCIOS
             cbCatSoc.SelectedItem = 0;
         }
 
-        private void restablecer994_Load(object sender, EventArgs e)
-        {
-            buscarSocio(ID);
-            string ID_SOCIO = lvDatosSocio.Items[0].SubItems[9].Text;
-            string NRO_DEP = right(ID_SOCIO, 3);
-            string NRO_SOC = ID_SOCIO.Replace(NRO_DEP, "");
-            tbNroSoc.Text = NRO_SOC; 
-            tbNroDep.Text = NRO_DEP;
-            tbIdTitular.Text = ID_SOCIO;
-            comboCatSoc();
-        }
-
         private void btnRestablecer_Click(object sender, EventArgs e)
         {
             if (tbCodDto.Text == "")
             {
-                MessageBox.Show("INGRESAR UN COD DTO", "ERROR!");
+                MessageBox.Show("INGRESAR UN CODIGO DE DESCUENTO", "ERROR!");
             }
-            else if (MessageBox.Show("¿CONFIRMA RESTABLECER EL ADHERENTE INTERFUERZA SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            else if (MessageBox.Show("¿CONFIRMA REALIZAR EL TRASPASO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
                     Cursor = Cursors.WaitCursor;
                     int ID_TITULAR = int.Parse(tbIdTitular.Text);
-                    int COD_DTO = int.Parse(tbCodDto.Text);
-                    string CAT_SOC = cbCatSoc.SelectedValue.ToString();
-                    int NRO_SOC = int.Parse(tbNroSoc.Text);
-                    int NRO_DEP = int.Parse(tbNroDep.Text);
-                    int ID_ADH = ID;
-                    dlog.restablecer994(ID_TITULAR, COD_DTO, CAT_SOC, NRO_SOC, NRO_DEP, ID_ADH);
+
+                    if (ID == 20)
+                    {
+                        int COD_DTO = int.Parse(tbCodDto.Text);
+                        string CAT_SOC = cbCatSoc.SelectedValue.ToString();
+                        int NRO_SOC = int.Parse(tbNroSoc.Text);
+                        int NRO_DEP = int.Parse(tbNroDep.Text);
+                        int ID_ADH = ID;
+                    }
+
+                    if (ID == 994)
+                    {
+                    
+                    }
+                    
+                    //int ID_EMP = int.Parse(
+                    //dlog.restablecer994(ID_TITULAR, COD_DTO, CAT_SOC, NRO_SOC, NRO_DEP, ID_ADH);
                     Cursor = Cursors.Default;
                     MessageBox.Show("SOCIO RESTABLECIDO CORRECTAMENTE", "ERROR!");
                 }

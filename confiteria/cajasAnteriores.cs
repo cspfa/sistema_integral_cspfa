@@ -13,8 +13,9 @@ using System.Collections;
 using System.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using SOCIOS;
 
-namespace SOCIOS
+namespace Confiteria
 {
     public partial class cajasAnteriores : Form
     {
@@ -74,7 +75,7 @@ namespace SOCIOS
 
         private void btnImprimirListado_Click(object sender, EventArgs e)
         {
-            confiteria.grillaPreComanda gp = new confiteria.grillaPreComanda();
+            grillaPreComanda gp = new grillaPreComanda();
             int RENDIDA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
             gp.imprimirListado("SI", RENDIDA);
         }

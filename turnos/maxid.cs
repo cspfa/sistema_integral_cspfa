@@ -12,7 +12,7 @@ using System.Collections;
 
 namespace SOCIOS
 {
-    class maxid
+    public class maxid
     {
         bo dlog = new bo();
 
@@ -23,6 +23,25 @@ namespace SOCIOS
             try
             {
                 string query = "SELECT MAX(" + campo + ") FROM " + tabla + ";";
+                DataRow[] foundRows;
+                foundRows = dlog.BO_EjecutoDataTable(query).Select();
+                ret = foundRows[0][0].ToString();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
+            }
+
+            return ret;
+        }
+
+        public string role(string campo, string tabla, string f_role, string v_role)
+        {
+            string ret = string.Empty;
+
+            try
+            {
+                string query = "SELECT MAX(" + campo + ") FROM " + tabla + " WHERE " + f_role + " = '" + v_role + "';";
                 DataRow[] foundRows;
                 foundRows = dlog.BO_EjecutoDataTable(query).Select();
                 ret = foundRows[0][0].ToString();

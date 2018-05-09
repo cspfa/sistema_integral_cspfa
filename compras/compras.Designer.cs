@@ -183,6 +183,7 @@
             this.lbTotalCheques = new System.Windows.Forms.Label();
             this.lvChequesSeleccionados = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.themedGroupBox9 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
+            this.chBancoOP = new System.Windows.Forms.CheckBox();
             this.cbBancosBusca = new System.Windows.Forms.ComboBox();
             this.label72 = new System.Windows.Forms.Label();
             this.cbEstadosCheques = new System.Windows.Forms.ComboBox();
@@ -464,7 +465,9 @@
             this.aNULADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMPLETADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eNTREGADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chBancoOP = new System.Windows.Forms.CheckBox();
+            this.cbAjuste = new System.Windows.Forms.ComboBox();
+            this.tbAjuste = new System.Windows.Forms.TextBox();
+            this.label118 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -683,7 +686,7 @@
             this.themedGroupBox2.GradientEnd = System.Drawing.Color.White;
             this.themedGroupBox2.Location = new System.Drawing.Point(749, 269);
             this.themedGroupBox2.Name = "themedGroupBox2";
-            this.themedGroupBox2.Size = new System.Drawing.Size(292, 106);
+            this.themedGroupBox2.Size = new System.Drawing.Size(292, 122);
             this.themedGroupBox2.TabIndex = 46;
             this.themedGroupBox2.Title = "ARCHIVOS ADJUNTOS";
             this.themedGroupBox2.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -706,7 +709,7 @@
             this.lvAdjuntos.Name = "lvAdjuntos";
             this.lvAdjuntos.ParentContainer = null;
             this.lvAdjuntos.ShowItemToolTips = true;
-            this.lvAdjuntos.Size = new System.Drawing.Size(288, 84);
+            this.lvAdjuntos.Size = new System.Drawing.Size(288, 98);
             this.lvAdjuntos.TabIndex = 5;
             this.lvAdjuntos.UseCompatibleStateImageBehavior = false;
             this.lvAdjuntos.View = System.Windows.Forms.View.Details;
@@ -716,6 +719,9 @@
             // 
             this.grupoAltaFactura.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.grupoAltaFactura.BorderColor = System.Drawing.Color.SteelBlue;
+            this.grupoAltaFactura.Controls.Add(this.cbAjuste);
+            this.grupoAltaFactura.Controls.Add(this.tbAjuste);
+            this.grupoAltaFactura.Controls.Add(this.label118);
             this.grupoAltaFactura.Controls.Add(this.tbSolComp);
             this.grupoAltaFactura.Controls.Add(this.label117);
             this.grupoAltaFactura.Controls.Add(this.cbDescGlobal);
@@ -745,7 +751,7 @@
             this.grupoAltaFactura.GradientEnd = System.Drawing.Color.White;
             this.grupoAltaFactura.Location = new System.Drawing.Point(2, 269);
             this.grupoAltaFactura.Name = "grupoAltaFactura";
-            this.grupoAltaFactura.Size = new System.Drawing.Size(748, 106);
+            this.grupoAltaFactura.Size = new System.Drawing.Size(748, 122);
             this.grupoAltaFactura.TabIndex = 44;
             this.grupoAltaFactura.Title = "ALTA / MODIFICACION";
             this.grupoAltaFactura.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -882,7 +888,7 @@
             // lbArchivoAdjunto
             // 
             this.lbArchivoAdjunto.AutoSize = true;
-            this.lbArchivoAdjunto.Location = new System.Drawing.Point(452, 80);
+            this.lbArchivoAdjunto.Location = new System.Drawing.Point(47, 102);
             this.lbArchivoAdjunto.Name = "lbArchivoAdjunto";
             this.lbArchivoAdjunto.Size = new System.Drawing.Size(154, 13);
             this.lbArchivoAdjunto.TabIndex = 20;
@@ -1238,9 +1244,9 @@
             this.grupoArticulos.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
             this.grupoArticulos.GradientBegin = System.Drawing.Color.White;
             this.grupoArticulos.GradientEnd = System.Drawing.Color.White;
-            this.grupoArticulos.Location = new System.Drawing.Point(2, 375);
+            this.grupoArticulos.Location = new System.Drawing.Point(2, 391);
             this.grupoArticulos.Name = "grupoArticulos";
-            this.grupoArticulos.Size = new System.Drawing.Size(1039, 239);
+            this.grupoArticulos.Size = new System.Drawing.Size(1039, 223);
             this.grupoArticulos.TabIndex = 45;
             this.grupoArticulos.Title = "ARTICULOS";
             this.grupoArticulos.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -1253,14 +1259,14 @@
             // 
             this.cbDescuento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDescuento.FormattingEnabled = true;
-            this.cbDescuento.Location = new System.Drawing.Point(621, 33);
+            this.cbDescuento.Location = new System.Drawing.Point(621, 32);
             this.cbDescuento.Name = "cbDescuento";
             this.cbDescuento.Size = new System.Drawing.Size(34, 21);
             this.cbDescuento.TabIndex = 5;
             // 
             // tbDescuento
             // 
-            this.tbDescuento.Location = new System.Drawing.Point(577, 33);
+            this.tbDescuento.Location = new System.Drawing.Point(577, 32);
             this.tbDescuento.Name = "tbDescuento";
             this.tbDescuento.Size = new System.Drawing.Size(38, 20);
             this.tbDescuento.TabIndex = 4;
@@ -1268,7 +1274,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(535, 37);
+            this.label22.Location = new System.Drawing.Point(535, 36);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(36, 13);
             this.label22.TabIndex = 54;
@@ -1321,7 +1327,7 @@
             dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgArticulos.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dgArticulos.Location = new System.Drawing.Point(2, 65);
+            this.dgArticulos.Location = new System.Drawing.Point(2, 64);
             this.dgArticulos.Margin = new System.Windows.Forms.Padding(5);
             this.dgArticulos.Name = "dgArticulos";
             this.dgArticulos.ReadOnly = true;
@@ -1338,7 +1344,7 @@
             this.dgArticulos.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgArticulos.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgArticulos.Size = new System.Drawing.Size(1023, 173);
+            this.dgArticulos.Size = new System.Drawing.Size(1023, 156);
             this.dgArticulos.TabIndex = 46;
             this.dgArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgArticulos_CellClick);
             // 
@@ -1406,7 +1412,7 @@
             // cbTipoArticulo
             // 
             this.cbTipoArticulo.FormattingEnabled = true;
-            this.cbTipoArticulo.Location = new System.Drawing.Point(843, 33);
+            this.cbTipoArticulo.Location = new System.Drawing.Point(843, 32);
             this.cbTipoArticulo.Name = "cbTipoArticulo";
             this.cbTipoArticulo.Size = new System.Drawing.Size(176, 21);
             this.cbTipoArticulo.TabIndex = 7;
@@ -1414,7 +1420,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(805, 37);
+            this.label19.Location = new System.Drawing.Point(805, 36);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(32, 13);
             this.label19.TabIndex = 17;
@@ -1422,7 +1428,7 @@
             // 
             // tbValor
             // 
-            this.tbValor.Location = new System.Drawing.Point(450, 33);
+            this.tbValor.Location = new System.Drawing.Point(450, 32);
             this.tbValor.Name = "tbValor";
             this.tbValor.Size = new System.Drawing.Size(79, 20);
             this.tbValor.TabIndex = 3;
@@ -1430,7 +1436,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(661, 37);
+            this.label18.Location = new System.Drawing.Point(661, 36);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(47, 13);
             this.label18.TabIndex = 9;
@@ -1439,7 +1445,7 @@
             // tbSerie
             // 
             this.tbSerie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbSerie.Location = new System.Drawing.Point(714, 33);
+            this.tbSerie.Location = new System.Drawing.Point(714, 32);
             this.tbSerie.Name = "tbSerie";
             this.tbSerie.Size = new System.Drawing.Size(85, 20);
             this.tbSerie.TabIndex = 6;
@@ -1447,7 +1453,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(403, 37);
+            this.label17.Location = new System.Drawing.Point(403, 36);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(43, 13);
             this.label17.TabIndex = 6;
@@ -1456,7 +1462,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(68, 37);
+            this.label16.Location = new System.Drawing.Point(68, 36);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(55, 13);
             this.label16.TabIndex = 4;
@@ -1465,7 +1471,7 @@
             // tbDetalle
             // 
             this.tbDetalle.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbDetalle.Location = new System.Drawing.Point(129, 33);
+            this.tbDetalle.Location = new System.Drawing.Point(129, 32);
             this.tbDetalle.Name = "tbDetalle";
             this.tbDetalle.Size = new System.Drawing.Size(266, 20);
             this.tbDetalle.TabIndex = 2;
@@ -1473,7 +1479,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 37);
+            this.label15.Location = new System.Drawing.Point(7, 36);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(14, 13);
             this.label15.TabIndex = 2;
@@ -1481,7 +1487,7 @@
             // 
             // tbCantidad
             // 
-            this.tbCantidad.Location = new System.Drawing.Point(27, 33);
+            this.tbCantidad.Location = new System.Drawing.Point(27, 32);
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(35, 20);
             this.tbCantidad.TabIndex = 1;
@@ -1505,9 +1511,9 @@
             this.gbFacturas.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
             this.gbFacturas.GradientBegin = System.Drawing.Color.White;
             this.gbFacturas.GradientEnd = System.Drawing.Color.White;
-            this.gbFacturas.Location = new System.Drawing.Point(2, 375);
+            this.gbFacturas.Location = new System.Drawing.Point(2, 391);
             this.gbFacturas.Name = "gbFacturas";
-            this.gbFacturas.Size = new System.Drawing.Size(1039, 239);
+            this.gbFacturas.Size = new System.Drawing.Size(1039, 223);
             this.gbFacturas.TabIndex = 55;
             this.gbFacturas.Title = "FACTURAS";
             this.gbFacturas.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -1571,7 +1577,7 @@
             this.dgFacturasHijas.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgFacturasHijas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgFacturasHijas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgFacturasHijas.Size = new System.Drawing.Size(1023, 171);
+            this.dgFacturasHijas.Size = new System.Drawing.Size(1023, 155);
             this.dgFacturasHijas.TabIndex = 48;
             this.dgFacturasHijas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgFacturasHijas_CellClick);
             // 
@@ -2127,6 +2133,16 @@
             this.themedGroupBox9.TitleShadow = false;
             this.themedGroupBox9.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
             this.themedGroupBox9.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
+            // 
+            // chBancoOP
+            // 
+            this.chBancoOP.AutoSize = true;
+            this.chBancoOP.Location = new System.Drawing.Point(943, 31);
+            this.chBancoOP.Name = "chBancoOP";
+            this.chBancoOP.Size = new System.Drawing.Size(15, 14);
+            this.chBancoOP.TabIndex = 58;
+            this.chBancoOP.UseVisualStyleBackColor = true;
+            this.chBancoOP.CheckedChanged += new System.EventHandler(this.chBancoOP_CheckedChanged);
             // 
             // cbBancosBusca
             // 
@@ -5216,15 +5232,32 @@
             this.eNTREGADAToolStripMenuItem.Text = "Entregada";
             this.eNTREGADAToolStripMenuItem.Click += new System.EventHandler(this.eNTREGADAToolStripMenuItem_Click);
             // 
-            // chBancoOP
+            // cbAjuste
             // 
-            this.chBancoOP.AutoSize = true;
-            this.chBancoOP.Location = new System.Drawing.Point(943, 31);
-            this.chBancoOP.Name = "chBancoOP";
-            this.chBancoOP.Size = new System.Drawing.Size(15, 14);
-            this.chBancoOP.TabIndex = 58;
-            this.chBancoOP.UseVisualStyleBackColor = true;
-            this.chBancoOP.CheckedChanged += new System.EventHandler(this.chBancoOP_CheckedChanged);
+            this.cbAjuste.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAjuste.FormattingEnabled = true;
+            this.cbAjuste.Location = new System.Drawing.Point(509, 75);
+            this.cbAjuste.Name = "cbAjuste";
+            this.cbAjuste.Size = new System.Drawing.Size(34, 21);
+            this.cbAjuste.TabIndex = 60;
+            // 
+            // tbAjuste
+            // 
+            this.tbAjuste.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbAjuste.Location = new System.Drawing.Point(550, 75);
+            this.tbAjuste.Name = "tbAjuste";
+            this.tbAjuste.Size = new System.Drawing.Size(47, 20);
+            this.tbAjuste.TabIndex = 59;
+            this.tbAjuste.Text = "0";
+            // 
+            // label118
+            // 
+            this.label118.AutoSize = true;
+            this.label118.Location = new System.Drawing.Point(454, 79);
+            this.label118.Name = "label118";
+            this.label118.Size = new System.Drawing.Size(48, 13);
+            this.label118.TabIndex = 58;
+            this.label118.Text = "AJUSTE";
             // 
             // compras
             // 
@@ -5762,5 +5795,8 @@
         private System.Windows.Forms.ToolStripMenuItem aNULARORDENDEPAGOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cONFIRMARANULACIÓNToolStripMenuItem;
         private System.Windows.Forms.CheckBox chBancoOP;
+        private System.Windows.Forms.ComboBox cbAjuste;
+        private System.Windows.Forms.TextBox tbAjuste;
+        private System.Windows.Forms.Label label118;
     }
 }

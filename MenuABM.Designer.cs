@@ -140,6 +140,7 @@
             this.hotelXHabitaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.conveniosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.themedStatusStrip1 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedStatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -151,7 +152,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.conveniosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsUpdater = new System.Windows.Forms.ToolStripStatusLabel();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -1163,6 +1164,15 @@
             this.toolStripMenuItem4.Text = "Solicitudes";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click_1);
             // 
+            // conveniosToolStripMenuItem
+            // 
+            this.conveniosToolStripMenuItem.Enabled = false;
+            this.conveniosToolStripMenuItem.Name = "conveniosToolStripMenuItem";
+            this.conveniosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.conveniosToolStripMenuItem.Text = "Convenios";
+            this.conveniosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.conveniosToolStripMenuItem.Click += new System.EventHandler(this.conveniosToolStripMenuItem_Click);
+            // 
             // themedStatusStrip1
             // 
             this.themedStatusStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -1172,7 +1182,8 @@
             this.toolStripStatusLabel2,
             this.toolStripStatusLabel3,
             this.lbVersion,
-            this.lbServidor});
+            this.lbServidor,
+            this.tsUpdater});
             this.themedStatusStrip1.Location = new System.Drawing.Point(120, 592);
             this.themedStatusStrip1.Name = "themedStatusStrip1";
             this.themedStatusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
@@ -1260,14 +1271,12 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // conveniosToolStripMenuItem
+            // tsUpdater
             // 
-            this.conveniosToolStripMenuItem.Enabled = false;
-            this.conveniosToolStripMenuItem.Name = "conveniosToolStripMenuItem";
-            this.conveniosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
-            this.conveniosToolStripMenuItem.Text = "Convenios";
-            this.conveniosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.conveniosToolStripMenuItem.Click += new System.EventHandler(this.conveniosToolStripMenuItem_Click);
+            this.tsUpdater.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsUpdater.Name = "tsUpdater";
+            this.tsUpdater.Size = new System.Drawing.Size(16, 17);
+            this.tsUpdater.Text = "...";
             // 
             // MenuABM
             // 
@@ -1434,5 +1443,6 @@
         private System.Windows.Forms.ToolStripMenuItem planDeCuentaToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conveniosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel tsUpdater;
     }
 }

@@ -294,7 +294,7 @@ namespace SOCIOS
                 if (CAJAS.Length > 0)
                 {
                     int ID; string FECHA; string US_ALTA; string FE_ALTA; decimal INGRESOS_EFECTIVO; decimal INGRESOS_OTROS; decimal SUBTOTAL_INGRESOS; decimal EGRESOS;
-                    decimal SALDO_CAJA; string ROL; decimal TOTAL; int DEPOSITADA; int BANCO; int IMPUTACION; int CAJA_DEPOSITADA; string CODIGO_DEPOSITO; int EXPORTADA;
+                    decimal SALDO_CAJA; string ROL; decimal TOTAL; int DEPOSITADA; int BANCO; int IMPUTACION; int CAJA_DEPOSITADA; string CODIGO_DEPOSITO; int EXPORTADA; int ID_ROL;
 
                     foreach (DataRow ROW_CAJA in CAJAS)
                     {
@@ -302,11 +302,11 @@ namespace SOCIOS
                         FE_ALTA = ROW_CAJA[3].ToString(); INGRESOS_EFECTIVO = decimal.Parse(ROW_CAJA[4].ToString()); INGRESOS_OTROS = decimal.Parse(ROW_CAJA[5].ToString()); 
                         SUBTOTAL_INGRESOS = decimal.Parse(ROW_CAJA[6].ToString()); EGRESOS = decimal.Parse(ROW_CAJA[7].ToString()); SALDO_CAJA = decimal.Parse(ROW_CAJA[8].ToString()); 
                         ROL = ROW_CAJA[9].ToString().Trim(); TOTAL = decimal.Parse(ROW_CAJA[10].ToString()); DEPOSITADA = int.Parse(ROW_CAJA[11].ToString()); BANCO = int.Parse(ROW_CAJA[12].ToString()); 
-                        IMPUTACION = int.Parse(ROW_CAJA[13].ToString()); CAJA_DEPOSITADA = int.Parse(ROW_CAJA[14].ToString()); CODIGO_DEPOSITO = ROW_CAJA[15].ToString().Trim(); 
-                        EXPORTADA = int.Parse(ROW_CAJA[16].ToString());
+                        IMPUTACION = int.Parse(ROW_CAJA[13].ToString()); CAJA_DEPOSITADA = int.Parse(ROW_CAJA[14].ToString()); CODIGO_DEPOSITO = ROW_CAJA[15].ToString().Trim();
+                        EXPORTADA = int.Parse(ROW_CAJA[16].ToString()); ID_ROL = int.Parse(ROW_CAJA[17].ToString());
 
                         CAJA.importarCajaDiaria(FECHA, US_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, ROL, TOTAL, DEPOSITADA, BANCO, IMPUTACION, 
-                        CAJA_DEPOSITADA, CODIGO_DEPOSITO);
+                        CAJA_DEPOSITADA, CODIGO_DEPOSITO, ID_ROL);
 
                         marcarExportado("CAJA_DIARIA", "EXPORTADA", ID);
 
