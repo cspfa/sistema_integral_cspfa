@@ -865,13 +865,13 @@ namespace SOCIOS.bono
              { 
                 if (I==0)
                 {
-                    Recargo = Decimal.Round( (CuotaPura * por) /100 ,2);
+                    Recargo = Decimal.Round( (CuotaPura * por) /1000 ,2);
                     SaldoMonto = CuotaPura + Recargo;
  
                 } else
                 {
                   
-                    Recargo  =Decimal.Round(( SaldoMonto * por)/100,2);
+                    Recargo  =Decimal.Round(( SaldoMonto * por)/1000,2);
                     SaldoMonto = SaldoMonto + Recargo;
                     //SaldoMonto = SaldoMonto - CuotaPura;
                 }

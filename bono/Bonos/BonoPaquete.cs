@@ -159,16 +159,24 @@ namespace SOCIOS.bono
 
         private void Seleccion_Click(object sender, EventArgs e)
         {
-            this.GrillaPersonas_Habilitados(false);
-            fs = new SOCIOS.Turismo.FormSalida(Int32.Parse(cbPaquete.SelectedValue.ToString()));
-            Deseleccionar.Visible = true;
-            Seleccion.Enabled = false;
-            if (fs != null)
-
+            try
             {
-                gpDatos.Visible = true;
-                this.SeteoValorPaquete();
-            
+                this.GrillaPersonas_Habilitados(false);
+                fs = new SOCIOS.Turismo.FormSalida(Int32.Parse(cbPaquete.SelectedValue.ToString()));
+                Deseleccionar.Visible = true;
+                Seleccion.Enabled = false;
+                if (fs != null)
+                {
+                    gpDatos.Visible = true;
+
+                    this.SeteoValorPaquete();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
