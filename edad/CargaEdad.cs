@@ -13,7 +13,7 @@ namespace SOCIOS
 {
     public partial class CargaEdad : Form
     {
-        bo dlog = new bo();
+        bo_Bonos dlog = new bo_Bonos();
 
         string ID;
 
@@ -82,55 +82,15 @@ namespace SOCIOS
             string connectionString;
             string QUERY;
 
-
-            if (TIPO == "TIT")
+            try
             {
-                QUERY = "UPDATE TITULAR SET F_NACIM = '" + dpFecha.Value.ToShortDateString() + "' , USR_MOD=" + VGlobales.vp_username + " , FE_MOD='" + System.DateTime.Now.ToShortDateString() + "' WHERE ID_TITULAR=  " + ID + " AND NRO_SOC= " + NRO + " AND NRO_DEP=" + DEP + " AND BARRA=" + BARRA;
-            }
-            else if (TIPO == "FAM")
-            {
-                QUERY = "UPDATE FAMILIAR SET F_NACFAM= '" + dpFecha.Value.ToShortDateString() + "' , USR_MOD='" + VGlobales.vp_username + "' , FE_MOD='" + System.DateTime.Now.ToShortDateString() + "'  WHERE ID_TITULAR=  " + ID + " AND NRO_SOC= " + NRO + " AND NRO_DEP=" + DEP + " AND BARRA=" + BARRA;
-
-            }
-            else
-            {
-                QUERY = "UPDATE ADHERENT SET F_NACIMADH= '" + dpFecha.Value.ToShortDateString() + "' , USR_MOD='" + VGlobales.vp_username + "' , FE_MOD='" + System.DateTime.Now.ToShortDateString() + "'  WHERE ID_TITULAR=  " + ID + "AND NRO_ADH = " + NRO + "  AND NRO_DEPADH=" + DEP + " AND BARRA=" + BARRA;
-
-            }
+                dlog.Update_Fecha_Nacimiento(dpFecha.Value, Int32.Parse(ID), Int32.Parse(NRO), Int32.Parse(DEP), Int32.Parse(BARRA), TIPO);
 
 
-
-            Datos_ini ini2 = new Datos_ini();
-
-            FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-            cs.DataSource = ini2.Servidor; cs.Port = int.Parse(ini2.Puerto);
-            cs.Database = ini2.Ubicacion;
-            cs.UserID = VGlobales.vp_username;
-            cs.Password = VGlobales.vp_password;
-            cs.Role = VGlobales.vp_role;
-            cs.Dialect = 3;
-            connectionString = cs.ToString();
-
-            using (FbConnection connection = new FbConnection(connectionString))
-            {
-            
-
-               
-
-                connection.Open();
-                FbTransaction transaction = connection.BeginTransaction();
-                FbCommand cmd = new FbCommand(QUERY, connection, transaction);
-                cmd.CommandText = QUERY;
-                cmd.Connection = connection;
-                cmd.CommandType = CommandType.Text;
-
-                cmd.ExecuteNonQuery();
-                transaction.Commit();
-                connection.Dispose();
-            }
-
-            MessageBox.Show("FECHA DE NACIMIENTO CAMBIADA CON EXITO.");
-
+                MessageBox.Show("FECHA DE NACIMIENTO CAMBIADA CON EXITO.");
+            } catch (Exception ex)
+                { MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
         }
         
