@@ -113,6 +113,7 @@ namespace SOCIOS
           vector_contenidos.Add(Nro_Soc);
           vector_contenidos.Add(Nro_Dep);
           vector_contenidos.Add(Barra);
+          vector_contenidos.Add(Tipo);
         
 
           ArrayList vector_tipos = new ArrayList();
@@ -125,6 +126,7 @@ namespace SOCIOS
           vector_tipos.Add("FbDbType.Integer");
           vector_tipos.Add("FbDbType.Integer");
           vector_tipos.Add("FbDbType.Integer");
+          vector_tipos.Add("FbDbType.VarChar");
          
           ArrayList vector_nombres = new ArrayList();
 
