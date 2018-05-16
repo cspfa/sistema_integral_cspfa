@@ -162,6 +162,7 @@ namespace SOCIOS.Turismo
                 decimal  Invitado     = decimal.Parse(tbPrecioInvitado.Text);
                 decimal  InterCirculo = decimal.Parse(tbPrecioInterCirculo.Text);
                 decimal Menor         = decimal.Parse(tbMenor.Text);
+                decimal CocheCama     = decimal.Parse(tbCocheCama.Text);
                 int      Regimen      = Int32.Parse  ( cbRegimen.SelectedValue.ToString()  );
                 int      Traslado     = Int32.Parse(cbTraslado.SelectedValue.ToString());
                 int      Tipo         = Int32.Parse(cbTipo.SelectedValue.ToString());
@@ -180,9 +181,9 @@ namespace SOCIOS.Turismo
                     throw new Exception("El Valor Menor No Puede ser 0");
 
                 if (Modo =="INS")
-                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked);
+                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked,CocheCama);
                 else
-                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked);
+                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked,CocheCama);
                     
 
                 this.UpdateGrilla();
@@ -221,7 +222,7 @@ namespace SOCIOS.Turismo
              cbAgotado.Checked =Convert.ToBoolean(salida.Agotado);
              cbDestacado.Checked = Convert.ToBoolean(salida.Destacado);
              dtSalida.Value = salida.Fecha;
-
+             tbCocheCama.Text = salida.Coche_Cama.ToString();
              if (salida.Diaria == 1)
              {
                  cbDiaria.Checked = true;
@@ -405,6 +406,11 @@ namespace SOCIOS.Turismo
 
         {
             dtSalida.Visible = !Diaria;
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+
         }
 
 

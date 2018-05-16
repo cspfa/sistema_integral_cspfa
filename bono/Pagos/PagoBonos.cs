@@ -858,6 +858,7 @@ namespace SOCIOS.bono
             decimal Recargo = 0;
             decimal RecargoCuota =0;
             int contador = 0;
+            decimal Capital = 0;
 
             
             for(int I=0;I<Cuotas;I++)
@@ -865,14 +866,20 @@ namespace SOCIOS.bono
              { 
                 if (I==0)
                 {
-                    Recargo = Decimal.Round( (CuotaPura * por) /1000 ,2);
-                    SaldoMonto = CuotaPura + Recargo;
+                   // Recargo = Decimal.Round( (CuotaPura * por) /1000 ,2);
+                    
+                    Capital = Saldo - CuotaPura;
+                    Recargo = Decimal.Round((Saldo* por) / 1000, 2);
+                    SaldoMonto = Recargo;
+                    
  
                 } else
                 {
                   
-                    Recargo  =Decimal.Round(( SaldoMonto * por)/1000,2);
+                    Recargo  =Decimal.Round(( Capital * por)/1000,2);
                     SaldoMonto = SaldoMonto + Recargo;
+                    Capital = Capital - CuotaPura;
+                    
                     //SaldoMonto = SaldoMonto - CuotaPura;
                 }
 
@@ -885,7 +892,7 @@ namespace SOCIOS.bono
 
 
             lbGestion.Visible = true;
-            lbGestion.Text = "Gastos Gestion  $ " + Decimal.Round(SaldoMonto - CuotaPura,2).ToString();
+            lbGestion.Text = "Gastos Gestion  $ " + Decimal.Round(SaldoMonto,2).ToString();
             RecargoCuota =  Recargo;
             tbMontoCuotas.Text =  Decimal.Round(SaldoMonto,2).ToString();
 

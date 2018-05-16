@@ -58,6 +58,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.lbMenor = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbCocheCama = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -346,12 +348,33 @@
             this.label15.TabIndex = 28;
             this.label15.Text = "MENOR";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(268, 185);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 13);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "COCHE CAMA";
+            // 
+            // lbCocheCama
+            // 
+            this.lbCocheCama.AutoSize = true;
+            this.lbCocheCama.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCocheCama.Location = new System.Drawing.Point(351, 185);
+            this.lbCocheCama.Name = "lbCocheCama";
+            this.lbCocheCama.Size = new System.Drawing.Size(60, 13);
+            this.lbCocheCama.TabIndex = 31;
+            this.lbCocheCama.Text = "NOMBRE";
+            // 
             // FormSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(674, 239);
+            this.Controls.Add(this.lbCocheCama);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.lbMenor);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.lbObs);
@@ -425,5 +448,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lbMenor;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbCocheCama;
     }
 }

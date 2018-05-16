@@ -42,6 +42,7 @@ namespace SOCIOS.Turismo
         public string   Observaciones    { get; set; }
         public int      Diaria           { get; set; }
         public decimal  Menor            { get; set; }
+        public decimal  Coche_Cama       { get; set; }
 
     
     }
@@ -502,7 +503,7 @@ namespace SOCIOS.Turismo
             string Query = @"SELECT   TS.ID,TS.NOMBRE,TS.FECHA,TS.AGOTADO,TS.PROV_DESDE,TS.PROV_HASTA,TS.OPERADOR,TS.LOC_DESDE,
                              TS.LOC_HASTA,TS.SOCIO,TS.INVITADO,TS.INTERCIRCULO,TS.ESTADIA,TS.REGIMEN,TS.TRASLADO,TS.TIPO,
                              TS.HOTEL,TS.HOTEL_NOMBRE,TS.DESTACADO,TS.MONEDA,TS.U_BAJA,TS.F_BAJA,TS.OBSERVACIONES,PD.NOMBRE,
-                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA,TS.MENOR
+                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA,TS.MENOR,TS.COCHE_CAMA
                              FROM  TURISMO_SALIDA TS ,
                              PROVINCIA PD,
                              PROVINCIA PH, 
@@ -557,6 +558,10 @@ namespace SOCIOS.Turismo
                 salida.Tipo_Nombre        = foundRows[0][30].ToString();
                 salida.Diaria             = Int32.Parse( foundRows[0][31].ToString());
                 salida.Menor =  Decimal.Round( Decimal.Parse(foundRows[0][32].ToString()) ,2);
+                if (foundRows[0][33].ToString().Length > 0)
+                    salida.Coche_Cama = Decimal.Round(decimal.Parse(foundRows[0][33].ToString()), 2);
+                else
+                    salida.Coche_Cama = 0;
 
             }
 

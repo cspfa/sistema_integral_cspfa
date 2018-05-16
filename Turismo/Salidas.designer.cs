@@ -76,6 +76,8 @@
             this.NuevoBank = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.tbCocheCama = new System.Windows.Forms.TextBox();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -83,6 +85,8 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.tbCocheCama);
+            this.gpDatos.Controls.Add(this.label17);
             this.gpDatos.Controls.Add(this.tbMenor);
             this.gpDatos.Controls.Add(this.label16);
             this.gpDatos.Controls.Add(this.cbDiaria);
@@ -126,7 +130,7 @@
             this.gpDatos.Controls.Add(this.cbProvinciaDesde);
             this.gpDatos.Location = new System.Drawing.Point(12, 236);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(850, 298);
+            this.gpDatos.Size = new System.Drawing.Size(850, 345);
             this.gpDatos.TabIndex = 0;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
@@ -161,7 +165,7 @@
             // 
             // Reset
             // 
-            this.Reset.Location = new System.Drawing.Point(368, 247);
+            this.Reset.Location = new System.Drawing.Point(368, 299);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(148, 36);
             this.Reset.TabIndex = 166;
@@ -171,7 +175,7 @@
             // 
             // btnAgregarProveedor
             // 
-            this.btnAgregarProveedor.Location = new System.Drawing.Point(78, 247);
+            this.btnAgregarProveedor.Location = new System.Drawing.Point(78, 299);
             this.btnAgregarProveedor.Name = "btnAgregarProveedor";
             this.btnAgregarProveedor.Size = new System.Drawing.Size(148, 36);
             this.btnAgregarProveedor.TabIndex = 165;
@@ -217,7 +221,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(665, 247);
+            this.btnSave.Location = new System.Drawing.Point(665, 299);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 36);
             this.btnSave.TabIndex = 21;
@@ -261,7 +265,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 182);
+            this.label11.Location = new System.Drawing.Point(6, 210);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(29, 13);
             this.label11.TabIndex = 156;
@@ -270,7 +274,7 @@
             // tbObs
             // 
             this.tbObs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbObs.Location = new System.Drawing.Point(79, 179);
+            this.tbObs.Location = new System.Drawing.Point(79, 207);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
             this.tbObs.Size = new System.Drawing.Size(761, 62);
@@ -560,12 +564,30 @@
             this.CancelarBank.Text = "Borrar";
             this.CancelarBank.Click += new System.EventHandler(this.CancelarBank_Click);
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(299, 179);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(114, 13);
+            this.label17.TabIndex = 170;
+            this.label17.Text = "Adicional Coche Cama";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
+            // 
+            // tbCocheCama
+            // 
+            this.tbCocheCama.Location = new System.Drawing.Point(435, 176);
+            this.tbCocheCama.Name = "tbCocheCama";
+            this.tbCocheCama.Size = new System.Drawing.Size(70, 20);
+            this.tbCocheCama.TabIndex = 171;
+            this.tbCocheCama.Text = "0";
+            // 
             // Salidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(874, 546);
+            this.ClientSize = new System.Drawing.Size(874, 593);
             this.Controls.Add(this.AccionesGrilla);
             this.Controls.Add(this.dgvSalidas);
             this.Controls.Add(this.gpDatos);
@@ -632,5 +654,7 @@
         private System.Windows.Forms.CheckBox cbDiaria;
         private System.Windows.Forms.TextBox tbMenor;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox tbCocheCama;
     }
 }
