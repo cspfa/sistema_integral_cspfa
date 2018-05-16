@@ -48,17 +48,18 @@
             this.dpFechaBono = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.InfoInvi = new System.Windows.Forms.Label();
+            this.InfoMenor = new System.Windows.Forms.Label();
+            this.infoInter = new System.Windows.Forms.Label();
+            this.infoSocio = new System.Windows.Forms.Label();
             this.tbMenor = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbInterCirculo = new System.Windows.Forms.TextBox();
             this.tbInvitados = new System.Windows.Forms.TextBox();
             this.tbSocios = new System.Windows.Forms.TextBox();
-            this.infoSocio = new System.Windows.Forms.Label();
-            this.infoInter = new System.Windows.Forms.Label();
             this.tbObs = new System.Windows.Forms.TextBox();
-            this.InfoMenor = new System.Windows.Forms.Label();
-            this.InfoInvi = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.cbCocheCama = new System.Windows.Forms.CheckBox();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -275,6 +276,56 @@
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label5.Location = new System.Drawing.Point(14, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(497, 13);
+            this.label5.TabIndex = 145;
+            this.label5.Text = "LO INDICADO EN CADA CAMPO DE TARIFA ES EL PRECIO INDIVIDUAL CARGADO EN LA SALIDA";
+            // 
+            // InfoInvi
+            // 
+            this.InfoInvi.AutoSize = true;
+            this.InfoInvi.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.InfoInvi.Location = new System.Drawing.Point(566, 54);
+            this.InfoInvi.Name = "InfoInvi";
+            this.InfoInvi.Size = new System.Drawing.Size(32, 13);
+            this.InfoInvi.TabIndex = 144;
+            this.InfoInvi.Text = "INFO";
+            // 
+            // InfoMenor
+            // 
+            this.InfoMenor.AutoSize = true;
+            this.InfoMenor.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.InfoMenor.Location = new System.Drawing.Point(566, 86);
+            this.InfoMenor.Name = "InfoMenor";
+            this.InfoMenor.Size = new System.Drawing.Size(32, 13);
+            this.InfoMenor.TabIndex = 143;
+            this.InfoMenor.Text = "INFO";
+            // 
+            // infoInter
+            // 
+            this.infoInter.AutoSize = true;
+            this.infoInter.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.infoInter.Location = new System.Drawing.Point(282, 82);
+            this.infoInter.Name = "infoInter";
+            this.infoInter.Size = new System.Drawing.Size(32, 13);
+            this.infoInter.TabIndex = 142;
+            this.infoInter.Text = "INFO";
+            // 
+            // infoSocio
+            // 
+            this.infoSocio.AutoSize = true;
+            this.infoSocio.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.infoSocio.Location = new System.Drawing.Point(282, 54);
+            this.infoSocio.Name = "infoSocio";
+            this.infoSocio.Size = new System.Drawing.Size(32, 13);
+            this.infoSocio.TabIndex = 141;
+            this.infoSocio.Text = "INFO";
+            // 
             // tbMenor
             // 
             this.tbMenor.Location = new System.Drawing.Point(475, 79);
@@ -316,26 +367,6 @@
             this.tbSocios.TabIndex = 136;
             this.tbSocios.TextChanged += new System.EventHandler(this.tbSocios_TextChanged);
             // 
-            // infoSocio
-            // 
-            this.infoSocio.AutoSize = true;
-            this.infoSocio.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.infoSocio.Location = new System.Drawing.Point(282, 54);
-            this.infoSocio.Name = "infoSocio";
-            this.infoSocio.Size = new System.Drawing.Size(32, 13);
-            this.infoSocio.TabIndex = 141;
-            this.infoSocio.Text = "INFO";
-            // 
-            // infoInter
-            // 
-            this.infoInter.AutoSize = true;
-            this.infoInter.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.infoInter.Location = new System.Drawing.Point(282, 82);
-            this.infoInter.Name = "infoInter";
-            this.infoInter.Size = new System.Drawing.Size(32, 13);
-            this.infoInter.TabIndex = 142;
-            this.infoInter.Text = "INFO";
-            // 
             // tbObs
             // 
             this.tbObs.Location = new System.Drawing.Point(50, 578);
@@ -345,40 +376,21 @@
             this.tbObs.TabIndex = 108;
             this.tbObs.TextChanged += new System.EventHandler(this.tbObs_TextChanged);
             // 
-            // InfoMenor
+            // cbCocheCama
             // 
-            this.InfoMenor.AutoSize = true;
-            this.InfoMenor.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.InfoMenor.Location = new System.Drawing.Point(566, 86);
-            this.InfoMenor.Name = "InfoMenor";
-            this.InfoMenor.Size = new System.Drawing.Size(32, 13);
-            this.InfoMenor.TabIndex = 143;
-            this.InfoMenor.Text = "INFO";
-            // 
-            // InfoInvi
-            // 
-            this.InfoInvi.AutoSize = true;
-            this.InfoInvi.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.InfoInvi.Location = new System.Drawing.Point(566, 54);
-            this.InfoInvi.Name = "InfoInvi";
-            this.InfoInvi.Size = new System.Drawing.Size(32, 13);
-            this.InfoInvi.TabIndex = 144;
-            this.InfoInvi.Text = "INFO";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label5.Location = new System.Drawing.Point(14, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(497, 13);
-            this.label5.TabIndex = 145;
-            this.label5.Text = "LO INDICADO EN CADA CAMPO DE TARIFA ES EL PRECIO INDIVIDUAL CARGADO EN LA SALIDA";
+            this.cbCocheCama.AutoSize = true;
+            this.cbCocheCama.Location = new System.Drawing.Point(217, 409);
+            this.cbCocheCama.Name = "cbCocheCama";
+            this.cbCocheCama.Size = new System.Drawing.Size(131, 17);
+            this.cbCocheCama.TabIndex = 133;
+            this.cbCocheCama.Text = "Precio c/Coche Cama";
+            this.cbCocheCama.UseVisualStyleBackColor = true;
             // 
             // BonoPaquete
             // 
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(955, 675);
+            this.Controls.Add(this.cbCocheCama);
             this.Controls.Add(this.Deseleccionar);
             this.Controls.Add(this.Seleccion);
             this.Controls.Add(this.InfoPaquete);
@@ -433,5 +445,6 @@
         private System.Windows.Forms.Label infoInter;
         private System.Windows.Forms.Label infoSocio;
         private System.Windows.Forms.TextBox tbObs;
+        private System.Windows.Forms.CheckBox cbCocheCama;
     }
 }

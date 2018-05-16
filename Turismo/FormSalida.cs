@@ -37,7 +37,8 @@ namespace SOCIOS.Turismo
             lbIntercirculo.Text = salida.InterCirculo.ToString("0.##");
             lbInvitado.Text = salida.Invitado.ToString("0.##");
             lbObs.Text = salida.Observaciones;
-            lbMenor.Text = salida.Menor.ToString("0.##"); ;
+            lbMenor.Text = salida.Menor.ToString("0.##"); 
+            lbCocheCama.Text = salida.Coche_Cama.ToString("0.##"); 
         
         
         

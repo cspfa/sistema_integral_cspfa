@@ -189,6 +189,7 @@ namespace SOCIOS.bono
            decimal totalInter = 0;
            decimal totalInvi = 0;
            decimal totalMenor = 0;
+           decimal CocheCama = 0;
            tbSocios.Text = "0";
            tbInvitados.Text = "0";
            tbMenor.Text = "0";
@@ -203,6 +204,7 @@ namespace SOCIOS.bono
            totalInter = salida.InterCirculo * Intercirculo;
            totalInvi = salida.Invitado * Invitado;
            totalMenor = salida.Menor * MenorPaquete;
+
        
            this.TotalizarTipo(tbSocios, Socios, salida.Socio, totalSocio);
            this.TotalizarTipo(tbInterCirculo, Intercirculo, salida.InterCirculo, totalInter);
@@ -216,13 +218,22 @@ namespace SOCIOS.bono
            InfoMenor.Text = salida.Menor.ToString("0.##");
            infoSocio.Text = salida.Socio.ToString("0.##");
            Fecha_Salida = salida.Fecha;
+           
+
 
         }
 
         private void TotalizarTipo(TextBox tb, int Cantidad, decimal Monto,decimal Total)
         {
+            decimal CocheCama=0;
+
+            if (cbCocheCama.Checked)
+            {
+                CocheCama = salida.Coche_Cama;
+            }
+            
             if (Total != 0)
-               tb.Text = (Cantidad * Monto).ToString("0.##");
+               tb.Text = (Cantidad * (Monto+CocheCama)).ToString("0.##");
             else
                 tb.Text ="";
         }
