@@ -60,6 +60,7 @@
             this.tbSocios = new System.Windows.Forms.TextBox();
             this.tbObs = new System.Windows.Forms.TextBox();
             this.cbCocheCama = new System.Windows.Forms.CheckBox();
+            this.lbLeyendaCocheCama = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -249,6 +250,7 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.lbLeyendaCocheCama);
             this.gpDatos.Controls.Add(this.label5);
             this.gpDatos.Controls.Add(this.InfoInvi);
             this.gpDatos.Controls.Add(this.InfoMenor);
@@ -386,6 +388,16 @@
             this.cbCocheCama.Text = "Precio c/Coche Cama";
             this.cbCocheCama.UseVisualStyleBackColor = true;
             // 
+            // lbLeyendaCocheCama
+            // 
+            this.lbLeyendaCocheCama.AutoSize = true;
+            this.lbLeyendaCocheCama.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbLeyendaCocheCama.Location = new System.Drawing.Point(21, 132);
+            this.lbLeyendaCocheCama.Name = "lbLeyendaCocheCama";
+            this.lbLeyendaCocheCama.Size = new System.Drawing.Size(272, 13);
+            this.lbLeyendaCocheCama.TabIndex = 146;
+            this.lbLeyendaCocheCama.Text = "LAS TARIFAS INCLUYEN EL PAGO DE COCHE CAMA";
+            // 
             // BonoPaquete
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -446,5 +458,6 @@
         private System.Windows.Forms.Label infoSocio;
         private System.Windows.Forms.TextBox tbObs;
         private System.Windows.Forms.CheckBox cbCocheCama;
+        private System.Windows.Forms.Label lbLeyendaCocheCama;
     }
 }

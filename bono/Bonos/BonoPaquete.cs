@@ -218,7 +218,10 @@ namespace SOCIOS.bono
            InfoMenor.Text = salida.Menor.ToString("0.##");
            infoSocio.Text = salida.Socio.ToString("0.##");
            Fecha_Salida = salida.Fecha;
-           
+           if (cbCocheCama.Checked)
+               lbLeyendaCocheCama.Visible = true;
+           else
+               lbLeyendaCocheCama.Visible = false;
 
 
         }
