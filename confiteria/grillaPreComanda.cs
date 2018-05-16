@@ -19,7 +19,7 @@ namespace Confiteria
 {
     public partial class grillaPreComanda : Form
     {
-        SOCIOS.bo dlog = new bo();
+        bo dlog = new bo();
 
         public grillaPreComanda()
         {
@@ -104,9 +104,9 @@ namespace Confiteria
             QUERY = QUERY + " A.APELLIDO, A.NOMBRE, A.TIP_SOCIO, A.ROL, A.ID_DESTINO, A.ID_PROFESIONAL, A.SECUENCIA, A.BARRA, A.COD_DTO, SA.DETALLE, P.NOMBRE AS NOMBREPROF,";
             QUERY = QUERY + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.MOROSO";
             QUERY = QUERY + " FROM INGRESOS_A_PROCESAR A, SECTACT SA, PROFESIONALES P";
-            QUERY = QUERY + " WHERE A.ROL IN (SELECT B.ROL FROM SECTACT B WHERE B.ID IN (SELECT C.SECTACT FROM ARANCELES C))";
-            QUERY = QUERY + " AND A.ID_DESTINO IN (SELECT D.SECTACT FROM ARANCELES D) ";
-            QUERY = QUERY + " AND A.NRO_SOC != 300 AND A.NRO_SOC != 200";
+            //QUERY = QUERY + " WHERE A.ROL IN (SELECT B.ROL FROM SECTACT B WHERE B.ID IN (SELECT C.SECTACT FROM ARANCELES C))";
+            //QUERY = QUERY + " AND A.ID_DESTINO IN (SELECT D.SECTACT FROM ARANCELES D) ";
+            QUERY = QUERY + " WHERE A.NRO_SOC != 300 AND A.NRO_SOC != 200";
 
             if (FECHA == "XXX")
             {
@@ -299,7 +299,7 @@ namespace Confiteria
         {
             try
             {
-                string QUERY = "SELECT MESA, ESTADO, DESDE, SOCIO, ID_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO FROM CONFITERIA_TEMP_MESAS ORDER BY MESA ASC;";
+                string QUERY = "SELECT MESA, ESTADO, DESDE, SOCIO, ID_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO, NRO, NRO_COMANDA FROM CONFITERIA_TEMP_MESAS WHERE ROL = '" + VGlobales.vp_role + "' ORDER BY NRO ASC;";
                 DataSet ds1 = new DataSet();
                 conString conString = new conString();
                 string connectionString = conString.get();
@@ -314,19 +314,23 @@ namespace Confiteria
                     dt1.Columns.Add("DESDE", typeof(string));
                     dt1.Columns.Add("NOMBRE Y APELLIDO", typeof(string));
                     dt1.Columns.Add("COM", typeof(string));
+                    //ocultos
                     dt1.Columns.Add("NRO_SOC", typeof(string));
                     dt1.Columns.Add("NRO_DEP", typeof(string));
                     dt1.Columns.Add("BARRA", typeof(string));
                     dt1.Columns.Add("SECUENCIA", typeof(string));
                     dt1.Columns.Add("PE", typeof(string));
                     dt1.Columns.Add("PA", typeof(string));
+                    dt1.Columns.Add("ID_MESA", typeof(string));
+                    dt1.Columns.Add("ID_COMANDA", typeof(string));
+                    //ocultos
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(QUERY, connection, transaction);
                     FbDataReader reader3 = cmd.ExecuteReader();
 
                     while (reader3.Read())
                     {
-                        string MESA = reader3.GetString(reader3.GetOrdinal("MESA")).Trim();
+                        string MESA = reader3.GetString(reader3.GetOrdinal("NRO")).Trim();
                         string ESTADO = reader3.GetString(reader3.GetOrdinal("ESTADO")).Trim();
                         string DESDE = reader3.GetString(reader3.GetOrdinal("DESDE")).Trim();
                         string SOCIO = reader3.GetString(reader3.GetOrdinal("SOCIO")).Trim();
@@ -337,7 +341,9 @@ namespace Confiteria
                         string SECUENCIA = reader3.GetString(reader3.GetOrdinal("SECUENCIA")).Trim();
                         string PERSONAS = reader3.GetString(reader3.GetOrdinal("PERSONAS"));
                         string FORMA_DE_PAGO = reader3.GetString(reader3.GetOrdinal("FORMA_DE_PAGO"));
-                        dt1.Rows.Add(MESA, ESTADO, DESDE, SOCIO, ID_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO);
+                        string ID_MESA = reader3.GetString(reader3.GetOrdinal("MESA"));
+                        string NRO_COMANDA = reader3.GetString(reader3.GetOrdinal("NRO_COMANDA"));
+                        dt1.Rows.Add(MESA, ESTADO, DESDE, SOCIO, NRO_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO, ID_MESA, ID_COMANDA);
                     }
 
                     reader3.Close();
@@ -353,12 +359,14 @@ namespace Confiteria
                     dgMesas.Columns[8].Visible = false;
                     dgMesas.Columns[9].Visible = false;
                     dgMesas.Columns[10].Visible = false;
+                    dgMesas.Columns[11].Visible = false;
+                    dgMesas.Columns[12].Visible = false;
                     transaction.Commit();
                 }
             }
-            catch
+            catch(Exception e)
             {
-                MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS");
+                MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS\n"+e);
             }
         }
         #endregion
@@ -383,10 +391,9 @@ namespace Confiteria
             }
         }
 
-        public void abrirMesa(int MESA, int ID_COMANDA)
+        public void abrirMesa(int MESA, int ID_COMANDA, string NRO_MESA)
         {
             Cursor = Cursors.WaitCursor;
-            
             int GRUPO = 4;
             string ESTADO_MESA_SEL = dgMesas[1, dgMesas.CurrentCell.RowIndex].Value.ToString();
             DateTime DESDE = DateTime.Now;
@@ -401,7 +408,7 @@ namespace Confiteria
                 string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
                 dlog.abrirMesa(MESA, "ABIERTA", DESDE, SOCIO, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, 1, 1);
                 llenarGrillaMesas();
-                comanda com = new comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1, MOROSO);
+                comanda com = new comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1, MOROSO, NRO_MESA);
                 com.ShowDialog();
             }
             else
@@ -414,7 +421,7 @@ namespace Confiteria
                 int PERSONAS = int.Parse(dgMesas[9, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 int PAGO = int.Parse(dgMesas[10, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-                comanda com = new comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO);
+                comanda com = new comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO, NRO_MESA);
                 com.ShowDialog();
             }
 
@@ -457,8 +464,9 @@ namespace Confiteria
         private void abrirMesaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            int MESA = int.Parse(dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString());
-            abrirMesa(MESA, 0);
+            int MESA = int.Parse(dgMesas[11, dgMesas.CurrentCell.RowIndex].Value.ToString());
+            string NRO_MESA = dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString();
+            abrirMesa(MESA, 0, NRO_MESA);
             buscarIngresos(dpFiltroIngresos.Text, "NO");
             llenarGrillaIngresos(INGRESOS, dataGridView1);
             llenarGrillaMesas();
@@ -468,15 +476,16 @@ namespace Confiteria
 
         private void modificarMesaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgMesas[4, dgMesas.CurrentCell.RowIndex].Value.ToString() == "")
+            if (dgMesas[4, dgMesas.CurrentCell.RowIndex].Value.ToString() == "" || dgMesas[12, dgMesas.CurrentCell.RowIndex].Value.ToString() == "")
             {
                 MessageBox.Show("NO SE ENCONTRO EL NUMERO DE COMANDA", "ERROR");
             }
             else
             {
-                int MESA = int.Parse(dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString());
-                int ID_COMANDA = int.Parse(dgMesas[4, dgMesas.CurrentCell.RowIndex].Value.ToString());
-                abrirMesa(MESA, ID_COMANDA);
+                int MESA = int.Parse(dgMesas[11, dgMesas.CurrentCell.RowIndex].Value.ToString());
+                int ID_COMANDA = int.Parse(dgMesas[12, dgMesas.CurrentCell.RowIndex].Value.ToString());
+                string NRO_MESA = dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString();
+                abrirMesa(MESA, ID_COMANDA, NRO_MESA);
                 buscarIngresos("XXX", "NO");
                 llenarGrillaIngresos(INGRESOS, dataGridView1);
                 llenarGrillaMesas();
@@ -1539,7 +1548,7 @@ namespace Confiteria
 
         private void forzarCierreToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int MESA = int.Parse(dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString());
+            int MESA = int.Parse(dgMesas[11, dgMesas.CurrentCell.RowIndex].Value.ToString());
 
             if (dgMesas[4, dgMesas.CurrentCell.RowIndex].Value.ToString() != "")
             {

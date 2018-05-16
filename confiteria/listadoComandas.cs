@@ -15,7 +15,7 @@ namespace Confiteria
 {
     public partial class listadoComandas : Form
     {
-        SOCIOS.bo dlog = new bo();
+        bo dlog = new bo();
 
         private DataSet ITEMS { get; set; }
         private DataSet COMANDA { get; set; }
@@ -107,13 +107,15 @@ namespace Confiteria
                             {
                                 if (FORMA_DE_PAGO == "10")
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS ";
-                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE + " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " ORDER BY FECHA DESC";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA ";
+                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+                                    QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
                                 else
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS ";
-                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE + " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = " + FORMA_DE_PAGO + " AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " ORDER BY FECHA DESC";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA ";
+                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+                                    QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = " + FORMA_DE_PAGO + " AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
 
                             }
@@ -121,13 +123,15 @@ namespace Confiteria
                             {
                                 if (FORMA_DE_PAGO == "10")
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS ";
-                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE + " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = " + FORMA_DE_PAGO + " AND C.FORMA_DE_PAGO = F.ID AND C.ANULADA IS NOT NULL AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " ORDER BY FECHA DESC";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA ";
+                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+                                    QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = " + FORMA_DE_PAGO + " AND C.FORMA_DE_PAGO = F.ID AND C.ANULADA IS NOT NULL AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
                                 else
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS ";
-                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE + " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.ANULADA IS NOT NULL AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " ORDER BY FECHA DESC";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA ";
+                                    QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+                                    QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.ANULADA IS NOT NULL AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
                             }
                         }
@@ -140,8 +144,8 @@ namespace Confiteria
                     {
                         if (ID_SOLICITUD == 0)
                         {
-                            QUERY = "SELECT D.ID, D.FECHA, D.IMPORTE, D.NOM_SOC, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.ID, C.CONTRALOR, F.DETALLE, D.ANULADA, C.COM_BORRADOR, C.CONSUME ";
-                            QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_SOL_DESC D, FORMAS_DE_PAGO F WHERE F.ID = C.FORMA_DE_PAGO AND D.COMANDA = C.ID AND CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' ORDER BY D.ID DESC;";
+                            QUERY = "SELECT D.ID, D.FECHA, D.IMPORTE, D.NOM_SOC, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.ID, C.CONTRALOR, F.DETALLE, D.ANULADA, C.COM_BORRADOR, C.CONSUME, C.NRO_COMANDA ";
+                            QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_SOL_DESC D, FORMAS_DE_PAGO F WHERE F.ID = C.FORMA_DE_PAGO AND D.COMANDA = C.ID AND CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY D.ID DESC;";
                         }
                         else
                         {
@@ -208,13 +212,14 @@ namespace Confiteria
                     string BORRADOR = row[13].ToString().Trim();
                     string CONSUME = row[14].ToString().Trim();
                     string PERSONAS = "";
+                    string NRO_COMANDA = row[16].ToString().Trim();
 
                     if (cbTipoComprobante.SelectedItem.ToString() != "SOLICITUD DE DESCUENTO")
                     {
                         PERSONAS = row[15].ToString().Trim();
                     }
 
-                    dgComandas.Rows.Add(ID, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS);
+                    dgComandas.Rows.Add(NRO_COMANDA, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS, ID);
                 }
 
                 dgComandas.ClearSelection();
@@ -685,6 +690,7 @@ namespace Confiteria
         {
             Cursor = Cursors.WaitCursor;
             int MESA = 0;
+            string NRO_MESA = "0";
             int SECUENCIA = 0;
             int GROUP = 4;
             int PERSONAS = int.Parse(dgComandas[15, dgComandas.CurrentCell.RowIndex].Value.ToString());
@@ -694,7 +700,7 @@ namespace Confiteria
             string NRO_SOC = dgComandas[5, dgComandas.CurrentCell.RowIndex].Value.ToString();
             string NRO_DEP = dgComandas[6, dgComandas.CurrentCell.RowIndex].Value.ToString();
             string BARRA = dgComandas[7, dgComandas.CurrentCell.RowIndex].Value.ToString();
-            comanda co = new comanda(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA, GROUP, MESA, ID_COMANDA, PERSONAS, PAGO, "N");
+            comanda co = new comanda(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA, GROUP, MESA, ID_COMANDA, PERSONAS, PAGO, "N", NRO_MESA);
             co.ShowDialog();
             llenarGrillaComandas();
             Cursor = Cursors.Default;

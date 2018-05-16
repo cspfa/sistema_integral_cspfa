@@ -20,7 +20,7 @@ namespace Confiteria
 {
     class imprimir
     {
-        SOCIOS.bo dlog = new bo();
+        bo dlog = new bo();
 
         private DataSet COMANDA { get; set; }
         private DataSet SOLICITUD { get; set; }

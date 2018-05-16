@@ -37,6 +37,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgSocio = new System.Windows.Forms.DataGridView();
+            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SECUENCIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AFILIADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BENEFICIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.tbMesa = new System.Windows.Forms.TextBox();
             this.cbSectAct = new System.Windows.Forms.ComboBox();
@@ -63,7 +70,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnQuitarItem = new System.Windows.Forms.Button();
-            this.tbIdComanda = new System.Windows.Forms.TextBox();
+            this.tbNroComanda = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCerrarComanda = new System.Windows.Forms.Button();
             this.tbPersonas = new System.Windows.Forms.TextBox();
@@ -92,13 +99,7 @@
             this.tbDescuento = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.tbComandaBorrador = new System.Windows.Forms.TextBox();
-            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SECUENCIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AFILIADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BENEFICIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbIdComanda = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgSocio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultados)).BeginInit();
@@ -112,7 +113,7 @@
             this.dgSocio.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgSocio.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgSocio.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgSocio.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgSocio.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgSocio.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -161,6 +162,53 @@
             this.dgSocio.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSocio.Size = new System.Drawing.Size(701, 42);
             this.dgSocio.TabIndex = 48;
+            // 
+            // NRO_SOC
+            // 
+            this.NRO_SOC.HeaderText = "NRO_SOC";
+            this.NRO_SOC.Name = "NRO_SOC";
+            this.NRO_SOC.ReadOnly = true;
+            this.NRO_SOC.Visible = false;
+            // 
+            // NRO_DEP
+            // 
+            this.NRO_DEP.HeaderText = "NRO_DEP";
+            this.NRO_DEP.Name = "NRO_DEP";
+            this.NRO_DEP.ReadOnly = true;
+            this.NRO_DEP.Visible = false;
+            // 
+            // BARRA
+            // 
+            this.BARRA.HeaderText = "BARRA";
+            this.BARRA.Name = "BARRA";
+            this.BARRA.ReadOnly = true;
+            this.BARRA.Visible = false;
+            // 
+            // NOMBRE
+            // 
+            this.NOMBRE.HeaderText = "NOMBRE Y APELLIDO";
+            this.NOMBRE.Name = "NOMBRE";
+            this.NOMBRE.ReadOnly = true;
+            this.NOMBRE.Width = 300;
+            // 
+            // SECUENCIA
+            // 
+            this.SECUENCIA.HeaderText = "SECUENCIA";
+            this.SECUENCIA.Name = "SECUENCIA";
+            this.SECUENCIA.ReadOnly = true;
+            this.SECUENCIA.Visible = false;
+            // 
+            // AFILIADO
+            // 
+            this.AFILIADO.HeaderText = "AFILIADO";
+            this.AFILIADO.Name = "AFILIADO";
+            this.AFILIADO.ReadOnly = true;
+            // 
+            // BENEFICIO
+            // 
+            this.BENEFICIO.HeaderText = "BENEFICIO";
+            this.BENEFICIO.Name = "BENEFICIO";
+            this.BENEFICIO.ReadOnly = true;
             // 
             // label1
             // 
@@ -430,13 +478,13 @@
             this.btnQuitarItem.UseVisualStyleBackColor = true;
             this.btnQuitarItem.Click += new System.EventHandler(this.btnQuitarItem_Click);
             // 
-            // tbIdComanda
+            // tbNroComanda
             // 
-            this.tbIdComanda.Location = new System.Drawing.Point(332, 228);
-            this.tbIdComanda.Name = "tbIdComanda";
-            this.tbIdComanda.ReadOnly = true;
-            this.tbIdComanda.Size = new System.Drawing.Size(51, 20);
-            this.tbIdComanda.TabIndex = 52;
+            this.tbNroComanda.Location = new System.Drawing.Point(332, 228);
+            this.tbNroComanda.Name = "tbNroComanda";
+            this.tbNroComanda.ReadOnly = true;
+            this.tbNroComanda.Size = new System.Drawing.Size(51, 20);
+            this.tbNroComanda.TabIndex = 52;
             // 
             // button1
             // 
@@ -701,58 +749,21 @@
             this.tbComandaBorrador.TabIndex = 63;
             this.tbComandaBorrador.Text = "0";
             // 
-            // NRO_SOC
+            // tbIdComanda
             // 
-            this.NRO_SOC.HeaderText = "NRO_SOC";
-            this.NRO_SOC.Name = "NRO_SOC";
-            this.NRO_SOC.ReadOnly = true;
-            this.NRO_SOC.Visible = false;
-            // 
-            // NRO_DEP
-            // 
-            this.NRO_DEP.HeaderText = "NRO_DEP";
-            this.NRO_DEP.Name = "NRO_DEP";
-            this.NRO_DEP.ReadOnly = true;
-            this.NRO_DEP.Visible = false;
-            // 
-            // BARRA
-            // 
-            this.BARRA.HeaderText = "BARRA";
-            this.BARRA.Name = "BARRA";
-            this.BARRA.ReadOnly = true;
-            this.BARRA.Visible = false;
-            // 
-            // NOMBRE
-            // 
-            this.NOMBRE.HeaderText = "NOMBRE Y APELLIDO";
-            this.NOMBRE.Name = "NOMBRE";
-            this.NOMBRE.ReadOnly = true;
-            this.NOMBRE.Width = 300;
-            // 
-            // SECUENCIA
-            // 
-            this.SECUENCIA.HeaderText = "SECUENCIA";
-            this.SECUENCIA.Name = "SECUENCIA";
-            this.SECUENCIA.ReadOnly = true;
-            this.SECUENCIA.Visible = false;
-            // 
-            // AFILIADO
-            // 
-            this.AFILIADO.HeaderText = "AFILIADO";
-            this.AFILIADO.Name = "AFILIADO";
-            this.AFILIADO.ReadOnly = true;
-            // 
-            // BENEFICIO
-            // 
-            this.BENEFICIO.HeaderText = "BENEFICIO";
-            this.BENEFICIO.Name = "BENEFICIO";
-            this.BENEFICIO.ReadOnly = true;
+            this.tbIdComanda.Location = new System.Drawing.Point(332, 202);
+            this.tbIdComanda.Name = "tbIdComanda";
+            this.tbIdComanda.ReadOnly = true;
+            this.tbIdComanda.Size = new System.Drawing.Size(51, 20);
+            this.tbIdComanda.TabIndex = 99;
+            this.tbIdComanda.Visible = false;
             // 
             // comanda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 669);
+            this.Controls.Add(this.tbIdComanda);
             this.Controls.Add(this.tbDescuento);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.cbTipoDeComanda);
@@ -781,7 +792,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCerrarComanda);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.tbIdComanda);
+            this.Controls.Add(this.tbNroComanda);
             this.Controls.Add(this.btnQuitarItem);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.tbTotal);
@@ -831,7 +842,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnQuitarItem;
-        private System.Windows.Forms.TextBox tbIdComanda;
+        private System.Windows.Forms.TextBox tbNroComanda;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCerrarComanda;
         private System.Windows.Forms.TextBox tbPersonas;
@@ -878,5 +889,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SECUENCIA;
         private System.Windows.Forms.DataGridViewTextBoxColumn AFILIADO;
         private System.Windows.Forms.DataGridViewTextBoxColumn BENEFICIO;
+        private System.Windows.Forms.TextBox tbIdComanda;
     }
 }
