@@ -580,6 +580,10 @@ namespace Confiteria
             {
                 MessageBox.Show("NUMERO DE PERSONAS NO ESPECIFICADO", "ERROR");
             }
+            else if (VGlobales.vp_role != "CONFITERIA" && cbFormaDePago.SelectedValue.ToString() == "8")
+            {
+                MessageBox.Show("FORMA DE PAGO NO ACEPTADA", "ERROR");
+            }
             else
             {
                 guardarComanda(MSG);
