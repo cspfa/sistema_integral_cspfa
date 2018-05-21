@@ -892,9 +892,10 @@ namespace SOCIOS.bono
 
 
             lbGestion.Visible = true;
+
             lbGestion.Text = "Gastos Gestion  $ " + Decimal.Round(SaldoMonto,2).ToString();
             RecargoCuota =  Recargo;
-            tbMontoCuotas.Text =  Decimal.Round(SaldoMonto,2).ToString();
+            tbMontoCuotas.Text =  Decimal.Round((Saldo+SaldoMonto)/Cuotas,2).ToString();
 
 
 
