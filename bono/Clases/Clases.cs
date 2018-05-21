@@ -498,5 +498,14 @@ namespace SOCIOS.bono
         public string DES { get; set; }
     
     }
+    public class Comision_Directiva
+    {
+        public int ID                { get; set; }
+        public string CARGO          { get; set; }
+        public string NOMBRE         { get; set; }
+        public string DESCRIPCION    { get; set; }
+
+    
+    }
 }
 
