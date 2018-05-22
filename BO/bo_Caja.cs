@@ -917,8 +917,6 @@ namespace SOCIOS.BO
         //STORED DEPOSITAR CAJA
         public void depositarCaja(int CAJA, int DEPOSITADO, int BANCO, int IMPUTACION, string CODIGO_DEPOSITO)
         {
-
-
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
             ArrayList vector_nombres = new ArrayList();

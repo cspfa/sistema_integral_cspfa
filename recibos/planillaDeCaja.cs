@@ -767,7 +767,7 @@ namespace SOCIOS
             }
 
             maxid mid = new maxid();
-            int CAJA_DIARIA = int.Parse(mid.m("ID", "CAJA_DIARIA"));
+            int CAJA_DIARIA = int.Parse(mid.role("ID", "CAJA_DIARIA", "ROL", VGlobales.vp_role));
             agregarCambio();
             
             foreach (DataGridViewRow row in dgComposicion.Rows)
@@ -1011,10 +1011,10 @@ namespace SOCIOS
                 string query = "";
                 
                 if (DEPO == 0)
-                    query = "SELECT * FROM CAJA_DIARIA_S('" + VGlobales.vp_role + "') WHERE DEPOSITADA IN (0,1,2);";
+                    query = "SELECT ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA, EXPORTADA, ID_ROL FROM CAJA_DIARIA WHERE DEPOSITADA IN (0,1,2) AND ROL = '" + VGlobales.vp_role + "' ORDER BY ID_ROL DESC;";
 
                 if (DEPO == 1)
-                    query = "SELECT * FROM CAJA_DIARIA_S('" + VGlobales.vp_role + "') WHERE DEPOSITADA = 1;";
+                    query = "SELECT ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA, EXPORTADA, ID_ROL FROM CAJA_DIARIA WHERE DEPOSITADA = 1 AND ROL = '" + VGlobales.vp_role + "' ORDER BY ID_ROL DESC;";
 
                 FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
                 cs.DataSource = ini3.Servidor;  cs.Port = int.Parse(ini3.Puerto);
@@ -1041,6 +1041,7 @@ namespace SOCIOS
                     dt1.Columns.Add("SALDO", typeof(string));
                     dt1.Columns.Add("TOTAL", typeof(string));
                     dt1.Columns.Add("DEPOSITADA", typeof(int));
+                    dt1.Columns.Add("ID_ROL", typeof(int));
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(query, connection, transaction);
                     FbDataReader reader = cmd.ExecuteReader();
@@ -1058,7 +1059,8 @@ namespace SOCIOS
                         string SALDO_CAJA = string.Format("{0:n}", reader.GetDecimal(reader.GetOrdinal("SALDO_CAJA")));
                         string TOTAL = string.Format("{0:n}", reader.GetDecimal(reader.GetOrdinal("TOTAL")));
                         string DEPOSITADA = (reader.GetDecimal(reader.GetOrdinal("DEPOSITADA"))).ToString();
-                        dt1.Rows.Add(ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA);
+                        string ID_ROL = (reader.GetDecimal(reader.GetOrdinal("ID_ROL"))).ToString();
+                        dt1.Rows.Add(ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA, ID_ROL);
                     }
 
 
@@ -1086,7 +1088,8 @@ namespace SOCIOS
                     GRILLA.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     GRILLA.Columns[9].Width = 89;
                     GRILLA.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    GRILLA.Columns[10].Visible = false;
+                    GRILLA.Columns[10].Visible = false; //DEPOSITADA
+                    GRILLA.Columns[11].Width = 0; //ID_ROL
                     transaction.Commit();
                 }
             }
@@ -3302,6 +3305,7 @@ namespace SOCIOS
             string CODIGO = "0";
             int IMPUTACION = cuentaBanco(BANCO);
             decimal EFECTIVO = 0;
+            //MessageBox.Show(SELECCION.ToString());
 
             if (SELECCION == 0)
             {
@@ -3335,7 +3339,7 @@ namespace SOCIOS
                 }
                 catch (Exception error)
                 {
-                    MessageBox.Show("NO SE PUDIERON DEPOSITAR LAS CAJAS", "ERROR");
+                    MessageBox.Show("NO SE PUDIERON DEPOSITAR LAS CAJAS\n"+error, "ERROR");
                 }
 
                 Cursor = Cursors.Default;
