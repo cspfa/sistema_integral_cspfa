@@ -816,7 +816,7 @@ namespace SOCIOS
             }
             
             // TURISMO 09-05-2013
-            if ((VGlobales.vp_role.Trim() != "TURISMO") && (VGlobales.vp_role.Trim() != "SISTEMAS") && (VGlobales.vp_role.Trim() != "SERVICIOS MEDICOS") && (VGlobales.vp_role.Trim() != "DEPORTES") && (VGlobales.vp_role.Trim() != "INTERIOR") &&  ! (VGlobales.vp_role.Trim().StartsWith("CPO")))
+            if ((!VGlobales.vp_role.Trim().StartsWith("TURISMO") && (VGlobales.vp_role.Trim() != "SISTEMAS") && (VGlobales.vp_role.Trim() != "SERVICIOS MEDICOS") && (VGlobales.vp_role.Trim() != "DEPORTES") && (VGlobales.vp_role.Trim() != "INTERIOR") &&  ! (VGlobales.vp_role.Trim().StartsWith("CPO"))))
             {
                 TabServicios.Dispose();
                 vp_tabpage = -1;
@@ -894,7 +894,7 @@ namespace SOCIOS
             }
 
             if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
-                || (VGlobales.vp_role.Trim() == "TURISMO") || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA") 
+                || (VGlobales.vp_role.StartsWith("TURISMO")) || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") || (VGlobales.vp_role.Trim() == "CONFITERIA") 
                 || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "CONTADURIA"))
             {
                 nuevo.Enabled = true;
@@ -1470,7 +1470,7 @@ namespace SOCIOS
                 || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA") 
                 || (VGlobales.vp_role.Trim() == "CONFITERIA")
                 || (VGlobales.vp_role.Trim() == "CONTADURIA")
-                || (VGlobales.vp_role.Trim() == "TURISMO"))
+                || (VGlobales.vp_role.Trim().StartsWith("TURISMO")))
             {
                 maskedTextBox2.Text = "012";
                 maskedTextBox2.ReadOnly = true;
@@ -1813,7 +1813,7 @@ namespace SOCIOS
                             string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO = '0014';";
                         }
 
-                        if ((VGlobales.vp_role.Trim() == "TURISMO"))
+                        if ((VGlobales.vp_role.StartsWith("TURISMO")))
                         {
                             string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO IN ('0005', '0008');";
                         }

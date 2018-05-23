@@ -10,11 +10,13 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Collections.Generic;
+using Convenios;
 
 namespace SOCIOS
 {
     public partial class MenuABM : MicroFour.StrataFrame.UI.Windows.Forms.StandardForm
     {
+
         BindingSource BindingSourceFamiliar = new BindingSource();
 
         public MenuABM()
@@ -45,9 +47,6 @@ namespace SOCIOS
             }
 
             lbVersion.Text = "VERSION " + FECHA;
-
-            actSociosUpdate asu = new actSociosUpdate();
-            asu.actualizar();
         }
 
         private void ToolStripMenuItem8_Click(object sender, EventArgs e)
@@ -158,7 +157,7 @@ namespace SOCIOS
                         deportesToolStrip.Enabled = true;
                     }
 
-                    if (VGlobales.vp_role.Trim() == "TURISMO")
+                    if (VGlobales.vp_role.StartsWith("TURISMO"))
                     {
                         turismoToolStripMenuItem.Enabled = true;
                     }
@@ -1648,7 +1647,7 @@ namespace SOCIOS
         private void listadoDeSociosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            Confiteria.grillaPreComanda gpc = new Confiteria.grillaPreComanda();
+            confiteria.grillaPreComanda gpc = new confiteria.grillaPreComanda();
             gpc.ShowDialog();
             Cursor = Cursors.Default;
         }
@@ -1656,7 +1655,7 @@ namespace SOCIOS
         private void listadoDeComandasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            Confiteria.listadoComandas lc = new Confiteria.listadoComandas();
+            confiteria.listadoComandas lc = new confiteria.listadoComandas();
             lc.ShowDialog();
             Cursor = Cursors.Default;
         }
@@ -1937,7 +1936,7 @@ namespace SOCIOS
 
         private void cajasAnterioresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Confiteria.cajasAnteriores ca = new Confiteria.cajasAnteriores();
+            cajasAnteriores ca = new cajasAnteriores();
             ca.ShowDialog();
         }
 
@@ -1949,7 +1948,7 @@ namespace SOCIOS
 
         private void listaDePreciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Confiteria.listadoAranceles la = new Confiteria.listadoAranceles();
+            confiteria.listadoAranceles la = new confiteria.listadoAranceles();
             la.ShowDialog();
         }
 
