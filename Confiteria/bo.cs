@@ -578,7 +578,7 @@ namespace Confiteria
         }
 
         //STORED CAMBIAR MESA
-        public void cambiarMesa(int MESA, string ESTADO, string DESDE, string SOCIO, int ID_COMANDA, int NRO_SOC, int NRO_DEP, int BARRA, int SECUENCIA, int PERSONAS, int PAGO)
+        public void cambiarMesa(int MESA, string ESTADO, string DESDE, string SOCIO, int ID_COMANDA, int NRO_SOC, int NRO_DEP, int BARRA, int SECUENCIA, int PERSONAS, int PAGO, int NRO_COMANDA)
         {
             SOCIOS.db resultado = new SOCIOS.db();
 
@@ -594,12 +594,14 @@ namespace Confiteria
             vector_contenidos.Add(SECUENCIA);
             vector_contenidos.Add(PERSONAS);
             vector_contenidos.Add(PAGO);
+            vector_contenidos.Add(NRO_COMANDA);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Date");
             vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -620,6 +622,7 @@ namespace Confiteria
             vector_nombres.Add("@SECUENCIA");
             vector_nombres.Add("@PERSONAS");
             vector_nombres.Add("@PAGO");
+            vector_nombres.Add("@NRO_COMANDA");
 
             string vprocedure = "CONFITERIA_TEMP_MESAS_CAMBIAR";
 

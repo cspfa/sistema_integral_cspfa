@@ -1431,9 +1431,9 @@ namespace Confiteria
                 switch (FORMA_DE_PAGO)
                 {
                     case "EFECTIVO":
-                        QUERY  = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
+                        QUERY  = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND C.TIPO_COMANDA = 1 ";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -1441,16 +1441,16 @@ namespace Confiteria
                             QUERY += "AND RENDIDA IS NULL ";
 
                         if (ORDEN == "COMANDA")
-                            QUERY += "ORDER BY C.ID ASC;";
+                            QUERY += "ORDER BY C.NRO_COMANDA ASC;";
                         else
                             QUERY += "ORDER BY C.COM_BORRADOR ASC;";
 
                         break;
 
                     case "TARJETA":
-                        QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
+                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND (C.FORMA_DE_PAGO = 3 OR C.FORMA_DE_PAGO = 4 OR C.FORMA_DE_PAGO = 5 OR C.FORMA_DE_PAGO = 6) AND C.TIPO_COMANDA = 1 ";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND (C.FORMA_DE_PAGO = 3 OR C.FORMA_DE_PAGO = 4 OR C.FORMA_DE_PAGO = 5 OR C.FORMA_DE_PAGO = 6) AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -1458,16 +1458,16 @@ namespace Confiteria
                             QUERY += "AND RENDIDA IS NULL ";
 
                         if (ORDEN == "COMANDA")
-                            QUERY += "ORDER BY C.ID ASC;";
+                            QUERY += "ORDER BY C.NRO_COMANDA ASC;";
                         else
                             QUERY += "ORDER BY C.COM_BORRADOR ASC;";
 
                         break;
 
                     case "DESCUENTO":
-                        QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
+                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 8 AND C.TIPO_COMANDA = 1 ";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 8 AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -1475,16 +1475,16 @@ namespace Confiteria
                             QUERY += "AND RENDIDA IS NULL ";
 
                         if (ORDEN == "COMANDA")
-                            QUERY += "ORDER BY C.ID ASC;";
+                            QUERY += "ORDER BY C.NRO_COMANDA ASC;";
                         else
                             QUERY += "ORDER BY C.COM_BORRADOR ASC;";
                         
                             break;
 
                     case "ESPECIALES":
-                            QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO ";
+                            QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO ";
                             QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                            QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.TIPO_COMANDA = 2 AND C.NRO_SOC != 75022";
+                            QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.TIPO_COMANDA = 2 AND C.NRO_SOC != 75022 AND C.ROL = '" + VGlobales.vp_role + "'";
                             
                             if (RENDIDA > 0)
                                 QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -1492,7 +1492,7 @@ namespace Confiteria
                                 QUERY += "AND RENDIDA IS NULL ";
 
                             if (ORDEN == "COMANDA")
-                                QUERY += "ORDER BY C.ID ASC;";
+                                QUERY += "ORDER BY C.NRO_COMANDA ASC;";
                             else
                                 QUERY += "ORDER BY C.COM_BORRADOR ASC;";
 
@@ -1733,7 +1733,7 @@ namespace Confiteria
             try
             {
                 cambiarDeMesaToolStripMenuItem.DropDownItems.Clear();
-                string QUERY = "SELECT MESA FROM CONFITERIA_TEMP_MESAS WHERE ESTADO = 'CERRADA' ORDER BY MESA ASC;";
+                string QUERY = "SELECT MESA, NRO FROM CONFITERIA_TEMP_MESAS WHERE ESTADO = 'CERRADA' AND ROL = '" + VGlobales.vp_role + "' ORDER BY MESA ASC;";
                 DataSet ds1 = new DataSet();
                 conString conString = new conString();
                 string connectionString = conString.get();
@@ -1748,7 +1748,8 @@ namespace Confiteria
                     while (reader.Read())
                     {
                         string MESA = reader.GetString(reader.GetOrdinal("MESA")).Trim();
-                        string MESA_SHOW = "MESA Nº " + MESA;
+                        string NRO = reader.GetString(reader.GetOrdinal("NRO")).Trim();
+                        string MESA_SHOW = "MESA Nº " + NRO + " - " + MESA;
                         cambiarDeMesaToolStripMenuItem.DropDownItems.Add(MESA_SHOW, null, subItemClick);
                     }
 
@@ -1764,9 +1765,11 @@ namespace Confiteria
 
         private void subItemClick(object sender, EventArgs e)
         {
-            int MESA_ANTIGUA = int.Parse(dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString());
-            int MESA_NUEVA =  int.Parse(sender.ToString().Replace("MESA Nº ", ""));
-            cambiarDeMesa(MESA_ANTIGUA, MESA_NUEVA);
+            int MESA_ANTIGUA = int.Parse(dgMesas[11, dgMesas.CurrentCell.RowIndex].Value.ToString());
+            string MESA_NUEVA =  sender.ToString().Replace("MESA Nº ", "");
+            string[] ID_MESA_NUEVA = MESA_NUEVA.Split('-');
+            int ID_MN = int.Parse(ID_MESA_NUEVA[1]);
+            cambiarDeMesa(MESA_ANTIGUA, ID_MN);
         }
 
         private void cambiarDeMesa(int MESA_ANTIGUA, int MESA_NUEVA)
@@ -1777,7 +1780,8 @@ namespace Confiteria
                 {
                     string DESDE = dgMesas[2, dgMesas.CurrentCell.RowIndex].Value.ToString();
                     string SOCIO = dgMesas[3, dgMesas.CurrentCell.RowIndex].Value.ToString();
-                    int ID_COMANDA = int.Parse(dgMesas[4, dgMesas.CurrentCell.RowIndex].Value.ToString());
+                    int ID_COMANDA = int.Parse(dgMesas[12, dgMesas.CurrentCell.RowIndex].Value.ToString());
+                    int NRO_COMANDA = int.Parse(dgMesas[4, dgMesas.CurrentCell.RowIndex].Value.ToString());
                     int NRO_SOC = int.Parse(dgMesas[5, dgMesas.CurrentCell.RowIndex].Value.ToString());
                     int NRO_DEP = int.Parse(dgMesas[6, dgMesas.CurrentCell.RowIndex].Value.ToString());
                     int BARRA = int.Parse(dgMesas[7, dgMesas.CurrentCell.RowIndex].Value.ToString());
@@ -1785,7 +1789,7 @@ namespace Confiteria
                     int PERSONAS = int.Parse(dgMesas[9, dgMesas.CurrentCell.RowIndex].Value.ToString());
                     int FORMA_DE_PAGO = int.Parse(dgMesas[10, dgMesas.CurrentCell.RowIndex].Value.ToString());
 
-                    dlog.cambiarMesa(MESA_NUEVA, "ABIERTA", DESDE, SOCIO, ID_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO);
+                    dlog.cambiarMesa(MESA_NUEVA, "ABIERTA", DESDE, SOCIO, ID_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO, NRO_COMANDA);
                     
                     dlog.cambiarMesaComanda(MESA_NUEVA, ID_COMANDA);
 

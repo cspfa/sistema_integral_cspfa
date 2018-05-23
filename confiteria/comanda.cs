@@ -418,7 +418,7 @@ namespace Confiteria
             }
         }
 
-        private void guardarMesa(int ID_COMANDA)
+        private void guardarMesa(int ID_COMANDA, string MSG)
         {
             try
             {
@@ -475,7 +475,8 @@ namespace Confiteria
                     dlog.modificarMesa(ID_COMANDA, MOZO, IMPORTE, PERSONAS, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO);   
                 }
 
-                MessageBox.Show("MESA GUARDADA", "LISTO");
+                if (MSG == "SI")
+                    MessageBox.Show("MESA GUARDADA", "LISTO");
             }
             catch (Exception error)
             {
@@ -523,14 +524,14 @@ namespace Confiteria
             }
         }
         
-        private void guardarComanda()
+        private void guardarComanda(string MSG)
         {
             try
             {
                 if (tbNroComanda.Text == "")
                 {
                     int SECUENCIA = int.Parse(dgSocio[4, dgSocio.CurrentCell.RowIndex].Value.ToString());
-                    guardarMesa(0);
+                    guardarMesa(0, MSG);
                     maxid mid = new maxid();
                     string ID_COMANDA = mid.m("ID", "CONFITERIA_COMANDAS");
                     string NRO_COMANDA = mid.m("NRO_COMANDA", "CONFITERIA_COMANDAS");
@@ -539,7 +540,7 @@ namespace Confiteria
                 }
                 else
                 {
-                    guardarMesa(ID_COM);
+                    guardarMesa(ID_COM, MSG);
                     agregarItems();
                     buscarItems(ID_COM, "SI", "X");
                     int PERSO = int.Parse(tbPersonas.Text);
@@ -555,7 +556,7 @@ namespace Confiteria
             
         }
 
-        private void botonGuardarMesa()
+        private void botonGuardarMesa(string MSG)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -579,9 +580,13 @@ namespace Confiteria
             {
                 MessageBox.Show("NUMERO DE PERSONAS NO ESPECIFICADO", "ERROR");
             }
+            else if (VGlobales.vp_role != "CONFITERIA" && cbFormaDePago.SelectedValue.ToString() == "8")
+            {
+                MessageBox.Show("FORMA DE PAGO NO ACEPTADA", "ERROR");
+            }
             else
             {
-                guardarComanda();
+                guardarComanda(MSG);
             }
 
             Cursor = Cursors.Default;
@@ -589,7 +594,7 @@ namespace Confiteria
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            botonGuardarMesa();
+            botonGuardarMesa("SI");
         }
 
         private void btnImprimirComanda_Click(object sender, EventArgs e)
@@ -619,7 +624,8 @@ namespace Confiteria
 
             if (MessageBox.Show("SE VA A CERRAR LA MESA " + tbMesa.Text + "\n¿CONTINUAR?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                botonGuardarMesa();
+                botonGuardarMesa("NO");
+                maxid mid = new maxid();
 
                 if (tbNroComanda.Text != "")
                 {
@@ -632,6 +638,7 @@ namespace Confiteria
 
                         try
                         {
+                            int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
                             buscarComanda(ID_COM);
                             buscarItems(ID_COM, "NO", "X");
                             imprimir i = new imprimir();
@@ -640,7 +647,6 @@ namespace Confiteria
                             if (FORMA_DE_PAGO == "8")
                             {
                                 dlog.nuevaSolicitudDescuentoConfiteria(FECHA, NOM_SOC, IMPORTE, DESTINO, LEG_PER, AFILIADO, BENEFICIO, A_DTO, ID_COM);
-                                maxid mid = new maxid();
                                 int ID_SOLICITUD = int.Parse(mid.m("ID", "CONFITERIA_SOL_DESC"));
                                 listadoComandas lc = new listadoComandas();
                                 SOLICITUD = lc.buscarSolicitud(ID_SOLICITUD, "CONFITERIA_SOL_DESC");
@@ -651,7 +657,6 @@ namespace Confiteria
                             if (TIPO_COMANDA == 2)
                             {
                                 dlog.nuevaSolicitudEspecial(FECHA, NOM_SOC, IMPORTE, DESTINO, LEG_PER, AFILIADO, BENEFICIO, A_DTO, ID_COM);
-                                maxid mid = new maxid();
                                 int ID_SOLICITUD = int.Parse(mid.m("ID", "CONFITERIA_SOL_ESP"));
                                 listadoComandas lc = new listadoComandas();
                                 SOLICITUD = lc.buscarSolicitud(ID_SOLICITUD, "CONFITERIA_SOL_ESP");
@@ -693,7 +698,7 @@ namespace Confiteria
 
             try
             {
-                botonGuardarMesa();
+                botonGuardarMesa("NO");
                 int ID_COMANDA = int.Parse(tbNroComanda.Text);
                 int MESA = int.Parse(tbMesa.Text);
                 imprimir i = new imprimir();
@@ -730,7 +735,7 @@ namespace Confiteria
                 }
                 else
                 {
-                    guardarComanda();
+                    guardarComanda("NO");
                     this.Close();
                 }
             }

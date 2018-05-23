@@ -52,6 +52,7 @@ namespace Confiteria
             this.cbOrdenListado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbBuscarIngresos = new System.Windows.Forms.TextBox();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgMesas)).BeginInit();
             this.cmMesas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -123,6 +124,8 @@ namespace Confiteria
             // 
             // cambiarDeMesaToolStripMenuItem
             // 
+            this.cambiarDeMesaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
             this.cambiarDeMesaToolStripMenuItem.Image = global::Confiteria.Properties.Resources.arrow_switch;
             this.cambiarDeMesaToolStripMenuItem.Name = "cambiarDeMesaToolStripMenuItem";
             this.cambiarDeMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
@@ -263,6 +266,11 @@ namespace Confiteria
             this.tbBuscarIngresos.TabIndex = 31;
             this.tbBuscarIngresos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarIngresos_KeyUp);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            // 
             // grillaPreComanda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,5 +326,6 @@ namespace Confiteria
         private System.Windows.Forms.ComboBox cbOrdenListado;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbBuscarIngresos;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }
