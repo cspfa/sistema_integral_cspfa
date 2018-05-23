@@ -30,7 +30,7 @@ namespace SOCIOS.bono
         VoucherUtils vu = new VoucherUtils();
         Hotel_Dias_Utils hotel_Dias_Utils = new Hotel_Dias_Utils();
         string InfoValorHabitacion = "";
-        
+        bool Autorizacion = false;
         int CODINT = 0;
         int SUBCODIGO = 0;
 
@@ -75,7 +75,7 @@ namespace SOCIOS.bono
              if (srvDatosSocio.CAB.Telefonos.Length > 0)
                  tbContacto.Text = srvDatosSocio.CAB.Telefonos;
              CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 0));
-
+             Autorizacion = Apto_Autorizacion();
 
          }
         
@@ -463,7 +463,12 @@ namespace SOCIOS.bono
             int Regimen = Int32.Parse(cbRegimen.SelectedValue.ToString());
             int Habit = Int32.Parse(cbHabitacion.SelectedValue.ToString());
             int ID_ROL = 0;
+            int Comision_Directiva = 0;
 
+            if (Autorizacion)
+                Comision_Directiva = Int32.Parse(cbComisionDirectiva.SelectedValue.ToString());
+            else
+                Comision_Directiva = 0;
             if (MessageBox.Show("Generar Bono de Estadia en  Hotel: " + cbHotel.Text + "  , Forma de Pago : " + fpago.Text, "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
 
@@ -498,7 +503,7 @@ namespace SOCIOS.bono
                             OBS = tbObs.Text;
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO",0);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO",Comision_Directiva);
                        
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
                        
@@ -850,6 +855,43 @@ namespace SOCIOS.bono
         {
 
         }
+
+        private void UpdateCombo_ComisionDirectiva()
+        {
+
+            string Query = @"select ID, (CARGO ||'  '  || NOMBRE) CARGO   from comision_directiva  ";
+            cbComisionDirectiva.DataSource = null;
+            cbComisionDirectiva.Items.Clear();
+            cbComisionDirectiva.DataSource = dlog.BO_EjecutoDataTable(Query);
+            cbComisionDirectiva.DisplayMember = "CARGO";
+            cbComisionDirectiva.ValueMember = "ID";
+            cbComisionDirectiva.SelectedItem = 1;
+        }
+
+
+        private bool Apto_Autorizacion()
+        {
+            bool retorno = true;
+            if (!VGlobales.vp_role.Contains("ADM"))
+            {
+                retorno = false;
+                lbComisionDirectiva.Visible = false;
+                cbComisionDirectiva.Visible = false;
+            }
+            else
+            {
+
+                lbComisionDirectiva.Visible = true;
+                cbComisionDirectiva.Visible = true;
+                UpdateCombo_ComisionDirectiva();
+
+            }
+
+            return retorno;
+
+
+        }
+            
             
 
     }
