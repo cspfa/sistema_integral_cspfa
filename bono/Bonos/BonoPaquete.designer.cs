@@ -48,6 +48,9 @@
             this.dpFechaBono = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.lbComisionDirectiva = new System.Windows.Forms.Label();
+            this.cbComisionDirectiva = new System.Windows.Forms.ComboBox();
+            this.lbLeyendaCocheCama = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.InfoInvi = new System.Windows.Forms.Label();
             this.InfoMenor = new System.Windows.Forms.Label();
@@ -60,7 +63,6 @@
             this.tbSocios = new System.Windows.Forms.TextBox();
             this.tbObs = new System.Windows.Forms.TextBox();
             this.cbCocheCama = new System.Windows.Forms.CheckBox();
-            this.lbLeyendaCocheCama = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +87,7 @@
             // 
             // AnularBono
             // 
-            this.AnularBono.Location = new System.Drawing.Point(851, 588);
+            this.AnularBono.Location = new System.Drawing.Point(851, 643);
             this.AnularBono.Name = "AnularBono";
             this.AnularBono.Size = new System.Drawing.Size(92, 23);
             this.AnularBono.TabIndex = 116;
@@ -96,7 +98,7 @@
             // 
             // Reiniciar
             // 
-            this.Reiniciar.Location = new System.Drawing.Point(789, 617);
+            this.Reiniciar.Location = new System.Drawing.Point(789, 672);
             this.Reiniciar.Name = "Reiniciar";
             this.Reiniciar.Size = new System.Drawing.Size(154, 23);
             this.Reiniciar.TabIndex = 115;
@@ -105,7 +107,7 @@
             // 
             // bntImprimir
             // 
-            this.bntImprimir.Location = new System.Drawing.Point(851, 559);
+            this.bntImprimir.Location = new System.Drawing.Point(851, 614);
             this.bntImprimir.Name = "bntImprimir";
             this.bntImprimir.Size = new System.Drawing.Size(92, 23);
             this.bntImprimir.TabIndex = 114;
@@ -116,7 +118,7 @@
             // 
             // Grabar
             // 
-            this.Grabar.Location = new System.Drawing.Point(851, 526);
+            this.Grabar.Location = new System.Drawing.Point(851, 581);
             this.Grabar.Name = "Grabar";
             this.Grabar.Size = new System.Drawing.Size(92, 23);
             this.Grabar.TabIndex = 112;
@@ -250,6 +252,8 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.lbComisionDirectiva);
+            this.gpDatos.Controls.Add(this.cbComisionDirectiva);
             this.gpDatos.Controls.Add(this.lbLeyendaCocheCama);
             this.gpDatos.Controls.Add(this.label5);
             this.gpDatos.Controls.Add(this.InfoInvi);
@@ -273,10 +277,39 @@
             this.gpDatos.Controls.Add(this.lbSaldoTotal);
             this.gpDatos.Location = new System.Drawing.Point(33, 427);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(750, 244);
+            this.gpDatos.Size = new System.Drawing.Size(750, 269);
             this.gpDatos.TabIndex = 122;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // lbComisionDirectiva
+            // 
+            this.lbComisionDirectiva.AutoSize = true;
+            this.lbComisionDirectiva.Location = new System.Drawing.Point(21, 245);
+            this.lbComisionDirectiva.Name = "lbComisionDirectiva";
+            this.lbComisionDirectiva.Size = new System.Drawing.Size(78, 13);
+            this.lbComisionDirectiva.TabIndex = 165;
+            this.lbComisionDirectiva.Text = "AUTORIZADO";
+            // 
+            // cbComisionDirectiva
+            // 
+            this.cbComisionDirectiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbComisionDirectiva.FormattingEnabled = true;
+            this.cbComisionDirectiva.Location = new System.Drawing.Point(120, 243);
+            this.cbComisionDirectiva.Name = "cbComisionDirectiva";
+            this.cbComisionDirectiva.Size = new System.Drawing.Size(337, 21);
+            this.cbComisionDirectiva.TabIndex = 164;
+            this.cbComisionDirectiva.Visible = false;
+            // 
+            // lbLeyendaCocheCama
+            // 
+            this.lbLeyendaCocheCama.AutoSize = true;
+            this.lbLeyendaCocheCama.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.lbLeyendaCocheCama.Location = new System.Drawing.Point(21, 132);
+            this.lbLeyendaCocheCama.Name = "lbLeyendaCocheCama";
+            this.lbLeyendaCocheCama.Size = new System.Drawing.Size(272, 13);
+            this.lbLeyendaCocheCama.TabIndex = 146;
+            this.lbLeyendaCocheCama.Text = "LAS TARIFAS INCLUYEN EL PAGO DE COCHE CAMA";
             // 
             // label5
             // 
@@ -388,20 +421,10 @@
             this.cbCocheCama.Text = "Precio c/Coche Cama";
             this.cbCocheCama.UseVisualStyleBackColor = true;
             // 
-            // lbLeyendaCocheCama
-            // 
-            this.lbLeyendaCocheCama.AutoSize = true;
-            this.lbLeyendaCocheCama.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lbLeyendaCocheCama.Location = new System.Drawing.Point(21, 132);
-            this.lbLeyendaCocheCama.Name = "lbLeyendaCocheCama";
-            this.lbLeyendaCocheCama.Size = new System.Drawing.Size(272, 13);
-            this.lbLeyendaCocheCama.TabIndex = 146;
-            this.lbLeyendaCocheCama.Text = "LAS TARIFAS INCLUYEN EL PAGO DE COCHE CAMA";
-            // 
             // BonoPaquete
             // 
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(955, 675);
+            this.ClientSize = new System.Drawing.Size(955, 759);
             this.Controls.Add(this.cbCocheCama);
             this.Controls.Add(this.Deseleccionar);
             this.Controls.Add(this.Seleccion);
@@ -459,5 +482,7 @@
         private System.Windows.Forms.TextBox tbObs;
         private System.Windows.Forms.CheckBox cbCocheCama;
         private System.Windows.Forms.Label lbLeyendaCocheCama;
+        private System.Windows.Forms.Label lbComisionDirectiva;
+        private System.Windows.Forms.ComboBox cbComisionDirectiva;
     }
 }

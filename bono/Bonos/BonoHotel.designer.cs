@@ -41,6 +41,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.lbComisionDirectiva = new System.Windows.Forms.Label();
+            this.cbComisionDirectiva = new System.Windows.Forms.ComboBox();
             this.lnkInfoHabitacion = new System.Windows.Forms.LinkLabel();
             this.tbContacto = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -192,6 +194,8 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.lbComisionDirectiva);
+            this.gpDatos.Controls.Add(this.cbComisionDirectiva);
             this.gpDatos.Controls.Add(this.lnkInfoHabitacion);
             this.gpDatos.Controls.Add(this.tbContacto);
             this.gpDatos.Controls.Add(this.label12);
@@ -227,6 +231,25 @@
             this.gpDatos.TabIndex = 137;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // lbComisionDirectiva
+            // 
+            this.lbComisionDirectiva.AutoSize = true;
+            this.lbComisionDirectiva.Location = new System.Drawing.Point(385, 109);
+            this.lbComisionDirectiva.Name = "lbComisionDirectiva";
+            this.lbComisionDirectiva.Size = new System.Drawing.Size(78, 13);
+            this.lbComisionDirectiva.TabIndex = 163;
+            this.lbComisionDirectiva.Text = "AUTORIZADO";
+            // 
+            // cbComisionDirectiva
+            // 
+            this.cbComisionDirectiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbComisionDirectiva.FormattingEnabled = true;
+            this.cbComisionDirectiva.Location = new System.Drawing.Point(484, 107);
+            this.cbComisionDirectiva.Name = "cbComisionDirectiva";
+            this.cbComisionDirectiva.Size = new System.Drawing.Size(293, 21);
+            this.cbComisionDirectiva.TabIndex = 162;
+            this.cbComisionDirectiva.Visible = false;
             // 
             // lnkInfoHabitacion
             // 
@@ -292,7 +315,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(662, 16);
+            this.label11.Location = new System.Drawing.Point(699, 16);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 13);
             this.label11.TabIndex = 153;
@@ -368,7 +391,7 @@
             // lblSaldoTotal
             // 
             this.lblSaldoTotal.AutoSize = true;
-            this.lblSaldoTotal.Location = new System.Drawing.Point(741, 48);
+            this.lblSaldoTotal.Location = new System.Drawing.Point(778, 48);
             this.lblSaldoTotal.Name = "lblSaldoTotal";
             this.lblSaldoTotal.Size = new System.Drawing.Size(13, 13);
             this.lblSaldoTotal.TabIndex = 147;
@@ -411,7 +434,7 @@
             // lbInfoDias
             // 
             this.lbInfoDias.AutoSize = true;
-            this.lbInfoDias.Location = new System.Drawing.Point(740, 16);
+            this.lbInfoDias.Location = new System.Drawing.Point(777, 16);
             this.lbInfoDias.Name = "lbInfoDias";
             this.lbInfoDias.Size = new System.Drawing.Size(13, 13);
             this.lbInfoDias.TabIndex = 139;
@@ -437,7 +460,7 @@
             // 
             // pagBono
             // 
-            this.pagBono.Location = new System.Drawing.Point(665, 75);
+            this.pagBono.Location = new System.Drawing.Point(702, 75);
             this.pagBono.Name = "pagBono";
             this.pagBono.Size = new System.Drawing.Size(75, 23);
             this.pagBono.TabIndex = 114;
@@ -448,7 +471,7 @@
             // lbTituloTotal
             // 
             this.lbTituloTotal.AutoSize = true;
-            this.lbTituloTotal.Location = new System.Drawing.Point(662, 48);
+            this.lbTituloTotal.Location = new System.Drawing.Point(699, 48);
             this.lbTituloTotal.Name = "lbTituloTotal";
             this.lbTituloTotal.Size = new System.Drawing.Size(42, 13);
             this.lbTituloTotal.TabIndex = 119;
@@ -576,5 +599,7 @@
         private System.Windows.Forms.TextBox tbContacto;
         private System.Windows.Forms.LinkLabel lnkInfoHabitacion;
         private System.Windows.Forms.Label lbCartelHabitacion;
+        private System.Windows.Forms.Label lbComisionDirectiva;
+        private System.Windows.Forms.ComboBox cbComisionDirectiva;
     }
 }

@@ -68,6 +68,8 @@
             this.rbMicro = new System.Windows.Forms.RadioButton();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.lbComisionDirectiva = new System.Windows.Forms.Label();
+            this.cbComisionDirectiva = new System.Windows.Forms.ComboBox();
             this.tbObs = new System.Windows.Forms.TextBox();
             this.dpFechaBono = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
@@ -115,7 +117,7 @@
             this.gpPasaje.Controls.Add(this.cbProvinciaDesde);
             this.gpPasaje.Location = new System.Drawing.Point(550, 326);
             this.gpPasaje.Name = "gpPasaje";
-            this.gpPasaje.Size = new System.Drawing.Size(403, 325);
+            this.gpPasaje.Size = new System.Drawing.Size(403, 340);
             this.gpPasaje.TabIndex = 117;
             this.gpPasaje.TabStop = false;
             this.gpPasaje.Text = "Pasaje";
@@ -470,6 +472,8 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.lbComisionDirectiva);
+            this.gpDatos.Controls.Add(this.cbComisionDirectiva);
             this.gpDatos.Controls.Add(this.tbObs);
             this.gpDatos.Controls.Add(this.dpFechaBono);
             this.gpDatos.Controls.Add(this.label7);
@@ -481,6 +485,25 @@
             this.gpDatos.Size = new System.Drawing.Size(529, 167);
             this.gpDatos.TabIndex = 122;
             this.gpDatos.TabStop = false;
+            // 
+            // lbComisionDirectiva
+            // 
+            this.lbComisionDirectiva.AutoSize = true;
+            this.lbComisionDirectiva.Location = new System.Drawing.Point(436, 39);
+            this.lbComisionDirectiva.Name = "lbComisionDirectiva";
+            this.lbComisionDirectiva.Size = new System.Drawing.Size(78, 13);
+            this.lbComisionDirectiva.TabIndex = 167;
+            this.lbComisionDirectiva.Text = "AUTORIZADO";
+            // 
+            // cbComisionDirectiva
+            // 
+            this.cbComisionDirectiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbComisionDirectiva.FormattingEnabled = true;
+            this.cbComisionDirectiva.Location = new System.Drawing.Point(244, 58);
+            this.cbComisionDirectiva.Name = "cbComisionDirectiva";
+            this.cbComisionDirectiva.Size = new System.Drawing.Size(270, 21);
+            this.cbComisionDirectiva.TabIndex = 166;
+            this.cbComisionDirectiva.Visible = false;
             // 
             // tbObs
             // 
@@ -615,5 +638,7 @@
         private System.Windows.Forms.CheckBox chkSetVuelta;
         private System.Windows.Forms.TextBox tbBoletoVuelta;
         private System.Windows.Forms.Label lbBoletoVuelta;
+        private System.Windows.Forms.Label lbComisionDirectiva;
+        private System.Windows.Forms.ComboBox cbComisionDirectiva;
     }
 }

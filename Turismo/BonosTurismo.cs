@@ -66,6 +66,8 @@ namespace SOCIOS.bono
         
             
             }
+            query = query + " AND B.ROL='" + VGlobales.vp_role + "'";
+
             query = query + " AND    B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
            
             if (cbEstado.Text.Contains("IMPRESOS"))
