@@ -98,7 +98,7 @@ namespace SOCIOS.bono
             //Codigo Barra
             string Barra = "TU" + ID_ROL.ToString();
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[27];
+            ReportParameter[] parameters = new ReportParameter[29];
             //Establecemos el valor de los parámetros
 
             parameters[0] = new ReportParameter("Fecha", FechaS);
@@ -131,7 +131,8 @@ namespace SOCIOS.bono
             parameters[24] = new ReportParameter("Regimen", objSalida.Regimen_Nombre);
             parameters[25] = new ReportParameter("ObsPaquete", objSalida.Observaciones);
             parameters[26] = new ReportParameter("Estadia", objSalida.Estadia.TrimEnd());
-
+            parameters[27] = new ReportParameter("Directivo", "");
+            parameters[28] = new ReportParameter("Cargo", "");
 
 
 
