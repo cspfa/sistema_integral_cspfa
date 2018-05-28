@@ -241,7 +241,7 @@ namespace SOCIOS.bono
                                      reader3.GetString(reader3.GetOrdinal("OrigenText")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Destino")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("DestinoText")).Trim());
-                                  
+                                     
 
 
                     }
