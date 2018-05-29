@@ -147,12 +147,12 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbVersion = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbServidor = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsUpdater = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.tsUpdater = new System.Windows.Forms.ToolStripStatusLabel();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -1236,6 +1236,13 @@
             this.lbServidor.Size = new System.Drawing.Size(20, 17);
             this.lbServidor.Text = "...";
             // 
+            // tsUpdater
+            // 
+            this.tsUpdater.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsUpdater.Name = "tsUpdater";
+            this.tsUpdater.Size = new System.Drawing.Size(16, 17);
+            this.tsUpdater.Text = "...";
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -1270,13 +1277,6 @@
             this.pbFoto.TabIndex = 10;
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
-            // 
-            // tsUpdater
-            // 
-            this.tsUpdater.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsUpdater.Name = "tsUpdater";
-            this.tsUpdater.Size = new System.Drawing.Size(16, 17);
-            this.tsUpdater.Text = "...";
             // 
             // MenuABM
             // 
