@@ -3021,6 +3021,7 @@ namespace SOCIOS
                 {
                     restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
                     r.ShowDialog();
+                    BuscarTitular();
                 }
                 else
                 {
@@ -3045,6 +3046,7 @@ namespace SOCIOS
                 {
                     restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
                     r.ShowDialog();
+                    BuscarTitular();
                 }
                 else
                 {
