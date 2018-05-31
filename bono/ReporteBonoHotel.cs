@@ -98,7 +98,7 @@ namespace SOCIOS.bono
                 infoDias = dias.ConsultarDiasAbreviado(Int32.Parse(CAB.NroSocioTitular),Int32.Parse(CAB.NroDepTitular));
             
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[32];
+            ReportParameter[] parameters = new ReportParameter[34];
             
             
             //Establecemos el valor de los parámetros
@@ -135,7 +135,8 @@ namespace SOCIOS.bono
             parameters[29] = new ReportParameter("Social", objVoucher.BonoSocial.ToString());
             parameters[30] = new ReportParameter("Motivo", objVoucher.Motivo.ToString());
             parameters[31] = new ReportParameter("DiasDisponibles",infoDias);
-
+            parameters[32] = new ReportParameter("Directivo","");
+            parameters[33] = new ReportParameter("Cargo", "");
             try
             {
 

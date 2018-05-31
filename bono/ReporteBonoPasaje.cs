@@ -74,7 +74,7 @@ namespace SOCIOS.bono
             //Codigo Barra
             string Barra = "TU" + ID.ToString("0000000000");
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[20];
+            ReportParameter[] parameters = new ReportParameter[22];
             //Establecemos el valor de los parámetros
                       
             parameters[0] = new ReportParameter("Fecha", FechaS);
@@ -97,6 +97,8 @@ namespace SOCIOS.bono
             parameters[17] = new ReportParameter("Tipo", Tipo);
             parameters[18] = new ReportParameter("Clase", Clase);
             parameters[19] = new ReportParameter("Barra", Barra);
+            parameters[20] = new ReportParameter("Directivo", "");
+            parameters[21] = new ReportParameter("Cargo", "");
             this.reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Clear();
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSetPasaje", pasajes));
@@ -239,7 +241,7 @@ namespace SOCIOS.bono
                                      reader3.GetString(reader3.GetOrdinal("OrigenText")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Destino")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("DestinoText")).Trim());
-                                  
+                                     
 
 
                     }

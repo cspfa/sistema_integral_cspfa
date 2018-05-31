@@ -23,7 +23,7 @@ namespace SOCIOS.bono
         SOCIOS.arancel arancelService = new arancel();
         public DatoSocio persona = new DatoSocio();
         int Inicio;
-        int ID;
+        public int ID;
         bool Social;
         int TipoPago;
         decimal Recargo=0;
@@ -33,6 +33,8 @@ namespace SOCIOS.bono
         bool Autorizacion = false;
         int CODINT = 0;
         int SUBCODIGO = 0;
+        public  bool BONO_BLANCO = false;
+
 
         public BonoHotel()
         {
@@ -46,6 +48,14 @@ namespace SOCIOS.bono
         
         }
 
+         public BonoHotel(string pSocTitular, string pdepTitular, bool pMuestro)
+             : base(pSocTitular, pdepTitular, pMuestro)
+         {
+             InitializeComponent();
+             this.Iniciar();
+
+         }
+
 
          private void Iniciar()
          {
@@ -57,14 +67,15 @@ namespace SOCIOS.bono
 
 
 
-
-             foreach (DatoSocio d in Datos)
+             if (Datos != null)
              {
-                 persona = d;
+                 foreach (DatoSocio d in Datos)
+                 {
+                     persona = d;
 
 
+                 }
              }
-
              Inicio = 1;
 
              UpdateComboHabitacion();
@@ -502,16 +513,22 @@ namespace SOCIOS.bono
                         else
                             OBS = tbObs.Text;
 
+                        if (BONO_BLANCO) // Si es bono_Blanco, Vamos por UPDATE
+                        {
+                            dlog.UpdateBonoTurismo(ID, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO,"NO", Comision_Directiva);
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO",Comision_Directiva);
-                       
-                        ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
-                       
-                        //Obtener Proximo ID_ROL
-                        ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(),CODINT) + 1;
+                        }
+                        else // si no es bono blanco, previo, no existe en la base, es INSERT
+                        {
+                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva);
 
-                        dlog.Seteo_Id_ROL(ID, ID_ROL);
+                            ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
 
+                            //Obtener Proximo ID_ROL
+                            ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CODINT) + 1;
+
+                            dlog.Seteo_Id_ROL(ID, ID_ROL);
+                        }
 
                         int CodInt = 0;
                         // Grabar Pagos
