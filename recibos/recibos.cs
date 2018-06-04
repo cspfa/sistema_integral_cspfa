@@ -447,7 +447,7 @@ namespace SOCIOS
             string query = "SELECT NUMEROCTA FROM CUENTAS WHERE NUMEROCTA >= 1000 AND NUMEROCTA <= 109100 ";
             query += "OR NUMEROCTA >= 401101 AND NUMEROCTA <= 480206 ";
             query += "OR NUMEROCTA >= 301101 AND NUMEROCTA <= 301184 ";
-            query += "OR NUMEROCTA >= 801154 AND NUMEROCTA <= 802000";
+            query += "OR NUMEROCTA >= 801100 AND NUMEROCTA <= 802000";
             query += "OR NUMEROCTA >= 301201 AND NUMEROCTA <= 301210 ORDER BY NUMEROCTA ASC;";
             cbCuentasDebe.DataSource = null;
             cbCuentasDebe.Items.Clear();
@@ -462,7 +462,7 @@ namespace SOCIOS
             string query = "SELECT NUMEROCTA FROM CUENTAS WHERE NUMEROCTA >= 1000 AND NUMEROCTA <= 109100 ";
             query += "OR NUMEROCTA >= 401101 AND NUMEROCTA <= 480206 ";
             query += "OR NUMEROCTA >= 301101 AND NUMEROCTA <= 301184 ";
-            query += "OR NUMEROCTA >= 801154 AND NUMEROCTA <= 802000";
+            query += "OR NUMEROCTA >= 801100 AND NUMEROCTA <= 802000";
             query += "OR NUMEROCTA >= 301201 AND NUMEROCTA <= 301210 ORDER BY NUMEROCTA ASC;";
             cbCuentasHaber.DataSource = null;
             cbCuentasHaber.Items.Clear();
