@@ -13,46 +13,54 @@ namespace SOCIOS
     public partial class restablecer994 : Form
     {
         bo dlog = new bo();
+        BO.bo_RegSoc REG_SOC = new BO.bo_RegSoc();
+        
+        private int ID_ACTUAL { get; set; }
+        private int DE_ACTUAL { get; set; }
+        private int SO_ACTUAL { get; set; }
+        private string ID_ANTERIOR { get; set; }
+        private string DE_ANTERIOR { get; set; }
+        private string SO_ANTERIOR { get; set; }
 
         public restablecer994(int ID_TITULAR, int NRO_DEP, int NRO_SOC)
         {
             InitializeComponent();
-            ID = ID_TITULAR;
-            DE = NRO_DEP;
-            SO = NRO_SOC;
+            ID_ACTUAL = ID_TITULAR;
+            DE_ACTUAL = NRO_DEP;
+            SO_ACTUAL = NRO_SOC;
         }
 
         private void restablecer994_Load(object sender, EventArgs e)
         {
-            if (DE == 20)
+            if (DE_ACTUAL == 20)
             {
                 this.Text = "PASAR DE CABA A PFA";
                 label7.Enabled = false;
                 tbIdEmpleado.Enabled = false;
             }
 
-            if (DE == 994)
+            if (DE_ACTUAL == 994)
             {
                 this.Text = "PASAR DE PFA A CABA";
                 label5.Enabled = false;
                 label6.Enabled = false;
                 cbCatSoc.Enabled = false;
                 tbCodDto.Enabled = false;
+                tbCodDto.Text = "187";
             }
 
-            buscarSocio(ID);
-            //string ID_SOCIO = lvDatosSocio.Items[0].SubItems[9].Text;
-            //string NRO_DEP = right(ID_SOCIO, 3);
-            //string NRO_SOC = ID_SOCIO.Replace(NRO_DEP, "");
-            tbNroSoc.Text = SO.ToString();
-            tbNroDep.Text = DE.ToString();
-            tbIdTitular.Text = ID.ToString();
+            buscarSocio(ID_ACTUAL);
+            
+            ID_ANTERIOR = lvDatosSocio.Items[0].SubItems[9].Text;
+            DE_ANTERIOR = right(ID_ANTERIOR, 3);
+            SO_ANTERIOR = ID_ANTERIOR.Replace(DE_ANTERIOR, "");
+            
+            tbNroSoc.Text = SO_ACTUAL.ToString();
+            tbNroDep.Text = DE_ACTUAL.ToString();
+            tbIdTitular.Text = ID_ACTUAL.ToString();
+            
             comboCatSoc();
         }
-
-        private int ID { get; set; }
-        private int DE { get; set; }
-        private int SO { get; set; }
 
         private void buscarSocio(int ID_TITULAR)
         {
@@ -161,30 +169,28 @@ namespace SOCIOS
                 try
                 {
                     Cursor = Cursors.WaitCursor;
-                    int ID_TITULAR = int.Parse(tbIdTitular.Text);
 
-                    if (ID == 20)
+                    if (DE_ACTUAL == 20)
                     {
-                        int COD_DTO = int.Parse(tbCodDto.Text);
                         string CAT_SOC = cbCatSoc.SelectedValue.ToString();
-                        int NRO_SOC = int.Parse(tbNroSoc.Text);
-                        int NRO_DEP = int.Parse(tbNroDep.Text);
-                        int ID_ADH = ID;
+                        int ID_EMP = 0;
+                        dlog.restablecer994(int.Parse(ID_ANTERIOR), int.Parse(tbCodDto.Text.Trim()), CAT_SOC, int.Parse(SO_ANTERIOR), int.Parse(DE_ANTERIOR), ID_ACTUAL, ID_EMP);
                     }
 
-                    if (ID == 994)
+                    if (DE_ACTUAL == 994)
                     {
-                    
+                        string CAT_SOC = "015";
+                        int ID_EMP = int.Parse(tbIdEmpleado.Text);
+                        dlog .restablecer994(int.Parse(ID_ANTERIOR), int.Parse(tbCodDto.Text.Trim()), CAT_SOC, int.Parse(SO_ANTERIOR), int.Parse(DE_ANTERIOR), ID_ACTUAL, ID_EMP);
                     }
                     
-                    //int ID_EMP = int.Parse(
-                    //dlog.restablecer994(ID_TITULAR, COD_DTO, CAT_SOC, NRO_SOC, NRO_DEP, ID_ADH);
                     Cursor = Cursors.Default;
-                    MessageBox.Show("SOCIO RESTABLECIDO CORRECTAMENTE", "ERROR!");
+                    MessageBox.Show("SOCIO TRASPASADO CORRECTAMENTE", "LISTO!");
+                    this.Close();
                 }
                 catch (Exception error)
                 {
-                    MessageBox.Show("NO SE PUDO RESTABLECER EL SOCIO\n" + error, "ERROR!");
+                    MessageBox.Show("NO SE PUDO TRASPASAR EL SOCIO\n" + error, "ERROR!");
                     Cursor = Cursors.Default;
                 }
             }

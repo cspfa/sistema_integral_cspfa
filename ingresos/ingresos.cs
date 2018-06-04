@@ -36,7 +36,7 @@ namespace SOCIOS
         public void llenarComboNombre()
         {
             cbNombre.DataSource = null;
-            string query = "SELECT ID, NOMBRE FROM PERSONAS WHERE ESTADO = 1 AND ROL = '" + VGlobales.vp_role + "' ORDER BY NOMBRE;";
+            string query = "SELECT ID, NOMBRE FROM PERSONAS WHERE ESTADO = 1 AND ROL != 'CPOCABA' ORDER BY NOMBRE;";
             cbNombre.Items.Clear();
             cbNombre.DataSource = dlog.BO_EjecutoDataTable(query);
             cbNombre.DisplayMember = "NOMBRE";

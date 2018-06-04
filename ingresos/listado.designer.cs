@@ -151,6 +151,7 @@
             // 
             // btnListado
             // 
+            this.btnListado.Enabled = false;
             this.btnListado.Location = new System.Drawing.Point(117, 583);
             this.btnListado.Name = "btnListado";
             this.btnListado.Size = new System.Drawing.Size(98, 25);

@@ -175,6 +175,7 @@
             this.tbIdEmpleado.Name = "tbIdEmpleado";
             this.tbIdEmpleado.Size = new System.Drawing.Size(78, 20);
             this.tbIdEmpleado.TabIndex = 18;
+            this.tbIdEmpleado.Text = "0";
             // 
             // label7
             // 

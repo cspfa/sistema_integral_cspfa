@@ -171,99 +171,7 @@ namespace SOCIOS
             }
         }
 
-        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID, string PTO)
-        {
-            try
-            {
-                DataSet ds1 = new DataSet();
-                string query = "SELECT * FROM BUSCAR_COMPROBANTES (" + DESDE + ", " + HASTA + ", '" + COMPROBANTE + "', '" + PTO + "');";
-                conString cs = new conString();
-                string connectionString = cs.get();
-
-                using (FbConnection connection = new FbConnection(connectionString))
-                {
-                    connection.Open();
-                    FbTransaction transaction = connection.BeginTransaction();
-                    DataTable dt1 = new DataTable("RESULTADOS");
-                    dt1.Columns.Add("#", typeof(string));
-                    dt1.Columns.Add("DETALLE", typeof(string));
-                    dt1.Columns.Add("CONCEPTO", typeof(string));
-                    dt1.Columns.Add("IMP", typeof(int));
-                    dt1.Columns.Add("IMPORTE", typeof(string));
-                    dt1.Columns.Add("OBSERVACIONES", typeof(string));
-                    dt1.Columns.Add("FECHA", typeof(string));
-                    dt1.Columns.Add("ANULADO", typeof(string));
-                    dt1.Columns.Add("F_PAGO", typeof(string));
-                    dt1.Columns.Add("ID", typeof(string));
-                    dt1.Columns.Add("PV", typeof(string));
-                    ds1.Tables.Add(dt1);
-                    FbCommand cmd = new FbCommand(query, connection, transaction);
-                    FbDataReader reader = cmd.ExecuteReader();
-                    string NRO_COMP = string.Empty;
-                    string DETALLE = string.Empty;
-                    string CONCEPTO = string.Empty;
-                    string IMPUTACION = string.Empty;
-                    decimal IMPORTE;
-                    string OBSERVACIONES = string.Empty;
-                    string FECHA = string.Empty;
-                    string VALOR;
-                    decimal TOTAL = 0;
-                    string TIPO = string.Empty;
-                    string ANULADO = string.Empty;
-                    string F_PAGO = string.Empty;
-                    decimal CAJAS_DEPOSITADAS = 0;
-                    string ID_COMP = string.Empty;
-                    string PTO_VTA = string.Empty;
-
-                    while (reader.Read())
-                    {
-                        TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
-                        NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
-
-                        if (TIPO == "B")
-                            NRO_COMP = "B" + NRO_COMP;
-                        else
-                            NRO_COMP = "R" + NRO_COMP;
-
-                        DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
-                        CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
-                        IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));
-                        IMPORTE = reader.GetDecimal(reader.GetOrdinal("IMPORTE"));
-                        VALOR = string.Format("{0:n}", IMPORTE);
-                        OBSERVACIONES = reader.GetString(reader.GetOrdinal("OBSERVACIONES")).Trim();
-                        FECHA = reader.GetString(reader.GetOrdinal("FECHA_RECIBO")).Trim().Replace(" 0:00:00", "");
-                        TOTAL = TOTAL + IMPORTE;
-                        ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
-                        F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
-                        ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
-                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
-                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA);
-                    }
-
-                    reader.Close();
-                    GRID.DataSource = dt1;
-                    GRID.Columns[0].Width = 60;
-                    GRID.Columns[1].Width = 190;
-                    GRID.Columns[2].Width = 190;
-                    GRID.Columns[3].Width = 50;
-                    GRID.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    GRID.Columns[4].Width = 80;
-                    GRID.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    GRID.Columns[5].Width = 195;
-                    GRID.Columns[6].Visible = true;
-                    GRID.Columns[6].Width = 70;
-                    GRID.Columns[7].Width = 70;
-                    GRID.Columns[8].Width = 110;
-                    GRID.Columns[9].Width = 50;
-                    GRID.Columns[10].Width = 40;
-                    transaction.Commit();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        } 
+        
 
         private void habilitarEdicion()
         {
@@ -303,8 +211,9 @@ namespace SOCIOS
 
         private void comboComprobantes()
         {
-            cbTipos.Items.Add("RECIBOS");
             cbTipos.Items.Add("BONOS");
+            cbTipos.Items.Add("RECIBOS");
+            cbTipos.SelectedIndex = 0;
         }
         
 
@@ -3738,37 +3647,206 @@ namespace SOCIOS
         {
             int DESDE = 0;
             int HASTA = 0;
+            string F_DESDE = "";
+            string F_HASTA = "";
             string PTO_VTA = "";
             string COMPROBANTE = "";
-            COMPROBANTE = cbTipos.SelectedItem.ToString();
-            string COMP_MIN = COMPROBANTE.Substring(0, 1);
-
-            if (tbNroDesde.Text.Trim() == "")
+            string COMP_MIN = "";
+            DataGridView GRID = dgBuscador;
+            
+            if (cbBuscarNumeros.Checked == false && cbBuscarFechas.Checked == false)
+            {
+                MessageBox.Show("SELECCIONAR AL MENOS UNA CONDICION DE BÚSQUEDA");
+            }
+            else if (tbNroDesde.Text.Trim() == "" && cbBuscarNumeros.Checked == true)
             {
                 MessageBox.Show("INGRESAR UN NRO DESDE", "ERROR!");
-            }
-            else if (tbNroHasta.Text.Trim() == "")
-            {
-                MessageBox.Show("INGRESAR UN NRO HASTA", "ERROR!");
             }
             else if (tbPtoVta.Text.Trim() == "")
             {
                 MessageBox.Show("INGRESAR UN PUNTO DE VENTA", "ERROR!");
             }
-            else if (COMPROBANTE == "")
+            else if (cbTipos.SelectedItem.ToString() == "")
             {
                 MessageBox.Show("SELECCIONAR UN TIPO DE COMPROBANTE", "ERROR!");
             }
             else
             {
-                DESDE = int.Parse(tbNroDesde.Text.Trim());
-                HASTA = int.Parse(tbNroHasta.Text.Trim());
+                if (cbBuscarNumeros.Checked == true && cbBuscarFechas.Checked == false)
+                {
+                    DESDE = int.Parse(tbNroDesde.Text.Trim());
+                    HASTA = int.Parse(tbNroHasta.Text.Trim());
+                }
+                else if (cbBuscarNumeros.Checked == true && cbBuscarFechas.Checked == true)
+                {
+                    DESDE = int.Parse(tbNroDesde.Text.Trim());
+                    HASTA = int.Parse(tbNroHasta.Text.Trim());
+                    F_DESDE = dpFechaDesde.Text.Substring(3, 2) + "/" + dpFechaDesde.Text.Substring(0, 2) + "/" + dpFechaDesde.Text.Substring(6, 4);
+                    F_HASTA = dpFechaHasta.Text.Substring(3, 2) + "/" + dpFechaHasta.Text.Substring(0, 2) + "/" + dpFechaHasta.Text.Substring(6, 4);
+                }
+                else if (cbBuscarNumeros.Checked == false && cbBuscarFechas.Checked == true)
+                {
+                    F_DESDE = dpFechaDesde.Text.Substring(3, 2) + "/" + dpFechaDesde.Text.Substring(0, 2) + "/" + dpFechaDesde.Text.Substring(6, 4);
+                    F_HASTA = dpFechaHasta.Text.Substring(3, 2) + "/" + dpFechaHasta.Text.Substring(0, 2) + "/" + dpFechaHasta.Text.Substring(6, 4);
+                }
+                
+                COMPROBANTE = cbTipos.SelectedItem.ToString();
+                COMP_MIN = COMPROBANTE.Substring(0, 1);
                 PTO_VTA = tbPtoVta.Text.Trim();
+                buscador(DESDE, HASTA, COMP_MIN, GRID, PTO_VTA, F_DESDE, F_HASTA);
+            }            
+        }
+
+        private string queryBuscador(int DESDE, int HASTA, string COMPROBANTE, string PTO, string F_DESDE, string F_HASTA)
+        {
+            string query = "";
+
+            query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+            query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
+
+            if (COMPROBANTE == "R")
+            {
+                query += "RECIBOS_CAJA B";
             }
 
-            DataGridView GRID = dgBuscador;
-            buscador(DESDE, HASTA, COMP_MIN, GRID, PTO_VTA);
+            if (COMPROBANTE == "B")
+            {
+                query += "BONOS_CAJA B";
+            }
+
+            query += ", SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID ";
+
+            if (HASTA == 0 && cbBuscarNumeros.Checked == true)
+            {
+                query += "AND NRO_COMP = " + DESDE;
+            }
+
+            if (HASTA > 0 && cbBuscarNumeros.Checked == true)
+            {
+                query += " AND NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
+            }
+
+            if (F_DESDE != "" && F_HASTA != "")
+            {
+                if (HASTA == 0 && cbBuscarNumeros.Checked == true)
+                {
+                    query += " AND NRO_COMP = " + DESDE;
+                }
+
+                query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
+            }
+
+            if (F_DESDE != "" && F_HASTA != "")
+            {
+                if (HASTA > 0 && cbBuscarNumeros.Checked == true)
+                {
+                    query += " AND NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
+                }
+
+                query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
+            }
+
+            query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC;";
+
+            return query;
         }
+
+        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID, string PTO, string F_DESDE, string F_HASTA)
+        {
+            try
+            {
+                DataSet ds1 = new DataSet();
+                string query = queryBuscador(DESDE, HASTA, COMPROBANTE, PTO, F_DESDE, F_HASTA);
+                conString cs = new conString();
+                string connectionString = cs.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataTable dt1 = new DataTable("RESULTADOS");
+                    dt1.Columns.Add("#", typeof(string));
+                    dt1.Columns.Add("DETALLE", typeof(string));
+                    dt1.Columns.Add("CONCEPTO", typeof(string));
+                    dt1.Columns.Add("IMP", typeof(int));
+                    dt1.Columns.Add("IMPORTE", typeof(string));
+                    dt1.Columns.Add("OBSERVACIONES", typeof(string));
+                    dt1.Columns.Add("FECHA", typeof(string));
+                    dt1.Columns.Add("ANULADO", typeof(string));
+                    dt1.Columns.Add("F_PAGO", typeof(string));
+                    dt1.Columns.Add("ID", typeof(string));
+                    dt1.Columns.Add("PV", typeof(string));
+                    ds1.Tables.Add(dt1);
+                    
+                    FbCommand cmd = new FbCommand(query, connection, transaction);
+                    FbDataReader reader = cmd.ExecuteReader();
+
+                    string NRO_COMP = string.Empty;
+                    string DETALLE = string.Empty;
+                    string CONCEPTO = string.Empty;
+                    string IMPUTACION = string.Empty;
+                    decimal IMPORTE;
+                    string OBSERVACIONES = string.Empty;
+                    string FECHA = string.Empty;
+                    string VALOR;
+                    decimal TOTAL = 0;
+                    string TIPO = string.Empty;
+                    string ANULADO = string.Empty;
+                    string F_PAGO = string.Empty;
+                    decimal CAJAS_DEPOSITADAS = 0;
+                    string ID_COMP = string.Empty;
+                    string PTO_VTA = string.Empty;
+
+                    while (reader.Read())
+                    {
+                        TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
+                        NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
+
+                        if (TIPO == "B")
+                            NRO_COMP = "B" + NRO_COMP;
+                        else
+                            NRO_COMP = "R" + NRO_COMP;
+
+                        DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
+                        CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
+                        IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));
+                        IMPORTE = reader.GetDecimal(reader.GetOrdinal("VALOR"));
+                        VALOR = string.Format("{0:n}", IMPORTE);
+                        OBSERVACIONES = reader.GetString(reader.GetOrdinal("OBSERVACIONES")).Trim();
+                        FECHA = reader.GetString(reader.GetOrdinal("FECHA_RECIBO")).Trim().Replace(" 0:00:00", "");
+                        TOTAL = TOTAL + IMPORTE;
+                        ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
+                        F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
+                        ID_COMP = reader.GetString(reader.GetOrdinal("ID"));
+                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
+                        
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA);
+                    }
+
+                    reader.Close();
+                    GRID.DataSource = dt1;
+                    GRID.Columns[0].Width = 60;
+                    GRID.Columns[1].Width = 190;
+                    GRID.Columns[2].Width = 190;
+                    GRID.Columns[3].Width = 50;
+                    GRID.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[4].Width = 80;
+                    GRID.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[5].Width = 195;
+                    GRID.Columns[6].Visible = true;
+                    GRID.Columns[6].Width = 70;
+                    GRID.Columns[7].Width = 70;
+                    GRID.Columns[8].Width = 110;
+                    GRID.Columns[9].Width = 50;
+                    GRID.Columns[10].Width = 40;
+                    transaction.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        } 
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -3889,6 +3967,44 @@ namespace SOCIOS
         private void btnImprimirEfectivo_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void cbBuscarNumeros_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBuscarNumeros.Checked == true)
+            {
+                label10.Enabled = true;
+                label12.Enabled = true;
+                tbNroDesde.Enabled = true;
+                tbNroHasta.Enabled = true;
+            }
+            else
+            {
+                label10.Enabled = false;
+                label12.Enabled = false;
+                tbNroDesde.Enabled = false;
+                tbNroHasta.Enabled = false;
+                tbNroDesde.Text = "";
+                tbNroHasta.Text = "";
+            }
+        }
+
+        private void cbBuscarFechas_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBuscarFechas.Checked == true)
+            {
+                label14.Enabled = true;
+                label15.Enabled = true;
+                dpFechaDesde.Enabled = true;
+                dpFechaHasta.Enabled = true;
+            }
+            else
+            {
+                label14.Enabled = false;
+                label15.Enabled = false;
+                dpFechaDesde.Enabled = false;
+                dpFechaHasta.Enabled = false;
+            }
         }
     }
 }

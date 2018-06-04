@@ -26,11 +26,23 @@ namespace SOCIOS
             comboCargos();
             comboRoles();
             buscarPersonas(0);
+
+            if (VGlobales.vp_role == "DEPORTES")
+            {
+                linkLabel1.Enabled = false;
+                linkLabel2.Enabled = false;
+            }
         }
 
         private void comboRoles()
         {
             string query = "SELECT DISTINCT TRIM(ROL) AS ROL FROM SECTACT WHERE ESTADO = 1 ORDER BY ROL;";
+
+            if (VGlobales.vp_role == "DEPORTES")
+            {
+                query = "SELECT DISTINCT TRIM(ROL) AS ROL FROM SECTACT WHERE ESTADO = 1 AND ROL = 'DEPORTES' ORDER BY ROL;";
+            }
+
             cbRoles.DataSource = null;
             cbRoles.Items.Clear();
             cbRoles.DataSource = dlog.BO_EjecutoDataTable(query);
@@ -42,6 +54,12 @@ namespace SOCIOS
         {
             cbEscalafon.DataSource = null;
             string query = "SELECT * FROM ESCALAFON ORDER BY ESCALAFON ASC;";
+
+            if (VGlobales.vp_role == "DEPORTES")
+            {
+                query = "SELECT * FROM ESCALAFON WHERE ID IN(4, 5) ORDER BY ESCALAFON ASC;";
+            }
+
             cbEscalafon.Items.Clear();
             cbEscalafon.DataSource = dlog.BO_EjecutoDataTable(query);
             cbEscalafon.DisplayMember = "ESCALAFON";
@@ -53,6 +71,12 @@ namespace SOCIOS
         {
             cbCargo.DataSource = null;
             string query = "SELECT * FROM CARGO ORDER BY CARGO ASC;";
+
+            if (VGlobales.vp_role == "DEPORTES")
+            {
+                query = "SELECT * FROM CARGO WHERE ID IN(41) ORDER BY CARGO ASC;";
+            }
+
             cbCargo.Items.Clear();
             cbCargo.DataSource = dlog.BO_EjecutoDataTable(query);
             cbCargo.DisplayMember = "CARGO";
@@ -74,10 +98,20 @@ namespace SOCIOS
                     if (ID == 0)
                     {
                         QUERY = "SELECT P.ID, P.NOMBRE, E.ESCALAFON, C.CARGO, P.ROL FROM PERSONAS P, ESCALAFON E, CARGO C WHERE P.CARGO = C.ID AND P.ESCALAFON = E.ID AND ESTADO = 1 ORDER BY E.ID, C.ID;";
+
+                        if (VGlobales.vp_role == "DEPORTES")
+                        {
+                            QUERY = "SELECT P.ID, P.NOMBRE, E.ESCALAFON, C.CARGO, P.ROL FROM PERSONAS P, ESCALAFON E, CARGO C WHERE P.ROL = 'DEPORTES' AND P.CARGO = C.ID AND P.ESCALAFON = E.ID AND ESTADO = 1 ORDER BY E.ID, C.ID;";
+                        }
                     }
                     else 
                     {
                         QUERY = "SELECT P.ID, P.NOMBRE, P.ESCALAFON, P.CARGO, P.ROL FROM PERSONAS P WHERE P.ID = " + ID + ";";
+
+                        if (VGlobales.vp_role == "DEPORTES")
+                        {
+                            QUERY = "SELECT P.ID, P.NOMBRE, P.ESCALAFON, P.CARGO, P.ROL FROM PERSONAS P WHERE P.ROL = 'DEPORTES' AND P.ID = " + ID + ";";
+                        }
                     }
 
                     connection.Open();

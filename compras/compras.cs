@@ -753,7 +753,7 @@ namespace SOCIOS
             if (TIPO_DE_COMPROBANTE != "2" && TIPO_DE_COMPROBANTE != "9" && TIPO_DE_COMPROBANTE != "12")
             {
                 string NUM_FACTURA = tbNumFactura.Text.Trim();
-                string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "';";
+                string QUERY = "SELECT ID FROM FACTURAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NUM_FACTURA = '" + NUM_FACTURA + "' AND TIPO = " + TIPO_DE_COMPROBANTE;
                 DataRow[] foundRows;
                 foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 

@@ -21,8 +21,11 @@ namespace SOCIOS
             newLabel nl = new newLabel();
             newBullet nb = new newBullet();
 
-            if (VGlobales.vp_role == "SISTEMAS")
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "DEPORTES")
+            {
                 button1.Enabled = true;
+                btnListado.Enabled = true;
+            }
             
             DataRow[] fRows1 = lp.listado(1);
 

@@ -98,6 +98,7 @@
             this.btnQuitarCheque = new System.Windows.Forms.Button();
             this.dgEgresos = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnImprimirEfectivo = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.cbProfEfectivo = new System.Windows.Forms.ComboBox();
             this.btnModRoleDestEfectivo = new System.Windows.Forms.Button();
@@ -135,6 +136,12 @@
             this.btnAgregarCheque = new System.Windows.Forms.Button();
             this.dgCheques = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.cbBuscarFechas = new System.Windows.Forms.CheckBox();
+            this.cbBuscarNumeros = new System.Windows.Forms.CheckBox();
+            this.dpFechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.dpFechaDesde = new System.Windows.Forms.DateTimePicker();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.cbProfBuscador = new System.Windows.Forms.ComboBox();
             this.btnModRoleDestBuscador = new System.Windows.Forms.Button();
@@ -158,7 +165,6 @@
             this.tbNroDesde = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgBuscador = new System.Windows.Forms.DataGridView();
-            this.btnImprimirEfectivo = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPlanilla.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -742,6 +748,16 @@
             this.tabPage1.Text = "INGRESOS DEL DÍA EN EFECTIVO";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btnImprimirEfectivo
+            // 
+            this.btnImprimirEfectivo.Location = new System.Drawing.Point(85, 34);
+            this.btnImprimirEfectivo.Name = "btnImprimirEfectivo";
+            this.btnImprimirEfectivo.Size = new System.Drawing.Size(163, 23);
+            this.btnImprimirEfectivo.TabIndex = 137;
+            this.btnImprimirEfectivo.Text = "IMPRIMIR";
+            this.btnImprimirEfectivo.UseVisualStyleBackColor = true;
+            this.btnImprimirEfectivo.Click += new System.EventHandler(this.btnImprimirEfectivo_Click);
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -1243,6 +1259,12 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.cbBuscarFechas);
+            this.tabPage4.Controls.Add(this.cbBuscarNumeros);
+            this.tabPage4.Controls.Add(this.dpFechaHasta);
+            this.tabPage4.Controls.Add(this.dpFechaDesde);
+            this.tabPage4.Controls.Add(this.label15);
+            this.tabPage4.Controls.Add(this.label14);
             this.tabPage4.Controls.Add(this.label7);
             this.tabPage4.Controls.Add(this.cbProfBuscador);
             this.tabPage4.Controls.Add(this.btnModRoleDestBuscador);
@@ -1274,10 +1296,70 @@
             this.tabPage4.Text = "BUSCADOR";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // cbBuscarFechas
+            // 
+            this.cbBuscarFechas.AutoSize = true;
+            this.cbBuscarFechas.Location = new System.Drawing.Point(377, 39);
+            this.cbBuscarFechas.Name = "cbBuscarFechas";
+            this.cbBuscarFechas.Size = new System.Drawing.Size(15, 14);
+            this.cbBuscarFechas.TabIndex = 168;
+            this.cbBuscarFechas.UseVisualStyleBackColor = true;
+            this.cbBuscarFechas.CheckedChanged += new System.EventHandler(this.cbBuscarFechas_CheckedChanged);
+            // 
+            // cbBuscarNumeros
+            // 
+            this.cbBuscarNumeros.AutoSize = true;
+            this.cbBuscarNumeros.Checked = true;
+            this.cbBuscarNumeros.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBuscarNumeros.Location = new System.Drawing.Point(377, 14);
+            this.cbBuscarNumeros.Name = "cbBuscarNumeros";
+            this.cbBuscarNumeros.Size = new System.Drawing.Size(15, 14);
+            this.cbBuscarNumeros.TabIndex = 167;
+            this.cbBuscarNumeros.UseVisualStyleBackColor = true;
+            this.cbBuscarNumeros.CheckedChanged += new System.EventHandler(this.cbBuscarNumeros_CheckedChanged);
+            // 
+            // dpFechaHasta
+            // 
+            this.dpFechaHasta.Enabled = false;
+            this.dpFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpFechaHasta.Location = new System.Drawing.Point(282, 36);
+            this.dpFechaHasta.Name = "dpFechaHasta";
+            this.dpFechaHasta.Size = new System.Drawing.Size(88, 20);
+            this.dpFechaHasta.TabIndex = 166;
+            // 
+            // dpFechaDesde
+            // 
+            this.dpFechaDesde.Enabled = false;
+            this.dpFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpFechaDesde.Location = new System.Drawing.Point(96, 36);
+            this.dpFechaDesde.Name = "dpFechaDesde";
+            this.dpFechaDesde.Size = new System.Drawing.Size(88, 20);
+            this.dpFechaDesde.TabIndex = 165;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Enabled = false;
+            this.label15.Location = new System.Drawing.Point(192, 40);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(81, 13);
+            this.label15.TabIndex = 164;
+            this.label15.Text = "FECHA HASTA";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Enabled = false;
+            this.label14.Location = new System.Drawing.Point(6, 40);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 13);
+            this.label14.TabIndex = 163;
+            this.label14.Text = "FECHA DESDE";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(752, 67);
+            this.label7.Location = new System.Drawing.Point(759, 67);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 13);
             this.label7.TabIndex = 162;
@@ -1288,7 +1370,7 @@
             this.cbProfBuscador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProfBuscador.Enabled = false;
             this.cbProfBuscador.FormattingEnabled = true;
-            this.cbProfBuscador.Location = new System.Drawing.Point(823, 63);
+            this.cbProfBuscador.Location = new System.Drawing.Point(826, 63);
             this.cbProfBuscador.Name = "cbProfBuscador";
             this.cbProfBuscador.Size = new System.Drawing.Size(290, 21);
             this.cbProfBuscador.TabIndex = 161;
@@ -1312,7 +1394,7 @@
             this.btnImporteBuscador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImporteBuscador.ForeColor = System.Drawing.SystemColors.Control;
             this.btnImporteBuscador.Image = ((System.Drawing.Image)(resources.GetObject("btnImporteBuscador.Image")));
-            this.btnImporteBuscador.Location = new System.Drawing.Point(473, 34);
+            this.btnImporteBuscador.Location = new System.Drawing.Point(707, 9);
             this.btnImporteBuscador.Name = "btnImporteBuscador";
             this.btnImporteBuscador.Size = new System.Drawing.Size(24, 25);
             this.btnImporteBuscador.TabIndex = 159;
@@ -1322,7 +1404,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(736, 40);
+            this.label8.Location = new System.Drawing.Point(740, 40);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 13);
             this.label8.TabIndex = 158;
@@ -1333,7 +1415,7 @@
             this.cbDestinoBuscador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDestinoBuscador.Enabled = false;
             this.cbDestinoBuscador.FormattingEnabled = true;
-            this.cbDestinoBuscador.Location = new System.Drawing.Point(823, 36);
+            this.cbDestinoBuscador.Location = new System.Drawing.Point(826, 36);
             this.cbDestinoBuscador.Name = "cbDestinoBuscador";
             this.cbDestinoBuscador.Size = new System.Drawing.Size(290, 21);
             this.cbDestinoBuscador.TabIndex = 157;
@@ -1342,7 +1424,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(501, 40);
+            this.label25.Location = new System.Drawing.Point(759, 15);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(64, 13);
             this.label25.TabIndex = 156;
@@ -1353,24 +1435,24 @@
             this.cbRoleBuscador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRoleBuscador.Enabled = false;
             this.cbRoleBuscador.FormattingEnabled = true;
-            this.cbRoleBuscador.Location = new System.Drawing.Point(569, 36);
+            this.cbRoleBuscador.Location = new System.Drawing.Point(826, 11);
             this.cbRoleBuscador.Name = "cbRoleBuscador";
-            this.cbRoleBuscador.Size = new System.Drawing.Size(163, 21);
+            this.cbRoleBuscador.Size = new System.Drawing.Size(290, 21);
             this.cbRoleBuscador.TabIndex = 155;
             this.cbRoleBuscador.SelectedIndexChanged += new System.EventHandler(this.cbRoleBuscador_SelectedIndexChanged);
             // 
             // tbImporteBuscador
             // 
             this.tbImporteBuscador.Enabled = false;
-            this.tbImporteBuscador.Location = new System.Drawing.Point(369, 36);
+            this.tbImporteBuscador.Location = new System.Drawing.Point(540, 11);
             this.tbImporteBuscador.Name = "tbImporteBuscador";
-            this.tbImporteBuscador.Size = new System.Drawing.Size(100, 20);
+            this.tbImporteBuscador.Size = new System.Drawing.Size(163, 20);
             this.tbImporteBuscador.TabIndex = 154;
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(281, 40);
+            this.label26.Location = new System.Drawing.Point(452, 15);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(84, 13);
             this.label26.TabIndex = 153;
@@ -1379,7 +1461,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(8, 40);
+            this.label27.Location = new System.Drawing.Point(462, 40);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(74, 13);
             this.label27.TabIndex = 152;
@@ -1390,7 +1472,7 @@
             this.cbFormaPagoBuscador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFormaPagoBuscador.Enabled = false;
             this.cbFormaPagoBuscador.FormattingEnabled = true;
-            this.cbFormaPagoBuscador.Location = new System.Drawing.Point(86, 36);
+            this.cbFormaPagoBuscador.Location = new System.Drawing.Point(540, 36);
             this.cbFormaPagoBuscador.Name = "cbFormaPagoBuscador";
             this.cbFormaPagoBuscador.Size = new System.Drawing.Size(163, 21);
             this.cbFormaPagoBuscador.TabIndex = 151;
@@ -1401,7 +1483,7 @@
             this.btnFormaPagoBuscador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFormaPagoBuscador.ForeColor = System.Drawing.SystemColors.Control;
             this.btnFormaPagoBuscador.Image = ((System.Drawing.Image)(resources.GetObject("btnFormaPagoBuscador.Image")));
-            this.btnFormaPagoBuscador.Location = new System.Drawing.Point(253, 34);
+            this.btnFormaPagoBuscador.Location = new System.Drawing.Point(707, 34);
             this.btnFormaPagoBuscador.Name = "btnFormaPagoBuscador";
             this.btnFormaPagoBuscador.Size = new System.Drawing.Size(24, 25);
             this.btnFormaPagoBuscador.TabIndex = 150;
@@ -1410,15 +1492,15 @@
             // 
             // tbPtoVta
             // 
-            this.tbPtoVta.Location = new System.Drawing.Point(370, 9);
+            this.tbPtoVta.Location = new System.Drawing.Point(96, 59);
             this.tbPtoVta.Name = "tbPtoVta";
-            this.tbPtoVta.Size = new System.Drawing.Size(99, 20);
+            this.tbPtoVta.Size = new System.Drawing.Size(88, 20);
             this.tbPtoVta.TabIndex = 77;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(303, 13);
+            this.label13.Location = new System.Drawing.Point(35, 63);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(53, 13);
             this.label13.TabIndex = 81;
@@ -1426,43 +1508,45 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(823, 8);
+            this.btnBuscar.FlatAppearance.BorderSize = 0;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.Image = global::SOCIOS.Properties.Resources.magnifier;
+            this.btnBuscar.Location = new System.Drawing.Point(394, 59);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(29, 23);
             this.btnBuscar.TabIndex = 79;
-            this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // tbNroHasta
             // 
-            this.tbNroHasta.Location = new System.Drawing.Point(188, 9);
+            this.tbNroHasta.Location = new System.Drawing.Point(282, 11);
             this.tbNroHasta.Name = "tbNroHasta";
-            this.tbNroHasta.Size = new System.Drawing.Size(58, 20);
+            this.tbNroHasta.Size = new System.Drawing.Size(88, 20);
             this.tbNroHasta.TabIndex = 76;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(145, 13);
+            this.label12.Location = new System.Drawing.Point(203, 15);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 13);
+            this.label12.Size = new System.Drawing.Size(70, 13);
             this.label12.TabIndex = 78;
-            this.label12.Text = "HASTA";
+            this.label12.Text = "NRO HASTA";
             // 
             // cbTipos
             // 
             this.cbTipos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipos.FormattingEnabled = true;
-            this.cbTipos.Location = new System.Drawing.Point(569, 9);
+            this.cbTipos.Location = new System.Drawing.Point(282, 59);
             this.cbTipos.Name = "cbTipos";
-            this.cbTipos.Size = new System.Drawing.Size(163, 21);
+            this.cbTipos.Size = new System.Drawing.Size(110, 21);
             this.cbTipos.TabIndex = 78;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(533, 13);
+            this.label11.Location = new System.Drawing.Point(241, 63);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(32, 13);
             this.label11.TabIndex = 76;
@@ -1470,19 +1554,19 @@
             // 
             // tbNroDesde
             // 
-            this.tbNroDesde.Location = new System.Drawing.Point(86, 9);
+            this.tbNroDesde.Location = new System.Drawing.Point(96, 11);
             this.tbNroDesde.Name = "tbNroDesde";
-            this.tbNroDesde.Size = new System.Drawing.Size(58, 20);
+            this.tbNroDesde.Size = new System.Drawing.Size(88, 20);
             this.tbNroDesde.TabIndex = 75;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(36, 13);
+            this.label10.Location = new System.Drawing.Point(17, 15);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.Size = new System.Drawing.Size(71, 13);
             this.label10.TabIndex = 74;
-            this.label10.Text = "DESDE";
+            this.label10.Text = "NRO DESDE";
             // 
             // dgBuscador
             // 
@@ -1532,16 +1616,6 @@
             this.dgBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgBuscador.Size = new System.Drawing.Size(1133, 518);
             this.dgBuscador.TabIndex = 73;
-            // 
-            // btnImprimirEfectivo
-            // 
-            this.btnImprimirEfectivo.Location = new System.Drawing.Point(85, 34);
-            this.btnImprimirEfectivo.Name = "btnImprimirEfectivo";
-            this.btnImprimirEfectivo.Size = new System.Drawing.Size(163, 23);
-            this.btnImprimirEfectivo.TabIndex = 137;
-            this.btnImprimirEfectivo.Text = "IMPRIMIR";
-            this.btnImprimirEfectivo.UseVisualStyleBackColor = true;
-            this.btnImprimirEfectivo.Click += new System.EventHandler(this.btnImprimirEfectivo_Click);
             // 
             // planillaDeCaja
             // 
@@ -1683,6 +1757,12 @@
         private System.Windows.Forms.ComboBox cbFormaPagoBuscador;
         private System.Windows.Forms.Button btnFormaPagoBuscador;
         private System.Windows.Forms.Button btnImprimirEfectivo;
+        private System.Windows.Forms.DateTimePicker dpFechaHasta;
+        private System.Windows.Forms.DateTimePicker dpFechaDesde;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox cbBuscarFechas;
+        private System.Windows.Forms.CheckBox cbBuscarNumeros;
 
 
 

@@ -43,7 +43,7 @@ namespace SOCIOS
         }
 
         //STORED RESTABLECE ADH INTERFUERZAS A TITULAR
-        public void restablecer994(int ID_TITULAR, int COD_DTO, string CAT_SOC, int NRO_SOC, int NRO_DEP, int ID_ADH)
+        public void restablecer994(int ID_TITULAR, int COD_DTO, string CAT_SOC, int NRO_SOC, int NRO_DEP, int ID_ADH, int ID_EMP)
         {
             db resultado = new db();
 
@@ -54,11 +54,13 @@ namespace SOCIOS
             vector_contenidos.Add(NRO_SOC);
             vector_contenidos.Add(NRO_DEP);
             vector_contenidos.Add(ID_ADH);
+            vector_contenidos.Add(ID_EMP);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -70,6 +72,7 @@ namespace SOCIOS
             vector_nombres.Add("@NRO_SOC");
             vector_nombres.Add("@NRO_DEP");
             vector_nombres.Add("@ID_ADH");
+            vector_nombres.Add("@ID_EMP");
 
             string vprocedure = "A_RESTABLECER_994";
 
