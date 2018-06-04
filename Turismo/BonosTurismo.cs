@@ -17,7 +17,10 @@ namespace SOCIOS.bono
     public partial class BonosTurismo : Form
     {
         int ID = 0;
+        int ID_BASE;
+        string TIPO = "";
         bo dlog = new bo();
+
         public BonosTurismo()
         {
             InitializeComponent();
@@ -57,12 +60,12 @@ namespace SOCIOS.bono
 
             if (!chkBlanco.Checked)
             {
-                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO, B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA   from Bono_Turismo B, Proveedores P
+                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO, B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA, B.BONO_BLANCO BONO_BLANCO, B.ID ID   from Bono_Turismo B, Proveedores P
             where    B.Operador = P.ID";
             }
             else
             {
-                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO,B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,'S/C' OPERADOR,coalesce(B.FE_BAJA,'0') BAJA   from Bono_Turismo B WHERE 1=1 ";
+                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO,B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,'S/C' OPERADOR,coalesce(B.FE_BAJA,'0') BAJA, B.BONO_BLANCO BONO_BLANCO, B.ID ID    from Bono_Turismo B WHERE 1=1 ";
         
             
             }
@@ -126,6 +129,9 @@ namespace SOCIOS.bono
                     dt1.Columns.Add("SALDO", typeof(string));
                     dt1.Columns.Add("OPERADOR", typeof(string));
                     dt1.Columns.Add("BAJA", typeof(string));
+                    dt1.Columns.Add("BONO_BLANCO", typeof(string));
+                   
+                    dt1.Columns.Add("ID", typeof(string));
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -144,7 +150,10 @@ namespace SOCIOS.bono
                  
                                      reader3.GetString(reader3.GetOrdinal("SALDO")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("OPERADOR")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("BAJA")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("BAJA")).Trim(),
+                                      reader3.GetString(reader3.GetOrdinal("BONO_BLANCO")).Trim(),
+                                   
+                                      reader3.GetString(reader3.GetOrdinal("ID")).Trim());
                     }
 
                     reader3.Close();
@@ -262,6 +271,22 @@ namespace SOCIOS.bono
         private void dgBonos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = Int32.Parse(dgBonos.SelectedRows[0].Cells[0].Value.ToString());
+          
+            if (dgBonos.SelectedRows[0].Cells[10].Value.ToString() == "SI")
+            {
+                btn_CARGAR_BONO_BLANCO.Visible = true;
+                ID_BASE = Int32.Parse(dgBonos.SelectedRows[0].Cells[11].Value.ToString());
+                TIPO = dgBonos.SelectedRows[0].Cells[2].Value.ToString();
+
+            }
+            else
+                btn_CARGAR_BONO_BLANCO.Visible = false;
+        }
+
+        private void btn_CARGAR_BONO_BLANCO_Click(object sender, EventArgs e)
+        {
+            SOCIOS.bono.Bonos.UPDATE_BONO_BLANCO upb = new Bonos.UPDATE_BONO_BLANCO(ID_BASE, ID, TIPO);
+            upb.ShowDialog();
         }
     }
 }

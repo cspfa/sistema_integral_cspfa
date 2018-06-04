@@ -41,6 +41,7 @@
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chkBlanco = new System.Windows.Forms.CheckBox();
+            this.btn_CARGAR_BONO_BLANCO = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgBonos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -166,11 +167,23 @@
             this.chkBlanco.Text = "BONOS EN BLANCO";
             this.chkBlanco.UseVisualStyleBackColor = true;
             // 
+            // btn_CARGAR_BONO_BLANCO
+            // 
+            this.btn_CARGAR_BONO_BLANCO.Location = new System.Drawing.Point(448, 409);
+            this.btn_CARGAR_BONO_BLANCO.Name = "btn_CARGAR_BONO_BLANCO";
+            this.btn_CARGAR_BONO_BLANCO.Size = new System.Drawing.Size(118, 30);
+            this.btn_CARGAR_BONO_BLANCO.TabIndex = 92;
+            this.btn_CARGAR_BONO_BLANCO.Text = "CARGAR BONO";
+            this.btn_CARGAR_BONO_BLANCO.UseVisualStyleBackColor = true;
+            this.btn_CARGAR_BONO_BLANCO.Visible = false;
+            this.btn_CARGAR_BONO_BLANCO.Click += new System.EventHandler(this.btn_CARGAR_BONO_BLANCO_Click);
+            // 
             // BonosTurismo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(857, 450);
+            this.Controls.Add(this.btn_CARGAR_BONO_BLANCO);
             this.Controls.Add(this.chkBlanco);
             this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label4);
@@ -207,5 +220,6 @@
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkBlanco;
+        private System.Windows.Forms.Button btn_CARGAR_BONO_BLANCO;
     }
 }
