@@ -4125,6 +4125,58 @@ namespace SOCIOS
                    solicitud.ShowDialog();
                    solicitud.Focus();
                    break;
+               case "BonoHotelCompletar":
+                   {
+                       try
+                       {
+                           this.ControlEdad();
+                           bono.Bonos.Carga_Bono_Blanco_Socio bhS = new bono.Bonos.Carga_Bono_Blanco_Socio("HOT", dgvGrupo.SelectedRows, VGlobales.vp_Titular_Soc, VGlobales.vp_Titular_Dep);
+                           bhS.ShowDialog();
+                           bhS.Focus();
+                       }
+
+                       catch (Exception ex)
+                       {
+                           MessageBox.Show(ex.Message, "ERROR:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       }
+                       break;
+                   }
+
+               case "BonoSalidaCompletar":
+                   {
+                       try
+                       {
+                           this.ControlEdad();
+                           bono.Bonos.Carga_Bono_Blanco_Socio bhS = new bono.Bonos.Carga_Bono_Blanco_Socio("PAQ", dgvGrupo.SelectedRows, VGlobales.vp_Titular_Soc, VGlobales.vp_Titular_Dep);
+                           bhS.ShowDialog();
+                           bhS.Focus();
+                       }
+
+                       catch (Exception ex)
+                       {
+                           MessageBox.Show(ex.Message, "ERROR:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       }
+                       break;
+                   }
+
+               case "BonoPasajeCompletar":
+                   {
+                       try
+                       {
+                           this.ControlEdad();
+                           bono.Bonos.Carga_Bono_Blanco_Socio bhS = new bono.Bonos.Carga_Bono_Blanco_Socio("PAS", dgvGrupo.SelectedRows, VGlobales.vp_Titular_Soc, VGlobales.vp_Titular_Dep);
+                           bhS.ShowDialog();
+                           bhS.Focus();
+                       }
+
+                       catch (Exception ex)
+                       {
+                           MessageBox.Show(ex.Message, "ERROR:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                       }
+                       break;
+                   }
+
+
 
                default:
                    MessageBox.Show("default");
