@@ -48,6 +48,9 @@ namespace SOCIOS
             }
 
             lbVersion.Text = "VERSION " + FECHA;
+
+            actSociosUpdate asu = new actSociosUpdate();
+            asu.actualizar();
         }
 
         private void ToolStripMenuItem8_Click(object sender, EventArgs e)
