@@ -72,7 +72,7 @@ namespace SOCIOS.bono
             this.DatosPasaje(ID);
             bo dlog = new bo();
             //Codigo Barra
-            string Barra = "TU" + ID.ToString("0000000000");
+            string Barra = "TU" + ID_ROL.ToString("0000000000");
             //Array que contendrá los parámetros
             ReportParameter[] parameters = new ReportParameter[22];
             //Establecemos el valor de los parámetros
