@@ -140,6 +140,7 @@
             this.cmProsecretaria = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dEPFAACABAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dECABAAPFAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.noAlcanzaCSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox1)).BeginInit();
             this.themedGroupBox1.SuspendLayout();
@@ -1519,25 +1520,34 @@
             // 
             this.cmProsecretaria.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dEPFAACABAToolStripMenuItem,
-            this.dECABAAPFAToolStripMenuItem});
+            this.dECABAAPFAToolStripMenuItem,
+            this.noAlcanzaCSToolStripMenuItem});
             this.cmProsecretaria.Name = "cmProsecretaria";
-            this.cmProsecretaria.Size = new System.Drawing.Size(150, 48);
+            this.cmProsecretaria.Size = new System.Drawing.Size(153, 92);
             // 
             // dEPFAACABAToolStripMenuItem
             // 
             this.dEPFAACABAToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dEPFAACABAToolStripMenuItem.Image")));
             this.dEPFAACABAToolStripMenuItem.Name = "dEPFAACABAToolStripMenuItem";
-            this.dEPFAACABAToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.dEPFAACABAToolStripMenuItem.Text = "DE PFA A CABA";
+            this.dEPFAACABAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dEPFAACABAToolStripMenuItem.Text = "De PFA a CABA";
             this.dEPFAACABAToolStripMenuItem.Click += new System.EventHandler(this.dEPFAACABAToolStripMenuItem_Click);
             // 
             // dECABAAPFAToolStripMenuItem
             // 
             this.dECABAAPFAToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dECABAAPFAToolStripMenuItem.Image")));
             this.dECABAAPFAToolStripMenuItem.Name = "dECABAAPFAToolStripMenuItem";
-            this.dECABAAPFAToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.dECABAAPFAToolStripMenuItem.Text = "DE CABA A PFA";
+            this.dECABAAPFAToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dECABAAPFAToolStripMenuItem.Text = "De CABA a PFA";
             this.dECABAAPFAToolStripMenuItem.Click += new System.EventHandler(this.dECABAAPFAToolStripMenuItem_Click);
+            // 
+            // noAlcanzaCSToolStripMenuItem
+            // 
+            this.noAlcanzaCSToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("noAlcanzaCSToolStripMenuItem.Image")));
+            this.noAlcanzaCSToolStripMenuItem.Name = "noAlcanzaCSToolStripMenuItem";
+            this.noAlcanzaCSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.noAlcanzaCSToolStripMenuItem.Text = "No Alcanza CS";
+            this.noAlcanzaCSToolStripMenuItem.Click += new System.EventHandler(this.noAlcanzaCSToolStripMenuItem_Click);
             // 
             // buscar
             // 
@@ -1723,6 +1733,7 @@
         private System.Windows.Forms.ContextMenuStrip cmProsecretaria;
         private System.Windows.Forms.ToolStripMenuItem dEPFAACABAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dECABAAPFAToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem noAlcanzaCSToolStripMenuItem;
 
 
     }

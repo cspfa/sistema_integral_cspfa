@@ -3011,52 +3011,102 @@ namespace SOCIOS
 
         private void dEPFAACABAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (themedContainer1.IsBodyVisible)
             {
-                string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
-                int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
-
-                if (NRO_DEP == "994")
+                if (listView1.SelectedItems.Count > 0)
                 {
-                    restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
-                    r.ShowDialog();
-                    BuscarTitular();
+                    string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
+                    int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                    int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
+
+                    if (NRO_DEP == "994")
+                    {
+                        restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
+                        r.ShowDialog();
+                        BuscarTitular();
+                    }
+                    else
+                    {
+                        MessageBox.Show("LA DEPURACIÓN DEBE SER 994", "ERROR!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("LA DEPURACIÓN DEBE SER 994", "ERROR!");
+                    MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
                 }
             }
             else
             {
-                MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
+                MessageBox.Show("BUSCAR UN SOCIO TITULAR", "ERROR!");
             }
         }
 
         private void dECABAAPFAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (themedContainer1.IsBodyVisible)
             {
-                string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
-                int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
-
-                if (NRO_DEP == "020")
+                if (listView1.SelectedItems.Count > 0)
                 {
-                    restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
-                    r.ShowDialog();
-                    BuscarTitular();
+                    string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
+                    int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                    int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
+
+                    if (NRO_DEP == "020")
+                    {
+                        restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
+                        r.ShowDialog();
+                        BuscarTitular();
+                    }
+                    else
+                    {
+                        MessageBox.Show("LA DEPURACIÓN DEBE SER 20", "ERROR!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("LA DEPURACIÓN DEBE SER 20", "ERROR!");
+                    MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
                 }
             }
             else
             {
-                MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
+                MessageBox.Show("BUSCAR UN SOCIO TITULAR", "ERROR!");
             }
+        }
+
+        private void noAlcanzaCSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string TIPO_SOCIO = "";
+            int ID_SOCIO = 0;
+            string ID_SOCIO_S = "";
+            int BARRA = 0;
+            string BARRA_S = "";
+
+            if (themedContainer1.IsBodyVisible)
+            {
+                ID_SOCIO_S = listView1.SelectedItems[0].SubItems[8].Text;
+                TIPO_SOCIO = "TITULAR";
+            }
+
+            if (themedContainer2.IsBodyVisible)
+            {
+                BARRA = int.Parse(listView1.SelectedItems[0].SubItems[4].Text);
+                TIPO_SOCIO = "ADHERENTE";
+                ID_SOCIO = int.Parse(listView1.SelectedItems[0].SubItems[3].Text);
+
+                if (BARRA<10)
+                {
+                    BARRA_S = "0"+BARRA.ToString();
+                }
+                else
+                {
+                    BARRA_S = BARRA.ToString();
+                }
+
+                ID_SOCIO_S = ID_SOCIO.ToString()+BARRA_S;
+            }
+
+            registroSocios.noAlcanza na = new registroSocios.noAlcanza(TIPO_SOCIO, ID_SOCIO_S);
+            na.ShowDialog();
         }
     }
 }
