@@ -64,7 +64,7 @@ namespace SOCIOS.bono
     
             bo dlog = new bo();
             //Codigo Barra
-            string Barra = "TU" + ID.ToString("0000000000");
+            string Barra = "TU" + ID_ROL.ToString("0000000000");
             //DIAS DISPONIBLES
 
             Hotel_Dias_Utils dias = new Hotel_Dias_Utils();

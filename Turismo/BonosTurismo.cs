@@ -65,7 +65,7 @@ namespace SOCIOS.bono
             }
             else
             {
-                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO,B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,'S/C' OPERADOR,coalesce(B.FE_BAJA,'0') BAJA, B.BONO_BLANCO BONO_BLANCO, B.ID ID    from Bono_Turismo B WHERE 1=1 ";
+                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO,B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,'S/C' OPERADOR,coalesce(B.FE_BAJA,'0') BAJA, B.BONO_BLANCO BONO_BLANCO, B.ID ID    from Bono_Turismo B WHERE BONO_BLANCO='SI'  ";
         
             
             }
