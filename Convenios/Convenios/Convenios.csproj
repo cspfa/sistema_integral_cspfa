@@ -57,17 +57,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bo.cs" />
     <Compile Include="Convenios.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Convenios.Designer.cs">
       <DependentUpon>Convenios.cs</DependentUpon>
     </Compile>
-    <Compile Include="Datos.cs" />
+    <Compile Include="Empresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Empresa.Designer.cs">
+      <DependentUpon>Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Localidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Localidad.Designer.cs">
+      <DependentUpon>Localidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Convenios.resx">
       <DependentUpon>Convenios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Empresa.resx">
+      <DependentUpon>Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localidad.resx">
+      <DependentUpon>Localidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

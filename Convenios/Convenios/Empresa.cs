@@ -10,24 +10,14 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace Convenios
 {
-    public partial class Convenios : Form
+    public partial class Empresa : Form
     {
-        public Convenios()
+        public Empresa()
         {
             InitializeComponent();
         }
 
-        private void btnNuevo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnEditar_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEliminar_Click(object sender, EventArgs e)
         {
 
         }
@@ -37,12 +27,7 @@ namespace Convenios
 
         }
 
-        private void btnVerPdf_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnAgregarEmpresa_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
 
         }
