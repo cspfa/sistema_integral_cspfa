@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Importador", "Importador\Im
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confiteria", "Confiteria\Confiteria.csproj", "{663B9133-5EB9-4B52-AECC-1B67E896D3F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrientacionSocial", "..\OrientacionSocial\OrientacionSocial.csproj", "{7087F8D0-45FB-4AE8-A776-C4356C5275E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,16 @@ Global
 		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|Mixed Platforms.Build.0 = Release|x86
 		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|x86.ActiveCfg = Release|x86
 		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|x86.Build.0 = Release|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|x86.ActiveCfg = Debug|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|x86.Build.0 = Debug|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|Any CPU.ActiveCfg = Release|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|x86.ActiveCfg = Release|x86
+		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
