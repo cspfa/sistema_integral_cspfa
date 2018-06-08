@@ -2607,6 +2607,17 @@ namespace SOCIOS
 
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "ORIENTACION SOCIAL")
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmOSocial.Show(Cursor.Position);
+                    }
+                }
+            }
+
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "SERVICIOS MEDICOS")
             {
                 if (e.Button == MouseButtons.Right)
@@ -3107,6 +3118,21 @@ namespace SOCIOS
 
             registroSocios.noAlcanza na = new registroSocios.noAlcanza(TIPO_SOCIO, ID_SOCIO_S);
             na.ShowDialog();
+        }
+
+        private void tsAsignarElemento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsDevolverElemento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsListarElementos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
