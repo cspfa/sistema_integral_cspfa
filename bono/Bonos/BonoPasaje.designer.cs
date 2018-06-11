@@ -76,6 +76,10 @@
             this.lbSaldoTotal = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.fpago = new System.Windows.Forms.Label();
+            this.tbReciboFilial = new System.Windows.Forms.TextBox();
+            this.lbFilial = new System.Windows.Forms.Label();
+            this.comboFilial = new System.Windows.Forms.ComboBox();
+            this.cbFilial = new System.Windows.Forms.CheckBox();
             this.gpPasaje.SuspendLayout();
             this.AccionesGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvPasajes)).BeginInit();
@@ -472,6 +476,10 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.tbReciboFilial);
+            this.gpDatos.Controls.Add(this.lbFilial);
+            this.gpDatos.Controls.Add(this.comboFilial);
+            this.gpDatos.Controls.Add(this.cbFilial);
             this.gpDatos.Controls.Add(this.lbComisionDirectiva);
             this.gpDatos.Controls.Add(this.cbComisionDirectiva);
             this.gpDatos.Controls.Add(this.tbObs);
@@ -482,7 +490,7 @@
             this.gpDatos.Controls.Add(this.fpago);
             this.gpDatos.Location = new System.Drawing.Point(11, 518);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(529, 167);
+            this.gpDatos.Size = new System.Drawing.Size(529, 185);
             this.gpDatos.TabIndex = 122;
             this.gpDatos.TabStop = false;
             // 
@@ -557,10 +565,49 @@
             this.fpago.TabIndex = 120;
             this.fpago.Text = "[FormaPago]";
             // 
+            // tbReciboFilial
+            // 
+            this.tbReciboFilial.Location = new System.Drawing.Point(413, 150);
+            this.tbReciboFilial.Name = "tbReciboFilial";
+            this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
+            this.tbReciboFilial.TabIndex = 174;
+            this.tbReciboFilial.Visible = false;
+            // 
+            // lbFilial
+            // 
+            this.lbFilial.AutoSize = true;
+            this.lbFilial.Location = new System.Drawing.Point(328, 153);
+            this.lbFilial.Name = "lbFilial";
+            this.lbFilial.Size = new System.Drawing.Size(47, 13);
+            this.lbFilial.TabIndex = 173;
+            this.lbFilial.Text = "RECIBO";
+            this.lbFilial.Visible = false;
+            // 
+            // comboFilial
+            // 
+            this.comboFilial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboFilial.FormattingEnabled = true;
+            this.comboFilial.Location = new System.Drawing.Point(110, 150);
+            this.comboFilial.Name = "comboFilial";
+            this.comboFilial.Size = new System.Drawing.Size(193, 21);
+            this.comboFilial.TabIndex = 171;
+            this.comboFilial.Visible = false;
+            // 
+            // cbFilial
+            // 
+            this.cbFilial.AutoSize = true;
+            this.cbFilial.Location = new System.Drawing.Point(6, 154);
+            this.cbFilial.Name = "cbFilial";
+            this.cbFilial.Size = new System.Drawing.Size(98, 17);
+            this.cbFilial.TabIndex = 172;
+            this.cbFilial.Text = "Recibo de Filial";
+            this.cbFilial.UseVisualStyleBackColor = true;
+            this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
+            // 
             // BonoPasaje
             // 
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1094, 697);
+            this.ClientSize = new System.Drawing.Size(1094, 715);
             this.Controls.Add(this.pagBono);
             this.Controls.Add(this.gpPasaje);
             this.Controls.Add(this.AnularBono);
@@ -640,5 +687,9 @@
         private System.Windows.Forms.Label lbBoletoVuelta;
         private System.Windows.Forms.Label lbComisionDirectiva;
         private System.Windows.Forms.ComboBox cbComisionDirectiva;
+        private System.Windows.Forms.TextBox tbReciboFilial;
+        private System.Windows.Forms.Label lbFilial;
+        private System.Windows.Forms.ComboBox comboFilial;
+        private System.Windows.Forms.CheckBox cbFilial;
     }
 }

@@ -47,7 +47,7 @@
             this.fpago = new System.Windows.Forms.Label();
             this.dpFechaBono = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.comboFilial = new System.Windows.Forms.GroupBox();
             this.lbComisionDirectiva = new System.Windows.Forms.Label();
             this.cbComisionDirectiva = new System.Windows.Forms.ComboBox();
             this.lbLeyendaCocheCama = new System.Windows.Forms.Label();
@@ -63,7 +63,11 @@
             this.tbSocios = new System.Windows.Forms.TextBox();
             this.tbObs = new System.Windows.Forms.TextBox();
             this.cbCocheCama = new System.Windows.Forms.CheckBox();
-            this.gpDatos.SuspendLayout();
+            this.tbReciboFilial = new System.Windows.Forms.TextBox();
+            this.lbFilial = new System.Windows.Forms.Label();
+            this.combo_Filial = new System.Windows.Forms.ComboBox();
+            this.cbFilial = new System.Windows.Forms.CheckBox();
+            this.comboFilial.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbTipoViaje
@@ -250,37 +254,41 @@
             this.label2.TabIndex = 132;
             this.label2.Text = "FECHA";
             // 
-            // gpDatos
+            // comboFilial
             // 
-            this.gpDatos.Controls.Add(this.lbComisionDirectiva);
-            this.gpDatos.Controls.Add(this.cbComisionDirectiva);
-            this.gpDatos.Controls.Add(this.lbLeyendaCocheCama);
-            this.gpDatos.Controls.Add(this.label5);
-            this.gpDatos.Controls.Add(this.InfoInvi);
-            this.gpDatos.Controls.Add(this.InfoMenor);
-            this.gpDatos.Controls.Add(this.infoInter);
-            this.gpDatos.Controls.Add(this.infoSocio);
-            this.gpDatos.Controls.Add(this.tbMenor);
-            this.gpDatos.Controls.Add(this.label3);
-            this.gpDatos.Controls.Add(this.tbInterCirculo);
-            this.gpDatos.Controls.Add(this.tbInvitados);
-            this.gpDatos.Controls.Add(this.tbSocios);
-            this.gpDatos.Controls.Add(this.label2);
-            this.gpDatos.Controls.Add(this.dpFechaBono);
-            this.gpDatos.Controls.Add(this.fpago);
-            this.gpDatos.Controls.Add(this.label6);
-            this.gpDatos.Controls.Add(this.pagBono);
-            this.gpDatos.Controls.Add(this.label8);
-            this.gpDatos.Controls.Add(this.label4);
-            this.gpDatos.Controls.Add(this.label7);
-            this.gpDatos.Controls.Add(this.label1);
-            this.gpDatos.Controls.Add(this.lbSaldoTotal);
-            this.gpDatos.Location = new System.Drawing.Point(33, 427);
-            this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(750, 269);
-            this.gpDatos.TabIndex = 122;
-            this.gpDatos.TabStop = false;
-            this.gpDatos.Visible = false;
+            this.comboFilial.Controls.Add(this.tbReciboFilial);
+            this.comboFilial.Controls.Add(this.lbComisionDirectiva);
+            this.comboFilial.Controls.Add(this.lbFilial);
+            this.comboFilial.Controls.Add(this.cbComisionDirectiva);
+            this.comboFilial.Controls.Add(this.combo_Filial);
+            this.comboFilial.Controls.Add(this.lbLeyendaCocheCama);
+            this.comboFilial.Controls.Add(this.cbFilial);
+            this.comboFilial.Controls.Add(this.label5);
+            this.comboFilial.Controls.Add(this.InfoInvi);
+            this.comboFilial.Controls.Add(this.InfoMenor);
+            this.comboFilial.Controls.Add(this.infoInter);
+            this.comboFilial.Controls.Add(this.infoSocio);
+            this.comboFilial.Controls.Add(this.tbMenor);
+            this.comboFilial.Controls.Add(this.label3);
+            this.comboFilial.Controls.Add(this.tbInterCirculo);
+            this.comboFilial.Controls.Add(this.tbInvitados);
+            this.comboFilial.Controls.Add(this.tbSocios);
+            this.comboFilial.Controls.Add(this.label2);
+            this.comboFilial.Controls.Add(this.dpFechaBono);
+            this.comboFilial.Controls.Add(this.fpago);
+            this.comboFilial.Controls.Add(this.label6);
+            this.comboFilial.Controls.Add(this.pagBono);
+            this.comboFilial.Controls.Add(this.label8);
+            this.comboFilial.Controls.Add(this.label4);
+            this.comboFilial.Controls.Add(this.label7);
+            this.comboFilial.Controls.Add(this.label1);
+            this.comboFilial.Controls.Add(this.lbSaldoTotal);
+            this.comboFilial.Location = new System.Drawing.Point(33, 427);
+            this.comboFilial.Name = "comboFilial";
+            this.comboFilial.Size = new System.Drawing.Size(750, 320);
+            this.comboFilial.TabIndex = 122;
+            this.comboFilial.TabStop = false;
+            this.comboFilial.Visible = false;
             // 
             // lbComisionDirectiva
             // 
@@ -421,6 +429,45 @@
             this.cbCocheCama.Text = "Precio c/Coche Cama";
             this.cbCocheCama.UseVisualStyleBackColor = true;
             // 
+            // tbReciboFilial
+            // 
+            this.tbReciboFilial.Location = new System.Drawing.Point(431, 275);
+            this.tbReciboFilial.Name = "tbReciboFilial";
+            this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
+            this.tbReciboFilial.TabIndex = 170;
+            this.tbReciboFilial.Visible = false;
+            // 
+            // lbFilial
+            // 
+            this.lbFilial.AutoSize = true;
+            this.lbFilial.Location = new System.Drawing.Point(346, 278);
+            this.lbFilial.Name = "lbFilial";
+            this.lbFilial.Size = new System.Drawing.Size(47, 13);
+            this.lbFilial.TabIndex = 169;
+            this.lbFilial.Text = "RECIBO";
+            this.lbFilial.Visible = false;
+            // 
+            // combo_Filial
+            // 
+            this.combo_Filial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_Filial.FormattingEnabled = true;
+            this.combo_Filial.Location = new System.Drawing.Point(128, 275);
+            this.combo_Filial.Name = "combo_Filial";
+            this.combo_Filial.Size = new System.Drawing.Size(193, 21);
+            this.combo_Filial.TabIndex = 167;
+            this.combo_Filial.Visible = false;
+            // 
+            // cbFilial
+            // 
+            this.cbFilial.AutoSize = true;
+            this.cbFilial.Location = new System.Drawing.Point(24, 279);
+            this.cbFilial.Name = "cbFilial";
+            this.cbFilial.Size = new System.Drawing.Size(98, 17);
+            this.cbFilial.TabIndex = 168;
+            this.cbFilial.Text = "Recibo de Filial";
+            this.cbFilial.UseVisualStyleBackColor = true;
+            this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
+            // 
             // BonoPaquete
             // 
             this.BackColor = System.Drawing.Color.White;
@@ -436,12 +483,12 @@
             this.Controls.Add(this.tbObs);
             this.Controls.Add(this.cbPaquete);
             this.Controls.Add(this.lbTipoViaje);
-            this.Controls.Add(this.gpDatos);
+            this.Controls.Add(this.comboFilial);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BonoPaquete";
             this.Load += new System.EventHandler(this.BonoPaquete_Load);
-            this.gpDatos.ResumeLayout(false);
-            this.gpDatos.PerformLayout();
+            this.comboFilial.ResumeLayout(false);
+            this.comboFilial.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,7 +515,7 @@
         private System.Windows.Forms.Label fpago;
         private System.Windows.Forms.DateTimePicker dpFechaBono;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox gpDatos;
+        private System.Windows.Forms.GroupBox comboFilial;
         private System.Windows.Forms.TextBox tbMenor;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbInterCirculo;
@@ -484,5 +531,9 @@
         private System.Windows.Forms.Label lbLeyendaCocheCama;
         private System.Windows.Forms.Label lbComisionDirectiva;
         private System.Windows.Forms.ComboBox cbComisionDirectiva;
+        private System.Windows.Forms.TextBox tbReciboFilial;
+        private System.Windows.Forms.Label lbFilial;
+        private System.Windows.Forms.ComboBox combo_Filial;
+        private System.Windows.Forms.CheckBox cbFilial;
     }
 }
