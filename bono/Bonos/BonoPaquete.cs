@@ -49,7 +49,7 @@ namespace SOCIOS.bono
         {
 
 
-            gpDatos.Enabled = true;
+            comboFilial.Enabled = true;
             InfoPaquete.Enabled = true;
             Seleccion.Enabled = true;
                         
@@ -66,6 +66,7 @@ namespace SOCIOS.bono
             Inicio = 1;
 
             utilsTurismo.ComboSalida(cbPaquete);
+            utilsTurismo.UpdateComboTabla("TURISMO_FILIALES", combo_Filial);
             CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 0));
             Autorizacion = Apto_Autorizacion();
         
@@ -169,7 +170,7 @@ namespace SOCIOS.bono
                 Seleccion.Enabled = false;
                 if (fs != null)
                 {
-                    gpDatos.Visible = true;
+                    comboFilial.Visible = true;
 
                     this.SeteoValorPaquete();
 
@@ -287,14 +288,24 @@ namespace SOCIOS.bono
                         else
                             Comision_Directiva = 0;
 
+
+                        string NRO_RECIBO_FILIAL = "";
+                        int FILIAL = 0;
+
+                        if (cbFilial.Checked)
+                        {
+                            NRO_RECIBO_FILIAL = tbReciboFilial.Text;
+                            FILIAL = Int32.Parse( combo_Filial.SelectedValue.ToString());
+                        }
+
                         if (BONO_BLANCO) // Si es bono_Blanco, Vamos por UPDATE
                         {
-                            dlog.UpdateBonoTurismo(ID, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, "", ClasePasaje, VGlobales.vp_username, "HOT", 0,0,"", Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva);
+                            dlog.UpdateBonoTurismo(ID, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, "", ClasePasaje, VGlobales.vp_username, "HOT", 0,0,"", Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL);
 
                         }
                         else // si no es bono blanco, previo, no existe en la base, es INSERT
                         {
-                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, TipoPasaje, ClasePasaje, VGlobales.vp_username, "PAQ", salida.ID, 0, "", Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,0);
+                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, TipoPasaje, ClasePasaje, VGlobales.vp_username, "PAQ", salida.ID, 0, "", Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL);
                        
                             ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "PAQ");
                         //Obtener Proximo ID_ROL
@@ -307,11 +318,11 @@ namespace SOCIOS.bono
                             utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB, Saldo + Recargo,TipoPago,SUBCODIGO);
                             //Grabar Personas 
                             utilsTurismo.GrabarPersonas(ID, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), listaPersonas,"TURISMO");
-
-                            this.IngresoCaja(ID, Dni, Nombre, Apellido, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA),InfoTarjeta);
-                            gpDatos.Visible = false;
+                            if (cbFilial.Checked==false)
+                                this.IngresoCaja(ID, Dni, Nombre, Apellido, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA),InfoTarjeta);
+                            comboFilial.Visible = false;
                             bntImprimir.Visible = true;
-                            gpDatos.Enabled = false;
+                            comboFilial.Enabled = false;
                             InfoPaquete.Enabled = false;
                             Seleccion.Enabled = true;
                             Grabar.Enabled = false;
@@ -376,7 +387,7 @@ namespace SOCIOS.bono
         private void Deseleccionar_Click(object sender, EventArgs e)
         {
             this.GrillaPersonas_Habilitados(true);
-            gpDatos.Visible = false;
+            comboFilial.Visible = false;
             Deseleccionar.Visible = false;
             Seleccion.Enabled = true;
 
@@ -458,6 +469,23 @@ namespace SOCIOS.bono
             return retorno;
         
         
+        }
+
+        private void cbFilial_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFilial.Checked)
+            {
+                lbFilial.Visible = true;
+              combo_Filial.Visible = true;
+                tbReciboFilial.Visible = true;
+
+            }
+            else
+            {
+                lbFilial.Visible = false;
+                combo_Filial.Visible = false;
+                tbReciboFilial.Visible = false;
+            }
         }
             
 

@@ -82,6 +82,7 @@ namespace SOCIOS.bono
              UpdateComboHotel();
              UpdateComboSocial();
              utilsTurismo.UpdateComboTabla("TURISMO_REGIMEN", cbRegimen);
+             utilsTurismo.UpdateComboTabla("TURISMO_FILIALES", comboFilial);
 
              if (srvDatosSocio.CAB.Telefonos.Length > 0)
                  tbContacto.Text = srvDatosSocio.CAB.Telefonos;
@@ -513,14 +514,24 @@ namespace SOCIOS.bono
                         else
                             OBS = tbObs.Text;
 
+                        string NRO_RECIBO_FILIAL = "";
+                        int FILIAL = 0;
+
+                        if (cbFilial.Checked)
+                        {
+                            NRO_RECIBO_FILIAL = tbReciboFilial.Text;
+                            FILIAL = Int32.Parse(comboFilial.SelectedValue.ToString());
+                        }
+
+
                         if (BONO_BLANCO) // Si es bono_Blanco, Vamos por UPDATE
                         {
-                            dlog.UpdateBonoTurismo(ID, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO,"NO", Comision_Directiva);
+                            dlog.UpdateBonoTurismo(ID, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO,"NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL);
 
                         }
                         else // si no es bono blanco, previo, no existe en la base, es INSERT
                         {
-                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,0);
+                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL);
 
                             ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
 
@@ -621,7 +632,7 @@ namespace SOCIOS.bono
 
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO",0,0);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO",0,0,"");
 
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "SOC");
                         //VER CODINT
@@ -907,6 +918,40 @@ namespace SOCIOS.bono
             return retorno;
 
 
+        }
+
+        private void cbFilial_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFilial.Checked)
+            {
+                lbFilial.Visible = true;
+                comboFilial.Visible = true;
+                tbReciboFilial.Visible = true;
+
+            }
+            else
+            {
+                lbFilial.Visible       = false;
+                comboFilial.Visible = false;
+                tbReciboFilial.Visible = false;
+            }
+        }
+
+        private void comboFilial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbFilial.Checked)
+            {
+                lbFilial.Visible = true;
+                comboFilial.Visible = true;
+                tbReciboFilial.Visible = true;
+
+            }
+            else
+            {
+                lbFilial.Visible = false;
+                comboFilial.Visible = false;
+                tbReciboFilial.Visible = false;
+            }
         }
             
             
