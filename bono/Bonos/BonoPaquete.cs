@@ -487,6 +487,11 @@ namespace SOCIOS.bono
                 tbReciboFilial.Visible = false;
             }
         }
+
+        private void lbFilial_Click(object sender, EventArgs e)
+        {
+
+        }
             
 
 
