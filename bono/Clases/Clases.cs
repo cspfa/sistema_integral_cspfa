@@ -310,7 +310,7 @@ namespace SOCIOS.bono
                 CabeceraAux.NroDepTitular = foundRows[0][12].ToString().Trim();
                 CabeceraAux.NombreTitular = foundRows[0][10].ToString().Trim();
                 CabeceraAux.ApellidoTitular =  foundRows[0][9].ToString().Trim();
-                CabeceraAux.TipoTitular = foundRows[0][88].ToString().Trim();
+                CabeceraAux.TipoTitular = foundRows[0][93].ToString().Trim();
                 CabeceraAux.NroAfiliadoTitular = foundRows[0][1].ToString().Trim() + '/' + foundRows[0][3].ToString().Trim();
                 CabeceraAux.AAR = foundRows[0][1].ToString().Trim().Length > 0 ? Int32.Parse(foundRows[0][1].ToString().Trim()) : 0;
                 CabeceraAux.ACRJP1 = foundRows[0][2].ToString().Trim().Length > 0 ? Int32.Parse(foundRows[0][2].ToString().Trim()) : 0;
