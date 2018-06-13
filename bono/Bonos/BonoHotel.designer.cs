@@ -41,6 +41,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.tbReciboFilial = new System.Windows.Forms.TextBox();
+            this.lbFilial = new System.Windows.Forms.Label();
+            this.comboFilial = new System.Windows.Forms.ComboBox();
+            this.cbFilial = new System.Windows.Forms.CheckBox();
             this.lbComisionDirectiva = new System.Windows.Forms.Label();
             this.cbComisionDirectiva = new System.Windows.Forms.ComboBox();
             this.lnkInfoHabitacion = new System.Windows.Forms.LinkLabel();
@@ -73,10 +77,6 @@
             this.cbRegimen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lbCartelHabitacion = new System.Windows.Forms.Label();
-            this.cbFilial = new System.Windows.Forms.CheckBox();
-            this.comboFilial = new System.Windows.Forms.ComboBox();
-            this.tbReciboFilial = new System.Windows.Forms.TextBox();
-            this.lbFilial = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -235,10 +235,50 @@
             this.gpDatos.Controls.Add(this.label1);
             this.gpDatos.Location = new System.Drawing.Point(8, 401);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(812, 326);
+            this.gpDatos.Size = new System.Drawing.Size(812, 273);
             this.gpDatos.TabIndex = 137;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // tbReciboFilial
+            // 
+            this.tbReciboFilial.Location = new System.Drawing.Point(412, 228);
+            this.tbReciboFilial.Name = "tbReciboFilial";
+            this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
+            this.tbReciboFilial.TabIndex = 166;
+            this.tbReciboFilial.Visible = false;
+            // 
+            // lbFilial
+            // 
+            this.lbFilial.AutoSize = true;
+            this.lbFilial.Location = new System.Drawing.Point(327, 231);
+            this.lbFilial.Name = "lbFilial";
+            this.lbFilial.Size = new System.Drawing.Size(47, 13);
+            this.lbFilial.TabIndex = 165;
+            this.lbFilial.Text = "RECIBO";
+            this.lbFilial.Visible = false;
+            // 
+            // comboFilial
+            // 
+            this.comboFilial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboFilial.FormattingEnabled = true;
+            this.comboFilial.Location = new System.Drawing.Point(109, 228);
+            this.comboFilial.Name = "comboFilial";
+            this.comboFilial.Size = new System.Drawing.Size(193, 21);
+            this.comboFilial.TabIndex = 147;
+            this.comboFilial.Visible = false;
+            this.comboFilial.SelectedIndexChanged += new System.EventHandler(this.comboFilial_SelectedIndexChanged);
+            // 
+            // cbFilial
+            // 
+            this.cbFilial.AutoSize = true;
+            this.cbFilial.Location = new System.Drawing.Point(5, 232);
+            this.cbFilial.Name = "cbFilial";
+            this.cbFilial.Size = new System.Drawing.Size(98, 17);
+            this.cbFilial.TabIndex = 164;
+            this.cbFilial.Text = "Recibo de Filial";
+            this.cbFilial.UseVisualStyleBackColor = true;
+            this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
             // 
             // lbComisionDirectiva
             // 
@@ -532,46 +572,6 @@
             this.lbCartelHabitacion.Text = "EL VALOR REPRESENTA LA SUMA TOTAL DE PERSONAS   POR C/CATEGORIA";
             this.lbCartelHabitacion.Visible = false;
             this.lbCartelHabitacion.Click += new System.EventHandler(this.lbCartelHabitacion_Click);
-            // 
-            // cbFilial
-            // 
-            this.cbFilial.AutoSize = true;
-            this.cbFilial.Location = new System.Drawing.Point(5, 232);
-            this.cbFilial.Name = "cbFilial";
-            this.cbFilial.Size = new System.Drawing.Size(98, 17);
-            this.cbFilial.TabIndex = 164;
-            this.cbFilial.Text = "Recibo de Filial";
-            this.cbFilial.UseVisualStyleBackColor = true;
-            this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
-            // 
-            // comboFilial
-            // 
-            this.comboFilial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboFilial.FormattingEnabled = true;
-            this.comboFilial.Location = new System.Drawing.Point(109, 228);
-            this.comboFilial.Name = "comboFilial";
-            this.comboFilial.Size = new System.Drawing.Size(193, 21);
-            this.comboFilial.TabIndex = 147;
-            this.comboFilial.Visible = false;
-            this.comboFilial.SelectedIndexChanged += new System.EventHandler(this.comboFilial_SelectedIndexChanged);
-            // 
-            // tbReciboFilial
-            // 
-            this.tbReciboFilial.Location = new System.Drawing.Point(412, 228);
-            this.tbReciboFilial.Name = "tbReciboFilial";
-            this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
-            this.tbReciboFilial.TabIndex = 166;
-            this.tbReciboFilial.Visible = false;
-            // 
-            // lbFilial
-            // 
-            this.lbFilial.AutoSize = true;
-            this.lbFilial.Location = new System.Drawing.Point(327, 231);
-            this.lbFilial.Name = "lbFilial";
-            this.lbFilial.Size = new System.Drawing.Size(47, 13);
-            this.lbFilial.TabIndex = 165;
-            this.lbFilial.Text = "RECIBO";
-            this.lbFilial.Visible = false;
             // 
             // BonoHotel
             // 

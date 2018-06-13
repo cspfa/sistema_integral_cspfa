@@ -48,9 +48,13 @@
             this.dpFechaBono = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.comboFilial = new System.Windows.Forms.GroupBox();
+            this.tbReciboFilial = new System.Windows.Forms.TextBox();
             this.lbComisionDirectiva = new System.Windows.Forms.Label();
+            this.lbFilial = new System.Windows.Forms.Label();
             this.cbComisionDirectiva = new System.Windows.Forms.ComboBox();
+            this.combo_Filial = new System.Windows.Forms.ComboBox();
             this.lbLeyendaCocheCama = new System.Windows.Forms.Label();
+            this.cbFilial = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.InfoInvi = new System.Windows.Forms.Label();
             this.InfoMenor = new System.Windows.Forms.Label();
@@ -63,10 +67,6 @@
             this.tbSocios = new System.Windows.Forms.TextBox();
             this.tbObs = new System.Windows.Forms.TextBox();
             this.cbCocheCama = new System.Windows.Forms.CheckBox();
-            this.tbReciboFilial = new System.Windows.Forms.TextBox();
-            this.lbFilial = new System.Windows.Forms.Label();
-            this.combo_Filial = new System.Windows.Forms.ComboBox();
-            this.cbFilial = new System.Windows.Forms.CheckBox();
             this.comboFilial.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -285,29 +285,58 @@
             this.comboFilial.Controls.Add(this.lbSaldoTotal);
             this.comboFilial.Location = new System.Drawing.Point(33, 427);
             this.comboFilial.Name = "comboFilial";
-            this.comboFilial.Size = new System.Drawing.Size(750, 320);
+            this.comboFilial.Size = new System.Drawing.Size(750, 285);
             this.comboFilial.TabIndex = 122;
             this.comboFilial.TabStop = false;
             this.comboFilial.Visible = false;
             // 
+            // tbReciboFilial
+            // 
+            this.tbReciboFilial.Location = new System.Drawing.Point(480, 247);
+            this.tbReciboFilial.Name = "tbReciboFilial";
+            this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
+            this.tbReciboFilial.TabIndex = 170;
+            this.tbReciboFilial.Visible = false;
+            // 
             // lbComisionDirectiva
             // 
             this.lbComisionDirectiva.AutoSize = true;
-            this.lbComisionDirectiva.Location = new System.Drawing.Point(21, 245);
+            this.lbComisionDirectiva.Location = new System.Drawing.Point(20, 229);
             this.lbComisionDirectiva.Name = "lbComisionDirectiva";
             this.lbComisionDirectiva.Size = new System.Drawing.Size(78, 13);
             this.lbComisionDirectiva.TabIndex = 165;
             this.lbComisionDirectiva.Text = "AUTORIZADO";
             // 
+            // lbFilial
+            // 
+            this.lbFilial.AutoSize = true;
+            this.lbFilial.Location = new System.Drawing.Point(376, 248);
+            this.lbFilial.Name = "lbFilial";
+            this.lbFilial.Size = new System.Drawing.Size(47, 13);
+            this.lbFilial.TabIndex = 169;
+            this.lbFilial.Text = "RECIBO";
+            this.lbFilial.Visible = false;
+            this.lbFilial.Click += new System.EventHandler(this.lbFilial_Click);
+            // 
             // cbComisionDirectiva
             // 
             this.cbComisionDirectiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbComisionDirectiva.FormattingEnabled = true;
-            this.cbComisionDirectiva.Location = new System.Drawing.Point(120, 243);
+            this.cbComisionDirectiva.Location = new System.Drawing.Point(119, 227);
             this.cbComisionDirectiva.Name = "cbComisionDirectiva";
-            this.cbComisionDirectiva.Size = new System.Drawing.Size(337, 21);
+            this.cbComisionDirectiva.Size = new System.Drawing.Size(251, 21);
             this.cbComisionDirectiva.TabIndex = 164;
             this.cbComisionDirectiva.Visible = false;
+            // 
+            // combo_Filial
+            // 
+            this.combo_Filial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_Filial.FormattingEnabled = true;
+            this.combo_Filial.Location = new System.Drawing.Point(480, 224);
+            this.combo_Filial.Name = "combo_Filial";
+            this.combo_Filial.Size = new System.Drawing.Size(193, 21);
+            this.combo_Filial.TabIndex = 167;
+            this.combo_Filial.Visible = false;
             // 
             // lbLeyendaCocheCama
             // 
@@ -318,6 +347,17 @@
             this.lbLeyendaCocheCama.Size = new System.Drawing.Size(272, 13);
             this.lbLeyendaCocheCama.TabIndex = 146;
             this.lbLeyendaCocheCama.Text = "LAS TARIFAS INCLUYEN EL PAGO DE COCHE CAMA";
+            // 
+            // cbFilial
+            // 
+            this.cbFilial.AutoSize = true;
+            this.cbFilial.Location = new System.Drawing.Point(376, 228);
+            this.cbFilial.Name = "cbFilial";
+            this.cbFilial.Size = new System.Drawing.Size(98, 17);
+            this.cbFilial.TabIndex = 168;
+            this.cbFilial.Text = "Recibo de Filial";
+            this.cbFilial.UseVisualStyleBackColor = true;
+            this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
             // 
             // label5
             // 
@@ -415,7 +455,7 @@
             this.tbObs.Location = new System.Drawing.Point(50, 578);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
-            this.tbObs.Size = new System.Drawing.Size(727, 83);
+            this.tbObs.Size = new System.Drawing.Size(727, 70);
             this.tbObs.TabIndex = 108;
             this.tbObs.TextChanged += new System.EventHandler(this.tbObs_TextChanged);
             // 
@@ -428,45 +468,6 @@
             this.cbCocheCama.TabIndex = 133;
             this.cbCocheCama.Text = "Precio c/Coche Cama";
             this.cbCocheCama.UseVisualStyleBackColor = true;
-            // 
-            // tbReciboFilial
-            // 
-            this.tbReciboFilial.Location = new System.Drawing.Point(431, 275);
-            this.tbReciboFilial.Name = "tbReciboFilial";
-            this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
-            this.tbReciboFilial.TabIndex = 170;
-            this.tbReciboFilial.Visible = false;
-            // 
-            // lbFilial
-            // 
-            this.lbFilial.AutoSize = true;
-            this.lbFilial.Location = new System.Drawing.Point(346, 278);
-            this.lbFilial.Name = "lbFilial";
-            this.lbFilial.Size = new System.Drawing.Size(47, 13);
-            this.lbFilial.TabIndex = 169;
-            this.lbFilial.Text = "RECIBO";
-            this.lbFilial.Visible = false;
-            // 
-            // combo_Filial
-            // 
-            this.combo_Filial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.combo_Filial.FormattingEnabled = true;
-            this.combo_Filial.Location = new System.Drawing.Point(128, 275);
-            this.combo_Filial.Name = "combo_Filial";
-            this.combo_Filial.Size = new System.Drawing.Size(193, 21);
-            this.combo_Filial.TabIndex = 167;
-            this.combo_Filial.Visible = false;
-            // 
-            // cbFilial
-            // 
-            this.cbFilial.AutoSize = true;
-            this.cbFilial.Location = new System.Drawing.Point(24, 279);
-            this.cbFilial.Name = "cbFilial";
-            this.cbFilial.Size = new System.Drawing.Size(98, 17);
-            this.cbFilial.TabIndex = 168;
-            this.cbFilial.Text = "Recibo de Filial";
-            this.cbFilial.UseVisualStyleBackColor = true;
-            this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
             // 
             // BonoPaquete
             // 
