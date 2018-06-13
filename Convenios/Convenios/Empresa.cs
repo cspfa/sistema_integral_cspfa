@@ -31,5 +31,11 @@ namespace Convenios
         {
 
         }
+
+        private void btnAgregarEmpresa_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Localidad localidad = new Localidad();
+            localidad.ShowDialog();
+        }
     }
 }
