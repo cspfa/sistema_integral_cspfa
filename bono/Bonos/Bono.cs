@@ -771,7 +771,10 @@ namespace SOCIOS.bono
                 item.NroDep = Int32.Parse(tit.NroDepTitular);
                 item.Barra = Int32.Parse("0");
                 item.Tipo =   tit.TipoTitular;
-                item.Origen = 3;
+                if (item.Tipo.Contains("NO SOCIO"))
+                    item.Origen = 3;
+                else
+                    item.Origen = 1;
 
 
                 var testRepetido = listaPersonas.Where(x => (x.NroSocio == item.NroSocio && x.NroDep == item.NroDep && x.Barra == item.Barra && x.Origen == item.Origen)).FirstOrDefault();
@@ -1037,7 +1040,7 @@ namespace SOCIOS.bono
                 if (item.Edad == null)
                     throw new Exception("Existen Personas Sin Edad Cargada en la Lista De Personas");
 
-                if ( item.Origen ==1) //Origen 1, familiares
+                if ( item.Origen ==1) //Origen 1, familiares, Socios
                 {
 
                    Socios      = this.StatsTipoMayor(Socios, item.Edad, TopeEdad);
