@@ -3084,45 +3084,70 @@ namespace SOCIOS
             }
         }
 
-        private void noAlcanzaCSToolStripMenuItem_Click(object sender, EventArgs e)
+        private string tipoSocio()
         {
             string TIPO_SOCIO = "";
-            int ID_SOCIO = 0;
-            string ID_SOCIO_S = "";
-            int BARRA = 0;
-            string BARRA_S = "";
 
             if (themedContainer1.IsBodyVisible)
             {
-                ID_SOCIO_S = listView1.SelectedItems[0].SubItems[8].Text;
                 TIPO_SOCIO = "TITULAR";
             }
 
             if (themedContainer2.IsBodyVisible)
             {
-                BARRA = int.Parse(listView1.SelectedItems[0].SubItems[4].Text);
                 TIPO_SOCIO = "ADHERENTE";
+            }
+
+            return TIPO_SOCIO;
+        }
+
+        private string idSocio()
+        {
+            string TIPO_SOCIO = tipoSocio();
+            int ID_SOCIO = 0;
+            string ID_SOCIO_S = "";
+            int BARRA = 0;
+            string BARRA_S = "";
+
+            if (TIPO_SOCIO == "TITULAR")
+            {
+                ID_SOCIO_S = listView1.SelectedItems[0].SubItems[8].Text;
+            }
+
+            if (TIPO_SOCIO == "ADHERENTE")
+            {
+                BARRA = int.Parse(listView1.SelectedItems[0].SubItems[4].Text);
                 ID_SOCIO = int.Parse(listView1.SelectedItems[0].SubItems[3].Text);
 
-                if (BARRA<10)
+                if (BARRA < 10)
                 {
-                    BARRA_S = "0"+BARRA.ToString();
+                    BARRA_S = "0" + BARRA.ToString();
                 }
                 else
                 {
                     BARRA_S = BARRA.ToString();
                 }
 
-                ID_SOCIO_S = ID_SOCIO.ToString()+BARRA_S;
+                ID_SOCIO_S = ID_SOCIO.ToString() + BARRA_S;
             }
 
-            registroSocios.noAlcanza na = new registroSocios.noAlcanza(TIPO_SOCIO, ID_SOCIO_S);
+            return ID_SOCIO_S;
+        }
+
+        private void noAlcanzaCSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string TIPO_SOCIO = tipoSocio();
+            string ID_SOCIO = idSocio();
+            registroSocios.noAlcanza na = new registroSocios.noAlcanza(TIPO_SOCIO, ID_SOCIO);
             na.ShowDialog();
         }
 
         private void tsAsignarElemento_Click(object sender, EventArgs e)
         {
-
+            string TIPO_SOCIO = tipoSocio();
+            string ID_SOCIO = idSocio();
+            OrientacionSocial.asignarElemento ae = new OrientacionSocial.asignarElemento(TIPO_SOCIO, ID_SOCIO);
+            ae.ShowDialog();
         }
 
         private void tsDevolverElemento_Click(object sender, EventArgs e)
