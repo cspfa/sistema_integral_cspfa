@@ -3701,16 +3701,17 @@ namespace SOCIOS
         {
             string query = "";
 
-            query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-            query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
-
             if (COMPROBANTE == "R")
             {
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "RECIBOS_CAJA B";
             }
 
             if (COMPROBANTE == "B")
             {
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "BONOS_CAJA B";
             }
 
@@ -4004,6 +4005,109 @@ namespace SOCIOS
                 label15.Enabled = false;
                 dpFechaDesde.Enabled = false;
                 dpFechaHasta.Enabled = false;
+            }
+        }
+
+        private string right(string value, int length)
+        {
+            return value.Substring(value.Length - length);
+        }
+
+        private void btImpBuscador_Click(object sender, EventArgs e)
+        {
+            string COMPROBANTE = "X";
+            string NRO_COMPROBANTE = "X";
+            int ID = 0;
+            int SELECCION = 0;
+            SELECCION = dgBuscador.SelectedRows.Count;
+            getGrupo gg = new getGrupo();
+
+            if (SELECCION == 1)
+            {
+                foreach (DataGridViewRow ROW in dgBuscador.SelectedRows)
+                {
+                    COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
+                    NRO_COMPROBANTE = ROW.Cells[0].Value.ToString().Replace("R", "");
+
+                    if (COMPROBANTE == "R")
+                    {
+                        ID = int.Parse(ROW.Cells[9].Value.ToString());
+                        string QUERY = "SELECT R.ID_SOCIO, R.SECTACT, R.ID_PROFESIONAL, R.NOMBRE_SOCIO_TITULAR, R.TIPO_SOCIO_TITULAR, R.BARRA, R.NRO_COMP, R.CUENTA_DEBE, R.DNI, R.VALOR, ";
+                        QUERY += "R.REINTEGRO_DE FROM RECIBOS_CAJA R ";
+                        QUERY += "WHERE R.NRO_COMP = " + int.Parse(NRO_COMPROBANTE) + " AND PTO_VTA = " + VGlobales.PTO_VTA_N + ";";
+                        DataRow[] foundRows;
+                        foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+                        string ID_SOCIO = foundRows[0][0].ToString();
+                        string NRO_DEP = right(ID_SOCIO, 3);
+                        string NRO_SOC = ID_SOCIO.Replace(NRO_DEP, "");
+                        string NRO_DEPADH = right(foundRows[0][0].ToString(), 3);
+                        string NRO_ADH = foundRows[0][0].ToString().Replace(NRO_DEPADH, "");
+                        string BARRA = foundRows[0][5].ToString();
+                        string TIT_SOC = ID_SOCIO.Replace(NRO_DEP, "");
+                        string TIT_DEP = right(ID_SOCIO, 3);
+                        string DNI = foundRows[0][8].ToString();
+                        string COD_DTO = "";
+                        string CAT_SOC = foundRows[0][4].ToString();
+                        decimal IMPORTE = decimal.Parse(foundRows[0][9].ToString());
+                        string RB = "R";
+                        string REINTEGRO_DE = foundRows[0][10].ToString();
+                        int CUENTA = int.Parse(foundRows[0][7].ToString());
+                        int ID_PROFESIONAL = int.Parse(foundRows[0][2].ToString());
+                        int SECTACT = int.Parse(foundRows[0][1].ToString());
+                        int SECUENCIA = 0;
+                        string[] NOM_APE = ROW.Cells[1].Value.ToString().Trim().Split(',');
+                        string APELLIDO = NOM_APE[0];
+                        string NOMBRE = NOM_APE[1];
+                        int GRUPO = 0;
+                        string REINTEGRO = "NO";
+
+                        if (REINTEGRO_DE != "0")
+                        {
+                            REINTEGRO = "SI";
+                        }
+
+                        recibos r = new recibos(int.Parse(ID_SOCIO), SECTACT, ID_PROFESIONAL, SECUENCIA, APELLIDO, NOMBRE, CAT_SOC, BARRA, COD_DTO,
+                        NRO_COMPROBANTE, NRO_SOC, NRO_DEP, TIT_SOC, TIT_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, REINTEGRO);
+                        r.ShowDialog();
+                    }
+
+                    if (COMPROBANTE == "B")
+                    {
+                        ID = int.Parse(ROW.Cells[9].Value.ToString());
+                    }
+                    
+                    //CON EL ID SOCIO TRAER EL TITULAR SI NO ES 994
+                    //getGrupo gg = new getGrupo();
+                    /*string NRO_SOC = "";
+                    string NRO_DEP = "";
+                    string TIT_SOC = "";
+                    string TIT_DEP = "";
+                    int CUENTA = 0;
+                    string DNI = "";
+                    int GRUPO = 0;
+                    decimal IMPORTE = 0;
+                    string RB = "";
+                    string REINTEGRO = "";
+
+                    if (COMPROBANTE == "R")
+                    {
+                        ID = int.Parse(ROW.Cells[9].Value.ToString());
+                        recibos r = new recibos(VGlobales.vp_IdScocio, VGlobales.vp_IdSecAct, VGlobales.vp_IDProf, VGlobales.vp_Secuencia,
+                        VGlobales.vp_Apellido, VGlobales.vp_Nombre, VGlobales.vp_TipSoc, VGlobales.vp_Barra, VGlobales.vp_CodDto,
+                        VGlobales.vp_NroRecibo, NRO_SOC, NRO_DEP, TIT_SOC, TIT_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, REINTEGRO);
+                        r.ShowDialog();
+                    }
+
+                    if (COMPROBANTE == "B")
+                    {
+                        ID = int.Parse(ROW.Cells[9].Value.ToString());
+                    }*/
+                }
+            }
+            else
+            {
+                MessageBox.Show("SELECCIONAR SOLO UN COMPROBANTE PARA IMPRIMIR", "ERROR");
             }
         }
     }

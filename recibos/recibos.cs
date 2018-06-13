@@ -385,7 +385,7 @@ namespace SOCIOS
                 tbArancel.Visible = false;
                 lbArancel.Visible = true;
                 comboPtoVta(0);
-                string query = "SELECT VALOR, OBSERVACIONES, CUENTA_DEBE, CUENTA_HABER, FECHA_RECIBO, FORMA_PAGO, PTO_VTA FROM " + TABLA + " WHERE NRO_COMP = " + numero_de_recibo + ";";
+                string query = "SELECT VALOR, OBSERVACIONES, CUENTA_DEBE, CUENTA_HABER, FECHA_RECIBO, FORMA_PAGO, PTO_VTA FROM " + TABLA + " WHERE NRO_COMP = " + numero_de_recibo + " AND PTO_VTA = " + VGlobales.PTO_VTA_N + ";";
                 DataRow[] foundRows;
                 foundRows = dlog.BO_EjecutoDataTable(query).Select();
 
