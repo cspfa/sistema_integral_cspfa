@@ -667,6 +667,21 @@ namespace SOCIOS.Turismo
         
         }
 
+        public void Tipos_Habitacion(ComboBox cbHabitacion)
+        {
+            string query;
+
+            query = "select ID, TIPO from hotel_habitacion_Tipo where tipo not  like'%PERSON%'";
+
+            cbHabitacion.DataSource = null;
+            cbHabitacion.Items.Clear();
+            cbHabitacion.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbHabitacion.DisplayMember = "TIPO";
+            cbHabitacion.ValueMember = "ID";
+            cbHabitacion.SelectedItem = 1;
+
+        }
+
         
 
     }
