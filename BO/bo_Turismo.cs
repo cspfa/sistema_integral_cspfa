@@ -378,14 +378,14 @@ namespace SOCIOS
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
 
-        public void Tipo_Habitacion_Ins(string Tipo, int Camas)
+        public void Tipo_Habitacion_Ins(string Tipo, int Camas, int Tipo_Habitacion_Persona)
         {
             db resultado = new db();
 
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(Tipo);
             vector_contenidos.Add(Camas);
-
+            vector_contenidos.Add(Tipo_Habitacion_Persona);
             // vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
 
             ArrayList vector_tipos = new ArrayList();
@@ -393,7 +393,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Integer");
 
             vector_tipos.Add("FbDbType.Varchar");
-
+            vector_tipos.Add("FbDbType.Integer");
 
 
 
@@ -402,11 +402,10 @@ namespace SOCIOS
 
 
 
-
-
             vector_nombres.Add("@TIPO");
 
             vector_nombres.Add("@CAMAS");
+            vector_nombres.Add("@TIPO_HAB");
 
             string vprocedure = "P_HOTEL_HABITACION_TIPO_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
@@ -1819,5 +1818,8 @@ namespace SOCIOS
         }
 
         #endregion
+
+
+
     }
 }
