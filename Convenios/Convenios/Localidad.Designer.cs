@@ -32,8 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.dgResultadosBuscador = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LOCALIDAD_FILA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -43,22 +44,11 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tbLocalidadlBuscador = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LOCALIDAD_FILA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lbIdLocalidad = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultadosBuscador)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(404, 138);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 56;
-            this.btnEditar.Text = "EDITAR";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // dgResultadosBuscador
             // 
@@ -110,6 +100,21 @@
             this.dgResultadosBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgResultadosBuscador.Size = new System.Drawing.Size(467, 207);
             this.dgResultadosBuscador.TabIndex = 55;
+            this.dgResultadosBuscador.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResultadosBuscador_CellContentClick);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 30;
+            // 
+            // LOCALIDAD_FILA
+            // 
+            this.LOCALIDAD_FILA.HeaderText = "LOCALIDAD";
+            this.LOCALIDAD_FILA.Name = "LOCALIDAD_FILA";
+            this.LOCALIDAD_FILA.ReadOnly = true;
+            this.LOCALIDAD_FILA.Width = 300;
             // 
             // label7
             // 
@@ -198,26 +203,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "LOCALIDAD";
             // 
-            // ID
+            // lbIdLocalidad
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 30;
-            // 
-            // LOCALIDAD_FILA
-            // 
-            this.LOCALIDAD_FILA.HeaderText = "LOCALIDAD";
-            this.LOCALIDAD_FILA.Name = "LOCALIDAD_FILA";
-            this.LOCALIDAD_FILA.ReadOnly = true;
-            this.LOCALIDAD_FILA.Width = 300;
+            this.lbIdLocalidad.AutoSize = true;
+            this.lbIdLocalidad.Location = new System.Drawing.Point(450, 143);
+            this.lbIdLocalidad.Name = "lbIdLocalidad";
+            this.lbIdLocalidad.Size = new System.Drawing.Size(18, 13);
+            this.lbIdLocalidad.TabIndex = 13;
+            this.lbIdLocalidad.Text = "ID";
             // 
             // Localidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(490, 388);
-            this.Controls.Add(this.btnEditar);
+            this.Controls.Add(this.lbIdLocalidad);
             this.Controls.Add(this.dgResultadosBuscador);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox2);
@@ -238,7 +238,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.DataGridView dgResultadosBuscador;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -251,5 +250,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn LOCALIDAD_FILA;
+        private System.Windows.Forms.Label lbIdLocalidad;
     }
 }

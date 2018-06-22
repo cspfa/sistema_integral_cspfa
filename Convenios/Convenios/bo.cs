@@ -17,6 +17,27 @@ namespace Convenios
             datDatos = new SOCIOS.db(this);
         }
 
+        //MODIFICAR LOCALIDAD
+        public void modificarLocalidad(int ID, string LOCALIDAD)
+        {
+            SOCIOS.db resultado = new SOCIOS.db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(LOCALIDAD);
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            ArrayList vector_nombres = new ArrayList();
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@LOCALIDAD");
+
+            string vprocedure = "CONVENIOS_LOCALIDADES_U";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
         //NUEVA LOCALIDAD
         public void nuevaLocalidad(string LOCALIDAD)
         {

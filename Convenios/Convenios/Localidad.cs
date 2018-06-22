@@ -13,12 +13,12 @@ namespace Convenios
 {
     public partial class Localidad : Form
     {
+        bo bo = new bo();
+
         public Localidad()
         {
             InitializeComponent();
         }
-
-        bo bo = new bo();
 
         private void buscar(string LOCALIDAD)
         {
@@ -96,33 +96,47 @@ namespace Convenios
             }
             else
             {
-                try
+                if (lbIdLocalidad.Text == "ID")
                 {
-                    bo.nuevaLocalidad(tbLocalidad.Text.Trim());
-                    MessageBox.Show("LOCALIDAD CREADA CORRECTAMENTE", "LISTO!");
+                    try
+                    {
+                        bo.nuevaLocalidad(tbLocalidad.Text.Trim());
+                        MessageBox.Show("LOCALIDAD CREADA CORRECTAMENTE", "LISTO!");
+                    }
+                    catch (Exception error)
+                    {
+                        MessageBox.Show("NO SE PUDO CREAR LA NUEVA LOCALIDAD\n" + error, "ERROR!");
+                    }
                 }
-                catch (Exception error)
+                else
                 {
-                    MessageBox.Show("NO SE PUDO CREAR LA NUEVA LOCALIDAD\n" + error, "ERROR!");
+                    try
+                    {
+                        bo.modificarLocalidad(int.Parse(lbIdLocalidad.Text), tbLocalidad.Text.Trim());
+                        MessageBox.Show("LOCALIDAD MODIFICADA CORRECTAMENTE", "LISTO!");
+                        tbLocalidad.Text = "";
+                        lbIdLocalidad.Text = "ID";
+                        buscar(tbLocalidad.Text.Trim());
+                    }
+                    catch (Exception error)
+                    {
+                        MessageBox.Show("NO SE PUDO CREAR LA NUEVA LOCALIDAD\n" + error, "ERROR!");
+                    }
                 }
             }
         }
 
-        private void btnEditar_Click(object sender, EventArgs e)
+        private void dgResultadosBuscador_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (tbLocalidad.Text == "")
+            if (dgResultadosBuscador.RowCount > 0)
             {
-                MessageBox.Show("COMPLETAR EL CAMPO LOCALIDAD", "ERROR");
-            }
-            else
-            {
-                try
+                if (dgResultadosBuscador.SelectedRows.Count == 1 )
                 {
-                    MessageBox.Show("LOCALIDAD MODIFICADA CORRECTAMENTE", "LISTO!");
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show("NO SE PUDO NODIFICAR LA LOCALIDAD\n" + error, "ERROR!");
+                    foreach (DataGridViewRow ROW in dgResultadosBuscador.SelectedRows)
+                    {
+                        tbLocalidad.Text = ROW.Cells["LOCALIDAD_FILA"].Value.ToString().Trim();
+                        lbIdLocalidad.Text = ROW.Cells["ID"].Value.ToString().Trim();
+                    }
                 }
             }
         }

@@ -12,9 +12,25 @@ namespace Convenios
 {
     public partial class Empresa : Form
     {
+        bo bo = new bo();
+
+        private int ID_EMPRESA { get; set; }
+
         public Empresa()
         {
             InitializeComponent();
+            comboLocalidades();
+        }
+
+        private void comboLocalidades()
+        {
+            string query = "SELECT ID, LOCALIDAD FROM CONVENIOS_LOCALIDADES ORDER BY LOCALIDAD ASC;";
+            cbLocalidad.DataSource = null;
+            cbLocalidad.Items.Clear();
+            cbLocalidad.DataSource = bo.BO_EjecutoDataTable(query);
+            cbLocalidad.DisplayMember = "LOCALIDAD";
+            cbLocalidad.ValueMember = "ID";
+            cbLocalidad.SelectedItem = 0;
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -36,6 +52,7 @@ namespace Convenios
         {
             Localidad localidad = new Localidad();
             localidad.ShowDialog();
+            comboLocalidades();
         }
     }
 }

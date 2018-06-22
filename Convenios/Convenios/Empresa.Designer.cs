@@ -38,16 +38,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnAgregarEmpresa = new System.Windows.Forms.LinkLabel();
-            this.cbTiposBuscador = new System.Windows.Forms.ComboBox();
+            this.cbLocalidad = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbDomicilio = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.tbRazonSocial = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgResultadosBuscador = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnEditar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultadosBuscador)).BeginInit();
@@ -95,9 +94,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnAgregarEmpresa);
-            this.groupBox2.Controls.Add(this.cbTiposBuscador);
+            this.groupBox2.Controls.Add(this.cbLocalidad);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.tbDomicilio);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.btnAceptar);
             this.groupBox2.Controls.Add(this.tbRazonSocial);
@@ -112,22 +111,22 @@
             // btnAgregarEmpresa
             // 
             this.btnAgregarEmpresa.AutoSize = true;
-            this.btnAgregarEmpresa.Location = new System.Drawing.Point(369, 71);
+            this.btnAgregarEmpresa.Location = new System.Drawing.Point(371, 71);
             this.btnAgregarEmpresa.Name = "btnAgregarEmpresa";
-            this.btnAgregarEmpresa.Size = new System.Drawing.Size(107, 13);
+            this.btnAgregarEmpresa.Size = new System.Drawing.Size(81, 13);
             this.btnAgregarEmpresa.TabIndex = 17;
             this.btnAgregarEmpresa.TabStop = true;
-            this.btnAgregarEmpresa.Text = "NUEVA LOCALIDAD";
+            this.btnAgregarEmpresa.Text = "LOCALIDADES";
             this.btnAgregarEmpresa.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnAgregarEmpresa_LinkClicked);
             // 
-            // cbTiposBuscador
+            // cbLocalidad
             // 
-            this.cbTiposBuscador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTiposBuscador.FormattingEnabled = true;
-            this.cbTiposBuscador.Location = new System.Drawing.Point(104, 66);
-            this.cbTiposBuscador.Name = "cbTiposBuscador";
-            this.cbTiposBuscador.Size = new System.Drawing.Size(260, 21);
-            this.cbTiposBuscador.TabIndex = 16;
+            this.cbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbLocalidad.FormattingEnabled = true;
+            this.cbLocalidad.Location = new System.Drawing.Point(104, 66);
+            this.cbLocalidad.Name = "cbLocalidad";
+            this.cbLocalidad.Size = new System.Drawing.Size(260, 21);
+            this.cbLocalidad.TabIndex = 16;
             // 
             // label6
             // 
@@ -138,13 +137,13 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "LOCALIDAD";
             // 
-            // textBox2
+            // tbDomicilio
             // 
-            this.textBox2.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox2.Location = new System.Drawing.Point(104, 43);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(260, 20);
-            this.textBox2.TabIndex = 14;
+            this.tbDomicilio.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbDomicilio.Location = new System.Drawing.Point(104, 43);
+            this.tbDomicilio.Name = "tbDomicilio";
+            this.tbDomicilio.Size = new System.Drawing.Size(260, 20);
+            this.tbDomicilio.TabIndex = 14;
             // 
             // label3
             // 
@@ -239,22 +238,11 @@
             this.label7.TabIndex = 48;
             this.label7.Text = "RESULTADOS";
             // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(419, 180);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 23);
-            this.btnEditar.TabIndex = 51;
-            this.btnEditar.Text = "EDITAR";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
             // Empresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(509, 430);
-            this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.dgResultadosBuscador);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox2);
@@ -280,16 +268,15 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox tbDomicilio;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.TextBox tbRazonSocial;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cbTiposBuscador;
+        private System.Windows.Forms.ComboBox cbLocalidad;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgResultadosBuscador;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.LinkLabel btnAgregarEmpresa;
     }
 }
