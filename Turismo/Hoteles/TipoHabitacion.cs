@@ -17,7 +17,7 @@ namespace SOCIOS.Turismo
     public partial class TipoHabitacion : Form
     {
        
-        bo dlog = new bo();
+        bo_Turismo  dlog = new bo_Turismo();
         SOCIOS.Turismo.TurismoUtils utilsTurismo = new TurismoUtils();
 
         int Inicio;
