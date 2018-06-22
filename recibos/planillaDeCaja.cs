@@ -171,8 +171,6 @@ namespace SOCIOS
             }
         }
 
-        
-
         private void habilitarEdicion()
         {
             tbNuevoImporteEfectivo.Text = "";
@@ -497,7 +495,7 @@ namespace SOCIOS
                 string query = "";
 
                 if (VGlobales.vp_role == "CAJA")
-                    query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4 AND DESTINO <> 1  AND DESTINO <> 2  AND DESTINO <> 3);";
+                    query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4 AND DESTINO <> 1  AND DESTINO <> 2  AND DESTINO <> 3 AND DESTINO <> 16);";
                 else
                     query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
