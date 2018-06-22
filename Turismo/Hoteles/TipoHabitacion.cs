@@ -36,6 +36,7 @@ namespace SOCIOS.Turismo
             InitializeComponent();
 
             this.BindGrilla();
+            utilsTurismo.Tipos_Habitacion(cbTipo);
 
         }
 
@@ -143,8 +144,12 @@ namespace SOCIOS.Turismo
         {
             try
             {
+                int Tipo = 0;
+                if (chkPersona.Checked)
+                    Tipo = Int32.Parse(cbTipo.SelectedValue.ToString());
+
                 if (Modo == "INS")
-                    dlog.Tipo_Habitacion_Ins(tbTipo.Text, Int32.Parse(tbCamas.Text));
+                    dlog.Tipo_Habitacion_Ins(tbTipo.Text, Int32.Parse(tbCamas.Text),0 );
                 else
                     dlog.Tipo_Habitacion_Upd(ID, tbTipo.Text, Int32.Parse(tbCamas.Text));
 
@@ -168,6 +173,22 @@ namespace SOCIOS.Turismo
 
             gpDatos.Visible = true;
             Modo = "UPD";
+        }
+
+        private void chkPersona_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPersona.Checked)
+            {
+                lbTipoHab.Visible = true;
+                cbTipo.Visible = true;
+
+            }
+            else
+            {
+                lbTipoHab.Visible = false;
+                cbTipo.Visible    = false;
+            
+            }
         }
 
         
