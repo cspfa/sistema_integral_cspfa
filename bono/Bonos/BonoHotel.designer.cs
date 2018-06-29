@@ -41,7 +41,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.StatNumeroHabitacion = new System.Windows.Forms.TextBox();
+            this.lbCantidadHabitacion = new System.Windows.Forms.Label();
+            this.StatTipoHabitacion = new System.Windows.Forms.ComboBox();
             this.tbReciboFilial = new System.Windows.Forms.TextBox();
+            this.lbStatTipoHabitacion = new System.Windows.Forms.Label();
             this.lbFilial = new System.Windows.Forms.Label();
             this.comboFilial = new System.Windows.Forms.ComboBox();
             this.cbFilial = new System.Windows.Forms.CheckBox();
@@ -130,7 +134,7 @@
             // 
             // AnularBono
             // 
-            this.AnularBono.Location = new System.Drawing.Point(826, 575);
+            this.AnularBono.Location = new System.Drawing.Point(826, 638);
             this.AnularBono.Name = "AnularBono";
             this.AnularBono.Size = new System.Drawing.Size(114, 30);
             this.AnularBono.TabIndex = 136;
@@ -140,7 +144,7 @@
             // 
             // bntImprimir
             // 
-            this.bntImprimir.Location = new System.Drawing.Point(826, 537);
+            this.bntImprimir.Location = new System.Drawing.Point(826, 600);
             this.bntImprimir.Name = "bntImprimir";
             this.bntImprimir.Size = new System.Drawing.Size(114, 30);
             this.bntImprimir.TabIndex = 135;
@@ -151,7 +155,7 @@
             // 
             // Grabar
             // 
-            this.Grabar.Location = new System.Drawing.Point(826, 499);
+            this.Grabar.Location = new System.Drawing.Point(826, 562);
             this.Grabar.Name = "Grabar";
             this.Grabar.Size = new System.Drawing.Size(114, 30);
             this.Grabar.TabIndex = 134;
@@ -181,7 +185,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(536, 357);
+            this.label10.Location = new System.Drawing.Point(549, 357);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 13);
             this.label10.TabIndex = 143;
@@ -198,7 +202,11 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.StatNumeroHabitacion);
+            this.gpDatos.Controls.Add(this.lbCantidadHabitacion);
+            this.gpDatos.Controls.Add(this.StatTipoHabitacion);
             this.gpDatos.Controls.Add(this.tbReciboFilial);
+            this.gpDatos.Controls.Add(this.lbStatTipoHabitacion);
             this.gpDatos.Controls.Add(this.lbFilial);
             this.gpDatos.Controls.Add(this.comboFilial);
             this.gpDatos.Controls.Add(this.cbFilial);
@@ -235,23 +243,58 @@
             this.gpDatos.Controls.Add(this.label1);
             this.gpDatos.Location = new System.Drawing.Point(8, 401);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(812, 273);
+            this.gpDatos.Size = new System.Drawing.Size(812, 245);
             this.gpDatos.TabIndex = 137;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
             // 
+            // StatNumeroHabitacion
+            // 
+            this.StatNumeroHabitacion.Location = new System.Drawing.Point(765, 130);
+            this.StatNumeroHabitacion.Name = "StatNumeroHabitacion";
+            this.StatNumeroHabitacion.Size = new System.Drawing.Size(25, 20);
+            this.StatNumeroHabitacion.TabIndex = 168;
+            this.StatNumeroHabitacion.Text = "1";
+            // 
+            // lbCantidadHabitacion
+            // 
+            this.lbCantidadHabitacion.AutoSize = true;
+            this.lbCantidadHabitacion.Location = new System.Drawing.Point(509, 133);
+            this.lbCantidadHabitacion.Name = "lbCantidadHabitacion";
+            this.lbCantidadHabitacion.Size = new System.Drawing.Size(86, 13);
+            this.lbCantidadHabitacion.TabIndex = 167;
+            this.lbCantidadHabitacion.Text = "HABITACIONES";
+            // 
+            // StatTipoHabitacion
+            // 
+            this.StatTipoHabitacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.StatTipoHabitacion.FormattingEnabled = true;
+            this.StatTipoHabitacion.Location = new System.Drawing.Point(598, 109);
+            this.StatTipoHabitacion.Name = "StatTipoHabitacion";
+            this.StatTipoHabitacion.Size = new System.Drawing.Size(193, 21);
+            this.StatTipoHabitacion.TabIndex = 148;
+            // 
             // tbReciboFilial
             // 
-            this.tbReciboFilial.Location = new System.Drawing.Point(412, 228);
+            this.tbReciboFilial.Location = new System.Drawing.Point(412, 216);
             this.tbReciboFilial.Name = "tbReciboFilial";
             this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
             this.tbReciboFilial.TabIndex = 166;
             this.tbReciboFilial.Visible = false;
             // 
+            // lbStatTipoHabitacion
+            // 
+            this.lbStatTipoHabitacion.AutoSize = true;
+            this.lbStatTipoHabitacion.Location = new System.Drawing.Point(523, 113);
+            this.lbStatTipoHabitacion.Name = "lbStatTipoHabitacion";
+            this.lbStatTipoHabitacion.Size = new System.Drawing.Size(72, 13);
+            this.lbStatTipoHabitacion.TabIndex = 147;
+            this.lbStatTipoHabitacion.Text = "HABITACION";
+            // 
             // lbFilial
             // 
             this.lbFilial.AutoSize = true;
-            this.lbFilial.Location = new System.Drawing.Point(327, 231);
+            this.lbFilial.Location = new System.Drawing.Point(327, 219);
             this.lbFilial.Name = "lbFilial";
             this.lbFilial.Size = new System.Drawing.Size(47, 13);
             this.lbFilial.TabIndex = 165;
@@ -262,7 +305,7 @@
             // 
             this.comboFilial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboFilial.FormattingEnabled = true;
-            this.comboFilial.Location = new System.Drawing.Point(109, 228);
+            this.comboFilial.Location = new System.Drawing.Point(109, 215);
             this.comboFilial.Name = "comboFilial";
             this.comboFilial.Size = new System.Drawing.Size(193, 21);
             this.comboFilial.TabIndex = 147;
@@ -272,7 +315,7 @@
             // cbFilial
             // 
             this.cbFilial.AutoSize = true;
-            this.cbFilial.Location = new System.Drawing.Point(5, 232);
+            this.cbFilial.Location = new System.Drawing.Point(5, 215);
             this.cbFilial.Name = "cbFilial";
             this.cbFilial.Size = new System.Drawing.Size(98, 17);
             this.cbFilial.TabIndex = 164;
@@ -283,7 +326,7 @@
             // lbComisionDirectiva
             // 
             this.lbComisionDirectiva.AutoSize = true;
-            this.lbComisionDirectiva.Location = new System.Drawing.Point(385, 109);
+            this.lbComisionDirectiva.Location = new System.Drawing.Point(207, 132);
             this.lbComisionDirectiva.Name = "lbComisionDirectiva";
             this.lbComisionDirectiva.Size = new System.Drawing.Size(78, 13);
             this.lbComisionDirectiva.TabIndex = 163;
@@ -293,9 +336,9 @@
             // 
             this.cbComisionDirectiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbComisionDirectiva.FormattingEnabled = true;
-            this.cbComisionDirectiva.Location = new System.Drawing.Point(484, 107);
+            this.cbComisionDirectiva.Location = new System.Drawing.Point(291, 130);
             this.cbComisionDirectiva.Name = "cbComisionDirectiva";
-            this.cbComisionDirectiva.Size = new System.Drawing.Size(293, 21);
+            this.cbComisionDirectiva.Size = new System.Drawing.Size(182, 21);
             this.cbComisionDirectiva.TabIndex = 162;
             this.cbComisionDirectiva.Visible = false;
             // 
@@ -312,15 +355,15 @@
             // 
             // tbContacto
             // 
-            this.tbContacto.Location = new System.Drawing.Point(100, 133);
+            this.tbContacto.Location = new System.Drawing.Point(74, 129);
             this.tbContacto.Name = "tbContacto";
-            this.tbContacto.Size = new System.Drawing.Size(193, 20);
+            this.tbContacto.Size = new System.Drawing.Size(127, 20);
             this.tbContacto.TabIndex = 159;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(21, 136);
+            this.label12.Location = new System.Drawing.Point(4, 133);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(66, 13);
             this.label12.TabIndex = 158;
@@ -354,7 +397,7 @@
             // lbMenores
             // 
             this.lbMenores.AutoSize = true;
-            this.lbMenores.Location = new System.Drawing.Point(218, 110);
+            this.lbMenores.Location = new System.Drawing.Point(192, 110);
             this.lbMenores.Name = "lbMenores";
             this.lbMenores.Size = new System.Drawing.Size(57, 13);
             this.lbMenores.TabIndex = 154;
@@ -372,7 +415,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(22, 110);
+            this.label8.Location = new System.Drawing.Point(8, 109);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 13);
             this.label8.TabIndex = 152;
@@ -380,7 +423,7 @@
             // 
             // tbNroHabitacion
             // 
-            this.tbNroHabitacion.Location = new System.Drawing.Point(100, 106);
+            this.tbNroHabitacion.Location = new System.Drawing.Point(74, 106);
             this.tbNroHabitacion.Name = "tbNroHabitacion";
             this.tbNroHabitacion.Size = new System.Drawing.Size(100, 20);
             this.tbNroHabitacion.TabIndex = 151;
@@ -465,7 +508,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(48, 161);
+            this.label7.Location = new System.Drawing.Point(8, 153);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
             this.label7.TabIndex = 146;
@@ -473,10 +516,10 @@
             // 
             // tbObs
             // 
-            this.tbObs.Location = new System.Drawing.Point(99, 161);
+            this.tbObs.Location = new System.Drawing.Point(55, 159);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
-            this.tbObs.Size = new System.Drawing.Size(696, 50);
+            this.tbObs.Size = new System.Drawing.Size(735, 50);
             this.tbObs.TabIndex = 145;
             // 
             // lbInfoDias
@@ -491,7 +534,7 @@
             // fpago
             // 
             this.fpago.AutoSize = true;
-            this.fpago.Location = new System.Drawing.Point(300, 110);
+            this.fpago.Location = new System.Drawing.Point(274, 110);
             this.fpago.Name = "fpago";
             this.fpago.Size = new System.Drawing.Size(67, 13);
             this.fpago.TabIndex = 120;
@@ -653,5 +696,9 @@
         private System.Windows.Forms.Label lbFilial;
         private System.Windows.Forms.ComboBox comboFilial;
         private System.Windows.Forms.CheckBox cbFilial;
+        private System.Windows.Forms.ComboBox StatTipoHabitacion;
+        private System.Windows.Forms.Label lbStatTipoHabitacion;
+        private System.Windows.Forms.TextBox StatNumeroHabitacion;
+        private System.Windows.Forms.Label lbCantidadHabitacion;
     }
 }
