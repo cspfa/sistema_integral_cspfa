@@ -175,7 +175,7 @@ namespace SOCIOS.bono
 
         {
 
-            if (cbHabitacion.SelectedText.Contains("PERSONA"))
+            if (cbHabitacion.Text.Contains("PERSONA"))
                 MODO_PERSONA=true;
             else
                 MODO_PERSONA=false;
@@ -247,6 +247,8 @@ namespace SOCIOS.bono
                 decimal Arancel = 0;
                 lbMenores.Text = "";
                 lbMenores.Visible = false;
+                
+                Determino_Numero_Habitaciones();
 
                 if (cbHabitacion.Text.ToUpper().Contains("PERSONA"))
                 {
