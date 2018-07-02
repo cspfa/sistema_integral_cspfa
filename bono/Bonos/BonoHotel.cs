@@ -175,7 +175,7 @@ namespace SOCIOS.bono
 
         {
 
-            if (cbHabitacion.Text.Contains("PERSONA"))
+            if (cbHabitacion.Text.Contains("PERSONA") && Hotel_Propio(Int32.Parse(cbHotel.SelectedValue.ToString()) ))
                 MODO_PERSONA=true;
             else
                 MODO_PERSONA=false;
@@ -202,6 +202,20 @@ namespace SOCIOS.bono
         
         }
 
+        private bool Hotel_Propio(int ID)
+        {
+            string QUERY = "SELECT ID FROM HOTEL WHERE PROPIO=1 AND ID=" + ID.ToString();
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+               return true;
+            }
+            else
+                return false;
+            
+        }
 
         private void Lleno_Combo_Stats_Habitacion(int Tipo)
 
