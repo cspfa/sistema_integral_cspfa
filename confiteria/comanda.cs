@@ -24,11 +24,12 @@ namespace Confiteria
         private int GRUPO { get; set; }
         private int CANTIDAD_ITEMS { get; set; }
         private int ID_MESA { get; set; }
+        private int NU_MESA { get; set; }
         private int ID_COM { get; set; }
         List<ITEMS_CONFITERIA> LISTA_ITEMS;
       
 
-        public comanda(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA, int GROUP, int MESA, int ID_COMANDA, int PERSONAS, int PAGO, string MOROSO, string NRO_MESA)
+        public comanda(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA, int GROUP, int MESA, int ID_COMANDA, int PERSONAS, int PAGO, string MOROSO, string NRO_MESA, int NRO_COMANDA)
         {
             InitializeComponent();
             _MOROSO = MOROSO;
@@ -44,11 +45,13 @@ namespace Confiteria
             generarListaItems();
             comboTipoDeComanda();
             ID_MESA = MESA;
+            NU_MESA = int.Parse(NRO_MESA);
             ID_COM = ID_COMANDA;
 
             if (ID_COMANDA != 0)
             {
-                tbNroComanda.Text = ID_COMANDA.ToString();
+                tbNroComanda.Text = NRO_COMANDA.ToString();
+                tbIdComanda.Text = ID_COM.ToString();
                 tbPersonas.Text = PERSONAS.ToString();
                 cbFormaDePago.SelectedValue = PAGO;
                 buscarItems(ID_COMANDA, "SI", "X");
@@ -151,7 +154,7 @@ namespace Confiteria
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO ";
+                    string QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.NRO_COMANDA ";
                     QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                     QUERY += "WHERE C.ID = " + ID_COMANDA + " AND C.MOZO = M.ID AND C.FORMA_DE_PAGO = F.ID; ";
                     FbCommand cmd = new FbCommand(QUERY, connection, transaction);
@@ -464,11 +467,11 @@ namespace Confiteria
                     maxid mid = new maxid();
                     int NRO_COMANDA = int.Parse(mid.role("NRO_COMANDA", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
                     NRO_COMANDA = NRO_COMANDA + 1;
-                    dlog.guardaMesa(FECHA, ID_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA);                    
+                    dlog.guardaMesa(FECHA, NU_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA);                    
                     tbNroComanda.Text = NRO_COMANDA.ToString();
                     int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
                     guardarItems(ID_COM);
-                    dlog.guardaComandaEnMesa(NRO_COMANDA, ID_MESA, ID_COM);
+                    dlog.guardaComandaEnMesa(ID_MESA, NRO_COMANDA, ID_COM);
                 }
                 else
                 {
@@ -632,13 +635,14 @@ namespace Confiteria
                     try
                     {
                         if (MESA == 27)
-                            dlog.cerrarMesa(MESA, "DELIVERY");
+                            dlog.cerrarMesa(ID_MESA, "DELIVERY");
                         else
-                            dlog.cerrarMesa(MESA, "CERRADA");
+                            dlog.cerrarMesa(ID_MESA, "CERRADA");
 
                         try
                         {
-                            int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
+                            //int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
+                            int ID_COM = int.Parse(tbIdComanda.Text);
                             buscarComanda(ID_COM);
                             buscarItems(ID_COM, "NO", "X");
                             imprimir i = new imprimir();
