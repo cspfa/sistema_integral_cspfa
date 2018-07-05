@@ -39,6 +39,7 @@ namespace Confiteria
             this.modificarMesaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forzarCierreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarDeMesaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.dpFechaListado = new System.Windows.Forms.DateTimePicker();
             this.dpFiltroIngresos = new System.Windows.Forms.DateTimePicker();
@@ -52,7 +53,6 @@ namespace Confiteria
             this.cbOrdenListado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbBuscarIngresos = new System.Windows.Forms.TextBox();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgMesas)).BeginInit();
             this.cmMesas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -131,6 +131,12 @@ namespace Confiteria
             this.cambiarDeMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.cambiarDeMesaToolStripMenuItem.Text = "Cambiar a Mesa";
             this.cambiarDeMesaToolStripMenuItem.MouseHover += new System.EventHandler(this.cambiarDeMesaToolStripMenuItem_MouseHover);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // label2
             // 
@@ -265,11 +271,6 @@ namespace Confiteria
             this.tbBuscarIngresos.Size = new System.Drawing.Size(273, 20);
             this.tbBuscarIngresos.TabIndex = 31;
             this.tbBuscarIngresos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarIngresos_KeyUp);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             // 
             // grillaPreComanda
             // 

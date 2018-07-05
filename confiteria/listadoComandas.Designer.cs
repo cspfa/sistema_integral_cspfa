@@ -44,22 +44,6 @@
             this.dpHasta = new System.Windows.Forms.DateTimePicker();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgComandas = new System.Windows.Forms.DataGridView();
-            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ANULADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IMPORTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOM_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AFILIADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BENEFICIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CONTRALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FORMA_DE_PAGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BORRADOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CONSUME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PERSONAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgItems = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.COM = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,6 +82,24 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tbHoraDesde = new System.Windows.Forms.MaskedTextBox();
             this.tbHoraHasta = new System.Windows.Forms.MaskedTextBox();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ANULADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IMPORTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOM_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AFILIADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BENEFICIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONTRALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FORMA_DE_PAGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BORRADOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONSUME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PERSONAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_COMANDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MESA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgComandas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgItems)).BeginInit();
             this.cmComandas.SuspendLayout();
@@ -184,7 +186,9 @@
             this.FORMA_DE_PAGO,
             this.BORRADOR,
             this.CONSUME,
-            this.PERSONAS});
+            this.PERSONAS,
+            this.ID_COMANDA,
+            this.MESA});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -215,114 +219,6 @@
             this.dgComandas.TabIndex = 59;
             this.dgComandas.Click += new System.EventHandler(this.dgComandas_Click);
             this.dgComandas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgComandas_MouseDown);
-            // 
-            // CANTIDAD
-            // 
-            this.CANTIDAD.HeaderText = "#";
-            this.CANTIDAD.Name = "CANTIDAD";
-            this.CANTIDAD.ReadOnly = true;
-            this.CANTIDAD.Width = 60;
-            // 
-            // ANULADA
-            // 
-            this.ANULADA.HeaderText = "ANULADA";
-            this.ANULADA.Name = "ANULADA";
-            this.ANULADA.ReadOnly = true;
-            this.ANULADA.Width = 70;
-            // 
-            // FECHA
-            // 
-            this.FECHA.HeaderText = "FECHA";
-            this.FECHA.Name = "FECHA";
-            this.FECHA.ReadOnly = true;
-            this.FECHA.Width = 140;
-            // 
-            // IMPORTE
-            // 
-            this.IMPORTE.HeaderText = "IMPORTE";
-            this.IMPORTE.Name = "IMPORTE";
-            this.IMPORTE.ReadOnly = true;
-            this.IMPORTE.Width = 75;
-            // 
-            // NOM_SOC
-            // 
-            this.NOM_SOC.HeaderText = "NOMBRE Y APELLIDO";
-            this.NOM_SOC.Name = "NOM_SOC";
-            this.NOM_SOC.ReadOnly = true;
-            this.NOM_SOC.Width = 220;
-            // 
-            // NRO_SOC
-            // 
-            this.NRO_SOC.HeaderText = "SOC";
-            this.NRO_SOC.Name = "NRO_SOC";
-            this.NRO_SOC.ReadOnly = true;
-            this.NRO_SOC.Width = 55;
-            // 
-            // NRO_DEP
-            // 
-            this.NRO_DEP.HeaderText = "DEP";
-            this.NRO_DEP.Name = "NRO_DEP";
-            this.NRO_DEP.ReadOnly = true;
-            this.NRO_DEP.Width = 55;
-            // 
-            // BARRA
-            // 
-            this.BARRA.HeaderText = "/";
-            this.BARRA.Name = "BARRA";
-            this.BARRA.ReadOnly = true;
-            this.BARRA.Width = 30;
-            // 
-            // AFILIADO
-            // 
-            this.AFILIADO.HeaderText = "AFILIADO";
-            this.AFILIADO.Name = "AFILIADO";
-            this.AFILIADO.ReadOnly = true;
-            // 
-            // BENEFICIO
-            // 
-            this.BENEFICIO.HeaderText = "BENEFICIO";
-            this.BENEFICIO.Name = "BENEFICIO";
-            this.BENEFICIO.ReadOnly = true;
-            // 
-            // DESCUENTO
-            // 
-            this.DESCUENTO.HeaderText = "DESC";
-            this.DESCUENTO.Name = "DESCUENTO";
-            this.DESCUENTO.ReadOnly = true;
-            this.DESCUENTO.Width = 60;
-            // 
-            // CONTRALOR
-            // 
-            this.CONTRALOR.HeaderText = "CONTRA";
-            this.CONTRALOR.Name = "CONTRALOR";
-            this.CONTRALOR.ReadOnly = true;
-            this.CONTRALOR.Width = 60;
-            // 
-            // FORMA_DE_PAGO
-            // 
-            this.FORMA_DE_PAGO.HeaderText = "F PAGO";
-            this.FORMA_DE_PAGO.Name = "FORMA_DE_PAGO";
-            this.FORMA_DE_PAGO.ReadOnly = true;
-            // 
-            // BORRADOR
-            // 
-            this.BORRADOR.HeaderText = "CB";
-            this.BORRADOR.Name = "BORRADOR";
-            this.BORRADOR.ReadOnly = true;
-            this.BORRADOR.Width = 75;
-            // 
-            // CONSUME
-            // 
-            this.CONSUME.HeaderText = "CONSUME";
-            this.CONSUME.Name = "CONSUME";
-            this.CONSUME.ReadOnly = true;
-            // 
-            // PERSONAS
-            // 
-            this.PERSONAS.HeaderText = "PERSONAS";
-            this.PERSONAS.Name = "PERSONAS";
-            this.PERSONAS.ReadOnly = true;
-            this.PERSONAS.Visible = false;
             // 
             // dgItems
             // 
@@ -490,7 +386,7 @@
             this.cambiarFormaDePagoToolStripMenuItem,
             this.cambiarTipoDeComandaToolStripMenuItem});
             this.cmComandas.Name = "cmComandas";
-            this.cmComandas.Size = new System.Drawing.Size(224, 180);
+            this.cmComandas.Size = new System.Drawing.Size(224, 158);
             // 
             // imprimirComandaToolStripMenuItem
             // 
@@ -694,6 +590,126 @@
             this.tbHoraHasta.TabIndex = 84;
             this.tbHoraHasta.Text = "24";
             // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.HeaderText = "#";
+            this.CANTIDAD.Name = "CANTIDAD";
+            this.CANTIDAD.ReadOnly = true;
+            this.CANTIDAD.Width = 60;
+            // 
+            // ANULADA
+            // 
+            this.ANULADA.HeaderText = "ANULADA";
+            this.ANULADA.Name = "ANULADA";
+            this.ANULADA.ReadOnly = true;
+            this.ANULADA.Width = 70;
+            // 
+            // FECHA
+            // 
+            this.FECHA.HeaderText = "FECHA";
+            this.FECHA.Name = "FECHA";
+            this.FECHA.ReadOnly = true;
+            this.FECHA.Width = 140;
+            // 
+            // IMPORTE
+            // 
+            this.IMPORTE.HeaderText = "IMPORTE";
+            this.IMPORTE.Name = "IMPORTE";
+            this.IMPORTE.ReadOnly = true;
+            this.IMPORTE.Width = 75;
+            // 
+            // NOM_SOC
+            // 
+            this.NOM_SOC.HeaderText = "NOMBRE Y APELLIDO";
+            this.NOM_SOC.Name = "NOM_SOC";
+            this.NOM_SOC.ReadOnly = true;
+            this.NOM_SOC.Width = 220;
+            // 
+            // NRO_SOC
+            // 
+            this.NRO_SOC.HeaderText = "SOC";
+            this.NRO_SOC.Name = "NRO_SOC";
+            this.NRO_SOC.ReadOnly = true;
+            this.NRO_SOC.Width = 55;
+            // 
+            // NRO_DEP
+            // 
+            this.NRO_DEP.HeaderText = "DEP";
+            this.NRO_DEP.Name = "NRO_DEP";
+            this.NRO_DEP.ReadOnly = true;
+            this.NRO_DEP.Width = 55;
+            // 
+            // BARRA
+            // 
+            this.BARRA.HeaderText = "/";
+            this.BARRA.Name = "BARRA";
+            this.BARRA.ReadOnly = true;
+            this.BARRA.Width = 30;
+            // 
+            // AFILIADO
+            // 
+            this.AFILIADO.HeaderText = "AFILIADO";
+            this.AFILIADO.Name = "AFILIADO";
+            this.AFILIADO.ReadOnly = true;
+            // 
+            // BENEFICIO
+            // 
+            this.BENEFICIO.HeaderText = "BENEFICIO";
+            this.BENEFICIO.Name = "BENEFICIO";
+            this.BENEFICIO.ReadOnly = true;
+            // 
+            // DESCUENTO
+            // 
+            this.DESCUENTO.HeaderText = "DESC";
+            this.DESCUENTO.Name = "DESCUENTO";
+            this.DESCUENTO.ReadOnly = true;
+            this.DESCUENTO.Width = 60;
+            // 
+            // CONTRALOR
+            // 
+            this.CONTRALOR.HeaderText = "CONTRA";
+            this.CONTRALOR.Name = "CONTRALOR";
+            this.CONTRALOR.ReadOnly = true;
+            this.CONTRALOR.Width = 60;
+            // 
+            // FORMA_DE_PAGO
+            // 
+            this.FORMA_DE_PAGO.HeaderText = "F PAGO";
+            this.FORMA_DE_PAGO.Name = "FORMA_DE_PAGO";
+            this.FORMA_DE_PAGO.ReadOnly = true;
+            // 
+            // BORRADOR
+            // 
+            this.BORRADOR.HeaderText = "CB";
+            this.BORRADOR.Name = "BORRADOR";
+            this.BORRADOR.ReadOnly = true;
+            this.BORRADOR.Width = 75;
+            // 
+            // CONSUME
+            // 
+            this.CONSUME.HeaderText = "CONSUME";
+            this.CONSUME.Name = "CONSUME";
+            this.CONSUME.ReadOnly = true;
+            // 
+            // PERSONAS
+            // 
+            this.PERSONAS.HeaderText = "PERSONAS";
+            this.PERSONAS.Name = "PERSONAS";
+            this.PERSONAS.ReadOnly = true;
+            this.PERSONAS.Visible = false;
+            // 
+            // ID_COMANDA
+            // 
+            this.ID_COMANDA.HeaderText = "ID_COMANDA";
+            this.ID_COMANDA.Name = "ID_COMANDA";
+            this.ID_COMANDA.ReadOnly = true;
+            // 
+            // MESA
+            // 
+            this.MESA.HeaderText = "MESA";
+            this.MESA.Name = "MESA";
+            this.MESA.ReadOnly = true;
+            // 
             // listadoComandas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -780,6 +796,8 @@
         private System.Windows.Forms.ToolStripMenuItem cambiarTipoDeComandaToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbTipoDeComanda;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.MaskedTextBox tbHoraDesde;
+        private System.Windows.Forms.MaskedTextBox tbHoraHasta;
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn ANULADA;
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
@@ -796,7 +814,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BORRADOR;
         private System.Windows.Forms.DataGridViewTextBoxColumn CONSUME;
         private System.Windows.Forms.DataGridViewTextBoxColumn PERSONAS;
-        private System.Windows.Forms.MaskedTextBox tbHoraDesde;
-        private System.Windows.Forms.MaskedTextBox tbHoraHasta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_COMANDA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MESA;
     }
 }
