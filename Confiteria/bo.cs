@@ -339,14 +339,14 @@ namespace Confiteria
         }
 
         //STORED GUARDAR COMANDA EN TEMP MESAS
-        public void guardaComandaEnMesa(int COMANDA, int MESA, int ID_COM)
+        public void guardaComandaEnMesa(int ID_MESA, int NRO_COMANDA, int ID_COMANDA)
         {
             SOCIOS.db resultado = new SOCIOS.db();
 
             ArrayList vector_contenidos = new ArrayList();
-            vector_contenidos.Add(COMANDA);
-            vector_contenidos.Add(MESA);
-            vector_contenidos.Add(ID_COM);
+            vector_contenidos.Add(ID_MESA);
+            vector_contenidos.Add(NRO_COMANDA);
+            vector_contenidos.Add(ID_COMANDA);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
@@ -354,9 +354,9 @@ namespace Confiteria
             vector_tipos.Add("FbDbType.Integer");
 
             ArrayList vector_nombres = new ArrayList();
-            vector_nombres.Add("@COMANDA");
-            vector_nombres.Add("@MESA");
-            vector_nombres.Add("@ID_COM");
+            vector_nombres.Add("@ID_MESA");
+            vector_nombres.Add("@NRO_COMANDA");
+            vector_nombres.Add("@ID_COMANDA");
 
             string vprocedure = "CONFITERIA_TEMP_MESAS_COMANDA";
 
