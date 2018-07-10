@@ -77,6 +77,7 @@ namespace SOCIOS.Turismo
         public string OBS                { get; set; }
         public int ID_ROL_BONO           { get; set; }
         public string ROL                { get; set; }
+        public string BONO_FILIAL         { get; set; }
 
     }
 
