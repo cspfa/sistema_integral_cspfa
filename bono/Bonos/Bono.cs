@@ -1040,6 +1040,13 @@ namespace SOCIOS.bono
                 if (item.Edad == null)
                     throw new Exception("Existen Personas Sin Edad Cargada en la Lista De Personas");
 
+
+                if (item.NroDep == 12)
+                {
+                    item.Tipo = "NO SOCIO";
+                    item.Origen = 3;
+                }
+
                 if ( item.Origen ==1) //Origen 1, familiares, Socios
                 {
 

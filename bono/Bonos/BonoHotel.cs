@@ -414,22 +414,22 @@ namespace SOCIOS.bono
             {
             if (Socios > 0)
             {
-            totalSocio =   arancelService.valorGrupoHotel(hotel, 1, regimen, habitacion);
+                totalSocio        =   arancelService.valorGrupoHotel(hotel, 1, regimen, habitacion);
            
-                tbSocios.Text =   decimal.Round(totalSocio, 2).ToString();
+                tbSocios.Text     =   decimal.Round(totalSocio, 2).ToString();
            
 
             }
             else if (Intercirculo > 0)
             {
          
-                totalInter = arancelService.valorGrupoHotel(hotel, 2, regimen, habitacion);
+                totalInter          =   arancelService.valorGrupoHotel(hotel, 2, regimen, habitacion);
                 tbInterCirculo.Text =   totalInter.ToString("0.##");
             }
             else
             {
 
-                totalInvi = arancelService.valorGrupoHotel(hotel, 3, regimen, habitacion);
+               totalInvi       =  arancelService.valorGrupoHotel(hotel, 3, regimen, habitacion);
                tbInvitado.Text =  totalInvi.ToString("0.##");
             
             }
