@@ -79,7 +79,7 @@
             // 
             // Filtrar
             // 
-            this.Filtrar.Location = new System.Drawing.Point(465, 32);
+            this.Filtrar.Location = new System.Drawing.Point(461, 32);
             this.Filtrar.Name = "Filtrar";
             this.Filtrar.Size = new System.Drawing.Size(75, 23);
             this.Filtrar.TabIndex = 5;

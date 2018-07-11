@@ -20,6 +20,7 @@ namespace SOCIOS.Turismo
 
         private void Filtrar_Click(object sender, EventArgs e)
         {
+            
             GrillaDatos.DataSource = ts.getStats(Desde.Value, Hasta.Value);
 
 
