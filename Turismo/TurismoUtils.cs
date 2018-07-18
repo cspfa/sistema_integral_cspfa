@@ -132,7 +132,7 @@ namespace SOCIOS.Turismo
    public class TurismoUtils
     {
 
-       bo dlog = new bo();
+       SOCIOS.BO.bo_Plan_Cuenta dlog = new SOCIOS.BO.bo_Plan_Cuenta();
 
         public void UpdateComboProvincia(int Provincia, ComboBox cbProvincia)
         {
@@ -455,7 +455,7 @@ namespace SOCIOS.Turismo
 
             
             //VER QUE PASA ACA CON EL WORKBENCH
-             dlog.PlanCuenta_Insert(Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Saldo, Saldo, idBono, TipoPago);
+             dlog.PlanCuenta_Insert(Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Saldo, Saldo, idBono, TipoPago,1);
 
              maxid m = new maxid();
 

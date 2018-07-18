@@ -86,5 +86,58 @@ namespace SOCIOS.BO
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
+
+
+        public void PlanCuenta_Insert(int Socio, int Dep, decimal SaldoInicial, decimal Saldo, int Bono, int Tipo, int TipoPlan)
+        {
+            db resultado = new db();
+
+
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(Socio);
+            vector_contenidos.Add(Dep);
+            vector_contenidos.Add(SaldoInicial);
+            vector_contenidos.Add(Saldo);
+            vector_contenidos.Add(Bono);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+            vector_contenidos.Add(VGlobales.vp_role);
+            vector_contenidos.Add(Tipo);
+            vector_contenidos.Add(TipoPlan);
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@NRO_SOCIO");
+            vector_nombres.Add("@NRO_DEP");
+            vector_nombres.Add("@SALDO_INICIAL");
+            vector_nombres.Add("@SALDO");
+            vector_nombres.Add("@BONO");
+            vector_nombres.Add("@U_ALTA");
+            vector_nombres.Add("@F_ALTA");
+            vector_nombres.Add("@ROL");
+            vector_nombres.Add("@TIPO");
+            vector_nombres.Add("@TIPO_PLAN");
+
+            string vprocedure = "P_PLAN_CUENTA_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+
+
+        }
     }
 }

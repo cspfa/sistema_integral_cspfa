@@ -387,6 +387,7 @@ namespace SOCIOS.bono
 
                         formaPago = formaPago + ", Financiacion Efectivo, Seña $ " + lbSeniaMonto.Text +
                         ",Saldo de $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
+                       
                         SaldoIngreso = Decimal.Parse(lbSeniaMonto.Text);
 
                        

@@ -11,6 +11,7 @@ namespace SOCIOS.bono
     public partial class BonoOdontologico : SOCIOS.bono.Bono
     {
         BO.bo_ServiciosMedicos dlog = new BO.bo_ServiciosMedicos();
+        SOCIOS.BO.bo_Plan_Cuenta dlog_pc = new SOCIOS.BO.bo_Plan_Cuenta();
         public DatoSocio persona = new DatoSocio();
         SOCIOS.bono.Odontologia.ServicioOdonto odontoService = new Odontologia.ServicioOdonto();
         int CodInt;
@@ -617,7 +618,7 @@ namespace SOCIOS.bono
         {
             decimal Saldo = Decimal.Parse(lbSaldoTotal.Text);
       
-           dlog.PlanCuenta_Insert(Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Saldo, Saldo, idBono,TipoPago);
+           dlog_pc.PlanCuenta_Insert(Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Saldo, Saldo, idBono,TipoPago,1);
 
             maxid m = new maxid();
 
