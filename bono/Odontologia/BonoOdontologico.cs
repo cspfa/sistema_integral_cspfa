@@ -618,7 +618,7 @@ namespace SOCIOS.bono
         {
             decimal Saldo = Decimal.Parse(lbSaldoTotal.Text);
       
-           dlog_pc.PlanCuenta_Insert(Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Saldo, Saldo, idBono,TipoPago,1);
+           dlog_pc.PlanCuenta_Insert(Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Saldo, Saldo, idBono,TipoPago,(int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS);
 
             maxid m = new maxid();
 
