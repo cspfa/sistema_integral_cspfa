@@ -196,6 +196,11 @@ namespace SOCIOS.BO
         }
 
 
-       
+
+
+        internal void InsertOdontologico(int p, int p_2, int p_3, int p_4, int p_5, int p_6, DateTime dateTime, int PROFESIONAL, int SECTACT, int p_7, int p_8, int p_9, int p_10, string p_11, string p_12, string p_13, string p_14, string p_15, string p_16, string p_17, string p_18, string p_19, string p_20, string p_21, string p_22, string p_23, string p_24, string p_25, string p_26, string p_27, int p_28, string p_29, int p_30, string p_31, int CODINT, int p_32)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -69,5 +69,26 @@ namespace SOCIOS.bono.Odontologia
 
       }
 
+
+      public  int GetMaxID(string NRO_SOCIO,string NRO_DEP,string BARRA)
+      {
+          string QUERY = "SELECT MAX(ID) FROM Bono_Odontologico WHERE NRO_SOCIO= " + NRO_SOCIO + " AND NRO_DEP=" + NRO_DEP + " AND BARRA =" + BARRA;
+          DataRow[] foundRows;
+          foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+          if (foundRows.Length > 0)
+          {
+              return Int32.Parse(foundRows[0][0].ToString().Trim());
+          }
+          else
+              return 0;
+
+
+
+
+
+
+
+      }
     }
 }
