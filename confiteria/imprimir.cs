@@ -289,11 +289,11 @@ namespace Confiteria
 
             foreach (DataRow row in COMANDA.Tables[0].Rows)
             {
-                code39.Code = "CO" + row[0].ToString().Trim();
+                code39.Code = "CO" + row[19].ToString().Trim();
                 Bitmap bm = new Bitmap(code39.CreateDrawingImage(Color.Black, Color.White));
                 graphics.DrawString(row[1].ToString(), courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
-                graphics.DrawString("COMANDA " + row[0].ToString(), courier_big, black, startX, startY + Offset);
+                graphics.DrawString("COMANDA " + row[19].ToString(), courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
                 graphics.DrawString("BORRADOR " + row[16].ToString(), courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;

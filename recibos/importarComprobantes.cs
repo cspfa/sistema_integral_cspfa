@@ -64,7 +64,7 @@ namespace SOCIOS
                 dgCajasAnteriores.Enabled = false;
                 buscarComprobantes(dgEfectivo);
                 dgEfectivo.ClearSelection();
-                dgEfectivo.Enabled = false;
+                //dgEfectivo.Enabled = false;
             }
         }
 
@@ -332,8 +332,16 @@ namespace SOCIOS
                         TIPO_SOCIO_NO_TITULAR = ROW_RECIBO[22].ToString(); CAJA_DIARIA = int.Parse(ROW_RECIBO[23].ToString()); DEPOSITADO = int.Parse(ROW_RECIBO[24].ToString());
                         ROL = ROW_RECIBO[25].ToString(); NRO_COMP = int.Parse(ROW_RECIBO[26].ToString()); EGRESO = int.Parse(ROW_RECIBO[27].ToString()); PTO_VTA = ROW_RECIBO[31].ToString(); EXPORTADO = int.Parse(ROW_RECIBO[32].ToString());
 
-                        CAJA.importarRecibos(NRO_COMP, CUENTA_DEBE, CUENTA_HABER, VALOR, FORMA_PAGO, SECTACT, USUARIO_MOD, FECHA_RECIBO, ID_SOCIO, ID_PROFESIONAL, NOMBRE_SOCIO_TITULAR, 
-                        TIPO_SOCIO_TITULAR, OBSERVACIONES, BARRA, NOMBRE_SOCIO, TIPO_SOCIO, DNI, PTO_VTA, CAJA_DIARIA, ROLE);
+                        try
+                        {
+                            CAJA.importarRecibos(NRO_COMP, CUENTA_DEBE, CUENTA_HABER, VALOR, FORMA_PAGO, SECTACT, USUARIO_MOD, FECHA_RECIBO, ID_SOCIO, ID_PROFESIONAL,
+                            NOMBRE_SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, BARRA, NOMBRE_SOCIO, TIPO_SOCIO, DNI, PTO_VTA, CAJA_DIARIA, ROLE);
+                        }
+                        catch
+                        {
+                            MessageBox.Show(NRO_COMP+"-"+CUENTA_DEBE+"-"+CUENTA_HABER+"-"+VALOR+"-"+FORMA_PAGO+"-"+SECTACT+"-"+USUARIO_MOD+"-"+FECHA_RECIBO+"-"+ID_SOCIO+"-"+ID_PROFESIONAL,
+                            NOMBRE_SOCIO_TITULAR+"-"+TIPO_SOCIO_TITULAR+"-"+OBSERVACIONES+"-"+BARRA+"-"+NOMBRE_SOCIO+"-"+TIPO_SOCIO+"-"+DNI+"-"+PTO_VTA+"-"+CAJA_DIARIA+"-"+ROLE);
+                        }
 
                         marcarExportado("RECIBOS_CAJA", "EXPORTADO", ID);
 

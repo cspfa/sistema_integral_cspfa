@@ -48,6 +48,9 @@ namespace SOCIOS
             }
 
             lbVersion.Text = "VERSION " + FECHA;
+
+            actSociosUpdate asu = new actSociosUpdate();
+            asu.actualizar();
         }
 
         private void ToolStripMenuItem8_Click(object sender, EventArgs e)
@@ -77,13 +80,15 @@ namespace SOCIOS
 
                     AsambleatoolStripMenuItem7.Enabled = false;
 
-                    //HABILITAR MENU CAJA
                     if (VGlobales.vp_role.Trim() == "CPOCABA" || VGlobales.vp_role.Trim() == "CPOPOLVORINES" || VGlobales.vp_role.Trim() == "CPORANELAGH")
                     {
                         cajaToolStripMenuItem.Enabled = true;
                         imprimirRecibosEnBlancoToolStripMenuItem.Visible = false;
                         arancelesToolStripMenuItem.Visible = false;
                         puntosDeVentaToolStripMenuItem.Visible = false;
+                        confiteríaToolStripMenuItem.Enabled = true;
+                        camposToolStripMenuItem1.Enabled = true;
+                        deportesToolStrip.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "SISTEMAS")
@@ -177,12 +182,6 @@ namespace SOCIOS
                         confiteríaToolStripMenuItem.Enabled = true;
                         comprasToolStripMenuItem.Enabled = true;
                         conveniosToolStripMenuItem.Enabled = true;
-                    }
-
-                    if (VGlobales.vp_role.Trim() == "CPOCABA" || VGlobales.vp_role.Trim() == "CPOPOLVORINES" || VGlobales.vp_role.Trim() == "CPORANELAGH")
-                    {
-                        camposToolStripMenuItem1.Enabled = true;
-                        deportesToolStrip.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "COMPRAS")
@@ -2167,6 +2166,12 @@ namespace SOCIOS
         {
             Convenios.Convenios co = new Convenios.Convenios();
             co.ShowDialog();
+        }
+
+        private void turismoControlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Turismo.Stats_Hoteles sh = new Turismo.Stats_Hoteles();
+            sh.ShowDialog();
         }
     }
 }

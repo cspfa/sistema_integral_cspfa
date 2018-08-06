@@ -2607,6 +2607,17 @@ namespace SOCIOS
 
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "ORIENTACION SOCIAL")
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmOSocial.Show(Cursor.Position);
+                    }
+                }
+            }
+
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "SERVICIOS MEDICOS")
             {
                 if (e.Button == MouseButtons.Right)
@@ -3011,52 +3022,142 @@ namespace SOCIOS
 
         private void dEPFAACABAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (themedContainer1.IsBodyVisible)
             {
-                string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
-                int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
-
-                if (NRO_DEP == "994")
+                if (listView1.SelectedItems.Count > 0)
                 {
-                    restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
-                    r.ShowDialog();
-                    BuscarTitular();
+                    string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
+                    int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                    int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
+
+                    if (NRO_DEP == "994")
+                    {
+                        restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
+                        r.ShowDialog();
+                        BuscarTitular();
+                    }
+                    else
+                    {
+                        MessageBox.Show("LA DEPURACIÓN DEBE SER 994", "ERROR!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("LA DEPURACIÓN DEBE SER 994", "ERROR!");
+                    MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
                 }
             }
             else
             {
-                MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
+                MessageBox.Show("BUSCAR UN SOCIO TITULAR", "ERROR!");
             }
         }
 
         private void dECABAAPFAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (themedContainer1.IsBodyVisible)
             {
-                string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
-                int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
-
-                if (NRO_DEP == "020")
+                if (listView1.SelectedItems.Count > 0)
                 {
-                    restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
-                    r.ShowDialog();
-                    BuscarTitular();
+                    string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
+                    int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                    int ID_TITULAR = int.Parse(listView1.SelectedItems[0].SubItems[8].Text);
+
+                    if (NRO_DEP == "020")
+                    {
+                        restablecer994 r = new restablecer994(ID_TITULAR, int.Parse(NRO_DEP), NRO_SOC);
+                        r.ShowDialog();
+                        BuscarTitular();
+                    }
+                    else
+                    {
+                        MessageBox.Show("LA DEPURACIÓN DEBE SER 20", "ERROR!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("LA DEPURACIÓN DEBE SER 20", "ERROR!");
+                    MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
                 }
             }
             else
             {
-                MessageBox.Show("NO SE SELECCIONO NINGUN REGISTRO", "ERROR!");
+                MessageBox.Show("BUSCAR UN SOCIO TITULAR", "ERROR!");
             }
+        }
+
+        private string tipoSocio()
+        {
+            string TIPO_SOCIO = "";
+
+            if (themedContainer1.IsBodyVisible)
+            {
+                TIPO_SOCIO = "TITULAR";
+            }
+
+            if (themedContainer2.IsBodyVisible)
+            {
+                TIPO_SOCIO = "ADHERENTE";
+            }
+
+            return TIPO_SOCIO;
+        }
+
+        private string idSocio()
+        {
+            string TIPO_SOCIO = tipoSocio();
+            int ID_SOCIO = 0;
+            string ID_SOCIO_S = "";
+            int BARRA = 0;
+            string BARRA_S = "";
+
+            if (TIPO_SOCIO == "TITULAR")
+            {
+                ID_SOCIO_S = listView1.SelectedItems[0].SubItems[8].Text;
+            }
+
+            if (TIPO_SOCIO == "ADHERENTE")
+            {
+                BARRA = int.Parse(listView1.SelectedItems[0].SubItems[4].Text);
+                ID_SOCIO = int.Parse(listView1.SelectedItems[0].SubItems[3].Text);
+
+                if (BARRA < 10)
+                {
+                    BARRA_S = "0" + BARRA.ToString();
+                }
+                else
+                {
+                    BARRA_S = BARRA.ToString();
+                }
+
+                ID_SOCIO_S = ID_SOCIO.ToString() + BARRA_S;
+            }
+
+            return ID_SOCIO_S;
+        }
+
+        private void noAlcanzaCSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string TIPO_SOCIO = tipoSocio();
+            string ID_SOCIO = idSocio();
+            registroSocios.noAlcanza na = new registroSocios.noAlcanza(TIPO_SOCIO, ID_SOCIO);
+            na.ShowDialog();
+        }
+
+        private void tsAsignarElemento_Click(object sender, EventArgs e)
+        {
+            string TIPO_SOCIO = tipoSocio();
+            string ID_SOCIO = idSocio();
+            OrientacionSocial.asignarElemento ae = new OrientacionSocial.asignarElemento(TIPO_SOCIO, ID_SOCIO);
+            ae.ShowDialog();
+        }
+
+        private void tsDevolverElemento_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsListarElementos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

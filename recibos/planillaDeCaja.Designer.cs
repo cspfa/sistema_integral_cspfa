@@ -165,6 +165,7 @@
             this.tbNroDesde = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgBuscador = new System.Windows.Forms.DataGridView();
+            this.btImpBuscador = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPlanilla.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1259,6 +1260,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btImpBuscador);
             this.tabPage4.Controls.Add(this.cbBuscarFechas);
             this.tabPage4.Controls.Add(this.cbBuscarNumeros);
             this.tabPage4.Controls.Add(this.dpFechaHasta);
@@ -1617,6 +1619,16 @@
             this.dgBuscador.Size = new System.Drawing.Size(1133, 518);
             this.dgBuscador.TabIndex = 73;
             // 
+            // btImpBuscador
+            // 
+            this.btImpBuscador.Location = new System.Drawing.Point(540, 63);
+            this.btImpBuscador.Name = "btImpBuscador";
+            this.btImpBuscador.Size = new System.Drawing.Size(163, 23);
+            this.btImpBuscador.TabIndex = 169;
+            this.btImpBuscador.Text = "IMPRIMIR SELECCIONADO";
+            this.btImpBuscador.UseVisualStyleBackColor = true;
+            this.btImpBuscador.Click += new System.EventHandler(this.btImpBuscador_Click);
+            // 
             // planillaDeCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1763,6 +1775,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.CheckBox cbBuscarFechas;
         private System.Windows.Forms.CheckBox cbBuscarNumeros;
+        private System.Windows.Forms.Button btImpBuscador;
 
 
 

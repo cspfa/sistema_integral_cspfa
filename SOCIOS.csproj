@@ -166,6 +166,18 @@
       <DependentUpon>abmCargos.cs</DependentUpon>
     </Compile>
     <Compile Include="actSociosUpdate.cs" />
+    <Compile Include="bono\Bonos\Carga_Bono_Blanco_Socio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\Bonos\Carga_Bono_Blanco_Socio.designer.cs">
+      <DependentUpon>Carga_Bono_Blanco_Socio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bono\Bonos\UPDATE_BONO_BLANCO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\Bonos\UPDATE_BONO_BLANCO.Designer.cs">
+      <DependentUpon>UPDATE_BONO_BLANCO.cs</DependentUpon>
+    </Compile>
     <Compile Include="compras\anular_op.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -213,9 +225,6 @@
     </Compile>
     <Compile Include="bono\Bonos\Carga_Bonos_Blanco_Turismo.Designer.cs">
       <DependentUpon>Carga_Bonos_Blanco_Turismo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="bono\Bonos\PagoBonos.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="bono\BonoUtils.cs" />
     <Compile Include="bono\Clases\Clases.cs" />
@@ -460,6 +469,12 @@
       <DependentUpon>EntradaEvento.cs</DependentUpon>
     </Compile>
     <Compile Include="entradaCampo\EntradaCampoService.cs" />
+    <Compile Include="registroSocios\noAlcanza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="registroSocios\noAlcanza.Designer.cs">
+      <DependentUpon>noAlcanza.cs</DependentUpon>
+    </Compile>
     <Compile Include="registroSocios\PFA-CABA.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -871,7 +886,14 @@
       <DependentUpon>Solicitud.cs</DependentUpon>
     </Compile>
     <Compile Include="Turismo\Solicitudes\SolicitudUtils.cs" />
+    <Compile Include="Turismo\Stats_Hoteles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Turismo\Stats_Hoteles.Designer.cs">
+      <DependentUpon>Stats_Hoteles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Turismo\TurismoUtils.cs" />
+    <Compile Include="Turismo\Turismo_Stats_Utils.cs" />
     <Compile Include="Turismo\VoucherUtils.cs" />
     <Compile Include="turnos\abmProfesionales.cs">
       <SubType>Form</SubType>
@@ -894,7 +916,6 @@
     <Compile Include="codDtoTitular.cs" />
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataSet1.designer.cs">
       <DependentUpon>DataSet1.cs</DependentUpon>
@@ -1151,9 +1172,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Utils.cs" />
     <Compile Include="Utils\XLS.cs" />
     <EmbeddedResource Include="abmCargos.resx">
       <DependentUpon>abmCargos.cs</DependentUpon>
@@ -1161,6 +1180,12 @@
     <EmbeddedResource Include="bono\BonoHotel_Blanco.rdlc" />
     <EmbeddedResource Include="bono\BonoPaquete_Blanco.rdlc" />
     <EmbeddedResource Include="bono\BonoPasaje_Blanco.rdlc" />
+    <EmbeddedResource Include="bono\Bonos\Carga_Bono_Blanco_Socio.resx">
+      <DependentUpon>Carga_Bono_Blanco_Socio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="bono\Bonos\UPDATE_BONO_BLANCO.resx">
+      <DependentUpon>UPDATE_BONO_BLANCO.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="compras\anular_op.resx">
       <DependentUpon>anular_op.cs</DependentUpon>
     </EmbeddedResource>
@@ -1404,6 +1429,9 @@
     <EmbeddedResource Include="registroSocios\dependencias.resx">
       <DependentUpon>dependencias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="registroSocios\noAlcanza.resx">
+      <DependentUpon>noAlcanza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="registroSocios\PFA-CABA.resx">
       <DependentUpon>PFA-CABA.cs</DependentUpon>
     </EmbeddedResource>
@@ -1484,6 +1512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Turismo\Solicitudes\Solicitud.resx">
       <DependentUpon>Solicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Turismo\Stats_Hoteles.resx">
+      <DependentUpon>Stats_Hoteles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="turnos\abmProfesionales.resx">
       <DependentUpon>abmProfesionales.cs</DependentUpon>
@@ -2108,6 +2139,10 @@
     <ProjectReference Include="Importador\Importador.csproj">
       <Project>{16C6E71A-10D7-4995-8F4C-1DB569429D04}</Project>
       <Name>Importador</Name>
+    </ProjectReference>
+    <ProjectReference Include="OrientacionSocial\OrientacionSocial.csproj">
+      <Project>{7087F8D0-45FB-4AE8-A776-C4356C5275E4}</Project>
+      <Name>OrientacionSocial</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

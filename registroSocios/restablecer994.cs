@@ -142,7 +142,7 @@ namespace SOCIOS
             lvDatosSocio.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
-        private string right(string value, int length)
+        public string right(string value, int length)
         {
             return value.Substring(value.Length - length);
         }

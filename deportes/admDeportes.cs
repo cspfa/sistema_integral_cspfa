@@ -717,7 +717,7 @@ namespace SOCIOS
                     break;
 
                 case "ADHERENT":
-                    query = "SELECT NUM_DOC,AAR,ACRJP2,Car_te1,num_te1 from  adherent WHERE NRO_ADH = " + NRO_ADH + " AND DEP_ADH = " + DEP_ADH + " AND BARRA = " + BARRA + " AND (EMAIL != '' OR TELEFONO != '' OR OBRA_SOCIAL != '') ORDER BY ID DESC;";
+                    query = "SELECT NUM_DOCADH NUM_DOC ,'0','0',Car_te1adh,num_te1adh from  adherent WHERE NRO_ADH = " + NRO_ADH + " AND NRO_DEPADH = " + DEP_ADH + " AND BARRA = " + BARRA + " ORDER BY ID_ADHERENTE DESC;";
                     lbTipoSocio.Text = "ADHERENTE";
                     this.getIdAdherente(NRO_ADH, DEP_ADH, BARRA);
 

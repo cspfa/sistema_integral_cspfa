@@ -153,6 +153,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.turismoControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -379,7 +380,8 @@
             this.empleadosDesvinculadosToolStripMenuItem,
             this.ingresosPersonalYDirectivosToolStripMenuItem,
             this.importarBienestarToolStripMenuItem,
-            this.planDeCuentaToolStripMenuItem});
+            this.planDeCuentaToolStripMenuItem,
+            this.turismoControlToolStripMenuItem});
             this.procesosToolStripMenuItem.Enabled = false;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
@@ -1278,6 +1280,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
+            // turismoControlToolStripMenuItem
+            // 
+            this.turismoControlToolStripMenuItem.Name = "turismoControlToolStripMenuItem";
+            this.turismoControlToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.turismoControlToolStripMenuItem.Text = "Turismo Control";
+            this.turismoControlToolStripMenuItem.Click += new System.EventHandler(this.turismoControlToolStripMenuItem_Click);
+            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1444,5 +1453,6 @@
         private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem conveniosToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel tsUpdater;
+        private System.Windows.Forms.ToolStripMenuItem turismoControlToolStripMenuItem;
     }
 }

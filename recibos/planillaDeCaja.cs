@@ -171,8 +171,6 @@ namespace SOCIOS
             }
         }
 
-        
-
         private void habilitarEdicion()
         {
             tbNuevoImporteEfectivo.Text = "";
@@ -497,7 +495,7 @@ namespace SOCIOS
                 string query = "";
 
                 if (VGlobales.vp_role == "CAJA")
-                    query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4 AND DESTINO <> 1  AND DESTINO <> 2  AND DESTINO <> 3);";
+                    query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4 AND DESTINO <> 1  AND DESTINO <> 2  AND DESTINO <> 3 AND DESTINO <> 16);";
                 else
                     query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
@@ -1158,7 +1156,7 @@ namespace SOCIOS
                 connection.Open();
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
-                string query = @"SELECT 'R'||B.NRO_COMP||'-'||B.PTO_VTA, 
+                string query = @"SELECT 'R'||B.PTO_VTA||'-'||B.NRO_COMP, 
                 TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, B.VALOR, 
                 B.OBSERVACIONES, B.FECHA_RECIBO
                 FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F 
@@ -2265,35 +2263,34 @@ namespace SOCIOS
                     string FECHA_CAJA = row[0].ToString().Substring(0, 10);
                     string TOTAL_EFECTIVO = string.Format("{0:n}", Convert.ToDecimal(row[1].ToString()));
 
-                    if (X == 0)
-                    {
-                        colorFondo = new BaseColor(255, 255, 255);
-                        X++;
-                    }
-                    else
-                    {
-                        colorFondo = new BaseColor(240, 240, 240);
-                        X--;
-                    }
+                        if (X == 0)
+                        {
+                            colorFondo = new BaseColor(255, 255, 255);
+                            X++;
+                        }
+                        else
+                        {
+                            colorFondo = new BaseColor(240, 240, 240);
+                            X--;
+                        }
 
-                    PdfPCell CELL_FECHA_COMPOSICION = new PdfPCell(new Phrase("CAJA DEL DÍA " + FECHA_CAJA, _mediumFont));
-                    CELL_FECHA_COMPOSICION.HorizontalAlignment = 0;
-                    CELL_FECHA_COMPOSICION.BorderWidth = 0;
-                    CELL_FECHA_COMPOSICION.BackgroundColor = colorFondo;
-                    CELL_FECHA_COMPOSICION.FixedHeight = 14f;
-                    TABLA_COMPOSICION.AddCell(CELL_FECHA_COMPOSICION);
+                        PdfPCell CELL_FECHA_COMPOSICION = new PdfPCell(new Phrase("CAJA DEL DÍA " + FECHA_CAJA, _mediumFont));
+                        CELL_FECHA_COMPOSICION.HorizontalAlignment = 0;
+                        CELL_FECHA_COMPOSICION.BorderWidth = 0;
+                        CELL_FECHA_COMPOSICION.BackgroundColor = colorFondo;
+                        CELL_FECHA_COMPOSICION.FixedHeight = 14f;
+                        TABLA_COMPOSICION.AddCell(CELL_FECHA_COMPOSICION);
 
-                    PdfPCell CELL_SALDO_COMPOSICION = new PdfPCell(new Phrase("$ " + TOTAL_EFECTIVO, _mediumFont));
-                    CELL_SALDO_COMPOSICION.HorizontalAlignment = 2;
-                    CELL_SALDO_COMPOSICION.BorderWidth = 0;
-                    CELL_SALDO_COMPOSICION.BackgroundColor = colorFondo;
-                    CELL_SALDO_COMPOSICION.FixedHeight = 14f;
-                    TABLA_COMPOSICION.AddCell(CELL_SALDO_COMPOSICION);
+                        PdfPCell CELL_SALDO_COMPOSICION = new PdfPCell(new Phrase("$ " + TOTAL_EFECTIVO, _mediumFont));
+                        CELL_SALDO_COMPOSICION.HorizontalAlignment = 2;
+                        CELL_SALDO_COMPOSICION.BorderWidth = 0;
+                        CELL_SALDO_COMPOSICION.BackgroundColor = colorFondo;
+                        CELL_SALDO_COMPOSICION.FixedHeight = 14f;
+                        TABLA_COMPOSICION.AddCell(CELL_SALDO_COMPOSICION);
 
-                    //SUMA
-                    TOTAL_COMPOSICION = TOTAL_COMPOSICION + Convert.ToDecimal(TOTAL_EFECTIVO);
+                        //SUMA
+                        TOTAL_COMPOSICION = TOTAL_COMPOSICION + Convert.ToDecimal(TOTAL_EFECTIVO);
                 }
-
 
                 if (X == 0)
                 {
@@ -2306,7 +2303,6 @@ namespace SOCIOS
                     X--;
                 }
 
-                
                 string EFECTIVO_DEL_DIA = dgCajasAnteriores[4, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString();
                 TOTAL_COMPOSICION = TOTAL_COMPOSICION + TOTAL_CHEQUES + Convert.ToDecimal(CAMBIO_CAJA) + Convert.ToDecimal(EFECTIVO_DEL_DIA);
                 string FECHA_CAJA_SELECCIONADA = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString();
@@ -3701,16 +3697,17 @@ namespace SOCIOS
         {
             string query = "";
 
-            query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-            query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
-
             if (COMPROBANTE == "R")
             {
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "RECIBOS_CAJA B";
             }
 
             if (COMPROBANTE == "B")
             {
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "BONOS_CAJA B";
             }
 
@@ -4004,6 +4001,85 @@ namespace SOCIOS
                 label15.Enabled = false;
                 dpFechaDesde.Enabled = false;
                 dpFechaHasta.Enabled = false;
+            }
+        }
+
+        private string right(string value, int length)
+        {
+            return value.Substring(value.Length - length);
+        }
+
+        private void btImpBuscador_Click(object sender, EventArgs e)
+        {
+            string COMPROBANTE = "X";
+            string NRO_COMPROBANTE = "X";
+            int ID = 0;
+            int SELECCION = 0;
+            string TABLA = "";
+            SELECCION = dgBuscador.SelectedRows.Count;
+            getGrupo gg = new getGrupo();
+
+            if (SELECCION == 1)
+            {
+                foreach (DataGridViewRow ROW in dgBuscador.SelectedRows)
+                {
+                    COMPROBANTE = ROW.Cells[0].Value.ToString().Substring(0, 1);
+
+                    if (COMPROBANTE == "R")
+                    {
+                        TABLA = "RECIBOS_CAJA";
+                        NRO_COMPROBANTE = ROW.Cells[0].Value.ToString().Replace("R", "");
+                    }
+
+                    if (COMPROBANTE == "B")
+                    {
+                        TABLA = "BONOS_CAJA";
+                        NRO_COMPROBANTE = ROW.Cells[0].Value.ToString().Replace("B", "");
+                    }
+
+                    ID = int.Parse(ROW.Cells[9].Value.ToString());
+                    string QUERY = "SELECT R.ID_SOCIO, R.SECTACT, R.ID_PROFESIONAL, R.NOMBRE_SOCIO_TITULAR, R.TIPO_SOCIO_TITULAR, R.BARRA, R.NRO_COMP, R.CUENTA_DEBE, R.DNI, R.VALOR, ";
+                    QUERY += "R.REINTEGRO_DE FROM " + TABLA + " R WHERE R.NRO_COMP = " + int.Parse(NRO_COMPROBANTE) + " AND PTO_VTA = " + VGlobales.PTO_VTA_N + ";";
+                    DataRow[] foundRows;
+                    foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+                    string ID_SOCIO = foundRows[0][0].ToString();
+                    string NRO_DEP = right(ID_SOCIO, 3);
+                    string NRO_SOC = ID_SOCIO.Replace(NRO_DEP, "");
+                    string NRO_DEPADH = right(foundRows[0][0].ToString(), 3);
+                    string NRO_ADH = foundRows[0][0].ToString().Replace(NRO_DEPADH, "");
+                    string BARRA = foundRows[0][5].ToString();
+                    string TIT_SOC = ID_SOCIO.Replace(NRO_DEP, "");
+                    string TIT_DEP = right(ID_SOCIO, 3);
+                    string DNI = foundRows[0][8].ToString();
+                    string COD_DTO = "";
+                    string CAT_SOC = foundRows[0][4].ToString();
+                    decimal IMPORTE = decimal.Parse(foundRows[0][9].ToString());
+                    string RB = "R";
+                    string REINTEGRO_DE = foundRows[0][10].ToString();
+                    int CUENTA = int.Parse(foundRows[0][7].ToString());
+                    int ID_PROFESIONAL = int.Parse(foundRows[0][2].ToString());
+                    int SECTACT = int.Parse(foundRows[0][1].ToString());
+                    int SECUENCIA = 0;
+                    string[] NOM_APE = ROW.Cells[1].Value.ToString().Trim().Split(',');
+                    string APELLIDO = NOM_APE[0];
+                    string NOMBRE = NOM_APE[1];
+                    int GRUPO = 0;
+                    string REINTEGRO = "NO";
+
+                    if (REINTEGRO_DE != "0")
+                    {
+                        REINTEGRO = "SI";
+                    }
+
+                    recibos r = new recibos(int.Parse(ID_SOCIO), SECTACT, ID_PROFESIONAL, SECUENCIA, APELLIDO, NOMBRE, CAT_SOC, BARRA, COD_DTO,
+                    NRO_COMPROBANTE, NRO_SOC, NRO_DEP, TIT_SOC, TIT_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, REINTEGRO);
+                    r.ShowDialog();
+                }
+            }
+            else
+            {
+                MessageBox.Show("SELECCIONAR SOLO UN COMPROBANTE PARA IMPRIMIR", "ERROR");
             }
         }
     }

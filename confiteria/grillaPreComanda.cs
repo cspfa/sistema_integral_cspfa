@@ -391,7 +391,7 @@ namespace Confiteria
             }
         }
 
-        public void abrirMesa(int MESA, int ID_COMANDA, string NRO_MESA)
+        public void abrirMesa(int MESA, int ID_COMANDA, string NRO_MESA, int NRO_COMANDA)
         {
             Cursor = Cursors.WaitCursor;
             int GRUPO = 4;
@@ -408,7 +408,7 @@ namespace Confiteria
                 string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
                 dlog.abrirMesa(MESA, "ABIERTA", DESDE, SOCIO, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, 1, 1);
                 llenarGrillaMesas();
-                comanda com = new comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1, MOROSO, NRO_MESA);
+                comanda com = new comanda(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA.ToString(), SOCIO, SECUENCIA, GRUPO, MESA, ID_COMANDA, 1, 1, MOROSO, NRO_MESA, 0);
                 com.ShowDialog();
             }
             else
@@ -421,7 +421,7 @@ namespace Confiteria
                 int PERSONAS = int.Parse(dgMesas[9, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 int PAGO = int.Parse(dgMesas[10, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 string MOROSO = dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-                comanda com = new comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO, NRO_MESA);
+                comanda com = new comanda(NRO_SOC_M.ToString(), NRO_DEP_M.ToString(), BARRA_M.ToString(), SOCIO_M, SECUENCIA_M, GRUPO, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO, NRO_MESA, NRO_COMANDA);
                 com.ShowDialog();
             }
 
@@ -466,7 +466,7 @@ namespace Confiteria
             Cursor = Cursors.WaitCursor;
             int MESA = int.Parse(dgMesas[11, dgMesas.CurrentCell.RowIndex].Value.ToString());
             string NRO_MESA = dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString();
-            abrirMesa(MESA, 0, NRO_MESA);
+            abrirMesa(MESA, 0, NRO_MESA, 0);
             buscarIngresos(dpFiltroIngresos.Text, "NO");
             llenarGrillaIngresos(INGRESOS, dataGridView1);
             llenarGrillaMesas();
@@ -484,8 +484,9 @@ namespace Confiteria
             {
                 int MESA = int.Parse(dgMesas[11, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 int ID_COMANDA = int.Parse(dgMesas[12, dgMesas.CurrentCell.RowIndex].Value.ToString());
+                int NRO_COMANDA = int.Parse(dgMesas[4, dgMesas.CurrentCell.RowIndex].Value.ToString());
                 string NRO_MESA = dgMesas[0, dgMesas.CurrentCell.RowIndex].Value.ToString();
-                abrirMesa(MESA, ID_COMANDA, NRO_MESA);
+                abrirMesa(MESA, ID_COMANDA, NRO_MESA, NRO_COMANDA);
                 buscarIngresos("XXX", "NO");
                 llenarGrillaIngresos(INGRESOS, dataGridView1);
                 llenarGrillaMesas();
@@ -1769,12 +1770,13 @@ namespace Confiteria
             string MESA_NUEVA =  sender.ToString().Replace("MESA Nº ", "");
             string[] ID_MESA_NUEVA = MESA_NUEVA.Split('-');
             int ID_MN = int.Parse(ID_MESA_NUEVA[1]);
-            cambiarDeMesa(MESA_ANTIGUA, ID_MN);
+            int NRO_MESA_NUEVA = int.Parse(ID_MESA_NUEVA[0]);
+            cambiarDeMesa(MESA_ANTIGUA, ID_MN, NRO_MESA_NUEVA);
         }
 
-        private void cambiarDeMesa(int MESA_ANTIGUA, int MESA_NUEVA)
+        private void cambiarDeMesa(int MESA_ANTIGUA, int ID_MESA_NUEVA, int NRO_MESA_NUEVA)
         {
-            if (MessageBox.Show("CAMBIAR LA MESA Nº " + MESA_ANTIGUA + " A LA MESA Nº " + MESA_NUEVA , "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("CAMBIAR LA MESA Nº " + MESA_ANTIGUA + " A LA MESA Nº " + NRO_MESA_NUEVA, "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
@@ -1789,9 +1791,9 @@ namespace Confiteria
                     int PERSONAS = int.Parse(dgMesas[9, dgMesas.CurrentCell.RowIndex].Value.ToString());
                     int FORMA_DE_PAGO = int.Parse(dgMesas[10, dgMesas.CurrentCell.RowIndex].Value.ToString());
 
-                    dlog.cambiarMesa(MESA_NUEVA, "ABIERTA", DESDE, SOCIO, ID_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO, NRO_COMANDA);
+                    dlog.cambiarMesa(ID_MESA_NUEVA, "ABIERTA", DESDE, SOCIO, ID_COMANDA, NRO_SOC, NRO_DEP, BARRA, SECUENCIA, PERSONAS, FORMA_DE_PAGO, NRO_COMANDA);
                     
-                    dlog.cambiarMesaComanda(MESA_NUEVA, ID_COMANDA);
+                    dlog.cambiarMesaComanda(NRO_MESA_NUEVA, ID_COMANDA);
 
                     if (MESA_ANTIGUA == 27)
                         dlog.cerrarMesa(MESA_ANTIGUA, "DELIVERY");
@@ -1856,6 +1858,11 @@ namespace Confiteria
         {
             string CONDICION = tbBuscarIngresos.Text.Trim();
             buscarItems(CONDICION);
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
