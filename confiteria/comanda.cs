@@ -450,6 +450,8 @@ namespace Confiteria
                 int TIPO_COMANDA = int.Parse(cbTipoDeComanda.SelectedValue.ToString());
                 int DESCUENTO_APLICADO = 0;
                 decimal IMPORTE_DESCONTADO = 0;
+                int NRO_COMANDA = 0;
+                string NCOM = "";
                 
                 if (TIPO_COMANDA == 2)
                 {
@@ -465,7 +467,13 @@ namespace Confiteria
                 if (ID_COMANDA == 0)
                 {
                     maxid mid = new maxid();
-                    int NRO_COMANDA = int.Parse(mid.role("NRO_COMANDA", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
+                    NCOM = mid.role("NRO_COMANDA", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role);
+
+                    if (NCOM != "")
+                    {
+                        NRO_COMANDA = int.Parse(NCOM);
+                    }
+                    
                     NRO_COMANDA = NRO_COMANDA + 1;
                     dlog.guardaMesa(FECHA, NU_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA);                    
                     tbNroComanda.Text = NRO_COMANDA.ToString();
@@ -539,6 +547,7 @@ namespace Confiteria
                     string ID_COMANDA = mid.m("ID", "CONFITERIA_COMANDAS");
                     string NRO_COMANDA = mid.m("NRO_COMANDA", "CONFITERIA_COMANDAS");
                     tbNroComanda.Text = NRO_COMANDA;
+                    tbIdComanda.Text = ID_COMANDA;
                     buscarItems(int.Parse(ID_COMANDA), "SI", "X");
                 }
                 else

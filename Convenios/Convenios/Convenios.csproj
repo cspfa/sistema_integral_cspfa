@@ -64,6 +64,7 @@
     <Compile Include="Convenios.Designer.cs">
       <DependentUpon>Convenios.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConveniosUtils.cs" />
     <Compile Include="Empresa.cs">
       <SubType>Form</SubType>
     </Compile>

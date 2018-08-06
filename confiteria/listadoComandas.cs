@@ -146,12 +146,14 @@ namespace Confiteria
                     {
                         if (ID_SOLICITUD == 0)
                         {
-                            QUERY = "SELECT D.ID, D.FECHA, D.IMPORTE, D.NOM_SOC, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.ID, C.CONTRALOR, F.DETALLE, D.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA ";
+                            QUERY = "SELECT D.ID, D.FECHA, D.IMPORTE, D.NOM_SOC, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.ID, C.CONTRALOR, F.DETALLE, D.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA ";
                             QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_SOL_DESC D, FORMAS_DE_PAGO F WHERE F.ID = C.FORMA_DE_PAGO AND D.COMANDA = C.ID AND CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY D.ID DESC;";
                         }
                         else
                         {
-                            QUERY = "SELECT * FROM CONFITERIA_SOL_DESC WHERE ID = " + ID_SOLICITUD;
+                            //QUERY = "SELECT * FROM CONFITERIA_SOL_DESC WHERE ID = " + ID_SOLICITUD;
+                            QUERY = "SELECT D.ID, D.FECHA, D.IMPORTE, D.NOM_SOC, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.ID, C.CONTRALOR, F.DETALLE, D.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA ";
+                            QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_SOL_DESC D, FORMAS_DE_PAGO F WHERE F.ID = C.FORMA_DE_PAGO AND D.COMANDA = C.ID AND C.ROL = '" + VGlobales.vp_role + "' AND D.ID = " + ID_SOLICITUD + " ORDER BY D.ID DESC;";
                         }
                     }
 
@@ -222,7 +224,17 @@ namespace Confiteria
                         PERSONAS = row[15].ToString().Trim();
                     }
 
-                    dgComandas.Rows.Add(NRO_COMANDA, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS, ID, MESA);
+                    if (cbTipoComprobante.SelectedItem.ToString() == "COMANDA")
+                    {
+                        dgComandas.Rows.Add(NRO_COMANDA, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS, ID, MESA);
+                    }
+
+                    if (cbTipoComprobante.SelectedItem.ToString() == "SOLICITUD DE DESCUENTO")
+                    {
+                        dgComandas.Rows.Add(ID, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS, ID, MESA);
+                    }
+
+                    
                 }
 
                 dgComandas.ClearSelection();

@@ -19,7 +19,7 @@ using System.Collections.Specialized;
 namespace SOCIOS
 {
    public static class Utils
-    {   
+    {
         public static Image resizeImage(Image imgToResize, Size size)
         {
             int sourceWidth = imgToResize.Width; int sourceHeight = imgToResize.Height; float nPercent = 0;

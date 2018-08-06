@@ -14,7 +14,8 @@ namespace Convenios
     public partial class Localidad : Form
     {
         bo bo = new bo();
-
+        existe ex = new existe();
+        
         public Localidad()
         {
             InitializeComponent();
@@ -100,8 +101,15 @@ namespace Convenios
                 {
                     try
                     {
-                        bo.nuevaLocalidad(tbLocalidad.Text.Trim());
-                        MessageBox.Show("LOCALIDAD CREADA CORRECTAMENTE", "LISTO!");
+                        if (ex.check("CONVENIOS_LOCALIDADES", "LOCALIDAD", tbLocalidad.Text.Trim()) == false)
+                        {
+                            bo.nuevaLocalidad(tbLocalidad.Text.Trim());
+                            MessageBox.Show("LOCALIDAD CREADA CORRECTAMENTE", "LISTO!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("LA LOCALIDAD INGRESADA YA EXISTE", "ERROR!");
+                        }
                     }
                     catch (Exception error)
                     {

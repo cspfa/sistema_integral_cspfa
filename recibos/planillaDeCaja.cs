@@ -1156,7 +1156,7 @@ namespace SOCIOS
                 connection.Open();
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
-                string query = @"SELECT 'R'||B.NRO_COMP||'-'||B.PTO_VTA, 
+                string query = @"SELECT 'R'||B.PTO_VTA||'-'||B.NRO_COMP, 
                 TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, B.VALOR, 
                 B.OBSERVACIONES, B.FECHA_RECIBO
                 FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F 
@@ -2263,35 +2263,34 @@ namespace SOCIOS
                     string FECHA_CAJA = row[0].ToString().Substring(0, 10);
                     string TOTAL_EFECTIVO = string.Format("{0:n}", Convert.ToDecimal(row[1].ToString()));
 
-                    if (X == 0)
-                    {
-                        colorFondo = new BaseColor(255, 255, 255);
-                        X++;
-                    }
-                    else
-                    {
-                        colorFondo = new BaseColor(240, 240, 240);
-                        X--;
-                    }
+                        if (X == 0)
+                        {
+                            colorFondo = new BaseColor(255, 255, 255);
+                            X++;
+                        }
+                        else
+                        {
+                            colorFondo = new BaseColor(240, 240, 240);
+                            X--;
+                        }
 
-                    PdfPCell CELL_FECHA_COMPOSICION = new PdfPCell(new Phrase("CAJA DEL DÍA " + FECHA_CAJA, _mediumFont));
-                    CELL_FECHA_COMPOSICION.HorizontalAlignment = 0;
-                    CELL_FECHA_COMPOSICION.BorderWidth = 0;
-                    CELL_FECHA_COMPOSICION.BackgroundColor = colorFondo;
-                    CELL_FECHA_COMPOSICION.FixedHeight = 14f;
-                    TABLA_COMPOSICION.AddCell(CELL_FECHA_COMPOSICION);
+                        PdfPCell CELL_FECHA_COMPOSICION = new PdfPCell(new Phrase("CAJA DEL DÍA " + FECHA_CAJA, _mediumFont));
+                        CELL_FECHA_COMPOSICION.HorizontalAlignment = 0;
+                        CELL_FECHA_COMPOSICION.BorderWidth = 0;
+                        CELL_FECHA_COMPOSICION.BackgroundColor = colorFondo;
+                        CELL_FECHA_COMPOSICION.FixedHeight = 14f;
+                        TABLA_COMPOSICION.AddCell(CELL_FECHA_COMPOSICION);
 
-                    PdfPCell CELL_SALDO_COMPOSICION = new PdfPCell(new Phrase("$ " + TOTAL_EFECTIVO, _mediumFont));
-                    CELL_SALDO_COMPOSICION.HorizontalAlignment = 2;
-                    CELL_SALDO_COMPOSICION.BorderWidth = 0;
-                    CELL_SALDO_COMPOSICION.BackgroundColor = colorFondo;
-                    CELL_SALDO_COMPOSICION.FixedHeight = 14f;
-                    TABLA_COMPOSICION.AddCell(CELL_SALDO_COMPOSICION);
+                        PdfPCell CELL_SALDO_COMPOSICION = new PdfPCell(new Phrase("$ " + TOTAL_EFECTIVO, _mediumFont));
+                        CELL_SALDO_COMPOSICION.HorizontalAlignment = 2;
+                        CELL_SALDO_COMPOSICION.BorderWidth = 0;
+                        CELL_SALDO_COMPOSICION.BackgroundColor = colorFondo;
+                        CELL_SALDO_COMPOSICION.FixedHeight = 14f;
+                        TABLA_COMPOSICION.AddCell(CELL_SALDO_COMPOSICION);
 
-                    //SUMA
-                    TOTAL_COMPOSICION = TOTAL_COMPOSICION + Convert.ToDecimal(TOTAL_EFECTIVO);
+                        //SUMA
+                        TOTAL_COMPOSICION = TOTAL_COMPOSICION + Convert.ToDecimal(TOTAL_EFECTIVO);
                 }
-
 
                 if (X == 0)
                 {
@@ -2304,7 +2303,6 @@ namespace SOCIOS
                     X--;
                 }
 
-                
                 string EFECTIVO_DEL_DIA = dgCajasAnteriores[4, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString();
                 TOTAL_COMPOSICION = TOTAL_COMPOSICION + TOTAL_CHEQUES + Convert.ToDecimal(CAMBIO_CAJA) + Convert.ToDecimal(EFECTIVO_DEL_DIA);
                 string FECHA_CAJA_SELECCIONADA = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString();

@@ -886,7 +886,14 @@
       <DependentUpon>Solicitud.cs</DependentUpon>
     </Compile>
     <Compile Include="Turismo\Solicitudes\SolicitudUtils.cs" />
+    <Compile Include="Turismo\Stats_Hoteles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Turismo\Stats_Hoteles.Designer.cs">
+      <DependentUpon>Stats_Hoteles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Turismo\TurismoUtils.cs" />
+    <Compile Include="Turismo\Turismo_Stats_Utils.cs" />
     <Compile Include="Turismo\VoucherUtils.cs" />
     <Compile Include="turnos\abmProfesionales.cs">
       <SubType>Form</SubType>
@@ -909,7 +916,6 @@
     <Compile Include="codDtoTitular.cs" />
     <Compile Include="DataSet1.cs">
       <DependentUpon>DataSet1.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DataSet1.designer.cs">
       <DependentUpon>DataSet1.cs</DependentUpon>
@@ -1166,9 +1172,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Utils.cs" />
     <Compile Include="Utils\XLS.cs" />
     <EmbeddedResource Include="abmCargos.resx">
       <DependentUpon>abmCargos.cs</DependentUpon>
@@ -1508,6 +1512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Turismo\Solicitudes\Solicitud.resx">
       <DependentUpon>Solicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Turismo\Stats_Hoteles.resx">
+      <DependentUpon>Stats_Hoteles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="turnos\abmProfesionales.resx">
       <DependentUpon>abmProfesionales.cs</DependentUpon>

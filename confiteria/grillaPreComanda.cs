@@ -360,7 +360,7 @@ namespace Confiteria
                     dgMesas.Columns[9].Visible = false;
                     dgMesas.Columns[10].Visible = false;
                     dgMesas.Columns[11].Visible = false;
-                    dgMesas.Columns[12].Visible = true;
+                    dgMesas.Columns[12].Visible = false;
                     transaction.Commit();
                 }
             }

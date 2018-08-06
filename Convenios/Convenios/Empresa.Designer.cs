@@ -46,6 +46,11 @@
             this.tbRazonSocial = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgResultadosBuscador = new System.Windows.Forms.DataGridView();
+            this.ID_EMP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RAZON_SOCIAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DOMICILIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_LOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LOCALIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -113,10 +118,10 @@
             this.btnAgregarEmpresa.AutoSize = true;
             this.btnAgregarEmpresa.Location = new System.Drawing.Point(371, 71);
             this.btnAgregarEmpresa.Name = "btnAgregarEmpresa";
-            this.btnAgregarEmpresa.Size = new System.Drawing.Size(81, 13);
+            this.btnAgregarEmpresa.Size = new System.Drawing.Size(107, 13);
             this.btnAgregarEmpresa.TabIndex = 17;
             this.btnAgregarEmpresa.TabStop = true;
-            this.btnAgregarEmpresa.Text = "LOCALIDADES";
+            this.btnAgregarEmpresa.Text = "ABM LOCALIDADES";
             this.btnAgregarEmpresa.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.btnAgregarEmpresa_LinkClicked);
             // 
             // cbLocalidad
@@ -201,6 +206,12 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgResultadosBuscador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgResultadosBuscador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgResultadosBuscador.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID_EMP,
+            this.RAZON_SOCIAL,
+            this.DOMICILIO,
+            this.ID_LOC,
+            this.LOCALIDAD});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -228,6 +239,44 @@
             this.dgResultadosBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgResultadosBuscador.Size = new System.Drawing.Size(483, 207);
             this.dgResultadosBuscador.TabIndex = 49;
+            this.dgResultadosBuscador.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResultadosBuscador_CellContentClick);
+            // 
+            // ID_EMP
+            // 
+            this.ID_EMP.HeaderText = "ID_EMPRESA";
+            this.ID_EMP.Name = "ID_EMP";
+            this.ID_EMP.ReadOnly = true;
+            this.ID_EMP.Visible = false;
+            this.ID_EMP.Width = 5;
+            // 
+            // RAZON_SOCIAL
+            // 
+            this.RAZON_SOCIAL.HeaderText = "RAZÓN SOCIAL";
+            this.RAZON_SOCIAL.Name = "RAZON_SOCIAL";
+            this.RAZON_SOCIAL.ReadOnly = true;
+            this.RAZON_SOCIAL.Width = 175;
+            // 
+            // DOMICILIO
+            // 
+            this.DOMICILIO.HeaderText = "DOMICILIO";
+            this.DOMICILIO.Name = "DOMICILIO";
+            this.DOMICILIO.ReadOnly = true;
+            this.DOMICILIO.Width = 145;
+            // 
+            // ID_LOC
+            // 
+            this.ID_LOC.HeaderText = "ID_LOCALIDAD";
+            this.ID_LOC.Name = "ID_LOC";
+            this.ID_LOC.ReadOnly = true;
+            this.ID_LOC.Visible = false;
+            this.ID_LOC.Width = 5;
+            // 
+            // LOCALIDAD
+            // 
+            this.LOCALIDAD.HeaderText = "LOCALIDAD";
+            this.LOCALIDAD.Name = "LOCALIDAD";
+            this.LOCALIDAD.ReadOnly = true;
+            this.LOCALIDAD.Width = 150;
             // 
             // label7
             // 
@@ -278,5 +327,10 @@
         private System.Windows.Forms.DataGridView dgResultadosBuscador;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.LinkLabel btnAgregarEmpresa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_EMP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RAZON_SOCIAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DOMICILIO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_LOC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LOCALIDAD;
     }
 }
