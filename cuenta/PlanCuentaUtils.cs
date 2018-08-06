@@ -7,6 +7,11 @@ using System.Data;
 
 namespace SOCIOS.CuentaSocio
 {
+
+    public enum Tipo_Cuenta
+    { CUOTAS=1,
+      FIJO  =2
+    }
     public class PLanDeCuenta
     {
 
@@ -127,7 +132,7 @@ namespace SOCIOS.CuentaSocio
             {
                 connection.Open();
 
-                FbTransaction transaction = connection.BeginTransaction();
+                 FbTransaction transaction = connection.BeginTransaction();
 
 
 

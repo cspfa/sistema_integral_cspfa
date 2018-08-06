@@ -132,7 +132,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;FECHA:&lt;/B&gt;" &amp; Parameters!Fecha.Value</Value>
+                <Value>="&lt;B&gt;FECHA:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -177,7 +177,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;SOCIO:&lt;/B&gt;" &amp;Parameters!Socio.Value</Value>
+                <Value>="&lt;B&gt;SOCIO:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -222,7 +222,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;DNI:&lt;/B&gt;" &amp;Parameters!Dni.Value</Value>
+                <Value>="&lt;B&gt;DNI:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -268,7 +268,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;BENEFICIO:&lt;/B&gt;"&amp;Parameters!Beneficio.Value</Value>
+                <Value>="&lt;B&gt;BENEFICIO:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -320,7 +320,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.12501in</Height>
+              <Height>0.23959in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -410,81 +410,6 @@
                 </TablixCell>
               </TablixCells>
             </TablixRow>
-            <TablixRow>
-              <Height>0.1875in</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox27">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Descripcion.Value</Value>
-                              <Style>
-                                <FontFamily>Courier New</FontFamily>
-                                <FontSize>7pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox27</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox29">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Monto.Value</Value>
-                              <Style>
-                                <FontFamily>Courier New</FontFamily>
-                                <FontSize>7pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox29</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
@@ -495,23 +420,18 @@
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
           <TablixMembers>
-            <TablixMember>
-              <KeepWithGroup>After</KeepWithGroup>
-            </TablixMember>
-            <TablixMember>
-              <Group Name="Details" />
-            </TablixMember>
+            <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>3.3386in</Top>
         <Left>0.02083in</Left>
-        <Height>0.31251in</Height>
+        <Height>0.23959in</Height>
         <Width>6.53994in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
-            <Style>None</Style>
+            <Style>Solid</Style>
           </Border>
           <FontFamily>Courier New</FontFamily>
           <FontSize>12pt</FontSize>
@@ -523,7 +443,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;AFILIADO:&lt;/B&gt;"&amp;Parameters!Afiliado.Value</Value>
+                <Value>="&lt;B&gt;AFILIADO:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -569,7 +489,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;TIPO:&lt;/B&gt;" &amp; Parameters!Categoria.Value</Value>
+                <Value>="&lt;B&gt;TIPO:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -614,7 +534,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;TITULAR:&lt;/B&gt;"&amp;Parameters!NombreTit.Value</Value>
+                <Value>="&lt;B&gt;TITULAR:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -659,7 +579,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!Domicilio.Value</Value>
+                <Value />
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -693,7 +613,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;LOCALIDAD:&lt;/B&gt;"&amp;Parameters!Localidad.Value</Value>
+                <Value>="&lt;B&gt;LOCALIDAD:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -738,7 +658,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;TELEFONO:&lt;/B&gt;"&amp;Parameters!Telefono.Value</Value>
+                <Value>="&lt;B&gt;TELEFONO:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -771,7 +691,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!NombrePac.Value &amp;"&lt;B&gt;-&lt;/B&gt;"&amp;Parameters!Edad.Value &amp; "&lt;B&gt; AÑOS&lt;/B&gt;"</Value>
+                <Value />
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -803,7 +723,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;FORMA DE PAGO:&lt;/B&gt;"&amp;Parameters!FormaPago.Value</Value>
+                <Value>="&lt;B&gt;FORMA DE PAGO:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -862,7 +782,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;OBS:&lt;/B&gt;" &amp;Parameters!Obs.Value</Value>
+                <Value>="&lt;B&gt;OBS:&lt;/B&gt;"</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -964,158 +884,15 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox16">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>BONO ANULADO</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Courier New</FontFamily>
-                  <FontWeight>Heavy</FontWeight>
-                  <Color>White</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>0.78125in</Top>
-        <Left>0.12644in</Left>
-        <Height>0.19371in</Height>
-        <Width>6.80911in</Width>
-        <ZIndex>17</ZIndex>
-        <Visibility>
-          <Hidden>=iif(Parameters!Anulado.Value&gt;0,false,true)</Hidden>
-        </Visibility>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>Black</BackgroundColor>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!Contralor.Value</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>0.46181in</Top>
-        <Left>4.05359in</Left>
-        <Height>0.25in</Height>
-        <Width>2.77952in</Width>
-        <ZIndex>18</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox25">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!Barra.Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Courier New</FontFamily>
-                  <FontWeight>Heavy</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>0.44765in</Top>
-        <Left>2.02928in</Left>
-        <Height>0.19371in</Height>
-        <Width>1.96875in</Width>
-        <ZIndex>19</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox34">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Parameters!Prof.Value</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Courier New</FontFamily>
-                  <FontWeight>Heavy</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>0.28399in</Top>
-        <Left>3.27234in</Left>
-        <Height>0.19371in</Height>
-        <Width>3.66322in</Width>
-        <ZIndex>20</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Image Name="Image1">
         <Source>Embedded</Source>
         <Value>Odonto</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>3.72055in</Top>
+        <Top>4.78305in</Top>
         <Left>0.91333in</Left>
         <Height>3.07292in</Height>
         <Width>5.09375in</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>17</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1129,7 +906,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Parameters!Prof.Value</Value>
+                <Value />
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -1172,7 +949,7 @@
         <Left>0.15775in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>22</ZIndex>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1233,7 +1010,7 @@
         <Left>2.33484in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1294,7 +1071,187 @@
         <Left>4.564in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
+        <ZIndex>20</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Line Name="Line1">
+        <Top>4.93063in</Top>
+        <Left>1.24494in</Left>
+        <Height>0in</Height>
+        <Width>4.50516in</Width>
+        <ZIndex>21</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line3">
+        <Top>3.72583in</Top>
+        <Left>0.02777in</Left>
+        <Height>0in</Height>
+        <Width>6.51785in</Width>
+        <ZIndex>22</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line4">
+        <Top>3.93063in</Top>
+        <Left>0.03124in</Left>
+        <Height>0in</Height>
+        <Width>6.52953in</Width>
+        <ZIndex>23</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line5">
+        <Top>3.5175in</Top>
+        <Left>6.56077in</Left>
+        <Height>1.14583in</Height>
+        <Width>0in</Width>
         <ZIndex>24</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line6">
+        <Top>3.3386in</Top>
+        <Left>0.03124in</Left>
+        <Height>1.32473in</Height>
+        <Width>0in</Width>
+        <ZIndex>25</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line7">
+        <Top>4.10771in</Top>
+        <Left>0.02777in</Left>
+        <Height>0in</Height>
+        <Width>6.52953in</Width>
+        <ZIndex>26</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line8">
+        <Top>4.27438in</Top>
+        <Left>0.03124in</Left>
+        <Height>0in</Height>
+        <Width>6.52953in</Width>
+        <ZIndex>27</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line9">
+        <Top>4.48443in</Top>
+        <Left>0.03124in</Left>
+        <Height>0in</Height>
+        <Width>6.52953in</Width>
+        <ZIndex>28</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line10">
+        <Top>4.66333in</Top>
+        <Left>0.01609in</Left>
+        <Height>0in</Height>
+        <Width>6.52953in</Width>
+        <ZIndex>29</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Line Name="Line11">
+        <Top>3.3386in</Top>
+        <Left>3.49752in</Left>
+        <Height>1.32473in</Height>
+        <Width>0in</Width>
+        <ZIndex>30</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="ID">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!ID.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ID</rd:DefaultName>
+        <Top>0.47569in</Top>
+        <Left>2.07095in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>31</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="CODINT">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!CODINT.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>CODINT</rd:DefaultName>
+        <Top>0.78125in</Top>
+        <Left>2.07095in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>32</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1310,105 +1267,13 @@
     <Style />
   </Body>
   <ReportParameters>
-    <ReportParameter Name="Fecha">
-      <DataType>String</DataType>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Bono">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Socio">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Dni">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Afiliado">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Beneficio">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="NombreTit">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Domicilio">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Localidad">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Telefono">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="NombrePac">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Edad">
+    <ReportParameter Name="ID">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
-    <ReportParameter Name="FormaPago">
-      <DataType>String</DataType>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Obs">
-      <DataType>String</DataType>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Prof">
-      <DataType>String</DataType>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Total">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Anulado">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Barra">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Contralor">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Categoria">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Directivo">
-      <DataType>String</DataType>
-      <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Cargo">
+    <ReportParameter Name="CODINT">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

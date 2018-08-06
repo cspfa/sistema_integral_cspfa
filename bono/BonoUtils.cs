@@ -17,7 +17,7 @@ namespace SOCIOS.bono
        {
 
            List<Codigo_Dto_Bono> lista = new List<Codigo_Dto_Bono>();
-           if ( ROL.Contains("TUR"))
+           if (ROL.Contains("TUR"))
            {
                Codigo_Dto_Bono item = new Codigo_Dto_Bono();
                item.CODIGO = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 0));
@@ -33,9 +33,36 @@ namespace SOCIOS.bono
                item.CODIGO = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 1));
                item.DES = item.CODIGO.ToString() + "- PASAJES";
                lista.Add(item);
-                          
-           } else
+
+           }
+           else if (ROL.Contains("MEDICOS"))
+           {
+               Codigo_Dto_Bono item = new Codigo_Dto_Bono();
+               item.CODIGO = Int32.Parse(Config.getValor("ODON-GENERAL-TAVELLA", "COD_ODONTO", 2));
+               item.DES = "ODONTO GENERAL-TAVELLA";
+               lista.Add(item);
+
+
+               item.CODIGO = Int32.Parse(Config.getValor("ODON-GENERAL-ANER", "COD_ODONTO", 2));
+               item.DES = "ODONTO GENERAL-ANER";
+               lista.Add(item);
+
+               item.CODIGO = Int32.Parse(Config.getValor("ODON-GENERAL-VILLAGRAN", "COD_ODONTO", 2));
+               item.DES = "ODONTO GENERAL-VILLAGRAN";
+               lista.Add(item);
+
+
+               item.CODIGO = Int32.Parse(Config.getValor("ODON-ORTO-ANER", "COD_ODONTO", 2));
+               item.DES = "ORTODONCIA-ANER";
+
+               lista.Add(item);
+
+
+
+           }
+           else
                return null;
+              
 
            return lista;
 
