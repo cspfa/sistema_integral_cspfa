@@ -111,6 +111,7 @@ namespace SOCIOS.bono
             parameters[20] = new ReportParameter("Directivo", "");
             parameters[21] = new ReportParameter("Cargo", "");
 
+
             this.reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Clear();
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", ds));
