@@ -88,7 +88,7 @@ namespace SOCIOS.BO
         }
 
 
-        public void PlanCuenta_Insert(int Socio, int Dep, decimal SaldoInicial, decimal Saldo, int Bono, int Tipo, int TipoPlan)
+        public void PlanCuenta_Insert(int Socio, int Dep, decimal SaldoInicial, decimal Saldo, int Bono, int Tipo, int TipoPlan,string Nombre_Referente,string DNI_referente)
         {
             db resultado = new db();
 
@@ -105,6 +105,8 @@ namespace SOCIOS.BO
             vector_contenidos.Add(VGlobales.vp_role);
             vector_contenidos.Add(Tipo);
             vector_contenidos.Add(TipoPlan);
+            vector_contenidos.Add(Nombre_Referente);
+            vector_contenidos.Add(DNI_referente);
             ArrayList vector_tipos = new ArrayList();
 
             vector_tipos.Add("FbDbType.Integer");
@@ -117,6 +119,8 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
             ArrayList vector_nombres = new ArrayList();
 
             vector_nombres.Add("@NRO_SOCIO");
@@ -129,7 +133,8 @@ namespace SOCIOS.BO
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@TIPO");
             vector_nombres.Add("@TIPO_PLAN");
-
+            vector_nombres.Add("@REFERENTE");
+            vector_nombres.Add("@REFERENTE_DNI");
             string vprocedure = "P_PLAN_CUENTA_I";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);

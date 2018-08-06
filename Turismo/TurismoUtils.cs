@@ -455,7 +455,7 @@ namespace SOCIOS.Turismo
 
             
             //VER QUE PASA ACA CON EL WORKBENCH
-            dlog.PlanCuenta_Insert(Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Saldo, Saldo, idBono, TipoPago,  (int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS);
+            dlog.PlanCuenta_Insert(Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Saldo, Saldo, idBono, TipoPago,  (int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS,"","");
 
              maxid m = new maxid();
 
