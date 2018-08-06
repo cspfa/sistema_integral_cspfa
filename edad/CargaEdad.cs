@@ -45,8 +45,8 @@ namespace SOCIOS
             string QUERY = "";
 
             if (TIPO == "TIT")
-            { 
-              QUERY = "SELECT F_NACIM FROM TITULAR WHERE ID_TITULAR=  " + ID + "AND NRO_SOC= " + NRO + " AND NRO_DEP=" + DEP + "AND BARRA=" + BARRA ;
+            {
+                QUERY = "SELECT F_NACIM FROM TITULAR WHERE ID_TITULAR=  " + ID + "AND NRO_SOC= " + NRO + " AND NRO_DEP=" + DEP;
             }
             else if (TIPO == "FAM")
             {
@@ -85,8 +85,7 @@ namespace SOCIOS
             try
             {
                 dlog.Update_Fecha_Nacimiento(dpFecha.Value, Int32.Parse(ID), Int32.Parse(NRO), Int32.Parse(DEP), Int32.Parse(BARRA), TIPO);
-
-
+                
                 MessageBox.Show("FECHA DE NACIMIENTO CAMBIADA CON EXITO.");
             } catch (Exception ex)
                 { MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
