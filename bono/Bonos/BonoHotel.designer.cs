@@ -41,7 +41,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
-            this.tbLateCHK = new System.Windows.Forms.TextBox();
+            this.tbCheckOut = new System.Windows.Forms.TextBox();
             this.lbLateCHK = new System.Windows.Forms.Label();
             this.StatNumeroHabitacion = new System.Windows.Forms.TextBox();
             this.lbCantidadHabitacion = new System.Windows.Forms.Label();
@@ -83,6 +83,9 @@
             this.cbRegimen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lbCartelHabitacion = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbCheckIn = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -204,7 +207,10 @@
             // 
             // gpDatos
             // 
-            this.gpDatos.Controls.Add(this.tbLateCHK);
+            this.gpDatos.Controls.Add(this.label14);
+            this.gpDatos.Controls.Add(this.tbCheckIn);
+            this.gpDatos.Controls.Add(this.label13);
+            this.gpDatos.Controls.Add(this.tbCheckOut);
             this.gpDatos.Controls.Add(this.lbLateCHK);
             this.gpDatos.Controls.Add(this.StatNumeroHabitacion);
             this.gpDatos.Controls.Add(this.lbCantidadHabitacion);
@@ -252,23 +258,21 @@
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
             // 
-            // tbLateCHK
+            // tbCheckOut
             // 
-            this.tbLateCHK.Location = new System.Drawing.Point(626, 216);
-            this.tbLateCHK.Name = "tbLateCHK";
-            this.tbLateCHK.Size = new System.Drawing.Size(39, 20);
-            this.tbLateCHK.TabIndex = 170;
-            this.tbLateCHK.Visible = false;
+            this.tbCheckOut.Location = new System.Drawing.Point(725, 216);
+            this.tbCheckOut.Name = "tbCheckOut";
+            this.tbCheckOut.Size = new System.Drawing.Size(39, 20);
+            this.tbCheckOut.TabIndex = 170;
             // 
             // lbLateCHK
             // 
             this.lbLateCHK.AutoSize = true;
-            this.lbLateCHK.Location = new System.Drawing.Point(509, 219);
+            this.lbLateCHK.Location = new System.Drawing.Point(650, 222);
             this.lbLateCHK.Name = "lbLateCHK";
-            this.lbLateCHK.Size = new System.Drawing.Size(99, 13);
+            this.lbLateCHK.Size = new System.Drawing.Size(69, 13);
             this.lbLateCHK.TabIndex = 169;
-            this.lbLateCHK.Text = "LATE CHECK OUT";
-            this.lbLateCHK.Visible = false;
+            this.lbLateCHK.Text = "CHECK OUT";
             // 
             // StatNumeroHabitacion
             // 
@@ -541,7 +545,7 @@
             this.tbObs.Location = new System.Drawing.Point(55, 159);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
-            this.tbObs.Size = new System.Drawing.Size(735, 50);
+            this.tbObs.Size = new System.Drawing.Size(735, 32);
             this.tbObs.TabIndex = 145;
             // 
             // lbInfoDias
@@ -630,13 +634,41 @@
             // 
             this.lbCartelHabitacion.AutoSize = true;
             this.lbCartelHabitacion.ForeColor = System.Drawing.Color.Red;
-            this.lbCartelHabitacion.Location = new System.Drawing.Point(191, 385);
+            this.lbCartelHabitacion.Location = new System.Drawing.Point(10, 385);
             this.lbCartelHabitacion.Name = "lbCartelHabitacion";
             this.lbCartelHabitacion.Size = new System.Drawing.Size(412, 13);
             this.lbCartelHabitacion.TabIndex = 146;
             this.lbCartelHabitacion.Text = "EL VALOR REPRESENTA LA SUMA TOTAL DE PERSONAS   POR C/CATEGORIA";
             this.lbCartelHabitacion.Visible = false;
             this.lbCartelHabitacion.Click += new System.EventHandler(this.lbCartelHabitacion_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(538, 223);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(57, 13);
+            this.label13.TabIndex = 171;
+            this.label13.Text = "CHECK IN";
+            this.label13.Visible = false;
+            // 
+            // tbCheckIn
+            // 
+            this.tbCheckIn.Location = new System.Drawing.Point(605, 216);
+            this.tbCheckIn.Name = "tbCheckIn";
+            this.tbCheckIn.Size = new System.Drawing.Size(39, 20);
+            this.tbCheckIn.TabIndex = 172;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(424, 194);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(366, 13);
+            this.label14.TabIndex = 147;
+            this.label14.Text = "HORARIOS CHECK/OUT, SI DIFIEREN A LOS REGULARES DEL HOTEL";
+            this.label14.Visible = false;
             // 
             // BonoHotel
             // 
@@ -722,7 +754,10 @@
         private System.Windows.Forms.Label lbStatTipoHabitacion;
         private System.Windows.Forms.TextBox StatNumeroHabitacion;
         private System.Windows.Forms.Label lbCantidadHabitacion;
-        private System.Windows.Forms.TextBox tbLateCHK;
+        private System.Windows.Forms.TextBox tbCheckOut;
         private System.Windows.Forms.Label lbLateCHK;
+        private System.Windows.Forms.TextBox tbCheckIn;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
     }
 }

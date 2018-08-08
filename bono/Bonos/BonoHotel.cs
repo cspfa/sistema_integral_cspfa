@@ -297,8 +297,7 @@ namespace SOCIOS.bono
 
 
                    
-                     cbLateCheck.Visible  =  cbLateCheck.Checked;
-                     tbLateCHK.Visible    =  cbLateCheck.Checked;
+                   
 
                 }
                 else
@@ -565,7 +564,8 @@ namespace SOCIOS.bono
             int ID_ROL = 0;
             int Comision_Directiva = 0;
             string LATE_CHECKOUT="";
-            LATE_CHECKOUT = tbLateCHK.Text;
+            string CHECKIN = tbCheckIn.Text;
+            LATE_CHECKOUT = tbCheckOut.Text;
 
 
             int nro_habitacion_stat = 0;
@@ -656,7 +656,7 @@ namespace SOCIOS.bono
                                                   
                      
                         
-                            vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text,"HOT","",LATE_CHECKOUT);
+                            vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text,"HOT","",LATE_CHECKOUT,CHECKIN);
                         
                         gpDatos.Visible = false;
                         bntImprimir.Visible = true;
@@ -697,8 +697,10 @@ namespace SOCIOS.bono
             int Regimen = Int32.Parse(cbRegimen.SelectedValue.ToString());
             int Habit = Int32.Parse(cbHabitacion.SelectedValue.ToString());
             string LATE_CHECKOUT = "";
+            string CHECKIN = "";
 
-            LATE_CHECKOUT = tbLateCHK.Text;
+            LATE_CHECKOUT = tbCheckOut.Text;
+            CHECKIN       = tbCheckIn.Text;
            
             if (cbSocial.SelectedItem.ToString().Length ==0)
                 MessageBox.Show("Ingrese Motivo de Bono Social", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -768,7 +770,7 @@ namespace SOCIOS.bono
 
                         //Grabar Voucher si es propio
                         
-                        vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text, "SOC", MotivoViaje,LATE_CHECKOUT);
+                        vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text, "SOC", MotivoViaje,LATE_CHECKOUT,CHECKIN);
                         
                         gpDatos.Visible = false;
                         bntImprimir.Visible = true;

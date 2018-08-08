@@ -1818,7 +1818,7 @@ namespace SOCIOS
         }
 
 
-        public void Voucher_HOTEL_Insert(int BONO, DateTime Desde, DateTime Hasta, int Hotel, int Noches, int Pasajeros, int Regimen, int Habitacion, string Nro_Habitacion, string Tipo, string Motivo, string Late)
+        public void Voucher_HOTEL_Insert(int BONO, DateTime Desde, DateTime Hasta, int Hotel, int Noches, int Pasajeros, int Regimen, int Habitacion, string Nro_Habitacion, string Tipo, string Motivo, string Late,string IN)
         {
 
             try
@@ -1841,7 +1841,7 @@ namespace SOCIOS
                 vector_contenidos.Add(Tipo);
                 vector_contenidos.Add(Motivo);
                 vector_contenidos.Add(Late);
-
+                vector_contenidos.Add(IN);
                 ArrayList vector_tipos = new ArrayList();
 
                 vector_tipos.Add("FbDbType.Integer");
@@ -1860,7 +1860,7 @@ namespace SOCIOS
                 vector_tipos.Add("FbDbType.Varchar");
                 vector_tipos.Add("FbDbType.Varchar");
                 vector_tipos.Add("FbDbType.Varchar");
-
+                vector_tipos.Add("FbDbType.Varchar");
 
                 ArrayList vector_nombres = new ArrayList();
 
@@ -1880,6 +1880,7 @@ namespace SOCIOS
                 vector_nombres.Add("@TIPO");
                 vector_nombres.Add("@MOTIVO");
                 vector_nombres.Add("@LATE_CHK");
+                vector_nombres.Add("@LATE_IN");
 
                 string vprocedure = "P_VOUCHER_BONO_HOTEL_I";
 
