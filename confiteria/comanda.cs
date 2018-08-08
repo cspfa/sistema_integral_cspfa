@@ -381,7 +381,7 @@ namespace Confiteria
 
         private void agregarItems()
         {
-            int COMANDA = int.Parse(tbNroComanda.Text);
+            int COMANDA = int.Parse(tbIdComanda.Text);
 
             foreach (DataGridViewRow row in dgItems.Rows)
             {
