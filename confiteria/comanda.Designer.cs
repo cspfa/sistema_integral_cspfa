@@ -756,6 +756,7 @@
             this.tbIdComanda.ReadOnly = true;
             this.tbIdComanda.Size = new System.Drawing.Size(51, 20);
             this.tbIdComanda.TabIndex = 99;
+            this.tbIdComanda.Visible = false;
             // 
             // comanda
             // 
