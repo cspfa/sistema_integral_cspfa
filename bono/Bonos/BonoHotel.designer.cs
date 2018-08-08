@@ -41,6 +41,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.tbLateCHK = new System.Windows.Forms.TextBox();
+            this.lbLateCHK = new System.Windows.Forms.Label();
             this.StatNumeroHabitacion = new System.Windows.Forms.TextBox();
             this.lbCantidadHabitacion = new System.Windows.Forms.Label();
             this.StatTipoHabitacion = new System.Windows.Forms.ComboBox();
@@ -202,6 +204,8 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.tbLateCHK);
+            this.gpDatos.Controls.Add(this.lbLateCHK);
             this.gpDatos.Controls.Add(this.StatNumeroHabitacion);
             this.gpDatos.Controls.Add(this.lbCantidadHabitacion);
             this.gpDatos.Controls.Add(this.StatTipoHabitacion);
@@ -247,6 +251,24 @@
             this.gpDatos.TabIndex = 137;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // tbLateCHK
+            // 
+            this.tbLateCHK.Location = new System.Drawing.Point(626, 216);
+            this.tbLateCHK.Name = "tbLateCHK";
+            this.tbLateCHK.Size = new System.Drawing.Size(39, 20);
+            this.tbLateCHK.TabIndex = 170;
+            this.tbLateCHK.Visible = false;
+            // 
+            // lbLateCHK
+            // 
+            this.lbLateCHK.AutoSize = true;
+            this.lbLateCHK.Location = new System.Drawing.Point(509, 219);
+            this.lbLateCHK.Name = "lbLateCHK";
+            this.lbLateCHK.Size = new System.Drawing.Size(99, 13);
+            this.lbLateCHK.TabIndex = 169;
+            this.lbLateCHK.Text = "LATE CHECK OUT";
+            this.lbLateCHK.Visible = false;
             // 
             // StatNumeroHabitacion
             // 
@@ -700,5 +722,7 @@
         private System.Windows.Forms.Label lbStatTipoHabitacion;
         private System.Windows.Forms.TextBox StatNumeroHabitacion;
         private System.Windows.Forms.Label lbCantidadHabitacion;
+        private System.Windows.Forms.TextBox tbLateCHK;
+        private System.Windows.Forms.Label lbLateCHK;
     }
 }

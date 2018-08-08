@@ -1817,6 +1817,79 @@ namespace SOCIOS
 
         }
 
+
+        public void Voucher_HOTEL_Insert(int BONO, DateTime Desde, DateTime Hasta, int Hotel, int Noches, int Pasajeros, int Regimen, int Habitacion, string Nro_Habitacion, string Tipo, string Motivo, string Late)
+        {
+
+            try
+            {
+                db resultado = new db();
+
+
+                ArrayList vector_contenidos = new ArrayList();
+                vector_contenidos.Add(BONO);
+                vector_contenidos.Add(Desde);
+                vector_contenidos.Add(Hasta);
+                vector_contenidos.Add(Hotel);
+                vector_contenidos.Add(Noches);
+                vector_contenidos.Add(Pasajeros);
+                vector_contenidos.Add(Regimen);
+                vector_contenidos.Add(Habitacion);
+                vector_contenidos.Add(System.DateTime.Now);
+                vector_contenidos.Add(VGlobales.vp_username);
+                vector_contenidos.Add(Nro_Habitacion);
+                vector_contenidos.Add(Tipo);
+                vector_contenidos.Add(Motivo);
+                vector_contenidos.Add(Late);
+
+                ArrayList vector_tipos = new ArrayList();
+
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+                vector_tipos.Add("FbDbType.Varchar");
+
+
+                ArrayList vector_nombres = new ArrayList();
+
+                vector_nombres.Add("@BONO");
+                vector_nombres.Add("@DESDE");
+                vector_nombres.Add("@HASTA");
+                vector_nombres.Add("@HOTEL");
+                vector_nombres.Add("@NOCHES");
+                vector_nombres.Add("@PASAJEROS");
+
+                vector_nombres.Add("@REGIMEN");
+                vector_nombres.Add("@TIPO_HABITACION");
+
+                vector_nombres.Add("@F_ALTA");
+                vector_nombres.Add("@U_ALTA");
+                vector_nombres.Add("@NRO_HABITACION");
+                vector_nombres.Add("@TIPO");
+                vector_nombres.Add("@MOTIVO");
+                vector_nombres.Add("@LATE_CHK");
+
+                string vprocedure = "P_VOUCHER_BONO_HOTEL_I";
+
+                resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         #endregion
 
 

@@ -9,14 +9,14 @@ namespace SOCIOS.Turismo
 {
    public class VoucherUtils
    {
-       bo dlog= new bo();
-       public void GenerarVoucher(int Bono,int Hotel, DateTime Desde, DateTime Hasta,int Regimen,int Habitacion,string NumeroHabitacion,string TipoBono,string Motivo)
+       bo_Turismo dlog = new bo_Turismo();
+       public void GenerarVoucher(int Bono,int Hotel, DateTime Desde, DateTime Hasta,int Regimen,int Habitacion,string NumeroHabitacion,string TipoBono,string Motivo, string Late)
 
        {
         
            try
            {
-               dlog.Voucher_HOTEL_Insert(Bono, Desde, Hasta, Hotel, this.Diferencia_Dias(Desde, Hasta), this.Cantidadpersonas(Bono), Regimen, Habitacion, NumeroHabitacion, TipoBono, Motivo);
+               dlog.Voucher_HOTEL_Insert(Bono, Desde, Hasta, Hotel, this.Diferencia_Dias(Desde, Hasta), this.Cantidadpersonas(Bono), Regimen, Habitacion, NumeroHabitacion, TipoBono, Motivo,Late);
            }
            catch (Exception ex)
 
@@ -49,7 +49,7 @@ namespace SOCIOS.Turismo
        public voucherHotel getVoucherHotel(int Bono)
 
        {
-           string Query = @"select H.ID, H.NOMBRE,L.DESCRIPCION,H.TELEFONO,H.DOMICILIO,H.CHECKIN,H.CHECKOUT,V.REGIMEN,TR.NOMBRE, V.TIPO_HABITACION,HT.TIPO,V.PASAJEROS,V.NOCHES,V.DESDE,V.HASTA,H.OBSERVACIONES,V.NRO_HABITACION NRO_HAB,V.TIPO TIPO ,V.MOTIVO MOTIVO, B.ID_ROL ,B.ROL,B.NRO_BONO_FILIAL
+           string Query = @"select H.ID, H.NOMBRE,L.DESCRIPCION,H.TELEFONO,H.DOMICILIO,H.CHECKIN,H.CHECKOUT,V.REGIMEN,TR.NOMBRE, V.TIPO_HABITACION,HT.TIPO,V.PASAJEROS,V.NOCHES,V.DESDE,V.HASTA,H.OBSERVACIONES,V.NRO_HABITACION NRO_HAB,V.TIPO TIPO ,V.MOTIVO MOTIVO, B.ID_ROL ,B.ROL,B.NRO_BONO_FILIAL,V.LATE_CHK
                            from VOUCHER_BONO_HOTEL V, HOTEL H ,LOCALIDAD L ,TURISMO_REGIMEN   TR  ,HOTEL_HABITACION_TIPO HT, BONO_TURISMO B       
                            WHERE H.ID =  V.HOTEL AND H.LOCALIDADID =L.LOCALIDADID AND TR.ID = V.REGIMEN AND HT.ID = V.TIPO_HABITACION and B.ID=V.BONO     AND V.BONO = " + Bono.ToString();
 
@@ -95,6 +95,11 @@ namespace SOCIOS.Turismo
                    voucher.BONO_FILIAL = foundRows[0][21].ToString();
                else
                    voucher.BONO_FILIAL = "";
+               if (foundRows[0][22].ToString().Length > 0)
+               {
+                   voucher.CheckOut = foundRows[0][22].ToString();
+               }
+
 
            }
           
