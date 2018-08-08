@@ -211,6 +211,7 @@ namespace SOCIOS
         {
             cbTipos.Items.Add("BONOS");
             cbTipos.Items.Add("RECIBOS");
+            cbTipos.Items.Add("REINTEGROS");
             cbTipos.SelectedIndex = 0;
         }
         
@@ -3689,7 +3690,7 @@ namespace SOCIOS
                 COMPROBANTE = cbTipos.SelectedItem.ToString();
                 COMP_MIN = COMPROBANTE.Substring(0, 1);
                 PTO_VTA = tbPtoVta.Text.Trim();
-                buscador(DESDE, HASTA, COMP_MIN, GRID, PTO_VTA, F_DESDE, F_HASTA);
+                buscador(DESDE, HASTA, COMPROBANTE, GRID, PTO_VTA, F_DESDE, F_HASTA);
             }            
         }
 
@@ -3697,19 +3698,32 @@ namespace SOCIOS
         {
             string query = "";
 
-            if (COMPROBANTE == "R")
+            if (COMPROBANTE == "BONO")
+            {
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
+                query += "BONOS_CAJA B";
+            }
+
+            if (COMPROBANTE == "RECIBO")
             {
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
                 query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "RECIBOS_CAJA B";
             }
 
-            if (COMPROBANTE == "B")
+            /*if (COMPROBANTE == "REINTEGRO")
             {
+                //BONOS
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
                 query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "BONOS_CAJA B";
-            }
+
+                //RECIBOS
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
+                query += "BONOS_CAJA B";
+            }*/
 
             query += ", SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID ";
 
