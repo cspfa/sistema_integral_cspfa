@@ -133,6 +133,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@TIPO");
             vector_nombres.Add("@TIPO_PLAN");
+
             vector_nombres.Add("@REFERENTE");
             vector_nombres.Add("@REFERENTE_DNI");
             string vprocedure = "P_PLAN_CUENTA_I";
