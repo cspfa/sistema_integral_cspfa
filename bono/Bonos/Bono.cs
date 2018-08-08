@@ -1017,10 +1017,12 @@ namespace SOCIOS.bono
         {   
             int TopeEdad;
 
-            if (tipoBono == "PAQUETE")
-               TopeEdad = 3;
-            else
-                TopeEdad =18;
+            //if (tipoBono == "PAQUETE")
+            //   TopeEdad = 3;
+            //else
+            //    TopeEdad =18;
+
+            TopeEdad = 3; // Tope ,se cambia a 3 para todos, no solo para paquete (antes 18 hoteles, 2 paquete )
            
             Socios        = 0;
             MenorSocio    = 0;
