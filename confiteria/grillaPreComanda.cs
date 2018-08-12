@@ -1592,7 +1592,7 @@ namespace Confiteria
 
                 foreach (DataRow row in EFECTIVO.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[16].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }
@@ -1604,7 +1604,7 @@ namespace Confiteria
 
                 foreach (DataRow row in TARJETA.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[16].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }
@@ -1616,7 +1616,7 @@ namespace Confiteria
 
                 foreach (DataRow row in DESCUENTO.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[16].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }
@@ -1628,7 +1628,7 @@ namespace Confiteria
 
                 foreach (DataRow row in ESPECIALES.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[16].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }
