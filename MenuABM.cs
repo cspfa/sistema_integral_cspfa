@@ -514,11 +514,15 @@ namespace SOCIOS
                     Cursor = Cursors.WaitCursor;
                     bo dlog = new bo();
                     dlog.vaciarTabla("MOROSOS_DEPORTES");
-                    
+
 
                     for (int i = 0; i < table.Rows.Count; i++)
                     {
-                        DNI = int.Parse(table.Rows[i][0].ToString().Replace(",", ""));
+                        if (table.Rows[i][0].ToString().Length > 0)
+                            DNI = int.Parse(table.Rows[i][0].ToString().Replace(",", ""));
+                        else
+                            throw new Exception("Existen filas DNI sin cargar, deben respetarse datos en todas las filas  ");
+
                         NOMBRE = table.Rows[i][1].ToString();
                         dlog.cargarMorososDeportes(NOMBRE, DNI);
                         progressBar1.PerformStep();
