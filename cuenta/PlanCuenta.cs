@@ -340,15 +340,15 @@ namespace SOCIOS.CuentaSocio
             if (x != null)
             {
                 if (tbNombre.Text.Length > 0)
-                    x = x.Where(v=>v.Nombre.Contains(tbNombre.Text)).ToList();
+                    x = x.Where(v=>v.Referente.Contains(tbNombre.Text)).ToList();
                 if (tbApellido.Text.Length > 0)
-                    x = x.Where(v => v.Apellido.Contains(tbApellido.Text)).ToList();
+                    x = x.Where(v => v.Referente.Contains(tbApellido.Text)).ToList();
                 if (tbSocio.Text.Length > 0)
                    x = x.Where(v => v.Nro_Socio.Contains(tbSocio.Text)).ToList();
                 if (tbDepuracion.Text.Length > 0)
                     x = x.Where(v => v.Nro_Dep.Contains(tbDepuracion.Text)).ToList();
                 if (tbDni.Text.Length > 0)
-                    x = x.Where(v => v.Dni.Contains(tbDni.Text)).ToList();
+                    x = x.Where(v => v.Referente_DNI.Contains(tbDni.Text)).ToList();
 
                 dgvPlanes.DataSource = x;
                 this.FormatoGrilla();

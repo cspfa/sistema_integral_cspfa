@@ -18,7 +18,9 @@ namespace SOCIOS.CuentaSocio
         public string Plan               { get; set; }
         public string Fecha              { get; set; }
         public string Tipo               { get; set; }
-        public string NombreCompleto     { get; set; }
+        public string Referente          { get; set; }
+        public string Referente_DNI      { get; set; }
+     
         public string Inicial            { get; set; }
         public string Saldo              { get; set; }
 
@@ -31,6 +33,7 @@ namespace SOCIOS.CuentaSocio
         public string Socio              { get; set; }
         public string Nro_Socio          { get; set; }
         public string Nro_Dep            { get; set; }
+        public string NombreCompleto     { get; set; }
         public string Rol                { get; set; }
         
         public string Nombre             { get; set; }
@@ -39,6 +42,8 @@ namespace SOCIOS.CuentaSocio
         public string Barra              { get; set; }
         public string Nro_Socio_Tit      { get; set; }
         public string Nro_Dep_Tit        { get; set; }
+  
+        
       
       
 
@@ -93,10 +98,11 @@ namespace SOCIOS.CuentaSocio
         {
             string query;
             
-            //Modo 1 , Turismo Modo 2 , Odonto
-            query = "select distinct  P.F_ALTA FECHA, trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO, B.CODINT CODINT,PBT.DES TIPO,P.ID  ID ,B.ID_ROL BONO ,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP ,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, B.NRO_SOCIO_TITULAR NRO_SOCIO_TIT , B.NRO_DEP_TITULAR NRO_DEP_TIT " +
-                    "from plan_cuenta P," ;
-
+            //Modo 2 , Turismo Modo 1 , Odonto
+  
+                query = "select distinct  P.F_ALTA FECHA, trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO, B.CODINT CODINT,PBT.DES TIPO,P.ID  ID ,B.ID_ROL BONO ,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP ,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, B.NRO_SOCIO_TITULAR NRO_SOCIO_TIT , B.NRO_DEP_TITULAR NRO_DEP_TIT,P.REFERENTE REF, P.REFERENTE_DNI REF_DNI " +
+                        "from plan_cuenta P,";
+        
             if (Modo == 2)
                query = query + "Bono_Turismo B ";
             else
@@ -169,7 +175,13 @@ namespace SOCIOS.CuentaSocio
                     pc.Nro_Dep_Tit =reader3.GetString(reader3.GetOrdinal("NRO_DEP_TIT")).TrimEnd();
                     pc.Nro_Socio_Tit = reader3.GetString(reader3.GetOrdinal("NRO_SOCIO_TIT")).TrimEnd();
                     pc.Barra          =reader3.GetString(reader3.GetOrdinal("BARRA")).TrimEnd();
-                    Planes.Add(pc);
+                    pc.Referente        = reader3.GetString(reader3.GetOrdinal("REF")).TrimEnd();
+                    pc.Referente_DNI    = reader3.GetString(reader3.GetOrdinal("REF_DNI")).TrimEnd();
+                    if (pc.Referente.Length == 0)
+                        pc.Referente = pc.NombreCompleto;
+                    if (pc.Referente_DNI.Length == 0)
+                        pc.Referente_DNI = pc.Dni;
+                     Planes.Add(pc);
 
                 }
 
