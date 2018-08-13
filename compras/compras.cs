@@ -5762,7 +5762,7 @@ namespace SOCIOS
 
         private void aNULARToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿CONFIRMA ANULAR EL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("¿CONFIRMA ANULAR LA DEUDA?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
@@ -5770,32 +5770,32 @@ namespace SOCIOS
                     string ANULADO = DateTime.Today.ToShortDateString();
                     string USR_ANULADO = VGlobales.vp_username;
                     BO_COMPRAS.anularFactura(ID, ANULADO, USR_ANULADO);
-                    MessageBox.Show("COMPROBANTE AULADO", "LISTO!");
+                    MessageBox.Show("DEUDA ANULADA", "LISTO!");
                     buscarFactura("BUSCAR");
                 }
                 catch (Exception error)
                 {
-                    MessageBox.Show("NO SE PUDO ANULAR EL COMPROBANTE\n" + error, "ERROR!");
+                    MessageBox.Show("NO SE PUDO ANULAR LA DEUDA\n" + error, "ERROR!");
                 }
             }
         }
 
         private void aCTIVRToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿CONFIRMA ACTIVAR EL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("¿CONFIRMA ACTIVAR LA DEUDA SELECCIONADA?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
                     string ID = lvFacturas.SelectedItems[0].SubItems[0].Text;
-                    string ANULADO = "";
-                    string USR_ANULADO = "";
+                    string ANULADO = null;
+                    string USR_ANULADO = null;
                     BO_COMPRAS.anularFactura(ID, ANULADO, USR_ANULADO);
-                    MessageBox.Show("COMPROBANTE ACTIVADO", "LISTO!");
+                    MessageBox.Show("DEUDA ACTIVADA", "LISTO!");
                     buscarFactura("BUSCAR");
                 }
                 catch (Exception error)
                 {
-                    MessageBox.Show("NO SE PUDO ACTIVAR EL COMPROBANTE\n" + error, "ERROR!");
+                    MessageBox.Show("NO SE PUDO ACTIVAR LA DEUDA\n" + error, "ERROR!");
                 }
             }
         }
