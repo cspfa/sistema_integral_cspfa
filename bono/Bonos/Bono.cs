@@ -39,6 +39,9 @@ namespace SOCIOS.bono
        public  SOCIOS.IngresoBono ingreso;
        public  int Contralor=0;
        public string InfoTarjeta = "";
+
+       public string PACIENTE_NOMBRE="";
+       public string PACIENTE_DNI="";
         public Bono()
         { 
         
@@ -852,6 +855,15 @@ namespace SOCIOS.bono
         {
             return dgvGrupo;
         
+        }
+
+
+        public void SetPaciente()
+
+        {
+            PACIENTE_NOMBRE = dgvGrupo.Rows[0].Cells[4].Value.ToString() + "," + dgvGrupo.Rows[0].Cells[5].Value.ToString();
+            PACIENTE_DNI    = dgvGrupo.Rows[0].Cells[7].Value.ToString();
+         
         }
 
         private void label13_Click(object sender, EventArgs e)
