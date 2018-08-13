@@ -95,12 +95,10 @@ namespace SOCIOS
                     {
                         deportesToolStrip.Enabled = true;
                         servToolStrip.Enabled = true;
-                        cajaToolStripMenuItem.Enabled = true;
                         procesosToolStripMenuItem.Enabled = true;
                         afiliacionesToolStripMenuItem.Enabled = true;
                         AsambleatoolStripMenuItem7.Enabled = true;
                         creditosToolStripMenuItem.Enabled = true;
-                        confiteríaToolStripMenuItem.Enabled = true;
                         tesoreríaToolStripMenuItem.Enabled = true;
                         contaduríaToolStripMenuItem.Enabled = true;
                         turismoToolStripMenuItem.Enabled = true;
@@ -171,15 +169,12 @@ namespace SOCIOS
                     if (VGlobales.vp_role.Trim() == "TESORERIA")
                     {
                         tesoreríaToolStripMenuItem.Enabled = true;
-                        cajaToolStripMenuItem.Enabled = true;
-                        confiteríaToolStripMenuItem.Enabled = true;
                         conveniosToolStripMenuItem.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "CONTADURIA")
                     {
                         contaduríaToolStripMenuItem.Enabled = true;
-                        confiteríaToolStripMenuItem.Enabled = true;
                         comprasToolStripMenuItem.Enabled = true;
                         conveniosToolStripMenuItem.Enabled = true;
                     }
@@ -248,7 +243,6 @@ namespace SOCIOS
 
                    using (FbConnection connection3 = new FbConnection(connString3))
                    {
-
                        connection3.Open();
                        FbTransaction transaction3 = connection3.BeginTransaction();
                        string veo_fecha;
@@ -271,7 +265,6 @@ namespace SOCIOS
                    }
 
                }
-
                catch (Exception ex)
                {
                    System.Windows.Forms.MessageBox.Show(ex.ToString());
