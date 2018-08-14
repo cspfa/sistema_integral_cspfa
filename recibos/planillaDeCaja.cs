@@ -3744,21 +3744,20 @@ namespace SOCIOS
                 query += "RECIBOS_CAJA B";
             }
 
-            /*if (COMPROBANTE == "REINTEGRO")
+            if (COMPROBANTE == "REINTEGROS")
             {
                 //BONOS
-                SELECT * FROM TablaA a WHERE a.activo = 1 ORDER BY a.fechaAlta DESC
-                UNION ALL
-                SELECT * FROM TablaB b WHERE b.activo = 1 ORDER BY b.fechaAlta DESC
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
-                query += "BONOS_CAJA B";
+                query += "B.OBSERVACIONES, 'RB' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
+                query += "BONOS_CAJA B ";
+
+                query += "UNION ALL ";
 
                 //RECIBOS
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
+                query += "B.OBSERVACIONES, 'RR' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "BONOS_CAJA B";
-            }*/
+            }
 
             query += ", SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID ";
 
