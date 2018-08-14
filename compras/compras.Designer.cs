@@ -2216,6 +2216,7 @@
             this.label42.Size = new System.Drawing.Size(75, 13);
             this.label42.TabIndex = 54;
             this.label42.Text = "PROVEEDOR";
+            this.label42.Visible = false;
             // 
             // tbBuscarOPxProveedor
             // 
@@ -2224,6 +2225,7 @@
             this.tbBuscarOPxProveedor.Name = "tbBuscarOPxProveedor";
             this.tbBuscarOPxProveedor.Size = new System.Drawing.Size(134, 20);
             this.tbBuscarOPxProveedor.TabIndex = 9;
+            this.tbBuscarOPxProveedor.Visible = false;
             // 
             // label41
             // 
@@ -2233,6 +2235,7 @@
             this.label41.Size = new System.Drawing.Size(34, 13);
             this.label41.TabIndex = 52;
             this.label41.Text = "FACT";
+            this.label41.Visible = false;
             // 
             // tbBuscarOPxFactura
             // 
@@ -2241,6 +2244,7 @@
             this.tbBuscarOPxFactura.Name = "tbBuscarOPxFactura";
             this.tbBuscarOPxFactura.Size = new System.Drawing.Size(109, 20);
             this.tbBuscarOPxFactura.TabIndex = 8;
+            this.tbBuscarOPxFactura.Visible = false;
             // 
             // label40
             // 
@@ -2250,6 +2254,7 @@
             this.label40.Size = new System.Drawing.Size(22, 13);
             this.label40.TabIndex = 50;
             this.label40.Text = "CH";
+            this.label40.Visible = false;
             // 
             // tbBuscarOPxCheque
             // 
@@ -2258,6 +2263,7 @@
             this.tbBuscarOPxCheque.Name = "tbBuscarOPxCheque";
             this.tbBuscarOPxCheque.Size = new System.Drawing.Size(60, 20);
             this.tbBuscarOPxCheque.TabIndex = 7;
+            this.tbBuscarOPxCheque.Visible = false;
             // 
             // label36
             // 
@@ -5115,13 +5121,13 @@
             this.aCTIVRToolStripMenuItem,
             this.aNULARToolStripMenuItem});
             this.cmFactura.Name = "cmFactura";
-            this.cmFactura.Size = new System.Drawing.Size(181, 114);
+            this.cmFactura.Size = new System.Drawing.Size(157, 92);
             // 
             // tsmAgregarOp
             // 
             this.tsmAgregarOp.Image = global::SOCIOS.Properties.Resources.add;
             this.tsmAgregarOp.Name = "tsmAgregarOp";
-            this.tsmAgregarOp.Size = new System.Drawing.Size(180, 22);
+            this.tsmAgregarOp.Size = new System.Drawing.Size(156, 22);
             this.tsmAgregarOp.Text = "AGREGAR A OP";
             this.tsmAgregarOp.Click += new System.EventHandler(this.tsmAgregarOp_Click);
             // 
@@ -5129,14 +5135,14 @@
             // 
             this.tsmAbrirAdjunto.Image = global::SOCIOS.Properties.Resources.calculator_add;
             this.tsmAbrirAdjunto.Name = "tsmAbrirAdjunto";
-            this.tsmAbrirAdjunto.Size = new System.Drawing.Size(180, 22);
+            this.tsmAbrirAdjunto.Size = new System.Drawing.Size(156, 22);
             this.tsmAbrirAdjunto.Text = "CONTABILIZAR";
             // 
             // aCTIVRToolStripMenuItem
             // 
             this.aCTIVRToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.add;
             this.aCTIVRToolStripMenuItem.Name = "aCTIVRToolStripMenuItem";
-            this.aCTIVRToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aCTIVRToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.aCTIVRToolStripMenuItem.Text = "ACTIVAR";
             this.aCTIVRToolStripMenuItem.Click += new System.EventHandler(this.aCTIVRToolStripMenuItem_Click);
             // 
@@ -5144,7 +5150,7 @@
             // 
             this.aNULARToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aNULARToolStripMenuItem.Image")));
             this.aNULARToolStripMenuItem.Name = "aNULARToolStripMenuItem";
-            this.aNULARToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aNULARToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.aNULARToolStripMenuItem.Text = "ANULAR";
             this.aNULARToolStripMenuItem.Click += new System.EventHandler(this.aNULARToolStripMenuItem_Click);
             // 
