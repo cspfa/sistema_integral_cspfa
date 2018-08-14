@@ -1575,110 +1575,115 @@ namespace SOCIOS
                 #endregion
 
                 #region CABECERA INGRESOS EN OTROS
-
                 PdfPTable TABLA_INGRESOS_OTROS = new PdfPTable(8);
-                TABLA_INGRESOS_OTROS.WidthPercentage = 100;
-                TABLA_INGRESOS_OTROS.SpacingAfter = 10;
-                TABLA_INGRESOS_OTROS.SpacingBefore = 10;
-                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.6f, 4f, 6f, 1f, 2f, 5f, 2f, 2f });
-                PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
-                PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
-                PdfPCell CELDA_CONCEPTO_OTROS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPUTACION_OTROS = new PdfPCell(new Phrase("HABER", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPORTE_OTROS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-                PdfPCell CELDA_OBS_OTROS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
-                PdfPCell CELDA_ANULADO_OTROS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
-                PdfPCell CELDA_PAGO_OTROS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
-                CELDA_NUM_OTROS.BackgroundColor = topo;
-                CELDA_NUM_OTROS.BorderColor = blanco;
-                CELDA_NUM_OTROS.HorizontalAlignment = 1;
-                CELDA_NUM_OTROS.FixedHeight = 16f;
-                CELDA_APENOM_OTROS.BackgroundColor = topo;
-                CELDA_APENOM_OTROS.BorderColor = blanco;
-                CELDA_APENOM_OTROS.HorizontalAlignment = 1;
-                CELDA_APENOM_OTROS.FixedHeight = 16f;
-                CELDA_CONCEPTO_OTROS.BackgroundColor = topo;
-                CELDA_CONCEPTO_OTROS.BorderColor = blanco;
-                CELDA_CONCEPTO_OTROS.HorizontalAlignment = 1;
-                CELDA_CONCEPTO_OTROS.FixedHeight = 16f;
-                CELDA_IMPUTACION_OTROS.BackgroundColor = topo;
-                CELDA_IMPUTACION_OTROS.BorderColor = blanco;
-                CELDA_IMPUTACION_OTROS.HorizontalAlignment = 1;
-                CELDA_IMPUTACION_OTROS.FixedHeight = 16f;
-                CELDA_IMPORTE_OTROS.BackgroundColor = topo;
-                CELDA_IMPORTE_OTROS.BorderColor = blanco;
-                CELDA_IMPORTE_OTROS.HorizontalAlignment = 1;
-                CELDA_IMPORTE_OTROS.FixedHeight = 16f;
-                CELDA_OBS_OTROS.BackgroundColor = topo;
-                CELDA_OBS_OTROS.BorderColor = blanco;
-                CELDA_OBS_OTROS.HorizontalAlignment = 1;
-                CELDA_OBS_OTROS.FixedHeight = 16f;
-                CELDA_ANULADO_OTROS.BackgroundColor = topo;
-                CELDA_ANULADO_OTROS.BorderColor = blanco;
-                CELDA_ANULADO_OTROS.HorizontalAlignment = 1;
-                CELDA_ANULADO_OTROS.FixedHeight = 16f;
-                CELDA_PAGO_OTROS.BackgroundColor = topo;
-                CELDA_PAGO_OTROS.BorderColor = blanco;
-                CELDA_PAGO_OTROS.HorizontalAlignment = 1;
-                CELDA_PAGO_OTROS.FixedHeight = 16f;
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_NUM_OTROS);
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_APENOM_OTROS);
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_CONCEPTO_OTROS);
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_IMPUTACION_OTROS);
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_IMPORTE_OTROS);
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_OBS_OTROS);
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_ANULADO_OTROS);
-                TABLA_INGRESOS_OTROS.AddCell(CELDA_PAGO_OTROS);
+                if (VGlobales.vp_role == "CAJA")
+                {
+                    TABLA_INGRESOS_OTROS.WidthPercentage = 100;
+                    TABLA_INGRESOS_OTROS.SpacingAfter = 10;
+                    TABLA_INGRESOS_OTROS.SpacingBefore = 10;
+                    TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.6f, 4f, 6f, 1f, 2f, 5f, 2f, 2f });
+                    PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
+                    PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
+                    PdfPCell CELDA_CONCEPTO_OTROS = new PdfPCell(new Phrase("CONCEPTO", _mediumFontBoldWhite));
+                    PdfPCell CELDA_IMPUTACION_OTROS = new PdfPCell(new Phrase("HABER", _mediumFontBoldWhite));
+                    PdfPCell CELDA_IMPORTE_OTROS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                    PdfPCell CELDA_OBS_OTROS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
+                    PdfPCell CELDA_ANULADO_OTROS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
+                    PdfPCell CELDA_PAGO_OTROS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
+                    CELDA_NUM_OTROS.BackgroundColor = topo;
+                    CELDA_NUM_OTROS.BorderColor = blanco;
+                    CELDA_NUM_OTROS.HorizontalAlignment = 1;
+                    CELDA_NUM_OTROS.FixedHeight = 16f;
+                    CELDA_APENOM_OTROS.BackgroundColor = topo;
+                    CELDA_APENOM_OTROS.BorderColor = blanco;
+                    CELDA_APENOM_OTROS.HorizontalAlignment = 1;
+                    CELDA_APENOM_OTROS.FixedHeight = 16f;
+                    CELDA_CONCEPTO_OTROS.BackgroundColor = topo;
+                    CELDA_CONCEPTO_OTROS.BorderColor = blanco;
+                    CELDA_CONCEPTO_OTROS.HorizontalAlignment = 1;
+                    CELDA_CONCEPTO_OTROS.FixedHeight = 16f;
+                    CELDA_IMPUTACION_OTROS.BackgroundColor = topo;
+                    CELDA_IMPUTACION_OTROS.BorderColor = blanco;
+                    CELDA_IMPUTACION_OTROS.HorizontalAlignment = 1;
+                    CELDA_IMPUTACION_OTROS.FixedHeight = 16f;
+                    CELDA_IMPORTE_OTROS.BackgroundColor = topo;
+                    CELDA_IMPORTE_OTROS.BorderColor = blanco;
+                    CELDA_IMPORTE_OTROS.HorizontalAlignment = 1;
+                    CELDA_IMPORTE_OTROS.FixedHeight = 16f;
+                    CELDA_OBS_OTROS.BackgroundColor = topo;
+                    CELDA_OBS_OTROS.BorderColor = blanco;
+                    CELDA_OBS_OTROS.HorizontalAlignment = 1;
+                    CELDA_OBS_OTROS.FixedHeight = 16f;
+                    CELDA_ANULADO_OTROS.BackgroundColor = topo;
+                    CELDA_ANULADO_OTROS.BorderColor = blanco;
+                    CELDA_ANULADO_OTROS.HorizontalAlignment = 1;
+                    CELDA_ANULADO_OTROS.FixedHeight = 16f;
+                    CELDA_PAGO_OTROS.BackgroundColor = topo;
+                    CELDA_PAGO_OTROS.BorderColor = blanco;
+                    CELDA_PAGO_OTROS.HorizontalAlignment = 1;
+                    CELDA_PAGO_OTROS.FixedHeight = 16f;
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_NUM_OTROS);
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_APENOM_OTROS);
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_CONCEPTO_OTROS);
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_IMPUTACION_OTROS);
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_IMPORTE_OTROS);
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_OBS_OTROS);
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_ANULADO_OTROS);
+                    TABLA_INGRESOS_OTROS.AddCell(CELDA_PAGO_OTROS);
+                }
                 #endregion
 
                 #region CABECERA EGRESOS
                 PdfPTable TABLA_EGRESOS = new PdfPTable(7);
-                TABLA_EGRESOS.WidthPercentage = 100;
-                TABLA_EGRESOS.SpacingAfter = 10;
-                TABLA_EGRESOS.SpacingBefore = 10;
-                TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f, 2f });
-                PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
-                PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPUTACION_EGRESOS = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
-                PdfPCell CELDA_IMPORTE_EGRESOS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-                PdfPCell CELDA_OBS_EGRESOS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
-                PdfPCell CELDA_ANULADO_EGRESOS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
-                PdfPCell CELDA_PAGO_EGRESOS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
-                CELDA_NUM_EGRESOS.BackgroundColor = topo;
-                CELDA_NUM_EGRESOS.BorderColor = blanco;
-                CELDA_NUM_EGRESOS.HorizontalAlignment = 1;
-                CELDA_NUM_EGRESOS.FixedHeight = 16f;
-                CELDA_APENOM_EGRESOS.BackgroundColor = topo;
-                CELDA_APENOM_EGRESOS.BorderColor = blanco;
-                CELDA_APENOM_EGRESOS.HorizontalAlignment = 1;
-                CELDA_APENOM_EGRESOS.FixedHeight = 16f;
-                CELDA_IMPUTACION_EGRESOS.BackgroundColor = topo;
-                CELDA_IMPUTACION_EGRESOS.BorderColor = blanco;
-                CELDA_IMPUTACION_EGRESOS.HorizontalAlignment = 1;
-                CELDA_IMPUTACION_EGRESOS.FixedHeight = 16f;
-                CELDA_IMPORTE_EGRESOS.BackgroundColor = topo;
-                CELDA_IMPORTE_EGRESOS.BorderColor = blanco;
-                CELDA_IMPORTE_EGRESOS.HorizontalAlignment = 1;
-                CELDA_IMPORTE_EGRESOS.FixedHeight = 16f;
-                CELDA_OBS_EGRESOS.BackgroundColor = topo;
-                CELDA_OBS_EGRESOS.BorderColor = blanco;
-                CELDA_OBS_EGRESOS.HorizontalAlignment = 1;
-                CELDA_OBS_EGRESOS.FixedHeight = 16f;
-                CELDA_ANULADO_EGRESOS.BackgroundColor = topo;
-                CELDA_ANULADO_EGRESOS.BorderColor = blanco;
-                CELDA_ANULADO_EGRESOS.HorizontalAlignment = 1;
-                CELDA_ANULADO_EGRESOS.FixedHeight = 16f;
-                CELDA_PAGO_EGRESOS.BackgroundColor = topo;
-                CELDA_PAGO_EGRESOS.BorderColor = blanco;
-                CELDA_PAGO_EGRESOS.HorizontalAlignment = 2;
-                CELDA_PAGO_EGRESOS.FixedHeight = 16f;
-                TABLA_EGRESOS.AddCell(CELDA_NUM_EGRESOS);
-                TABLA_EGRESOS.AddCell(CELDA_APENOM_EGRESOS);
-                TABLA_EGRESOS.AddCell(CELDA_IMPUTACION_EGRESOS);
-                TABLA_EGRESOS.AddCell(CELDA_IMPORTE_EGRESOS);
-                TABLA_EGRESOS.AddCell(CELDA_OBS_EGRESOS);
-                TABLA_EGRESOS.AddCell(CELDA_ANULADO_EGRESOS);
-                TABLA_EGRESOS.AddCell(CELDA_PAGO_EGRESOS);
+                if (VGlobales.vp_role == "CAJA")
+                {
+                    TABLA_EGRESOS.WidthPercentage = 100;
+                    TABLA_EGRESOS.SpacingAfter = 10;
+                    TABLA_EGRESOS.SpacingBefore = 10;
+                    TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f, 2f });
+                    PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
+                    PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
+                    PdfPCell CELDA_IMPUTACION_EGRESOS = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
+                    PdfPCell CELDA_IMPORTE_EGRESOS = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                    PdfPCell CELDA_OBS_EGRESOS = new PdfPCell(new Phrase("OBSERVACIONES", _mediumFontBoldWhite));
+                    PdfPCell CELDA_ANULADO_EGRESOS = new PdfPCell(new Phrase("ANULADO", _mediumFontBoldWhite));
+                    PdfPCell CELDA_PAGO_EGRESOS = new PdfPCell(new Phrase("PAGO", _mediumFontBoldWhite));
+                    CELDA_NUM_EGRESOS.BackgroundColor = topo;
+                    CELDA_NUM_EGRESOS.BorderColor = blanco;
+                    CELDA_NUM_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_NUM_EGRESOS.FixedHeight = 16f;
+                    CELDA_APENOM_EGRESOS.BackgroundColor = topo;
+                    CELDA_APENOM_EGRESOS.BorderColor = blanco;
+                    CELDA_APENOM_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_APENOM_EGRESOS.FixedHeight = 16f;
+                    CELDA_IMPUTACION_EGRESOS.BackgroundColor = topo;
+                    CELDA_IMPUTACION_EGRESOS.BorderColor = blanco;
+                    CELDA_IMPUTACION_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_IMPUTACION_EGRESOS.FixedHeight = 16f;
+                    CELDA_IMPORTE_EGRESOS.BackgroundColor = topo;
+                    CELDA_IMPORTE_EGRESOS.BorderColor = blanco;
+                    CELDA_IMPORTE_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_IMPORTE_EGRESOS.FixedHeight = 16f;
+                    CELDA_OBS_EGRESOS.BackgroundColor = topo;
+                    CELDA_OBS_EGRESOS.BorderColor = blanco;
+                    CELDA_OBS_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_OBS_EGRESOS.FixedHeight = 16f;
+                    CELDA_ANULADO_EGRESOS.BackgroundColor = topo;
+                    CELDA_ANULADO_EGRESOS.BorderColor = blanco;
+                    CELDA_ANULADO_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_ANULADO_EGRESOS.FixedHeight = 16f;
+                    CELDA_PAGO_EGRESOS.BackgroundColor = topo;
+                    CELDA_PAGO_EGRESOS.BorderColor = blanco;
+                    CELDA_PAGO_EGRESOS.HorizontalAlignment = 2;
+                    CELDA_PAGO_EGRESOS.FixedHeight = 16f;
+                    TABLA_EGRESOS.AddCell(CELDA_NUM_EGRESOS);
+                    TABLA_EGRESOS.AddCell(CELDA_APENOM_EGRESOS);
+                    TABLA_EGRESOS.AddCell(CELDA_IMPUTACION_EGRESOS);
+                    TABLA_EGRESOS.AddCell(CELDA_IMPORTE_EGRESOS);
+                    TABLA_EGRESOS.AddCell(CELDA_OBS_EGRESOS);
+                    TABLA_EGRESOS.AddCell(CELDA_ANULADO_EGRESOS);
+                    TABLA_EGRESOS.AddCell(CELDA_PAGO_EGRESOS);
+                }
                 #endregion
 
                 #region CABECERA CAJAS DEPOSITADAS
@@ -1921,205 +1926,214 @@ namespace SOCIOS
                 #endregion
 
                 #region DATOS INGRESOS EN OTROS
-                X = 0;
-                foreach (DataRow row in OTROS_DS.Tables[0].Rows)
+                if (VGlobales.vp_role == "CAJA")
                 {
-                    NUM = row[0].ToString();
-                    NOMBRE = row[1].ToString();
-                    CONCEPTO = row[2].ToString();
-                    DEBE = row[3].ToString();
-                    IMPORTE = Convert.ToDecimal(row[4]);
-                    OBSERVACIONES = row[5].ToString();
-                    TIPO = row[6].ToString();
-                    ANULADO = row[10].ToString();
-                    PTO_VTA = row[12].ToString();
-                    F_PAGO = row[11].ToString();
-
-                    if (X == 0)
+                    X = 0;
+                    foreach (DataRow row in OTROS_DS.Tables[0].Rows)
                     {
-                        colorFondo = new BaseColor(255, 255, 255);
-                        X++;
+                        NUM = row[0].ToString();
+                        NOMBRE = row[1].ToString();
+                        CONCEPTO = row[2].ToString();
+                        DEBE = row[3].ToString();
+                        IMPORTE = Convert.ToDecimal(row[4]);
+                        OBSERVACIONES = row[5].ToString();
+                        TIPO = row[6].ToString();
+                        ANULADO = row[10].ToString();
+                        PTO_VTA = row[12].ToString();
+                        F_PAGO = row[11].ToString();
+
+                        if (X == 0)
+                        {
+                            colorFondo = new BaseColor(255, 255, 255);
+                            X++;
+                        }
+                        else
+                        {
+                            colorFondo = new BaseColor(240, 240, 240);
+                            X--;
+                        }
+
+                        PdfPCell CELL_NUM_OTROS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
+                        CELL_NUM_OTROS.HorizontalAlignment = 1;
+                        CELL_NUM_OTROS.BorderWidth = 0;
+                        CELL_NUM_OTROS.BackgroundColor = colorFondo;
+                        CELL_NUM_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_NUM_OTROS);
+
+                        PdfPCell CELL_NOMBRE_OTROS = new PdfPCell(new Phrase(NOMBRE, _mediumFont));
+                        //CELL_NOMBRE.HorizontalAlignment = 1;
+                        CELL_NOMBRE_OTROS.BorderWidth = 0;
+                        CELL_NOMBRE_OTROS.BackgroundColor = colorFondo;
+                        CELL_NOMBRE_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_NOMBRE_OTROS);
+
+                        PdfPCell CELL_CONCEPTO_OTROS = new PdfPCell(new Phrase(CONCEPTO, _mediumFont));
+                        //CELL_CONCEPTO.HorizontalAlignment = 1;
+                        CELL_CONCEPTO_OTROS.BorderWidth = 0;
+                        CELL_CONCEPTO_OTROS.BackgroundColor = colorFondo;
+                        CELL_CONCEPTO_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_CONCEPTO_OTROS);
+
+                        PdfPCell CELL_DEBE_OTROS = new PdfPCell(new Phrase(DEBE, _mediumFont));
+                        CELL_DEBE_OTROS.HorizontalAlignment = 1;
+                        CELL_DEBE_OTROS.BorderWidth = 0;
+                        CELL_DEBE_OTROS.BackgroundColor = colorFondo;
+                        CELL_DEBE_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_DEBE_OTROS);
+
+                        PdfPCell CELL_IMPORTE_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
+                        CELL_IMPORTE_OTROS.HorizontalAlignment = 2;
+                        CELL_IMPORTE_OTROS.BorderWidth = 0;
+                        CELL_IMPORTE_OTROS.BackgroundColor = colorFondo;
+                        CELL_IMPORTE_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_IMPORTE_OTROS);
+
+                        PdfPCell CELL_OBS_OTROS = new PdfPCell(new Phrase(OBSERVACIONES, _mediumFont));
+                        //CELL_OBS.HorizontalAlignment = 1;
+                        CELL_OBS_OTROS.BorderWidth = 0;
+                        CELL_OBS_OTROS.BackgroundColor = colorFondo;
+                        CELL_OBS_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_OBS_OTROS);
+
+                        PdfPCell CELL_ANULADO_OTROS = new PdfPCell(new Phrase(ANULADO, _mediumFont));
+                        //CELL_OBS.HorizontalAlignment = 1;
+                        CELL_ANULADO_OTROS.BorderWidth = 0;
+                        CELL_ANULADO_OTROS.BackgroundColor = colorFondo;
+                        CELL_ANULADO_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_ANULADO_OTROS);
+
+                        PdfPCell CELL_PAGO_OTROS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
+                        CELL_PAGO_OTROS.HorizontalAlignment = 2;
+                        CELL_PAGO_OTROS.BorderWidth = 0;
+                        CELL_PAGO_OTROS.BackgroundColor = colorFondo;
+                        CELL_PAGO_OTROS.FixedHeight = 14f;
+                        TABLA_INGRESOS_OTROS.AddCell(CELL_PAGO_OTROS);
                     }
-                    else
-                    {
-                        colorFondo = new BaseColor(240, 240, 240);
-                        X--;
-                    }
 
-                    PdfPCell CELL_NUM_OTROS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
-                    CELL_NUM_OTROS.HorizontalAlignment = 1;
-                    CELL_NUM_OTROS.BorderWidth = 0;
-                    CELL_NUM_OTROS.BackgroundColor = colorFondo;
-                    CELL_NUM_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_NUM_OTROS);
-
-                    PdfPCell CELL_NOMBRE_OTROS = new PdfPCell(new Phrase(NOMBRE, _mediumFont));
-                    //CELL_NOMBRE.HorizontalAlignment = 1;
-                    CELL_NOMBRE_OTROS.BorderWidth = 0;
-                    CELL_NOMBRE_OTROS.BackgroundColor = colorFondo;
-                    CELL_NOMBRE_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_NOMBRE_OTROS);
-
-                    PdfPCell CELL_CONCEPTO_OTROS = new PdfPCell(new Phrase(CONCEPTO, _mediumFont));
-                    //CELL_CONCEPTO.HorizontalAlignment = 1;
-                    CELL_CONCEPTO_OTROS.BorderWidth = 0;
-                    CELL_CONCEPTO_OTROS.BackgroundColor = colorFondo;
-                    CELL_CONCEPTO_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_CONCEPTO_OTROS);
-
-                    PdfPCell CELL_DEBE_OTROS = new PdfPCell(new Phrase(DEBE, _mediumFont));
-                    CELL_DEBE_OTROS.HorizontalAlignment = 1;
-                    CELL_DEBE_OTROS.BorderWidth = 0;
-                    CELL_DEBE_OTROS.BackgroundColor = colorFondo;
-                    CELL_DEBE_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_DEBE_OTROS);
-
-                    PdfPCell CELL_IMPORTE_OTROS = new PdfPCell(new Phrase("$ " +string.Format("{0:n}", IMPORTE), _mediumFont));
-                    CELL_IMPORTE_OTROS.HorizontalAlignment = 2;
-                    CELL_IMPORTE_OTROS.BorderWidth = 0;
-                    CELL_IMPORTE_OTROS.BackgroundColor = colorFondo;
-                    CELL_IMPORTE_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_IMPORTE_OTROS);
-
-                    PdfPCell CELL_OBS_OTROS = new PdfPCell(new Phrase(OBSERVACIONES, _mediumFont));
-                    //CELL_OBS.HorizontalAlignment = 1;
-                    CELL_OBS_OTROS.BorderWidth = 0;
-                    CELL_OBS_OTROS.BackgroundColor = colorFondo;
-                    CELL_OBS_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_OBS_OTROS);
-
-                    PdfPCell CELL_ANULADO_OTROS = new PdfPCell(new Phrase(ANULADO, _mediumFont));
-                    //CELL_OBS.HorizontalAlignment = 1;
-                    CELL_ANULADO_OTROS.BorderWidth = 0;
-                    CELL_ANULADO_OTROS.BackgroundColor = colorFondo;
-                    CELL_ANULADO_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_ANULADO_OTROS);
-
-                    PdfPCell CELL_PAGO_OTROS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
-                    CELL_PAGO_OTROS.HorizontalAlignment = 2;
-                    CELL_PAGO_OTROS.BorderWidth = 0;
-                    CELL_PAGO_OTROS.BackgroundColor = colorFondo;
-                    CELL_PAGO_OTROS.FixedHeight = 14f;
-                    TABLA_INGRESOS_OTROS.AddCell(CELL_PAGO_OTROS);
+                    Paragraph sub2 = new Paragraph("INGRESOS DEL DIA CHEQUES, DEPOSITOS Y TARJETAS", _standardFontBold);
+                    sub2.Alignment = Element.ALIGN_CENTER;
+                    sub2.SpacingAfter = 5;
+                    doc.Add(sub2);
+                    doc.Add(TABLA_INGRESOS_OTROS);
                 }
-
-                Paragraph sub2 = new Paragraph("INGRESOS DEL DIA CHEQUES, DEPOSITOS Y TARJETAS", _standardFontBold);
-                sub2.Alignment = Element.ALIGN_CENTER;
-                sub2.SpacingAfter = 5;
-                doc.Add(sub2);
-                doc.Add(TABLA_INGRESOS_OTROS);
                 #endregion
 
                 #region TOTAL INGRESOS EN OTROS
                 PdfPTable TABLA_TOTAL_OTROS = new PdfPTable(2);
-                TABLA_TOTAL_OTROS.WidthPercentage = 100;
-                TABLA_TOTAL_OTROS.SpacingAfter = 0;
-                TABLA_TOTAL_OTROS.SpacingBefore = 0;
-                TABLA_TOTAL_OTROS.SetWidths(new float[] { 4f, 4f });
-                PdfPCell CELDA_TITULO_OTROS = new PdfPCell(new Phrase("3.01.1.01 INGRESOS DEL DIA (DEBE)", _mediumFontBoldWhite));
-                PdfPCell CELDA_TOTAL_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_INGRESOS_OTROS), _mediumFontBoldWhite));
-                CELDA_TITULO_OTROS.BackgroundColor = topo;
-                CELDA_TITULO_OTROS.BorderColor = blanco;
-                CELDA_TITULO_OTROS.HorizontalAlignment = 1;
-                CELDA_TITULO_OTROS.FixedHeight = 16f;
-                CELDA_TOTAL_OTROS.BackgroundColor = topo;
-                CELDA_TOTAL_OTROS.BorderColor = blanco;
-                CELDA_TOTAL_OTROS.HorizontalAlignment = 1;
-                CELDA_TOTAL_OTROS.FixedHeight = 16f;
-                TABLA_TOTAL_OTROS.AddCell(CELDA_TITULO_OTROS);
-                TABLA_TOTAL_OTROS.AddCell(CELDA_TOTAL_OTROS);
-                doc.Add(TABLA_TOTAL_OTROS);
+                if (VGlobales.vp_role == "CAJA")
+                {
+                    TABLA_TOTAL_OTROS.WidthPercentage = 100;
+                    TABLA_TOTAL_OTROS.SpacingAfter = 0;
+                    TABLA_TOTAL_OTROS.SpacingBefore = 0;
+                    TABLA_TOTAL_OTROS.SetWidths(new float[] { 4f, 4f });
+                    PdfPCell CELDA_TITULO_OTROS = new PdfPCell(new Phrase("3.01.1.01 INGRESOS DEL DIA (DEBE)", _mediumFontBoldWhite));
+                    PdfPCell CELDA_TOTAL_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_INGRESOS_OTROS), _mediumFontBoldWhite));
+                    CELDA_TITULO_OTROS.BackgroundColor = topo;
+                    CELDA_TITULO_OTROS.BorderColor = blanco;
+                    CELDA_TITULO_OTROS.HorizontalAlignment = 1;
+                    CELDA_TITULO_OTROS.FixedHeight = 16f;
+                    CELDA_TOTAL_OTROS.BackgroundColor = topo;
+                    CELDA_TOTAL_OTROS.BorderColor = blanco;
+                    CELDA_TOTAL_OTROS.HorizontalAlignment = 1;
+                    CELDA_TOTAL_OTROS.FixedHeight = 16f;
+                    TABLA_TOTAL_OTROS.AddCell(CELDA_TITULO_OTROS);
+                    TABLA_TOTAL_OTROS.AddCell(CELDA_TOTAL_OTROS);
+                    doc.Add(TABLA_TOTAL_OTROS);
+                }
                 #endregion
 
                 #region DATOS EGRESOS
-                X = 0;
-                foreach (DataRow row in EGRESOS.Tables[0].Rows)
+                if (VGlobales.vp_role == "CAJA")
                 {
-                    NUM = row[0].ToString();
-                    NOMBRE = row[1].ToString();
-                    CONCEPTO = row[2].ToString();
-                    DEBE = row[3].ToString();
-                    IMPORTE = Convert.ToDecimal(row[4]);
-                    OBSERVACIONES = row[5].ToString();
-                    TIPO = row[6].ToString();
-                    ANULADO = row[10].ToString();
-                    PTO_VTA = row[12].ToString();
-                    string BANCO_DEPO = row[13].ToString();
-                    F_PAGO = row[11].ToString();
-
-                    if (BANCO_DEPO.Trim() == "PATAGONIA")
+                    X = 0;
+                    foreach (DataRow row in EGRESOS.Tables[0].Rows)
                     {
-                        DEBE = "301207";
+                        NUM = row[0].ToString();
+                        NOMBRE = row[1].ToString();
+                        CONCEPTO = row[2].ToString();
+                        DEBE = row[3].ToString();
+                        IMPORTE = Convert.ToDecimal(row[4]);
+                        OBSERVACIONES = row[5].ToString();
+                        TIPO = row[6].ToString();
+                        ANULADO = row[10].ToString();
+                        PTO_VTA = row[12].ToString();
+                        string BANCO_DEPO = row[13].ToString();
+                        F_PAGO = row[11].ToString();
+
+                        if (BANCO_DEPO.Trim() == "PATAGONIA")
+                        {
+                            DEBE = "301207";
+                        }
+
+                        if (BANCO_DEPO.Trim() == "NACIÓN")
+                        {
+                            DEBE = "301205";
+                        }
+
+                        if (X == 0)
+                        {
+                            colorFondo = new BaseColor(255, 255, 255);
+                            X++;
+                        }
+                        else
+                        {
+                            colorFondo = new BaseColor(240, 240, 240);
+                            X--;
+                        }
+
+                        PdfPCell CELL_NUM_EGRESOS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
+                        CELL_NUM_EGRESOS.HorizontalAlignment = 1;
+                        CELL_NUM_EGRESOS.BorderWidth = 0;
+                        CELL_NUM_EGRESOS.BackgroundColor = colorFondo;
+                        CELL_NUM_EGRESOS.FixedHeight = 14f;
+                        TABLA_EGRESOS.AddCell(CELL_NUM_EGRESOS);
+
+                        PdfPCell CELL_CONCEPTO_EGRESOS = new PdfPCell(new Phrase(BANCO_DEPO, _mediumFont));
+                        CELL_CONCEPTO_EGRESOS.BorderWidth = 0;
+                        CELL_CONCEPTO_EGRESOS.BackgroundColor = colorFondo;
+                        CELL_CONCEPTO_EGRESOS.FixedHeight = 14f;
+                        TABLA_EGRESOS.AddCell(CELL_CONCEPTO_EGRESOS);
+
+                        PdfPCell CELL_DEBE_EGRESOS = new PdfPCell(new Phrase(DEBE, _mediumFont));
+                        CELL_DEBE_EGRESOS.HorizontalAlignment = 1;
+                        CELL_DEBE_EGRESOS.BorderWidth = 0;
+                        CELL_DEBE_EGRESOS.BackgroundColor = colorFondo;
+                        CELL_DEBE_EGRESOS.FixedHeight = 14f;
+                        TABLA_EGRESOS.AddCell(CELL_DEBE_EGRESOS);
+
+                        PdfPCell CELL_IMPORTE_EGRESOS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
+                        CELL_IMPORTE_EGRESOS.HorizontalAlignment = 2;
+                        CELL_IMPORTE_EGRESOS.BorderWidth = 0;
+                        CELL_IMPORTE_EGRESOS.BackgroundColor = colorFondo;
+                        CELL_IMPORTE_EGRESOS.FixedHeight = 14f;
+                        TABLA_EGRESOS.AddCell(CELL_IMPORTE_EGRESOS);
+
+                        PdfPCell CELL_OBS_EGRESOS = new PdfPCell(new Phrase(OBSERVACIONES, _mediumFont));
+                        CELL_OBS_EGRESOS.BorderWidth = 0;
+                        CELL_OBS_EGRESOS.BackgroundColor = colorFondo;
+                        CELL_OBS_EGRESOS.FixedHeight = 14f;
+                        TABLA_EGRESOS.AddCell(CELL_OBS_EGRESOS);
+
+                        PdfPCell CELL_ANULADO_EGRESOS = new PdfPCell(new Phrase(ANULADO, _mediumFont));
+                        CELL_ANULADO_EGRESOS.BorderWidth = 0;
+                        CELL_ANULADO_EGRESOS.BackgroundColor = colorFondo;
+                        CELL_ANULADO_EGRESOS.FixedHeight = 14f;
+                        TABLA_EGRESOS.AddCell(CELL_ANULADO_EGRESOS);
+
+                        PdfPCell CELL_PAGO_EGRESOS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
+                        CELL_PAGO_EGRESOS.HorizontalAlignment = 2;
+                        CELL_PAGO_EGRESOS.BorderWidth = 0;
+                        CELL_PAGO_EGRESOS.BackgroundColor = colorFondo;
+                        CELL_PAGO_EGRESOS.FixedHeight = 14f;
+                        TABLA_EGRESOS.AddCell(CELL_PAGO_EGRESOS);
                     }
 
-                    if (BANCO_DEPO.Trim() == "NACIÓN")
-                    {
-                        DEBE = "301205";
-                    }
-
-                    if (X == 0)
-                    {
-                        colorFondo = new BaseColor(255, 255, 255);
-                        X++;
-                    }
-                    else
-                    {
-                        colorFondo = new BaseColor(240, 240, 240);
-                        X--;
-                    }
-
-                    PdfPCell CELL_NUM_EGRESOS = new PdfPCell(new Phrase(TIPO + "" + PTO_VTA + "-" + NUM, _mediumFont));
-                    CELL_NUM_EGRESOS.HorizontalAlignment = 1;
-                    CELL_NUM_EGRESOS.BorderWidth = 0;
-                    CELL_NUM_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_NUM_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_NUM_EGRESOS);
-
-                    PdfPCell CELL_CONCEPTO_EGRESOS = new PdfPCell(new Phrase(BANCO_DEPO, _mediumFont));
-                    CELL_CONCEPTO_EGRESOS.BorderWidth = 0;
-                    CELL_CONCEPTO_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_CONCEPTO_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_CONCEPTO_EGRESOS);
-
-                    PdfPCell CELL_DEBE_EGRESOS = new PdfPCell(new Phrase(DEBE, _mediumFont));
-                    CELL_DEBE_EGRESOS.HorizontalAlignment = 1;
-                    CELL_DEBE_EGRESOS.BorderWidth = 0;
-                    CELL_DEBE_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_DEBE_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_DEBE_EGRESOS);
-
-                    PdfPCell CELL_IMPORTE_EGRESOS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
-                    CELL_IMPORTE_EGRESOS.HorizontalAlignment = 2;
-                    CELL_IMPORTE_EGRESOS.BorderWidth = 0;
-                    CELL_IMPORTE_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_IMPORTE_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_IMPORTE_EGRESOS);
-
-                    PdfPCell CELL_OBS_EGRESOS = new PdfPCell(new Phrase(OBSERVACIONES, _mediumFont));
-                    CELL_OBS_EGRESOS.BorderWidth = 0;
-                    CELL_OBS_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_OBS_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_OBS_EGRESOS);
-
-                    PdfPCell CELL_ANULADO_EGRESOS = new PdfPCell(new Phrase(ANULADO, _mediumFont));
-                    CELL_ANULADO_EGRESOS.BorderWidth = 0;
-                    CELL_ANULADO_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_ANULADO_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_ANULADO_EGRESOS);
-
-                    PdfPCell CELL_PAGO_EGRESOS = new PdfPCell(new Phrase(F_PAGO, _mediumFont));
-                    CELL_PAGO_EGRESOS.HorizontalAlignment = 2;
-                    CELL_PAGO_EGRESOS.BorderWidth = 0;
-                    CELL_PAGO_EGRESOS.BackgroundColor = colorFondo;
-                    CELL_PAGO_EGRESOS.FixedHeight = 14f;
-                    TABLA_EGRESOS.AddCell(CELL_PAGO_EGRESOS);
+                    Paragraph sub3 = new Paragraph("EGRESOS", _standardFontBold);
+                    sub3.Alignment = Element.ALIGN_CENTER;
+                    sub3.SpacingAfter = 5;
+                    doc.Add(sub3);
+                    doc.Add(TABLA_EGRESOS);
                 }
-
-                Paragraph sub3 = new Paragraph("EGRESOS", _standardFontBold);
-                sub3.Alignment = Element.ALIGN_CENTER;
-                sub3.SpacingAfter = 5;
-                doc.Add(sub3);
-                doc.Add(TABLA_EGRESOS);
                 #endregion
                 
                 #region CAJAS DEPOSITADAS
@@ -2184,23 +2198,26 @@ namespace SOCIOS
 
                 #region TOTAL EGRESOS
                 PdfPTable TABLA_TOTAL_EGRESOS = new PdfPTable(2);
-                TABLA_TOTAL_EGRESOS.WidthPercentage = 100;
-                TABLA_TOTAL_EGRESOS.SpacingAfter = 0;
-                TABLA_TOTAL_EGRESOS.SpacingBefore = 0;
-                TABLA_TOTAL_EGRESOS.SetWidths(new float[] { 4f, 4f });
-                PdfPCell CELDA_TITULO_EGRESOS = new PdfPCell(new Phrase("3.01.1.01 EGRESOS DEL DIA TOTAL (HABER)", _mediumFontBoldWhite));
-                PdfPCell CELDA_TOTAL_EGRESOS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_EGRESOS), _mediumFontBoldWhite));
-                CELDA_TITULO_EGRESOS.BackgroundColor = topo;
-                CELDA_TITULO_EGRESOS.BorderColor = blanco;
-                CELDA_TITULO_EGRESOS.HorizontalAlignment = 1;
-                CELDA_TITULO_EGRESOS.FixedHeight = 16f;
-                CELDA_TOTAL_EGRESOS.BackgroundColor = topo;
-                CELDA_TOTAL_EGRESOS.BorderColor = blanco;
-                CELDA_TOTAL_EGRESOS.HorizontalAlignment = 1;
-                CELDA_TOTAL_EGRESOS.FixedHeight = 16f;
-                TABLA_TOTAL_EGRESOS.AddCell(CELDA_TITULO_EGRESOS);
-                TABLA_TOTAL_EGRESOS.AddCell(CELDA_TOTAL_EGRESOS);
-                doc.Add(TABLA_TOTAL_EGRESOS);
+                if (VGlobales.vp_role == "CAJA")
+                {
+                    TABLA_TOTAL_EGRESOS.WidthPercentage = 100;
+                    TABLA_TOTAL_EGRESOS.SpacingAfter = 0;
+                    TABLA_TOTAL_EGRESOS.SpacingBefore = 0;
+                    TABLA_TOTAL_EGRESOS.SetWidths(new float[] { 4f, 4f });
+                    PdfPCell CELDA_TITULO_EGRESOS = new PdfPCell(new Phrase("3.01.1.01 EGRESOS DEL DIA TOTAL (HABER)", _mediumFontBoldWhite));
+                    PdfPCell CELDA_TOTAL_EGRESOS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_EGRESOS), _mediumFontBoldWhite));
+                    CELDA_TITULO_EGRESOS.BackgroundColor = topo;
+                    CELDA_TITULO_EGRESOS.BorderColor = blanco;
+                    CELDA_TITULO_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_TITULO_EGRESOS.FixedHeight = 16f;
+                    CELDA_TOTAL_EGRESOS.BackgroundColor = topo;
+                    CELDA_TOTAL_EGRESOS.BorderColor = blanco;
+                    CELDA_TOTAL_EGRESOS.HorizontalAlignment = 1;
+                    CELDA_TOTAL_EGRESOS.FixedHeight = 16f;
+                    TABLA_TOTAL_EGRESOS.AddCell(CELDA_TITULO_EGRESOS);
+                    TABLA_TOTAL_EGRESOS.AddCell(CELDA_TOTAL_EGRESOS);
+                    doc.Add(TABLA_TOTAL_EGRESOS);
+                }
                 #endregion
 
                 #region DATOS COMPOSICION DE SALDO
@@ -2474,19 +2491,22 @@ namespace SOCIOS
                 CELDA_TOTAL_INGRESOS_EFECTIVO.FixedHeight = 16f;
                 TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_INGRESOS_EFECTIVO);
 
-                PdfPCell CELDA_TITULO_INGRESOS_OTROS = new PdfPCell(new Phrase("TOTAL INGRESOS CHEQUES Y OTROS", _mediumFont));
-                CELDA_TITULO_INGRESOS_OTROS.BackgroundColor = blanco;
-                CELDA_TITULO_INGRESOS_OTROS.BorderColor = blanco;
-                CELDA_TITULO_INGRESOS_OTROS.HorizontalAlignment = 0;
-                CELDA_TITULO_INGRESOS_OTROS.FixedHeight = 16f;
-                TABLA_TOTALES_DIA.AddCell(CELDA_TITULO_INGRESOS_OTROS);
+                if (VGlobales.vp_role == "CAJA")
+                {
+                    PdfPCell CELDA_TITULO_INGRESOS_OTROS = new PdfPCell(new Phrase("TOTAL INGRESOS CHEQUES Y OTROS", _mediumFont));
+                    CELDA_TITULO_INGRESOS_OTROS.BackgroundColor = blanco;
+                    CELDA_TITULO_INGRESOS_OTROS.BorderColor = blanco;
+                    CELDA_TITULO_INGRESOS_OTROS.HorizontalAlignment = 0;
+                    CELDA_TITULO_INGRESOS_OTROS.FixedHeight = 16f;
+                    TABLA_TOTALES_DIA.AddCell(CELDA_TITULO_INGRESOS_OTROS);
 
-                PdfPCell CELDA_TOTAL_INGRESOS_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", INGRESOS_OTROS), _mediumFont));
-                CELDA_TOTAL_INGRESOS_OTROS.BackgroundColor = blanco;
-                CELDA_TOTAL_INGRESOS_OTROS.BorderColor = blanco;
-                CELDA_TOTAL_INGRESOS_OTROS.HorizontalAlignment = 2;
-                CELDA_TOTAL_INGRESOS_OTROS.FixedHeight = 16f;
-                TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_INGRESOS_OTROS);
+                    PdfPCell CELDA_TOTAL_INGRESOS_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", INGRESOS_OTROS), _mediumFont));
+                    CELDA_TOTAL_INGRESOS_OTROS.BackgroundColor = blanco;
+                    CELDA_TOTAL_INGRESOS_OTROS.BorderColor = blanco;
+                    CELDA_TOTAL_INGRESOS_OTROS.HorizontalAlignment = 2;
+                    CELDA_TOTAL_INGRESOS_OTROS.FixedHeight = 16f;
+                    TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_INGRESOS_OTROS);
+                }
 
                 PdfPCell CELDA_TITULO_SUBTOTAL_INGRESOS = new PdfPCell(new Phrase("SUBTOTAL INGRESOS DEL DÍA", _mediumFont));
                 CELDA_TITULO_SUBTOTAL_INGRESOS.BackgroundColor = new BaseColor(240, 240, 240);
@@ -2502,19 +2522,22 @@ namespace SOCIOS
                 CELDA_TOTAL_SUBTOTAL_INGRESOS.FixedHeight = 16f;
                 TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_SUBTOTAL_INGRESOS);
 
-                PdfPCell CELDA_TITULO_EGRESOS_DEL_DIA = new PdfPCell(new Phrase("EGRESOS DEL DIA", _mediumFont));
-                CELDA_TITULO_EGRESOS_DEL_DIA.BackgroundColor = blanco;
-                CELDA_TITULO_EGRESOS_DEL_DIA.BorderColor = blanco;
-                CELDA_TITULO_EGRESOS_DEL_DIA.HorizontalAlignment = 0;
-                CELDA_TITULO_EGRESOS_DEL_DIA.FixedHeight = 16f;
-                TABLA_TOTALES_DIA.AddCell(CELDA_TITULO_EGRESOS_DEL_DIA);
+                if (VGlobales.vp_role == "CAJA")
+                {
+                    PdfPCell CELDA_TITULO_EGRESOS_DEL_DIA = new PdfPCell(new Phrase("EGRESOS DEL DIA", _mediumFont));
+                    CELDA_TITULO_EGRESOS_DEL_DIA.BackgroundColor = blanco;
+                    CELDA_TITULO_EGRESOS_DEL_DIA.BorderColor = blanco;
+                    CELDA_TITULO_EGRESOS_DEL_DIA.HorizontalAlignment = 0;
+                    CELDA_TITULO_EGRESOS_DEL_DIA.FixedHeight = 16f;
+                    TABLA_TOTALES_DIA.AddCell(CELDA_TITULO_EGRESOS_DEL_DIA);
 
-                PdfPCell CELDA_TOTAL_EGRESOS_DEL_DIA = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", EGRESOS_DIA), _mediumFont));
-                CELDA_TOTAL_EGRESOS_DEL_DIA.BackgroundColor = blanco;
-                CELDA_TOTAL_EGRESOS_DEL_DIA.BorderColor = blanco;
-                CELDA_TOTAL_EGRESOS_DEL_DIA.HorizontalAlignment = 2;
-                CELDA_TOTAL_EGRESOS_DEL_DIA.FixedHeight = 16f;
-                TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_EGRESOS_DEL_DIA);
+                    PdfPCell CELDA_TOTAL_EGRESOS_DEL_DIA = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", EGRESOS_DIA), _mediumFont));
+                    CELDA_TOTAL_EGRESOS_DEL_DIA.BackgroundColor = blanco;
+                    CELDA_TOTAL_EGRESOS_DEL_DIA.BorderColor = blanco;
+                    CELDA_TOTAL_EGRESOS_DEL_DIA.HorizontalAlignment = 2;
+                    CELDA_TOTAL_EGRESOS_DEL_DIA.FixedHeight = 16f;
+                    TABLA_TOTALES_DIA.AddCell(CELDA_TOTAL_EGRESOS_DEL_DIA);
+                }
 
                 PdfPCell CELDA_TITULO_CAJA_DEL_DIA = new PdfPCell(new Phrase("TOTAL DEL DIA", _mediumFont));
                 CELDA_TITULO_CAJA_DEL_DIA.BackgroundColor = new BaseColor(240, 240, 240);
