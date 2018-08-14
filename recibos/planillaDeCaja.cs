@@ -275,10 +275,13 @@ namespace SOCIOS
             dgTotalesDelDia.Rows.Add("TOTAL DEL DÍA", string.Format("{0:n}", (INGRESOS_EFECTIVO + INGRESOS_OTROS)));
             dgTotalesDelDia.Rows.Add("SALDO DEL DÍA ANTERIOR", string.Format("{0:n}", (SALDO_ANTERIOR)));
 
-            if (dgCajasAnteriores.Rows.Count == 1)
-                dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", "0,00"));
-            else
-                dgTotalesDelDia.Rows.Add("SALDO DEL LA FECHA", string.Format("{0:n}", (SALDO_ANTERIOR + INGRESOS_EFECTIVO + INGRESOS_OTROS - EGRESOS)));
+            if (VGlobales.vp_role == "CAJA")
+            {
+                if (dgCajasAnteriores.Rows.Count == 1)
+                    dgTotalesDelDia.Rows.Add("SALDO DE LA FECHA", string.Format("{0:n}", "0,00"));
+                else
+                    dgTotalesDelDia.Rows.Add("SALDO DE LA FECHA", string.Format("{0:n}", (SALDO_ANTERIOR + INGRESOS_EFECTIVO + INGRESOS_OTROS - EGRESOS)));
+            }
             
             cajaDeHoyEnComposicion();
 
@@ -446,20 +449,26 @@ namespace SOCIOS
 
         private void totalEgresos()
         {
-            decimal CAJA = 0;
-            decimal TOTAL = 0;
-
-            foreach (DataGridViewRow row in dgEgresos.Rows)
+            if (VGlobales.vp_role == "CAJA")
             {
-                CAJA = decimal.Parse(row.Cells[4].Value.ToString());
+                decimal CAJA = 0;
+                decimal TOTAL = 0;
+
+                foreach (DataGridViewRow row in dgEgresos.Rows)
+                {
+                    CAJA = decimal.Parse(row.Cells[4].Value.ToString());
+                }
+
+                dgTotalesDelDia.Rows.Add("EGRESOS", string.Format("{0:n}", EGRESOS));
             }
-            
-            dgTotalesDelDia.Rows.Add("EGRESOS", string.Format("{0:n}", EGRESOS));
         }
 
         private void updateEgresos()
         {
-            dgTotalesDelDia.Rows[3].SetValues("EGRESOS", string.Format("{0:n}", EGRESOS));
+            if (VGlobales.vp_role == "CAJA")
+            {
+                dgTotalesDelDia.Rows[3].SetValues("EGRESOS", string.Format("{0:n}", EGRESOS));
+            }
         }
 
         private void chequesEnTotal()
