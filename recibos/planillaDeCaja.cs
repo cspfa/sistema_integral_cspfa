@@ -3698,14 +3698,14 @@ namespace SOCIOS
         {
             string query = "";
 
-            if (COMPROBANTE == "BONO")
+            if (COMPROBANTE == "BONOS")
             {
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
                 query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "BONOS_CAJA B";
             }
 
-            if (COMPROBANTE == "RECIBO")
+            if (COMPROBANTE == "RECIBOS")
             {
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
                 query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
@@ -3715,7 +3715,9 @@ namespace SOCIOS
             /*if (COMPROBANTE == "REINTEGRO")
             {
                 //BONOS
-                SELECT * FROM TablaA a WHERE a.activo = 1 ORDER BY a.fechaAlta DESC                UNION ALL                SELECT * FROM TablaB b WHERE b.activo = 1 ORDER BY b.fechaAlta DESC
+                SELECT * FROM TablaA a WHERE a.activo = 1 ORDER BY a.fechaAlta DESC
+                UNION ALL
+                SELECT * FROM TablaB b WHERE b.activo = 1 ORDER BY b.fechaAlta DESC
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
                 query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
                 query += "BONOS_CAJA B";
