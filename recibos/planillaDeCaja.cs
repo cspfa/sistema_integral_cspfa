@@ -3691,7 +3691,7 @@ namespace SOCIOS
             {
                 MessageBox.Show("INGRESAR UN NRO DESDE", "ERROR!");
             }
-            else if (tbPtoVta.Text.Trim() == "")
+            else if (tbPtoVta.Text.Trim() == "" && cbTipos.SelectedItem.ToString() != "REINTEGROS")
             {
                 MessageBox.Show("INGRESAR UN PUNTO DE VENTA", "ERROR!");
             }
@@ -3730,68 +3730,134 @@ namespace SOCIOS
         {
             string query = "";
 
-            if (COMPROBANTE == "BONOS")
-            {
-                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
-                query += "BONOS_CAJA B";
-            }
-
-            if (COMPROBANTE == "RECIBOS")
-            {
-                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
-                query += "RECIBOS_CAJA B";
-            }
-
             if (COMPROBANTE == "REINTEGROS")
             {
                 //BONOS
-                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                query += "B.OBSERVACIONES, 'RB' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
-                query += "BONOS_CAJA B ";
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE) || ' - ' || TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, ";
+                query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, B.OBSERVACIONES, 'RR' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE ";
+                query += "AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM BONOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
+                query += "WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID AND B.REINTEGRO_DE IS NOT NULL AND B.PTO_VTA = '0005' ";
+
+                if (HASTA == 0 && cbBuscarNumeros.Checked == true)
+                {
+                    query += "AND B.NRO_COMP = " + DESDE;
+                }
+
+                if (HASTA > 0 && cbBuscarNumeros.Checked == true)
+                {
+                    query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
+                }
+
+                if (F_DESDE != "" && F_HASTA != "")
+                {
+                    if (HASTA == 0 && cbBuscarNumeros.Checked == true)
+                    {
+                        query += " AND B.NRO_COMP = " + DESDE;
+                    }
+
+                    query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
+                }
+
+                if (F_DESDE != "" && F_HASTA != "")
+                {
+                    if (HASTA > 0 && cbBuscarNumeros.Checked == true)
+                    {
+                        query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
+                    }
+
+                    query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
+                }
 
                 query += "UNION ALL ";
 
                 //RECIBOS
-                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                query += "B.OBSERVACIONES, 'RR' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
-                query += "BONOS_CAJA B";
-            }
+                query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE) || ' - ' || TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, ";
+                query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, B.OBSERVACIONES, 'RB' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE ";
+                query += "AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
+                query += "WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID AND B.REINTEGRO_DE IS NOT NULL AND B.PTO_VTA = '0005' ";
 
-            query += ", SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID ";
-
-            if (HASTA == 0 && cbBuscarNumeros.Checked == true)
-            {
-                query += "AND NRO_COMP = " + DESDE;
-            }
-
-            if (HASTA > 0 && cbBuscarNumeros.Checked == true)
-            {
-                query += " AND NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
-            }
-
-            if (F_DESDE != "" && F_HASTA != "")
-            {
                 if (HASTA == 0 && cbBuscarNumeros.Checked == true)
                 {
-                    query += " AND NRO_COMP = " + DESDE;
+                    query += "AND B.NRO_COMP = " + DESDE;
                 }
 
-                query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
-            }
+                if (HASTA > 0 && cbBuscarNumeros.Checked == true)
+                {
+                    query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
+                }
 
-            if (F_DESDE != "" && F_HASTA != "")
+                if (F_DESDE != "" && F_HASTA != "")
+                {
+                    if (HASTA == 0 && cbBuscarNumeros.Checked == true)
+                    {
+                        query += " AND B.NRO_COMP = " + DESDE;
+                    }
+
+                    query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
+                }
+
+                if (F_DESDE != "" && F_HASTA != "")
+                {
+                    if (HASTA > 0 && cbBuscarNumeros.Checked == true)
+                    {
+                        query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
+                    }
+
+                    query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
+                }
+
+            }
+            else
             {
+                if (COMPROBANTE == "BONOS")
+                {
+                    query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                    query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
+                    query += "BONOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID";
+                }
+
+                if (COMPROBANTE == "RECIBOS")
+                {
+                    query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
+                    query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA FROM ";
+                    query += "RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID";
+                }
+
+                if (HASTA == 0 && cbBuscarNumeros.Checked == true)
+                {
+                    query += "AND NRO_COMP = " + DESDE;
+                }
+
                 if (HASTA > 0 && cbBuscarNumeros.Checked == true)
                 {
                     query += " AND NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
                 }
 
-                query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
-            }
+                if (F_DESDE != "" && F_HASTA != "")
+                {
+                    if (HASTA == 0 && cbBuscarNumeros.Checked == true)
+                    {
+                        query += " AND NRO_COMP = " + DESDE;
+                    }
 
-            query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC;";
+                    query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
+                }
+
+                if (F_DESDE != "" && F_HASTA != "")
+                {
+                    if (HASTA > 0 && cbBuscarNumeros.Checked == true)
+                    {
+                        query += " AND NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
+                    }
+
+                    query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
+                }
+
+                if (COMPROBANTE != "REINTEGROS")
+                {
+                    query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC;";
+                }
+            }
 
             return query;
         }
@@ -3845,13 +3911,7 @@ namespace SOCIOS
                     while (reader.Read())
                     {
                         TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
-                        NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
-
-                        if (TIPO == "B")
-                            NRO_COMP = "B" + NRO_COMP;
-                        else
-                            NRO_COMP = "R" + NRO_COMP;
-
+                        NRO_COMP = TIPO + "" + reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
                         DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
                         CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
                         IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));

@@ -136,6 +136,7 @@
             this.btnAgregarCheque = new System.Windows.Forms.Button();
             this.dgCheques = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btImpBuscador = new System.Windows.Forms.Button();
             this.cbBuscarFechas = new System.Windows.Forms.CheckBox();
             this.cbBuscarNumeros = new System.Windows.Forms.CheckBox();
             this.dpFechaHasta = new System.Windows.Forms.DateTimePicker();
@@ -165,7 +166,9 @@
             this.tbNroDesde = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgBuscador = new System.Windows.Forms.DataGridView();
-            this.btImpBuscador = new System.Windows.Forms.Button();
+            this.label28 = new System.Windows.Forms.Label();
+            this.cbRolesBuscador = new System.Windows.Forms.ComboBox();
+            this.cbBuscarPorRole = new System.Windows.Forms.CheckBox();
             this.tabControl.SuspendLayout();
             this.tabPlanilla.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1260,6 +1263,9 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.cbBuscarPorRole);
+            this.tabPage4.Controls.Add(this.label28);
+            this.tabPage4.Controls.Add(this.cbRolesBuscador);
             this.tabPage4.Controls.Add(this.btImpBuscador);
             this.tabPage4.Controls.Add(this.cbBuscarFechas);
             this.tabPage4.Controls.Add(this.cbBuscarNumeros);
@@ -1297,6 +1303,16 @@
             this.tabPage4.TabIndex = 5;
             this.tabPage4.Text = "BUSCADOR";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // btImpBuscador
+            // 
+            this.btImpBuscador.Location = new System.Drawing.Point(540, 63);
+            this.btImpBuscador.Name = "btImpBuscador";
+            this.btImpBuscador.Size = new System.Drawing.Size(163, 23);
+            this.btImpBuscador.TabIndex = 169;
+            this.btImpBuscador.Text = "IMPRIMIR SELECCIONADO";
+            this.btImpBuscador.UseVisualStyleBackColor = true;
+            this.btImpBuscador.Click += new System.EventHandler(this.btImpBuscador_Click);
             // 
             // cbBuscarFechas
             // 
@@ -1513,7 +1529,7 @@
             this.btnBuscar.FlatAppearance.BorderSize = 0;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.Image = global::SOCIOS.Properties.Resources.magnifier;
-            this.btnBuscar.Location = new System.Drawing.Point(394, 59);
+            this.btnBuscar.Location = new System.Drawing.Point(394, 85);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(29, 23);
             this.btnBuscar.TabIndex = 79;
@@ -1598,7 +1614,7 @@
             dataGridViewCellStyle35.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgBuscador.DefaultCellStyle = dataGridViewCellStyle35;
-            this.dgBuscador.Location = new System.Drawing.Point(8, 92);
+            this.dgBuscador.Location = new System.Drawing.Point(8, 193);
             this.dgBuscador.Margin = new System.Windows.Forms.Padding(5);
             this.dgBuscador.Name = "dgBuscador";
             this.dgBuscador.ReadOnly = true;
@@ -1616,18 +1632,36 @@
             this.dgBuscador.RowTemplate.ReadOnly = true;
             this.dgBuscador.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBuscador.Size = new System.Drawing.Size(1133, 518);
+            this.dgBuscador.Size = new System.Drawing.Size(1133, 417);
             this.dgBuscador.TabIndex = 73;
             // 
-            // btImpBuscador
+            // label28
             // 
-            this.btImpBuscador.Location = new System.Drawing.Point(540, 63);
-            this.btImpBuscador.Name = "btImpBuscador";
-            this.btImpBuscador.Size = new System.Drawing.Size(163, 23);
-            this.btImpBuscador.TabIndex = 169;
-            this.btImpBuscador.Text = "IMPRIMIR SELECCIONADO";
-            this.btImpBuscador.UseVisualStyleBackColor = true;
-            this.btImpBuscador.Click += new System.EventHandler(this.btImpBuscador_Click);
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(52, 89);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(36, 13);
+            this.label28.TabIndex = 171;
+            this.label28.Text = "ROLE";
+            // 
+            // cbRolesBuscador
+            // 
+            this.cbRolesBuscador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRolesBuscador.Enabled = false;
+            this.cbRolesBuscador.FormattingEnabled = true;
+            this.cbRolesBuscador.Location = new System.Drawing.Point(96, 85);
+            this.cbRolesBuscador.Name = "cbRolesBuscador";
+            this.cbRolesBuscador.Size = new System.Drawing.Size(274, 21);
+            this.cbRolesBuscador.TabIndex = 170;
+            // 
+            // cbBuscarPorRole
+            // 
+            this.cbBuscarPorRole.AutoSize = true;
+            this.cbBuscarPorRole.Location = new System.Drawing.Point(377, 89);
+            this.cbBuscarPorRole.Name = "cbBuscarPorRole";
+            this.cbBuscarPorRole.Size = new System.Drawing.Size(15, 14);
+            this.cbBuscarPorRole.TabIndex = 172;
+            this.cbBuscarPorRole.UseVisualStyleBackColor = true;
             // 
             // planillaDeCaja
             // 
@@ -1776,8 +1810,8 @@
         private System.Windows.Forms.CheckBox cbBuscarFechas;
         private System.Windows.Forms.CheckBox cbBuscarNumeros;
         private System.Windows.Forms.Button btImpBuscador;
-
-
-
+        private System.Windows.Forms.CheckBox cbBuscarPorRole;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.ComboBox cbRolesBuscador;
     }
 }
