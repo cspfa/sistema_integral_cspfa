@@ -1432,7 +1432,7 @@ namespace Confiteria
                 switch (FORMA_DE_PAGO)
                 {
                     case "EFECTIVO":
-                        QUERY  = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
+                        QUERY  = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                         QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
 
@@ -1449,7 +1449,7 @@ namespace Confiteria
                         break;
 
                     case "TARJETA":
-                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
+                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                         QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND (C.FORMA_DE_PAGO = 3 OR C.FORMA_DE_PAGO = 4 OR C.FORMA_DE_PAGO = 5 OR C.FORMA_DE_PAGO = 6) AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
 
@@ -1466,7 +1466,7 @@ namespace Confiteria
                         break;
 
                     case "DESCUENTO":
-                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR ";
+                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                         QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 8 AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
 
@@ -1483,7 +1483,7 @@ namespace Confiteria
                             break;
 
                     case "ESPECIALES":
-                            QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO ";
+                            QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.ID ";
                             QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                             QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.TIPO_COMANDA = 2 AND C.NRO_SOC != 75022 AND C.ROL = '" + VGlobales.vp_role + "'";
                             
@@ -1592,7 +1592,7 @@ namespace Confiteria
 
                 foreach (DataRow row in EFECTIVO.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[16].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }
@@ -1604,7 +1604,7 @@ namespace Confiteria
 
                 foreach (DataRow row in TARJETA.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[16].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }
@@ -1616,7 +1616,7 @@ namespace Confiteria
 
                 foreach (DataRow row in DESCUENTO.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[16].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }
@@ -1628,7 +1628,7 @@ namespace Confiteria
 
                 foreach (DataRow row in ESPECIALES.Tables[0].Rows)
                 {
-                    rendidaEnComandas(row[0].ToString());
+                    rendidaEnComandas(row[18].ToString());
                     pbMarcandoComandas.PerformStep();
                 }
             }

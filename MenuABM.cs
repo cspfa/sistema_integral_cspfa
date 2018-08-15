@@ -95,12 +95,10 @@ namespace SOCIOS
                     {
                         deportesToolStrip.Enabled = true;
                         servToolStrip.Enabled = true;
-                        cajaToolStripMenuItem.Enabled = true;
                         procesosToolStripMenuItem.Enabled = true;
                         afiliacionesToolStripMenuItem.Enabled = true;
                         AsambleatoolStripMenuItem7.Enabled = true;
                         creditosToolStripMenuItem.Enabled = true;
-                        confiteríaToolStripMenuItem.Enabled = true;
                         tesoreríaToolStripMenuItem.Enabled = true;
                         contaduríaToolStripMenuItem.Enabled = true;
                         turismoToolStripMenuItem.Enabled = true;
@@ -171,15 +169,12 @@ namespace SOCIOS
                     if (VGlobales.vp_role.Trim() == "TESORERIA")
                     {
                         tesoreríaToolStripMenuItem.Enabled = true;
-                        cajaToolStripMenuItem.Enabled = true;
-                        confiteríaToolStripMenuItem.Enabled = true;
                         conveniosToolStripMenuItem.Enabled = true;
                     }
 
                     if (VGlobales.vp_role.Trim() == "CONTADURIA")
                     {
                         contaduríaToolStripMenuItem.Enabled = true;
-                        confiteríaToolStripMenuItem.Enabled = true;
                         comprasToolStripMenuItem.Enabled = true;
                         conveniosToolStripMenuItem.Enabled = true;
                     }
@@ -248,7 +243,6 @@ namespace SOCIOS
 
                    using (FbConnection connection3 = new FbConnection(connString3))
                    {
-
                        connection3.Open();
                        FbTransaction transaction3 = connection3.BeginTransaction();
                        string veo_fecha;
@@ -271,7 +265,6 @@ namespace SOCIOS
                    }
 
                }
-
                catch (Exception ex)
                {
                    System.Windows.Forms.MessageBox.Show(ex.ToString());
@@ -521,11 +514,15 @@ namespace SOCIOS
                     Cursor = Cursors.WaitCursor;
                     bo dlog = new bo();
                     dlog.vaciarTabla("MOROSOS_DEPORTES");
-                    
+
 
                     for (int i = 0; i < table.Rows.Count; i++)
                     {
-                        DNI = int.Parse(table.Rows[i][0].ToString().Replace(",", ""));
+                        if (table.Rows[i][0].ToString().Length > 0)
+                            DNI = int.Parse(table.Rows[i][0].ToString().Replace(",", ""));
+                        else
+                            throw new Exception("Existen filas DNI sin cargar, deben respetarse datos en todas las filas  ");
+
                         NOMBRE = table.Rows[i][1].ToString();
                         dlog.cargarMorososDeportes(NOMBRE, DNI);
                         progressBar1.PerformStep();

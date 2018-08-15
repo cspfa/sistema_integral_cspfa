@@ -233,8 +233,6 @@ namespace Confiteria
                     {
                         dgComandas.Rows.Add(ID, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS, ID, MESA);
                     }
-
-                    
                 }
 
                 dgComandas.ClearSelection();
@@ -470,7 +468,7 @@ namespace Confiteria
         {
             if (dgComandas.SelectedRows.Count == 1)
             {
-                int ID_COMANDA = int.Parse(dgComandas[0, dgComandas.CurrentCell.RowIndex].Value.ToString());
+                int ID_COMANDA = int.Parse(dgComandas[16, dgComandas.CurrentCell.RowIndex].Value.ToString());
                 buscarItems(ID_COMANDA, "SI");
             }
         }
@@ -647,7 +645,7 @@ namespace Confiteria
             {
                 try
                 {
-                    int ID_COMANDA = int.Parse(dgComandas[0, dgComandas.CurrentCell.RowIndex].Value.ToString());
+                    int ID_COMANDA = int.Parse(dgComandas[16, dgComandas.CurrentCell.RowIndex].Value.ToString());
                     string ANULADA = DateTime.Now.ToString();
                     string USR_ANULADA = VGlobales.vp_username;
                     dlog.anularComandaComedor(ID_COMANDA, ANULADA, USR_ANULADA);
@@ -734,7 +732,7 @@ namespace Confiteria
                 {
                     try
                     {
-                        int ID_COMANDA = int.Parse(dgComandas[0, dgComandas.CurrentCell.RowIndex].Value.ToString());
+                        int ID_COMANDA = int.Parse(dgComandas[16, dgComandas.CurrentCell.RowIndex].Value.ToString());
                         string ANULADA = null;
                         string USR_ANULADA = null;
                         dlog.anularComandaComedor(ID_COMANDA, ANULADA, USR_ANULADA);
@@ -756,7 +754,7 @@ namespace Confiteria
                 int s = sender.ToString().IndexOf("·");
                 int index = s - 1;
                 string FORMA_DE_PAGO = sender.ToString().Substring(0, index);
-                int ID_COMANDA = int.Parse(dgComandas[0, dgComandas.CurrentCell.RowIndex].Value.ToString());
+                int ID_COMANDA = int.Parse(dgComandas[16, dgComandas.CurrentCell.RowIndex].Value.ToString());
                 dlog.confiteriaModificarPago(ID_COMANDA, int.Parse(FORMA_DE_PAGO));
                 llenarGrillaComandas();
                 MessageBox.Show("FORMA DE PAGO MODIFICADA", "LISTO!");
@@ -774,7 +772,7 @@ namespace Confiteria
                 int s = sender.ToString().IndexOf("·");
                 int index = s - 1;
                 string TIPO_DE_COMANDA = sender.ToString().Substring(0, index);
-                int ID_COMANDA = int.Parse(dgComandas[0, dgComandas.CurrentCell.RowIndex].Value.ToString());
+                int ID_COMANDA = int.Parse(dgComandas[16, dgComandas.CurrentCell.RowIndex].Value.ToString());
                 dlog.modificarTipoDeComanda(ID_COMANDA, int.Parse(TIPO_DE_COMANDA));
                 llenarGrillaComandas();
                 MessageBox.Show("TIPO DE COMANDA MODIFICADA", "LISTO!");
