@@ -3568,7 +3568,7 @@
             this.themedGroupBox5.GradientEnd = System.Drawing.Color.White;
             this.themedGroupBox5.Location = new System.Drawing.Point(425, 331);
             this.themedGroupBox5.Name = "themedGroupBox5";
-            this.themedGroupBox5.Size = new System.Drawing.Size(616, 126);
+            this.themedGroupBox5.Size = new System.Drawing.Size(616, 140);
             this.themedGroupBox5.TabIndex = 49;
             this.themedGroupBox5.Title = "PLAN DE CUENTAS";
             this.themedGroupBox5.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -3644,7 +3644,7 @@
             this.lvPlanDeCuentas.Name = "lvPlanDeCuentas";
             this.lvPlanDeCuentas.ParentContainer = null;
             this.lvPlanDeCuentas.ShowItemToolTips = true;
-            this.lvPlanDeCuentas.Size = new System.Drawing.Size(612, 34);
+            this.lvPlanDeCuentas.Size = new System.Drawing.Size(612, 49);
             this.lvPlanDeCuentas.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvPlanDeCuentas.TabIndex = 3;
             this.lvPlanDeCuentas.UseCompatibleStateImageBehavior = false;
@@ -3684,7 +3684,7 @@
             this.themedGroupBox12.GradientEnd = System.Drawing.Color.White;
             this.themedGroupBox12.Location = new System.Drawing.Point(2, 331);
             this.themedGroupBox12.Name = "themedGroupBox12";
-            this.themedGroupBox12.Size = new System.Drawing.Size(424, 126);
+            this.themedGroupBox12.Size = new System.Drawing.Size(424, 140);
             this.themedGroupBox12.TabIndex = 48;
             this.themedGroupBox12.Title = "TIPOS DE PROVEEDORES";
             this.themedGroupBox12.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
