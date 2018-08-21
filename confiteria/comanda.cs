@@ -548,6 +548,7 @@ namespace Confiteria
                     string NRO_COMANDA = mid.m("NRO_COMANDA", "CONFITERIA_COMANDAS");
                     tbNroComanda.Text = NRO_COMANDA;
                     tbIdComanda.Text = ID_COMANDA;
+                    ID_COM = int.Parse(ID_COMANDA);
                     buscarItems(int.Parse(ID_COMANDA), "SI", "X");
                 }
                 else
@@ -564,37 +565,45 @@ namespace Confiteria
             catch (Exception error)
             {
                 MessageBox.Show("NO SE PUDO GUARDAR LA MESA\n" + error, "ERROR");
+                btnGuardar.Enabled = true;
             }
             
         }
 
         private void botonGuardarMesa(string MSG)
         {
+            btnGuardar.Enabled = false;
             Cursor = Cursors.WaitCursor;
 
             if (checkItems() == false)
             {
                 MessageBox.Show("NO SE ENCONTRO NINGUN ITEM EN LA LISTA", "ERROR");
+                btnGuardar.Enabled = true;
             }
             else if (cbMozo.SelectedValue.ToString() == "1")
             {
                 MessageBox.Show("NO SE SELECCIONO NINGÚN MOZO", "ERROR");
+                btnGuardar.Enabled = true;
             }
             else if (cbFormaDePago.SelectedValue.ToString() == "8" && tbContralor.Text == "")
             {
                 MessageBox.Show("INGRESAR EL NUMERO DE CONTRALOR", "ERROR");
+                btnGuardar.Enabled = true;
             }
             else if (cbFormaDePago.SelectedValue.ToString() == "8" && checkNumContralor(int.Parse(tbContralor.Text)) == true)
             {
                 MessageBox.Show("EL NUMERO DE CONTRALOR INGRESADO YA FUE ASIGNADO", "ERROR");
+                btnGuardar.Enabled = true;
             }
             else if (tbPersonas.Text == "0")
             {
                 MessageBox.Show("NUMERO DE PERSONAS NO ESPECIFICADO", "ERROR");
+                btnGuardar.Enabled = true;
             }
             else if (VGlobales.vp_role != "CONFITERIA" && cbFormaDePago.SelectedValue.ToString() == "8")
             {
                 MessageBox.Show("FORMA DE PAGO NO ACEPTADA", "ERROR");
+                btnGuardar.Enabled = true;
             }
             else
             {
@@ -602,6 +611,7 @@ namespace Confiteria
             }
 
             Cursor = Cursors.Default;
+            btnGuardar.Enabled = true;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -650,7 +660,6 @@ namespace Confiteria
 
                         try
                         {
-                            //int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
                             int ID_COM = int.Parse(tbIdComanda.Text);
                             buscarComanda(ID_COM);
                             buscarItems(ID_COM, "NO", "X");
