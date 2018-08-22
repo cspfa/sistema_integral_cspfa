@@ -48,7 +48,7 @@ namespace SOCIOS.BO
 
 
         }
-        public void InsertOdontologico(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, string DNI, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal SALDO_INTERES, string NOMBRE, string APELLIDO, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PROF, string PAGO, int TURNO, string USR, int CONTRALOR, string ROL,int CODINT,int CODCP)
+        public void InsertOdontologico(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, string DNI, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal SALDO_INTERES, string NOMBRE, string APELLIDO, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PROF, string PAGO, int TURNO, string USR, int CONTRALOR, string ROL,int CODINT,int CODCP,string BONO_BLANCO)
         {
             db resultado = new db();
 
@@ -100,6 +100,7 @@ namespace SOCIOS.BO
             vector_contenidos.Add(ROL);
             vector_contenidos.Add(CODINT);
             vector_contenidos.Add(CODCP);
+            vector_contenidos.Add(BONO_BLANCO);
             ArrayList vector_tipos = new ArrayList();
 
             vector_tipos.Add("FbDbType.Integer");
@@ -149,6 +150,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
             ArrayList vector_nombres = new ArrayList();
 
 
@@ -190,6 +192,7 @@ namespace SOCIOS.BO
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@CODINT");
             vector_nombres.Add("@CODCP");
+            vector_nombres.Add("@BONO_BLANCO");
             string vprocedure = "P_BONO_ODONTOLOGICO_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
@@ -198,9 +201,6 @@ namespace SOCIOS.BO
 
 
 
-        internal void InsertOdontologico(int p, int p_2, int p_3, int p_4, int p_5, int p_6, DateTime dateTime, int PROFESIONAL, int SECTACT, int p_7, int p_8, int p_9, int p_10, string p_11, string p_12, string p_13, string p_14, string p_15, string p_16, string p_17, string p_18, string p_19, string p_20, string p_21, string p_22, string p_23, string p_24, string p_25, string p_26, string p_27, int p_28, string p_29, int p_30, string p_31, int CODINT, int p_32)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
 }

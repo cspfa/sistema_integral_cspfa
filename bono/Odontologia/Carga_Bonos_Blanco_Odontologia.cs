@@ -12,6 +12,7 @@ namespace SOCIOS.bono.Bonos
     public partial class Carga_Bonos_Blanco_Odontologia : Form
     {
         BonoUtils bu = new BonoUtils();
+
         BO.bo_ServiciosMedicos dlog = new BO.bo_ServiciosMedicos();
         SOCIOS.bono.Odontologia.ServicioOdonto odontoService = new Odontologia.ServicioOdonto();
        
@@ -47,7 +48,7 @@ namespace SOCIOS.bono.Bonos
 
 
 
-                    dlog.InsertOdontologico(0,0,0,0,0,0,System.DateTime.Now, PROFESIONAL,SECTACT, 0,0,0,0, "","","","","","","","","","","","","","","","","",0, VGlobales.vp_username, 0, VGlobales.vp_role,CODINT,0);
+                    dlog.InsertOdontologico(0,0,0," ",0,0,System.DateTime.Now, PROFESIONAL,SECTACT, 0,0,0,0," "," "," "," "," "," ",0,0,0,0,0,0,0,0," "," "," ",0, VGlobales.vp_username, 0, VGlobales.vp_role,CODINT,0,"SI");
 
                
                     //Obtener Proximo ID_ROL

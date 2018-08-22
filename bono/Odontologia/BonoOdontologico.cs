@@ -75,7 +75,7 @@ namespace SOCIOS.bono
             this.SeteoDatos();
             this.SeteoActividad(SecAct);
           
-            Tratamientos = new List<Tratamiento>();
+            Tratamientos      = new List<Tratamiento>();
             PagosBono         = new List<PagoBono>();
           
             
@@ -155,7 +155,7 @@ namespace SOCIOS.bono
 
                 try
                 {
-                    dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0,Decimal.Round(Recargo + Saldo,2) ,Saldo,Recargo , srvDatosSocio.CAB.NOMBRE,srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor,VGlobales.vp_role,CodInt,SUBCODIGO);
+                    dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0,Decimal.Round(Recargo + Saldo,2) ,Saldo,Recargo , srvDatosSocio.CAB.NOMBRE,srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor,VGlobales.vp_role,CodInt,SUBCODIGO,"NO");
                   
 
                     idBono =   odontoService.GetMaxID(persona.NRO_SOCIO,persona.NRO_DEP,persona.BARRA);
