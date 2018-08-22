@@ -90,5 +90,40 @@ namespace SOCIOS.bono.Odontologia
 
 
       }
+
+
+
+      public int Tratamiento_Odontologico_CodInt(int idProfesional, int SecAct)
+      {
+
+          int CodInt = 0;
+
+          if (idProfesional == 26)
+          {
+              idProfesional = Int32.Parse(Config.getValor("SERVICIOS_MEDICOS", "ANER", 1));
+          }
+
+          switch (idProfesional)
+          {
+              case 27:
+                  CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-TAVELLA", "COD_ODONTO", 2));
+                  break;
+              case 28:
+                  {
+                      if (SecAct == 110)
+                          CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-VILLAGRAN", "COD_ODONTO", 2));
+                      else
+                          CodInt = Int32.Parse(Config.getValor("ODON-PROTESIS-VILLAGRAN", "COD_ODONTO", 2));
+                  }
+                  break;
+              case 170:
+
+                  CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-ANER", "COD_ODONTO", 2));
+                  break;
+          }
+
+          return CodInt;
+
+      }
     }
 }
