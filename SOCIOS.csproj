@@ -178,6 +178,10 @@
     <Compile Include="bono\Bonos\UPDATE_BONO_BLANCO.Designer.cs">
       <DependentUpon>UPDATE_BONO_BLANCO.cs</DependentUpon>
     </Compile>
+    <Compile Include="bono\Odontologia\Selector_Bono_Odontologia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\Odontologia\Selector_Bono_Odontologia.Designer.cs" />
     <Compile Include="compras\anular_op.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1186,6 +1190,7 @@
     <EmbeddedResource Include="bono\Bonos\UPDATE_BONO_BLANCO.resx">
       <DependentUpon>UPDATE_BONO_BLANCO.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bono\Odontologia\Selector_Bono_Odontologia.resx" />
     <EmbeddedResource Include="compras\anular_op.resx">
       <DependentUpon>anular_op.cs</DependentUpon>
     </EmbeddedResource>

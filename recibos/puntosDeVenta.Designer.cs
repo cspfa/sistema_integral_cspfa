@@ -28,33 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.cbRoles = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.lvPuntosDeVenta = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
+            this.mbPtoVta = new System.Windows.Forms.MaskedTextBox();
+            this.tbNroRecibo = new System.Windows.Forms.TextBox();
+            this.tbNroBono = new System.Windows.Forms.TextBox();
+            this.tbCuenta = new System.Windows.Forms.TextBox();
+            this.cbAccion = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnAccion = new System.Windows.Forms.Button();
+            this.btnNuevoPtoVta = new System.Windows.Forms.Button();
             this.lbIdPtoVta = new System.Windows.Forms.Label();
             this.lbIdDestino = new System.Windows.Forms.Label();
             this.btnModPtoVta = new System.Windows.Forms.Button();
             this.btnAddPtoVta = new System.Windows.Forms.Button();
+            this.dgPtosDeVta = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PTO_VTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ROLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RECIBOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BONOS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESTINO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPtosDeVta)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(436, 70);
+            this.label1.Location = new System.Drawing.Point(525, 70);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 0;
@@ -63,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(468, 43);
+            this.label2.Location = new System.Drawing.Point(557, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 1;
@@ -72,7 +81,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(442, 97);
+            this.label3.Location = new System.Drawing.Point(531, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 2;
@@ -81,7 +90,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(451, 124);
+            this.label4.Location = new System.Drawing.Point(540, 124);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -90,7 +99,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(453, 151);
+            this.label5.Location = new System.Drawing.Point(542, 151);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 13);
             this.label5.TabIndex = 4;
@@ -99,96 +108,60 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(457, 178);
+            this.label6.Location = new System.Drawing.Point(546, 178);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 13);
             this.label6.TabIndex = 5;
             this.label6.Text = "ACCION";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(460, 205);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "LUGAR";
-            // 
             // cbRoles
             // 
             this.cbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRoles.FormattingEnabled = true;
-            this.cbRoles.Location = new System.Drawing.Point(510, 39);
+            this.cbRoles.Location = new System.Drawing.Point(599, 39);
             this.cbRoles.Name = "cbRoles";
             this.cbRoles.Size = new System.Drawing.Size(170, 21);
             this.cbRoles.TabIndex = 7;
             // 
-            // maskedTextBox1
+            // mbPtoVta
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(510, 66);
-            this.maskedTextBox1.Mask = "0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 8;
+            this.mbPtoVta.Location = new System.Drawing.Point(599, 66);
+            this.mbPtoVta.Mask = "0000";
+            this.mbPtoVta.Name = "mbPtoVta";
+            this.mbPtoVta.Size = new System.Drawing.Size(100, 20);
+            this.mbPtoVta.TabIndex = 8;
             // 
-            // textBox1
+            // tbNroRecibo
             // 
-            this.textBox1.Location = new System.Drawing.Point(510, 93);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 9;
+            this.tbNroRecibo.Location = new System.Drawing.Point(599, 93);
+            this.tbNroRecibo.Name = "tbNroRecibo";
+            this.tbNroRecibo.Size = new System.Drawing.Size(100, 20);
+            this.tbNroRecibo.TabIndex = 9;
+            this.tbNroRecibo.Text = "0";
             // 
-            // textBox2
+            // tbNroBono
             // 
-            this.textBox2.Location = new System.Drawing.Point(510, 120);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 10;
+            this.tbNroBono.Location = new System.Drawing.Point(599, 120);
+            this.tbNroBono.Name = "tbNroBono";
+            this.tbNroBono.Size = new System.Drawing.Size(100, 20);
+            this.tbNroBono.TabIndex = 10;
+            this.tbNroBono.Text = "0";
             // 
-            // textBox3
+            // tbCuenta
             // 
-            this.textBox3.Location = new System.Drawing.Point(510, 147);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 11;
+            this.tbCuenta.Location = new System.Drawing.Point(599, 147);
+            this.tbCuenta.Name = "tbCuenta";
+            this.tbCuenta.Size = new System.Drawing.Size(100, 20);
+            this.tbCuenta.TabIndex = 11;
             // 
-            // comboBox1
+            // cbAccion
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(510, 174);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
-            this.comboBox1.TabIndex = 12;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(510, 201);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(170, 20);
-            this.textBox4.TabIndex = 13;
-            // 
-            // lvPuntosDeVenta
-            // 
-            this.lvPuntosDeVenta.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.lvPuntosDeVenta.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvPuntosDeVenta.CausesValidation = false;
-            this.lvPuntosDeVenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvPuntosDeVenta.FullRowSelect = true;
-            this.lvPuntosDeVenta.GridLines = true;
-            this.lvPuntosDeVenta.HideSelection = false;
-            this.lvPuntosDeVenta.Location = new System.Drawing.Point(9, 39);
-            this.lvPuntosDeVenta.Margin = new System.Windows.Forms.Padding(0);
-            this.lvPuntosDeVenta.MultiSelect = false;
-            this.lvPuntosDeVenta.Name = "lvPuntosDeVenta";
-            this.lvPuntosDeVenta.ParentContainer = null;
-            this.lvPuntosDeVenta.ShowItemToolTips = true;
-            this.lvPuntosDeVenta.Size = new System.Drawing.Size(412, 220);
-            this.lvPuntosDeVenta.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lvPuntosDeVenta.TabIndex = 15;
-            this.lvPuntosDeVenta.UseCompatibleStateImageBehavior = false;
-            this.lvPuntosDeVenta.View = System.Windows.Forms.View.Details;
-            this.lvPuntosDeVenta.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lvPuntosDeVenta_MouseUp);
+            this.cbAccion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAccion.FormattingEnabled = true;
+            this.cbAccion.Location = new System.Drawing.Point(599, 174);
+            this.cbAccion.Name = "cbAccion";
+            this.cbAccion.Size = new System.Drawing.Size(100, 21);
+            this.cbAccion.TabIndex = 12;
             // 
             // label8
             // 
@@ -199,14 +172,15 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "PUNTOS DE VENTA";
             // 
-            // btnAccion
+            // btnNuevoPtoVta
             // 
-            this.btnAccion.Location = new System.Drawing.Point(510, 227);
-            this.btnAccion.Name = "btnAccion";
-            this.btnAccion.Size = new System.Drawing.Size(170, 32);
-            this.btnAccion.TabIndex = 16;
-            this.btnAccion.Text = "NUEVO PTO VTA";
-            this.btnAccion.UseVisualStyleBackColor = true;
+            this.btnNuevoPtoVta.Location = new System.Drawing.Point(598, 202);
+            this.btnNuevoPtoVta.Name = "btnNuevoPtoVta";
+            this.btnNuevoPtoVta.Size = new System.Drawing.Size(170, 32);
+            this.btnNuevoPtoVta.TabIndex = 16;
+            this.btnNuevoPtoVta.Text = "NUEVO PTO VTA";
+            this.btnNuevoPtoVta.UseVisualStyleBackColor = true;
+            this.btnNuevoPtoVta.Click += new System.EventHandler(this.btnNuevoPtoVta_Click);
             // 
             // lbIdPtoVta
             // 
@@ -236,7 +210,7 @@
             // 
             // btnAddPtoVta
             // 
-            this.btnAddPtoVta.Location = new System.Drawing.Point(145, 268);
+            this.btnAddPtoVta.Location = new System.Drawing.Point(243, 268);
             this.btnAddPtoVta.Name = "btnAddPtoVta";
             this.btnAddPtoVta.Size = new System.Drawing.Size(276, 32);
             this.btnAddPtoVta.TabIndex = 20;
@@ -244,26 +218,124 @@
             this.btnAddPtoVta.UseVisualStyleBackColor = true;
             this.btnAddPtoVta.Click += new System.EventHandler(this.btnAddPtoVta_Click);
             // 
+            // dgPtosDeVta
+            // 
+            this.dgPtosDeVta.AllowUserToAddRows = false;
+            this.dgPtosDeVta.AllowUserToDeleteRows = false;
+            this.dgPtosDeVta.AllowUserToResizeColumns = false;
+            this.dgPtosDeVta.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgPtosDeVta.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgPtosDeVta.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgPtosDeVta.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgPtosDeVta.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgPtosDeVta.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPtosDeVta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgPtosDeVta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPtosDeVta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
+            this.PTO_VTA,
+            this.ROLE,
+            this.RECIBOS,
+            this.BONOS,
+            this.DESTINO});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPtosDeVta.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dgPtosDeVta.Location = new System.Drawing.Point(9, 39);
+            this.dgPtosDeVta.Margin = new System.Windows.Forms.Padding(5);
+            this.dgPtosDeVta.Name = "dgPtosDeVta";
+            this.dgPtosDeVta.ReadOnly = true;
+            this.dgPtosDeVta.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPtosDeVta.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgPtosDeVta.RowHeadersVisible = false;
+            this.dgPtosDeVta.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
+            this.dgPtosDeVta.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPtosDeVta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPtosDeVta.Size = new System.Drawing.Size(508, 221);
+            this.dgPtosDeVta.TabIndex = 47;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 24;
+            // 
+            // PTO_VTA
+            // 
+            this.PTO_VTA.HeaderText = "PTO_VTA";
+            this.PTO_VTA.Name = "PTO_VTA";
+            this.PTO_VTA.ReadOnly = true;
+            this.PTO_VTA.Width = 81;
+            // 
+            // ROLE
+            // 
+            this.ROLE.HeaderText = "ROLE";
+            this.ROLE.Name = "ROLE";
+            this.ROLE.ReadOnly = true;
+            this.ROLE.Width = 61;
+            // 
+            // RECIBOS
+            // 
+            this.RECIBOS.HeaderText = "RECIBOS";
+            this.RECIBOS.Name = "RECIBOS";
+            this.RECIBOS.ReadOnly = true;
+            this.RECIBOS.Width = 79;
+            // 
+            // BONOS
+            // 
+            this.BONOS.HeaderText = "BONOS";
+            this.BONOS.Name = "BONOS";
+            this.BONOS.ReadOnly = true;
+            this.BONOS.Width = 70;
+            // 
+            // DESTINO
+            // 
+            this.DESTINO.HeaderText = "DESTINO";
+            this.DESTINO.Name = "DESTINO";
+            this.DESTINO.ReadOnly = true;
+            this.DESTINO.Visible = false;
+            this.DESTINO.Width = 80;
+            // 
             // puntosDeVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(779, 309);
+            this.Controls.Add(this.dgPtosDeVta);
             this.Controls.Add(this.btnAddPtoVta);
             this.Controls.Add(this.btnModPtoVta);
             this.Controls.Add(this.lbIdDestino);
             this.Controls.Add(this.lbIdPtoVta);
-            this.Controls.Add(this.btnAccion);
-            this.Controls.Add(this.lvPuntosDeVenta);
+            this.Controls.Add(this.btnNuevoPtoVta);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.cbAccion);
+            this.Controls.Add(this.tbCuenta);
+            this.Controls.Add(this.tbNroBono);
+            this.Controls.Add(this.tbNroRecibo);
+            this.Controls.Add(this.mbPtoVta);
             this.Controls.Add(this.cbRoles);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -274,6 +346,7 @@
             this.Name = "puntosDeVenta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM PUNTOS DE VENTA";
+            ((System.ComponentModel.ISupportInitialize)(this.dgPtosDeVta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,20 +360,24 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cbRoles;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvPuntosDeVenta;
+        private System.Windows.Forms.MaskedTextBox mbPtoVta;
+        private System.Windows.Forms.TextBox tbNroRecibo;
+        private System.Windows.Forms.TextBox tbNroBono;
+        private System.Windows.Forms.TextBox tbCuenta;
+        private System.Windows.Forms.ComboBox cbAccion;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button btnAccion;
+        private System.Windows.Forms.Button btnNuevoPtoVta;
         private System.Windows.Forms.Label lbIdPtoVta;
         private System.Windows.Forms.Label lbIdDestino;
         private System.Windows.Forms.Button btnModPtoVta;
         private System.Windows.Forms.Button btnAddPtoVta;
+        private System.Windows.Forms.DataGridView dgPtosDeVta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PTO_VTA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ROLE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RECIBOS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BONOS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DESTINO;
     }
 }

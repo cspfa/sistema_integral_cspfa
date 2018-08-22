@@ -9,11 +9,12 @@ using FirebirdSql.Data.FirebirdClient;
 
 namespace SOCIOS
 {
-    class sectAct
+    public class sectAct
     {
+        bo dlog = new bo();
+
         public string sectact(int SECTACT)
         {
-            bo dlog = new bo();
             string sectact = string.Empty;
 
             try
@@ -33,6 +34,23 @@ namespace SOCIOS
             }
 
             return sectact;
+        }
+
+        public DataRow[] getIdsFromSectAct(string SECTACT)
+        {
+            DataRow[] foundRows = null;
+
+            try
+            {
+                string query = "SELECT ID FROM SECTACT WHERE ROL = '" + SECTACT + "' ORDER BY ID ASC;"; 
+                foundRows = dlog.BO_EjecutoDataTable(query).Select();
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
+            }
+
+            return foundRows;
         }
     }
 }

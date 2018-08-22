@@ -247,7 +247,8 @@ namespace SOCIOS
             habilitarEdicion();
             comboRoles(cbRolesEfectivo);
             comboRoles(cbRolesOtros);
-            comboRoles(cbRoleBuscador);
+            comboRoles(cbRoleBuscador); //MODIFICAR ROLE
+            comboRoles(cbRolesBuscador); //BUSCAR POR ROLE
             comboBancos(cbBancos);
             comboBancos(cbBancosCheques);
             comboFormasDePago(cbNuevoPagoEfectivo);
@@ -3576,13 +3577,16 @@ namespace SOCIOS
                 string[] destino = cbDestinoBuscador.Text.Split('-');
                 string[] profesional = cbProfBuscador.Text.Split('-');
                 string SECTACT = "";
+
                 foreach (string d in destino)
                 {
                     SECTACT = d;
                 }
+
                 string ID_PROF = cbProfBuscador.SelectedValue.ToString();
                 string RECIBO_BONO = profesional[1];
                 string CUENTA = profesional[2];
+
                 if (nuevoRoleDest(dgBuscador, SECTACT, ID_PROF, RECIBO_BONO, CUENTA) == true)
                 {
                     MessageBox.Show("COMPROBANTE MODIFICADO CORRECTAMENTE", "LISTO!");
@@ -3729,7 +3733,7 @@ namespace SOCIOS
         private string queryBuscador(int DESDE, int HASTA, string COMPROBANTE, string PTO, string F_DESDE, string F_HASTA)
         {
             string query = "";
-
+            
             if (COMPROBANTE == "REINTEGROS")
             {
                 //BONOS
@@ -3853,10 +3857,30 @@ namespace SOCIOS
                     query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
                 }
 
-                if (COMPROBANTE != "REINTEGROS")
+                if (cbBuscarPorRole.Checked == true)
                 {
-                    query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC;";
+                    sectAct sa = new sectAct();
+                    DataRow[] ids = sa.getIdsFromSectAct(cbRolesBuscador.SelectedValue.ToString());
+                    int TOTAL = ids.Length;
+                    int X = 1;
+
+                    query += " AND SECTACT IN (";
+
+                    foreach (DataRow row in ids)
+                    {
+                        if (X < TOTAL)
+                        {
+                            query += row[0].ToString() + ", ";
+                            X++;
+                        }
+                        else
+                        {
+                            query += row[0].ToString() + ")";
+                        }
+                    }
                 }
+
+                query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC;";
             }
 
             return query;
@@ -3923,8 +3947,7 @@ namespace SOCIOS
                         ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
                         F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
                         ID_COMP = reader.GetString(reader.GetOrdinal("ID"));
-                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
-                        
+                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));                        
                         dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA);
                     }
 
@@ -3938,11 +3961,10 @@ namespace SOCIOS
                     GRID.Columns[4].Width = 80;
                     GRID.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     GRID.Columns[5].Width = 195;
-                    GRID.Columns[6].Visible = true;
-                    GRID.Columns[6].Width = 70;
+                    GRID.Columns[6].Width = 85;
                     GRID.Columns[7].Width = 70;
                     GRID.Columns[8].Width = 110;
-                    GRID.Columns[9].Width = 50;
+                    GRID.Columns[9].Visible = false;
                     GRID.Columns[10].Width = 40;
                     transaction.Commit();
                 }
@@ -4188,6 +4210,18 @@ namespace SOCIOS
             else
             {
                 MessageBox.Show("SELECCIONAR SOLO UN COMPROBANTE PARA IMPRIMIR", "ERROR");
+            }
+        }
+
+        private void cbBuscarPorRole_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBuscarPorRole.Checked == true)
+            {
+                cbRolesBuscador.Enabled = true;
+            }
+            else
+            {
+                cbRolesBuscador.Enabled = false;
             }
         }
     }

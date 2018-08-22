@@ -17,8 +17,7 @@ namespace SOCIOS
         public puntosDeVenta()
         {
             InitializeComponent();
-            //DataSet PTO_VTA = buscarPuntosDeVenta(0);
-            //mostrarPuntosDeVenta(PTO_VTA);
+            buscarPuntosDeVenta(0);
             comboRoles();
         }
 
@@ -33,11 +32,10 @@ namespace SOCIOS
             cbRoles.SelectedItem = 0;
         }
 
-        /*private DataSet buscarPuntosDeVenta(int ID)
+        private void buscarPuntosDeVenta(int ID)
         {
             Cursor = Cursors.WaitCursor;
-            DataSet DS = null;
-
+            
             try
             {
                 conString cs = new conString();
@@ -48,23 +46,36 @@ namespace SOCIOS
                 {
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
 
                     if (ID == 0)
                         BUSCO = "SELECT ID, PTO_VTA, DETALLE, NUM_RECIBO, NUM_BONO, DESTINO FROM PUNTOS_DE_VENTA ORDER BY PTO_VTA;";
                     else
-                        BUSCO = "SELECT * FROM PUNTOS_DE_VETA WHERE ID = " + ID + ";";
+                        BUSCO = "SELECT ID, PTO_VTA, DETALLE, NUM_RECIBO, NUM_BONO, DESTINO FROM PUNTOS_DE_VENTA WHERE ID = " + ID + ";";
 
                     FbCommand cmd = new FbCommand(BUSCO, connection, transaction);
                     cmd.CommandText = BUSCO;
                     cmd.Connection = connection;
                     cmd.CommandType = CommandType.Text;
-                    READER = cmd.ExecuteReader();
-                    READER.Close();
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            mostrarPuntosDeVenta(ds);
+                        }
+                        else
+                        {
+                            MessageBox.Show("NO SE ENCONTRARON RESULTADOS", "OUCH!");
+                        }
+                    }
+
                     transaction.Commit();
                     connection.Close();
                     cmd = null;
                     transaction = null;
-                    
                 }
             }
             catch (Exception ex)
@@ -72,40 +83,23 @@ namespace SOCIOS
                 MessageBox.Show(ex.ToString());
             }
 
-            return READER;
             Cursor = Cursors.Default;
-        }*/
+        }
 
-        private void mostrarPuntosDeVenta(FbDataReader reader)
+        private void mostrarPuntosDeVenta(DataSet ds)
         {
-            lvPuntosDeVenta.Items.Clear();
-            lvPuntosDeVenta.Columns.Clear();
-            lvPuntosDeVenta.BeginUpdate();
+            dgPtosDeVta.Rows.Clear();
 
-            if (lvPuntosDeVenta.Columns.Count == 0)
+            foreach (DataRow row in ds.Tables[0].Rows)
             {
-                lvPuntosDeVenta.Columns.Add("ID");
-                lvPuntosDeVenta.Columns.Add("PTO VTA");
-                lvPuntosDeVenta.Columns.Add("LUGAR");
-                lvPuntosDeVenta.Columns.Add("# RECIBO");
-                lvPuntosDeVenta.Columns.Add("# BONO");
-                lvPuntosDeVenta.Columns.Add("DESTINO");
+                string ID = row[0].ToString().Trim();
+                string PTO_VTA = row[1].ToString().Trim();
+                string DETALLE = row[2].ToString().Trim();
+                string NUM_RECIBO = row[3].ToString().Trim();
+                string NUM_BONO = row[4].ToString().Trim();
+                string DESTINO = row[5].ToString().Trim();
+                dgPtosDeVta.Rows.Add(ID, PTO_VTA, DETALLE, NUM_RECIBO, NUM_BONO, DESTINO);
             }
-            do
-            {
-                ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("ID")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("PTO_VTA")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("DETALLE")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NUM_RECIBO")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NUM_BONO")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("DESTINO")).Trim());
-                lvPuntosDeVenta.Items.Add(listItem);
-            }
-
-            while (reader.Read());
-            lvPuntosDeVenta.EndUpdate();
-            lvPuntosDeVenta.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            lvPuntosDeVenta.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
         private void llenarDatosPtoVta(FbDataReader reader)
@@ -138,7 +132,7 @@ namespace SOCIOS
 
         private void lvPuntosDeVenta_MouseUp(object sender, MouseEventArgs e)
         {
-            int ID_PTO_VTA = int.Parse(lvPuntosDeVenta.SelectedItems[0].SubItems[0].Text);
+            //int ID_PTO_VTA = int.Parse(lvPuntosDeVenta.SelectedItems[0].SubItems[0].Text);
             //FbDataReader PTO_VTA = buscarPuntosDeVenta(ID_PTO_VTA);
             //llenarDatosPtoVta(PTO_VTA);
         }
@@ -149,6 +143,11 @@ namespace SOCIOS
         }
 
         private void btnAddPtoVta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNuevoPtoVta_Click(object sender, EventArgs e)
         {
 
         }
