@@ -30,6 +30,7 @@ namespace SOCIOS.CuentaSocio
         int ID_PLAN;
         
         int MODO = 1;
+        List<PLanDeCuenta> planes = new List<PLanDeCuenta>();
 
 
         public PlanCuenta(string ROL)
@@ -73,8 +74,8 @@ namespace SOCIOS.CuentaSocio
 
         private void BindGrillaPLan(int Modo)
         {
-
-            dgvPlanes.DataSource = utilsCuenta.GetCuentas(Modo);
+            planes = utilsCuenta.GetCuentas(Modo).ToList();
+            dgvPlanes.DataSource = planes;
             this.FormatoGrilla();
         }
 
@@ -150,6 +151,8 @@ namespace SOCIOS.CuentaSocio
 
             dgvCuotas.ClearSelection();
             dgvCuotas.Rows[0].Selected = false;
+
+            this.GetDataPlan(Plan);
              
         }
 
@@ -168,15 +171,10 @@ namespace SOCIOS.CuentaSocio
             LBCUOTA.Text = "";
             this.BindCuotas(ID_PLAN);
 
-            Nombre = dgvPlanes[13, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
-            Apellido = dgvPlanes[14, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
-            DNI = dgvPlanes[15, dgvPlanes.CurrentCell.RowIndex].Value.ToString();
-            NRO_SOCIO = Int32.Parse(dgvPlanes[9, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
-            NRO_DEP = Int32.Parse(dgvPlanes[10, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
-            BARRA = Int32.Parse(dgvPlanes[15, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
 
-            NRO_SOCIO_TIT = Int32.Parse(dgvPlanes[16, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
-            NRO_DEP_TIT = Int32.Parse(dgvPlanes[17, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
+            
+
+        
 
             gpPlanCuota.Visible = true;
 
@@ -192,6 +190,26 @@ namespace SOCIOS.CuentaSocio
 
             //this.FormatoGrilla();
         
+        
+        }
+
+        private void GetDataPlan(int ID_PLAN)
+
+        {
+
+             var item =planes.Where(x => x.Plan == ID_PLAN.ToString()).FirstOrDefault();
+
+
+             Nombre       = item.Nombre;
+             Apellido     = item.Apellido;
+             DNI          = item.Dni;
+             NRO_SOCIO =   Int32.Parse( item.Nro_Socio);
+            NRO_DEP = Int32.Parse( item.Nro_Dep);
+            BARRA = Int32.Parse(item.Barra);
+
+            NRO_SOCIO_TIT = Int32.Parse(item.Nro_Socio_Tit);
+            NRO_DEP_TIT = Int32.Parse(item.Nro_Dep_Tit);
+            lbNombreCompleto.Text = item.Referente;
         
         }
 
