@@ -1,9 +1,5 @@
 ﻿using System;
-/*using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;*/
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using FirebirdSql.Data.FirebirdClient;
@@ -235,9 +231,34 @@ namespace Convenios
             }
         }
 
+        static void OpenAdobeAcrobat(string f)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = @"C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe";
+            startInfo.Arguments = f;
+            Process.Start(startInfo);
+        }
+
         private void btnVerPdf_Click(object sender, EventArgs e)
         {
+            if (dgResultadosBuscador.SelectedRows.Count == 1)
+            {
+                foreach (DataGridViewRow row in dgResultadosBuscador.SelectedRows)
+                {
+                    string ID_CONV = row.Cells[0].Value.ToString();
+                    string NOMBRE_ARCHIVO = "CONVENIO_" + ID_CONV + ".pdf";
+                    string RUTA_DESTINO = @"\\192.168.1.6\secgral\CONVENIOS_SISTEMA\" + NOMBRE_ARCHIVO;
 
+                    try
+                    {
+                        OpenAdobeAcrobat(RUTA_DESTINO);
+                    }
+                    catch (Exception error)
+                    {
+                        MessageBox.Show("NO SE PUDO ABRIR EL ARCHIVO\n" + error);
+                    }
+                }
+            }
         }
 
         private void btnAgregarEmpresa_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
