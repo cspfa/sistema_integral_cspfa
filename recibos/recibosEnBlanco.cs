@@ -68,11 +68,26 @@ namespace SOCIOS
             return foundRows[0][0].ToString();
         }
 
+        private bool checkDesdeHasta(int DESDE, int HASTA, string TABLA)
+        {
+            bool RESULT = false;
+            string QUERY = "SELECT NRO_COMP FROM " + TABLA + " WHERE NRO_COMP BETWEEN " + DESDE + " AND " + HASTA + " ORDER BY NRO_COMP ASC;";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                RESULT = true;
+            }
+
+            return RESULT;
+        }
+
         private void guardarComprobantes(string USUARIO_MOD)
         {
             if (TABLA == "NINGUNA")
             {
-                MessageBox.Show("SELECCIONAR UN COMPROBANTE");
+                MessageBox.Show("SELECCIONAR UN TIPO DE COMPROBANTE");
             }
             else
             {
@@ -87,7 +102,7 @@ namespace SOCIOS
                     int DESTINO = int.Parse(lvPuntosDeVenta.SelectedItems[0].SubItems[4].Text);
                     int ID = int.Parse(mi.m("ID", TABLA)) + 1;
                     string ACCION = accionPtoVta(PTO_VTA);
-
+                    
                     if (TABLA == "RECIBOS_CAJA")
                     {
                         BO_CAJA.recibosEnBlanco(DESDE, HASTA, USUARIO, DESTINO, PTO_VTA, ID, USUARIO_MOD);
