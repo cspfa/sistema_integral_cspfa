@@ -70,6 +70,7 @@
             this.aBMPersonasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importarBienestarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.turismoControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afiliacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirAutorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renunciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -153,7 +154,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.turismoControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bonosEnBlancoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -191,7 +192,7 @@
             this.MenuStrip1.Name = "MenuStrip1";
             this.MenuStrip1.Padding = new System.Windows.Forms.Padding(0, 10, 1, 0);
             this.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.MenuStrip1.Size = new System.Drawing.Size(120, 614);
+            this.MenuStrip1.Size = new System.Drawing.Size(121, 614);
             this.MenuStrip1.TabIndex = 1;
             this.MenuStrip1.Text = "MenuStrip1";
             // 
@@ -202,7 +203,7 @@
             this.toolStripMenuItem13,
             this.ToolStripMenuItem9});
             this.ToolStripMenuItem3.Name = "ToolStripMenuItem3";
-            this.ToolStripMenuItem3.Size = new System.Drawing.Size(117, 18);
+            this.ToolStripMenuItem3.Size = new System.Drawing.Size(118, 18);
             this.ToolStripMenuItem3.Text = "A&rchivo";
             this.ToolStripMenuItem3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -211,8 +212,8 @@
             this.ToolStripMenuItem8.BackColor = System.Drawing.SystemColors.Control;
             this.ToolStripMenuItem8.Image = global::SOCIOS.Properties.Resources.user_go;
             this.ToolStripMenuItem8.Name = "ToolStripMenuItem8";
-            this.ToolStripMenuItem8.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.D)));
+            this.ToolStripMenuItem8.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D)));
             this.ToolStripMenuItem8.Size = new System.Drawing.Size(263, 22);
             this.ToolStripMenuItem8.Text = "Cambiar de Usuario";
             this.ToolStripMenuItem8.Click += new System.EventHandler(this.ToolStripMenuItem8_Click);
@@ -240,7 +241,7 @@
             this.verTicketsToolStripMenuItem});
             this.soporteTñecnicoToolStripMenuItem.Enabled = false;
             this.soporteTñecnicoToolStripMenuItem.Name = "soporteTñecnicoToolStripMenuItem";
-            this.soporteTñecnicoToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.soporteTñecnicoToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.soporteTñecnicoToolStripMenuItem.Text = "Asistencia Técnica";
             this.soporteTñecnicoToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -268,7 +269,7 @@
             this.capturarFotoToolStripMenuItem,
             this.calcularCuotasToolStripMenuItem});
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(117, 18);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(118, 18);
             this.toolStripMenuItem11.Text = "Socios";
             this.toolStripMenuItem11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -311,7 +312,7 @@
             this.aBMToolStripMenuItem1});
             this.patrimonioToolStripMenuItem.Enabled = false;
             this.patrimonioToolStripMenuItem.Name = "patrimonioToolStripMenuItem";
-            this.patrimonioToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.patrimonioToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.patrimonioToolStripMenuItem.Text = "Patrimonio";
             this.patrimonioToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -332,7 +333,7 @@
             this.listadoIngresosPersonalToolStripMenuItem});
             this.camposToolStripMenuItem1.Enabled = false;
             this.camposToolStripMenuItem1.Name = "camposToolStripMenuItem1";
-            this.camposToolStripMenuItem1.Size = new System.Drawing.Size(117, 18);
+            this.camposToolStripMenuItem1.Size = new System.Drawing.Size(118, 18);
             this.camposToolStripMenuItem1.Text = "Campos";
             this.camposToolStripMenuItem1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -384,7 +385,7 @@
             this.turismoControlToolStripMenuItem});
             this.procesosToolStripMenuItem.Enabled = false;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.procesosToolStripMenuItem.Text = "Sistemas";
             this.procesosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -550,6 +551,13 @@
             this.planDeCuentaToolStripMenuItem.Text = "Plan de Cuenta";
             this.planDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem_Click);
             // 
+            // turismoControlToolStripMenuItem
+            // 
+            this.turismoControlToolStripMenuItem.Name = "turismoControlToolStripMenuItem";
+            this.turismoControlToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.turismoControlToolStripMenuItem.Text = "Turismo Control";
+            this.turismoControlToolStripMenuItem.Click += new System.EventHandler(this.turismoControlToolStripMenuItem_Click);
+            // 
             // afiliacionesToolStripMenuItem
             // 
             this.afiliacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -563,7 +571,7 @@
             this.deCABAAPFAToolStripMenuItem});
             this.afiliacionesToolStripMenuItem.Enabled = false;
             this.afiliacionesToolStripMenuItem.Name = "afiliacionesToolStripMenuItem";
-            this.afiliacionesToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.afiliacionesToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.afiliacionesToolStripMenuItem.Text = "Registro de Socios";
             this.afiliacionesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -642,10 +650,11 @@
             this.listadoDeTurnosCanceladosToolStripMenuItem,
             this.cargarObservaciones,
             this.bonosOdontologicosToolStripMenuItem,
-            this.planDeCuentaToolStripMenuItem2});
+            this.planDeCuentaToolStripMenuItem2,
+            this.bonosEnBlancoToolStripMenuItem1});
             this.servToolStrip.Enabled = false;
             this.servToolStrip.Name = "servToolStrip";
-            this.servToolStrip.Size = new System.Drawing.Size(117, 18);
+            this.servToolStrip.Size = new System.Drawing.Size(118, 18);
             this.servToolStrip.Text = "Servicios Médicos";
             this.servToolStrip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -715,6 +724,7 @@
             // 
             // planDeCuentaToolStripMenuItem2
             // 
+            this.planDeCuentaToolStripMenuItem2.Image = global::SOCIOS.Properties.Resources.money;
             this.planDeCuentaToolStripMenuItem2.Name = "planDeCuentaToolStripMenuItem2";
             this.planDeCuentaToolStripMenuItem2.Size = new System.Drawing.Size(190, 22);
             this.planDeCuentaToolStripMenuItem2.Text = "Plan de Cuenta";
@@ -731,7 +741,7 @@
             this.puntosDeVentaToolStripMenuItem});
             this.cajaToolStripMenuItem.Enabled = false;
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
-            this.cajaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.cajaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.cajaToolStripMenuItem.Text = "Caja";
             this.cajaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -795,7 +805,7 @@
             this.exportarToolStripMenuItem});
             this.deportesToolStrip.Enabled = false;
             this.deportesToolStrip.Name = "deportesToolStrip";
-            this.deportesToolStrip.Size = new System.Drawing.Size(117, 18);
+            this.deportesToolStrip.Size = new System.Drawing.Size(118, 18);
             this.deportesToolStrip.Text = "Deportes";
             this.deportesToolStrip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -863,7 +873,7 @@
             this.nominalToolStripMenuItem});
             this.AsambleatoolStripMenuItem7.Enabled = false;
             this.AsambleatoolStripMenuItem7.Name = "AsambleatoolStripMenuItem7";
-            this.AsambleatoolStripMenuItem7.Size = new System.Drawing.Size(117, 18);
+            this.AsambleatoolStripMenuItem7.Size = new System.Drawing.Size(118, 18);
             this.AsambleatoolStripMenuItem7.Text = "Asamblea";
             this.AsambleatoolStripMenuItem7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -917,7 +927,7 @@
             this.archivosProcesadosToolStripMenuItem});
             this.creditosToolStripMenuItem.Enabled = false;
             this.creditosToolStripMenuItem.Name = "creditosToolStripMenuItem";
-            this.creditosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.creditosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.creditosToolStripMenuItem.Text = "Créditos";
             this.creditosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -959,7 +969,7 @@
             this.bonosEnBlancoToolStripMenuItem});
             this.turismoToolStripMenuItem.Enabled = false;
             this.turismoToolStripMenuItem.Name = "turismoToolStripMenuItem";
-            this.turismoToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.turismoToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.turismoToolStripMenuItem.Text = "Turismo";
             this.turismoToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1046,7 +1056,7 @@
             this.proveedoresToolStripMenuItem});
             this.tesoreríaToolStripMenuItem.Enabled = false;
             this.tesoreríaToolStripMenuItem.Name = "tesoreríaToolStripMenuItem";
-            this.tesoreríaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.tesoreríaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.tesoreríaToolStripMenuItem.Text = "Tesorería";
             this.tesoreríaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1067,7 +1077,7 @@
             this.listaDePreciosToolStripMenuItem});
             this.confiteríaToolStripMenuItem.Enabled = false;
             this.confiteríaToolStripMenuItem.Name = "confiteríaToolStripMenuItem";
-            this.confiteríaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.confiteríaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.confiteríaToolStripMenuItem.Text = "Confitería";
             this.confiteríaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1109,7 +1119,7 @@
             this.toolStripMenuItem1});
             this.contaduríaToolStripMenuItem.Enabled = false;
             this.contaduríaToolStripMenuItem.Name = "contaduríaToolStripMenuItem";
-            this.contaduríaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.contaduríaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.contaduríaToolStripMenuItem.Text = "Contaduría";
             this.contaduríaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1128,7 +1138,7 @@
             this.hotelXHabitaciónToolStripMenuItem});
             this.interiorToolStripMenuItem.Enabled = false;
             this.interiorToolStripMenuItem.Name = "interiorToolStripMenuItem";
-            this.interiorToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.interiorToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.interiorToolStripMenuItem.Text = "Interior";
             this.interiorToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1154,7 +1164,7 @@
             this.toolStripMenuItem4});
             this.comprasToolStripMenuItem.Enabled = false;
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.comprasToolStripMenuItem.Text = "Compras";
             this.comprasToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1170,7 +1180,7 @@
             // 
             this.conveniosToolStripMenuItem.Enabled = false;
             this.conveniosToolStripMenuItem.Name = "conveniosToolStripMenuItem";
-            this.conveniosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.conveniosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.conveniosToolStripMenuItem.Text = "Convenios";
             this.conveniosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.conveniosToolStripMenuItem.Click += new System.EventHandler(this.conveniosToolStripMenuItem_Click);
@@ -1186,10 +1196,10 @@
             this.lbVersion,
             this.lbServidor,
             this.tsUpdater});
-            this.themedStatusStrip1.Location = new System.Drawing.Point(120, 592);
+            this.themedStatusStrip1.Location = new System.Drawing.Point(121, 592);
             this.themedStatusStrip1.Name = "themedStatusStrip1";
             this.themedStatusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.themedStatusStrip1.Size = new System.Drawing.Size(1242, 22);
+            this.themedStatusStrip1.Size = new System.Drawing.Size(1241, 22);
             this.themedStatusStrip1.TabIndex = 4;
             this.themedStatusStrip1.Text = "themedStatusStrip1";
             // 
@@ -1280,12 +1290,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // turismoControlToolStripMenuItem
+            // bonosEnBlancoToolStripMenuItem1
             // 
-            this.turismoControlToolStripMenuItem.Name = "turismoControlToolStripMenuItem";
-            this.turismoControlToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.turismoControlToolStripMenuItem.Text = "Turismo Control";
-            this.turismoControlToolStripMenuItem.Click += new System.EventHandler(this.turismoControlToolStripMenuItem_Click);
+            this.bonosEnBlancoToolStripMenuItem1.Image = global::SOCIOS.Properties.Resources.application_view_columns;
+            this.bonosEnBlancoToolStripMenuItem1.Name = "bonosEnBlancoToolStripMenuItem1";
+            this.bonosEnBlancoToolStripMenuItem1.Size = new System.Drawing.Size(190, 22);
+            this.bonosEnBlancoToolStripMenuItem1.Text = "Bonos en Blanco";
+            this.bonosEnBlancoToolStripMenuItem1.Click += new System.EventHandler(this.bonosEnBlancoToolStripMenuItem1_Click);
             // 
             // MenuABM
             // 
@@ -1454,5 +1465,6 @@
         private System.Windows.Forms.ToolStripMenuItem conveniosToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel tsUpdater;
         private System.Windows.Forms.ToolStripMenuItem turismoControlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem1;
     }
 }
