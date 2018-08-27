@@ -19,6 +19,7 @@ namespace SOCIOS.Entrada_Campo
         int LEGAJO = 0;
         int modo = 1;
 
+
         string TIPO      = "";
         int Socio = 0;
         decimal Socio_Monto = 0;

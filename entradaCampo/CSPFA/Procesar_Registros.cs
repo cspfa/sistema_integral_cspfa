@@ -17,6 +17,8 @@ namespace SOCIOS.Entrada_Campo
         bo_Entrada_Campo dlog = new bo_Entrada_Campo();
         EntradaCampoService entradaCampoService = new EntradaCampoService();
         string ROL = "";
+        public bool XLS_CARGADO = false;
+
         public Procesar_Registros(string ROLE)
         {
             InitializeComponent();
@@ -65,6 +67,7 @@ namespace SOCIOS.Entrada_Campo
             int CANTIDAD = table.Rows.Count;
             bo dlog = new bo();
 
+            LISTA =  new List<SOCIOS.EntradaCampo>();
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 int OUT;

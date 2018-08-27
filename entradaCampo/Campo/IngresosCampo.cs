@@ -389,6 +389,7 @@ namespace SOCIOS.Entrada_Campo
         private void btnFiltro_Click(object sender, EventArgs e)
         {
             this.DataBind(chkFiltro.Checked, cbID.Checked);
+
         }
 
         private void pnlID_Paint(object sender, PaintEventArgs e)

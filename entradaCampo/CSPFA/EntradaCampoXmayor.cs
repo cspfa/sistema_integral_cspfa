@@ -473,6 +473,7 @@ namespace SOCIOS.Entrada_Campo.CSPFA
                 if (Ya_Ingreso && esReintegro ==false)
                 {
 
+
                    
                     if (MessageBox.Show("Este DNI ya ha ingresado en el dia, desea proceder el ingreso?", "DNI repetido", MessageBoxButtons.YesNo) == DialogResult.No)
                     {

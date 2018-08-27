@@ -68,6 +68,7 @@ namespace SOCIOS
   
         public string   USER                          { get; set; }
       
+
         public DateTime BAJA                          { get; set; }
         public string   USR_BAJA                      { get; set; }
         public bool     PROCESADO                     { get; set; }

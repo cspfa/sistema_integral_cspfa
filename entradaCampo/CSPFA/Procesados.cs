@@ -15,6 +15,7 @@ namespace SOCIOS.Entrada_Campo.CSPFA
         public Procesados()
         {
             InitializeComponent();
+
             dgvProcesados.DataSource = es.getIngresos(false, false,0,0,false,"").ToList();
 
         }

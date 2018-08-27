@@ -95,6 +95,7 @@ namespace SOCIOS.Entrada_Campo
                      tbApellido.Text = "";
                      tbNombre.Text = "";
 
+
                      ent.Show();
                  }
                  else

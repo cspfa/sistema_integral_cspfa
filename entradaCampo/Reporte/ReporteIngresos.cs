@@ -27,6 +27,7 @@ namespace SOCIOS.entradaCampo.Reporte
 
 
 
+
             //Establecemos el valor de los parámetros
 
             parameters[0] = new ReportParameter("FechaDesde", Desde.ToShortDateString());

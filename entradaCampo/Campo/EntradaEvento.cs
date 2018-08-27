@@ -24,6 +24,7 @@ namespace SOCIOS.entradaCampo.Campo
         int NRO_DEP = 0;
         string LEGAJO = "";
         string TIPO = "";
+
         decimal MontoMaximo = 0;
         public EntradaEvento(string pDNI, string pNOMBRE, string pAPELLIDO, int pNRO_Socio,int pNRO_DEP,string pTIPO,string pLegajo, bool pReintegro,decimal pMontoMaximo, bool Manual)
         {
