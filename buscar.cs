@@ -2607,66 +2607,59 @@ namespace SOCIOS
 
         private void listView1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (listView1.SelectedItems.Count == 1)
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "ORIENTACION SOCIAL")
             {
-                if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "ORIENTACION SOCIAL")
+                if (e.Button == MouseButtons.Right)
                 {
-                    if (e.Button == MouseButtons.Right)
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
                     {
-                        if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
-                        {
-                            cmOSocial.Show(Cursor.Position);
-                        }
-                    }
-                }
-
-                if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "SERVICIOS MEDICOS")
-                {
-                    if (e.Button == MouseButtons.Right)
-                    {
-                        if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
-                        {
-                            cmEncuesta.Show(Cursor.Position);
-                        }
-                    }
-                }
-
-                if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INTERIOR")
-                {
-                    if (e.Button == MouseButtons.Right)
-                    {
-                        if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
-                        {
-                            cmObservacionesInterior.Show(Cursor.Position);
-                        }
-                    }
-                }
-
-                if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "DEPORTES")
-                {
-                    if (e.Button == MouseButtons.Right)
-                    {
-                        if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
-                        {
-                            cmDeportes.Show(Cursor.Position);
-                        }
-                    }
-                }
-
-                if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "PROSECRETARIA")
-                {
-                    if (e.Button == MouseButtons.Right)
-                    {
-                        if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
-                        {
-                            cmProsecretaria.Show(Cursor.Position);
-                        }
+                        cmOSocial.Show(Cursor.Position);
                     }
                 }
             }
-            else
+
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "SERVICIOS MEDICOS")
             {
-                MessageBox.Show("SELECCIONAR AL MENOS UN REGISTRO", "ERROR");
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmEncuesta.Show(Cursor.Position);
+                    }
+                }
+            }
+
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INTERIOR")
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmObservacionesInterior.Show(Cursor.Position);
+                    }
+                }
+            }
+
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "DEPORTES")
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmDeportes.Show(Cursor.Position);
+                    }
+                }
+            }
+
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "PROSECRETARIA")
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (listView1.FocusedItem.Bounds.Contains(e.Location) == true)
+                    {
+                        cmProsecretaria.Show(Cursor.Position);
+                    }
+                }
             }
         }
 
@@ -3031,7 +3024,7 @@ namespace SOCIOS
         {
             if (themedContainer1.IsBodyVisible)
             {
-                if (listView1.SelectedItems.Count > 0)
+                if (listView1.SelectedItems.Count == 1)
                 {
                     string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
                     int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);

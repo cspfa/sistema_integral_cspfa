@@ -56,7 +56,7 @@
             this.btnIngresos = new System.Windows.Forms.Button();
             this.btnPagos = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.listView1 = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnVerDatos = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -443,7 +443,7 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(0);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.ParentContainer = this;
+            //this.listView1.ParentContainer = this;
             this.listView1.ShowItemToolTips = true;
             this.listView1.Size = new System.Drawing.Size(1079, 130);
             this.listView1.SmallImageList = this.imageList1;
@@ -1704,7 +1704,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton LimpiarListView;
         private MicroFour.StrataFrame.UI.Windows.Forms.Textbox textbox15;
-        private MicroFour.StrataFrame.UI.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label12;
