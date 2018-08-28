@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using FirebirdSql.Data.FirebirdClient;
 using SOCIOS;
 using System.Data;
+using System.Drawing;
 
 namespace Convenios
 {
@@ -44,6 +45,40 @@ namespace Convenios
             COMBO.DisplayMember = "TIPO";
             COMBO.ValueMember = "ID";
             COMBO.SelectedItem = 0;
+        }
+
+        private void pintarResultados()
+        {
+            if (dgResultadosBuscador.Rows.Count > 0)
+            {
+                int X = 0;
+
+                foreach (DataGridViewRow row in dgResultadosBuscador.Rows)
+                {
+                    DateTime HASTA = Convert.ToDateTime(row.Cells[4].Value.ToString());
+                    int DIFF = cu.diasDeDiferencia(HASTA);
+
+                    if (DIFF <= 0)
+                    {
+                        dgResultadosBuscador.Rows[X].DefaultCellStyle.BackColor = Color.Red;
+                        dgResultadosBuscador.Rows[X].DefaultCellStyle.ForeColor = Color.White;
+                    }
+
+                    if (DIFF >= 0 && DIFF >= 15)
+                    {
+                        dgResultadosBuscador.Rows[X].DefaultCellStyle.BackColor = Color.Green;
+                        dgResultadosBuscador.Rows[X].DefaultCellStyle.ForeColor = Color.White;
+                    }
+
+                    if (DIFF >= 0 && DIFF <= 15)
+                    {
+                        dgResultadosBuscador.Rows[X].DefaultCellStyle.BackColor = Color.OrangeRed;
+                        dgResultadosBuscador.Rows[X].DefaultCellStyle.ForeColor = Color.White;
+                    }
+
+                    X++;
+                }
+            }
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -86,8 +121,11 @@ namespace Convenios
             {
                 try
                 {
-                    string FECHA_INICIO = cu.convertirFecha(dpInicio.Text, "/");
-                    string FECHA_FIN = cu.convertirFecha(dpFin.Text, "/");
+                    //string FECHA_INICIO = cu.convertirFecha(dpInicio.Text, "/");
+                    //string FECHA_FIN = cu.convertirFecha(dpFin.Text, "/");
+
+                    string FECHA_INICIO = dpInicio.Text;
+                    string FECHA_FIN = dpFin.Text;
 
                     if (ID_CONVENIO > 0)
                     {
@@ -111,7 +149,6 @@ namespace Convenios
                         File.Copy(RUTA_ORIGEN, RUTA_DESTINO);
                     }
 
-                    buscar();
                     MessageBox.Show(MSG_SUCC, "LISTO");
                 }
                 catch (Exception error)
@@ -151,6 +188,9 @@ namespace Convenios
                 string ANIO = row[11].ToString().Trim();
                 dgResultadosBuscador.Rows.Add(CONVENIO_ID, NRO_REG_GRAL, NRO_INTERNO, FECHA_INICIO, FECHA_FIN, ID_EMPRESA, RAZON_SOCIAL, DETALLE, ID_TIPO, TIPO, OBSERVACIONES, ANIO);
             }
+
+            dgResultadosBuscador.ClearSelection();
+            pintarResultados();
         }
 
         private void buscar()

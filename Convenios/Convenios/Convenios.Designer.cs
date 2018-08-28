@@ -47,6 +47,18 @@
             this.btnAgregarEmpresa = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.dgResultadosBuscador = new System.Windows.Forms.DataGridView();
+            this.CONVENIO_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_REG_GRAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_INTERNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESDE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HASTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_EMPRESA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RAZON_SOCIAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OBSERVACIONES = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ANIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVerPdf = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnExaminar = new System.Windows.Forms.Button();
@@ -71,18 +83,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tbDetalle = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.CONVENIO_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_REG_GRAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_INTERNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESDE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HASTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_EMPRESA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RAZON_SOCIAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OBSERVACIONES = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ANIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultadosBuscador)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -281,9 +284,90 @@
             this.dgResultadosBuscador.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgResultadosBuscador.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgResultadosBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgResultadosBuscador.Size = new System.Drawing.Size(1286, 333);
+            this.dgResultadosBuscador.Size = new System.Drawing.Size(1286, 313);
             this.dgResultadosBuscador.TabIndex = 47;
             this.dgResultadosBuscador.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResultadosBuscador_CellContentClick);
+            // 
+            // CONVENIO_ID
+            // 
+            this.CONVENIO_ID.HeaderText = "CONVENIO_ID";
+            this.CONVENIO_ID.Name = "CONVENIO_ID";
+            this.CONVENIO_ID.ReadOnly = true;
+            this.CONVENIO_ID.Visible = false;
+            // 
+            // NRO_REG_GRAL
+            // 
+            this.NRO_REG_GRAL.HeaderText = "#REG_GRAL";
+            this.NRO_REG_GRAL.Name = "NRO_REG_GRAL";
+            this.NRO_REG_GRAL.ReadOnly = true;
+            this.NRO_REG_GRAL.Width = 80;
+            // 
+            // NRO_INTERNO
+            // 
+            this.NRO_INTERNO.HeaderText = "#INT";
+            this.NRO_INTERNO.Name = "NRO_INTERNO";
+            this.NRO_INTERNO.ReadOnly = true;
+            this.NRO_INTERNO.Width = 60;
+            // 
+            // DESDE
+            // 
+            this.DESDE.HeaderText = "DESDE";
+            this.DESDE.Name = "DESDE";
+            this.DESDE.ReadOnly = true;
+            // 
+            // HASTA
+            // 
+            this.HASTA.HeaderText = "HASTA";
+            this.HASTA.Name = "HASTA";
+            this.HASTA.ReadOnly = true;
+            // 
+            // ID_EMPRESA
+            // 
+            this.ID_EMPRESA.HeaderText = "ID_EMPRESA";
+            this.ID_EMPRESA.Name = "ID_EMPRESA";
+            this.ID_EMPRESA.ReadOnly = true;
+            this.ID_EMPRESA.Visible = false;
+            // 
+            // RAZON_SOCIAL
+            // 
+            this.RAZON_SOCIAL.HeaderText = "RAZON_SOCIAL";
+            this.RAZON_SOCIAL.Name = "RAZON_SOCIAL";
+            this.RAZON_SOCIAL.ReadOnly = true;
+            this.RAZON_SOCIAL.Width = 250;
+            // 
+            // DETALLE
+            // 
+            this.DETALLE.HeaderText = "DETALLE";
+            this.DETALLE.Name = "DETALLE";
+            this.DETALLE.ReadOnly = true;
+            this.DETALLE.Width = 250;
+            // 
+            // ID_TIPO
+            // 
+            this.ID_TIPO.HeaderText = "ID_TIPO";
+            this.ID_TIPO.Name = "ID_TIPO";
+            this.ID_TIPO.ReadOnly = true;
+            this.ID_TIPO.Visible = false;
+            // 
+            // TIPO
+            // 
+            this.TIPO.HeaderText = "TIPO";
+            this.TIPO.Name = "TIPO";
+            this.TIPO.ReadOnly = true;
+            // 
+            // OBSERVACIONES
+            // 
+            this.OBSERVACIONES.HeaderText = "OBSERVACIONES";
+            this.OBSERVACIONES.Name = "OBSERVACIONES";
+            this.OBSERVACIONES.ReadOnly = true;
+            this.OBSERVACIONES.Width = 250;
+            // 
+            // ANIO
+            // 
+            this.ANIO.HeaderText = "AÑO";
+            this.ANIO.Name = "ANIO";
+            this.ANIO.ReadOnly = true;
+            this.ANIO.Width = 80;
             // 
             // btnVerPdf
             // 
@@ -520,92 +604,47 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "DETALLE";
             // 
-            // CONVENIO_ID
+            // label9
             // 
-            this.CONVENIO_ID.HeaderText = "CONVENIO_ID";
-            this.CONVENIO_ID.Name = "CONVENIO_ID";
-            this.CONVENIO_ID.ReadOnly = true;
-            this.CONVENIO_ID.Visible = false;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Green;
+            this.label9.Location = new System.Drawing.Point(12, 493);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 13);
+            this.label9.TabIndex = 49;
+            this.label9.Text = "ACTIVO";
             // 
-            // NRO_REG_GRAL
+            // label6
             // 
-            this.NRO_REG_GRAL.HeaderText = "#REG_GRAL";
-            this.NRO_REG_GRAL.Name = "NRO_REG_GRAL";
-            this.NRO_REG_GRAL.ReadOnly = true;
-            this.NRO_REG_GRAL.Width = 80;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(64, 493);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.TabIndex = 50;
+            this.label6.Text = "VENCIDO";
             // 
-            // NRO_INTERNO
+            // label17
             // 
-            this.NRO_INTERNO.HeaderText = "#INT";
-            this.NRO_INTERNO.Name = "NRO_INTERNO";
-            this.NRO_INTERNO.ReadOnly = true;
-            this.NRO_INTERNO.Width = 60;
-            // 
-            // DESDE
-            // 
-            this.DESDE.HeaderText = "DESDE";
-            this.DESDE.Name = "DESDE";
-            this.DESDE.ReadOnly = true;
-            // 
-            // HASTA
-            // 
-            this.HASTA.HeaderText = "HASTA";
-            this.HASTA.Name = "HASTA";
-            this.HASTA.ReadOnly = true;
-            // 
-            // ID_EMPRESA
-            // 
-            this.ID_EMPRESA.HeaderText = "ID_EMPRESA";
-            this.ID_EMPRESA.Name = "ID_EMPRESA";
-            this.ID_EMPRESA.ReadOnly = true;
-            this.ID_EMPRESA.Visible = false;
-            // 
-            // RAZON_SOCIAL
-            // 
-            this.RAZON_SOCIAL.HeaderText = "RAZON_SOCIAL";
-            this.RAZON_SOCIAL.Name = "RAZON_SOCIAL";
-            this.RAZON_SOCIAL.ReadOnly = true;
-            this.RAZON_SOCIAL.Width = 250;
-            // 
-            // DETALLE
-            // 
-            this.DETALLE.HeaderText = "DETALLE";
-            this.DETALLE.Name = "DETALLE";
-            this.DETALLE.ReadOnly = true;
-            this.DETALLE.Width = 250;
-            // 
-            // ID_TIPO
-            // 
-            this.ID_TIPO.HeaderText = "ID_TIPO";
-            this.ID_TIPO.Name = "ID_TIPO";
-            this.ID_TIPO.ReadOnly = true;
-            this.ID_TIPO.Visible = false;
-            // 
-            // TIPO
-            // 
-            this.TIPO.HeaderText = "TIPO";
-            this.TIPO.Name = "TIPO";
-            this.TIPO.ReadOnly = true;
-            // 
-            // OBSERVACIONES
-            // 
-            this.OBSERVACIONES.HeaderText = "OBSERVACIONES";
-            this.OBSERVACIONES.Name = "OBSERVACIONES";
-            this.OBSERVACIONES.ReadOnly = true;
-            this.OBSERVACIONES.Width = 250;
-            // 
-            // ANIO
-            // 
-            this.ANIO.HeaderText = "AÑO";
-            this.ANIO.Name = "ANIO";
-            this.ANIO.ReadOnly = true;
-            this.ANIO.Width = 80;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label17.Location = new System.Drawing.Point(126, 493);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(155, 13);
+            this.label17.TabIndex = 51;
+            this.label17.Text = "VENCIMIENTO CERCANO";
             // 
             // Convenios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1311, 515);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dgResultadosBuscador);
             this.Controls.Add(this.label7);
@@ -677,6 +716,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
         private System.Windows.Forms.DataGridViewTextBoxColumn OBSERVACIONES;
         private System.Windows.Forms.DataGridViewTextBoxColumn ANIO;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label17;
     }
 }
 
