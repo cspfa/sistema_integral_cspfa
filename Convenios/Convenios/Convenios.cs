@@ -193,7 +193,7 @@ namespace Convenios
             pintarResultados();
         }
 
-        private void buscar()
+        private void buscar(string RAPIDA)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -224,7 +224,7 @@ namespace Convenios
                         QUERY += " AND C.ANIO = " + tbAnioBuscador.Text.Trim();
 
                     if (cbEmpresaBuscador.SelectedValue.ToString() != "")
-                        QUERY += " AND C.EMPRESA = " + cbEmpresaBuscador.SelectedValue.ToString();
+                        QUERY += " AND C.EMPRESA = " + cbEmpresaBuscador.SelectedValue.ToString() + " ORDER BY C.FECHA_FIN DESC;";
 
                     FbCommand cmd = new FbCommand(QUERY, connection, transaction);
                     cmd.CommandText = QUERY;
@@ -267,7 +267,7 @@ namespace Convenios
             }
             else
             {
-                buscar();
+                buscar("TODOS");
             }
         }
 
