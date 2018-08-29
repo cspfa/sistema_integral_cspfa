@@ -2170,5 +2170,11 @@ namespace SOCIOS
             Turismo.Stats_Hoteles sh = new Turismo.Stats_Hoteles();
             sh.ShowDialog();
         }
+
+        private void bonosEnBlancoToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SOCIOS.bono.Bonos.Carga_Bonos_Blanco_Odontologia co = new bono.Bonos.Carga_Bonos_Blanco_Odontologia();
+            co.Show();
+        }
     }
 }

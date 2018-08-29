@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbEmpresaBuscador = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.tbAnioBuscador = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,7 +47,18 @@
             this.btnAgregarEmpresa = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.dgResultadosBuscador = new System.Windows.Forms.DataGridView();
-            this.btnEliminar = new System.Windows.Forms.Button();
+            this.CONVENIO_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_REG_GRAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_INTERNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESDE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HASTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_EMPRESA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RAZON_SOCIAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OBSERVACIONES = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ANIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVerPdf = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnExaminar = new System.Windows.Forms.Button();
@@ -71,18 +83,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.tbDetalle = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.cbEmpresaBuscador = new System.Windows.Forms.ComboBox();
-            this.CONVENIO_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_REG_GRAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_INTERNO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESDE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HASTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_EMPRESA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RAZON_SOCIAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIPO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OBSERVACIONES = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultadosBuscador)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -107,6 +110,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BUSCADOR";
+            // 
+            // cbEmpresaBuscador
+            // 
+            this.cbEmpresaBuscador.FormattingEnabled = true;
+            this.cbEmpresaBuscador.Location = new System.Drawing.Point(77, 73);
+            this.cbEmpresaBuscador.Name = "cbEmpresaBuscador";
+            this.cbEmpresaBuscador.Size = new System.Drawing.Size(259, 21);
+            this.cbEmpresaBuscador.TabIndex = 54;
             // 
             // btnBuscar
             // 
@@ -221,19 +232,19 @@
             this.dgResultadosBuscador.AllowUserToDeleteRows = false;
             this.dgResultadosBuscador.AllowUserToResizeColumns = false;
             this.dgResultadosBuscador.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgResultadosBuscador.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgResultadosBuscador.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dgResultadosBuscador.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgResultadosBuscador.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgResultadosBuscador.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgResultadosBuscador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgResultadosBuscador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dgResultadosBuscador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgResultadosBuscador.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CONVENIO_ID,
@@ -246,48 +257,121 @@
             this.DETALLE,
             this.ID_TIPO,
             this.TIPO,
-            this.OBSERVACIONES});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgResultadosBuscador.DefaultCellStyle = dataGridViewCellStyle3;
+            this.OBSERVACIONES,
+            this.ANIO});
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgResultadosBuscador.DefaultCellStyle = dataGridViewCellStyle19;
             this.dgResultadosBuscador.Location = new System.Drawing.Point(12, 168);
             this.dgResultadosBuscador.Margin = new System.Windows.Forms.Padding(5);
             this.dgResultadosBuscador.Name = "dgResultadosBuscador";
             this.dgResultadosBuscador.ReadOnly = true;
             this.dgResultadosBuscador.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgResultadosBuscador.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgResultadosBuscador.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dgResultadosBuscador.RowHeadersVisible = false;
             this.dgResultadosBuscador.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgResultadosBuscador.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgResultadosBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgResultadosBuscador.Size = new System.Drawing.Size(1286, 333);
+            this.dgResultadosBuscador.Size = new System.Drawing.Size(1286, 313);
             this.dgResultadosBuscador.TabIndex = 47;
+            this.dgResultadosBuscador.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResultadosBuscador_CellContentClick);
             // 
-            // btnEliminar
+            // CONVENIO_ID
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(674, 71);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(103, 23);
-            this.btnEliminar.TabIndex = 48;
-            this.btnEliminar.Text = "ELIMINAR";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.CONVENIO_ID.HeaderText = "CONVENIO_ID";
+            this.CONVENIO_ID.Name = "CONVENIO_ID";
+            this.CONVENIO_ID.ReadOnly = true;
+            this.CONVENIO_ID.Visible = false;
+            // 
+            // NRO_REG_GRAL
+            // 
+            this.NRO_REG_GRAL.HeaderText = "#REG_GRAL";
+            this.NRO_REG_GRAL.Name = "NRO_REG_GRAL";
+            this.NRO_REG_GRAL.ReadOnly = true;
+            this.NRO_REG_GRAL.Width = 80;
+            // 
+            // NRO_INTERNO
+            // 
+            this.NRO_INTERNO.HeaderText = "#INT";
+            this.NRO_INTERNO.Name = "NRO_INTERNO";
+            this.NRO_INTERNO.ReadOnly = true;
+            this.NRO_INTERNO.Width = 60;
+            // 
+            // DESDE
+            // 
+            this.DESDE.HeaderText = "DESDE";
+            this.DESDE.Name = "DESDE";
+            this.DESDE.ReadOnly = true;
+            // 
+            // HASTA
+            // 
+            this.HASTA.HeaderText = "HASTA";
+            this.HASTA.Name = "HASTA";
+            this.HASTA.ReadOnly = true;
+            // 
+            // ID_EMPRESA
+            // 
+            this.ID_EMPRESA.HeaderText = "ID_EMPRESA";
+            this.ID_EMPRESA.Name = "ID_EMPRESA";
+            this.ID_EMPRESA.ReadOnly = true;
+            this.ID_EMPRESA.Visible = false;
+            // 
+            // RAZON_SOCIAL
+            // 
+            this.RAZON_SOCIAL.HeaderText = "RAZON_SOCIAL";
+            this.RAZON_SOCIAL.Name = "RAZON_SOCIAL";
+            this.RAZON_SOCIAL.ReadOnly = true;
+            this.RAZON_SOCIAL.Width = 250;
+            // 
+            // DETALLE
+            // 
+            this.DETALLE.HeaderText = "DETALLE";
+            this.DETALLE.Name = "DETALLE";
+            this.DETALLE.ReadOnly = true;
+            this.DETALLE.Width = 250;
+            // 
+            // ID_TIPO
+            // 
+            this.ID_TIPO.HeaderText = "ID_TIPO";
+            this.ID_TIPO.Name = "ID_TIPO";
+            this.ID_TIPO.ReadOnly = true;
+            this.ID_TIPO.Visible = false;
+            // 
+            // TIPO
+            // 
+            this.TIPO.HeaderText = "TIPO";
+            this.TIPO.Name = "TIPO";
+            this.TIPO.ReadOnly = true;
+            // 
+            // OBSERVACIONES
+            // 
+            this.OBSERVACIONES.HeaderText = "OBSERVACIONES";
+            this.OBSERVACIONES.Name = "OBSERVACIONES";
+            this.OBSERVACIONES.ReadOnly = true;
+            this.OBSERVACIONES.Width = 250;
+            // 
+            // ANIO
+            // 
+            this.ANIO.HeaderText = "AÑO";
+            this.ANIO.Name = "ANIO";
+            this.ANIO.ReadOnly = true;
+            this.ANIO.Width = 80;
             // 
             // btnVerPdf
             // 
-            this.btnVerPdf.Location = new System.Drawing.Point(674, 97);
+            this.btnVerPdf.Location = new System.Drawing.Point(674, 70);
             this.btnVerPdf.Name = "btnVerPdf";
             this.btnVerPdf.Size = new System.Drawing.Size(103, 23);
             this.btnVerPdf.TabIndex = 49;
@@ -331,7 +415,6 @@
             this.groupBox2.Controls.Add(this.btnAgregarEmpresa);
             this.groupBox2.Controls.Add(this.dpInicio);
             this.groupBox2.Controls.Add(this.btnNuevo);
-            this.groupBox2.Controls.Add(this.btnEliminar);
             this.groupBox2.Controls.Add(this.tbObsevaciones);
             this.groupBox2.Controls.Add(this.btnVerPdf);
             this.groupBox2.Controls.Add(this.label19);
@@ -521,85 +604,47 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "DETALLE";
             // 
-            // cbEmpresaBuscador
+            // label9
             // 
-            this.cbEmpresaBuscador.FormattingEnabled = true;
-            this.cbEmpresaBuscador.Location = new System.Drawing.Point(77, 73);
-            this.cbEmpresaBuscador.Name = "cbEmpresaBuscador";
-            this.cbEmpresaBuscador.Size = new System.Drawing.Size(259, 21);
-            this.cbEmpresaBuscador.TabIndex = 54;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Green;
+            this.label9.Location = new System.Drawing.Point(12, 493);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 13);
+            this.label9.TabIndex = 49;
+            this.label9.Text = "ACTIVO";
             // 
-            // CONVENIO_ID
+            // label6
             // 
-            this.CONVENIO_ID.HeaderText = "CONVENIO_ID";
-            this.CONVENIO_ID.Name = "CONVENIO_ID";
-            this.CONVENIO_ID.ReadOnly = true;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Red;
+            this.label6.Location = new System.Drawing.Point(64, 493);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 13);
+            this.label6.TabIndex = 50;
+            this.label6.Text = "VENCIDO";
             // 
-            // NRO_REG_GRAL
+            // label17
             // 
-            this.NRO_REG_GRAL.HeaderText = "NRO_REG_GRAL";
-            this.NRO_REG_GRAL.Name = "NRO_REG_GRAL";
-            this.NRO_REG_GRAL.ReadOnly = true;
-            // 
-            // NRO_INTERNO
-            // 
-            this.NRO_INTERNO.HeaderText = "NRO_INTERNO";
-            this.NRO_INTERNO.Name = "NRO_INTERNO";
-            this.NRO_INTERNO.ReadOnly = true;
-            // 
-            // DESDE
-            // 
-            this.DESDE.HeaderText = "DESDE";
-            this.DESDE.Name = "DESDE";
-            this.DESDE.ReadOnly = true;
-            // 
-            // HASTA
-            // 
-            this.HASTA.HeaderText = "HASTA";
-            this.HASTA.Name = "HASTA";
-            this.HASTA.ReadOnly = true;
-            // 
-            // ID_EMPRESA
-            // 
-            this.ID_EMPRESA.HeaderText = "ID_EMPRESA";
-            this.ID_EMPRESA.Name = "ID_EMPRESA";
-            this.ID_EMPRESA.ReadOnly = true;
-            // 
-            // RAZON_SOCIAL
-            // 
-            this.RAZON_SOCIAL.HeaderText = "RAZON_SOCIAL";
-            this.RAZON_SOCIAL.Name = "RAZON_SOCIAL";
-            this.RAZON_SOCIAL.ReadOnly = true;
-            // 
-            // DETALLE
-            // 
-            this.DETALLE.HeaderText = "DETALLE";
-            this.DETALLE.Name = "DETALLE";
-            this.DETALLE.ReadOnly = true;
-            // 
-            // ID_TIPO
-            // 
-            this.ID_TIPO.HeaderText = "ID_TIPO";
-            this.ID_TIPO.Name = "ID_TIPO";
-            this.ID_TIPO.ReadOnly = true;
-            // 
-            // TIPO
-            // 
-            this.TIPO.HeaderText = "TIPO";
-            this.TIPO.Name = "TIPO";
-            this.TIPO.ReadOnly = true;
-            // 
-            // OBSERVACIONES
-            // 
-            this.OBSERVACIONES.HeaderText = "OBSERVACIONES";
-            this.OBSERVACIONES.Name = "OBSERVACIONES";
-            this.OBSERVACIONES.ReadOnly = true;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.OrangeRed;
+            this.label17.Location = new System.Drawing.Point(126, 493);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(155, 13);
+            this.label17.TabIndex = 51;
+            this.label17.Text = "VENCIMIENTO CERCANO";
             // 
             // Convenios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1311, 515);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dgResultadosBuscador);
             this.Controls.Add(this.label7);
@@ -633,7 +678,6 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView dgResultadosBuscador;
-        private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnVerPdf;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.LinkLabel btnAgregarEmpresa;
@@ -671,6 +715,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_TIPO;
         private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
         private System.Windows.Forms.DataGridViewTextBoxColumn OBSERVACIONES;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ANIO;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label17;
     }
 }
 

@@ -30,6 +30,16 @@ namespace SOCIOS
             SO_ACTUAL = NRO_SOC;
         }
 
+        private string getNumerador(int ID_ENTIDAD)
+        {
+            string QUERY = "SELECT VALOR FROM NUMERADORES WHERE ID_ENTIDAD = " + ID_ENTIDAD;
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            int NRO_SOC = int.Parse(foundRows[0][0].ToString());
+            NRO_SOC = NRO_SOC + 1;
+            return NRO_SOC.ToString();
+        }
+
         private void restablecer994_Load(object sender, EventArgs e)
         {
             if (DE_ACTUAL == 20)
@@ -50,15 +60,26 @@ namespace SOCIOS
             }
 
             buscarSocio(ID_ACTUAL);
-            
-            ID_ANTERIOR = lvDatosSocio.Items[0].SubItems[9].Text;
-            DE_ANTERIOR = right(ID_ANTERIOR, 3);
-            SO_ANTERIOR = ID_ANTERIOR.Replace(DE_ANTERIOR, "");
-            
-            tbNroSoc.Text = SO_ACTUAL.ToString();
-            tbNroDep.Text = DE_ACTUAL.ToString();
-            tbIdTitular.Text = ID_ACTUAL.ToString();
-            
+
+            if (lvDatosSocio.Items[0].SubItems[9].Text != "")
+            {
+                ID_ANTERIOR = lvDatosSocio.Items[0].SubItems[9].Text;
+                DE_ANTERIOR = right(ID_ANTERIOR, 3);
+                SO_ANTERIOR = ID_ANTERIOR.Replace(DE_ANTERIOR, "");
+                tbNroSoc.Text = SO_ACTUAL.ToString();
+                tbNroDep.Text = DE_ACTUAL.ToString();
+                tbIdTitular.Text = ID_ACTUAL.ToString();
+            }
+            else
+            {
+                SO_ANTERIOR = getNumerador(11);
+                DE_ANTERIOR = "020";
+                ID_ANTERIOR = SO_ANTERIOR + "" + DE_ANTERIOR;
+                tbNroSoc.Text = SO_ANTERIOR.ToString();
+                tbNroDep.Text = DE_ANTERIOR.ToString();
+                tbIdTitular.Text = ID_ANTERIOR.ToString();
+            }
+
             comboCatSoc();
         }
 

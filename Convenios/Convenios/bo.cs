@@ -28,13 +28,14 @@ namespace Convenios
 
             ArrayList vector_tipos = new ArrayList
             {
-                "FbDbType.Integer", "FbDbType.Integer", "FbDbType.VarChar", "FbDbType.VarChar", "FbDbType.VarChar", "FbDbType.Integer", "FbDbType.VarChar", "FbDbType.Integer", "FbDbType.VarChar",
-                "FbDbType.Integer"
+                "FbDbType.Integer", "FbDbType.Integer", "FbDbType.VarChar", "FbDbType.VarChar", "FbDbType.VarChar", "FbDbType.Integer", "FbDbType.VarChar",
+                "FbDbType.Integer", "FbDbType.VarChar", "FbDbType.Integer"
             };
 
             ArrayList vector_nombres = new ArrayList
             {
-                "@PIN_ID", "@PIN_NRO_INTERNO", "@PIN_REG_GRAL", "@PIN_FECHA_INICIO", "@PIN_EMPRESA", "@PIN_DETALLE", "@PIN_TIPO", "@PIN_OBSERVACIONES", "@PIN_ANIO"
+                "@PIN_ID", "@PIN_NRO_INTERNO", "@PIN_REG_GRAL", "@PIN_FECHA_INICIO", "@PIN_FECHA_FIN", "@PIN_EMPRESA", "@PIN_DETALLE", "@PIN_TIPO",
+                "@PIN_OBSERVACIONES", "@PIN_ANIO"
             };
             resultado.Ejecuto_Stored_Insert("CONVENIOS_U", vector_contenidos, vector_tipos, vector_nombres);
         }

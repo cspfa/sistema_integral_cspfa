@@ -3024,7 +3024,7 @@ namespace SOCIOS
         {
             if (themedContainer1.IsBodyVisible)
             {
-                if (listView1.SelectedItems.Count > 0)
+                if (listView1.SelectedItems.Count == 1)
                 {
                     string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
                     int NRO_SOC = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);

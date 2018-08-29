@@ -4067,12 +4067,12 @@ namespace SOCIOS
                    break;
 
                case "BonoOdontologico":
-                    SOCIOS.bono.Odontologia.Selector_Bono_Odontologia sbo = new bono.Odontologia.Selector_Bono_Odontologia(VGlobales.vp_Numero, VGlobales.vp_Depuracion, vp_barra.ToString(), vp_nro_soc.ToString(), vp_nro_dep.ToString());
+                    SOCIOS.bono.Odontologia.Selector_Bono_Odontologia sbo = new bono.Odontologia.Selector_Bono_Odontologia(VGlobales.vp_Numero, VGlobales.vp_Depuracion, VGlobales.vp_Barra, vp_nro_soc.ToString(), vp_nro_dep.ToString());
                     sbo.ShowDialog();
                     sbo.Focus();
                     break;
 
-               case "BonoPasaje":
+                case "BonoPasaje":
                    {
                        try
                        {
