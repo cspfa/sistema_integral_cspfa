@@ -19,7 +19,7 @@ namespace SOCIOS.bono
         int Profesional;
         string Actividad;
         decimal Saldo=0;
-        int ID_ROL=0;
+        public int ID_ROL=0;
         public string nombreProfesional;
         public int idProfesional;
         int idBono;
@@ -28,13 +28,16 @@ namespace SOCIOS.bono
         public int TipoPago;
         public string MODO;
 
+
         List<Tratamiento> Tratamientos;
         List<PagoBono>    PagosBono;
         string            formaPago;
         string TIPO;
         SOCIOS.arancel arancelService = new arancel();
         decimal Recargo = 0;
+        public bool BONO_BLANCO=false;
         int SUBCODIGO = 0;
+        public int ID_REGISTRO = 0;
 
         
         public BonoOdontologico(DataGridViewSelectedRowCollection Personas,string pSocTitular,string pdepTitular,bool pMuestro):base(Personas,pSocTitular,pdepTitular,pMuestro)
@@ -47,6 +50,7 @@ namespace SOCIOS.bono
         {
 
             SecAct = pSecAct;
+            
             DESTINO = pSecAct;
             Turno = pTurno;
             TIPO = pTipo;
@@ -143,6 +147,24 @@ namespace SOCIOS.bono
         
         }
 
+        private string Nombre_profesional(int prof)
+
+        {
+
+            string Query = "SELECT NOMBRE FROM PROFESIONALES   WHERE ID=  " + prof.ToString();
+
+                    DataRow[] foundRows;
+                    foundRows = dlog.BO_EjecutoDataTable(Query).Select();
+
+                    if (foundRows.Length > 0)
+                    {
+                        return foundRows[0][0].ToString();
+
+                    }
+                    else
+                        return "";
+        }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
@@ -155,19 +177,30 @@ namespace SOCIOS.bono
 
                 try
                 {
-                    dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0,Decimal.Round(Recargo + Saldo,2) ,Saldo,Recargo , srvDatosSocio.CAB.NOMBRE,srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor,VGlobales.vp_role,CodInt,SUBCODIGO,"NO");
-                  
 
-                    idBono =   odontoService.GetMaxID(persona.NRO_SOCIO,persona.NRO_DEP,persona.BARRA);
+                    if (BONO_BLANCO) //27-08-2018 si el bono es blanco, hay que hacerle un update
+                    {
+                        dlog.UpdateOdontologico(ID_REGISTRO, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO");
+                        idBono = ID_REGISTRO;
+                    }
+                    else
+                    {
+                        dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO");
+                        idBono = odontoService.GetMaxID(persona.NRO_SOCIO, persona.NRO_DEP, persona.BARRA);
+                     }
+
+                  
                     if (idBono != 0)
                     {
                         // Preparo el Bono Para el Pago y Grabo sus tratamientos
 
-
                         bntImprimir.Visible = true;
                         this.GrabarTratamientos();
+                       if (!BONO_BLANCO)
+                       {
                         ID_ROL = odontoService.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CodInt);
                         dlog.Seteo_Id_ROL(idBono, ID_ROL);
+                       }
                         this.GrabarPagos();
 
                         
@@ -211,6 +244,11 @@ namespace SOCIOS.bono
             string fPago = FormaPagoBono();
             if (fPago.Length > 0)
             {
+                if (nombreProfesional==null)
+                {
+                    nombreProfesional = Nombre_profesional(idProfesional);
+                }
+
                 ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text));
                 rb.ShowDialog();
                 rb.Focus();

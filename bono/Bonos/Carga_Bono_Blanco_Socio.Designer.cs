@@ -36,8 +36,8 @@
             this.dpDesde = new System.Windows.Forms.DateTimePicker();
             this.gpFecha = new System.Windows.Forms.GroupBox();
             this.gpID = new System.Windows.Forms.GroupBox();
-            this.tbID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tbID = new System.Windows.Forms.TextBox();
             this.cbFecha = new System.Windows.Forms.CheckBox();
             this.cbID = new System.Windows.Forms.CheckBox();
             this.Refrescar = new System.Windows.Forms.Button();
@@ -54,6 +54,7 @@
             this.dgvDatos.Size = new System.Drawing.Size(337, 214);
             this.dgvDatos.TabIndex = 0;
             this.dgvDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellClick);
+            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
             // btn_Bono
             // 
@@ -126,13 +127,6 @@
             this.gpID.Text = "Filtrar por ID";
             this.gpID.Visible = false;
             // 
-            // tbID
-            // 
-            this.tbID.Location = new System.Drawing.Point(90, 19);
-            this.tbID.Name = "tbID";
-            this.tbID.Size = new System.Drawing.Size(32, 20);
-            this.tbID.TabIndex = 0;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -142,6 +136,13 @@
             this.label3.TabIndex = 85;
             this.label3.Text = "SECUENCIA";
             this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // tbID
+            // 
+            this.tbID.Location = new System.Drawing.Point(90, 19);
+            this.tbID.Name = "tbID";
+            this.tbID.Size = new System.Drawing.Size(32, 20);
+            this.tbID.TabIndex = 0;
             // 
             // cbFecha
             // 
