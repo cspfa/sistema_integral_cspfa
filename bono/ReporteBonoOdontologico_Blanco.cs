@@ -66,9 +66,10 @@ namespace SOCIOS.bono
             //Codigo de Barra
        
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[1];
+            ReportParameter[] parameters = new ReportParameter[2];
             //Establecemos el valor de los parámetros
        
+
      
           
             parameters[0] = new ReportParameter("ID", ID.ToString());
@@ -76,8 +77,9 @@ namespace SOCIOS.bono
           
 
             this.reportViewer.LocalReport.SetParameters(parameters);
-            reportViewer.LocalReport.DataSources.Clear();
-            reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", ds));
+            //reportViewer.LocalReport.DataSources.Clear();
+
+            //reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", ds));
 
            
             this.reportViewer.RefreshReport();

@@ -9,49 +9,6 @@
       <rd:DataSourceID>ff8c7238-0d75-4c4f-b213-49da8b777c4b</rd:DataSourceID>
     </DataSource>
   </DataSources>
-  <DataSets>
-    <DataSet Name="DataSet1">
-      <Fields>
-        <Field Name="CodCp">
-          <DataField>CodCp</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="CodInt">
-          <DataField>CodInt</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Descripcion">
-          <DataField>Descripcion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Monto">
-          <DataField>Monto</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="SecAct">
-          <DataField>SecAct</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="Secuencia">
-          <DataField>Secuencia</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-      </Fields>
-      <Query>
-        <DataSourceName>SOCIOSbono</DataSourceName>
-        <CommandText>/* Local Query */</CommandText>
-      </Query>
-      <rd:DataSetInfo>
-        <rd:DataSetName>SOCIOS.bono</rd:DataSetName>
-        <rd:TableName>Tratamiento</rd:TableName>
-        <rd:ObjectDataSourceType>SOCIOS.bono.Tratamiento, SOCIOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
-      </rd:DataSetInfo>
-    </DataSet>
-  </DataSets>
   <Body>
     <ReportItems>
       <Textbox Name="Textbox10">
@@ -308,135 +265,6 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Tablix Name="Tablix2">
-        <TablixBody>
-          <TablixColumns>
-            <TablixColumn>
-              <Width>3.38012in</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>3.15982in</Width>
-            </TablixColumn>
-          </TablixColumns>
-          <TablixRows>
-            <TablixRow>
-              <Height>0.23959in</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox26">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>TRATAMIENTO</Value>
-                              <Style>
-                                <FontFamily>Courier New</FontFamily>
-                                <FontSize>7pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontFamily>Courier New</FontFamily>
-                                <FontSize>7pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox26</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox28">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>MONTO</Value>
-                              <Style>
-                                <FontFamily>Courier New</FontFamily>
-                                <FontSize>7pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox28</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>LightGrey</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-          </TablixRows>
-        </TablixBody>
-        <TablixColumnHierarchy>
-          <TablixMembers>
-            <TablixMember />
-            <TablixMember />
-          </TablixMembers>
-        </TablixColumnHierarchy>
-        <TablixRowHierarchy>
-          <TablixMembers>
-            <TablixMember />
-          </TablixMembers>
-        </TablixRowHierarchy>
-        <DataSetName>DataSet1</DataSetName>
-        <Top>3.3386in</Top>
-        <Left>0.02083in</Left>
-        <Height>0.23959in</Height>
-        <Width>6.53994in</Width>
-        <ZIndex>6</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-          <FontFamily>Courier New</FontFamily>
-          <FontSize>12pt</FontSize>
-        </Style>
-      </Tablix>
       <Textbox Name="Textbox30">
         <KeepTogether>true</KeepTogether>
         <Paragraphs>
@@ -471,7 +299,7 @@
         <Left>1.89235in</Left>
         <Height>0.21181in</Height>
         <Width>1.96876in</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -517,7 +345,7 @@
         <Left>1.89582in</Left>
         <Height>0.21181in</Height>
         <Width>1.96876in</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -562,7 +390,7 @@
         <Left>0.02777in</Left>
         <Height>0.21181in</Height>
         <Width>6.90779in</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -595,7 +423,7 @@
         <Left>0.02777in</Left>
         <Height>0.21181in</Height>
         <Width>6.90777in</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -641,7 +469,7 @@
         <Left>0.03124in</Left>
         <Height>0.21181in</Height>
         <Width>3.58333in</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -674,7 +502,7 @@
         <Left>3.68401in</Left>
         <Height>0.21181in</Height>
         <Width>3.25153in</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -706,7 +534,7 @@
         <Left>0.01735in</Left>
         <Height>0.21181in</Height>
         <Width>6.9182in</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -764,7 +592,7 @@
         <Left>0.03124in</Left>
         <Height>0.38541in</Height>
         <Width>6.87005in</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -836,7 +664,7 @@
         <Left>0.02083in</Left>
         <Height>0.44793in</Height>
         <Width>6.93555in</Width>
-        <ZIndex>15</ZIndex>
+        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -873,7 +701,7 @@
         <Left>0.09206in</Left>
         <Height>0.19371in</Height>
         <Width>1.94069in</Width>
-        <ZIndex>16</ZIndex>
+        <ZIndex>15</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -892,7 +720,7 @@
         <Left>0.91333in</Left>
         <Height>3.07292in</Height>
         <Width>5.09375in</Width>
-        <ZIndex>17</ZIndex>
+        <ZIndex>16</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -949,7 +777,7 @@
         <Left>0.15775in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>18</ZIndex>
+        <ZIndex>17</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1010,7 +838,7 @@
         <Left>2.33484in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>19</ZIndex>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1071,7 +899,7 @@
         <Left>4.564in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>20</ZIndex>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1087,7 +915,7 @@
         <Left>1.24494in</Left>
         <Height>0in</Height>
         <Width>4.50516in</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1099,7 +927,7 @@
         <Left>0.02777in</Left>
         <Height>0in</Height>
         <Width>6.51785in</Width>
-        <ZIndex>22</ZIndex>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1111,7 +939,7 @@
         <Left>0.03124in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1119,11 +947,11 @@
         </Style>
       </Line>
       <Line Name="Line5">
-        <Top>3.5175in</Top>
+        <Top>3.41333in</Top>
         <Left>6.56077in</Left>
-        <Height>1.14583in</Height>
+        <Height>1.25in</Height>
         <Width>0in</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>23</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1131,11 +959,11 @@
         </Style>
       </Line>
       <Line Name="Line6">
-        <Top>3.3386in</Top>
+        <Top>3.41333in</Top>
         <Left>0.03124in</Left>
-        <Height>1.32473in</Height>
+        <Height>1.25in</Height>
         <Width>0in</Width>
-        <ZIndex>25</ZIndex>
+        <ZIndex>24</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1147,7 +975,7 @@
         <Left>0.02777in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>26</ZIndex>
+        <ZIndex>25</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1159,7 +987,7 @@
         <Left>0.03124in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>27</ZIndex>
+        <ZIndex>26</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1171,7 +999,7 @@
         <Left>0.03124in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>28</ZIndex>
+        <ZIndex>27</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1183,7 +1011,7 @@
         <Left>0.01609in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>29</ZIndex>
+        <ZIndex>28</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1191,11 +1019,11 @@
         </Style>
       </Line>
       <Line Name="Line11">
-        <Top>3.3386in</Top>
+        <Top>3.41333in</Top>
         <Left>3.49752in</Left>
-        <Height>1.32473in</Height>
+        <Height>1.25in</Height>
         <Width>0in</Width>
-        <ZIndex>30</ZIndex>
+        <ZIndex>29</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1221,7 +1049,7 @@
         <Left>2.07095in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>31</ZIndex>
+        <ZIndex>30</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1251,7 +1079,7 @@
         <Left>2.07095in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>32</ZIndex>
+        <ZIndex>31</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1262,6 +1090,75 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Rectangle Name="Rectangle1">
+        <ReportItems>
+          <Rectangle Name="Rectangle2">
+            <ReportItems>
+              <Line Name="Line12">
+                <Height>0in</Height>
+                <Width>6.51785in</Width>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                  </Border>
+                </Style>
+              </Line>
+              <Textbox Name="Textbox2">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>                 TRATAMIENTO                                                               VALOR</Value>
+                        <Style />
+                      </TextRun>
+                    </TextRuns>
+                    <Style />
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox1</rd:DefaultName>
+                <Top>0.04167in</Top>
+                <Left>0.11483in</Left>
+                <Height>0.25in</Height>
+                <Width>6.03074in</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>0in</Top>
+            <Height>0.35416in</Height>
+            <Width>6.51785in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>LightGrey</BackgroundColor>
+            </Style>
+          </Rectangle>
+        </ReportItems>
+        <KeepTogether>true</KeepTogether>
+        <Top>3.37167in</Top>
+        <Left>0.04292in</Left>
+        <Height>0.35416in</Height>
+        <Width>6.51785in</Width>
+        <ZIndex>32</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>LightGrey</BackgroundColor>
+        </Style>
+      </Rectangle>
     </ReportItems>
     <Height>9.86125in</Height>
     <Style />
