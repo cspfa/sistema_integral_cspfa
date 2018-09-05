@@ -176,8 +176,7 @@ namespace SOCIOS.Turismo
         {
             string query = "SELECT ID, NOMBRE DETALLE FROM " + Tabla + " WHERE coalesce(F_BAJA,'1') = '1'";
 
-            
-            
+                      
            
 
 
@@ -193,10 +192,6 @@ namespace SOCIOS.Turismo
         public void UpdateComboHotelPropio(ComboBox cbCombo)
         {
             string query = "SELECT ID, NOMBRE DETALLE FROM HOTEL WHERE coalesce(F_BAJA,'1') = '1' AND PROPIO=1";
-
-
-
-
 
 
             cbCombo.DataSource = null;
@@ -683,6 +678,30 @@ namespace SOCIOS.Turismo
 
         }
 
+
+        public int Punto_Venta_Filial(int ID, bool Afip)
+        {
+
+            string QUERY = "select ";
+            if (Afip)
+                QUERY = QUERY + " pto_vta_c ";
+            else
+                QUERY = QUERY + " pto_vta_b ";
+
+            QUERY = QUERY + " FROM TURISMO_FILIALES WHERE ID =  " + ID.ToString();
+
+       
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                return Int32.Parse(foundRows[0][0].ToString().Trim());
+            }
+            else
+                return 0;
+
+        }
         
 
     }

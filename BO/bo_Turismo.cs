@@ -1492,7 +1492,7 @@ namespace SOCIOS
         #region Turismo
 
 
-        public void InsertBonoTurismo(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR, string ROL, int CODINT, int SUBCOD,string BONO_BLANCO,int DIRECTIVO,int BONO_FILIAL,string NRO_BONO_FILIAL,int TIPO_HABITACION,int CANTIDAD_HABITACION)
+        public void InsertBonoTurismo(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR, string ROL, int CODINT, int SUBCOD,string BONO_BLANCO,int DIRECTIVO,int BONO_FILIAL,string NRO_BONO_FILIAL,string NRO_FACTURA_FILIAL,string PUNTO_VENTA,int TIPO_HABITACION,int CANTIDAD_HABITACION)
         {
             db resultado = new db();
 
@@ -1547,6 +1547,8 @@ namespace SOCIOS
             vector_contenidos.Add(NRO_BONO_FILIAL);
             vector_contenidos.Add(TIPO_HABITACION);
             vector_contenidos.Add(CANTIDAD_HABITACION);
+            vector_contenidos.Add(NRO_FACTURA_FILIAL);
+            vector_contenidos.Add(PUNTO_VENTA);
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -1598,6 +1600,8 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
 
             ArrayList vector_nombres = new ArrayList();
 
@@ -1652,13 +1656,16 @@ namespace SOCIOS
             
             vector_nombres.Add("@TIPO_HABITACION");
             vector_nombres.Add("@CANTIDAD_HABITACION");
+            vector_nombres.Add("@NRO_FACTURA_FILIAL");
+            vector_nombres.Add("@PUNTO_VENTA");
+
             string vprocedure = "P_BONO_TURISMO_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
         }
 
 
-        public void UpdateBonoTurismo(int ID,int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR, string ROL, int CODINT, int SUBCOD, string BONO_BLANCO, int DIRECTIVO,int BONO_FILIAL,string NRO_BONO_FILIAL)
+        public void UpdateBonoTurismo(int ID,int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR, string ROL, int CODINT, int SUBCOD, string BONO_BLANCO, int DIRECTIVO,int BONO_FILIAL,string NRO_BONO_FILIAL,string NRO_FACTURA_FILIAL,string PUNTO_VENTA)
         {
             db resultado = new db();
 
@@ -1711,6 +1718,9 @@ namespace SOCIOS
             vector_contenidos.Add(DIRECTIVO);
             vector_contenidos.Add(BONO_FILIAL);
             vector_contenidos.Add(NRO_BONO_FILIAL);
+            vector_contenidos.Add(NRO_FACTURA_FILIAL);
+            vector_contenidos.Add(PUNTO_VENTA);
+
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -1760,6 +1770,9 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
 
             ArrayList vector_nombres = new ArrayList();
 
@@ -1811,6 +1824,9 @@ namespace SOCIOS
             vector_nombres.Add("@PIN_COMISION_DIRECTIVA");
             vector_nombres.Add("@PIN_NRO_BONO_FILIAL");
             vector_nombres.Add("@PIN_BONO_FILIAL");
+            vector_nombres.Add("@PIN_NRO_FACTURA_FILIAL");
+            vector_nombres.Add("@PIN_PUNTO_VENTA");
+
 
             string vprocedure = "P_BONO_TURISMO_U";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
