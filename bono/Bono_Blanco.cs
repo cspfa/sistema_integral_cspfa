@@ -58,9 +58,6 @@ namespace SOCIOS.bono.Bonos
         private void Imprimir_Click(object sender, EventArgs e)
         {
             int CODINT = Int32.Parse(cbCODIGOS.SelectedValue.ToString());
-
-
-
             string Nombre = this.srvDatosSocio.CAB.NOMBRE;
             string Apellido = this.srvDatosSocio.CAB.APELLIDO;
             string Dni = this.srvDatosSocio.CAB.Dni;
@@ -76,7 +73,7 @@ namespace SOCIOS.bono.Bonos
                 TIPO = "HOT";
             if (YaGrabado == false)
             {
-                dlog.InsertBonoTurismo(Nro_Socio_titular, Nro_Socio, Nro_Dep, Nro_Dep_Titular, 0, System.DateTime.Now, 0, 0, 0, 0, 0, 0, Nombre, Apellido, Dni, fechaNacimiento, "", Telefono, "", this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, "", "", 0, "", "", VGlobales.vp_username, TIPO, 0, 0, "", 0, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, 0,"SI",0,0,"","","",0,0);
+                dlog.InsertBonoTurismo(Nro_Socio_titular, Nro_Socio, Nro_Dep, Nro_Dep_Titular, 0, System.DateTime.Now, 0, 0, 0, 0, 0, 0, Nombre, Apellido, Dni, fechaNacimiento, "", Telefono, "", this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, "", "", 0, "", "", VGlobales.vp_username, TIPO, 0, 0, "", 0, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, 0,"SI");
                 YaGrabado = true;
             }
             int ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), TIPO);
@@ -91,6 +88,7 @@ namespace SOCIOS.bono.Bonos
             {
                 ReporteBonoHotel_Blanco bb = new ReporteBonoHotel_Blanco(ID_ROL, ID, System.DateTime.Now, srvDatosSocio.CAB, VGlobales.vp_role.TrimEnd().TrimStart());
                 bb.ShowDialog();
+
 
             }
             else if (TIPO == "PAQ")

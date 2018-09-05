@@ -42,11 +42,11 @@ namespace SOCIOS.bono
                item.DES = "ODONTO GENERAL-TAVELLA";
                lista.Add(item);
 
-
+                item = new Codigo_Dto_Bono();
                item.CODIGO = Int32.Parse(Config.getValor("ODON-GENERAL-ANER", "COD_ODONTO", 2));
                item.DES = "ODONTO GENERAL-ANER";
                lista.Add(item);
-
+              item = new Codigo_Dto_Bono();
                item.CODIGO = Int32.Parse(Config.getValor("ODON-GENERAL-VILLAGRAN", "COD_ODONTO", 2));
                item.DES = "ODONTO GENERAL-VILLAGRAN";
                lista.Add(item);

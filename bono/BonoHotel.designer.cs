@@ -41,25 +41,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
-            this.titPtoVta = new System.Windows.Forms.Label();
-            this.cbAfip = new System.Windows.Forms.CheckBox();
-            this.cbRecibo = new System.Windows.Forms.CheckBox();
-            this.lbPtoVta = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.tbCheckIn = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbCheckOut = new System.Windows.Forms.TextBox();
-            this.lbLateCHK = new System.Windows.Forms.Label();
-            this.StatNumeroHabitacion = new System.Windows.Forms.TextBox();
-            this.lbCantidadHabitacion = new System.Windows.Forms.Label();
-            this.StatTipoHabitacion = new System.Windows.Forms.ComboBox();
-            this.tbReciboFilial = new System.Windows.Forms.TextBox();
-            this.lbStatTipoHabitacion = new System.Windows.Forms.Label();
-            this.lbFilial = new System.Windows.Forms.Label();
-            this.comboFilial = new System.Windows.Forms.ComboBox();
-            this.cbFilial = new System.Windows.Forms.CheckBox();
-            this.lbComisionDirectiva = new System.Windows.Forms.Label();
-            this.cbComisionDirectiva = new System.Windows.Forms.ComboBox();
             this.lnkInfoHabitacion = new System.Windows.Forms.LinkLabel();
             this.tbContacto = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -143,7 +124,7 @@
             // 
             // AnularBono
             // 
-            this.AnularBono.Location = new System.Drawing.Point(826, 638);
+            this.AnularBono.Location = new System.Drawing.Point(826, 575);
             this.AnularBono.Name = "AnularBono";
             this.AnularBono.Size = new System.Drawing.Size(114, 30);
             this.AnularBono.TabIndex = 136;
@@ -153,7 +134,7 @@
             // 
             // bntImprimir
             // 
-            this.bntImprimir.Location = new System.Drawing.Point(826, 600);
+            this.bntImprimir.Location = new System.Drawing.Point(826, 537);
             this.bntImprimir.Name = "bntImprimir";
             this.bntImprimir.Size = new System.Drawing.Size(114, 30);
             this.bntImprimir.TabIndex = 135;
@@ -164,7 +145,7 @@
             // 
             // Grabar
             // 
-            this.Grabar.Location = new System.Drawing.Point(826, 562);
+            this.Grabar.Location = new System.Drawing.Point(826, 499);
             this.Grabar.Name = "Grabar";
             this.Grabar.Size = new System.Drawing.Size(114, 30);
             this.Grabar.TabIndex = 134;
@@ -194,7 +175,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(549, 357);
+            this.label10.Location = new System.Drawing.Point(536, 357);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(72, 13);
             this.label10.TabIndex = 143;
@@ -211,25 +192,6 @@
             // 
             // gpDatos
             // 
-            this.gpDatos.Controls.Add(this.titPtoVta);
-            this.gpDatos.Controls.Add(this.cbAfip);
-            this.gpDatos.Controls.Add(this.cbRecibo);
-            this.gpDatos.Controls.Add(this.lbPtoVta);
-            this.gpDatos.Controls.Add(this.label14);
-            this.gpDatos.Controls.Add(this.tbCheckIn);
-            this.gpDatos.Controls.Add(this.label13);
-            this.gpDatos.Controls.Add(this.tbCheckOut);
-            this.gpDatos.Controls.Add(this.lbLateCHK);
-            this.gpDatos.Controls.Add(this.StatNumeroHabitacion);
-            this.gpDatos.Controls.Add(this.lbCantidadHabitacion);
-            this.gpDatos.Controls.Add(this.StatTipoHabitacion);
-            this.gpDatos.Controls.Add(this.tbReciboFilial);
-            this.gpDatos.Controls.Add(this.lbStatTipoHabitacion);
-            this.gpDatos.Controls.Add(this.lbFilial);
-            this.gpDatos.Controls.Add(this.comboFilial);
-            this.gpDatos.Controls.Add(this.cbFilial);
-            this.gpDatos.Controls.Add(this.lbComisionDirectiva);
-            this.gpDatos.Controls.Add(this.cbComisionDirectiva);
             this.gpDatos.Controls.Add(this.lnkInfoHabitacion);
             this.gpDatos.Controls.Add(this.tbContacto);
             this.gpDatos.Controls.Add(this.label12);
@@ -261,194 +223,10 @@
             this.gpDatos.Controls.Add(this.label1);
             this.gpDatos.Location = new System.Drawing.Point(8, 401);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(812, 245);
+            this.gpDatos.Size = new System.Drawing.Size(812, 236);
             this.gpDatos.TabIndex = 137;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
-            // 
-            // titPtoVta
-            // 
-            this.titPtoVta.AutoSize = true;
-            this.titPtoVta.ForeColor = System.Drawing.Color.Chocolate;
-            this.titPtoVta.Location = new System.Drawing.Point(373, 220);
-            this.titPtoVta.Name = "titPtoVta";
-            this.titPtoVta.Size = new System.Drawing.Size(53, 13);
-            this.titPtoVta.TabIndex = 176;
-            this.titPtoVta.Text = "PTO VTA";
-            this.titPtoVta.Visible = false;
-            // 
-            // cbAfip
-            // 
-            this.cbAfip.AutoSize = true;
-            this.cbAfip.Location = new System.Drawing.Point(259, 219);
-            this.cbAfip.Name = "cbAfip";
-            this.cbAfip.Size = new System.Drawing.Size(110, 17);
-            this.cbAfip.TabIndex = 175;
-            this.cbAfip.Text = "Comprobante Afip";
-            this.cbAfip.UseVisualStyleBackColor = true;
-            this.cbAfip.Visible = false;
-            this.cbAfip.CheckedChanged += new System.EventHandler(this.cbAfip_CheckedChanged);
-            // 
-            // cbRecibo
-            // 
-            this.cbRecibo.AutoSize = true;
-            this.cbRecibo.Location = new System.Drawing.Point(259, 199);
-            this.cbRecibo.Name = "cbRecibo";
-            this.cbRecibo.Size = new System.Drawing.Size(60, 17);
-            this.cbRecibo.TabIndex = 174;
-            this.cbRecibo.Text = "Recibo";
-            this.cbRecibo.UseVisualStyleBackColor = true;
-            this.cbRecibo.Visible = false;
-            this.cbRecibo.CheckedChanged += new System.EventHandler(this.cbRecibo_CheckedChanged);
-            // 
-            // lbPtoVta
-            // 
-            this.lbPtoVta.AutoSize = true;
-            this.lbPtoVta.ForeColor = System.Drawing.Color.Chocolate;
-            this.lbPtoVta.Location = new System.Drawing.Point(432, 219);
-            this.lbPtoVta.Name = "lbPtoVta";
-            this.lbPtoVta.Size = new System.Drawing.Size(10, 13);
-            this.lbPtoVta.TabIndex = 173;
-            this.lbPtoVta.Text = "-";
-            this.lbPtoVta.Visible = false;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(424, 194);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(366, 13);
-            this.label14.TabIndex = 147;
-            this.label14.Text = "HORARIOS CHECK/OUT, SI DIFIEREN A LOS REGULARES DEL HOTEL";
-            this.label14.Visible = false;
-            // 
-            // tbCheckIn
-            // 
-            this.tbCheckIn.Location = new System.Drawing.Point(645, 216);
-            this.tbCheckIn.Name = "tbCheckIn";
-            this.tbCheckIn.Size = new System.Drawing.Size(39, 20);
-            this.tbCheckIn.TabIndex = 172;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(582, 221);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 13);
-            this.label13.TabIndex = 171;
-            this.label13.Text = "CHECK IN";
-            this.label13.Visible = false;
-            // 
-            // tbCheckOut
-            // 
-            this.tbCheckOut.Location = new System.Drawing.Point(765, 217);
-            this.tbCheckOut.Name = "tbCheckOut";
-            this.tbCheckOut.Size = new System.Drawing.Size(39, 20);
-            this.tbCheckOut.TabIndex = 170;
-            // 
-            // lbLateCHK
-            // 
-            this.lbLateCHK.AutoSize = true;
-            this.lbLateCHK.Location = new System.Drawing.Point(690, 221);
-            this.lbLateCHK.Name = "lbLateCHK";
-            this.lbLateCHK.Size = new System.Drawing.Size(69, 13);
-            this.lbLateCHK.TabIndex = 169;
-            this.lbLateCHK.Text = "CHECK OUT";
-            // 
-            // StatNumeroHabitacion
-            // 
-            this.StatNumeroHabitacion.Location = new System.Drawing.Point(765, 130);
-            this.StatNumeroHabitacion.Name = "StatNumeroHabitacion";
-            this.StatNumeroHabitacion.Size = new System.Drawing.Size(25, 20);
-            this.StatNumeroHabitacion.TabIndex = 168;
-            this.StatNumeroHabitacion.Text = "1";
-            // 
-            // lbCantidadHabitacion
-            // 
-            this.lbCantidadHabitacion.AutoSize = true;
-            this.lbCantidadHabitacion.Location = new System.Drawing.Point(509, 133);
-            this.lbCantidadHabitacion.Name = "lbCantidadHabitacion";
-            this.lbCantidadHabitacion.Size = new System.Drawing.Size(86, 13);
-            this.lbCantidadHabitacion.TabIndex = 167;
-            this.lbCantidadHabitacion.Text = "HABITACIONES";
-            // 
-            // StatTipoHabitacion
-            // 
-            this.StatTipoHabitacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.StatTipoHabitacion.FormattingEnabled = true;
-            this.StatTipoHabitacion.Location = new System.Drawing.Point(598, 109);
-            this.StatTipoHabitacion.Name = "StatTipoHabitacion";
-            this.StatTipoHabitacion.Size = new System.Drawing.Size(193, 21);
-            this.StatTipoHabitacion.TabIndex = 148;
-            // 
-            // tbReciboFilial
-            // 
-            this.tbReciboFilial.Location = new System.Drawing.Point(526, 217);
-            this.tbReciboFilial.Name = "tbReciboFilial";
-            this.tbReciboFilial.Size = new System.Drawing.Size(50, 20);
-            this.tbReciboFilial.TabIndex = 166;
-            this.tbReciboFilial.Visible = false;
-            // 
-            // lbStatTipoHabitacion
-            // 
-            this.lbStatTipoHabitacion.AutoSize = true;
-            this.lbStatTipoHabitacion.Location = new System.Drawing.Point(523, 113);
-            this.lbStatTipoHabitacion.Name = "lbStatTipoHabitacion";
-            this.lbStatTipoHabitacion.Size = new System.Drawing.Size(72, 13);
-            this.lbStatTipoHabitacion.TabIndex = 147;
-            this.lbStatTipoHabitacion.Text = "HABITACION";
-            // 
-            // lbFilial
-            // 
-            this.lbFilial.AutoSize = true;
-            this.lbFilial.Location = new System.Drawing.Point(465, 221);
-            this.lbFilial.Name = "lbFilial";
-            this.lbFilial.Size = new System.Drawing.Size(55, 13);
-            this.lbFilial.TabIndex = 165;
-            this.lbFilial.Text = "NUMERO";
-            this.lbFilial.Visible = false;
-            // 
-            // comboFilial
-            // 
-            this.comboFilial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboFilial.FormattingEnabled = true;
-            this.comboFilial.Location = new System.Drawing.Point(57, 213);
-            this.comboFilial.Name = "comboFilial";
-            this.comboFilial.Size = new System.Drawing.Size(193, 21);
-            this.comboFilial.TabIndex = 147;
-            this.comboFilial.Visible = false;
-            this.comboFilial.SelectedIndexChanged += new System.EventHandler(this.comboFilial_SelectedIndexChanged);
-            // 
-            // cbFilial
-            // 
-            this.cbFilial.AutoSize = true;
-            this.cbFilial.Location = new System.Drawing.Point(5, 215);
-            this.cbFilial.Name = "cbFilial";
-            this.cbFilial.Size = new System.Drawing.Size(46, 17);
-            this.cbFilial.TabIndex = 164;
-            this.cbFilial.Text = "Filial";
-            this.cbFilial.UseVisualStyleBackColor = true;
-            this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
-            // 
-            // lbComisionDirectiva
-            // 
-            this.lbComisionDirectiva.AutoSize = true;
-            this.lbComisionDirectiva.Location = new System.Drawing.Point(207, 132);
-            this.lbComisionDirectiva.Name = "lbComisionDirectiva";
-            this.lbComisionDirectiva.Size = new System.Drawing.Size(78, 13);
-            this.lbComisionDirectiva.TabIndex = 163;
-            this.lbComisionDirectiva.Text = "AUTORIZADO";
-            // 
-            // cbComisionDirectiva
-            // 
-            this.cbComisionDirectiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbComisionDirectiva.FormattingEnabled = true;
-            this.cbComisionDirectiva.Location = new System.Drawing.Point(291, 130);
-            this.cbComisionDirectiva.Name = "cbComisionDirectiva";
-            this.cbComisionDirectiva.Size = new System.Drawing.Size(182, 21);
-            this.cbComisionDirectiva.TabIndex = 162;
-            this.cbComisionDirectiva.Visible = false;
             // 
             // lnkInfoHabitacion
             // 
@@ -463,15 +241,15 @@
             // 
             // tbContacto
             // 
-            this.tbContacto.Location = new System.Drawing.Point(74, 129);
+            this.tbContacto.Location = new System.Drawing.Point(100, 133);
             this.tbContacto.Name = "tbContacto";
-            this.tbContacto.Size = new System.Drawing.Size(127, 20);
+            this.tbContacto.Size = new System.Drawing.Size(193, 20);
             this.tbContacto.TabIndex = 159;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 133);
+            this.label12.Location = new System.Drawing.Point(21, 136);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(66, 13);
             this.label12.TabIndex = 158;
@@ -505,7 +283,7 @@
             // lbMenores
             // 
             this.lbMenores.AutoSize = true;
-            this.lbMenores.Location = new System.Drawing.Point(192, 110);
+            this.lbMenores.Location = new System.Drawing.Point(218, 110);
             this.lbMenores.Name = "lbMenores";
             this.lbMenores.Size = new System.Drawing.Size(57, 13);
             this.lbMenores.TabIndex = 154;
@@ -514,7 +292,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(699, 16);
+            this.label11.Location = new System.Drawing.Point(662, 16);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(52, 13);
             this.label11.TabIndex = 153;
@@ -523,7 +301,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 109);
+            this.label8.Location = new System.Drawing.Point(22, 110);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 13);
             this.label8.TabIndex = 152;
@@ -531,7 +309,7 @@
             // 
             // tbNroHabitacion
             // 
-            this.tbNroHabitacion.Location = new System.Drawing.Point(74, 106);
+            this.tbNroHabitacion.Location = new System.Drawing.Point(100, 106);
             this.tbNroHabitacion.Name = "tbNroHabitacion";
             this.tbNroHabitacion.Size = new System.Drawing.Size(100, 20);
             this.tbNroHabitacion.TabIndex = 151;
@@ -590,7 +368,7 @@
             // lblSaldoTotal
             // 
             this.lblSaldoTotal.AutoSize = true;
-            this.lblSaldoTotal.Location = new System.Drawing.Point(778, 48);
+            this.lblSaldoTotal.Location = new System.Drawing.Point(741, 48);
             this.lblSaldoTotal.Name = "lblSaldoTotal";
             this.lblSaldoTotal.Size = new System.Drawing.Size(13, 13);
             this.lblSaldoTotal.TabIndex = 147;
@@ -616,7 +394,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 153);
+            this.label7.Location = new System.Drawing.Point(48, 161);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
             this.label7.TabIndex = 146;
@@ -624,16 +402,16 @@
             // 
             // tbObs
             // 
-            this.tbObs.Location = new System.Drawing.Point(55, 159);
+            this.tbObs.Location = new System.Drawing.Point(99, 161);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
-            this.tbObs.Size = new System.Drawing.Size(735, 32);
+            this.tbObs.Size = new System.Drawing.Size(696, 50);
             this.tbObs.TabIndex = 145;
             // 
             // lbInfoDias
             // 
             this.lbInfoDias.AutoSize = true;
-            this.lbInfoDias.Location = new System.Drawing.Point(777, 16);
+            this.lbInfoDias.Location = new System.Drawing.Point(740, 16);
             this.lbInfoDias.Name = "lbInfoDias";
             this.lbInfoDias.Size = new System.Drawing.Size(13, 13);
             this.lbInfoDias.TabIndex = 139;
@@ -642,7 +420,7 @@
             // fpago
             // 
             this.fpago.AutoSize = true;
-            this.fpago.Location = new System.Drawing.Point(274, 110);
+            this.fpago.Location = new System.Drawing.Point(300, 110);
             this.fpago.Name = "fpago";
             this.fpago.Size = new System.Drawing.Size(67, 13);
             this.fpago.TabIndex = 120;
@@ -659,7 +437,7 @@
             // 
             // pagBono
             // 
-            this.pagBono.Location = new System.Drawing.Point(702, 75);
+            this.pagBono.Location = new System.Drawing.Point(665, 75);
             this.pagBono.Name = "pagBono";
             this.pagBono.Size = new System.Drawing.Size(75, 23);
             this.pagBono.TabIndex = 114;
@@ -670,7 +448,7 @@
             // lbTituloTotal
             // 
             this.lbTituloTotal.AutoSize = true;
-            this.lbTituloTotal.Location = new System.Drawing.Point(699, 48);
+            this.lbTituloTotal.Location = new System.Drawing.Point(662, 48);
             this.lbTituloTotal.Name = "lbTituloTotal";
             this.lbTituloTotal.Size = new System.Drawing.Size(42, 13);
             this.lbTituloTotal.TabIndex = 119;
@@ -716,7 +494,7 @@
             // 
             this.lbCartelHabitacion.AutoSize = true;
             this.lbCartelHabitacion.ForeColor = System.Drawing.Color.Red;
-            this.lbCartelHabitacion.Location = new System.Drawing.Point(10, 385);
+            this.lbCartelHabitacion.Location = new System.Drawing.Point(191, 385);
             this.lbCartelHabitacion.Name = "lbCartelHabitacion";
             this.lbCartelHabitacion.Size = new System.Drawing.Size(412, 13);
             this.lbCartelHabitacion.TabIndex = 146;
@@ -727,7 +505,7 @@
             // BonoHotel
             // 
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(957, 749);
+            this.ClientSize = new System.Drawing.Size(957, 666);
             this.Controls.Add(this.lbCartelHabitacion);
             this.Controls.Add(this.cbLateCheck);
             this.Controls.Add(this.Deselecionar);
@@ -798,24 +576,5 @@
         private System.Windows.Forms.TextBox tbContacto;
         private System.Windows.Forms.LinkLabel lnkInfoHabitacion;
         private System.Windows.Forms.Label lbCartelHabitacion;
-        private System.Windows.Forms.Label lbComisionDirectiva;
-        private System.Windows.Forms.ComboBox cbComisionDirectiva;
-        private System.Windows.Forms.TextBox tbReciboFilial;
-        private System.Windows.Forms.Label lbFilial;
-        private System.Windows.Forms.ComboBox comboFilial;
-        private System.Windows.Forms.CheckBox cbFilial;
-        private System.Windows.Forms.ComboBox StatTipoHabitacion;
-        private System.Windows.Forms.Label lbStatTipoHabitacion;
-        private System.Windows.Forms.TextBox StatNumeroHabitacion;
-        private System.Windows.Forms.Label lbCantidadHabitacion;
-        private System.Windows.Forms.TextBox tbCheckOut;
-        private System.Windows.Forms.Label lbLateCHK;
-        private System.Windows.Forms.TextBox tbCheckIn;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label lbPtoVta;
-        private System.Windows.Forms.CheckBox cbAfip;
-        private System.Windows.Forms.CheckBox cbRecibo;
-        private System.Windows.Forms.Label titPtoVta;
     }
 }
