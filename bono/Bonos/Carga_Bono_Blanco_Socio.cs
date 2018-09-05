@@ -299,7 +299,7 @@ namespace SOCIOS.bono.Bonos
         private void dgvDatos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ID = Int32.Parse(dgvDatos.SelectedRows[0].Cells[0].Value.ToString());
-            if (TIPO == "MEDICO")
+            if (TIPO == "MEDICO") 
             {
                 ID_ROL      = Int32.Parse(dgvDatos.SelectedRows[0].Cells[1].Value.ToString());
                 SECTACT     = Int32.Parse(dgvDatos.SelectedRows[0].Cells[3].Value.ToString());

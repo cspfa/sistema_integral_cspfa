@@ -41,6 +41,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.titPtoVta = new System.Windows.Forms.Label();
+            this.cbAfip = new System.Windows.Forms.CheckBox();
+            this.cbRecibo = new System.Windows.Forms.CheckBox();
+            this.lbPtoVta = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.tbCheckIn = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tbCheckOut = new System.Windows.Forms.TextBox();
             this.lbLateCHK = new System.Windows.Forms.Label();
             this.StatNumeroHabitacion = new System.Windows.Forms.TextBox();
@@ -83,9 +90,6 @@
             this.cbRegimen = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lbCartelHabitacion = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbCheckIn = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -207,6 +211,10 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.titPtoVta);
+            this.gpDatos.Controls.Add(this.cbAfip);
+            this.gpDatos.Controls.Add(this.cbRecibo);
+            this.gpDatos.Controls.Add(this.lbPtoVta);
             this.gpDatos.Controls.Add(this.label14);
             this.gpDatos.Controls.Add(this.tbCheckIn);
             this.gpDatos.Controls.Add(this.label13);
@@ -258,9 +266,83 @@
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
             // 
+            // titPtoVta
+            // 
+            this.titPtoVta.AutoSize = true;
+            this.titPtoVta.ForeColor = System.Drawing.Color.Chocolate;
+            this.titPtoVta.Location = new System.Drawing.Point(373, 220);
+            this.titPtoVta.Name = "titPtoVta";
+            this.titPtoVta.Size = new System.Drawing.Size(53, 13);
+            this.titPtoVta.TabIndex = 176;
+            this.titPtoVta.Text = "PTO VTA";
+            this.titPtoVta.Visible = false;
+            // 
+            // cbAfip
+            // 
+            this.cbAfip.AutoSize = true;
+            this.cbAfip.Location = new System.Drawing.Point(259, 219);
+            this.cbAfip.Name = "cbAfip";
+            this.cbAfip.Size = new System.Drawing.Size(110, 17);
+            this.cbAfip.TabIndex = 175;
+            this.cbAfip.Text = "Comprobante Afip";
+            this.cbAfip.UseVisualStyleBackColor = true;
+            this.cbAfip.Visible = false;
+            this.cbAfip.CheckedChanged += new System.EventHandler(this.cbAfip_CheckedChanged);
+            // 
+            // cbRecibo
+            // 
+            this.cbRecibo.AutoSize = true;
+            this.cbRecibo.Location = new System.Drawing.Point(259, 199);
+            this.cbRecibo.Name = "cbRecibo";
+            this.cbRecibo.Size = new System.Drawing.Size(60, 17);
+            this.cbRecibo.TabIndex = 174;
+            this.cbRecibo.Text = "Recibo";
+            this.cbRecibo.UseVisualStyleBackColor = true;
+            this.cbRecibo.Visible = false;
+            this.cbRecibo.CheckedChanged += new System.EventHandler(this.cbRecibo_CheckedChanged);
+            // 
+            // lbPtoVta
+            // 
+            this.lbPtoVta.AutoSize = true;
+            this.lbPtoVta.ForeColor = System.Drawing.Color.Chocolate;
+            this.lbPtoVta.Location = new System.Drawing.Point(432, 219);
+            this.lbPtoVta.Name = "lbPtoVta";
+            this.lbPtoVta.Size = new System.Drawing.Size(10, 13);
+            this.lbPtoVta.TabIndex = 173;
+            this.lbPtoVta.Text = "-";
+            this.lbPtoVta.Visible = false;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.ForeColor = System.Drawing.Color.Red;
+            this.label14.Location = new System.Drawing.Point(424, 194);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(366, 13);
+            this.label14.TabIndex = 147;
+            this.label14.Text = "HORARIOS CHECK/OUT, SI DIFIEREN A LOS REGULARES DEL HOTEL";
+            this.label14.Visible = false;
+            // 
+            // tbCheckIn
+            // 
+            this.tbCheckIn.Location = new System.Drawing.Point(645, 216);
+            this.tbCheckIn.Name = "tbCheckIn";
+            this.tbCheckIn.Size = new System.Drawing.Size(39, 20);
+            this.tbCheckIn.TabIndex = 172;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(582, 221);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(57, 13);
+            this.label13.TabIndex = 171;
+            this.label13.Text = "CHECK IN";
+            this.label13.Visible = false;
+            // 
             // tbCheckOut
             // 
-            this.tbCheckOut.Location = new System.Drawing.Point(725, 216);
+            this.tbCheckOut.Location = new System.Drawing.Point(765, 217);
             this.tbCheckOut.Name = "tbCheckOut";
             this.tbCheckOut.Size = new System.Drawing.Size(39, 20);
             this.tbCheckOut.TabIndex = 170;
@@ -268,7 +350,7 @@
             // lbLateCHK
             // 
             this.lbLateCHK.AutoSize = true;
-            this.lbLateCHK.Location = new System.Drawing.Point(650, 222);
+            this.lbLateCHK.Location = new System.Drawing.Point(690, 221);
             this.lbLateCHK.Name = "lbLateCHK";
             this.lbLateCHK.Size = new System.Drawing.Size(69, 13);
             this.lbLateCHK.TabIndex = 169;
@@ -302,9 +384,9 @@
             // 
             // tbReciboFilial
             // 
-            this.tbReciboFilial.Location = new System.Drawing.Point(412, 216);
+            this.tbReciboFilial.Location = new System.Drawing.Point(526, 217);
             this.tbReciboFilial.Name = "tbReciboFilial";
-            this.tbReciboFilial.Size = new System.Drawing.Size(75, 20);
+            this.tbReciboFilial.Size = new System.Drawing.Size(50, 20);
             this.tbReciboFilial.TabIndex = 166;
             this.tbReciboFilial.Visible = false;
             // 
@@ -320,18 +402,18 @@
             // lbFilial
             // 
             this.lbFilial.AutoSize = true;
-            this.lbFilial.Location = new System.Drawing.Point(327, 219);
+            this.lbFilial.Location = new System.Drawing.Point(465, 221);
             this.lbFilial.Name = "lbFilial";
-            this.lbFilial.Size = new System.Drawing.Size(47, 13);
+            this.lbFilial.Size = new System.Drawing.Size(55, 13);
             this.lbFilial.TabIndex = 165;
-            this.lbFilial.Text = "RECIBO";
+            this.lbFilial.Text = "NUMERO";
             this.lbFilial.Visible = false;
             // 
             // comboFilial
             // 
             this.comboFilial.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboFilial.FormattingEnabled = true;
-            this.comboFilial.Location = new System.Drawing.Point(109, 215);
+            this.comboFilial.Location = new System.Drawing.Point(57, 213);
             this.comboFilial.Name = "comboFilial";
             this.comboFilial.Size = new System.Drawing.Size(193, 21);
             this.comboFilial.TabIndex = 147;
@@ -343,9 +425,9 @@
             this.cbFilial.AutoSize = true;
             this.cbFilial.Location = new System.Drawing.Point(5, 215);
             this.cbFilial.Name = "cbFilial";
-            this.cbFilial.Size = new System.Drawing.Size(98, 17);
+            this.cbFilial.Size = new System.Drawing.Size(46, 17);
             this.cbFilial.TabIndex = 164;
-            this.cbFilial.Text = "Recibo de Filial";
+            this.cbFilial.Text = "Filial";
             this.cbFilial.UseVisualStyleBackColor = true;
             this.cbFilial.CheckedChanged += new System.EventHandler(this.cbFilial_CheckedChanged);
             // 
@@ -642,34 +724,6 @@
             this.lbCartelHabitacion.Visible = false;
             this.lbCartelHabitacion.Click += new System.EventHandler(this.lbCartelHabitacion_Click);
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(538, 223);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(57, 13);
-            this.label13.TabIndex = 171;
-            this.label13.Text = "CHECK IN";
-            this.label13.Visible = false;
-            // 
-            // tbCheckIn
-            // 
-            this.tbCheckIn.Location = new System.Drawing.Point(605, 216);
-            this.tbCheckIn.Name = "tbCheckIn";
-            this.tbCheckIn.Size = new System.Drawing.Size(39, 20);
-            this.tbCheckIn.TabIndex = 172;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.Red;
-            this.label14.Location = new System.Drawing.Point(424, 194);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(366, 13);
-            this.label14.TabIndex = 147;
-            this.label14.Text = "HORARIOS CHECK/OUT, SI DIFIEREN A LOS REGULARES DEL HOTEL";
-            this.label14.Visible = false;
-            // 
             // BonoHotel
             // 
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -759,5 +813,9 @@
         private System.Windows.Forms.TextBox tbCheckIn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lbPtoVta;
+        private System.Windows.Forms.CheckBox cbAfip;
+        private System.Windows.Forms.CheckBox cbRecibo;
+        private System.Windows.Forms.Label titPtoVta;
     }
 }

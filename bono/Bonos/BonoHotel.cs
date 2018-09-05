@@ -306,6 +306,9 @@ namespace SOCIOS.bono
 
                     throw new Exception("No se Ecuentra Arancel Cargado");
                 }
+                // Inicializo el punto de venta
+                cbRecibo.Checked = true;
+                this.Setear_Punto_Venta(1, false);
 
 
 
@@ -602,19 +605,37 @@ namespace SOCIOS.bono
 
                         decimal Pago = decimal.Parse(lblSaldoTotal.Text);
                         string OBS = "";
+                     
                         
                         if (cbHabitacion.Text.ToUpper().Contains("PERSONA"))
                             OBS = tbObs.Text + " - " + lbMenores.Text;
                         else
                             OBS = tbObs.Text;
 
-                        string NRO_RECIBO_FILIAL = "";
+                        string NRO_RECIBO_FILIAL  =  "";
+                        string NRO_FACTURA_FILIAL =  "";
                         int FILIAL = 0;
+                        string PUNTO_VENTA = "";
+                        
 
                         if (cbFilial.Checked)
                         {
+                            
                             NRO_RECIBO_FILIAL = tbReciboFilial.Text;
+                            NRO_FACTURA_FILIAL = tbReciboFilial.Text;
                             FILIAL = Int32.Parse(comboFilial.SelectedValue.ToString());
+                            PUNTO_VENTA = lbPtoVta.Text;
+                            // si es comprobante afip, va vacio el recibo, y viceversa
+                            if (cbAfip.Checked)
+                            {
+                                NRO_RECIBO_FILIAL = "";
+                            }
+                            else
+                                NRO_FACTURA_FILIAL = "";
+
+
+
+
                         }
 
                         //determino si es por persona o por habitacion
@@ -633,12 +654,12 @@ namespace SOCIOS.bono
 
                         if (BONO_BLANCO) // Si es bono_Blanco, Vamos por UPDATE
                         {
-                            dlog.UpdateBonoTurismo(ID, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO,"NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL);
+                            dlog.UpdateBonoTurismo(ID, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO,"NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL,NRO_FACTURA_FILIAL,PUNTO_VENTA);
 
                         }
                         else // si no es bono blanco, previo, no existe en la base, es INSERT
                         {
-                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL,tipo_habitacion_stat,nro_habitacion_stat);
+                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL,NRO_FACTURA_FILIAL,PUNTO_VENTA,tipo_habitacion_stat,nro_habitacion_stat);
 
                             ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
 
@@ -654,8 +675,7 @@ namespace SOCIOS.bono
                         //Grabar Personas 
                         utilsTurismo.GrabarPersonas(ID, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), listaPersonas,"TURISMO");
                                                   
-                     
-                        
+                                             
                             vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text,"HOT","",LATE_CHECKOUT,CHECKIN);
                         
                         gpDatos.Visible = false;
@@ -744,7 +764,7 @@ namespace SOCIOS.bono
 
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO",0,0,"",0,0);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor,VGlobales.vp_role.TrimEnd().TrimStart(),CODINT,SUBCODIGO,"NO",0,0,"","","",0,0);
 
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "SOC");
                         //VER CODINT
@@ -1034,28 +1054,22 @@ namespace SOCIOS.bono
 
         private void cbFilial_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbFilial.Checked)
-            {
-                lbFilial.Visible = true;
-                comboFilial.Visible = true;
-                tbReciboFilial.Visible = true;
-
-            }
-            else
-            {
-                lbFilial.Visible       = false;
-                comboFilial.Visible = false;
-                tbReciboFilial.Visible = false;
-            }
+            this.Vista_Filial();
         }
 
-        private void comboFilial_SelectedIndexChanged(object sender, EventArgs e)
+        private void Vista_Filial()
+
         {
+
             if (cbFilial.Checked)
             {
                 lbFilial.Visible = true;
                 comboFilial.Visible = true;
                 tbReciboFilial.Visible = true;
+                cbAfip.Visible = true;
+                cbRecibo.Visible = true;
+                lbPtoVta.Visible = true;
+                titPtoVta.Visible = true;
 
             }
             else
@@ -1063,7 +1077,74 @@ namespace SOCIOS.bono
                 lbFilial.Visible = false;
                 comboFilial.Visible = false;
                 tbReciboFilial.Visible = false;
+                cbAfip.Visible = false;
+                cbRecibo.Visible = false;
+                lbPtoVta.Visible = false;
+                titPtoVta.Visible = false;
             }
+        }
+
+        private void comboFilial_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Vista_Filial();
+            this.Setear_Punto_Venta();
+        }
+
+       
+
+        private void cbRecibo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbRecibo.Checked)
+            {
+                cbAfip.Checked = false;
+            }
+            else
+            {
+                cbAfip.Checked = true;
+            }
+            this.Setear_Punto_Venta();
+        }
+
+        private void cbAfip_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbAfip.Checked)
+            {
+                cbRecibo.Checked = false;
+            }
+            else
+            {
+                cbRecibo.Checked = true;
+            }
+
+            this.Setear_Punto_Venta();
+        }
+
+        private void Setear_Punto_Venta()
+        {
+            try
+            {
+                int Filial = Int32.Parse(comboFilial.SelectedValue.ToString());
+                bool Afip=true;
+                if (cbAfip.Checked)
+                    Afip = true;
+                else
+                    Afip = false;
+          
+                this.Setear_Punto_Venta(Filial, Afip);
+                
+            }
+            catch
+            { 
+            }
+        }
+
+        private void Setear_Punto_Venta(int Filial, bool Afip)
+
+        {
+            
+                lbPtoVta.Text = utilsTurismo.Punto_Venta_Filial(Filial, Afip).ToString();
+           
+        
         }
             
             

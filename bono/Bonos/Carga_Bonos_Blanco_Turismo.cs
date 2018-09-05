@@ -48,7 +48,7 @@ namespace SOCIOS.bono.Bonos
                     else
                         TIPO = "HOT";
 
-                    dlog.InsertBonoTurismo(0, 0, 0, 0, 0, System.DateTime.Now, 0, 0, 0, 0, 0, 0, "", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, "", "", 0, "", "", VGlobales.vp_username, TIPO, 0, 0, "", 0, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, 0, "SI",0,0,"",0,0);
+                    dlog.InsertBonoTurismo(0, 0, 0, 0, 0, System.DateTime.Now, 0, 0, 0, 0, 0, 0, "", "", "", "", "", "", "", 0, 0, 0, 0, 0, 0, 0, 0, "", "", 0, "", "", VGlobales.vp_username, TIPO, 0, 0, "", 0, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, 0, "SI",0,0,"","","",0,0);
 
                     int ID = utilsTurismo.GetMaxID("0", TIPO);
 
