@@ -593,8 +593,6 @@ namespace SOCIOS.BO
         //STORED GUARDA ORDEN DE PAGO
         public void nuevaOrdenDePago(string FECHA, string OBSERVACIONES, decimal TOTAL, string BENEFICIARIO, int IDE, string US_ALTA, string FECHA_OP)
         {
-            
-
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(FECHA);
             vector_contenidos.Add(OBSERVACIONES);
