@@ -90,6 +90,7 @@
             this.cargarObservaciones = new System.Windows.Forms.ToolStripMenuItem();
             this.bonosOdontologicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planDeCuentaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bonosEnBlancoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recibosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirRecibosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -154,7 +155,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.bonosEnBlancoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.completarBonosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -651,7 +652,8 @@
             this.cargarObservaciones,
             this.bonosOdontologicosToolStripMenuItem,
             this.planDeCuentaToolStripMenuItem2,
-            this.bonosEnBlancoToolStripMenuItem1});
+            this.bonosEnBlancoToolStripMenuItem1,
+            this.completarBonosEnBlancoToolStripMenuItem});
             this.servToolStrip.Enabled = false;
             this.servToolStrip.Name = "servToolStrip";
             this.servToolStrip.Size = new System.Drawing.Size(118, 18);
@@ -662,7 +664,7 @@
             // 
             this.profesionalesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("profesionalesToolStripMenuItem.Image")));
             this.profesionalesToolStripMenuItem.Name = "profesionalesToolStripMenuItem";
-            this.profesionalesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.profesionalesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.profesionalesToolStripMenuItem.Text = "Profesionales";
             this.profesionalesToolStripMenuItem.Click += new System.EventHandler(this.profesionalesToolStripMenuItem_Click);
             // 
@@ -670,7 +672,7 @@
             // 
             this.especialidadesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("especialidadesToolStripMenuItem.Image")));
             this.especialidadesToolStripMenuItem.Name = "especialidadesToolStripMenuItem";
-            this.especialidadesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.especialidadesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.especialidadesToolStripMenuItem.Text = "Especialidades";
             this.especialidadesToolStripMenuItem.Click += new System.EventHandler(this.especialidadesToolStripMenuItem_Click);
             // 
@@ -678,7 +680,7 @@
             // 
             this.díasYHorariosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("díasYHorariosToolStripMenuItem.Image")));
             this.díasYHorariosToolStripMenuItem.Name = "díasYHorariosToolStripMenuItem";
-            this.díasYHorariosToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.díasYHorariosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.díasYHorariosToolStripMenuItem.Text = "Días y horarios";
             this.díasYHorariosToolStripMenuItem.Click += new System.EventHandler(this.díasYHorariosToolStripMenuItem_Click);
             // 
@@ -686,7 +688,7 @@
             // 
             this.listadoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("listadoToolStripMenuItem.Image")));
             this.listadoToolStripMenuItem.Name = "listadoToolStripMenuItem";
-            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.listadoToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.listadoToolStripMenuItem.Text = "Listado Turnos";
             this.listadoToolStripMenuItem.Click += new System.EventHandler(this.listadoToolStripMenuItem_Click);
             // 
@@ -694,7 +696,7 @@
             // 
             this.listadoPresentesToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("listadoPresentesToolStripMenuItem.Image")));
             this.listadoPresentesToolStripMenuItem.Name = "listadoPresentesToolStripMenuItem";
-            this.listadoPresentesToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.listadoPresentesToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.listadoPresentesToolStripMenuItem.Text = "Cancelar Turnos";
             this.listadoPresentesToolStripMenuItem.Click += new System.EventHandler(this.listadoPresentesToolStripMenuItem_Click);
             // 
@@ -702,7 +704,7 @@
             // 
             this.listadoDeTurnosCanceladosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("listadoDeTurnosCanceladosToolStripMenuItem.Image")));
             this.listadoDeTurnosCanceladosToolStripMenuItem.Name = "listadoDeTurnosCanceladosToolStripMenuItem";
-            this.listadoDeTurnosCanceladosToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.listadoDeTurnosCanceladosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.listadoDeTurnosCanceladosToolStripMenuItem.Text = "Días Cancelados";
             this.listadoDeTurnosCanceladosToolStripMenuItem.Click += new System.EventHandler(this.listadoDeTurnosCanceladosToolStripMenuItem_Click);
             // 
@@ -710,7 +712,7 @@
             // 
             this.cargarObservaciones.Image = ((System.Drawing.Image)(resources.GetObject("cargarObservaciones.Image")));
             this.cargarObservaciones.Name = "cargarObservaciones";
-            this.cargarObservaciones.Size = new System.Drawing.Size(190, 22);
+            this.cargarObservaciones.Size = new System.Drawing.Size(223, 22);
             this.cargarObservaciones.Text = "Cargar Observaciones";
             this.cargarObservaciones.Click += new System.EventHandler(this.cargarObservaciones_Click);
             // 
@@ -718,7 +720,7 @@
             // 
             this.bonosOdontologicosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bonosOdontologicosToolStripMenuItem.Image")));
             this.bonosOdontologicosToolStripMenuItem.Name = "bonosOdontologicosToolStripMenuItem";
-            this.bonosOdontologicosToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.bonosOdontologicosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.bonosOdontologicosToolStripMenuItem.Text = "Bonos Odontologicos";
             this.bonosOdontologicosToolStripMenuItem.Click += new System.EventHandler(this.bonosOdontologicosToolStripMenuItem_Click);
             // 
@@ -726,9 +728,17 @@
             // 
             this.planDeCuentaToolStripMenuItem2.Image = global::SOCIOS.Properties.Resources.money;
             this.planDeCuentaToolStripMenuItem2.Name = "planDeCuentaToolStripMenuItem2";
-            this.planDeCuentaToolStripMenuItem2.Size = new System.Drawing.Size(190, 22);
+            this.planDeCuentaToolStripMenuItem2.Size = new System.Drawing.Size(223, 22);
             this.planDeCuentaToolStripMenuItem2.Text = "Plan de Cuenta";
             this.planDeCuentaToolStripMenuItem2.Click += new System.EventHandler(this.planDeCuentaToolStripMenuItem2_Click);
+            // 
+            // bonosEnBlancoToolStripMenuItem1
+            // 
+            this.bonosEnBlancoToolStripMenuItem1.Image = global::SOCIOS.Properties.Resources.application_view_columns;
+            this.bonosEnBlancoToolStripMenuItem1.Name = "bonosEnBlancoToolStripMenuItem1";
+            this.bonosEnBlancoToolStripMenuItem1.Size = new System.Drawing.Size(223, 22);
+            this.bonosEnBlancoToolStripMenuItem1.Text = "Generar Bonos en Blanco";
+            this.bonosEnBlancoToolStripMenuItem1.Click += new System.EventHandler(this.bonosEnBlancoToolStripMenuItem1_Click);
             // 
             // cajaToolStripMenuItem
             // 
@@ -1290,13 +1300,12 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // bonosEnBlancoToolStripMenuItem1
+            // completarBonosEnBlancoToolStripMenuItem
             // 
-            this.bonosEnBlancoToolStripMenuItem1.Image = global::SOCIOS.Properties.Resources.application_view_columns;
-            this.bonosEnBlancoToolStripMenuItem1.Name = "bonosEnBlancoToolStripMenuItem1";
-            this.bonosEnBlancoToolStripMenuItem1.Size = new System.Drawing.Size(190, 22);
-            this.bonosEnBlancoToolStripMenuItem1.Text = "Bonos en Blanco";
-            this.bonosEnBlancoToolStripMenuItem1.Click += new System.EventHandler(this.bonosEnBlancoToolStripMenuItem1_Click);
+            this.completarBonosEnBlancoToolStripMenuItem.Name = "completarBonosEnBlancoToolStripMenuItem";
+            this.completarBonosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.completarBonosEnBlancoToolStripMenuItem.Text = "Completar Bonos en Blanco";
+            this.completarBonosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.completarBonosEnBlancoToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1466,5 +1475,6 @@
         private System.Windows.Forms.ToolStripStatusLabel tsUpdater;
         private System.Windows.Forms.ToolStripMenuItem turismoControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem completarBonosEnBlancoToolStripMenuItem;
     }
 }
