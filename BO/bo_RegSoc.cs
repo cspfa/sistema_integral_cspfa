@@ -16,19 +16,38 @@ namespace SOCIOS.BO
     {
         db resultado = new db();
 
-        //NUEVO REGISTRO NO ALCANZA COUTA SOCIAL
-        public void nuevoNoAlcanza(int ID_TITULAR, string FECHA, int MOTIVO, string TARJETA, string CBU, int ID_ADHERENTE)
+        //BAJA REGISTRO NO ALCANZA COUTA SOCIAL
+        public void bajaNoAlcanza(int ID, string BAJA)
         {
             ArrayList vector_contenidos = new ArrayList {
-                ID_TITULAR, FECHA, MOTIVO, TARJETA, CBU, ID_ADHERENTE
+                ID, BAJA
             };
 
             ArrayList vector_tipos = new ArrayList {
-                "FbDbType.Integer", "FbDbType.Date", "FbDbType.Integer", "FbDbType.Char", "FbDbType.Char", "FbDbType.Integer"
+                "FbDbType.Integer", "FbDbType.Date"
             };
 
             ArrayList vector_nombres = new ArrayList {
-                "@PIN_ID_TITULAR", "@PIN_", "@PIN_FECHA_A_DTO", "@PIN_MOTIVO_NO_ALCANZA", "@PIN_TARJETA", "@PIN_CBU", "@PIN_ID_ADHERENTE"
+                "@PIN_ID", "@PIN_BAJA"
+            };
+
+            string vprocedure = "NO_ALCANZA_CUOTA_SOCIAL_U";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
+        //NUEVO REGISTRO NO ALCANZA COUTA SOCIAL
+        public void nuevoNoAlcanza(int DNI_SOCIO, string FECHA, int MOTIVO)
+        {
+            ArrayList vector_contenidos = new ArrayList {
+                DNI_SOCIO, FECHA, MOTIVO
+            };
+
+            ArrayList vector_tipos = new ArrayList {
+                "FbDbType.Integer", "FbDbType.Date", "FbDbType.Integer"
+            };
+
+            ArrayList vector_nombres = new ArrayList {
+                "@PIN_DNI", "@PIN_FECHA_A_DTO", "@PIN_MOTIVO_NO_ALCANZA"
             };
 
             string vprocedure = "NO_ALCANZA_CUOTA_SOCIAL_I";
