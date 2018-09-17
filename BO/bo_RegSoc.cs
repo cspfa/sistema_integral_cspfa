@@ -16,6 +16,25 @@ namespace SOCIOS.BO
     {
         db resultado = new db();
 
+        //NUEVO REGISTRO NO ALCANZA COUTA SOCIAL
+        public void nuevoNoAlcanza(int ID_TITULAR, string FECHA, int MOTIVO, string TARJETA, string CBU, int ID_ADHERENTE)
+        {
+            ArrayList vector_contenidos = new ArrayList {
+                ID_TITULAR, FECHA, MOTIVO, TARJETA, CBU, ID_ADHERENTE
+            };
+
+            ArrayList vector_tipos = new ArrayList {
+                "FbDbType.Integer", "FbDbType.Date", "FbDbType.Integer", "FbDbType.Char", "FbDbType.Char", "FbDbType.Integer"
+            };
+
+            ArrayList vector_nombres = new ArrayList {
+                "@PIN_ID_TITULAR", "@PIN_", "@PIN_FECHA_A_DTO", "@PIN_MOTIVO_NO_ALCANZA", "@PIN_TARJETA", "@PIN_CBU", "@PIN_ID_ADHERENTE"
+            };
+
+            string vprocedure = "NO_ALCANZA_CUOTA_SOCIAL_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
         //STORED PFA -> CABA
         public void PFA_CABA(int ID_TITULAR, int N_ID_TITULAR, int N_NRO_SOC, int N_COD_DTO)
         {
