@@ -474,9 +474,11 @@ namespace SOCIOS
         private void Boton_buscar()
         {
             Cursor = Cursors.WaitCursor;
-            lbMoraInp.ForeColor = Color.Silver;
-            lbMoraCuota.ForeColor = Color.Silver;
-            lbMoraDepo.ForeColor = Color.Silver;
+            lbMoraInp.ForeColor = Color.DimGray;
+            lbMoraCuota.ForeColor = Color.DimGray;
+            lbMoraDepo.ForeColor = Color.DimGray;
+            lbMorosoNoAlcanza.ForeColor = Color.DimGray;
+            lbMorosoNoDesc.ForeColor = Color.DimGray;
             listView1.Columns.Clear();
             listView1.Items.Clear();
 
@@ -626,6 +628,7 @@ namespace SOCIOS
                 listView1.Columns.Add("SD");
                 listView1.Columns.Add("ID_ANT");
                 listView1.Columns.Add("F_CARN");
+                listView1.Columns.Add("NA");
             }
 
             foreach (ColumnHeader ch in this.listView1.Columns)
@@ -644,7 +647,6 @@ namespace SOCIOS
                     if (BAJA != "")
                         BAJA = BAJA.Substring(0, 10);
                     
-
                     ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("NRO_SOC")).PadLeft(5, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NRO_DEP")).PadLeft(3, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("COD_DTO")).PadLeft(3, '0'));
@@ -658,11 +660,12 @@ namespace SOCIOS
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_DEPORTES")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NUM_DOC")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("COD_CAT_SOC")));
-                    listItem.SubItems.Add(BAJA); //13
+                    listItem.SubItems.Add(BAJA); 
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_NO_DESC")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SOCIO_DEPORTES")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ID_TITULAR_ANT")));
                     listItem.SubItems.Add(F_CARN);
+                    listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_NO_ALCANZA")));
                     listView1.Items.Add(listItem);
 
                     GRUPO = gg.get(reader.GetString(reader.GetOrdinal("COD_DTO")), reader.GetString(reader.GetOrdinal("COD_CAT_SOC")));
@@ -672,7 +675,10 @@ namespace SOCIOS
                         listItem.BackColor = Color.LightGreen;
                     }
 
-                    if (reader.GetString(reader.GetOrdinal("MOROSO")) == "S" || reader.GetString(reader.GetOrdinal("MOROSO_DEPORTES")) == "S" || reader.GetString(reader.GetOrdinal("MOROSO_NO_DESC")) == "S")
+                    if (reader.GetString(reader.GetOrdinal("MOROSO")) == "S" 
+                        || reader.GetString(reader.GetOrdinal("MOROSO_DEPORTES")) == "S" 
+                        || reader.GetString(reader.GetOrdinal("MOROSO_NO_DESC")) == "S" 
+                        || reader.GetString(reader.GetOrdinal("MOROSO_NO_ALCANZA")) == "S")
                     {
                         listItem.BackColor = Color.Red;
                         listItem.ForeColor = Color.White;
@@ -2270,7 +2276,7 @@ namespace SOCIOS
             }
             else
             {
-                lbMoraCuota.ForeColor = Color.Silver;
+                lbMoraCuota.ForeColor = Color.DimGray;
             }
 
             if (listView1.SelectedItems[0].SubItems[10].Text == "S") //MOROSO_INVITADO
@@ -2279,7 +2285,7 @@ namespace SOCIOS
             }
             else
             {
-                lbMoraDepo.ForeColor = Color.Silver;
+                lbMoraDepo.ForeColor = Color.DimGray;
             }
 
             if (listView1.SelectedItems[0].SubItems[14].Text == "S") //MOROSO_NO_DESC
@@ -2288,7 +2294,7 @@ namespace SOCIOS
             }
             else
             {
-                lbMorosoNoDesc.ForeColor = Color.Silver;
+                lbMorosoNoDesc.ForeColor = Color.DimGray;
             }
 
             if (listView1.SelectedItems[0].SubItems[15].Text == "S") //SOCIO_DEPORTES
@@ -2297,7 +2303,16 @@ namespace SOCIOS
             }
             else
             {
-                lbSocioDepo.ForeColor = Color.Silver;
+                lbSocioDepo.ForeColor = Color.DimGray;
+            }
+
+            if (listView1.SelectedItems[0].SubItems[18].Text == "S") //MOROSO NO ALCANZA
+            {
+                lbMorosoNoAlcanza.ForeColor = Color.Red;
+            }
+            else
+            {
+                lbMorosoNoAlcanza.ForeColor = Color.DimGray;
             }
         }
 
@@ -2309,7 +2324,7 @@ namespace SOCIOS
             }
             else
             {
-                lbMoraDepo.ForeColor = Color.Silver;
+                lbMoraDepo.ForeColor = Color.DimGray;
             }
 
             if (listView1.SelectedItems[0].SubItems[12].Text == "S") //MOROSO_DEPORTES
@@ -2318,7 +2333,7 @@ namespace SOCIOS
             }
             else
             {
-                lbMoraInp.ForeColor = Color.Silver;
+                lbMoraInp.ForeColor = Color.DimGray;
             }
 
             if (listView1.SelectedItems[0].SubItems[15].Text == "S") //SOCIO_DEPORTES
@@ -2327,7 +2342,7 @@ namespace SOCIOS
             }
             else
             {
-                lbSocioDepo.ForeColor = Color.Silver;
+                lbSocioDepo.ForeColor = Color.DimGray;
             }
         }
 
@@ -3138,8 +3153,16 @@ namespace SOCIOS
         {
             string TIPO_SOCIO = tipoSocio();
             string ID_SOCIO = idSocio();
-            registroSocios.noAlcanza na = new registroSocios.noAlcanza(TIPO_SOCIO, ID_SOCIO);
+            int DNI = 0;
+
+            if (themedContainer1.IsBodyVisible)
+                DNI = int.Parse(listView1.SelectedItems[0].SubItems[11].Text);
+            else
+                DNI = int.Parse(listView1.SelectedItems[0].SubItems[13].Text);
+            
+            registroSocios.noAlcanza na = new registroSocios.noAlcanza(TIPO_SOCIO, ID_SOCIO, DNI);
             na.ShowDialog();
+            Boton_buscar();
         }
 
         private void tsAsignarElemento_Click(object sender, EventArgs e)
