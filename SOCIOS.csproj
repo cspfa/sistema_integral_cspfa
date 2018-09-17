@@ -1300,6 +1300,9 @@
     <EmbeddedResource Include="bono\ReporteBonoVoucher.resx">
       <DependentUpon>ReporteBonoVoucher.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="compras\orden_de_pago.resx">
+      <DependentUpon>orden_de_pago.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="copyFiles\DIA_CopyFiles.resx">
       <DependentUpon>DIA_CopyFiles.cs</DependentUpon>
     </EmbeddedResource>
