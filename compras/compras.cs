@@ -2692,7 +2692,7 @@ namespace SOCIOS
                 {
                     CHEQUE = itemRow.SubItems[1].Text;
                     BANCO_ID = itemRow.SubItems[7].Text;
-                    BO_COMPRAS.modificarOpTemp("0", CHEQUE, BANCO_ID);
+                    BO_COMPRAS.chequeOpTemp(0, int.Parse(CHEQUE), int.Parse(BANCO_ID));
                     itemRow.Remove();
                 }
             }
@@ -2703,7 +2703,7 @@ namespace SOCIOS
                 {
                     CHEQUE = itemRow.SubItems[1].Text;
                     BANCO_ID = itemRow.SubItems[7].Text;
-                    BO_COMPRAS.modificarOpTemp("0", CHEQUE, BANCO_ID);
+                    BO_COMPRAS.chequeOpTemp(0, int.Parse(CHEQUE), int.Parse(BANCO_ID));
                     itemRow.Remove();
                 }
             }
@@ -3161,10 +3161,17 @@ namespace SOCIOS
 
         private void ejecBuscarOP() 
         {
-            int NRO_OP = int.Parse(tbBuscarOPxNum.Text);
-            buscarOrdenDePago(NRO_OP);
-            pintarOpAnulada();
-            tbTotalBusqueda.Text = "TOTAL $ " + string.Format("{0:n}", sumarBusqueda());
+            if (tbBuscarOPxNum.Text != "")
+            {
+                int NRO_OP = int.Parse(tbBuscarOPxNum.Text);
+                buscarOrdenDePago(NRO_OP);
+                pintarOpAnulada();
+                tbTotalBusqueda.Text = "TOTAL $ " + string.Format("{0:n}", sumarBusqueda());
+            }
+            else
+            {
+                MessageBox.Show("INGRESAR UN NUMERO DE OP", "ERROR!");
+            }
         }
 
         private void btnBuscarOP_Click(object sender, EventArgs e)
@@ -4108,8 +4115,10 @@ namespace SOCIOS
                 lvChequesSeleccionados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 lvChequesSeleccionados.Columns[7].Width = 0;
                 sumaCheques();
-                BO_COMPRAS.modificarOpTemp("1", CHEQUE, BANCO_ID);
+                int VALOR = 1;
+                BO_COMPRAS.chequeOpTemp(VALOR, int.Parse(CHEQUE), int.Parse(BANCO_ID));
                 comboCheques(int.Parse(BANCO_ID), cbCheques);
+                comboCheques(int.Parse(cbBancoOrigenTrans.SelectedValue.ToString()), cbChequeAcompTrans);
             }
         }
 
@@ -6177,7 +6186,7 @@ namespace SOCIOS
                 foreach (ListViewItem itemRow in lvBuscarOP.SelectedItems)
                 {
                     OP = itemRow.SubItems[0].Text;
-                    ANULADA = itemRow.SubItems[13].Text;
+                    ANULADA = itemRow.SubItems[5].Text;
 
                     if (ANULADA != "")
                     {
@@ -6212,8 +6221,8 @@ namespace SOCIOS
                 foreach (ListViewItem itemRow in lvBuscarOP.SelectedItems)
                 {
                     OP = itemRow.SubItems[0].Text;
-                    ANULADA = itemRow.SubItems[13].Text;
-                    CONFIRMADA = itemRow.SubItems[14].Text;
+                    ANULADA = itemRow.SubItems[5].Text;
+                    CONFIRMADA = itemRow.SubItems[6].Text;
 
                     if (ANULADA == "")
                     {
@@ -6236,6 +6245,19 @@ namespace SOCIOS
         private void cANCELARANULACIONToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void vERDETALLEOPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lvBuscarOP.SelectedItems.Count == 1)
+            {
+                foreach (ListViewItem itemRow in lvBuscarOP.Items)
+                {
+                    int OP = int.Parse(itemRow.SubItems[0].Text);
+                    orden_de_pago op = new orden_de_pago(OP);
+                    op.ShowDialog();
+                }
+            }
         }
     }
 }
