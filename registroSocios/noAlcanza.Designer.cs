@@ -31,9 +31,9 @@
             this.lvDatosSocio = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dpAdto = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbMotivos = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnListar = new System.Windows.Forms.Button();
             this.lvTarjetas = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
@@ -80,13 +80,13 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "FECHA A DTO";
             // 
-            // dateTimePicker1
+            // dpAdto
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(102, 346);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(84, 20);
-            this.dateTimePicker1.TabIndex = 9;
+            this.dpAdto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpAdto.Location = new System.Drawing.Point(102, 346);
+            this.dpAdto.Name = "dpAdto";
+            this.dpAdto.Size = new System.Drawing.Size(84, 20);
+            this.dpAdto.TabIndex = 9;
             // 
             // label3
             // 
@@ -97,13 +97,13 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "MOTIVO NO ALCANZA";
             // 
-            // comboBox1
+            // cbMotivos
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(322, 346);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(161, 21);
-            this.comboBox1.TabIndex = 11;
+            this.cbMotivos.FormattingEnabled = true;
+            this.cbMotivos.Location = new System.Drawing.Point(322, 346);
+            this.cbMotivos.Name = "cbMotivos";
+            this.cbMotivos.Size = new System.Drawing.Size(161, 21);
+            this.cbMotivos.TabIndex = 11;
             // 
             // btnAceptar
             // 
@@ -194,9 +194,9 @@
             this.Controls.Add(this.lvTarjetas);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbMotivos);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dpAdto);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lvDatosSocio);
             this.Controls.Add(this.label1);
@@ -214,9 +214,9 @@
         private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvDatosSocio;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dpAdto;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbMotivos;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnListar;
         private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvTarjetas;

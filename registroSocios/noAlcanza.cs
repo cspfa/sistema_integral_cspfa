@@ -14,13 +14,29 @@ namespace SOCIOS.registroSocios
     {
         bo dlog = new bo();
         BO.bo_RegSoc REG_SOC = new BO.bo_RegSoc();
+        private string V_ID_SOCIO { get; set; }
+        private string V_TIPO_SOCIO { get; set; }
 
         public noAlcanza(string TIPO_SOCIO, string ID_SOCIO)
         {
             InitializeComponent();
+            V_ID_SOCIO = ID_SOCIO;
+            V_TIPO_SOCIO = TIPO_SOCIO;
             buscarSocio(ID_SOCIO, TIPO_SOCIO);
             buscarTarjetas(ID_SOCIO, TIPO_SOCIO);
             buscarCbus(ID_SOCIO, TIPO_SOCIO);
+            comboMotivos();
+        }
+
+        private void comboMotivos()
+        {
+            string query = "SELECT ID, MOTIVO FROM NO_ALCANZA_MOTIVOS ORDER BY MOTIVO ASC;";
+            cbMotivos.DataSource = null;
+            cbMotivos.Items.Clear();
+            cbMotivos.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbMotivos.DisplayMember = "MOTIVO";
+            cbMotivos.ValueMember = "ID";
+            cbMotivos.SelectedItem = 0;
         }
 
         private void buscarSocio(string ID_SOCIO, string TIPO_SOCIO)
@@ -56,7 +72,11 @@ namespace SOCIOS.registroSocios
 
                     if (reader.Read())
                     {
-                        mostrarResultadoSocio(reader);
+                        if(V_TIPO_SOCIO == "TITULAR")
+                            mostrarResultadoSocio(reader);
+
+                        if (V_TIPO_SOCIO == "ADHERENTE")
+                            mostrarResultadoAdh(reader);
                     }
 
                     reader.Close();
@@ -214,6 +234,34 @@ namespace SOCIOS.registroSocios
             lvDatosSocio.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
         }
 
+        private void mostrarResultadoAdh(FbDataReader reader)
+        {
+            lvDatosSocio.Items.Clear();
+            lvDatosSocio.Columns.Clear();
+            lvDatosSocio.BeginUpdate();
+
+            if (lvDatosSocio.Columns.Count == 0)
+            {
+                lvDatosSocio.Columns.Add("APELLIDO");
+                lvDatosSocio.Columns.Add("NOMBRE");
+                lvDatosSocio.Columns.Add("NRO SOC");
+                lvDatosSocio.Columns.Add("NRO DEP");
+            }
+            do
+            {
+                ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("APE_ADH")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NOM_ADH")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NRO_ADH")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NRO_DEPADH")).Trim());
+                lvDatosSocio.Items.Add(listItem);
+            }
+
+            while (reader.Read());
+            lvDatosSocio.EndUpdate();
+            lvDatosSocio.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            lvDatosSocio.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
+
         private void mostrarResultadoTarjeta(FbDataReader reader)
         {
             lvTarjetas.Items.Clear();
@@ -292,7 +340,28 @@ namespace SOCIOS.registroSocios
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string TARJETA = "";
+                string CBU = "";
 
+                if (lvTarjetas.SelectedItems.Count == 1)
+                    TARJETA = lvTarjetas.SelectedItems[0].SubItems[0].Text;
+
+                if (lvCbus.SelectedItems.Count == 1)
+                    CBU = lvCbus.SelectedItems[0].SubItems[0].Text;
+
+                int ID_TITULAR = (V_TIPO_SOCIO == "TITULAR") ? int.Parse(V_ID_SOCIO) : 0;
+                int ID_ADHERENTE = (V_TIPO_SOCIO == "ADHERENTE") ? int.Parse(V_ID_SOCIO) : 0;
+                string A_DTO = dpAdto.Value.ToShortDateString();
+                int MOTIVO = int.Parse(cbMotivos.SelectedValue.ToString());
+                REG_SOC.nuevoNoAlcanza(ID_TITULAR, A_DTO, MOTIVO, TARJETA, CBU, ID_ADHERENTE);
+                MessageBox.Show("MOROSO CARGADO CORRECTAMENTE", "LISTO!");
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.ToString());
+            }
         }
 
         private void btnListar_Click(object sender, EventArgs e)
