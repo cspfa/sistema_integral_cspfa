@@ -49,7 +49,6 @@ namespace SOCIOS
             comboSectores(cbSectorBusqueda);
             comboSectores(cbSectores);            
             lvFacturas.MultiSelect = true;
-            comboEstadosCheques();
             comboBeneficiarios();
             comboTipoCheques();
             ACCION = "NUEVA";
@@ -439,7 +438,6 @@ namespace SOCIOS
             desbloquearFormsOP();
             comboBancos(cbBancos);
             comboBancos(cbBancoOrigenTrans);
-            comboBancos(cbBancosBusca);
             int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
             comboCuentasBancariasCargadas(BANCO, cbCtaOrigenTrans);
             int PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
@@ -1221,7 +1219,7 @@ namespace SOCIOS
                             }
                             else
                             {
-                                BO_COMPRAS.nuevoArticulo(int.Parse(lbID.Text), DETALLE, importe, CANTIDAD, NSERIE, TIPO, descuento);
+                                BO_COMPRAS.nuevoArticulo(int.Parse(lbID.Text), DETALLE, valor, CANTIDAD, NSERIE, TIPO, descuento);
                                 limpiarArticulo();
                             }
                         }
@@ -1236,7 +1234,7 @@ namespace SOCIOS
                             }
                             else
                             {
-                                BO_COMPRAS.modificarArticulos(ID_ARTICULO, DETALLE, importe, CANTIDAD, NSERIE, TIPO, descuento);
+                                BO_COMPRAS.modificarArticulos(ID_ARTICULO, DETALLE, valor, CANTIDAD, NSERIE, TIPO, descuento);
                                 limpiarArticulo();
                             }
                         }
@@ -1662,7 +1660,7 @@ namespace SOCIOS
             }
             else
             {
-                agregarModificarArticulo("MODIFICAR", 0, sender);
+                agregarModificarArticulo("MODIFICAR", ID_ARTICULO, sender);
             }
         }
 
@@ -1868,7 +1866,7 @@ namespace SOCIOS
 
                         if (result == DialogResult.Yes)
                         {
-                            System.Diagnostics.Process.Start(@"\\192.168.1.6\Tesoreria\ORDENES_DE_PAGO\OP - " + ID_OP.ToString() + ".PDF");
+                            Process.Start(@"\\192.168.1.6\Tesoreria\ORDENES_DE_PAGO\OP - " + ID_OP.ToString() + ".PDF");
                         }
                     }
                     catch (Exception error)
@@ -2010,7 +2008,7 @@ namespace SOCIOS
             return CELL;
         }
 
-        private void imprimirBusqueda(DataSet BUSQUEDA, string PATH)
+        /*private void imprimirBusqueda(DataSet BUSQUEDA, string PATH)
         {
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _standardFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 10, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
@@ -2036,7 +2034,7 @@ namespace SOCIOS
             header(doc, _standardFontBold, writer, "LISTADO DE CHEQUES " + cbEstadosCheques.SelectedItem.ToString());
             doc.Add(Chunk.NEWLINE);
 
-            #region TABLA ORDENES DE PAGO
+            
             PdfPTable TABLA_OPS = new PdfPTable(7);
             TABLA_OPS.WidthPercentage = 100;
             TABLA_OPS.SpacingAfter = 5;
@@ -2104,7 +2102,7 @@ namespace SOCIOS
 
             doc.Close();
             writer.Close();
-        }
+        }*/
 
         private void header(Document doc, iTextSharp.text.Font FONT, PdfWriter writer, string PARAGRAPH)
         {
@@ -2123,7 +2121,7 @@ namespace SOCIOS
             string QUERY_CHEQUES = "SELECT B.NOMBRE, C.SERIE, C.NRO_CHEQUE, C.IMPORTE, C.FECHA, C.TIPO, C.VENCIMIENTO, C.BENEFICIARIO FROM CHEQUERAS C, BANCOS B WHERE OP_ASIGNADA = " + ID_OP + " AND B.ID = C.BANCO;";
             DataRow[] CHEQUES = dlog.BO_EjecutoDataTable(QUERY_CHEQUES).Select();
             
-            string OBSERVACIONES = OP[0][2].ToString();
+            string OBSERVACIONES = OP[0][2].ToString().Trim();
             decimal TOTAL = Convert.ToDecimal(OP[0][3]);
             string BENEFICIARIO = OP[0][4].ToString();
             DateTime FECHA = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
@@ -2694,7 +2692,7 @@ namespace SOCIOS
                 {
                     CHEQUE = itemRow.SubItems[1].Text;
                     BANCO_ID = itemRow.SubItems[7].Text;
-                    BO_COMPRAS.modificarOpTemp("0", CHEQUE, BANCO_ID);
+                    BO_COMPRAS.chequeOpTemp(0, int.Parse(CHEQUE), int.Parse(BANCO_ID));
                     itemRow.Remove();
                 }
             }
@@ -2705,7 +2703,7 @@ namespace SOCIOS
                 {
                     CHEQUE = itemRow.SubItems[1].Text;
                     BANCO_ID = itemRow.SubItems[7].Text;
-                    BO_COMPRAS.modificarOpTemp("0", CHEQUE, BANCO_ID);
+                    BO_COMPRAS.chequeOpTemp(0, int.Parse(CHEQUE), int.Parse(BANCO_ID));
                     itemRow.Remove();
                 }
             }
@@ -2920,7 +2918,55 @@ namespace SOCIOS
             }
         }
 
-        private void buscarOrdenDePago(string NRO_OP, string ESTADO, string BANCO)
+        private void buscarOrdenDePago(int NRO_OP)
+        {
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                conString cs = new conString();
+                string connectionString = cs.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataSet ds = new DataSet();
+                    string QUERY = "SELECT ID, FECHA_OP, BENEFICIARIO, TOTAL, OBSERVACIONES, ANULA_FECHA, CANULA_FECHA, CANCELA_FECHA FROM ORDENES_DE_PAGO WHERE ID = " + NRO_OP;
+                    FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                    cmd.CommandText = QUERY;
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    FbDataAdapter da = new FbDataAdapter(cmd);
+                    da.Fill(ds);
+
+                    using (FbDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            mostrarOrdenesDePago(reader);
+                        }
+                        else
+                        {
+                            MessageBox.Show("NO EXISTEN REGISTROS CON LA CONDICION INDICADA", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        }
+                    }
+
+                    transaction.Commit();
+                    connection.Close();
+                    cmd = null;
+                    transaction = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+            Cursor = Cursors.Default;
+        }
+
+        /*private void buscarOrdenDePago(string NRO_OP, string ESTADO, string BANCO)
         {
             string connectionString;
             string busco = "";
@@ -2955,7 +3001,7 @@ namespace SOCIOS
                         busco += "FROM ORDENES_DE_PAGO O, CHEQUERAS C, FACTURAS F, PROVEEDORES P, FACTURAS_OP A, BANCOS B ";
                         busco += "WHERE P.ID = F.PROVEEDOR AND A.ID_FACTURA = F.ID AND A.ID_OP = O.ID AND C.BANCO = B.ID AND C.OP_ASIGNADA = O.ID ";
                         FACTURA = "S"; 
-                    }*/
+                    }
                     
                     if(chBancoOP.Checked == true)
                     {
@@ -2980,7 +3026,7 @@ namespace SOCIOS
                     if (PROVEEDOR != "")
                     {
                         busco += "AND (P.RAZON_SOCIAL LIKE '%' || '" + PROVEEDOR + "' || '%') ";
-                    }*/
+                    }
 
                     if (ESTADO != "TODOS")
                     {
@@ -3018,76 +3064,59 @@ namespace SOCIOS
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
+        }*/
 
-        private void mostrarOrdenesDePago(FbDataReader OPS, string FACTURA)
+        private void mostrarOrdenesDePago(FbDataReader OPS)
         {
             lvBuscarOP.Items.Clear();
             lvBuscarOP.Columns.Clear();
             lvBuscarOP.BeginUpdate();
-            string NUM_FACTURA = "";
 
             if (lvBuscarOP.Columns.Count == 0)
             {
-                lvBuscarOP.Columns.Add("NRO_OP");
+                lvBuscarOP.Columns.Add("# OP");
                 lvBuscarOP.Columns.Add("FECHA");
-                lvBuscarOP.Columns.Add("TOTAL");
-                lvBuscarOP.Columns.Add("BENEF_OP");
-                lvBuscarOP.Columns.Add("NUM_FACTURA");
-                lvBuscarOP.Columns.Add("RAZON_SOCIAL");
-                lvBuscarOP.Columns.Add("NRO_CHEQUE"); //6
-                lvBuscarOP.Columns.Add("BANCO");
-                lvBuscarOP.Columns.Add("ESTADO");
-                lvBuscarOP.Columns.Add("BENEF_CHEQUE");
+                lvBuscarOP.Columns.Add("BENEFICIARIO");
+                lvBuscarOP.Columns.Add("IMPORTE");
                 lvBuscarOP.Columns.Add("OBSERVACIONES");
-                lvBuscarOP.Columns.Add("US_ALTA");
-                lvBuscarOP.Columns.Add("ID"); //12
-                lvBuscarOP.Columns.Add("ANULADA"); //13
-                lvBuscarOP.Columns.Add("CONFIRMA"); //14
+                lvBuscarOP.Columns.Add("ANULADA");
+                lvBuscarOP.Columns.Add("CONFIRMADA");
+                lvBuscarOP.Columns.Add("CANCELADA");
             }
             do
             {
-                string NRO_OP = OPS.GetString(OPS.GetOrdinal("NRO_OP")).Trim();
-                string FECHA = OPS.GetString(OPS.GetOrdinal("FECHA")).Trim().Substring(0, 10);
-                string TOTAL = string.Format("{0:n}", OPS.GetDecimal(OPS.GetOrdinal("TOTAL")));
-                string BENEF_OP = OPS.GetString(OPS.GetOrdinal("BENEF_OP")).Trim();
-                if (FACTURA == "S") { NUM_FACTURA = OPS.GetString(OPS.GetOrdinal("NUM_FACTURA")).Trim(); }
-                string RAZON_SOCIAL = OPS.GetString(OPS.GetOrdinal("RAZON_SOCIAL")).Trim();
-                string NRO_CHEQUE = OPS.GetString(OPS.GetOrdinal("NRO_CHEQUE")).Trim();
-                string BANCO = OPS.GetString(OPS.GetOrdinal("BANCO")).Trim();
-                string ESTADO = OPS.GetString(OPS.GetOrdinal("ESTADO")).Trim();
-                string BENEF_CHEQUE = OPS.GetString(OPS.GetOrdinal("BENEF_CHEQUE")).Trim();
+                string ID = OPS.GetString(OPS.GetOrdinal("ID")).Trim();
+                string FECHA = OPS.GetString(OPS.GetOrdinal("FECHA_OP")).Trim().Substring(0, 10);
+                string IMPORTE = string.Format("{0:n}", OPS.GetDecimal(OPS.GetOrdinal("TOTAL")));
+                string BENEFICIARIO = OPS.GetString(OPS.GetOrdinal("BENEFICIARIO")).Trim();
                 string OBSERVACIONES = OPS.GetString(OPS.GetOrdinal("OBSERVACIONES")).Trim();
-                string US_ALTA = OPS.GetString(OPS.GetOrdinal("US_ALTA")).Trim();
-                string ID_BANCO = OPS.GetString(OPS.GetOrdinal("ID")).Trim();
-                string ANULADA = "";
-                string CONFIRMA = "";
+                string ANULA_FECHA = "";
+                string CANULA_FECHA = "";
+                string CANCELA_FECHA = "";
 
                 if (OPS.GetString(OPS.GetOrdinal("ANULA_FECHA")) != "")
                 {
-                    ANULADA = OPS.GetString(OPS.GetOrdinal("ANULA_FECHA")).Trim().Substring(0, 10);
+                    ANULA_FECHA = OPS.GetString(OPS.GetOrdinal("ANULA_FECHA")).Trim().Substring(0, 10);
                 }
 
                 if (OPS.GetString(OPS.GetOrdinal("CANULA_FECHA")) != "")
                 {
-                    CONFIRMA = OPS.GetString(OPS.GetOrdinal("CANULA_FECHA")).Trim().Substring(0, 10);
+                    CANULA_FECHA = OPS.GetString(OPS.GetOrdinal("CANULA_FECHA")).Trim().Substring(0, 10);
                 }
 
-                ListViewItem listItem = new ListViewItem(NRO_OP);
+                if (OPS.GetString(OPS.GetOrdinal("CANCELA_FECHA")) != "")
+                {
+                    CANCELA_FECHA = OPS.GetString(OPS.GetOrdinal("CANCELA_FECHA")).Trim().Substring(0, 10);
+                }
+
+                ListViewItem listItem = new ListViewItem(ID);
                 listItem.SubItems.Add(FECHA);
-                listItem.SubItems.Add(TOTAL);
-                listItem.SubItems.Add(BENEF_OP);
-                listItem.SubItems.Add(NUM_FACTURA);
-                listItem.SubItems.Add(RAZON_SOCIAL);
-                listItem.SubItems.Add(NRO_CHEQUE);
-                listItem.SubItems.Add(BANCO);
-                listItem.SubItems.Add(ESTADO);
-                listItem.SubItems.Add(BENEF_CHEQUE);
+                listItem.SubItems.Add(BENEFICIARIO);
+                listItem.SubItems.Add(IMPORTE);
                 listItem.SubItems.Add(OBSERVACIONES);
-                listItem.SubItems.Add(US_ALTA);
-                listItem.SubItems.Add(ID_BANCO);
-                listItem.SubItems.Add(ANULADA);
-                listItem.SubItems.Add(CONFIRMA);
+                listItem.SubItems.Add(ANULA_FECHA);
+                listItem.SubItems.Add(CANULA_FECHA);
+                listItem.SubItems.Add(CANCELA_FECHA);
                 lvBuscarOP.Items.Add(listItem);
             }
 
@@ -3103,7 +3132,7 @@ namespace SOCIOS
 
             foreach (ListViewItem itemRow in lvBuscarOP.Items)
             {
-                decimal IMPORTE = Convert.ToDecimal(itemRow.SubItems[2].Text);
+                decimal IMPORTE = Convert.ToDecimal(itemRow.SubItems[3].Text);
                 TOTAL = IMPORTE + TOTAL;
             }
 
@@ -3116,12 +3145,12 @@ namespace SOCIOS
             {
                 foreach (ListViewItem row in lvBuscarOP.Items)
                 {
-                    if (row.SubItems[13].Text != "")
+                    if (row.SubItems[5].Text != "")
                     {
                         row.BackColor = Color.Orange;
-                        row.ForeColor = Color.White;
+                        row.ForeColor = Color.Black;
                     }
-                    if (row.SubItems[14].Text != "")
+                    if (row.SubItems[6].Text != "")
                     {
                         row.BackColor = Color.Red;
                         row.ForeColor = Color.White;
@@ -3132,12 +3161,17 @@ namespace SOCIOS
 
         private void ejecBuscarOP() 
         {
-            string NRO_OP = tbBuscarOPxNum.Text.Trim();
-            string ESTADO = cbEstadosCheques.Text;
-            string BANCO = cbBancosBusca.SelectedValue.ToString();
-            buscarOrdenDePago(NRO_OP, ESTADO, BANCO);
-            pintarOpAnulada();
-            tbTotalBusqueda.Text = "TOTAL $ " + string.Format("{0:n}", sumarBusqueda());
+            if (tbBuscarOPxNum.Text != "")
+            {
+                int NRO_OP = int.Parse(tbBuscarOPxNum.Text);
+                buscarOrdenDePago(NRO_OP);
+                pintarOpAnulada();
+                tbTotalBusqueda.Text = "TOTAL $ " + string.Format("{0:n}", sumarBusqueda());
+            }
+            else
+            {
+                MessageBox.Show("INGRESAR UN NUMERO DE OP", "ERROR!");
+            }
         }
 
         private void btnBuscarOP_Click(object sender, EventArgs e)
@@ -3161,7 +3195,7 @@ namespace SOCIOS
 
         private void cambiarEstadoCheque(int CHEQUE, int BANCO, string ESTADO)
         {
-            string NRO_OP = tbBuscarOPxNum.Text.Trim();
+            /*string NRO_OP = tbBuscarOPxNum.Text.Trim();
             
             try
             {
@@ -3172,7 +3206,7 @@ namespace SOCIOS
             catch (Exception error)
             {
                 MessageBox.Show(error.ToString(), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
+            }*/
         }
 
         private void enCalle_Click(object sender, EventArgs e)
@@ -3191,10 +3225,7 @@ namespace SOCIOS
         private void limpiarOp()
         {
             lvBuscarOP.Clear();
-            tbBuscarOPxCheque.Text = "";
-            tbBuscarOPxFactura.Text = "";
             tbBuscarOPxNum.Text = "";
-            tbBuscarOPxProveedor.Text = "";
         }
 
         private void enCartera_Click(object sender, EventArgs e)
@@ -3226,14 +3257,14 @@ namespace SOCIOS
             }
         }
 
-        private void comboEstadosCheques()
+        /*private void comboEstadosCheques()
         {
             cbEstadosCheques.Items.Add("TODOS");
             cbEstadosCheques.Items.Add("EN CARTERA");
             cbEstadosCheques.Items.Add("EN CALLE");
             cbEstadosCheques.Items.Add("COBRADO");
             cbEstadosCheques.SelectedIndex = 0;
-        }
+        }*/
 
         private void comboTipoCheques()
         {
@@ -4084,8 +4115,10 @@ namespace SOCIOS
                 lvChequesSeleccionados.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
                 lvChequesSeleccionados.Columns[7].Width = 0;
                 sumaCheques();
-                BO_COMPRAS.modificarOpTemp("1", CHEQUE, BANCO_ID);
+                int VALOR = 1;
+                BO_COMPRAS.chequeOpTemp(VALOR, int.Parse(CHEQUE), int.Parse(BANCO_ID));
                 comboCheques(int.Parse(BANCO_ID), cbCheques);
+                comboCheques(int.Parse(cbBancoOrigenTrans.SelectedValue.ToString()), cbChequeAcompTrans);
             }
         }
 
@@ -5289,7 +5322,7 @@ namespace SOCIOS
             releaseObject(xlApp);
         }
 
-        private void btnListadoBusqueda_Click(object sender, EventArgs e)
+        /*private void btnListadoBusqueda_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Archivo PDF|*.pdf";
@@ -5327,7 +5360,7 @@ namespace SOCIOS
                     }
                 }
             }
-        }
+        }*/
 
         private void btnEliminarArticulo_Click(object sender, EventArgs e)
         {
@@ -5368,8 +5401,9 @@ namespace SOCIOS
                         }
                         else
                         {
-                            ID = row.Cells["AID"].Value.ToString();
-                            BO_COMPRAS.bajaArticulo(ID, FE_BAJA);
+                            ID = row.Index.ToString();
+                            dgArticulos.Rows.RemoveAt(int.Parse(ID));
+                            BO_COMPRAS.bajaArticulo(ID_ARTICULO.ToString(), FE_BAJA);
                         }
                     }
                 }
@@ -6152,7 +6186,7 @@ namespace SOCIOS
                 foreach (ListViewItem itemRow in lvBuscarOP.SelectedItems)
                 {
                     OP = itemRow.SubItems[0].Text;
-                    ANULADA = itemRow.SubItems[13].Text;
+                    ANULADA = itemRow.SubItems[5].Text;
 
                     if (ANULADA != "")
                     {
@@ -6187,8 +6221,8 @@ namespace SOCIOS
                 foreach (ListViewItem itemRow in lvBuscarOP.SelectedItems)
                 {
                     OP = itemRow.SubItems[0].Text;
-                    ANULADA = itemRow.SubItems[13].Text;
-                    CONFIRMADA = itemRow.SubItems[14].Text;
+                    ANULADA = itemRow.SubItems[5].Text;
+                    CONFIRMADA = itemRow.SubItems[6].Text;
 
                     if (ANULADA == "")
                     {
@@ -6208,15 +6242,21 @@ namespace SOCIOS
             }
         }
 
-        private void chBancoOP_CheckedChanged(object sender, EventArgs e)
+        private void cANCELARANULACIONToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (chBancoOP.Checked == true)
+
+        }
+
+        private void vERDETALLEOPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lvBuscarOP.SelectedItems.Count == 1)
             {
-                cbBancosBusca.Enabled = true;
-            }
-            else
-            {
-                cbBancosBusca.Enabled = false;
+                foreach (ListViewItem itemRow in lvBuscarOP.Items)
+                {
+                    int OP = int.Parse(itemRow.SubItems[0].Text);
+                    orden_de_pago op = new orden_de_pago(OP);
+                    op.ShowDialog();
+                }
             }
         }
     }

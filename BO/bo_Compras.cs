@@ -175,7 +175,7 @@ namespace SOCIOS.BO
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
 
-        //MODIFICA CAMPO OP_TEMP EN CHEQUERAS
+        //ANULA FACTURA
         public void anularFactura(string ID, string ANULADO, string USR_ANULADO)
         {
             ArrayList vector_contenidos = new ArrayList();
@@ -198,29 +198,28 @@ namespace SOCIOS.BO
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
 
-        //MODIFICA CAMPO OP_TEMP EN CHEQUERAS
-        public void modificarOpTemp(string VALOR, string CHEQUE, string BANCO_ID)
+        public void chequeOpTemp(int VALOR, int CHEQUE, int BANCO_ID)
         {
             ArrayList vector_contenidos = new ArrayList();
-            vector_contenidos.Add(VALOR);
-            vector_contenidos.Add(CHEQUE);
+            vector_contenidos.Add(VALOR);           
             vector_contenidos.Add(BANCO_ID);
+            vector_contenidos.Add(CHEQUE);
 
             ArrayList vector_tipos = new ArrayList();
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
 
             ArrayList vector_nombres = new ArrayList();
-            vector_nombres.Add("VALOR");
-            vector_nombres.Add("CHEQUE");
-            vector_nombres.Add("BANCO_ID");
+            vector_nombres.Add("@OP_TEMP");
+            vector_nombres.Add("@BANCO");
+            vector_nombres.Add("@NRO_CHEQUE");
 
             string vprocedure = "CHEQUES_OP_TEMP_U";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
-        
+       
         //STORED MODIFICAR CUENTA PLAN
         public void modificarCuentaPlan(string ID, string NUMEROCTA, string NOMBRECTA)
         {
@@ -239,7 +238,6 @@ namespace SOCIOS.BO
             vector_nombres.Add("NUMEROCTA");
             vector_nombres.Add("NOMBRECTA");
            
-
             string vprocedure = "CUENTAS_U";
 
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
@@ -248,8 +246,6 @@ namespace SOCIOS.BO
         //STORED NUEVA CUENTA PLAN
         public void nuevaCuentaPlan(string ID, string NUMEROCTA, string NOMBRECTA)
         {
-            
-
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(ID);
             vector_contenidos.Add(NUMEROCTA);
@@ -593,8 +589,6 @@ namespace SOCIOS.BO
         //STORED GUARDA ORDEN DE PAGO
         public void nuevaOrdenDePago(string FECHA, string OBSERVACIONES, decimal TOTAL, string BENEFICIARIO, int IDE, string US_ALTA, string FECHA_OP)
         {
-            
-
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(FECHA);
             vector_contenidos.Add(OBSERVACIONES);

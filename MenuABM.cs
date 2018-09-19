@@ -2176,5 +2176,10 @@ namespace SOCIOS
             SOCIOS.bono.Bonos.Carga_Bonos_Blanco_Odontologia co = new bono.Bonos.Carga_Bonos_Blanco_Odontologia();
             co.Show();
         }
+
+        private void completarBonosEnBlancoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.bono.Bonos.Carga_Bono_Blanco_Socio bb = new bono.Bonos.Carga_Bono_Blanco_Socio(VGlobales.vp_role);            bb.ShowDialog();
+        }
     }
 }

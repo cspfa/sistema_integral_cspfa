@@ -184,6 +184,10 @@
     <Compile Include="bono\Odontologia\Carga_Bonos_Blanco_Odontologia.Designer.cs">
       <DependentUpon>Carga_Bonos_Blanco_Odontologia.cs</DependentUpon>
     </Compile>
+    <Compile Include="bono\Odontologia\Carga_Individual_Bono_Blanco.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="bono\Odontologia\Carga_Individual_Bono_Blanco.Designer.cs" />
     <Compile Include="bono\Odontologia\Selector_Bono_Odontologia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -451,6 +455,12 @@
     </Compile>
     <Compile Include="ingresos\importarMovimientos.Designer.cs">
       <DependentUpon>importarMovimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="compras\orden_de_pago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="compras\orden_de_pago.Designer.cs">
+      <DependentUpon>orden_de_pago.cs</DependentUpon>
     </Compile>
     <Compile Include="recibos\modificarCajaDiaria.cs">
       <SubType>Form</SubType>
@@ -1211,6 +1221,7 @@
     <EmbeddedResource Include="bono\Odontologia\Carga_Bonos_Blanco_Odontologia.resx">
       <DependentUpon>Carga_Bonos_Blanco_Odontologia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="bono\Odontologia\Carga_Individual_Bono_Blanco.resx" />
     <EmbeddedResource Include="bono\Odontologia\Selector_Bono_Odontologia.resx" />
     <EmbeddedResource Include="bono\ReporteBonoOdontologico_Blanco.resx">
       <DependentUpon>ReporteBonoOdontologico_Blanco.cs</DependentUpon>
@@ -1288,6 +1299,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="bono\ReporteBonoVoucher.resx">
       <DependentUpon>ReporteBonoVoucher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="compras\orden_de_pago.resx">
+      <DependentUpon>orden_de_pago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="copyFiles\DIA_CopyFiles.resx">
       <DependentUpon>DIA_CopyFiles.cs</DependentUpon>

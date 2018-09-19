@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(buscar));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -145,6 +145,9 @@
             this.tsAsignarElemento = new System.Windows.Forms.ToolStripMenuItem();
             this.tsDevolverElemento = new System.Windows.Forms.ToolStripMenuItem();
             this.tsListarElementos = new System.Windows.Forms.ToolStripMenuItem();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.lbMorosoNoAlcanza = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox1)).BeginInit();
             this.themedGroupBox1.SuspendLayout();
@@ -207,7 +210,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(11, 7);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(264, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(279, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -216,7 +219,7 @@
             this.toolStripButton1.Image = global::SOCIOS.Properties.Resources.magnifier;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(90, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(94, 22);
             this.toolStripButton1.Text = "[F1] BUSCAR";
             this.toolStripButton1.ToolTipText = "[F1] - Buscar datos segun lo informado ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
@@ -231,7 +234,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(91, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(95, 22);
             this.toolStripButton2.Text = "[F2] LIMPIAR";
             this.toolStripButton2.ToolTipText = "Limpiar Campos";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
@@ -246,7 +249,7 @@
             this.toolStripButton3.Image = global::SOCIOS.Properties.Resources.add;
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(61, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(66, 22);
             this.toolStripButton3.Text = "NUEVO";
             this.toolStripButton3.ToolTipText = "Nuevo Titular";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click_1);
@@ -443,7 +446,6 @@
             this.listView1.Margin = new System.Windows.Forms.Padding(0);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            //this.listView1.ParentContainer = this;
             this.listView1.ShowItemToolTips = true;
             this.listView1.Size = new System.Drawing.Size(1079, 130);
             this.listView1.SmallImageList = this.imageList1;
@@ -497,7 +499,7 @@
             this.LimpiarListView});
             this.toolStrip2.Location = new System.Drawing.Point(498, 8);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(151, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(161, 25);
             this.toolStrip2.TabIndex = 4;
             this.toolStrip2.Text = "toolStrip2";
             this.toolStrip2.Visible = false;
@@ -508,7 +510,7 @@
             this.BuscarListView.Image = ((System.Drawing.Image)(resources.GetObject("BuscarListView.Image")));
             this.BuscarListView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.BuscarListView.Name = "BuscarListView";
-            this.BuscarListView.Size = new System.Drawing.Size(67, 22);
+            this.BuscarListView.Size = new System.Drawing.Size(71, 22);
             this.BuscarListView.Text = "BUSCAR";
             this.BuscarListView.ToolTipText = "BUSCAR EN RESULTADO";
             this.BuscarListView.Click += new System.EventHandler(this.BuscarListView_Click);
@@ -524,7 +526,7 @@
             this.LimpiarListView.Image = ((System.Drawing.Image)(resources.GetObject("LimpiarListView.Image")));
             this.LimpiarListView.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.LimpiarListView.Name = "LimpiarListView";
-            this.LimpiarListView.Size = new System.Drawing.Size(68, 22);
+            this.LimpiarListView.Size = new System.Drawing.Size(72, 22);
             this.LimpiarListView.Text = "LIMPIAR";
             this.LimpiarListView.ToolTipText = "LIMPIAR SELECCIONADOS";
             this.LimpiarListView.Click += new System.EventHandler(this.LimpiarListView_Click);
@@ -786,24 +788,24 @@
             this.dgvTurnos.AllowUserToResizeRows = false;
             this.dgvTurnos.BackgroundColor = System.Drawing.Color.White;
             this.dgvTurnos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTurnos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTurnos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvTurnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTurnos.ColumnHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTurnos.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTurnos.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgvTurnos.Location = new System.Drawing.Point(5, 25);
             this.dgvTurnos.MultiSelect = false;
             this.dgvTurnos.Name = "dgvTurnos";
@@ -817,8 +819,8 @@
             // 
             // themedContainer2
             // 
-            this.themedContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.themedContainer2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.themedContainer2.BodyBackgroundPrimaryColor = System.Drawing.Color.White;
             this.themedContainer2.BodyBackgroundSecondaryColor = System.Drawing.Color.White;
             this.themedContainer2.BorderColor = System.Drawing.Color.Gray;
@@ -991,8 +993,8 @@
             // 
             // themedContainer1
             // 
-            this.themedContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.themedContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.themedContainer1.BodyBackgroundPrimaryColor = System.Drawing.Color.White;
             this.themedContainer1.BodyBackgroundSecondaryColor = System.Drawing.Color.White;
             this.themedContainer1.BorderColor = System.Drawing.Color.Gray;
@@ -1345,40 +1347,44 @@
             // lbMorosoNoDesc
             // 
             this.lbMorosoNoDesc.AutoSize = true;
-            this.lbMorosoNoDesc.ForeColor = System.Drawing.Color.Silver;
-            this.lbMorosoNoDesc.Location = new System.Drawing.Point(5, 79);
+            this.lbMorosoNoDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMorosoNoDesc.ForeColor = System.Drawing.Color.DimGray;
+            this.lbMorosoNoDesc.Location = new System.Drawing.Point(5, 70);
             this.lbMorosoNoDesc.Name = "lbMorosoNoDesc";
-            this.lbMorosoNoDesc.Size = new System.Drawing.Size(152, 13);
+            this.lbMorosoNoDesc.Size = new System.Drawing.Size(132, 12);
             this.lbMorosoNoDesc.TabIndex = 3;
             this.lbMorosoNoDesc.Text = "MOROSO NO DESCONTADO";
             // 
             // lbMoraInp
             // 
             this.lbMoraInp.AutoSize = true;
-            this.lbMoraInp.ForeColor = System.Drawing.Color.Silver;
-            this.lbMoraInp.Location = new System.Drawing.Point(5, 62);
+            this.lbMoraInp.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMoraInp.ForeColor = System.Drawing.Color.DimGray;
+            this.lbMoraInp.Location = new System.Drawing.Point(5, 56);
             this.lbMoraInp.Name = "lbMoraInp";
-            this.lbMoraInp.Size = new System.Drawing.Size(233, 13);
+            this.lbMoraInp.Size = new System.Drawing.Size(206, 12);
             this.lbMoraInp.TabIndex = 2;
             this.lbMoraInp.Text = "MOROSO CUOTA INVITADO PARTICIPATIVO";
             // 
             // lbMoraDepo
             // 
             this.lbMoraDepo.AutoSize = true;
-            this.lbMoraDepo.ForeColor = System.Drawing.Color.Silver;
-            this.lbMoraDepo.Location = new System.Drawing.Point(5, 45);
+            this.lbMoraDepo.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMoraDepo.ForeColor = System.Drawing.Color.DimGray;
+            this.lbMoraDepo.Location = new System.Drawing.Point(5, 42);
             this.lbMoraDepo.Name = "lbMoraDepo";
-            this.lbMoraDepo.Size = new System.Drawing.Size(157, 13);
+            this.lbMoraDepo.Size = new System.Drawing.Size(135, 12);
             this.lbMoraDepo.TabIndex = 1;
             this.lbMoraDepo.Text = "MOROSO CUOTA DEPORTES";
             // 
             // lbMoraCuota
             // 
             this.lbMoraCuota.AutoSize = true;
-            this.lbMoraCuota.ForeColor = System.Drawing.Color.Silver;
-            this.lbMoraCuota.Location = new System.Drawing.Point(5, 28);
+            this.lbMoraCuota.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMoraCuota.ForeColor = System.Drawing.Color.DimGray;
+            this.lbMoraCuota.Location = new System.Drawing.Point(5, 27);
             this.lbMoraCuota.Name = "lbMoraCuota";
-            this.lbMoraCuota.Size = new System.Drawing.Size(209, 13);
+            this.lbMoraCuota.Size = new System.Drawing.Size(182, 12);
             this.lbMoraCuota.TabIndex = 0;
             this.lbMoraCuota.Text = "MOROSO CUOTA SOCIAL O TERCEROS";
             // 
@@ -1410,37 +1416,37 @@
             this.dgvObservaciones.AllowUserToResizeRows = false;
             this.dgvObservaciones.BackgroundColor = System.Drawing.Color.White;
             this.dgvObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvObservaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvObservaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvObservaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvObservaciones.ColumnHeadersVisible = false;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvObservaciones.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvObservaciones.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvObservaciones.Location = new System.Drawing.Point(6, 26);
             this.dgvObservaciones.MultiSelect = false;
             this.dgvObservaciones.Name = "dgvObservaciones";
             this.dgvObservaciones.ReadOnly = true;
             this.dgvObservaciones.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvObservaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvObservaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvObservaciones.RowHeadersVisible = false;
             this.dgvObservaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvObservaciones.Size = new System.Drawing.Size(270, 70);
@@ -1451,13 +1457,13 @@
             this.cmEncuesta.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsEncuesta});
             this.cmEncuesta.Name = "cmServiciosMedicos";
-            this.cmEncuesta.Size = new System.Drawing.Size(155, 26);
+            this.cmEncuesta.Size = new System.Drawing.Size(160, 26);
             // 
             // tsEncuesta
             // 
             this.tsEncuesta.Image = ((System.Drawing.Image)(resources.GetObject("tsEncuesta.Image")));
             this.tsEncuesta.Name = "tsEncuesta";
-            this.tsEncuesta.Size = new System.Drawing.Size(154, 22);
+            this.tsEncuesta.Size = new System.Drawing.Size(159, 22);
             this.tsEncuesta.Text = "Cargar Encuesta";
             this.tsEncuesta.Click += new System.EventHandler(this.tsEncuesta_Click);
             // 
@@ -1466,14 +1472,14 @@
             this.cmObservacionesInterior.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cargarObservaciónToolStripMenuItem});
             this.cmObservacionesInterior.Name = "cmObservacionesInterior";
-            this.cmObservacionesInterior.Size = new System.Drawing.Size(159, 26);
+            this.cmObservacionesInterior.Size = new System.Drawing.Size(165, 26);
             this.cmObservacionesInterior.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // cargarObservaciónToolStripMenuItem
             // 
             this.cargarObservaciónToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cargarObservaciónToolStripMenuItem.Image")));
             this.cargarObservaciónToolStripMenuItem.Name = "cargarObservaciónToolStripMenuItem";
-            this.cargarObservaciónToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.cargarObservaciónToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
             this.cargarObservaciónToolStripMenuItem.Text = "OBSERVACIONES";
             this.cargarObservaciónToolStripMenuItem.Click += new System.EventHandler(this.cargarObservaciónToolStripMenuItem_Click);
             // 
@@ -1483,20 +1489,20 @@
             this.sUSPENDERToolStripMenuItem,
             this.rEANUDARToolStripMenuItem});
             this.cmDeportes.Name = "cmDeportes";
-            this.cmDeportes.Size = new System.Drawing.Size(133, 48);
+            this.cmDeportes.Size = new System.Drawing.Size(138, 48);
             // 
             // sUSPENDERToolStripMenuItem
             // 
             this.sUSPENDERToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sUSPENDERToolStripMenuItem.Image")));
             this.sUSPENDERToolStripMenuItem.Name = "sUSPENDERToolStripMenuItem";
-            this.sUSPENDERToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.sUSPENDERToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.sUSPENDERToolStripMenuItem.Text = "SUSPENDER";
             // 
             // rEANUDARToolStripMenuItem
             // 
             this.rEANUDARToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rEANUDARToolStripMenuItem.Image")));
             this.rEANUDARToolStripMenuItem.Name = "rEANUDARToolStripMenuItem";
-            this.rEANUDARToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.rEANUDARToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.rEANUDARToolStripMenuItem.Text = "REANUDAR";
             // 
             // lbIngresoEvento
@@ -1528,13 +1534,13 @@
             this.dECABAAPFAToolStripMenuItem,
             this.noAlcanzaCSToolStripMenuItem});
             this.cmProsecretaria.Name = "cmProsecretaria";
-            this.cmProsecretaria.Size = new System.Drawing.Size(149, 70);
+            this.cmProsecretaria.Size = new System.Drawing.Size(155, 70);
             // 
             // dEPFAACABAToolStripMenuItem
             // 
             this.dEPFAACABAToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dEPFAACABAToolStripMenuItem.Image")));
             this.dEPFAACABAToolStripMenuItem.Name = "dEPFAACABAToolStripMenuItem";
-            this.dEPFAACABAToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.dEPFAACABAToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.dEPFAACABAToolStripMenuItem.Text = "De PFA a CABA";
             this.dEPFAACABAToolStripMenuItem.Click += new System.EventHandler(this.dEPFAACABAToolStripMenuItem_Click);
             // 
@@ -1542,7 +1548,7 @@
             // 
             this.dECABAAPFAToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("dECABAAPFAToolStripMenuItem.Image")));
             this.dECABAAPFAToolStripMenuItem.Name = "dECABAAPFAToolStripMenuItem";
-            this.dECABAAPFAToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.dECABAAPFAToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.dECABAAPFAToolStripMenuItem.Text = "De CABA a PFA";
             this.dECABAAPFAToolStripMenuItem.Click += new System.EventHandler(this.dECABAAPFAToolStripMenuItem_Click);
             // 
@@ -1550,7 +1556,7 @@
             // 
             this.noAlcanzaCSToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("noAlcanzaCSToolStripMenuItem.Image")));
             this.noAlcanzaCSToolStripMenuItem.Name = "noAlcanzaCSToolStripMenuItem";
-            this.noAlcanzaCSToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.noAlcanzaCSToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.noAlcanzaCSToolStripMenuItem.Text = "No Alcanza CS";
             this.noAlcanzaCSToolStripMenuItem.Click += new System.EventHandler(this.noAlcanzaCSToolStripMenuItem_Click);
             // 
@@ -1561,13 +1567,13 @@
             this.tsDevolverElemento,
             this.tsListarElementos});
             this.cmOSocial.Name = "cmOSocial";
-            this.cmOSocial.Size = new System.Drawing.Size(221, 92);
+            this.cmOSocial.Size = new System.Drawing.Size(237, 70);
             // 
             // tsAsignarElemento
             // 
             this.tsAsignarElemento.Image = global::SOCIOS.Properties.Resources.add;
             this.tsAsignarElemento.Name = "tsAsignarElemento";
-            this.tsAsignarElemento.Size = new System.Drawing.Size(220, 22);
+            this.tsAsignarElemento.Size = new System.Drawing.Size(236, 22);
             this.tsAsignarElemento.Text = "Asignar Elemento Ortopédico";
             this.tsAsignarElemento.Click += new System.EventHandler(this.tsAsignarElemento_Click);
             // 
@@ -1575,7 +1581,7 @@
             // 
             this.tsDevolverElemento.Image = global::SOCIOS.Properties.Resources.delete;
             this.tsDevolverElemento.Name = "tsDevolverElemento";
-            this.tsDevolverElemento.Size = new System.Drawing.Size(220, 22);
+            this.tsDevolverElemento.Size = new System.Drawing.Size(236, 22);
             this.tsDevolverElemento.Text = "Devolver Elemento Ortopédico";
             this.tsDevolverElemento.Click += new System.EventHandler(this.tsDevolverElemento_Click);
             // 
@@ -1583,9 +1589,42 @@
             // 
             this.tsListarElementos.Image = global::SOCIOS.Properties.Resources.application_view_columns;
             this.tsListarElementos.Name = "tsListarElementos";
-            this.tsListarElementos.Size = new System.Drawing.Size(220, 22);
+            this.tsListarElementos.Size = new System.Drawing.Size(236, 22);
             this.tsListarElementos.Text = "Listar Elementos Asignados";
             this.tsListarElementos.Click += new System.EventHandler(this.tsListarElementos_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.Silver;
+            this.label22.Location = new System.Drawing.Point(5, 76);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(113, 9);
+            this.label22.TabIndex = 3;
+            this.label22.Text = "MOROSO NO DESCONTADO";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Silver;
+            this.label23.Location = new System.Drawing.Point(5, 76);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(113, 9);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "MOROSO NO DESCONTADO";
+            // 
+            // lbMorosoNoAlcanza
+            // 
+            this.lbMorosoNoAlcanza.AutoSize = true;
+            this.lbMorosoNoAlcanza.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMorosoNoAlcanza.ForeColor = System.Drawing.Color.DimGray;
+            this.lbMorosoNoAlcanza.Location = new System.Drawing.Point(16, 622);
+            this.lbMorosoNoAlcanza.Name = "lbMorosoNoAlcanza";
+            this.lbMorosoNoAlcanza.Size = new System.Drawing.Size(112, 12);
+            this.lbMorosoNoAlcanza.TabIndex = 48;
+            this.lbMorosoNoAlcanza.Text = "MOROSO NO ALCANZA";
             // 
             // buscar
             // 
@@ -1600,6 +1639,7 @@
             this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
             this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
             this.ClientSize = new System.Drawing.Size(1108, 651);
+            this.Controls.Add(this.lbMorosoNoAlcanza);
             this.Controls.Add(this.lbReintegroEvento);
             this.Controls.Add(this.lbIngresoEvento);
             this.Controls.Add(this.themedGroupBox6);
@@ -1777,8 +1817,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsAsignarElemento;
         private System.Windows.Forms.ToolStripMenuItem tsDevolverElemento;
         private System.Windows.Forms.ToolStripMenuItem tsListarElementos;
-
-
+        private System.Windows.Forms.Label lbMorosoNoAlcanza;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
     }
 }
 

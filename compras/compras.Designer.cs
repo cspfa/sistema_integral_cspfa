@@ -155,7 +155,6 @@
             this.label99 = new System.Windows.Forms.Label();
             this.label100 = new System.Windows.Forms.Label();
             this.tabOrdenesDePago = new System.Windows.Forms.TabPage();
-            this.btnListadoBusqueda = new System.Windows.Forms.Button();
             this.tbTotalBusqueda = new System.Windows.Forms.Label();
             this.cbBenefOpe = new System.Windows.Forms.ComboBox();
             this.label93 = new System.Windows.Forms.Label();
@@ -186,19 +185,7 @@
             this.lbTotalCheques = new System.Windows.Forms.Label();
             this.lvChequesSeleccionados = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
             this.themedGroupBox9 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
-            this.chBancoOP = new System.Windows.Forms.CheckBox();
-            this.cbBancosBusca = new System.Windows.Forms.ComboBox();
-            this.label72 = new System.Windows.Forms.Label();
-            this.cbEstadosCheques = new System.Windows.Forms.ComboBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.tbBuscarOPxProveedor = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.tbBuscarOPxFactura = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.tbBuscarOPxCheque = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this.btnLimpiarLvOP = new System.Windows.Forms.Button();
             this.btnBuscarOP = new System.Windows.Forms.Button();
             this.tbBuscarOPxNum = new System.Windows.Forms.TextBox();
             this.lvBuscarOP = new MicroFour.StrataFrame.UI.Windows.Forms.ListView();
@@ -443,13 +430,10 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AID_SOL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmEstadoOP = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.enCalle = new System.Windows.Forms.ToolStripMenuItem();
-            this.cobrado = new System.Windows.Forms.ToolStripMenuItem();
-            this.enCartera = new System.Windows.Forms.ToolStripMenuItem();
-            this.iMPRIMIRCHEQUEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vERPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aNULARORDENDEPAGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cONFIRMARANULACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cANCELARANULACIONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmFactura = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmAgregarOp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmAbrirAdjunto = new System.Windows.Forms.ToolStripMenuItem();
@@ -468,6 +452,7 @@
             this.aNULADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMPLETADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eNTREGADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vERDETALLEOPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -1754,7 +1739,6 @@
             // tabOrdenesDePago
             // 
             this.tabOrdenesDePago.BackColor = System.Drawing.Color.White;
-            this.tabOrdenesDePago.Controls.Add(this.btnListadoBusqueda);
             this.tabOrdenesDePago.Controls.Add(this.tbTotalBusqueda);
             this.tabOrdenesDePago.Controls.Add(this.cbBenefOpe);
             this.tabOrdenesDePago.Controls.Add(this.label93);
@@ -1776,16 +1760,6 @@
             this.tabOrdenesDePago.TabIndex = 3;
             this.tabOrdenesDePago.Text = "ORDENES DE PAGO";
             this.tabOrdenesDePago.Enter += new System.EventHandler(this.tabOrdenesDePago_Enter);
-            // 
-            // btnListadoBusqueda
-            // 
-            this.btnListadoBusqueda.Image = ((System.Drawing.Image)(resources.GetObject("btnListadoBusqueda.Image")));
-            this.btnListadoBusqueda.Location = new System.Drawing.Point(1005, 624);
-            this.btnListadoBusqueda.Name = "btnListadoBusqueda";
-            this.btnListadoBusqueda.Size = new System.Drawing.Size(29, 27);
-            this.btnListadoBusqueda.TabIndex = 35;
-            this.btnListadoBusqueda.UseVisualStyleBackColor = true;
-            this.btnListadoBusqueda.Click += new System.EventHandler(this.btnListadoBusqueda_Click);
             // 
             // tbTotalBusqueda
             // 
@@ -2131,19 +2105,7 @@
             // 
             this.themedGroupBox9.BaseBackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.themedGroupBox9.BorderColor = System.Drawing.Color.SteelBlue;
-            this.themedGroupBox9.Controls.Add(this.chBancoOP);
-            this.themedGroupBox9.Controls.Add(this.cbBancosBusca);
-            this.themedGroupBox9.Controls.Add(this.label72);
-            this.themedGroupBox9.Controls.Add(this.cbEstadosCheques);
-            this.themedGroupBox9.Controls.Add(this.label43);
-            this.themedGroupBox9.Controls.Add(this.label42);
-            this.themedGroupBox9.Controls.Add(this.tbBuscarOPxProveedor);
-            this.themedGroupBox9.Controls.Add(this.label41);
-            this.themedGroupBox9.Controls.Add(this.tbBuscarOPxFactura);
-            this.themedGroupBox9.Controls.Add(this.label40);
-            this.themedGroupBox9.Controls.Add(this.tbBuscarOPxCheque);
             this.themedGroupBox9.Controls.Add(this.label36);
-            this.themedGroupBox9.Controls.Add(this.btnLimpiarLvOP);
             this.themedGroupBox9.Controls.Add(this.btnBuscarOP);
             this.themedGroupBox9.Controls.Add(this.tbBuscarOPxNum);
             this.themedGroupBox9.Controls.Add(this.lvBuscarOP);
@@ -2161,133 +2123,19 @@
             this.themedGroupBox9.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
             this.themedGroupBox9.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
             // 
-            // chBancoOP
-            // 
-            this.chBancoOP.AutoSize = true;
-            this.chBancoOP.Location = new System.Drawing.Point(943, 31);
-            this.chBancoOP.Name = "chBancoOP";
-            this.chBancoOP.Size = new System.Drawing.Size(15, 14);
-            this.chBancoOP.TabIndex = 58;
-            this.chBancoOP.UseVisualStyleBackColor = true;
-            this.chBancoOP.CheckedChanged += new System.EventHandler(this.chBancoOP_CheckedChanged);
-            // 
-            // cbBancosBusca
-            // 
-            this.cbBancosBusca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBancosBusca.Enabled = false;
-            this.cbBancosBusca.FormattingEnabled = true;
-            this.cbBancosBusca.Location = new System.Drawing.Point(811, 28);
-            this.cbBancosBusca.Name = "cbBancosBusca";
-            this.cbBancosBusca.Size = new System.Drawing.Size(125, 21);
-            this.cbBancosBusca.TabIndex = 56;
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(760, 32);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(44, 13);
-            this.label72.TabIndex = 57;
-            this.label72.Text = "BANCO";
-            // 
-            // cbEstadosCheques
-            // 
-            this.cbEstadosCheques.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEstadosCheques.FormattingEnabled = true;
-            this.cbEstadosCheques.Location = new System.Drawing.Point(650, 28);
-            this.cbEstadosCheques.Name = "cbEstadosCheques";
-            this.cbEstadosCheques.Size = new System.Drawing.Size(104, 21);
-            this.cbEstadosCheques.TabIndex = 10;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(591, 32);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(51, 13);
-            this.label43.TabIndex = 55;
-            this.label43.Text = "ESTADO";
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(368, 32);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(75, 13);
-            this.label42.TabIndex = 54;
-            this.label42.Text = "PROVEEDOR";
-            this.label42.Visible = false;
-            // 
-            // tbBuscarOPxProveedor
-            // 
-            this.tbBuscarOPxProveedor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbBuscarOPxProveedor.Location = new System.Drawing.Point(450, 28);
-            this.tbBuscarOPxProveedor.Name = "tbBuscarOPxProveedor";
-            this.tbBuscarOPxProveedor.Size = new System.Drawing.Size(134, 20);
-            this.tbBuscarOPxProveedor.TabIndex = 9;
-            this.tbBuscarOPxProveedor.Visible = false;
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(211, 32);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(34, 13);
-            this.label41.TabIndex = 52;
-            this.label41.Text = "FACT";
-            this.label41.Visible = false;
-            // 
-            // tbBuscarOPxFactura
-            // 
-            this.tbBuscarOPxFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbBuscarOPxFactura.Location = new System.Drawing.Point(252, 28);
-            this.tbBuscarOPxFactura.Name = "tbBuscarOPxFactura";
-            this.tbBuscarOPxFactura.Size = new System.Drawing.Size(109, 20);
-            this.tbBuscarOPxFactura.TabIndex = 8;
-            this.tbBuscarOPxFactura.Visible = false;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(115, 32);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(22, 13);
-            this.label40.TabIndex = 50;
-            this.label40.Text = "CH";
-            this.label40.Visible = false;
-            // 
-            // tbBuscarOPxCheque
-            // 
-            this.tbBuscarOPxCheque.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbBuscarOPxCheque.Location = new System.Drawing.Point(144, 28);
-            this.tbBuscarOPxCheque.Name = "tbBuscarOPxCheque";
-            this.tbBuscarOPxCheque.Size = new System.Drawing.Size(60, 20);
-            this.tbBuscarOPxCheque.TabIndex = 7;
-            this.tbBuscarOPxCheque.Visible = false;
-            // 
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(19, 32);
+            this.label36.Location = new System.Drawing.Point(875, 32);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(22, 13);
+            this.label36.Size = new System.Drawing.Size(49, 13);
             this.label36.TabIndex = 48;
-            this.label36.Text = "OP";
-            // 
-            // btnLimpiarLvOP
-            // 
-            this.btnLimpiarLvOP.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarLvOP.Image")));
-            this.btnLimpiarLvOP.Location = new System.Drawing.Point(994, 24);
-            this.btnLimpiarLvOP.Name = "btnLimpiarLvOP";
-            this.btnLimpiarLvOP.Size = new System.Drawing.Size(29, 29);
-            this.btnLimpiarLvOP.TabIndex = 12;
-            this.btnLimpiarLvOP.UseVisualStyleBackColor = true;
-            this.btnLimpiarLvOP.Click += new System.EventHandler(this.btnLimpiarLvOP_Click);
+            this.label36.Text = "NRO OP";
             // 
             // btnBuscarOP
             // 
             this.btnBuscarOP.Image = global::SOCIOS.Properties.Resources.magnifier;
-            this.btnBuscarOP.Location = new System.Drawing.Point(964, 24);
+            this.btnBuscarOP.Location = new System.Drawing.Point(992, 24);
             this.btnBuscarOP.Name = "btnBuscarOP";
             this.btnBuscarOP.Size = new System.Drawing.Size(29, 29);
             this.btnBuscarOP.TabIndex = 11;
@@ -2297,7 +2145,7 @@
             // tbBuscarOPxNum
             // 
             this.tbBuscarOPxNum.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbBuscarOPxNum.Location = new System.Drawing.Point(48, 28);
+            this.tbBuscarOPxNum.Location = new System.Drawing.Point(927, 28);
             this.tbBuscarOPxNum.Name = "tbBuscarOPxNum";
             this.tbBuscarOPxNum.Size = new System.Drawing.Size(60, 20);
             this.tbBuscarOPxNum.TabIndex = 6;
@@ -5046,53 +4894,19 @@
             // cmEstadoOP
             // 
             this.cmEstadoOP.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.enCalle,
-            this.cobrado,
-            this.enCartera,
-            this.iMPRIMIRCHEQUEToolStripMenuItem,
+            this.vERDETALLEOPToolStripMenuItem,
             this.vERPDFToolStripMenuItem,
             this.aNULARORDENDEPAGOToolStripMenuItem,
-            this.cONFIRMARANULACIÓNToolStripMenuItem});
+            this.cONFIRMARANULACIÓNToolStripMenuItem,
+            this.cANCELARANULACIONToolStripMenuItem});
             this.cmEstadoOP.Name = "cmEstadoOP";
-            this.cmEstadoOP.Size = new System.Drawing.Size(214, 158);
-            // 
-            // enCalle
-            // 
-            this.enCalle.Image = ((System.Drawing.Image)(resources.GetObject("enCalle.Image")));
-            this.enCalle.Name = "enCalle";
-            this.enCalle.Size = new System.Drawing.Size(213, 22);
-            this.enCalle.Text = "CHEQUE EN CALLE";
-            this.enCalle.Click += new System.EventHandler(this.enCalle_Click);
-            // 
-            // cobrado
-            // 
-            this.cobrado.Image = ((System.Drawing.Image)(resources.GetObject("cobrado.Image")));
-            this.cobrado.Name = "cobrado";
-            this.cobrado.Size = new System.Drawing.Size(213, 22);
-            this.cobrado.Text = "CHEQUE COBRADO";
-            this.cobrado.Click += new System.EventHandler(this.cobrado_Click);
-            // 
-            // enCartera
-            // 
-            this.enCartera.Image = ((System.Drawing.Image)(resources.GetObject("enCartera.Image")));
-            this.enCartera.Name = "enCartera";
-            this.enCartera.Size = new System.Drawing.Size(213, 22);
-            this.enCartera.Text = "CHEQUE EN CARTERA";
-            this.enCartera.Click += new System.EventHandler(this.enCartera_Click);
-            // 
-            // iMPRIMIRCHEQUEToolStripMenuItem
-            // 
-            this.iMPRIMIRCHEQUEToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.printer;
-            this.iMPRIMIRCHEQUEToolStripMenuItem.Name = "iMPRIMIRCHEQUEToolStripMenuItem";
-            this.iMPRIMIRCHEQUEToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.iMPRIMIRCHEQUEToolStripMenuItem.Text = "IMPRIMIR CHEQUE";
-            this.iMPRIMIRCHEQUEToolStripMenuItem.Click += new System.EventHandler(this.iMPRIMIRCHEQUEToolStripMenuItem_Click);
+            this.cmEstadoOP.Size = new System.Drawing.Size(237, 136);
             // 
             // vERPDFToolStripMenuItem
             // 
             this.vERPDFToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("vERPDFToolStripMenuItem.Image")));
             this.vERPDFToolStripMenuItem.Name = "vERPDFToolStripMenuItem";
-            this.vERPDFToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.vERPDFToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.vERPDFToolStripMenuItem.Text = "VER PDF ORDEN DE PAGO";
             this.vERPDFToolStripMenuItem.Click += new System.EventHandler(this.vERPDFToolStripMenuItem_Click);
             // 
@@ -5100,7 +4914,7 @@
             // 
             this.aNULARORDENDEPAGOToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aNULARORDENDEPAGOToolStripMenuItem.Image")));
             this.aNULARORDENDEPAGOToolStripMenuItem.Name = "aNULARORDENDEPAGOToolStripMenuItem";
-            this.aNULARORDENDEPAGOToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.aNULARORDENDEPAGOToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.aNULARORDENDEPAGOToolStripMenuItem.Text = "ANULAR ORDEN DE PAGO";
             this.aNULARORDENDEPAGOToolStripMenuItem.Click += new System.EventHandler(this.aNULARORDENDEPAGOToolStripMenuItem_Click);
             // 
@@ -5108,10 +4922,18 @@
             // 
             this.cONFIRMARANULACIÓNToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.accept;
             this.cONFIRMARANULACIÓNToolStripMenuItem.Name = "cONFIRMARANULACIÓNToolStripMenuItem";
-            this.cONFIRMARANULACIÓNToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
             this.cONFIRMARANULACIÓNToolStripMenuItem.Text = "CONFIRMAR ANULACIÓN";
             this.cONFIRMARANULACIÓNToolStripMenuItem.Visible = false;
             this.cONFIRMARANULACIÓNToolStripMenuItem.Click += new System.EventHandler(this.cONFIRMARANULACIÓNToolStripMenuItem_Click);
+            // 
+            // cANCELARANULACIONToolStripMenuItem
+            // 
+            this.cANCELARANULACIONToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.cross;
+            this.cANCELARANULACIONToolStripMenuItem.Name = "cANCELARANULACIONToolStripMenuItem";
+            this.cANCELARANULACIONToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.cANCELARANULACIONToolStripMenuItem.Text = "CANCELAR ANULACION";
+            this.cANCELARANULACIONToolStripMenuItem.Click += new System.EventHandler(this.cANCELARANULACIONToolStripMenuItem_Click);
             // 
             // cmFactura
             // 
@@ -5264,6 +5086,14 @@
             this.eNTREGADAToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.eNTREGADAToolStripMenuItem.Text = "Entregada";
             this.eNTREGADAToolStripMenuItem.Click += new System.EventHandler(this.eNTREGADAToolStripMenuItem_Click);
+            // 
+            // vERDETALLEOPToolStripMenuItem
+            // 
+            this.vERDETALLEOPToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_view_columns;
+            this.vERDETALLEOPToolStripMenuItem.Name = "vERDETALLEOPToolStripMenuItem";
+            this.vERDETALLEOPToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.vERDETALLEOPToolStripMenuItem.Text = "VER DETALLE ORDEN DE PAGO";
+            this.vERDETALLEOPToolStripMenuItem.Click += new System.EventHandler(this.vERDETALLEOPToolStripMenuItem_Click);
             // 
             // compras
             // 
@@ -5437,23 +5267,11 @@
         private System.Windows.Forms.Label label32;
         private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox themedGroupBox9;
         private MicroFour.StrataFrame.UI.Windows.Forms.ListView lvBuscarOP;
-        private System.Windows.Forms.Button btnLimpiarLvOP;
         private System.Windows.Forms.Button btnBuscarOP;
         private System.Windows.Forms.TextBox tbBuscarOPxNum;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox tbBuscarOPxFactura;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox tbBuscarOPxCheque;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox tbBuscarOPxProveedor;
         private System.Windows.Forms.ContextMenuStrip cmEstadoOP;
-        private System.Windows.Forms.ToolStripMenuItem enCalle;
-        private System.Windows.Forms.ToolStripMenuItem cobrado;
-        private System.Windows.Forms.ToolStripMenuItem enCartera;
         private System.Windows.Forms.ToolStripMenuItem vERPDFToolStripMenuItem;
-        private System.Windows.Forms.ComboBox cbEstadosCheques;
-        private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.ComboBox cbBeneficiarioOP;
@@ -5702,13 +5520,9 @@
         private System.Windows.Forms.ComboBox cbImpuestoRetencion;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btnEliminarProveedor;
-        private System.Windows.Forms.ToolStripMenuItem iMPRIMIRCHEQUEToolStripMenuItem;
         private System.Windows.Forms.DateTimePicker dpFechaListado;
         private System.Windows.Forms.Button btnListado;
         private System.Windows.Forms.Label tbTotalBusqueda;
-        private System.Windows.Forms.Button btnListadoBusqueda;
-        private System.Windows.Forms.ComboBox cbBancosBusca;
-        private System.Windows.Forms.Label label72;
         private System.Windows.Forms.Button btnEliminarArticulo;
         private System.Windows.Forms.Button btnContabilizar;
         private System.Windows.Forms.Button btnCancelarEdicion;
@@ -5800,9 +5614,10 @@
         private System.Windows.Forms.Label label117;
         private System.Windows.Forms.ToolStripMenuItem aNULARORDENDEPAGOToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cONFIRMARANULACIÓNToolStripMenuItem;
-        private System.Windows.Forms.CheckBox chBancoOP;
         private System.Windows.Forms.ComboBox cbAjuste;
         private System.Windows.Forms.TextBox tbAjuste;
         private System.Windows.Forms.Label label118;
+        private System.Windows.Forms.ToolStripMenuItem cANCELARANULACIONToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vERDETALLEOPToolStripMenuItem;
     }
 }
