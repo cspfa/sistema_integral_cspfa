@@ -46,6 +46,7 @@ namespace SOCIOS.Turismo
           utilsTurismo.UpdateComboTabla("TURISMO_TIPO", cbTipo);
           utilsTurismo.UpdateComboTabla("TURISMO_REGIMEN", cbRegimen);
           utilsTurismo.UpdateComboTabla("TURISMO_TRASLADO",cbTraslado);
+         
           utilsTurismo.ComboMoneda(cbMoneda);
           utilsTurismo.ComboOperador(cbOperador,false);
           
@@ -167,6 +168,8 @@ namespace SOCIOS.Turismo
                 int      Traslado     = Int32.Parse(cbTraslado.SelectedValue.ToString());
                 int      Tipo         = Int32.Parse(cbTipo.SelectedValue.ToString());
                 int Hotel             =0;
+                int Web = 1;
+                
 
 
                 utilsTurismo.checkDestinosRepetidos( LocDesde, LocHasta);
@@ -180,10 +183,14 @@ namespace SOCIOS.Turismo
                 if (Menor == 0)
                     throw new Exception("El Valor Menor No Puede ser 0");
 
-                if (Modo =="INS")
-                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked,CocheCama);
+                if (cbWeb.Checked)
+                    Web = 1;
                 else
-                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked,CocheCama);
+                    Web = 0;
+                if (Modo =="INS")
+                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked,CocheCama,Web);
+                else
+                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked,CocheCama,Web);
                     
 
                 this.UpdateGrilla();
@@ -235,7 +242,7 @@ namespace SOCIOS.Turismo
              }
 
              tbMenor.Text = salida.Menor.ToString("0.##");
-             
+             cbWeb.Checked = salida.Web;
 
             
 

@@ -60,6 +60,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbCocheCama = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lbWEB = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -367,12 +369,33 @@
             this.lbCocheCama.TabIndex = 31;
             this.lbCocheCama.Text = "NOMBRE";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(488, 121);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(32, 13);
+            this.label17.TabIndex = 32;
+            this.label17.Text = "WEB";
+            // 
+            // lbWEB
+            // 
+            this.lbWEB.AutoSize = true;
+            this.lbWEB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbWEB.Location = new System.Drawing.Point(523, 121);
+            this.lbWEB.Name = "lbWEB";
+            this.lbWEB.Size = new System.Drawing.Size(60, 13);
+            this.lbWEB.TabIndex = 33;
+            this.lbWEB.Text = "NOMBRE";
+            // 
             // FormSalida
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(674, 239);
+            this.ClientSize = new System.Drawing.Size(655, 239);
+            this.Controls.Add(this.lbWEB);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.lbCocheCama);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lbMenor);
@@ -450,5 +473,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbCocheCama;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lbWEB;
     }
 }

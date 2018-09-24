@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Salidas));
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.tbCocheCama = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.tbMenor = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cbDiaria = new System.Windows.Forms.CheckBox();
@@ -76,8 +78,7 @@
             this.NuevoBank = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
-            this.label17 = new System.Windows.Forms.Label();
-            this.tbCocheCama = new System.Windows.Forms.TextBox();
+            this.cbWeb = new System.Windows.Forms.CheckBox();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -85,6 +86,7 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.cbWeb);
             this.gpDatos.Controls.Add(this.tbCocheCama);
             this.gpDatos.Controls.Add(this.label17);
             this.gpDatos.Controls.Add(this.tbMenor);
@@ -134,6 +136,24 @@
             this.gpDatos.TabIndex = 0;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // tbCocheCama
+            // 
+            this.tbCocheCama.Location = new System.Drawing.Point(435, 176);
+            this.tbCocheCama.Name = "tbCocheCama";
+            this.tbCocheCama.Size = new System.Drawing.Size(70, 20);
+            this.tbCocheCama.TabIndex = 171;
+            this.tbCocheCama.Text = "0";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(299, 179);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(114, 13);
+            this.label17.TabIndex = 170;
+            this.label17.Text = "Adicional Coche Cama";
+            this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
             // tbMenor
             // 
@@ -564,23 +584,15 @@
             this.CancelarBank.Text = "Borrar";
             this.CancelarBank.Click += new System.EventHandler(this.CancelarBank_Click);
             // 
-            // label17
+            // cbWeb
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(299, 179);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(114, 13);
-            this.label17.TabIndex = 170;
-            this.label17.Text = "Adicional Coche Cama";
-            this.label17.Click += new System.EventHandler(this.label17_Click);
-            // 
-            // tbCocheCama
-            // 
-            this.tbCocheCama.Location = new System.Drawing.Point(435, 176);
-            this.tbCocheCama.Name = "tbCocheCama";
-            this.tbCocheCama.Size = new System.Drawing.Size(70, 20);
-            this.tbCocheCama.TabIndex = 171;
-            this.tbCocheCama.Text = "0";
+            this.cbWeb.AutoSize = true;
+            this.cbWeb.Location = new System.Drawing.Point(671, 178);
+            this.cbWeb.Name = "cbWeb";
+            this.cbWeb.Size = new System.Drawing.Size(102, 17);
+            this.cbWeb.TabIndex = 172;
+            this.cbWeb.Text = "Mostrar en Web";
+            this.cbWeb.UseVisualStyleBackColor = true;
             // 
             // Salidas
             // 
@@ -656,5 +668,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox tbCocheCama;
+        private System.Windows.Forms.CheckBox cbWeb;
     }
 }

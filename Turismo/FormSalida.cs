@@ -38,8 +38,13 @@ namespace SOCIOS.Turismo
             lbInvitado.Text = salida.Invitado.ToString("0.##");
             lbObs.Text = salida.Observaciones;
             lbMenor.Text = salida.Menor.ToString("0.##"); 
-            lbCocheCama.Text = salida.Coche_Cama.ToString("0.##"); 
-        
+            lbCocheCama.Text = salida.Coche_Cama.ToString("0.##");
+
+            if (salida.Web)
+                lbWEB.Text = "SI";
+            else
+                lbWEB.Text = "NO";
+
         
         
         }

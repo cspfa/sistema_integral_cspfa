@@ -43,6 +43,7 @@ namespace SOCIOS.Turismo
         public int      Diaria           { get; set; }
         public decimal  Menor            { get; set; }
         public decimal  Coche_Cama       { get; set; }
+        public bool      Web              { get; set; }
 
     
     }
@@ -499,7 +500,7 @@ namespace SOCIOS.Turismo
             string Query = @"SELECT   TS.ID,TS.NOMBRE,TS.FECHA,TS.AGOTADO,TS.PROV_DESDE,TS.PROV_HASTA,TS.OPERADOR,TS.LOC_DESDE,
                              TS.LOC_HASTA,TS.SOCIO,TS.INVITADO,TS.INTERCIRCULO,TS.ESTADIA,TS.REGIMEN,TS.TRASLADO,TS.TIPO,
                              TS.HOTEL,TS.HOTEL_NOMBRE,TS.DESTACADO,TS.MONEDA,TS.U_BAJA,TS.F_BAJA,TS.OBSERVACIONES,PD.NOMBRE,
-                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA,TS.MENOR,TS.COCHE_CAMA
+                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA,TS.MENOR,TS.COCHE_CAMA,TS.MOSTRAR_WEB
                              FROM  TURISMO_SALIDA TS ,
                              PROVINCIA PD,
                              PROVINCIA PH, 
@@ -558,6 +559,12 @@ namespace SOCIOS.Turismo
                     salida.Coche_Cama = Decimal.Round(decimal.Parse(foundRows[0][33].ToString()), 2);
                 else
                     salida.Coche_Cama = 0;
+               int web=   Int32.Parse(foundRows[0][34].ToString());
+
+               if (web == 1)
+                   salida.Web = true;
+               else
+                   salida.Web = false;
 
             }
 
