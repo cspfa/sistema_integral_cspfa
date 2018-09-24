@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Salidas));
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.cbWeb = new System.Windows.Forms.CheckBox();
             this.tbCocheCama = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.tbMenor = new System.Windows.Forms.TextBox();
@@ -78,7 +79,6 @@
             this.NuevoBank = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
-            this.cbWeb = new System.Windows.Forms.CheckBox();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -136,6 +136,18 @@
             this.gpDatos.TabIndex = 0;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // cbWeb
+            // 
+            this.cbWeb.AutoSize = true;
+            this.cbWeb.Checked = true;
+            this.cbWeb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbWeb.Location = new System.Drawing.Point(671, 178);
+            this.cbWeb.Name = "cbWeb";
+            this.cbWeb.Size = new System.Drawing.Size(102, 17);
+            this.cbWeb.TabIndex = 172;
+            this.cbWeb.Text = "Mostrar en Web";
+            this.cbWeb.UseVisualStyleBackColor = true;
             // 
             // tbCocheCama
             // 
@@ -583,16 +595,6 @@
             this.CancelarBank.Size = new System.Drawing.Size(59, 22);
             this.CancelarBank.Text = "Borrar";
             this.CancelarBank.Click += new System.EventHandler(this.CancelarBank_Click);
-            // 
-            // cbWeb
-            // 
-            this.cbWeb.AutoSize = true;
-            this.cbWeb.Location = new System.Drawing.Point(671, 178);
-            this.cbWeb.Name = "cbWeb";
-            this.cbWeb.Size = new System.Drawing.Size(102, 17);
-            this.cbWeb.TabIndex = 172;
-            this.cbWeb.Text = "Mostrar en Web";
-            this.cbWeb.UseVisualStyleBackColor = true;
             // 
             // Salidas
             // 
