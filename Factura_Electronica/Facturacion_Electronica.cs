@@ -35,12 +35,10 @@ namespace SOCIOS.Factura_Electronica
 
                 Afip.AfipFactResults Result;
                
-
-           
+                           
                return facturador.FacturacionUnitaria_SinIVA((int)fh.Pto_Venta,fh.TipoFactura,fh.Concepto ,fh.Tipo_Documento , fh.Documento, (DateTime)fh.Fecha, (decimal)fh.Monto, "");
                     
-                
-            
+                    
 
 
 
@@ -53,7 +51,6 @@ namespace SOCIOS.Factura_Electronica
 
        {
            rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa.pfx";
-
            urlWsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL";
            urlWsfe ="https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
 

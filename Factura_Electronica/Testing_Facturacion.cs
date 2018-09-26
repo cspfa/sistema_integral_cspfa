@@ -66,6 +66,8 @@ namespace SOCIOS.Factura_Electronica
                 lbCAE.Text = result.Cae;
                 lbVencimiento.Text = result.Vencimiento;
                 lbNumero.Text = result.Numero.ToString();
+                lbPuntoVenta.Text = tbPuntoVenta.Text;
+                
             }
             catch (Exception ex)
 
@@ -79,6 +81,11 @@ namespace SOCIOS.Factura_Electronica
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

@@ -38,6 +38,7 @@ namespace SOCIOS.Factura_Electronica
         {
             Fecha          = pFecha;
             Pto_Venta      = pPto_Venta;
+           
             TipoFactura    = pTipoFactura;
             Monto          = pMonto;
             Tipo_Documento = pTipo_Documento;
