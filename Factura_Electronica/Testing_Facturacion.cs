@@ -89,5 +89,19 @@ namespace SOCIOS.Factura_Electronica
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+           FacturaCSPFA serviceFactura = new FacturaCSPFA();
+           int Punto_Venta = 1;
+           string Documento =  "34068061";
+           int ID_RECIBO = 99226;
+           decimal Monto = Decimal.Parse(tbMonto.Text);
+
+
+           serviceFactura.Facturo_Recibo(ID_RECIBO, Punto_Venta, (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI,Documento,Monto, System.DateTime.Now);
+
+               
+        }
     }
 }
