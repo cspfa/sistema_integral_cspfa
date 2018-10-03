@@ -47,9 +47,53 @@ namespace SOCIOS.Factura_Electronica
 
         }
 
-
+     
 
        
+
+
+    }
+
+
+    public class Datos_Factura
+    {
+        public string TIPO_DNI                  { get; set; }
+        public int    TIPO_FACTURA              { get; set; }
+        public string TIPO_FACTURA_DESCRIPCION  { get; set; }
+        public string DNI                       { get; set; }
+        public string NOMBRE                    { get; set; }
+        public string DOMICILIO                 { get; set; }
+        public string CONDICION_IVA_SOCIO       { get; set; }
+        public string PTO_VENTA                 { get; set; }
+        public string NUMERO                    { get; set; }
+        public string CAE                       { get; set; }
+        public string VENCIMIENTO               { get; set; }
+        public decimal MONTO                    { get; set; }
+        public string  BARRA                    { get; set; }
+
+        public Datos_Factura(string pTipoDNI, string pDNI, string pNOMBRE, string pDOMICILIO, string pCondicionIVA,int pTipoFactura, string pPTo_Venta, string pNumero, string pCAE, string pCAEVENC, decimal pMONTO)
+        {
+            Factura_Electronica.FacturaCSPFA srvFactura = new FacturaCSPFA();
+            
+            TIPO_DNI            = pTipoDNI;
+            DNI                 = pDNI;
+            NOMBRE              = pNOMBRE;
+            DOMICILIO           = pDOMICILIO;
+            CONDICION_IVA_SOCIO = pCondicionIVA;
+            PTO_VENTA           = pPTo_Venta;
+            NUMERO              = pNumero;
+            CAE                 = pCAE;
+            VENCIMIENTO         = pCAEVENC;
+            MONTO               = pMONTO;
+            TIPO_FACTURA        = pTipoFactura;
+           
+            if (TIPO_FACTURA ==  (int)Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C)
+                 TIPO_FACTURA_DESCRIPCION = "RECIBO C";
+            else
+                TIPO_FACTURA_DESCRIPCION   = "NOTA CREDITO C";
+
+            BARRA = srvFactura.Codigo_Barra(TIPO_FACTURA.ToString(),Int32.Parse( PTO_VENTA), CAE, VENCIMIENTO);
+        }
 
 
     }

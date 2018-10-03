@@ -9,6 +9,7 @@ namespace SOCIOS.Factura_Electronica
     {
        Facturacion_Electronica sf = new Facturacion_Electronica();
        SOCIOS.BO.BO_Afip bo_Afip = new BO.BO_Afip();
+       string CUIT_ENTIDAD = "30516588213";
 
        public Afip.AfipFactResults Facturar(int PuntoVenta, DateTime Fecha, int TipoComprobante, int TipoDocumento, string Documento,int Concepto, Decimal Monto)
        {
@@ -29,7 +30,7 @@ namespace SOCIOS.Factura_Electronica
            try
            {
                Afip.AfipFactResults result = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
-               this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result.Numero, result.Cae, result.Vencimiento);
+               this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result.Numero, result.Cae, result.Vencimiento,true);
 
 
            } catch(Exception EX)
@@ -46,15 +47,21 @@ namespace SOCIOS.Factura_Electronica
 
        
        
-       public void Marcar_Facturacion(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE)
+       public void Marcar_Facturacion(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE,bool Recibo)
 
        {
-               bo_Afip.Marca_Afip(ID_REGISTRO_RECIBO,PTO_VENTA,NUMERO, CAE, VENC_CAE);
-       
+          if (Recibo)
+             bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO,PTO_VENTA,NUMERO, CAE, VENC_CAE);
+          else
+              bo_Afip.Marca_Afip_Bono(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE);
        
        }
 
-
+       public string Codigo_Barra(string TipoFactura,int Pto,string CAE,string VencimientoCAE)
+       {
+           
+        return CUIT_ENTIDAD +TipoFactura + Utils.CompletarCeros(Pto.ToString(), false, 4) + Utils.CompletarCeros(CAE, false, 13) + VencimientoCAE + "9";
+       }
 
 
     }
