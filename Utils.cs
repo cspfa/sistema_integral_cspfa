@@ -19,7 +19,7 @@ using System.Collections.Specialized;
 namespace SOCIOS
 {
    public static class Utils
-    {
+    {   
         public static Image resizeImage(Image imgToResize, Size size)
         {
             int sourceWidth = imgToResize.Width; int sourceHeight = imgToResize.Height; float nPercent = 0;
@@ -129,6 +129,38 @@ namespace SOCIOS
            code128.Code = Codigo;
            Bitmap bm = new Bitmap(code128.CreateDrawingImage(Color.Black, Color.White));
            return (Image)bm;
+       }
+       public static byte[] imageToByteArray(System.Drawing.Image imageIn)
+       {
+           MemoryStream ms = new MemoryStream();
+           imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+           return ms.ToArray();
+       }
+
+       public static string CompletarCeros(string texto, bool aDerecha, int tamanioTotal)
+       {
+           StringBuilder sb = new StringBuilder();
+
+           if (texto == null)
+               texto = "";
+
+           sb.Append(StringCero(tamanioTotal - texto.Length));
+           if (aDerecha)
+               sb.Insert(0, texto);
+           else
+               sb.Append(texto);
+
+           return sb.ToString(); ;
+       }
+
+       public static string StringCero(int longitud)
+       {
+           StringBuilder sb = new StringBuilder();
+           for (int i = 0; i < longitud; i++)
+           {
+               sb.Append("0");
+           }
+           return sb.ToString();
        }
 
 
