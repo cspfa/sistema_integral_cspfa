@@ -33,6 +33,7 @@ namespace SOCIOS.Factura_Electronica
 
             cbTipoDocumento.Items.Insert(0, "DNI");
             cbTipoDocumento.Items.Insert(1, "CUIT");
+            cbTipoDocumento.Items.Insert(2, "CON. FINAL.");
             cbTipoDocumento.SelectedIndex = 0;
             cbTipoDocumento.Refresh();
         
@@ -42,14 +43,17 @@ namespace SOCIOS.Factura_Electronica
         {
             if (cbTipoComprobante.Text.Contains("RECIBOS C"))
             {
-                TipoComprobante = 15;
+                TipoComprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
             }
             else
-                TipoComprobante = 16;
+                TipoComprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C; 
             if ((cbTipoDocumento.Text.Contains("DNI")))
-                TipoDocumento = 96;
+                TipoDocumento =(int)Factura_Electronica.Tipo_Doc_Enum.DNI;
+            else if ((cbTipoDocumento.Text.Contains("CUIT")))
+                TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CUIT;
             else
-                TipoDocumento=80;
+                TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL; //Consumidor Final
+
               
 
         }
@@ -109,7 +113,7 @@ namespace SOCIOS.Factura_Electronica
             try
             {   string DIR =@"c:\CSPFA_SOCIOS\";
                 Impresor_Factura imp_factura = new Impresor_Factura(DIR);
-                imp_factura.Genero_PDF((int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, 1, 250, System.DateTime.Now, "20340680619", "Consumidor Final", "Sebastian Auladell", "Roosevelt 3443 1431 CABA", 1600, "68399680115324", "20-11-2018");
+                imp_factura.Genero_PDF((int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, 1, 250, System.DateTime.Now, "20340680619", "Consumidor Final", "Sebastian Auladell", "Roosevelt 3443 1431 CABA", 1600, "68399680115324", "20-11-2018","ORIGINAL","CONTADO");
                 MessageBox.Show("Factura impresa en " + DIR);
             }
             catch (Exception ex)

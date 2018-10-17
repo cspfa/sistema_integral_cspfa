@@ -165,7 +165,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Av.Belgrano 2584 CABA</Value>
+                    <Value>Av.Belgrano 2584 1096 CABA</Value>
                     <Style>
                       <FontSize>16pt</FontSize>
                       <FontWeight>Light</FontWeight>
@@ -176,10 +176,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.46656in</Top>
+            <Top>1.34156in</Top>
             <Left>0.10499in</Left>
             <Height>0.30482in</Height>
-            <Width>3.05592in</Width>
+            <Width>3.29532in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -208,7 +208,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.90516in</Top>
+            <Top>2.28016in</Top>
             <Left>0.10499in</Left>
             <Height>0.30482in</Height>
             <Width>3.05592in</Width>
@@ -240,10 +240,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>2.27942in</Top>
-            <Left>0.10499in</Left>
+            <Top>2.6451in</Top>
+            <Left>3.68257in</Left>
             <Height>0.72351in</Height>
-            <Width>3.50814in</Width>
+            <Width>3.77192in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -351,10 +351,106 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="TIPO_COMPROBANTE2">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!ORDEN.Value</Value>
+                    <Style>
+                      <FontSize>20pt</FontSize>
+                      <FontWeight>ExtraBold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>TIPO_COMPROBANTE</rd:DefaultName>
+            <Top>0.61111in</Top>
+            <Left>4.12591in</Left>
+            <Height>0.45833in</Height>
+            <Width>3.233in</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox24">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>IIBB Sujeto Exento</Value>
+                    <Style>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Light</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>2.65442in</Top>
+            <Left>0.10499in</Left>
+            <Height>0.30482in</Height>
+            <Width>3.05592in</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox26">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Tel 4941-1493/1541/5984/1768/1801</Value>
+                    <Style>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Light</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>1.71582in</Top>
+            <Left>0.10499in</Left>
+            <Height>0.30482in</Height>
+            <Width>3.75593in</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Top>0.05044in</Top>
         <Left>0.11897in</Left>
-        <Height>3.16905in</Height>
+        <Height>3.36861in</Height>
         <Width>7.64474in</Width>
         <Style>
           <Border>
@@ -371,7 +467,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>CUIT</Value>
+                    <Value>DNI/CUIT</Value>
                     <Style>
                       <FontWeight>ExtraBold</FontWeight>
                     </Style>
@@ -384,7 +480,7 @@
             <Top>0.13706in</Top>
             <Left>0.10499in</Left>
             <Height>0.25in</Height>
-            <Width>0.49287in</Width>
+            <Width>1.39218in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -401,7 +497,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>IVA</Value>
+                    <Value>CONDICION IVA</Value>
                     <Style>
                       <FontWeight>ExtraBold</FontWeight>
                     </Style>
@@ -411,10 +507,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
-            <Top>0.63734in</Top>
+            <Top>0.38734in</Top>
             <Left>0.10499in</Left>
             <Height>0.25in</Height>
-            <Width>0.49287in</Width>
+            <Width>1.39218in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -465,7 +561,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>0.13706in</Top>
-            <Left>3.03125in</Left>
+            <Left>3.53125in</Left>
             <Height>0.37336in</Height>
             <Width>1.50712in</Width>
             <ZIndex>2</ZIndex>
@@ -496,7 +592,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
             <Top>0.63734in</Top>
-            <Left>3.01736in</Left>
+            <Left>3.51736in</Left>
             <Height>0.25in</Height>
             <Width>1.50712in</Width>
             <ZIndex>3</ZIndex>
@@ -525,9 +621,9 @@
             </Paragraphs>
             <rd:DefaultName>CUIT_SOCIO</rd:DefaultName>
             <Top>0.13706in</Top>
-            <Left>0.63953in</Left>
+            <Left>1.56661in</Left>
             <Height>0.25in</Height>
-            <Width>2.27467in</Width>
+            <Width>1.84759in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -553,10 +649,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>IVA_SOCIO</rd:DefaultName>
-            <Top>0.63734in</Top>
-            <Left>0.65342in</Left>
+            <Top>0.38734in</Top>
+            <Left>1.5805in</Left>
             <Height>0.25in</Height>
-            <Width>2.26078in</Width>
+            <Width>1.8337in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -583,7 +679,7 @@
             </Paragraphs>
             <rd:DefaultName>NOMBRE_SOCIO</rd:DefaultName>
             <Top>0.13706in</Top>
-            <Left>4.59393in</Left>
+            <Left>5.09393in</Left>
             <Height>0.37336in</Height>
             <Width>2.28436in</Width>
             <ZIndex>6</ZIndex>
@@ -612,10 +708,39 @@
             </Paragraphs>
             <rd:DefaultName>DOMICILIO_SOCIO</rd:DefaultName>
             <Top>0.63734in</Top>
-            <Left>4.58004in</Left>
+            <Left>5.08004in</Left>
             <Height>0.25in</Height>
             <Width>2.29825in</Width>
             <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="IVA_SOCIO2">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!CONDICION_VENTA.Value</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>IVA_SOCIO</rd:DefaultName>
+            <Top>0.66512in</Top>
+            <Left>1.56661in</Left>
+            <Height>0.25in</Height>
+            <Width>1.8337in</Width>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -914,7 +1039,7 @@
         <Top>4.47624in</Top>
         <Left>0.09896in</Left>
         <Height>0.5in</Height>
-        <Width>7.29742in</Width>
+        <Width>7.29741in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -1354,6 +1479,37 @@
           </Border>
         </Style>
       </Rectangle>
+      <Textbox Name="Textbox25">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>CONDICION VENTA</Value>
+                <Style>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox12</rd:DefaultName>
+        <Top>3.98877in</Top>
+        <Left>0.22396in</Left>
+        <Height>0.25in</Height>
+        <Width>1.39218in</Width>
+        <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>29.1596cm</Height>
     <Style />
@@ -1426,6 +1582,18 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="MONTO">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ORDEN">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CONDICION_VENTA">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

@@ -28,11 +28,11 @@ namespace SOCIOS.Factura_Electronica
             DIRECTORIO = pDIR;
         }
 
-        public void Genero_PDF(int pTipo_Comprobante,int pPunto_De_Venta,int pNumero,DateTime pFecha,string pCuit,string pIva,string pNombre,string pDomicilio,decimal pMonto,string pCAE,string pVENC )
+        public void Genero_PDF(int pTipo_Comprobante,int pPunto_De_Venta,int pNumero,DateTime pFecha,string pCuit,string pIva,string pNombre,string pDomicilio,decimal pMonto,string pCAE,string pVENC,string pOrden,string pCondicion_Venta )
 
         {
             ReportDataSource rds = new ReportDataSource();
-            ReportParameter[] para = new ReportParameter[12];
+            ReportParameter[] para = new ReportParameter[14];
             ReportViewer viewer = new ReportViewer();
             FacturaCSPFA facturaService = new FacturaCSPFA();
 
@@ -44,25 +44,26 @@ namespace SOCIOS.Factura_Electronica
                 leyenda_TC = "RECIBO C";
             else
                 leyenda_TC = "NOTA DE CREDITO C ";
-
+            
 
 
             string fileName =leyenda_TC+"-PV " + pPunto_De_Venta.ToString() + "- NRO " + pNumero.ToString() + ".pdf";
           //  fileName = "testing.pdf";
             string Codigo_Barra = facturaService.Codigo_Barra(pTipo_Comprobante.ToString(),pPunto_De_Venta,pCAE,pVENC);
-            ReportParameter Tipo_Comp  = new ReportParameter("TIPO_COMPROBANTE",leyenda_TC.ToString());
-            ReportParameter PtoVenta   = new ReportParameter("PUNTO_DE_VENTA", pPunto_De_Venta.ToString("000"));
-            ReportParameter Numero     = new ReportParameter("NUMERO",pNumero.ToString("0000") );
-            ReportParameter Fecha      = new ReportParameter("FECHA", pFecha.ToShortDateString());
-            ReportParameter Cuit       = new ReportParameter("CUIT_SOCIO",pCuit.ToString() );
-            ReportParameter Iva        = new ReportParameter("IVA_SOCIO", pIva.ToString());
-            ReportParameter Nombre     = new ReportParameter("NOMBRE_SOCIO", pNombre.ToString());
-            ReportParameter Domicilio  = new ReportParameter("DOMICILIO_SOCIO", pDomicilio.ToString());
-            ReportParameter Monto      = new ReportParameter("MONTO", pMonto.ToString());
-            ReportParameter CAE        = new ReportParameter("CAE", pCAE);
-            ReportParameter VENC       = new ReportParameter("VENC", pVENC);
-            ReportParameter Barra      = new ReportParameter("BARCODE",Codigo_Barra);
-
+            ReportParameter Tipo_Comp       = new ReportParameter("TIPO_COMPROBANTE",leyenda_TC.ToString());
+            ReportParameter PtoVenta        = new ReportParameter("PUNTO_DE_VENTA", pPunto_De_Venta.ToString("00000"));
+            ReportParameter Numero          = new ReportParameter("NUMERO",pNumero.ToString("00000000") );
+            ReportParameter Fecha           = new ReportParameter("FECHA", pFecha.ToShortDateString());
+            ReportParameter Cuit            = new ReportParameter("CUIT_SOCIO",pCuit.ToString() );
+            ReportParameter Iva             = new ReportParameter("IVA_SOCIO", pIva.ToString());
+            ReportParameter Nombre          = new ReportParameter("NOMBRE_SOCIO", pNombre.ToString());
+            ReportParameter Domicilio       = new ReportParameter("DOMICILIO_SOCIO", pDomicilio.ToString());
+            ReportParameter Monto           = new ReportParameter("MONTO", pMonto.ToString());
+            ReportParameter CAE             = new ReportParameter("CAE", pCAE);
+            ReportParameter VENC            = new ReportParameter("VENC", pVENC);
+            ReportParameter Barra           = new ReportParameter("BARCODE",Codigo_Barra);
+            ReportParameter Orden           = new ReportParameter("ORDEN", pOrden);
+            ReportParameter Condicion_Venta = new ReportParameter("CONDICION_VENTA", pCondicion_Venta);
             para[0] = Tipo_Comp;
             para[1] = PtoVenta;
             para[2] = Numero;
@@ -76,6 +77,8 @@ namespace SOCIOS.Factura_Electronica
             para[9] = VENC;
             para[10] = Barra;
             para[11] = Monto;
+            para[12] = Orden;
+            para[13] = Condicion_Venta;
 
             string Excepcion = "";
 
