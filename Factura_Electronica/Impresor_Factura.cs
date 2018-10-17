@@ -22,6 +22,7 @@ namespace SOCIOS.Factura_Electronica
     public class Impresor_Factura
     {
         string DIRECTORIO = "";
+        string DIRECTORIO_TEMP = @"c:\CSPFA_SOCIOS\TMP\";
         public Impresor_Factura(string pDIR)
         {
             DIRECTORIO = pDIR;
@@ -37,6 +38,8 @@ namespace SOCIOS.Factura_Electronica
 
             string leyenda_TC = "";
 
+       
+
             if (pTipo_Comprobante == (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C)
                 leyenda_TC = "RECIBO C";
             else
@@ -44,7 +47,8 @@ namespace SOCIOS.Factura_Electronica
 
 
 
-            string fileName = pTipo_Comprobante.ToString() + "-" + "PV:" + pPunto_De_Venta.ToString() + "- NRO:" + pNumero.ToString() + ".pdf";
+            string fileName =leyenda_TC+"-PV " + pPunto_De_Venta.ToString() + "- NRO " + pNumero.ToString() + ".pdf";
+          //  fileName = "testing.pdf";
             string Codigo_Barra = facturaService.Codigo_Barra(pTipo_Comprobante.ToString(),pPunto_De_Venta,pCAE,pVENC);
             ReportParameter Tipo_Comp  = new ReportParameter("TIPO_COMPROBANTE",leyenda_TC.ToString());
             ReportParameter PtoVenta   = new ReportParameter("PUNTO_DE_VENTA", pPunto_De_Venta.ToString("000"));
@@ -82,6 +86,8 @@ namespace SOCIOS.Factura_Electronica
 
                 viewer.LocalReport.ReportPath = "Factura.rdlc";
 
+                string RUTA = DIRECTORIO + fileName;
+                string RUTA_TEMP = DIRECTORIO_TEMP + fileName;
                
 
                 viewer.LocalReport.DataSources.Add(new ReportDataSource("DataBarra", this.getCodigoBarra(Codigo_Barra)));
@@ -90,17 +96,21 @@ namespace SOCIOS.Factura_Electronica
                 viewer.LocalReport.Refresh();
 
                 byte[] Bytes = viewer.LocalReport.Render(format: "PDF", deviceInfo: "");
-              string RUTA = DIRECTORIO + fileName;
-               
-             using    (FileStream stream = new FileStream(RUTA, FileMode.Create))
+                //RUTA=RUTA.Replace("//", "/");
+                //RUTA_TEMP = RUTA_TEMP.Replace("//", "/");
+             using    (FileStream stream = new FileStream(RUTA_TEMP, FileMode.Create))
                 {
                     stream.Write(Bytes, 0, Bytes.Length);
                 }
+
+             this.BorrarUltimaPagina(RUTA_TEMP, RUTA);
+
+
             }
             catch (Exception ex)
             {
-                Excepcion = ex.Message;  
-            
+                throw new Exception( ex.Message);  
+                
             }
 
         
@@ -110,6 +120,7 @@ namespace SOCIOS.Factura_Electronica
             List<DataBarra> lista = new List<DataBarra>();
             DataBarra item = new DataBarra();
             Barcode128 code128 = new Barcode128();
+
 
             code128.CodeType = Barcode.CODE128;
             code128.ChecksumText = true;
@@ -126,6 +137,56 @@ namespace SOCIOS.Factura_Electronica
             return lista;
 
         
+        }
+
+        private void BorrarUltimaPagina(string archivoBorrarPagina, string archivoBorradoPagina)
+        {
+            // get input document
+            PdfReader inputPdf = new PdfReader(archivoBorrarPagina);
+
+            // retrieve the total number of pages
+            int pageCount = inputPdf.NumberOfPages;
+
+            //if (paginaFin < paginaInicio || paginaFin > pageCount)
+            //{
+            //    paginaFin = pageCount;
+            //}
+
+            // load the input document
+            Document inputDoc =
+                new Document(inputPdf.GetPageSizeWithRotation(1));
+
+            // create the filestream
+            using (FileStream fs = new FileStream(archivoBorradoPagina, FileMode.Create))
+            {
+                // create the output writer
+                PdfWriter outputWriter = PdfWriter.GetInstance(inputDoc, fs);
+                inputDoc.Open();
+                PdfContentByte cb1 = outputWriter.DirectContent;
+
+                // copy pages from input to output document
+                for (int i = 1; i <= pageCount - 1; i++)
+                {
+                    inputDoc.SetPageSize(inputPdf.GetPageSizeWithRotation(i));
+                    inputDoc.NewPage();
+
+                    PdfImportedPage page =
+                        outputWriter.GetImportedPage(inputPdf, i);
+                    int rotation = inputPdf.GetPageRotation(i);
+
+                    if (rotation == 90 || rotation == 270)
+                    {
+                        cb1.AddTemplate(page, 0, -1f, 1f, 0, 0,
+                            inputPdf.GetPageSizeWithRotation(i).Height);
+                    }
+                    else
+                    {
+                        cb1.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
+                    }
+                }
+
+                inputDoc.Close();
+            }
         }
 
        

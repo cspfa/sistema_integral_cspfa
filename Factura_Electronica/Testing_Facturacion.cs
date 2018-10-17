@@ -107,9 +107,10 @@ namespace SOCIOS.Factura_Electronica
         private void button2_Click(object sender, EventArgs e)
         {
             try
-            {
-                Impresor_Factura imp_factura = new Impresor_Factura(@"c:\CSPFA_SOCIOS\");
+            {   string DIR =@"c:\CSPFA_SOCIOS\";
+                Impresor_Factura imp_factura = new Impresor_Factura(DIR);
                 imp_factura.Genero_PDF((int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, 1, 250, System.DateTime.Now, "20340680619", "Consumidor Final", "Sebastian Auladell", "Roosevelt 3443 1431 CABA", 1600, "68399680115324", "20-11-2018");
+                MessageBox.Show("Factura impresa en " + DIR);
             }
             catch (Exception ex)
             {
