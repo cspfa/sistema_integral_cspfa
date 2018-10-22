@@ -47,6 +47,7 @@ namespace SOCIOS.bono.Bonos
         {
             try
             {
+            
                 int Veces = Int32.Parse(tbCantidad.Text);
                
                 int PROFESIONAL = 0;

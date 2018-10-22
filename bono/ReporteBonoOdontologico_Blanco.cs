@@ -79,6 +79,7 @@ namespace SOCIOS.bono
             parameters[0] = new ReportParameter("ID", ID.ToString());
             parameters[1] = new ReportParameter("CODINT", CODINT.ToString());
             parameters[2] = new ReportParameter("ORDEN", ORDEN);
+
             parameters[3] = new ReportParameter("PROFESIONAL",PROFESIONAL_NOMBRE);
 
             this.reportViewer.LocalReport.SetParameters(parameters);

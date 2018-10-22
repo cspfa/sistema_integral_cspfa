@@ -697,7 +697,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>0.27083in</Top>
+        <Top>0.28398in</Top>
         <Left>0.09206in</Left>
         <Height>0.19371in</Height>
         <Width>1.94069in</Width>
@@ -1105,7 +1105,10 @@
             <TextRuns>
               <TextRun>
                 <Value>=Parameters!ORDEN.Value</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Courier New</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style />
