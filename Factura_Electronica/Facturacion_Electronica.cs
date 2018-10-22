@@ -51,6 +51,7 @@ namespace SOCIOS.Factura_Electronica
 
        {
            rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa.pfx";
+
            urlWsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL";
            urlWsfe ="https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
 

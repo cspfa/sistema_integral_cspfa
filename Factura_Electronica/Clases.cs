@@ -44,6 +44,16 @@ namespace SOCIOS.Factura_Electronica
             Tipo_Documento = pTipo_Documento;
             Documento      = pDocumento;
             Concepto       = pConcepto;
+            // Validaciones 
+            if (Tipo_Documento == (int)Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL)
+            {
+                if (Monto > 5000)
+                    throw new Exception("No se puede facturar a consumidor final mas de $5000");
+                Documento = "0";
+            
+            }
+
+
 
         }
 
