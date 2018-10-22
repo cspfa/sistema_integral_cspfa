@@ -799,6 +799,7 @@ namespace SOCIOS
                 listView1.Columns.Add("BAJA");
                 listView1.Columns.Add("SD");
                 listView1.Columns.Add("FNACIM");
+                listView1.Columns.Add("NA");
             }
             foreach (ColumnHeader ch in this.listView1.Columns)
             {
@@ -838,6 +839,7 @@ namespace SOCIOS
                     listItem.SubItems.Add(BAJA);
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SOCIO_DEPORTES")));
                     listItem.SubItems.Add(NACIM);
+                    listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_NO_ALCANZA")));
                     listView1.Items.Add(listItem);
 
                     if (BAJA == "")
@@ -850,7 +852,7 @@ namespace SOCIOS
                         listItem.ForeColor = Color.White;
                     }
 
-                    if (reader.GetString(reader.GetOrdinal("MOROSO_INVITADO")) == "S")
+                    if (reader.GetString(reader.GetOrdinal("MOROSO_INVITADO")) == "S" || reader.GetString(reader.GetOrdinal("MOROSO_NO_ALCANZA")) == "S")
                     {
                         listItem.BackColor = Color.Red;
                         listItem.ForeColor = Color.White;
@@ -2254,7 +2256,9 @@ namespace SOCIOS
 
         public void habilitarBotonAsamblea()
         {
-            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995" && listView1.SelectedItems[0].SubItems[1].Text != "020")
+            if (listView1.SelectedItems[0].SubItems[1].Text != "994" 
+                && listView1.SelectedItems[0].SubItems[1].Text != "995" 
+                /*&& listView1.SelectedItems[0].SubItems[1].Text != "020"*/)
             {
                 btnIngresoAsamblea.Enabled = false;
             }

@@ -52,7 +52,7 @@ namespace SOCIOS.Factura_Electronica
             else if ((cbTipoDocumento.Text.Contains("CUIT")))
                 TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CUIT;
             else
-                TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL; //Consumidor Final
+                TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CF; //Consumidor Final
 
               
 

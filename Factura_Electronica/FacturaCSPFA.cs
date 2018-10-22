@@ -14,10 +14,7 @@ namespace SOCIOS.Factura_Electronica
        public Afip.AfipFactResults Facturar(int PuntoVenta, DateTime Fecha, int TipoComprobante, int TipoDocumento, string Documento,int Concepto, Decimal Monto)
        {
            FacturaHead fh = new FacturaHead(Fecha, PuntoVenta, TipoComprobante, Monto, TipoDocumento, Documento, Concepto);
-
-           return sf.Facturar(fh);
-          
-       
+           return sf.Facturar(fh);       
        }
 
        //Tipo de Comprobante : 15 RECIBO c , 16 NOTA DE VENTA AL CONTADO

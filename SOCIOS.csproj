@@ -105,6 +105,10 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AfipServices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\CSPFA_SOCIOS\AfipServices.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Video, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\MediaFire\Programas\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
@@ -198,6 +202,7 @@
     <Compile Include="bono\ReporteBonoOdontologico_Blanco.designer.cs">
       <DependentUpon>ReporteBonoOdontologico_Blanco.cs</DependentUpon>
     </Compile>
+    <Compile Include="BO\BO_Afip.cs" />
     <Compile Include="compras\coeficientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +455,23 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="deportes\VencimientoAptoFisico2.Designer.cs" />
+    <Compile Include="Factura_Electronica\Clases.cs" />
+    <Compile Include="Factura_Electronica\Enums.cs" />
+    <Compile Include="Factura_Electronica\Facturacion_Electronica.cs" />
+    <Compile Include="Factura_Electronica\FacturaCSPFA.cs" />
+    <Compile Include="Factura_Electronica\Impresion_Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Factura_Electronica\Impresion_Factura.Designer.cs" />
+    <Compile Include="Factura_Electronica\Impresor_Factura.cs" />
+    <Compile Include="Factura_Electronica\ReporteFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Factura_Electronica\ReporteFactura.Designer.cs" />
+    <Compile Include="Factura_Electronica\Testing_Facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Factura_Electronica\Testing_Facturacion.Designer.cs" />
     <Compile Include="ingresos\importarMovimientos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1355,6 +1377,9 @@
       <DependentUpon>EntradaEvento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="entradaCampo\Reporte\repoTicket.resx" />
+    <EmbeddedResource Include="Factura_Electronica\Impresion_Factura.resx" />
+    <EmbeddedResource Include="Factura_Electronica\ReporteFactura.resx" />
+    <EmbeddedResource Include="Factura_Electronica\Testing_Facturacion.resx" />
     <EmbeddedResource Include="ingresos\importarMovimientos.resx">
       <DependentUpon>importarMovimientos.cs</DependentUpon>
     </EmbeddedResource>

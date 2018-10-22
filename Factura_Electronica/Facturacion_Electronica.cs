@@ -47,7 +47,7 @@ namespace SOCIOS.Factura_Electronica
         #endregion
 
         #region Privadas
-                      private void Obtener_Configuracion()
+       private void Obtener_Configuracion()
 
        {
            rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa.pfx";
@@ -55,7 +55,7 @@ namespace SOCIOS.Factura_Electronica
            urlWsfe ="https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
 
            rutaTicket = "C:/CSPFA_SOCIOS/AFIP/ticketAcceso.xml";
-           rutaArchivos ="C:/CSPFA_SOCIOS/AFIP/XML/";
+           rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_M + "\\XML";
 
        
        }

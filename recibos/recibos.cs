@@ -13,6 +13,7 @@ namespace SOCIOS
     public partial class recibos : Form
     {
         BO.bo_Caja BO_CAJA = new BO.bo_Caja();
+        Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
         SOCIOS.CuentaSocio.PlanCuentaUtils pcu = new CuentaSocio.PlanCuentaUtils();
         bo dlog = new bo();
         nombreSocio ns = new nombreSocio();
@@ -529,20 +530,30 @@ namespace SOCIOS
         
         private void guardarImprimirRecibo(string COMPROBANTE)
         {
+            
             string FECHA_RECIBO = DateTime.Today.ToShortDateString();
             string DOBLE_DUPLICADO = "NO";
             decimal IMPORTE = 0;
             int REINTEGRO_DE = 0;
             string BANCO_DEPO = cbBancoDepo.SelectedValue.ToString();
             string PTO_VTA_N = "";
+            string PTO_VTA_M = "";
+            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+
+            if (DENI == "0")
+            {
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CF;
+            }
 
             if (cbPtoVta.SelectedValue.ToString() == "0005")
             {
-                PTO_VTA_N = "0005";
+                PTO_VTA_N = "0005"; //REINTEGROS
             }
             else
             {
                 PTO_VTA_N = VGlobales.PTO_VTA_N;
+                PTO_VTA_M = VGlobales.PTO_VTA_M;
             }
 
             
@@ -610,6 +621,13 @@ namespace SOCIOS
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE, 
                                 BANCO_DEPO);
+
+                            fe.Facturo_Recibo(recibo_id,
+                                int.Parse(PTO_VTA_M),
+                                TC, TD,
+                                DENI,
+                                IMPORTE,
+                                DateTime.Parse(FECHA_RECIBO));
 
                             if (reintegro == "NO")
                             {

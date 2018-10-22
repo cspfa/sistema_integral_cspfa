@@ -2179,7 +2179,14 @@ namespace SOCIOS
 
         private void completarBonosEnBlancoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SOCIOS.bono.Bonos.Carga_Bono_Blanco_Socio bb = new bono.Bonos.Carga_Bono_Blanco_Socio(VGlobales.vp_role);            bb.ShowDialog();
+            SOCIOS.bono.Bonos.Carga_Bono_Blanco_Socio bb = new bono.Bonos.Carga_Bono_Blanco_Socio(VGlobales.vp_role);
+            bb.ShowDialog();
+        }
+
+        private void testFacturaciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Factura_Electronica.Testing_Facturacion tf = new Factura_Electronica.Testing_Facturacion();
+            tf.ShowDialog();
         }
     }
 }

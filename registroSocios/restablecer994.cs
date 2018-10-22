@@ -15,19 +15,18 @@ namespace SOCIOS
         bo dlog = new bo();
         BO.bo_RegSoc REG_SOC = new BO.bo_RegSoc();
         
-        private int ID_ACTUAL { get; set; }
+        /*private int ID_ACTUAL { get; set; }
         private int DE_ACTUAL { get; set; }
         private int SO_ACTUAL { get; set; }
         private string ID_ANTERIOR { get; set; }
         private string DE_ANTERIOR { get; set; }
-        private string SO_ANTERIOR { get; set; }
+        private string SO_ANTERIOR { get; set; }*/
 
         public restablecer994(int ID_TITULAR, int NRO_DEP, int NRO_SOC)
         {
             InitializeComponent();
-            ID_ACTUAL = ID_TITULAR;
-            DE_ACTUAL = NRO_DEP;
-            SO_ACTUAL = NRO_SOC;
+            buscarSocio(ID_TITULAR);
+            cargaInicial(ID_TITULAR, NRO_DEP, NRO_SOC);
         }
 
         private string getNumerador(int ID_ENTIDAD)
@@ -40,16 +39,19 @@ namespace SOCIOS
             return NRO_SOC.ToString();
         }
 
-        private void restablecer994_Load(object sender, EventArgs e)
+        private void cargaInicial(int ID_TITULAR, int NRO_DEP, int NRO_SOC)
         {
-            if (DE_ACTUAL == 20)
+            string ID_ANTERIOR = lvDatosSocio.Items[0].SubItems[9].Text;
+            string DE_ANTERIOR = "";
+            string SO_ANTERIOR = "";
+
+            if (NRO_DEP == 20)
             {
                 this.Text = "PASAR DE CABA A PFA";
                 label7.Enabled = false;
                 tbIdEmpleado.Enabled = false;
             }
-
-            if (DE_ACTUAL == 994)
+            else if (NRO_DEP == 994)
             {
                 this.Text = "PASAR DE PFA A CABA";
                 label5.Enabled = false;
@@ -59,22 +61,33 @@ namespace SOCIOS
                 tbCodDto.Text = "187";
             }
 
-            buscarSocio(ID_ACTUAL);
-
-            if (lvDatosSocio.Items[0].SubItems[9].Text != "")
+            if (ID_ANTERIOR != "") //SOLAMENTE PARA SOCIOS CON ID ANTERIOR (PFA O CABA)
             {
+                //DATOS ANTERIORES TRAIDOS DEL LISTVIEW
                 ID_ANTERIOR = lvDatosSocio.Items[0].SubItems[9].Text;
                 DE_ANTERIOR = right(ID_ANTERIOR, 3);
                 SO_ANTERIOR = ID_ANTERIOR.Replace(DE_ANTERIOR, "");
-                tbNroSoc.Text = SO_ACTUAL.ToString();
-                tbNroDep.Text = DE_ACTUAL.ToString();
-                tbIdTitular.Text = ID_ACTUAL.ToString();
+
+                //DATOS ANTERIORES
+                lbIdTitularAnt.Text = ID_ANTERIOR;
+                lbNroDepAnt.Text = DE_ANTERIOR;
+                lbNroSocAnt.Text = SO_ANTERIOR;
+
+                //DATOS ACTUALES QUE VIENEN POR PARAMETROS DE LA BUSQUEDA
+                tbNroSoc.Text = NRO_SOC.ToString();
+                tbNroDep.Text = NRO_DEP.ToString();
+                tbIdTitular.Text = ID_TITULAR.ToString();
             }
-            else
+            else //SOLAMENTE PARA NUEVOS ADH INTERFUERZA
             {
                 SO_ANTERIOR = getNumerador(11);
                 DE_ANTERIOR = "020";
                 ID_ANTERIOR = SO_ANTERIOR + "" + DE_ANTERIOR;
+
+                lbIdTitularAnt.Text = ID_ANTERIOR;
+                lbNroDepAnt.Text = DE_ANTERIOR;
+                lbNroSocAnt.Text = SO_ANTERIOR;
+
                 tbNroSoc.Text = SO_ANTERIOR.ToString();
                 tbNroDep.Text = DE_ANTERIOR.ToString();
                 tbIdTitular.Text = ID_ANTERIOR.ToString();
@@ -179,7 +192,7 @@ namespace SOCIOS
             cbCatSoc.SelectedItem = 0;
         }
 
-        private void btnRestablecer_Click(object sender, EventArgs e)
+        private void restablecer(int ID_ACTUAL, int DE_ACTUAL, string ID_ANTERIOR, string SO_ANTERIOR, string DE_ANTERIOR)
         {
             if (tbCodDto.Text == "")
             {
@@ -202,9 +215,9 @@ namespace SOCIOS
                     {
                         string CAT_SOC = "015";
                         int ID_EMP = int.Parse(tbIdEmpleado.Text);
-                        dlog .restablecer994(int.Parse(ID_ANTERIOR), int.Parse(tbCodDto.Text.Trim()), CAT_SOC, int.Parse(SO_ANTERIOR), int.Parse(DE_ANTERIOR), ID_ACTUAL, ID_EMP);
+                        dlog.restablecer994(int.Parse(ID_ANTERIOR), int.Parse(tbCodDto.Text.Trim()), CAT_SOC, int.Parse(SO_ANTERIOR), int.Parse(DE_ANTERIOR), ID_ACTUAL, ID_EMP);
                     }
-                    
+
                     Cursor = Cursors.Default;
                     MessageBox.Show("SOCIO TRASPASADO CORRECTAMENTE", "LISTO!");
                     this.Close();
@@ -215,6 +228,16 @@ namespace SOCIOS
                     Cursor = Cursors.Default;
                 }
             }
+        }
+
+        private void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            int ID_ACTUAL = int.Parse(tbIdTitular.Text);
+            int DE_ACTUAL = int.Parse(tbNroDep.Text);
+            string ID_ANTERIOR = lbIdTitularAnt.Text;
+            string SO_ANTERIOR = lbNroSocAnt.Text;
+            string DE_ANTERIOR = lbNroDepAnt.Text;
+            restablecer(ID_ACTUAL, DE_ACTUAL, ID_ANTERIOR, SO_ANTERIOR, DE_ANTERIOR);
         }
     }
 }

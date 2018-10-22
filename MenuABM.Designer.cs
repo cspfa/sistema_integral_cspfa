@@ -91,6 +91,7 @@
             this.bonosOdontologicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planDeCuentaToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.bonosEnBlancoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.completarBonosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recibosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirRecibosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,7 +156,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.completarBonosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testFacturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -740,6 +741,13 @@
             this.bonosEnBlancoToolStripMenuItem1.Text = "Generar Bonos en Blanco";
             this.bonosEnBlancoToolStripMenuItem1.Click += new System.EventHandler(this.bonosEnBlancoToolStripMenuItem1_Click);
             // 
+            // completarBonosEnBlancoToolStripMenuItem
+            // 
+            this.completarBonosEnBlancoToolStripMenuItem.Name = "completarBonosEnBlancoToolStripMenuItem";
+            this.completarBonosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.completarBonosEnBlancoToolStripMenuItem.Text = "Completar Bonos en Blanco";
+            this.completarBonosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.completarBonosEnBlancoToolStripMenuItem_Click);
+            // 
             // cajaToolStripMenuItem
             // 
             this.cajaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -748,7 +756,8 @@
             this.anularReciboToolStripMenuItem,
             this.cerrarCajaToolStripMenuItem,
             this.arancelesToolStripMenuItem,
-            this.puntosDeVentaToolStripMenuItem});
+            this.puntosDeVentaToolStripMenuItem,
+            this.testFacturaciónToolStripMenuItem});
             this.cajaToolStripMenuItem.Enabled = false;
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
             this.cajaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -1300,12 +1309,12 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // completarBonosEnBlancoToolStripMenuItem
+            // testFacturaciónToolStripMenuItem
             // 
-            this.completarBonosEnBlancoToolStripMenuItem.Name = "completarBonosEnBlancoToolStripMenuItem";
-            this.completarBonosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.completarBonosEnBlancoToolStripMenuItem.Text = "Completar Bonos en Blanco";
-            this.completarBonosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.completarBonosEnBlancoToolStripMenuItem_Click);
+            this.testFacturaciónToolStripMenuItem.Name = "testFacturaciónToolStripMenuItem";
+            this.testFacturaciónToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.testFacturaciónToolStripMenuItem.Text = "Test Facturación";
+            this.testFacturaciónToolStripMenuItem.Click += new System.EventHandler(this.testFacturaciónToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1476,5 +1485,6 @@
         private System.Windows.Forms.ToolStripMenuItem turismoControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem completarBonosEnBlancoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testFacturaciónToolStripMenuItem;
     }
 }
