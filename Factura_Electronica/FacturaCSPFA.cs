@@ -13,7 +13,10 @@ namespace SOCIOS.Factura_Electronica
 
        public Afip.AfipFactResults Facturar(int PuntoVenta, DateTime Fecha, int TipoComprobante, int TipoDocumento, string Documento,int Concepto, Decimal Monto)
        {
+
            FacturaHead fh = new FacturaHead(Fecha, PuntoVenta, TipoComprobante, Monto, TipoDocumento, Documento, Concepto);
+
+
 
            return sf.Facturar(fh);
           
@@ -21,7 +24,7 @@ namespace SOCIOS.Factura_Electronica
        }
 
        //Tipo de Comprobante : 15 RECIBO c , 16 NOTA DE VENTA AL CONTADO
-       //Tipo Documento      : 96 DNI      , 80 CUIT
+       //Tipo Documento      : 96 DNI      , 80 CUIT 
        public void Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto,DateTime Fecha)
 
        {

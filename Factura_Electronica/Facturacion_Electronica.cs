@@ -35,6 +35,9 @@ namespace SOCIOS.Factura_Electronica
 
                 Afip.AfipFactResults Result;
                
+
+
+
                            
                return facturador.FacturacionUnitaria_SinIVA((int)fh.Pto_Venta,fh.TipoFactura,fh.Concepto ,fh.Tipo_Documento , fh.Documento, (DateTime)fh.Fecha, (decimal)fh.Monto, "");
                     
