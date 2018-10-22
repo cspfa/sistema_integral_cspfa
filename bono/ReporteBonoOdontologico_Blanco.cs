@@ -26,14 +26,17 @@ namespace SOCIOS.bono
         string FormaPago;
         int ID;
         int CODINT;
+        string PROFESIONAL_NOMBRE;
 
         
-        public ReporteBonoOdontologico_Blanco(int ID_ROL,int COD_INT)
+        public ReporteBonoOdontologico_Blanco(int ID_ROL,int COD_INT,string PROFESIONAL)
         {
      
             InitializeComponent();
-            ID = ID_ROL;
-            CODINT = COD_INT;
+            ID          = ID_ROL;
+            CODINT      = COD_INT;
+            PROFESIONAL_NOMBRE = PROFESIONAL;
+
         }
 
         private void ReporteBonoOdontologico_Load(object sender, EventArgs e)
@@ -41,7 +44,8 @@ namespace SOCIOS.bono
             string texto;
             try
             {
-                this.LoadDataReporte();
+                cbOrden.Text = "ORIGINAL";
+                this.LoadDataReporte("ORIGINAL");
             } catch (Exception ex)
             {
                 texto = ex.Message;
@@ -49,7 +53,7 @@ namespace SOCIOS.bono
 
         }
 
-        private void LoadDataReporte()
+        private void LoadDataReporte(string ORDEN)
 
         {
             
@@ -66,7 +70,7 @@ namespace SOCIOS.bono
             //Codigo de Barra
        
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[2];
+            ReportParameter[] parameters = new ReportParameter[4];
             //Establecemos el valor de los parámetros
        
 
@@ -74,7 +78,8 @@ namespace SOCIOS.bono
           
             parameters[0] = new ReportParameter("ID", ID.ToString());
             parameters[1] = new ReportParameter("CODINT", CODINT.ToString());
-          
+            parameters[2] = new ReportParameter("ORDEN", ORDEN);
+            parameters[3] = new ReportParameter("PROFESIONAL",PROFESIONAL_NOMBRE);
 
             this.reportViewer.LocalReport.SetParameters(parameters);
             //reportViewer.LocalReport.DataSources.Clear();
@@ -101,6 +106,38 @@ namespace SOCIOS.bono
         {
             SOCIOS.ReportPrintDocument rp = new ReportPrintDocument(reportViewer.LocalReport);
             rp.Print();
+        }
+
+        private void Refrescar_Click(object sender, EventArgs e)
+        {
+            this.LoadDataReporte(cbOrden.Text.ToString());
+        }
+
+        private void reportViewer_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void Imprimir_Todo_Directo()
+        {
+            SOCIOS.ReportPrintDocument rp;
+            //ORIGINAL
+            this.LoadDataReporte("ORIGINAL");
+            rp = new ReportPrintDocument(reportViewer.LocalReport);
+            rp.Print();
+            //DUPLICADO
+            this.LoadDataReporte("DUPLICADO");
+            rp = new ReportPrintDocument(reportViewer.LocalReport);
+            rp.Print();
+            //TRIPLICADO
+            this.LoadDataReporte("TRIPLICADO");
+            rp = new ReportPrintDocument(reportViewer.LocalReport);
+            rp.Print();
+        }
+
+        private void imprimir_Todo_Click(object sender, EventArgs e)
+        {
+            this.Imprimir_Todo_Directo();
         }
 
 

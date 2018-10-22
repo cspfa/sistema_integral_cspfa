@@ -727,67 +727,6 @@
           </Border>
         </Style>
       </Image>
-      <Textbox Name="Textbox22">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <MarkupType>HTML</MarkupType>
-                <Style>
-                  <FontFamily>Courier New</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>Courier New</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>Courier New</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>9.58688in</Top>
-        <Left>0.15775in</Left>
-        <Height>0.14583in</Height>
-        <Width>1.88542in</Width>
-        <ZIndex>17</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox23">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -838,7 +777,7 @@
         <Left>2.33484in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>18</ZIndex>
+        <ZIndex>17</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -899,7 +838,7 @@
         <Left>4.564in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
-        <ZIndex>19</ZIndex>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -915,7 +854,7 @@
         <Left>1.24494in</Left>
         <Height>0in</Height>
         <Width>4.50516in</Width>
-        <ZIndex>20</ZIndex>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -927,7 +866,7 @@
         <Left>0.02777in</Left>
         <Height>0in</Height>
         <Width>6.51785in</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -939,7 +878,7 @@
         <Left>0.03124in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>22</ZIndex>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -951,7 +890,7 @@
         <Left>6.56077in</Left>
         <Height>1.25in</Height>
         <Width>0in</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -963,7 +902,7 @@
         <Left>0.03124in</Left>
         <Height>1.25in</Height>
         <Width>0in</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>23</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -975,7 +914,7 @@
         <Left>0.02777in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>25</ZIndex>
+        <ZIndex>24</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -987,7 +926,7 @@
         <Left>0.03124in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>26</ZIndex>
+        <ZIndex>25</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -999,7 +938,7 @@
         <Left>0.03124in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>27</ZIndex>
+        <ZIndex>26</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1011,7 +950,7 @@
         <Left>0.01609in</Left>
         <Height>0in</Height>
         <Width>6.52953in</Width>
-        <ZIndex>28</ZIndex>
+        <ZIndex>27</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1023,7 +962,7 @@
         <Left>3.49752in</Left>
         <Height>1.25in</Height>
         <Width>0in</Width>
-        <ZIndex>29</ZIndex>
+        <ZIndex>28</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1049,7 +988,7 @@
         <Left>2.07095in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>30</ZIndex>
+        <ZIndex>29</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1079,7 +1018,7 @@
         <Left>2.07095in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>31</ZIndex>
+        <ZIndex>30</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1135,7 +1074,6 @@
               </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
-            <Top>0in</Top>
             <Height>0.35416in</Height>
             <Width>6.51785in</Width>
             <Style>
@@ -1151,7 +1089,7 @@
         <Left>0.04292in</Left>
         <Height>0.35416in</Height>
         <Width>6.51785in</Width>
-        <ZIndex>32</ZIndex>
+        <ZIndex>31</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1159,6 +1097,69 @@
           <BackgroundColor>LightGrey</BackgroundColor>
         </Style>
       </Rectangle>
+      <Textbox Name="ORDEN">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!ORDEN.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>ORDEN</rd:DefaultName>
+        <Top>0.28398in</Top>
+        <Left>3.90277in</Left>
+        <Height>0.25in</Height>
+        <Width>1.84733in</Width>
+        <ZIndex>32</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PROFESIONAL">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!PROFESIONAL.Value</Value>
+                <Style>
+                  <FontFamily>Courier New</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PROFESIONAL</rd:DefaultName>
+        <Top>9.58688in</Top>
+        <Left>0.85415in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>33</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>9.86125in</Height>
     <Style />
@@ -1171,6 +1172,18 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="CODINT">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ORDEN">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PROFESIONAL">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

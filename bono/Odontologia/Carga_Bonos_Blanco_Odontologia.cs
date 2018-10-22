@@ -70,13 +70,10 @@ namespace SOCIOS.bono.Bonos
                     int   ID_ROL = odontoService.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CODINT);
                     int   idBono =   odontoService.GetMaxID("0","0","0");
                     dlog.Seteo_Id_ROL(idBono, ID_ROL);
-
-                    ReporteBonoOdontologico_Blanco rb = new ReporteBonoOdontologico_Blanco(ID_ROL, CODINT);
+                    
+                    ReporteBonoOdontologico_Blanco rb = new ReporteBonoOdontologico_Blanco(ID_ROL, CODINT,cbProfesionales.Text);
                     rb.ShowDialog();
-                    
-                    
-                   
-
+                                                     
                     System.Threading.Thread.Sleep(60);
 
                 }
