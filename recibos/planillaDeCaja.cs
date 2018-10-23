@@ -523,6 +523,7 @@ namespace SOCIOS
                     dt1.Columns.Add("F_PAGO", typeof(string));
                     dt1.Columns.Add("ID", typeof(string));
                     dt1.Columns.Add("PV", typeof(string));
+                    dt1.Columns.Add("NE", typeof(string));
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(query, connection, transaction);
                     FbDataReader reader = cmd.ExecuteReader();
@@ -541,7 +542,8 @@ namespace SOCIOS
                     decimal CAJAS_DEPOSITADAS = 0;
                     string ID_COMP = string.Empty;
                     string PTO_VTA = string.Empty;
-                    
+                    string NUMERO_E = string.Empty;
+
                     while (reader.Read())
                     {
                         TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
@@ -564,7 +566,8 @@ namespace SOCIOS
                         F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
                         ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
                         PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
-                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA);
+                        NUMERO_E = reader.GetString(reader.GetOrdinal("NUMERO_E"));
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NUMERO_E);
 
                         if (PAGO == "2")
                         {
@@ -575,8 +578,8 @@ namespace SOCIOS
                     reader.Close();
                     GRID.DataSource = dt1;
                     GRID.Columns[0].Width = 60;
-                    GRID.Columns[1].Width = 190;
-                    GRID.Columns[2].Width = 190;
+                    GRID.Columns[1].Width = 170;
+                    GRID.Columns[2].Width = 170;
                     GRID.Columns[3].Width = 50;
                     GRID.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                     GRID.Columns[4].Width = 80;
@@ -588,6 +591,7 @@ namespace SOCIOS
                     GRID.Columns[8].Width = 110;
                     GRID.Columns[9].Width = 50;
                     GRID.Columns[10].Width = 40;
+                    GRID.Columns[11].Width = 40;
                     transaction.Commit();                 
 
                     if (PAGO == "1") //EFECTIVO
@@ -4082,10 +4086,7 @@ namespace SOCIOS
             }
         }
 
-        private void btnImprimirEfectivo_Click(object sender, EventArgs e)
-        {
-            
-        }
+
 
         private void cbBuscarNumeros_CheckedChanged(object sender, EventArgs e)
         {

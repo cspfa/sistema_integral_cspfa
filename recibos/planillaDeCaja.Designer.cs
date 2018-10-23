@@ -98,7 +98,6 @@
             this.btnQuitarCheque = new System.Windows.Forms.Button();
             this.dgEgresos = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnImprimirEfectivo = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.cbProfEfectivo = new System.Windows.Forms.ComboBox();
             this.btnModRoleDestEfectivo = new System.Windows.Forms.Button();
@@ -729,7 +728,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btnImprimirEfectivo);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.cbProfEfectivo);
             this.tabPage1.Controls.Add(this.btnModRoleDestEfectivo);
@@ -751,16 +749,6 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "INGRESOS DEL DÍA EN EFECTIVO";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btnImprimirEfectivo
-            // 
-            this.btnImprimirEfectivo.Location = new System.Drawing.Point(85, 34);
-            this.btnImprimirEfectivo.Name = "btnImprimirEfectivo";
-            this.btnImprimirEfectivo.Size = new System.Drawing.Size(163, 23);
-            this.btnImprimirEfectivo.TabIndex = 137;
-            this.btnImprimirEfectivo.Text = "IMPRIMIR";
-            this.btnImprimirEfectivo.UseVisualStyleBackColor = true;
-            this.btnImprimirEfectivo.Click += new System.EventHandler(this.btnImprimirEfectivo_Click);
             // 
             // label19
             // 
@@ -1803,7 +1791,6 @@
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ComboBox cbFormaPagoBuscador;
         private System.Windows.Forms.Button btnFormaPagoBuscador;
-        private System.Windows.Forms.Button btnImprimirEfectivo;
         private System.Windows.Forms.DateTimePicker dpFechaHasta;
         private System.Windows.Forms.DateTimePicker dpFechaDesde;
         private System.Windows.Forms.Label label15;
