@@ -12,8 +12,8 @@ namespace SOCIOS
 {
     public partial class recibos : Form
     {
+        
         BO.bo_Caja BO_CAJA = new BO.bo_Caja();
-        Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
         SOCIOS.CuentaSocio.PlanCuentaUtils pcu = new CuentaSocio.PlanCuentaUtils();
         bo dlog = new bo();
         nombreSocio ns = new nombreSocio();
@@ -622,12 +622,25 @@ namespace SOCIOS
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE, 
                                 BANCO_DEPO);
 
-                            fe.Facturo_Recibo(recibo_id,
+                            string DIR = @"c:\CSPFA_SOCIOS\";
+                            Factura_Electronica.FacturaCSPFA serviceFactura = new Factura_Electronica.FacturaCSPFA();
+                            Afip.AfipFactResults result = new Afip.AfipFactResults();
+                            Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                            Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+
+                            result = fe.Facturo_Recibo(recibo_id,
                                 int.Parse(PTO_VTA_M),
-                                TC, TD,
+                                TC, 
+                                TD,
                                 DENI,
                                 IMPORTE,
                                 DateTime.Parse(FECHA_RECIBO));
+
+                            //result = serviceFactura.Facturar(int.Parse(PTO_VTA_M), DateTime.Parse(FECHA_RECIBO), TC, TD, DENI, 2, IMPORTE);
+
+                            imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_M), result.Numero, System.DateTime.Now, DENI, 
+                                "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
+                                result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO");
 
                             if (reintegro == "NO")
                             {

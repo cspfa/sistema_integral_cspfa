@@ -22,7 +22,7 @@ namespace SOCIOS.Factura_Electronica
     public class Impresor_Factura
     {
         string DIRECTORIO = "";
-        string DIRECTORIO_TEMP = @"c:\CSPFA_SOCIOS\TMP\";
+        string DIRECTORIO_TEMP = @"C:\CSPFA_SOCIOS\TMP\";
         public Impresor_Factura(string pDIR)
         {
             DIRECTORIO = pDIR;
@@ -49,6 +49,7 @@ namespace SOCIOS.Factura_Electronica
 
             string fileName =leyenda_TC+"-PV " + pPunto_De_Venta.ToString() + "- NRO " + pNumero.ToString() + ".pdf";
           //  fileName = "testing.pdf";
+
             string Codigo_Barra = facturaService.Codigo_Barra(pTipo_Comprobante.ToString(),pPunto_De_Venta,pCAE,pVENC);
             ReportParameter Tipo_Comp       = new ReportParameter("TIPO_COMPROBANTE",leyenda_TC.ToString());
             ReportParameter PtoVenta        = new ReportParameter("PUNTO_DE_VENTA", pPunto_De_Venta.ToString("00000"));

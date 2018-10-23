@@ -18,27 +18,13 @@ namespace SOCIOS.Factura_Electronica
        }
 
        //Tipo de Comprobante : 15 RECIBO c , 16 NOTA DE VENTA AL CONTADO
-       //Tipo Documento      : 96 DNI      , 80 CUIT
-       public void Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto,DateTime Fecha)
-
+       //Tipo Documento      : 96 DNI      , 80 CUIT 
+       public Afip.AfipFactResults Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto,DateTime Fecha)
        {
-        
-
-           try
-           {
-               Afip.AfipFactResults result = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
-               this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result.Numero, result.Cae, result.Vencimiento,true);
-
-
-           } catch(Exception EX)
-               
-           {
-               
-           }
-
-
-       
-       }
+            Afip.AfipFactResults result = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
+            this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result.Numero, result.Cae, result.Vencimiento, true);
+            return result;
+        }
 
        
 
