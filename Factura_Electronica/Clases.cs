@@ -34,6 +34,7 @@ namespace SOCIOS.Factura_Electronica
         public string   Documento       { get; set; }
         public int      Concepto        { get; set; }
 
+
         public FacturaHead(DateTime pFecha, int pPto_Venta, int pTipoFactura, decimal pMonto, int pTipo_Documento, string pDocumento,int pConcepto)
         {
             Fecha          = pFecha;
