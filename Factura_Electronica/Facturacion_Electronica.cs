@@ -14,7 +14,7 @@ namespace SOCIOS.Factura_Electronica
         string rutaTicket;
         string rutaArchivos;
         Afip.FacturadorAfip facturador;
-        bool Modo_Facturacion_Produccion = bool.Parse( Config.getValor("SISTEMAS", "MODO_FACT_PRO", 0));
+        bool Modo_Facturacion_Produccion =  Convert.ToBoolean(Int32.Parse(Config.getValor("SISTEMAS", "MODO_FACT_PRO", 0)));
         
 
         List<AfipServices.wsfev1.FECAEDetRequest> Facturas;
