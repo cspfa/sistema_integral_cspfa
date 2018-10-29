@@ -22,7 +22,7 @@ namespace SOCIOS.Factura_Electronica
     public class Impresor_Factura
     {
         string DIRECTORIO = "";
-        string DIRECTORIO_TEMP = @"c:\CSPFA_SOCIOS\TMP\";
+        string DIRECTORIO_TEMP = @"C:\CSPFA_SOCIOS\TMP\";
         public Impresor_Factura(string pDIR)
         {
             DIRECTORIO = pDIR;

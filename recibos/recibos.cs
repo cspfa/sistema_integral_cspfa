@@ -12,6 +12,7 @@ namespace SOCIOS
 {
     public partial class recibos : Form
     {
+        
         BO.bo_Caja BO_CAJA = new BO.bo_Caja();
         SOCIOS.CuentaSocio.PlanCuentaUtils pcu = new CuentaSocio.PlanCuentaUtils();
         bo dlog = new bo();
@@ -51,14 +52,16 @@ namespace SOCIOS
         private string reintegro { get; set; }
         private int reintegro_de { get; set; }
         private decimal importe_traido { get; set; }
+        private string NRO_CUIT { get; set; }
 
         public recibos(int var_IdSocio, int var_IdSecAct, int var_IdProf, int var_Secuencia, string var_Apellido, string var_Nombre, 
             string var_TipSoc, string var_Barra, string var_CodDto, string var_NroRecibo, string NUMERO_SOCIO, string NUMERO_DEP, 
-            string TITULAR_SOC, string TITULAR_DEP, int CUENTA, string DNI, int GRUPO, decimal IMPORTE, string RB, string REINTEGRO)
+            string TITULAR_SOC, string TITULAR_DEP, int CUENTA, string DNI, int GRUPO, decimal IMPORTE, string RB, string REINTEGRO, string CUIT)
         {
             InitializeComponent();
 
             MODIFICAR = "NO";
+            NRO_CUIT = CUIT;
 
             if (RB == "R")
             {
@@ -535,14 +538,33 @@ namespace SOCIOS
             int REINTEGRO_DE = 0;
             string BANCO_DEPO = cbBancoDepo.SelectedValue.ToString();
             string PTO_VTA_N = "";
+            string PTO_VTA_M = "";
+            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+            string NRO_CUIT_TRIM = NRO_CUIT.Trim();
+
+            if (DENI != "" || DENI != "0")
+            {
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+            }
+            if (NRO_CUIT_TRIM != "" || NRO_CUIT_TRIM != "0")
+            {
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+            }
+            if (DENI == "" && DENI == "0" && NRO_CUIT_TRIM == "" && NRO_CUIT_TRIM == "0")
+            {
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CF;
+            }
+
 
             if (cbPtoVta.SelectedValue.ToString() == "0005")
             {
-                PTO_VTA_N = "0005";
+                PTO_VTA_N = "0005"; //REINTEGROS
             }
             else
             {
                 PTO_VTA_N = VGlobales.PTO_VTA_N;
+                PTO_VTA_M = VGlobales.PTO_VTA_M;
             }
 
             
@@ -610,6 +632,27 @@ namespace SOCIOS
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE, 
                                 BANCO_DEPO);
+
+                            if (VGlobales.vp_role == "CAJA" && DENI != "987654321")
+                            {
+                                string DIR = @"c:\CSPFA_SOCIOS\";
+                                Factura_Electronica.FacturaCSPFA serviceFactura = new Factura_Electronica.FacturaCSPFA();
+                                Afip.AfipFactResults result = new Afip.AfipFactResults();
+                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+
+                                result = fe.Facturo_Recibo(recibo_id,
+                                    int.Parse(PTO_VTA_M),
+                                    TC,
+                                    TD,
+                                    DENI,
+                                    IMPORTE,
+                                    DateTime.Parse(FECHA_RECIBO));
+
+                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_M), result.Numero, System.DateTime.Now, DENI,
+                                    "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
+                                    result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO");
+                            }
 
                             if (reintegro == "NO")
                             {

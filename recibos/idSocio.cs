@@ -7,6 +7,37 @@ namespace SOCIOS
 {
     class idSocio
     {
+        public string dniOrCuil(string TABLA, int NRO_SOC, int NRO_DEP, int BARRA)
+        {
+            bo dlog = new bo();
+            string query = "";
+            string res = "";
+            DataRow[] foundRows = null;
+            switch (TABLA)
+            {
+                case "TITULAR":
+                    query = "SELECT NUM_DOC, CUIL FROM TITULR WHERE NRO_SOC=" + NRO_SOC + " AND NRO_DEP= " + NRO_DEP;
+                    break;
+
+                case "FAMILIAR":
+                    query = "SELECT NUM_DOCF FROM FAMILIAR WHERE NRO_SOC=" + NRO_SOC + " AND NRO_DEP= " + NRO_DEP + " AND BARRA = " + BARRA;
+                    break;
+
+                case "ADHERENTE":
+                    query = "SELECT NUM_DOCADH FROM ADHERENT WHERE NRO_ADH=" + NRO_SOC + " AND NRO_DEPADH= " + NRO_DEP + " AND BARRA = " + BARRA;
+                    break;
+            }
+            if (query != "")
+            {
+                foundRows = dlog.BO_EjecutoDataTable(query).Select();
+                if (foundRows.Length > 0)
+                    res = foundRows[0][0].ToString().Trim();
+                else
+                    res = "NO SE ENCONTRARON DATOS";
+            }
+            return res;
+        }
+
         public string dni(string DNI)
         {
             bo dlog = new bo();

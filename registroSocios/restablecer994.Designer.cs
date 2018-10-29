@@ -43,6 +43,9 @@
             this.btnRestablecer = new System.Windows.Forms.Button();
             this.tbIdEmpleado = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.lbNroSocAnt = new System.Windows.Forms.Label();
+            this.lbNroDepAnt = new System.Windows.Forms.Label();
+            this.lbIdTitularAnt = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -186,11 +189,41 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "ID EMP";
             // 
+            // lbNroSocAnt
+            // 
+            this.lbNroSocAnt.AutoSize = true;
+            this.lbNroSocAnt.Location = new System.Drawing.Point(13, 132);
+            this.lbNroSocAnt.Name = "lbNroSocAnt";
+            this.lbNroSocAnt.Size = new System.Drawing.Size(87, 13);
+            this.lbNroSocAnt.TabIndex = 19;
+            this.lbNroSocAnt.Text = "NRO_SOC_ANT";
+            // 
+            // lbNroDepAnt
+            // 
+            this.lbNroDepAnt.AutoSize = true;
+            this.lbNroDepAnt.Location = new System.Drawing.Point(115, 132);
+            this.lbNroDepAnt.Name = "lbNroDepAnt";
+            this.lbNroDepAnt.Size = new System.Drawing.Size(87, 13);
+            this.lbNroDepAnt.TabIndex = 20;
+            this.lbNroDepAnt.Text = "NRO_DEP_ANT";
+            // 
+            // lbIdTitularAnt
+            // 
+            this.lbIdTitularAnt.AutoSize = true;
+            this.lbIdTitularAnt.Location = new System.Drawing.Point(217, 132);
+            this.lbIdTitularAnt.Name = "lbIdTitularAnt";
+            this.lbIdTitularAnt.Size = new System.Drawing.Size(98, 13);
+            this.lbIdTitularAnt.TabIndex = 21;
+            this.lbIdTitularAnt.Text = "ID_TITULAR_ANT";
+            // 
             // restablecer994
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(815, 160);
+            this.Controls.Add(this.lbIdTitularAnt);
+            this.Controls.Add(this.lbNroDepAnt);
+            this.Controls.Add(this.lbNroSocAnt);
             this.Controls.Add(this.tbIdEmpleado);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btnRestablecer);
@@ -210,7 +243,6 @@
             this.Name = "restablecer994";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RESTABLECER ADHERENTE INTERFUERZA";
-            this.Load += new System.EventHandler(this.restablecer994_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -233,5 +265,8 @@
         private System.Windows.Forms.Button btnRestablecer;
         private System.Windows.Forms.TextBox tbIdEmpleado;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lbNroSocAnt;
+        private System.Windows.Forms.Label lbNroDepAnt;
+        private System.Windows.Forms.Label lbIdTitularAnt;
     }
 }

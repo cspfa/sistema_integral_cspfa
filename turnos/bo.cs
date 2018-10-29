@@ -533,8 +533,8 @@ namespace SOCIOS
 
         //STORED DAR INGRESO DESDE BUSQUEDA SOCIO //ANDRES
         public void Inserto_Ingreso(string vapellido, string vnombre, string vtipo, string vrol, string vdestino, string id_destino, string nro_soc, string nro_dep,
-            string nro_adh, string nro_depadh, string barra, int dni, string vcod_dto, string vid_profesional, string egreso, string usuario, int GRUPO,
-            decimal IMPORTE, int NRO_PAGO, string FECHA_INGRESO, string MC)
+            string nro_adh, string nro_depadh, string barra, Int64 dni, string vcod_dto, string vid_profesional, string egreso, string usuario, int GRUPO,
+            decimal IMPORTE, int NRO_PAGO, string FECHA_INGRESO, string MC, string CUIL)
         {
             db resultado = new db();
 
@@ -576,6 +576,7 @@ namespace SOCIOS
             vector_contenidos.Add(NRO_PAGO);
             vector_contenidos.Add(FECHA_INGRESO);
             vector_contenidos.Add(MC);
+            vector_contenidos.Add(CUIL);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Char");
@@ -599,6 +600,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDBType.Integer");
             vector_tipos.Add("FbDBType.Timestamp");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.VarChar");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@APELLIDO");
@@ -622,6 +624,7 @@ namespace SOCIOS
             vector_nombres.Add("@NRO_PAGO");
             vector_nombres.Add("@FECHA");
             vector_nombres.Add("@MC");
+            vector_nombres.Add("@CUIL");
 
             string vprocedure;
 

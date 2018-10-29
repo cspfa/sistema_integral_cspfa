@@ -25,6 +25,8 @@ namespace SOCIOS
 
         EntradaCampoService entradaCampoService = new EntradaCampoService();
 
+        private string CUIL { get; set; }
+
         public buscar()
         {
             InitializeComponent();
@@ -689,7 +691,8 @@ namespace SOCIOS
                         listItem.BackColor = Color.Red;
                         listItem.ForeColor = Color.White;
                     }
-                   
+
+                    CUIL = reader.GetString(reader.GetOrdinal("CUIL"));
                 }
 
                 while (reader.Read());
@@ -799,6 +802,7 @@ namespace SOCIOS
                 listView1.Columns.Add("BAJA");
                 listView1.Columns.Add("SD");
                 listView1.Columns.Add("FNACIM");
+                listView1.Columns.Add("NA");
             }
             foreach (ColumnHeader ch in this.listView1.Columns)
             {
@@ -838,6 +842,7 @@ namespace SOCIOS
                     listItem.SubItems.Add(BAJA);
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SOCIO_DEPORTES")));
                     listItem.SubItems.Add(NACIM);
+                    listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_NO_ALCANZA")));
                     listView1.Items.Add(listItem);
 
                     if (BAJA == "")
@@ -850,7 +855,7 @@ namespace SOCIOS
                         listItem.ForeColor = Color.White;
                     }
 
-                    if (reader.GetString(reader.GetOrdinal("MOROSO_INVITADO")) == "S")
+                    if (reader.GetString(reader.GetOrdinal("MOROSO_INVITADO")) == "S" || reader.GetString(reader.GetOrdinal("MOROSO_NO_ALCANZA")) == "S")
                     {
                         listItem.BackColor = Color.Red;
                         listItem.ForeColor = Color.White;
@@ -1819,28 +1824,28 @@ namespace SOCIOS
                 //TITULARES Y NO SOCIOS
                 if (themedContainer1.IsBodyVisible)
                 {
-                    string TIPO_SOCIO = listView1.SelectedItems[0].SubItems[3].Text.Trim();
-                    string APELLIDO = listView1.SelectedItems[0].SubItems[4].Text;
-                    string NOMBRE = listView1.SelectedItems[0].SubItems[5].Text;
-                    string ROL = vRol.TrimEnd();
-                    string DESTINO = vDestino.TrimEnd();
-                    string ID_DESTINO = vIdDestino.TrimEnd();
-                    string NRO_SOC = listView1.SelectedItems[0].SubItems[0].Text;
-                    string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                    int    DNI = int.Parse(listView1.SelectedItems[0].SubItems[11].Text.Trim());
-                    string COD_DTO = listView1.SelectedItems[0].SubItems[2].Text;
-                    string ID_PROF = vId;
-                    string USUARIO = VGlobales.vp_username;
-                    string EGRESO = dtpEgreso.Text;
-                    string CAT_SOC = listView1.SelectedItems[0].SubItems[12].Text;
-                    int GRUPO = gg.get(COD_DTO, CAT_SOC);
-                    string BAJA = listView1.SelectedItems[0].SubItems[13].Text;
-                    string MC = listView1.SelectedItems[0].SubItems[9].Text;
-                    string MD = listView1.SelectedItems[0].SubItems[10].Text;
+                    string  TIPO_SOCIO = listView1.SelectedItems[0].SubItems[3].Text.Trim();
+                    string  APELLIDO = listView1.SelectedItems[0].SubItems[4].Text;
+                    string  NOMBRE = listView1.SelectedItems[0].SubItems[5].Text;
+                    string  ROL = vRol.TrimEnd();
+                    string  DESTINO = vDestino.TrimEnd();
+                    string  ID_DESTINO = vIdDestino.TrimEnd();
+                    string  NRO_SOC = listView1.SelectedItems[0].SubItems[0].Text;
+                    string  NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
+                    int     DNI = int.Parse(listView1.SelectedItems[0].SubItems[11].Text.Trim());
+                    string  COD_DTO = listView1.SelectedItems[0].SubItems[2].Text;
+                    string  ID_PROF = vId;
+                    string  USUARIO = VGlobales.vp_username;
+                    string  EGRESO = dtpEgreso.Text;
+                    string  CAT_SOC = listView1.SelectedItems[0].SubItems[12].Text;
+                    int     GRUPO = gg.get(COD_DTO, CAT_SOC);
+                    string  BAJA = listView1.SelectedItems[0].SubItems[13].Text;
+                    string  MC = listView1.SelectedItems[0].SubItems[9].Text;
+                    string  MD = listView1.SelectedItems[0].SubItems[10].Text;
                     decimal IMPORTE = 0;
-                    int NRO_PAGO = 0;
-                    bool CONTINUA = true;
-                    string FECHA_INGRESO = dpFechaIngreso.Text + " " + DateTime.Now.ToString("hh:mm:ss");
+                    int     NRO_PAGO = 0;
+                    bool    CONTINUA = true;
+                    string  FECHA_INGRESO = dpFechaIngreso.Text + " " + DateTime.Now.ToString("hh:mm:ss");
 
                     if (MC == "S" || MD == "S")
                     {
@@ -1880,12 +1885,12 @@ namespace SOCIOS
 
                                     if (ID_PROF == "38") //REALIZA DOBLE INGRESO PARA PODER IMPRIMIR AMBOS RECIBOS EN CAJA
                                     {
-                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, "163", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC);
-                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, "164", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC);
+                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, "163", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC, CUIL);
+                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, "164", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC, CUIL);
                                     }
                                     else
                                     {
-                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC);
+                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC, CUIL);
                                     }
 
                                     if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA")
@@ -1900,7 +1905,7 @@ namespace SOCIOS
                                     break;
 
                                 case "EGRESO":
-                                    dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, ID_PROF, EGRESO, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC);
+                                    dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, ID_PROF, EGRESO, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC, CUIL);
                                     MessageBox.Show("INGRESO Y EGRESO GUARDADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;
                             }
@@ -1994,12 +1999,12 @@ namespace SOCIOS
 
                                     if (ID_PROF == "38")
                                     {
-                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, "163", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X");
-                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, "164", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X");
+                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, "163", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X", CUIL);
+                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, "164", null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X", CUIL);
                                     }
                                     else
                                     {
-                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X");
+                                        dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X", CUIL);
                                     }
 
                                     if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA")
@@ -2014,7 +2019,7 @@ namespace SOCIOS
                                     break;
 
                                 case "EGRESO":
-                                    dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, ID_PROF, EGRESO, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X");
+                                    dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, ID_PROF, EGRESO, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X", CUIL);
                                     MessageBox.Show("INGRESO Y EGRESO GUARDADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;
                             }
@@ -2254,7 +2259,9 @@ namespace SOCIOS
 
         public void habilitarBotonAsamblea()
         {
-            if (listView1.SelectedItems[0].SubItems[1].Text != "994" && listView1.SelectedItems[0].SubItems[1].Text != "995" && listView1.SelectedItems[0].SubItems[1].Text != "020")
+            if (listView1.SelectedItems[0].SubItems[1].Text != "994" 
+                && listView1.SelectedItems[0].SubItems[1].Text != "995" 
+                /*&& listView1.SelectedItems[0].SubItems[1].Text != "020"*/)
             {
                 btnIngresoAsamblea.Enabled = false;
             }
@@ -2529,7 +2536,7 @@ namespace SOCIOS
                     }
 
                     recibos r = new recibos(ID_SOCIO, int.Parse(ID_DESTINO), ID_PROFESIONAL, 0, APELLIDO, NOMBRE, TIPO, BARRA, COD_DTO,
-                    NRO_RECIBO, NRO_SOC, NRO_DEP, NRO_SOC, NRO_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, "NO");
+                    NRO_RECIBO, NRO_SOC, NRO_DEP, NRO_SOC, NRO_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, "NO", CUIL);
                     r.ShowDialog();
                 }
                 
@@ -2566,7 +2573,7 @@ namespace SOCIOS
                     }
 
                     recibos r = new recibos(ID_SOCIO, int.Parse(ID_DESTINO), int.Parse(ID_PROFESIONAL), 0, APELLIDO, NOMBRE, TIPO, BARRA, COD_DTO,
-                    NRO_RECIBO, NRO_SOC, NRO_DEP, TITULAR_SOC, TITULAR_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, "NO");
+                    NRO_RECIBO, NRO_SOC, NRO_DEP, TITULAR_SOC, TITULAR_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, "NO", CUIL);
                     r.ShowDialog();
                 }
             }
