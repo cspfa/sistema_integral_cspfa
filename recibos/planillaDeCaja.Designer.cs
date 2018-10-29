@@ -168,6 +168,8 @@
             this.tbNroDesde = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgBuscador = new System.Windows.Forms.DataGridView();
+            this.btnFacturarEfectivo = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPlanilla.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -728,6 +730,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnFacturarEfectivo);
             this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.cbProfEfectivo);
             this.tabPage1.Controls.Add(this.btnModRoleDestEfectivo);
@@ -935,6 +938,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.cbProfOtros);
             this.tabPage2.Controls.Add(this.btnModRoleDestOtros);
@@ -1652,6 +1656,24 @@
             this.dgBuscador.Size = new System.Drawing.Size(1133, 493);
             this.dgBuscador.TabIndex = 73;
             // 
+            // btnFacturarEfectivo
+            // 
+            this.btnFacturarEfectivo.Location = new System.Drawing.Point(85, 36);
+            this.btnFacturarEfectivo.Name = "btnFacturarEfectivo";
+            this.btnFacturarEfectivo.Size = new System.Drawing.Size(163, 23);
+            this.btnFacturarEfectivo.TabIndex = 137;
+            this.btnFacturarEfectivo.Text = "FACTURAR";
+            this.btnFacturarEfectivo.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(85, 36);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(163, 23);
+            this.button3.TabIndex = 150;
+            this.button3.Text = "FACTURAR";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // planillaDeCaja
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1801,5 +1823,7 @@
         private System.Windows.Forms.CheckBox cbBuscarPorRole;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.ComboBox cbRolesBuscador;
+        private System.Windows.Forms.Button btnFacturarEfectivo;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -524,6 +524,7 @@ namespace SOCIOS
                     dt1.Columns.Add("ID", typeof(string));
                     dt1.Columns.Add("PV", typeof(string));
                     dt1.Columns.Add("NE", typeof(string));
+                    dt1.Columns.Add("DNI", typeof(string));
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(query, connection, transaction);
                     FbDataReader reader = cmd.ExecuteReader();
@@ -543,6 +544,7 @@ namespace SOCIOS
                     string ID_COMP = string.Empty;
                     string PTO_VTA = string.Empty;
                     string NUMERO_E = string.Empty;
+                    string DNI = string.Empty;
 
                     while (reader.Read())
                     {
@@ -567,7 +569,8 @@ namespace SOCIOS
                         ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
                         PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
                         NUMERO_E = reader.GetString(reader.GetOrdinal("NUMERO_E"));
-                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NUMERO_E);
+                        DNI = reader.GetString(reader.GetOrdinal("DNI"));
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NUMERO_E, DNI);
 
                         if (PAGO == "2")
                         {
@@ -4195,7 +4198,7 @@ namespace SOCIOS
                     }
 
                     recibos r = new recibos(int.Parse(ID_SOCIO), SECTACT, ID_PROFESIONAL, SECUENCIA, APELLIDO, NOMBRE, CAT_SOC, BARRA, COD_DTO,
-                    NRO_COMPROBANTE, NRO_SOC, NRO_DEP, TIT_SOC, TIT_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, REINTEGRO);
+                    NRO_COMPROBANTE, NRO_SOC, NRO_DEP, TIT_SOC, TIT_DEP, CUENTA, DNI, GRUPO, IMPORTE, RB, REINTEGRO, null);
                     r.ShowDialog();
                 }
             }
@@ -4214,6 +4217,52 @@ namespace SOCIOS
             else
             {
                 cbRolesBuscador.Enabled = false;
+            }
+        }
+
+        private void facturar(DataGridView GRID)
+        {
+            if (GRID.RowCount == 0)
+            {
+                MessageBox.Show("SELECCIONAR AL MENOS UN COMPROBANTE PARA FACTURAR");
+            }
+            else
+            {
+                string DIR = @"c:\CSPFA_SOCIOS\";
+                Factura_Electronica.FacturaCSPFA serviceFactura = new Factura_Electronica.FacturaCSPFA();
+                Afip.AfipFactResults result = new Afip.AfipFactResults();
+                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+                string DENI = "29414660";
+
+                foreach (DataGridViewRow row in GRID.Rows)        
+                {
+                    if (row.Cells[0].Value.ToString().Substring(0, 1)  == "R")
+                    {
+                        if (row.Cells[11].Value.ToString() == "")
+                        {
+                            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+                            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+
+                            if (DENI == "0")
+                            {
+                                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CF;
+                            }
+
+                            int recibo_id = int.Parse(row.Cells[9].Value.ToString());
+                            string PTO_VTA = row.Cells[10].Value.ToString();
+                            decimal IMPORTE = decimal.Parse(row.Cells[4].Value.ToString());
+                            string FECHA_RECIBO = row.Cells[6].Value.ToString();
+                            string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+
+                            result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA), TC, TD, DENI, IMPORTE, DateTime.Parse(FECHA_RECIBO));
+
+                            imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA), result.Numero, System.DateTime.Now, DENI,
+                                "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
+                                result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO");
+                        }
+                    }
+                }
             }
         }
     }

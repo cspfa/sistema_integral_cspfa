@@ -52,14 +52,16 @@ namespace SOCIOS
         private string reintegro { get; set; }
         private int reintegro_de { get; set; }
         private decimal importe_traido { get; set; }
+        private string NRO_CUIT { get; set; }
 
         public recibos(int var_IdSocio, int var_IdSecAct, int var_IdProf, int var_Secuencia, string var_Apellido, string var_Nombre, 
             string var_TipSoc, string var_Barra, string var_CodDto, string var_NroRecibo, string NUMERO_SOCIO, string NUMERO_DEP, 
-            string TITULAR_SOC, string TITULAR_DEP, int CUENTA, string DNI, int GRUPO, decimal IMPORTE, string RB, string REINTEGRO)
+            string TITULAR_SOC, string TITULAR_DEP, int CUENTA, string DNI, int GRUPO, decimal IMPORTE, string RB, string REINTEGRO, string CUIT)
         {
             InitializeComponent();
 
             MODIFICAR = "NO";
+            NRO_CUIT = CUIT;
 
             if (RB == "R")
             {
@@ -539,11 +541,21 @@ namespace SOCIOS
             string PTO_VTA_M = "";
             int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
             int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+            string NRO_CUIT_TRIM = NRO_CUIT.Trim();
 
-            if (DENI == "0")
+            if (DENI != "" || DENI != "0")
+            {
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+            }
+            if (NRO_CUIT_TRIM != "" || NRO_CUIT_TRIM != "0")
+            {
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+            }
+            if (DENI == "" && DENI == "0" && NRO_CUIT_TRIM == "" && NRO_CUIT_TRIM == "0")
             {
                 TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CF;
             }
+
 
             if (cbPtoVta.SelectedValue.ToString() == "0005")
             {
@@ -621,7 +633,7 @@ namespace SOCIOS
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE, 
                                 BANCO_DEPO);
 
-                            if (VGlobales.vp_role == "CAJA")
+                            if (VGlobales.vp_role == "CAJA" && DENI != "987654321")
                             {
                                 string DIR = @"c:\CSPFA_SOCIOS\";
                                 Factura_Electronica.FacturaCSPFA serviceFactura = new Factura_Electronica.FacturaCSPFA();
