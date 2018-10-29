@@ -14,7 +14,8 @@ namespace SOCIOS.Factura_Electronica
         string rutaTicket;
         string rutaArchivos;
         Afip.FacturadorAfip facturador;
-      
+        bool Modo_Facturacion_Produccion = bool.Parse( Config.getValor("SISTEMAS", "MODO_FACT_PRO", 0));
+        
 
         List<AfipServices.wsfev1.FECAEDetRequest> Facturas;
         List<AfipServices.wsfev1.FECAEDetRequest> Notas;
@@ -53,10 +54,21 @@ namespace SOCIOS.Factura_Electronica
                       private void Obtener_Configuracion()
 
        {
-           rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa.pfx";
 
-           urlWsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL";
-           urlWsfe ="https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
+           if (Modo_Facturacion_Produccion)
+           {
+               rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Produccion.pfx";
+               urlWsaa = "https://wsaa.afip.gov.ar/ws/services/LoginCms?WSDL";
+               urlWsfe = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
+              
+           }
+           else
+           {
+               rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Test.pfx";
+               urlWsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL";
+               urlWsfe = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
+           
+           }
 
            rutaTicket = "C:/CSPFA_SOCIOS/AFIP/ticketAcceso.xml";
            rutaArchivos ="C:/CSPFA_SOCIOS/AFIP/XML/";
