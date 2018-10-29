@@ -13,18 +13,57 @@ namespace SOCIOS.Factura_Electronica
 
        public Afip.AfipFactResults Facturar(int PuntoVenta, DateTime Fecha, int TipoComprobante, int TipoDocumento, string Documento,int Concepto, Decimal Monto)
        {
+
            FacturaHead fh = new FacturaHead(Fecha, PuntoVenta, TipoComprobante, Monto, TipoDocumento, Documento, Concepto);
-           return sf.Facturar(fh);       
+
+
+
+           return sf.Facturar(fh);
+          
+       
        }
 
        //Tipo de Comprobante : 15 RECIBO c , 16 NOTA DE VENTA AL CONTADO
        //Tipo Documento      : 96 DNI      , 80 CUIT 
-       public Afip.AfipFactResults Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto,DateTime Fecha)
+       public Recibo_Request Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha)
+
        {
-            Afip.AfipFactResults result = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
-            this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result.Numero, result.Cae, result.Vencimiento, true);
-            return result;
-        }
+           
+
+           try
+           {
+               Afip.AfipFactResults result_request = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
+               this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento,true);
+               return Exito_Request(result_request);
+
+
+           } catch(Exception EX)
+           {
+               Recibo_Request result = new Recibo_Request();   
+               result.Result = false;
+               result.Excepcion = EX;
+               return result;
+               
+           }
+
+
+       
+       }
+
+       private Recibo_Request Exito_Request(Afip.AfipFactResults result)
+       {
+           Recibo_Request item = new Recibo_Request();
+           item.Cae = result.Cae;
+           item.Punto_Venta = result.Punto_Venta;
+           item.Numero = result.Numero;
+           item.Secuencia = result.Secuencia;
+           item.Vencimiento = result.Vencimiento;
+           item.Excepcion=null;
+           item.Result = true;
+           return item;
+
+       
+       }
 
        
 

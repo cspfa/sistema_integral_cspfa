@@ -17,6 +17,14 @@ namespace SOCIOS.Factura_Electronica
 
 
     }
+
+    public class Recibo_Request : Afip.AfipFactResults
+    {
+        public bool   Result       { get; set; }
+        public Exception Excepcion    { get; set; }
+    
+    }
+
     public class AfipFactErrores
     {
         public int Numero { get; set; }
@@ -39,18 +47,23 @@ namespace SOCIOS.Factura_Electronica
         {
             Fecha          = pFecha;
             Pto_Venta      = pPto_Venta;
+           
             TipoFactura    = pTipoFactura;
             Monto          = pMonto;
             Tipo_Documento = pTipo_Documento;
             Documento      = pDocumento;
             Concepto       = pConcepto;
             // Validaciones 
-            if (Tipo_Documento == (int)Factura_Electronica.Tipo_Doc_Enum.CF)
+            if (Tipo_Documento == (int)Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL)
             {
                 if (Monto > 5000)
                     throw new Exception("No se puede facturar a consumidor final mas de $5000");
                 Documento = "0";
+            
             }
+
+
+
         }
 
      
