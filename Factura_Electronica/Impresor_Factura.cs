@@ -28,7 +28,8 @@ namespace SOCIOS.Factura_Electronica
             DIRECTORIO = pDIR;
         }
 
-        public void Genero_PDF(int pTipo_Comprobante,int pPunto_De_Venta,int pNumero,DateTime pFecha,string pCuit,string pIva,string pNombre,string pDomicilio,decimal pMonto,string pCAE,string pVENC,string pOrden,string pCondicion_Venta )
+        public void Genero_PDF(int pTipo_Comprobante,int pPunto_De_Venta,int pNumero,DateTime pFecha,string pCuit,string pIva,string pNombre,
+            string pDomicilio,decimal pMonto,string pCAE,string pVENC,string pOrden,string pCondicion_Venta, string CONCEPTO )
 
         {
             ReportDataSource rds = new ReportDataSource();
