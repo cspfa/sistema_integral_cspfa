@@ -529,7 +529,7 @@ namespace SOCIOS
 
             return RET;
         }
-        
+
         private void guardarImprimirRecibo(string COMPROBANTE)
         {
             string FECHA_RECIBO = DateTime.Today.ToShortDateString();
@@ -539,23 +539,40 @@ namespace SOCIOS
             string BANCO_DEPO = cbBancoDepo.SelectedValue.ToString();
             string PTO_VTA_N = "";
             string PTO_VTA_M = "";
+            string PTO_VTA_O = "";
             int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
             int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
             string NRO_CUIT_TRIM = NRO_CUIT.Trim();
+            string NRO_DNI_TRIM = DENI.Trim();
+            string CONCEPTO = "SERVICIOS PRESTADOS";
 
-            if (DENI != "" || DENI != "0")
+            if (DENI == "987654321")
             {
-                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+                CONCEPTO = tbObservaciones.Text.Trim();
             }
-            if (NRO_CUIT_TRIM != "" || NRO_CUIT_TRIM != "0")
+
+            /* CONS FINAL 99
+             * DNI 96
+             * CUIT 80
+             * DNI 0 = 15905
+             * CON CUIT = 1 dep 20
+             * CON DNI 24705
+             
+             QUE SEBA AGREGE EL CONCEPTO DE LA VARIABLE QUE LE ENVIO A Genero_PDF
+             VER BIEN COMO TRAER EL RESULT PARA MOSTRAR LA EXCEPCION
+             */
+
+            if (NRO_DNI_TRIM == "0" || NRO_DNI_TRIM == "")
+            {
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+            }
+
+            if (NRO_CUIT_TRIM != "" && NRO_CUIT_TRIM != "0" && NRO_DNI_TRIM == "987654321")
             {
                 TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                DENI = NRO_CUIT_TRIM;
             }
-            if (DENI == "" && DENI == "0" && NRO_CUIT_TRIM == "" && NRO_CUIT_TRIM == "0")
-            {
-                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CF;
-            }
-
+           
 
             if (cbPtoVta.SelectedValue.ToString() == "0005")
             {
@@ -565,6 +582,7 @@ namespace SOCIOS
             {
                 PTO_VTA_N = VGlobales.PTO_VTA_N;
                 PTO_VTA_M = VGlobales.PTO_VTA_M;
+                PTO_VTA_O = VGlobales.PTO_VTA_O;
             }
 
             
@@ -633,25 +651,24 @@ namespace SOCIOS
                                 NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE, 
                                 BANCO_DEPO);
 
-                            if (VGlobales.vp_role == "CAJA" && DENI != "987654321")
+                            if (VGlobales.vp_role == "CAJA")
                             {
-                                string DIR = @"c:\CSPFA_SOCIOS\";
-                                Factura_Electronica.FacturaCSPFA serviceFactura = new Factura_Electronica.FacturaCSPFA();
+                                string DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
                                 Afip.AfipFactResults result = new Afip.AfipFactResults();
                                 Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                 Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
-
+                                
                                 result = fe.Facturo_Recibo(recibo_id,
-                                    int.Parse(PTO_VTA_M),
+                                    int.Parse(PTO_VTA_O),
                                     TC,
                                     TD,
                                     DENI,
                                     IMPORTE,
-                                    DateTime.Parse(FECHA_RECIBO));
+                                    DateTime.Now);                               
 
-                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_M), result.Numero, System.DateTime.Now, DENI,
+                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI,
                                     "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
-                                    result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO");
+                                    result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
                             }
 
                             if (reintegro == "NO")
