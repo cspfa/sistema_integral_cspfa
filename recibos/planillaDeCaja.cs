@@ -4237,7 +4237,7 @@ namespace SOCIOS
 
                 foreach (DataGridViewRow row in GRID.Rows)        
                 {
-                    if (row.Cells[0].Value.ToString().Substring(0, 1)  == "R")
+                    /*if (row.Cells[0].Value.ToString().Substring(0, 1)  == "R")
                     {
                         if (row.Cells[11].Value.ToString() == "")
                         {
@@ -4246,7 +4246,7 @@ namespace SOCIOS
 
                             if (DENI == "0")
                             {
-                                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CF;
+                                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
                             }
 
                             int recibo_id = int.Parse(row.Cells[9].Value.ToString());
@@ -4261,7 +4261,7 @@ namespace SOCIOS
                                 "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
                                 result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO");
                         }
-                    }
+                    }*/
                 }
             }
         }
