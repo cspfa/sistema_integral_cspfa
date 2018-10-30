@@ -281,7 +281,7 @@ namespace SOCIOS
             {
                 code39.Code = "RE" + DATOS_BR[0];
                 LEYENDA = "Concepto: ";
-                TITULO = "RECIBO";
+                TITULO = "RECIBO PROVISORIO";
             }
 
             if (REINTEGRO == "SI")
@@ -293,7 +293,7 @@ namespace SOCIOS
             Bitmap bm = new Bitmap(code39.CreateDrawingImage(Color.Black, Color.White));
             Graphics graphics = e.Graphics;
             Font courier_big = new Font("FontA1x1", 7);
-            Font courier_xl = new Font("FontA1x1", 10);
+            Font courier_xl = new Font("FontA1x1", 9);
             Font courier_med = new Font("FontA1x1", 6);
             SolidBrush black = new SolidBrush(Color.Black);
             SolidBrush red = new SolidBrush(Color.Black);
