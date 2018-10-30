@@ -272,10 +272,13 @@ namespace SOCIOS
             bo dlog = new bo();
             string QUERY_N = "SELECT ID, PTO_VTA FROM PUNTOS_DE_VENTA WHERE ROL = '" + ROLE + "' AND ACCION = 'N' ORDER BY ID ASC;";
             string QUERY_M = "SELECT ID, PTO_VTA FROM PUNTOS_DE_VENTA WHERE ROL = '" + ROLE + "' AND ACCION = 'M' ORDER BY ID ASC;";
+            string QUERY_O = "SELECT ID, PTO_VTA FROM PUNTOS_DE_VENTA WHERE ROL = '" + ROLE + "' AND ACCION = 'O' ORDER BY ID ASC;";
             DataRow[] foundRowsN;
             DataRow[] foundRowsM;
+            DataRow[] foundRowsO;
             foundRowsN = dlog.BO_EjecutoDataTable(QUERY_N).Select();
             foundRowsM = dlog.BO_EjecutoDataTable(QUERY_M).Select();
+            foundRowsO = dlog.BO_EjecutoDataTable(QUERY_O).Select();
 
             if (foundRowsN.Length > 0)
             {
@@ -287,6 +290,12 @@ namespace SOCIOS
             {
                 VGlobales.ID_PTO_VTA_M = foundRowsM[0][0].ToString();
                 VGlobales.PTO_VTA_M = foundRowsM[0][1].ToString();
+            }
+
+            if (foundRowsO.Length > 0)
+            {
+                VGlobales.ID_PTO_VTA_O = foundRowsO[0][0].ToString();
+                VGlobales.PTO_VTA_O = foundRowsO[0][1].ToString();
             }
         }
 
