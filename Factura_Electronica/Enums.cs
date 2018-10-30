@@ -10,7 +10,7 @@ namespace SOCIOS.Factura_Electronica
 
         DNI = 96,
         CUIT = 80,
-        CF = 99
+        CONSUMIDOR_FINAL = 99
     }
 
    public enum Tipo_Comprobante_Enum
