@@ -71,7 +71,7 @@ namespace SOCIOS.Factura_Electronica
            }
 
            rutaTicket = "C:/CSPFA_SOCIOS/AFIP/ticketAcceso.xml";
-           rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_M + "\\XML";
+           rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\XML";
 
        
        }
