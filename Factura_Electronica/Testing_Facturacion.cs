@@ -52,7 +52,7 @@ namespace SOCIOS.Factura_Electronica
             else if ((cbTipoDocumento.Text.Contains("CUIT")))
                 TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CUIT;
             else
-                TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CF; //Consumidor Final
+                TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL; //Consumidor Final
 
               
 
@@ -113,7 +113,7 @@ namespace SOCIOS.Factura_Electronica
             try
             {   string DIR =@"c:\CSPFA_SOCIOS\";
                 Impresor_Factura imp_factura = new Impresor_Factura(DIR);
-                imp_factura.Genero_PDF((int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, 1, 250, System.DateTime.Now, "20340680619", "Consumidor Final", "Sebastian Auladell", "Roosevelt 3443 1431 CABA", 1600, "68399680115324", "20-11-2018","ORIGINAL","CONTADO");
+                //imp_factura.Genero_PDF((int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, 1, 250, System.DateTime.Now, "20340680619", "Consumidor Final", "Sebastian Auladell", "Roosevelt 3443 1431 CABA", 1600, "68399680115324", "20-11-2018","ORIGINAL","CONTADO");
                 MessageBox.Show("Factura impresa en " + DIR);
             }
             catch (Exception ex)
