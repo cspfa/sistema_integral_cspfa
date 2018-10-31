@@ -589,7 +589,9 @@ namespace SOCIOS
             Offset = Offset + 20;
             graphics.DrawString("DENTRO DE LAS  2 HS", courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
-            graphics.DrawString("COMPROBANTE NO VALIDO COMO FACTURA", courier_big, black, startX, startY + Offset);
+            graphics.DrawString("COMPROBANTE NO VALIDO", courier_big, black, startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("COMO TICKET FISCAL", courier_big, black, startX, startY + Offset);
 
         }
 
@@ -799,9 +801,9 @@ namespace SOCIOS
 
             graphics.DrawString(".", courier_med, black, startX, startY + Offset);
             Offset = Offset + 20;
-
+            graphics.DrawString("COMPROBANTE NO VALIDO", courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
-            graphics.DrawString("COMPROBANTE NO VALIDO COMO FACTURA", courier_big, black, startX, startY + Offset);
+            graphics.DrawString("COMO TICKET FISCAL", courier_big, black, startX, startY + Offset);
 
 
         }
