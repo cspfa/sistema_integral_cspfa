@@ -4294,7 +4294,6 @@ namespace SOCIOS
             facturar(dgEfectivo);
             MessageBox.Show("FACTURACIÓN COMPLETADA", "LISTO");
             buscar("1", dgEfectivo, CAJA);
-
         }
     }
 }
