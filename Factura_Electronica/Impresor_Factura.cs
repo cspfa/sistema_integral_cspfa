@@ -29,11 +29,11 @@ namespace SOCIOS.Factura_Electronica
         }
 
         public void Genero_PDF(int pTipo_Comprobante,int pPunto_De_Venta,int pNumero,DateTime pFecha,string pCuit,string pIva,string pNombre,
-            string pDomicilio,decimal pMonto,string pCAE,string pVENC,string pOrden,string pCondicion_Venta, string CONCEPTO )
+            string pDomicilio,decimal pMonto,string pCAE,string pVENC,string pOrden,string pCondicion_Venta, string pConcepto )
 
         {
             ReportDataSource rds = new ReportDataSource();
-            ReportParameter[] para = new ReportParameter[14];
+            ReportParameter[] para = new ReportParameter[15];
             ReportViewer viewer = new ReportViewer();
             FacturaCSPFA facturaService = new FacturaCSPFA();
 
@@ -66,6 +66,7 @@ namespace SOCIOS.Factura_Electronica
             ReportParameter Barra           = new ReportParameter("BARCODE",Codigo_Barra);
             ReportParameter Orden           = new ReportParameter("ORDEN", pOrden);
             ReportParameter Condicion_Venta = new ReportParameter("CONDICION_VENTA", pCondicion_Venta);
+            ReportParameter Concepto = new ReportParameter("CONCEPTO", pConcepto);
             para[0] = Tipo_Comp;
             para[1] = PtoVenta;
             para[2] = Numero;
@@ -81,7 +82,7 @@ namespace SOCIOS.Factura_Electronica
             para[11] = Monto;
             para[12] = Orden;
             para[13] = Condicion_Venta;
-
+            para[14] = Concepto;
             string Excepcion = "";
 
             try

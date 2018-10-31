@@ -767,13 +767,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.43247in</Width>
+              <Width>5.6135in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.43247in</Width>
+              <Width>0.32711in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.43247in</Width>
+              <Width>1.61997in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -824,7 +824,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>                  CANTIDAD</Value>
+                              <Value>  C</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>ExtraBold</FontWeight>
@@ -872,13 +872,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value xml:space="preserve"> </Value>
-                              <Style>
-                                <Color>White</Color>
-                              </Style>
-                            </TextRun>
-                            <TextRun>
-                              <Value>                     MONTO</Value>
+                              <Value> MONTO</Value>
                               <Style>
                                 <FontSize>12pt</FontSize>
                                 <FontWeight>ExtraBold</FontWeight>
@@ -918,7 +912,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>SERVICIOS CSPFA</Value>
+                              <Value>=Parameters!CONCEPTO.Value</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                               </Style>
@@ -950,7 +944,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>                       1</Value>
+                              <Value>  1</Value>
                               <Style>
                                 <FontStyle>Italic</FontStyle>
                               </Style>
@@ -1039,7 +1033,7 @@
         <Top>4.47624in</Top>
         <Left>0.09896in</Left>
         <Height>0.5in</Height>
-        <Width>7.29741in</Width>
+        <Width>7.56058in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -1594,6 +1588,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="CONDICION_VENTA">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CONCEPTO">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
