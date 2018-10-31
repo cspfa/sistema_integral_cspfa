@@ -569,7 +569,7 @@ namespace SOCIOS
                         ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
                         PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
                         NUMERO_E = reader.GetString(reader.GetOrdinal("NUMERO_E"));
-                        DNI = reader.GetString(reader.GetOrdinal("DNI"));
+                        DNI = reader.GetString(reader.GetOrdinal("DNI")).Trim();
                         dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NUMERO_E, DNI);
 
                         if (PAGO == "2")
@@ -4222,48 +4222,79 @@ namespace SOCIOS
 
         private void facturar(DataGridView GRID)
         {
-            if (GRID.RowCount == 0)
+            if (GRID.SelectedRows.Count == 0)
             {
                 MessageBox.Show("SELECCIONAR AL MENOS UN COMPROBANTE PARA FACTURAR");
             }
             else
             {
-                string DIR = @"c:\CSPFA_SOCIOS\";
-                Factura_Electronica.FacturaCSPFA serviceFactura = new Factura_Electronica.FacturaCSPFA();
+                string DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
                 Afip.AfipFactResults result = new Afip.AfipFactResults();
                 Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                 Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
-                string DENI = "29414660";
+                string CONCEPTO = "SERVICIOS PRESTADOS";
 
-                foreach (DataGridViewRow row in GRID.Rows)        
+                pbFactrarEfectivo.Visible = true;
+                pbFactrarEfectivo.Minimum = 0;
+                pbFactrarEfectivo.Maximum = GRID.SelectedRows.Count;
+                pbFactrarEfectivo.Value = 1;
+                pbFactrarEfectivo.Step = 1;
+                Cursor = Cursors.WaitCursor;
+
+                foreach (DataGridViewRow row in GRID.SelectedRows)        
                 {
-                    /*if (row.Cells[0].Value.ToString().Substring(0, 1)  == "R")
+                    if (row.Cells[0].Value.ToString().Substring(0, 1)  == "R")
                     {
                         if (row.Cells[11].Value.ToString() == "")
                         {
+                            string DENI = row.Cells[12].Value.ToString();
                             int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
-                            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+                            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
 
-                            if (DENI == "0")
+                            if (DENI != "0" && DENI != "")
                             {
-                                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
-                            }
+                                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
 
+                                if (DENI.Length > 8)
+                                {
+                                    TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                    CONCEPTO = "";
+                                }
+                            }
+                            
                             int recibo_id = int.Parse(row.Cells[9].Value.ToString());
-                            string PTO_VTA = row.Cells[10].Value.ToString();
+                            string PTO_VTA = VGlobales.PTO_VTA_O;
                             decimal IMPORTE = decimal.Parse(row.Cells[4].Value.ToString());
                             string FECHA_RECIBO = row.Cells[6].Value.ToString();
                             string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
 
-                            result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA), TC, TD, DENI, IMPORTE, DateTime.Parse(FECHA_RECIBO));
+                            result = fe.Facturo_Recibo(recibo_id,
+                                    int.Parse(VGlobales.PTO_VTA_O),
+                                    TC,
+                                    TD,
+                                    DENI,
+                                    IMPORTE,
+                                    DateTime.Now);
 
-                            imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA), result.Numero, System.DateTime.Now, DENI,
+                            imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI,
                                 "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
-                                result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO");
+                                result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+
+                            pbFactrarEfectivo.PerformStep();
                         }
-                    }*/
+                    }
                 }
+                Cursor = Cursors.Default;
+                pbFactrarEfectivo.Visible = false;
             }
+        }
+
+        private void btnFacturarEfectivo_Click(object sender, EventArgs e)
+        {
+            facturar(dgEfectivo);
+            MessageBox.Show("FACTURACIÓN COMPLETADA", "LISTO");
+            buscar("1", dgEfectivo, CAJA);
+
         }
     }
 }
