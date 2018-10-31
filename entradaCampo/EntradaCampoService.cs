@@ -588,7 +588,8 @@ namespace SOCIOS
             graphics.DrawString("LOS REINTEGROS SE EFECTUAN", courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
             graphics.DrawString("DENTRO DE LAS  2 HS", courier_big, black, startX, startY + Offset);
-
+            Offset = Offset + 20;
+            graphics.DrawString("COMPROBANTE NO VALIDO COMO FACTURA", courier_big, black, startX, startY + Offset);
 
         }
 
@@ -798,6 +799,9 @@ namespace SOCIOS
 
             graphics.DrawString(".", courier_med, black, startX, startY + Offset);
             Offset = Offset + 20;
+
+            Offset = Offset + 20;
+            graphics.DrawString("COMPROBANTE NO VALIDO COMO FACTURA", courier_big, black, startX, startY + Offset);
 
 
         }
