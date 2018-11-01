@@ -2517,6 +2517,7 @@ namespace SOCIOS
                     string CAT_SOC = listView1.SelectedItems[0].SubItems[12].Text;
                     int ID_PROFESIONAL = int.Parse(comboBox2.SelectedValue.ToString());
                     string ROL = comboBox3.SelectedValue.ToString();
+                    VGlobales.ROL_NAME = comboBox3.Text;
                     string DESTINO = comboBox2.Text;
                     string ID_DESTINO = "";
                     string[] SPLIT = comboBox2.Text.Split('-');
