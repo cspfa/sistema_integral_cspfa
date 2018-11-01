@@ -22,6 +22,7 @@ namespace SOCIOS
     {
         bo dlog = new bo();
         BO.bo_Caja BO_CAJA = new BO.bo_Caja();
+        numeroRecibo nr = new numeroRecibo();
 
         private decimal INGRESOS_EFECTIVO { get; set; }
         private decimal INGRESOS_OTROS { get; set; }
@@ -3611,7 +3612,19 @@ namespace SOCIOS
         {
             if (ACTION == "HABILITAR")
             {
-            
+                gbDepositoCajas.Enabled = true;
+                btnCerrarCaja.Text = "CARGAR CAJA SELECCIONADA";
+                btnQuitarCheque.Enabled = true;
+                label6.Enabled = true;
+                cbBancosCheques.Enabled = true;
+                label5.Enabled = true;
+                tbCompCheque.Enabled = true;
+                btnAgregarCheque.Enabled = true;
+                groupBoxAl.Text = "AL " + FECHA;
+                dgCajasAnteriores.ClearSelection();
+                dgCajasAnteriores.Rows[INDEX].Selected = true;
+                gbCajasAnteriores.Enabled = true;
+                btnExcel.Enabled = true;
             }
 
             if (ACTION == "DESHABILITAR")
@@ -4220,8 +4233,19 @@ namespace SOCIOS
             }
         }
 
-        private void facturar(DataGridView GRID)
+        private void facturar(DataGridView GRID, ProgressBar PB)
         {
+            string EXCEPTION = "";
+            string DENI = "";
+            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+            int recibo_id = 0;
+            string PTO_VTA = VGlobales.PTO_VTA_O;
+            string IMPORTE = "";
+            string FECHA_RECIBO = "";
+            string NOMBRE_SOCIO = "";
+            string CONCEPTO = "SERVICIOS PRESTADOS";
+
             if (GRID.SelectedRows.Count == 0)
             {
                 MessageBox.Show("SELECCIONAR AL MENOS UN COMPROBANTE PARA FACTURAR");
@@ -4229,16 +4253,14 @@ namespace SOCIOS
             else
             {
                 string DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
-                Afip.AfipFactResults result = new Afip.AfipFactResults();
+                Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                 Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                 Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
-                string CONCEPTO = "SERVICIOS PRESTADOS";
-
-                pbFactrarEfectivo.Visible = true;
-                pbFactrarEfectivo.Minimum = 0;
-                pbFactrarEfectivo.Maximum = GRID.SelectedRows.Count;
-                pbFactrarEfectivo.Value = 1;
-                pbFactrarEfectivo.Step = 1;
+                PB.Visible = true;
+                PB.Minimum = 0;
+                PB.Maximum = GRID.SelectedRows.Count;
+                PB.Value = 1;
+                PB.Step = 1;
                 Cursor = Cursors.WaitCursor;
 
                 foreach (DataGridViewRow row in GRID.SelectedRows)        
@@ -4247,53 +4269,59 @@ namespace SOCIOS
                     {
                         if (row.Cells[11].Value.ToString() == "")
                         {
-                            string DENI = row.Cells[12].Value.ToString();
-                            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
-                            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+                            DENI = row.Cells[12].Value.ToString();
+                            recibo_id = int.Parse(row.Cells[9].Value.ToString());
+                            IMPORTE = row.Cells[4].Value.ToString();
+                            FECHA_RECIBO = row.Cells[6].Value.ToString();
+                            NOMBRE_SOCIO = row.Cells[1].Value.ToString();
 
                             if (DENI != "0" && DENI != "")
                             {
                                 TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
 
-                                if (DENI.Length > 8)
+                                if (DENI.Length > 8 && DENI=="98765432")
                                 {
                                     TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
-                                    CONCEPTO = "";
+                                    CONCEPTO = nr.obtenerObservacion(recibo_id);
                                 }
                             }
-                            
-                            int recibo_id = int.Parse(row.Cells[9].Value.ToString());
-                            string PTO_VTA = VGlobales.PTO_VTA_O;
-                            decimal IMPORTE = decimal.Parse(row.Cells[4].Value.ToString());
-                            string FECHA_RECIBO = row.Cells[6].Value.ToString();
-                            string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
 
                             result = fe.Facturo_Recibo(recibo_id,
                                     int.Parse(VGlobales.PTO_VTA_O),
                                     TC,
                                     TD,
                                     DENI,
-                                    IMPORTE,
+                                    decimal.Parse(IMPORTE),
                                     DateTime.Now);
 
-                            imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI,
-                                "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
+                            if (result.Result == true)
+                            {
+                                imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI,
+                                "Consumidor Final", NOMBRE_SOCIO, "", decimal.Parse(IMPORTE),
                                 result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                            }
 
-                            pbFactrarEfectivo.PerformStep();
+                            PB.PerformStep();
                         }
                     }
                 }
                 Cursor = Cursors.Default;
-                pbFactrarEfectivo.Visible = false;
+                PB.Visible = false;
             }
         }
 
         private void btnFacturarEfectivo_Click(object sender, EventArgs e)
         {
-            facturar(dgEfectivo);
+            facturar(dgEfectivo, pbFactrarEfectivo);
             MessageBox.Show("FACTURACIÓN COMPLETADA", "LISTO");
             buscar("1", dgEfectivo, CAJA);
+        }
+
+        private void btnFacturarOtros_Click(object sender, EventArgs e)
+        {
+            facturar(dgOtros, pbFacturarOtros);
+            MessageBox.Show("FACTURACIÓN COMPLETADA", "LISTO");
+            buscar("0", dgOtros, CAJA);
         }
     }
 }
