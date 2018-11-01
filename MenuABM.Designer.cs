@@ -156,7 +156,6 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.testFacturaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -756,8 +755,7 @@
             this.anularReciboToolStripMenuItem,
             this.cerrarCajaToolStripMenuItem,
             this.arancelesToolStripMenuItem,
-            this.puntosDeVentaToolStripMenuItem,
-            this.testFacturaciónToolStripMenuItem});
+            this.puntosDeVentaToolStripMenuItem});
             this.cajaToolStripMenuItem.Enabled = false;
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
             this.cajaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -1309,13 +1307,6 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // testFacturaciónToolStripMenuItem
-            // 
-            this.testFacturaciónToolStripMenuItem.Name = "testFacturaciónToolStripMenuItem";
-            this.testFacturaciónToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.testFacturaciónToolStripMenuItem.Text = "Test Facturación";
-            this.testFacturaciónToolStripMenuItem.Click += new System.EventHandler(this.testFacturaciónToolStripMenuItem_Click);
-            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1485,6 +1476,5 @@
         private System.Windows.Forms.ToolStripMenuItem turismoControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem completarBonosEnBlancoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testFacturaciónToolStripMenuItem;
     }
 }
