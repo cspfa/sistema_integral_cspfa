@@ -199,7 +199,7 @@ namespace SOCIOS
 
         public void reciboTicket(string NRO_RECIBO, string NOMBRE_SOCIO, string FORMAPAGO, string SECTACT, string VALOR, int ID_PROFESIONAL, string SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, 
             string OBSERVACIONES, string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, 
-            string COMPROBANTE, string PTO_VTA, string FECHA, string REINTEGRO)
+            string COMPROBANTE, string PTO_VTA, string FECHA, string REINTEGRO, string PTO_VTA_O, string NRO_FACT_ELEC)
         {
             nombreProf np = new nombreProf();
             string PROFESIONAL = np.nombre(ID_PROFESIONAL);
@@ -213,7 +213,7 @@ namespace SOCIOS
             int CANTIDAD = 2;
             string BR = COMPROBANTE;
             string[] DATOS = { NRO_RECIBO, FECHA_LETRAS, NOMBRE_SOCIO, FORMAPAGO, SECTACT, VALOR, VALOR_LETRAS, FECHA, PROFESIONAL, SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, NRO_SOC,
-                               NRO_DEP, DOBLE_DUPLICADO, DNI, CANTIDAD.ToString(), BR, PTO_VTA, REINTEGRO };
+                               NRO_DEP, DOBLE_DUPLICADO, DNI, CANTIDAD.ToString(), BR, PTO_VTA, REINTEGRO, PTO_VTA_O, NRO_FACT_ELEC };
             DATOS_BR = DATOS;
             print();
         }
@@ -268,6 +268,8 @@ namespace SOCIOS
             string VALOR = DATOS_BR[5];
             string VALOR_LETRAS = DATOS_BR[6];
             string REINTEGRO = DATOS_BR[19];
+            string PTO_VTA_O = DATOS_BR[20];
+            string NRO_FACT_ELEC = DATOS_BR[21];
             string RR = "Recibí de ";
 
             if (RECIBO_BONO == "B")
@@ -311,20 +313,36 @@ namespace SOCIOS
             Offset = Offset + sep;
             graphics.DrawString("CUIT: 30-51658821-3", courier_med, black, startX, startY + Offset);
             Offset = Offset + sep;
-            graphics.DrawString("Imp Ganancias Exento Art 20 Inc F Ley 20628(Lo 1997)", courier_med, black, startX, startY + Offset);
-            Offset = Offset + sep;
-            graphics.DrawString("IVA Exento Art 7 Inc H Apar 6 Ley 20631(to 1997)", courier_med, black, startX, startY + Offset);
-            Offset = Offset + sep;
-            graphics.DrawString("Imp Ing Brutos Exento Art 34 Inc 15 Cod Fiscal (to 2005) CABA", courier_med, black, startX, startY + Offset);
-            Offset = Offset + sep;
-            graphics.DrawString("Exceptuando de emitir comprobantes", courier_med, black, startX, startY + Offset);
-            Offset = Offset + sep;
-            graphics.DrawString("Anexo 1 de la R.G. 1415 apartado K", courier_med, black, startX, startY + Offset);
-            Offset = Offset + sep;
+
+            if (RECIBO_BONO == "B")
+            {
+                graphics.DrawString("Imp Ganancias Exento Art 20 Inc F Ley 20628(Lo 1997)", courier_med, black, startX, startY + Offset);
+                Offset = Offset + sep;
+                graphics.DrawString("IVA Exento Art 7 Inc H Apar 6 Ley 20631(to 1997)", courier_med, black, startX, startY + Offset);
+                Offset = Offset + sep;
+                graphics.DrawString("Imp Ing Brutos Exento Art 34 Inc 15 Cod Fiscal (to 2005) CABA", courier_med, black, startX, startY + Offset);
+                Offset = Offset + sep;
+                graphics.DrawString("Exceptuando de emitir comprobantes", courier_med, black, startX, startY + Offset);
+                Offset = Offset + sep;
+                graphics.DrawString("Anexo 1 de la R.G. 1415 apartado K", courier_med, black, startX, startY + Offset);
+                Offset = Offset + sep;
+            }
+
             graphics.DrawString("----------------------------------------------------------------------------------------------------------------", courier_med, black, startX, startY + Offset);
             Offset = Offset + sep;
             graphics.DrawString(TITULO + " Nº " + PTO_VTA + "-" + NRO_RECIBO, courier_xl, black, startX, startY + Offset);
             Offset = Offset + 20;
+
+            if (RECIBO_BONO == "R")
+            {
+                graphics.DrawString("FACTURA Nº " + PTO_VTA_O + "-" + NRO_FACT_ELEC, courier_xl, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("Usted puede solicitar esta factura vía email a la casilla", courier_big, black, startX, startY + Offset);
+                Offset = Offset + sep2;
+                graphics.DrawString("facturacioncspfa@gmail.com", courier_big, black, startX, startY + Offset);
+                Offset = Offset + sep2;
+            }
+
             graphics.DrawString("Buenos Aires, " + DATOS_BR[1], courier_big, black, startX, startY + Offset);
             Offset = Offset + sep2;
             graphics.DrawString(RR + "" + DATOS_BR[2], courier_big, black, startX, startY + Offset);
