@@ -123,7 +123,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(8, 175);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(624, 297);
+            this.groupBox1.Size = new System.Drawing.Size(624, 305);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS DEL RECIBO";
@@ -176,7 +176,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(297, 265);
+            this.label9.Location = new System.Drawing.Point(297, 215);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 13);
             this.label9.TabIndex = 78;
@@ -184,7 +184,7 @@
             // 
             // tbFactorArancel
             // 
-            this.tbFactorArancel.Location = new System.Drawing.Point(257, 261);
+            this.tbFactorArancel.Location = new System.Drawing.Point(257, 211);
             this.tbFactorArancel.Mask = "9";
             this.tbFactorArancel.Name = "tbFactorArancel";
             this.tbFactorArancel.Size = new System.Drawing.Size(34, 20);
@@ -194,7 +194,7 @@
             // cbDobleDuplicado
             // 
             this.cbDobleDuplicado.AutoSize = true;
-            this.cbDobleDuplicado.Location = new System.Drawing.Point(473, 263);
+            this.cbDobleDuplicado.Location = new System.Drawing.Point(481, 186);
             this.cbDobleDuplicado.Name = "cbDobleDuplicado";
             this.cbDobleDuplicado.Size = new System.Drawing.Size(127, 17);
             this.cbDobleDuplicado.TabIndex = 76;
@@ -223,7 +223,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(505, 188);
+            this.label8.Location = new System.Drawing.Point(498, 216);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 13);
             this.label8.TabIndex = 73;
@@ -232,11 +232,11 @@
             // tbObservaciones
             // 
             this.tbObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbObservaciones.Location = new System.Drawing.Point(257, 216);
-            this.tbObservaciones.MaxLength = 60;
+            this.tbObservaciones.Location = new System.Drawing.Point(257, 238);
+            this.tbObservaciones.MaxLength = 120;
             this.tbObservaciones.Multiline = true;
             this.tbObservaciones.Name = "tbObservaciones";
-            this.tbObservaciones.Size = new System.Drawing.Size(353, 32);
+            this.tbObservaciones.Size = new System.Drawing.Size(353, 51);
             this.tbObservaciones.TabIndex = 72;
             // 
             // cbSinCargo
@@ -612,7 +612,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 477);
+            this.ClientSize = new System.Drawing.Size(636, 487);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

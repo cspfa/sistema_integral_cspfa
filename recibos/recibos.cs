@@ -653,17 +653,17 @@ namespace SOCIOS
 
                             if (VGlobales.vp_role == "CAJA")
                             {
-                                if (IMPORTE >= 5000 && TD != 80)
-                                {
+                                //if (IMPORTE >= 5000 && TD != 80)
+                                //{
                                     string DIR = "";
 
                                     if (Modo_Facturacion_Produccion)
                                     {
-                                        DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
+                                        DIR = @"\\192.168.1.6\factura_electronica\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
                                     }
                                     else
                                     {
-                                        DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "_TEST\\FACTURAS\\";
+                                        DIR = "\\192.168.1.6\\factura_electronica\\TEST\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
                                     }
                                     
                                     Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
@@ -687,13 +687,13 @@ namespace SOCIOS
                                     }
                                     else
                                     {
-                                        MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
+                                        MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
                                     }
-                                }
+                                /*}
                                 else
                                 {
                                     MessageBox.Show("NO SE PUEDE REALIZAR EL RECIBO C\nEL MONTO EXCEDE EL PERMITIDO PARA UN CONSUMIDOR FINAL", "ERROR");
-                                }
+                                }*/
                             }
 
                             if (reintegro == "NO")
@@ -866,7 +866,7 @@ namespace SOCIOS
                                 }
                                 else
                                 {
-                                    MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
+                                    MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
                                 }
 
                                 if (PTO_VTA == "0004")

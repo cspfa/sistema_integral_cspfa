@@ -4494,6 +4494,7 @@ namespace SOCIOS
                             {
                                 try
                                 {
+                                    Cursor = Cursors.WaitCursor;
                                     string NRO = row.Cells[0].Value.ToString().Replace("R", "");
                                     string COMPROBANTE = "RECIBO";
                                     string TABLA = "RECIBOS_CAJA";
@@ -4549,7 +4550,7 @@ namespace SOCIOS
                                 {
                                     MessageBox.Show("NO SE PUDO ANULAR EL COMPROBANTE\n"+error, "ERROR");
                                 }
-
+                                Cursor = Cursors.Default;
                             }
 
                             if (row.Cells[0].Value.ToString().Substring(0, 1) == "B")
