@@ -41,15 +41,19 @@ namespace SOCIOS.Factura_Electronica
                
 
 
-
-                           
-               return facturador.FacturacionUnitaria_SinIVA((int)fh.Pto_Venta,fh.TipoFactura,fh.Concepto ,fh.Tipo_Documento , fh.Documento, (DateTime)fh.Fecha, (decimal)fh.Monto, "");
+                return facturador.FacturacionUnitaria_SinIVA((int)fh.Pto_Venta, fh.TipoFactura, fh.Concepto, fh.Tipo_Documento, fh.Documento, (DateTime)fh.Fecha, (decimal)fh.Monto, rutaArchivos);
                     
                     
 
 
 
             
+            }
+
+            public string  Consulta(int TipoComprobante, int PtoVenta, int Numero)
+            {
+
+                return   facturador.Consulta(TipoComprobante, PtoVenta, Numero);
             }
         #endregion
 

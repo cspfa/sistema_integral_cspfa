@@ -23,6 +23,15 @@ namespace SOCIOS.Factura_Electronica
        
        }
 
+
+       public string Consulta_Facturacion(int TipoComprobante ,int PuntoVenta,int Numero)
+           {
+
+               return sf.Consulta(TipoComprobante, PuntoVenta, Numero);
+
+           }
+
+
        //Tipo de Comprobante : 15 RECIBO c , 16 NOTA DE VENTA AL CONTADO
        //Tipo Documento      : 96 DNI      , 80 CUIT 
        public Recibo_Request Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha)

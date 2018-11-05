@@ -31,6 +31,12 @@ namespace SOCIOS.Factura_Electronica
             cbTipoComprobante.SelectedIndex = 0;
             cbTipoComprobante.Refresh();
 
+            cbTipoComprobanteConsulta.Items.Insert(0, "RECIBOS C");
+            cbTipoComprobanteConsulta.Items.Insert(1, "NOTAS DE VENTA AL CONTADO C");
+
+            cbTipoComprobanteConsulta.SelectedIndex = 0;
+            cbTipoComprobanteConsulta.Refresh();
+
             cbTipoDocumento.Items.Insert(0, "DNI");
             cbTipoDocumento.Items.Insert(1, "CUIT");
             cbTipoDocumento.Items.Insert(2, "CON. FINAL.");
@@ -120,6 +126,31 @@ namespace SOCIOS.Factura_Electronica
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void RESULTADO_CONSULTA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CONSULTA_Click(object sender, EventArgs e)
+        {
+            int PuntoVenta = 0;
+            int Numero     = 0;
+            int TipoComprobante = 0;
+
+            PuntoVenta = Int32.Parse(tbPtoVentaConsulta.Text);
+            Numero = Int32.Parse(tbNumeroConsulta.Text);
+           
+            
+            if (cbTipoComprobanteConsulta.Text.Contains("RECIBOS C"))
+            {
+                TipoComprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+            }
+            else
+                TipoComprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
+
+          RESULTADO_CONSULTA.Text= serviceFactura.Consulta_Facturacion(TipoComprobante, PuntoVenta, Numero);
         }
     }
 }
