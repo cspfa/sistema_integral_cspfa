@@ -283,7 +283,7 @@ namespace SOCIOS
             {
                 code39.Code = "RE" + DATOS_BR[0];
                 LEYENDA = "Concepto: ";
-                TITULO = "RECIBO PROVISORIO";
+                TITULO = "RECIBO X";
             }
 
             if (REINTEGRO == "SI")
@@ -335,9 +335,11 @@ namespace SOCIOS
 
             if (RECIBO_BONO == "R")
             {
-                graphics.DrawString("FACTURA Nº " + PTO_VTA_O + "-" + NRO_FACT_ELEC, courier_xl, black, startX, startY + Offset);
+                graphics.DrawString("RECIBO Nº " + PTO_VTA_O + "-" + NRO_FACT_ELEC, courier_xl, black, startX, startY + Offset);
                 Offset = Offset + 20;
-                graphics.DrawString("Usted puede solicitar esta factura vía email a la casilla", courier_big, black, startX, startY + Offset);
+                graphics.DrawString("DOCUMENTO NO VÁLIDO COMO FACTURA", courier_xl, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("Usted puede solicitar esta recibo vía email a la casilla", courier_big, black, startX, startY + Offset);
                 Offset = Offset + sep2;
                 graphics.DrawString("facturacioncspfa@gmail.com", courier_big, black, startX, startY + Offset);
                 Offset = Offset + sep2;
@@ -1044,8 +1046,7 @@ namespace SOCIOS
 
         //HTML RECIBO / BONO
         public void gHTML(string NRO_RECIBO, string NOMBRE_SOCIO, string FORMAPAGO, string SECTACT, string VALOR, int ID_PROFESIONAL, string SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, string OBSERVACIONES, 
-                          string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, string PTO_VTA, string RECIBO_BONO)
-        {
+                          string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, string PTO_VTA, string RECIBO_BONO)        {
             Bitmap barCode = null;
             nombreProf np = new nombreProf();
             numerosAletras nal = new numerosAletras();
@@ -1141,24 +1142,24 @@ namespace SOCIOS
                     switch (i)
                     {
                         case 1:
-                            html += "<tr><td width='310' style='font-size:16px;'>" + TITULO + " ORIGINAL N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
+                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " X ORIGINAL N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
                             break;
 
                         case 2:
-                            html += "<tr><td width='310' style='font-size:16px;'>" + TITULO + " DUPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
+                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " X DUPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
                             break;
 
                         case 3:
-                            html += "<tr><td width='310' style='font-size:16px;'>" + TITULO + " TRIPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires,  </td></tr>";
+                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " X TRIPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires,  </td></tr>";
                             break;
                     }
-
+                    html += "<tr><td colspan='2' style='font-size:16px;'>Documento no valido como factura</td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Socio Titular:  </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Recib&iacute; del Sr./a:  </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Pesos: </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>en concepto de: </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Obs:  </td></tr>";
-                    html += "<tr><td colspan='2' style='font-size:9px;'>Imp.Ganancias:Exento Art.20 Inc.F | Ley 20628(Lo.1997) | IVA:Exento Art.7 Inc. h apartado 6 | Ley 20631 (t.o.1997)<br/>Imp.Ingresos Brutos: Exento Art.34 inc.15 | Cod. Fiscal: (t.o. 2005) CABA | Exceptuando de emitir comprobantes | Anexo 1 de la R.G. 1415 apartado K</td></tr>";
+                    html += "<tr><td colspan='2' style='font-size:9px;'>Imp.Ganancias:Exento Art.20 Inc.F | Ley 20628(Lo.1997) | IVA:Exento Art.7 Inc. h apartado 6 | Ley 20631 (t.o.1997)<br/>Imp.Ingresos Brutos: Exento Art.34 inc.15 | Cod. Fiscal: (t.o. 2005) CABA</td></tr>";
                     html += "</table>";
                     html += "<br style='line-height:40px;'/>";
                 }
