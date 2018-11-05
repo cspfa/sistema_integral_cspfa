@@ -450,14 +450,16 @@ namespace SOCIOS
         public static bool Imagen_Editada = false;
 
         public static string ID_EMPLEADO = "";
+        public static string ROL_NAME = "";
 
         public static string PTO_VTA_N = "";
         public static string PTO_VTA_M = "";
+        public static string PTO_VTA_O = "";
         public static string ID_PTO_VTA_N = "";
         public static string ID_PTO_VTA_M = "";
+        public static string ID_PTO_VTA_O = "";
 
         public static int ID_CUOTA_PAGO = 0;
-        public static string PTO_VTA_O = "";
         public static string MODO_FACTURACION = "";
 
 
