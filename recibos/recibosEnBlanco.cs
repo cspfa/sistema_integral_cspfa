@@ -205,14 +205,14 @@ namespace SOCIOS
                 tbDesde.Text = NRO_DESDE.ToString();
                 tbHasta.Text = (NRO_DESDE + CANTIDAD - 1).ToString();
                 btnConfirmarImpresion.Enabled = true;
-                btnImprimirManual.Enabled = true;
+                //btnImprimirManual.Enabled = true;
                 button1.Enabled = true;
             }
             else
             {
                 tbHasta.Text = "";
                 btnConfirmarImpresion.Enabled = false;
-                btnImprimirManual.Enabled = false;
+                //btnImprimirManual.Enabled = false;
                 button1.Enabled = false;
             }
         }

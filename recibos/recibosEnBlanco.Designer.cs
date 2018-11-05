@@ -94,7 +94,6 @@
             // 
             // btnImprimirManual
             // 
-            this.btnImprimirManual.Enabled = false;
             this.btnImprimirManual.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnImprimirManual.Location = new System.Drawing.Point(654, 130);
             this.btnImprimirManual.Name = "btnImprimirManual";
@@ -110,7 +109,6 @@
             this.tbDesde.Location = new System.Drawing.Point(486, 70);
             this.tbDesde.Mask = "999999";
             this.tbDesde.Name = "tbDesde";
-            this.tbDesde.ReadOnly = true;
             this.tbDesde.Size = new System.Drawing.Size(98, 21);
             this.tbDesde.TabIndex = 6;
             // 
@@ -120,7 +118,6 @@
             this.tbHasta.Location = new System.Drawing.Point(654, 70);
             this.tbHasta.Mask = "999999";
             this.tbHasta.Name = "tbHasta";
-            this.tbHasta.ReadOnly = true;
             this.tbHasta.Size = new System.Drawing.Size(98, 21);
             this.tbHasta.TabIndex = 7;
             // 
