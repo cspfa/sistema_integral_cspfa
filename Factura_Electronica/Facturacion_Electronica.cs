@@ -60,18 +60,20 @@ namespace SOCIOS.Factura_Electronica
                rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Produccion.pfx";
                urlWsaa = "https://wsaa.afip.gov.ar/ws/services/LoginCms?WSDL";
                urlWsfe = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
-              
-           }
+                rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\XML";
+
+            }
            else
            {
                rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Test.pfx";
                urlWsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL";
                urlWsfe = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
-           
-           }
+                rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "_TEST\\XML";
+
+            }
 
            rutaTicket = "C:/CSPFA_SOCIOS/AFIP/ticketAcceso.xml";
-           rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\XML";
+           
 
        
        }
