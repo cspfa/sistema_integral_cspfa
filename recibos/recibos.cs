@@ -27,6 +27,7 @@ namespace SOCIOS
         maxid mid = new maxid();
         genHTML gh = new genHTML();
         FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+        bool Modo_Facturacion_Produccion = Convert.ToBoolean(Int32.Parse(Config.getValor("SISTEMAS", "MODO_FACT_PRO", 0)));
 
         private string MODIFICAR { get; set; }
         private string DENI { get; set; }
@@ -545,8 +546,10 @@ namespace SOCIOS
             string NRO_CUIT_TRIM = NRO_CUIT.Trim();
             string NRO_DNI_TRIM = DENI.Trim();
             string CONCEPTO = "SERVICIOS PRESTADOS";
+            string EXCEPTION = "";
+            string NRO_FACT_ELECT = "XXXX";
 
-            if (DENI == "987654321")
+            if (DENI == "98765432")
             {
                 CONCEPTO = tbObservaciones.Text.Trim();
             }
@@ -557,9 +560,6 @@ namespace SOCIOS
              * DNI 0 = 15905
              * CON CUIT = 1 dep 20
              * CON DNI 24705
-             
-             QUE SEBA AGREGE EL CONCEPTO DE LA VARIABLE QUE LE ENVIO A Genero_PDF
-             VER BIEN COMO TRAER EL RESULT PARA MOSTRAR LA EXCEPCION
              */
 
             if (NRO_DNI_TRIM == "0" || NRO_DNI_TRIM == "")
@@ -567,7 +567,7 @@ namespace SOCIOS
                 TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
             }
 
-            if (NRO_CUIT_TRIM != "" && NRO_CUIT_TRIM != "0" && NRO_DNI_TRIM == "987654321")
+            if (NRO_CUIT_TRIM != "" && NRO_CUIT_TRIM != "0" && NRO_DNI_TRIM == "98765432")
             {
                 TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
                 DENI = NRO_CUIT_TRIM;
@@ -653,22 +653,47 @@ namespace SOCIOS
 
                             if (VGlobales.vp_role == "CAJA")
                             {
-                                string DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
-                                Afip.AfipFactResults result = new Afip.AfipFactResults();
-                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
-                                
-                                result = fe.Facturo_Recibo(recibo_id,
-                                    int.Parse(PTO_VTA_O),
-                                    TC,
-                                    TD,
-                                    DENI,
-                                    IMPORTE,
-                                    DateTime.Now);                               
+                                if (IMPORTE >= 5000 && TD != 80)
+                                {
+                                    string DIR = "";
 
-                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI,
-                                    "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
-                                    result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                    if (Modo_Facturacion_Produccion)
+                                    {
+                                        DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
+                                    }
+                                    else
+                                    {
+                                        DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "_TEST\\FACTURAS\\";
+                                    }
+                                    
+                                    Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                                    Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                    Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+
+                                    result = fe.Facturo_Recibo(recibo_id,
+                                        int.Parse(PTO_VTA_O),
+                                        TC,
+                                        TD,
+                                        DENI,
+                                        IMPORTE,
+                                        DateTime.Now);
+
+                                    if (result.Result == true)
+                                    {
+                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI,
+                                            "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
+                                            result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                        NRO_FACT_ELECT = result.Numero.ToString();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("NO SE PUEDE REALIZAR EL RECIBO C\nEL MONTO EXCEDE EL PERMITIDO PARA UN CONSUMIDOR FINAL", "ERROR");
+                                }
                             }
 
                             if (reintegro == "NO")
@@ -712,7 +737,7 @@ namespace SOCIOS
                         DateTime Hoy = DateTime.Today;
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, 
                             IMPORTE.ToString(), idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, 
-                            NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA_N, Hoy.ToString("dd/MM/yyyy"), reintegro);
+                            NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA_N, Hoy.ToString("dd/MM/yyyy"), reintegro, PTO_VTA_O, NRO_FACT_ELECT);
                     }
 
                     this.Close();
@@ -738,6 +763,15 @@ namespace SOCIOS
         {
             float ARANCEL = 0;
             string ENBLANCO = "";
+            string PTO_VTA_O = "";
+            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+            string NRO_CUIT_TRIM = NRO_CUIT.Trim();
+            string NRO_DNI_TRIM = DENI.Trim();
+            string CONCEPTO = "SERVICIOS PRESTADOS";
+            string EXCEPTION = "";
+            string NRO_FACT_ELECT = "XXXX";
+            numeroRecibo nr = new numeroRecibo();
 
             if (ACCION != "IMPRIMIR" && tbNroRecibo.Text == "")
             {
@@ -801,6 +835,40 @@ namespace SOCIOS
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
                                 barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
+                                string PTO_VTA_AFIP = nr.obtenerPtoVtaOficial(VGlobales.ROL_NAME);
+                                string DIR = "";
+                                if (Modo_Facturacion_Produccion)
+                                {
+                                    DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
+                                }
+                                else
+                                {
+                                    DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "_TEST\\FACTURAS\\";
+                                }
+                                Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+
+                                result = fe.Facturo_Recibo(recibo_id,
+                                    int.Parse(PTO_VTA_AFIP),
+                                    TC,
+                                    TD,
+                                    DENI,
+                                    decimal.Parse(ARANCEL.ToString()),
+                                    DateTime.Now);
+
+                                if (result.Result == true)
+                                {
+                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_AFIP), result.Numero, DateTime.Now, DENI,
+                                        "Consumidor Final", NOMBRE_SOCIO, "", decimal.Parse(ARANCEL.ToString()),
+                                        result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                    NRO_FACT_ELECT = result.Numero.ToString();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
+                                }
+
                                 if (PTO_VTA == "0004")
                                 {
                                     MessageBox.Show(MSG);
@@ -812,7 +880,7 @@ namespace SOCIOS
                                         BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                         DateTime Hoy = DateTime.Today;
                                         gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO");
+                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO", "", "");
                                     }
 
                                     if (ENBLANCO == "BLANCO")
@@ -853,7 +921,7 @@ namespace SOCIOS
                                         BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                         DateTime Hoy = DateTime.Today;
                                         gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO");
+                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO", "", "");
                                     }
 
                                     if (ENBLANCO == "BLANCO")
@@ -873,7 +941,7 @@ namespace SOCIOS
                     {
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, lbArancel.Text, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE.ToString(), 
-                                HABER.ToString(), RECIBO_BONO, PTO_VTA, FECHA_RECIBO, "NO");
+                                HABER.ToString(), RECIBO_BONO, PTO_VTA, FECHA_RECIBO, "NO", "", "");
                       string NRO_COMP = lbNroRecibo.Text;
                         if (VGlobales.ID_CUOTA_PAGO != 0)
                             this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, false, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));

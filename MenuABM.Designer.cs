@@ -95,7 +95,6 @@
             this.cajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recibosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirRecibosEnBlancoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.anularReciboToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arancelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puntosDeVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -752,7 +751,6 @@
             this.cajaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.recibosToolStripMenuItem,
             this.imprimirRecibosEnBlancoToolStripMenuItem,
-            this.anularReciboToolStripMenuItem,
             this.cerrarCajaToolStripMenuItem,
             this.arancelesToolStripMenuItem,
             this.puntosDeVentaToolStripMenuItem});
@@ -777,14 +775,6 @@
             this.imprimirRecibosEnBlancoToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.imprimirRecibosEnBlancoToolStripMenuItem.Text = "Comprobantes en blanco";
             this.imprimirRecibosEnBlancoToolStripMenuItem.Click += new System.EventHandler(this.imprimirRecibosEnBlancoToolStripMenuItem_Click);
-            // 
-            // anularReciboToolStripMenuItem
-            // 
-            this.anularReciboToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("anularReciboToolStripMenuItem.Image")));
-            this.anularReciboToolStripMenuItem.Name = "anularReciboToolStripMenuItem";
-            this.anularReciboToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.anularReciboToolStripMenuItem.Text = "Anular recibo / bono";
-            this.anularReciboToolStripMenuItem.Click += new System.EventHandler(this.anularReciboToolStripMenuItem_Click);
             // 
             // cerrarCajaToolStripMenuItem
             // 
@@ -1370,7 +1360,6 @@
         private System.Windows.Forms.ToolStripMenuItem cajaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recibosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem imprimirRecibosEnBlancoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem anularReciboToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listadoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem procesosToolStripMenuItem;
         private System.Windows.Forms.ProgressBar progressBar1;
