@@ -52,6 +52,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.RESULTADO_CONSULTA = new System.Windows.Forms.Label();
+            this.CONSULTA = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbPtoVentaConsulta = new System.Windows.Forms.TextBox();
+            this.cbTipoComprobanteConsulta = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbNumeroConsulta = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbPuntoVenta
@@ -275,11 +283,89 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // RESULTADO_CONSULTA
+            // 
+            this.RESULTADO_CONSULTA.AutoSize = true;
+            this.RESULTADO_CONSULTA.Location = new System.Drawing.Point(10, 382);
+            this.RESULTADO_CONSULTA.Name = "RESULTADO_CONSULTA";
+            this.RESULTADO_CONSULTA.Size = new System.Drawing.Size(65, 13);
+            this.RESULTADO_CONSULTA.TabIndex = 64;
+            this.RESULTADO_CONSULTA.Text = "CONSULTA";
+            this.RESULTADO_CONSULTA.Click += new System.EventHandler(this.RESULTADO_CONSULTA_Click);
+            // 
+            // CONSULTA
+            // 
+            this.CONSULTA.Location = new System.Drawing.Point(292, 346);
+            this.CONSULTA.Name = "CONSULTA";
+            this.CONSULTA.Size = new System.Drawing.Size(75, 23);
+            this.CONSULTA.TabIndex = 65;
+            this.CONSULTA.Text = "CONSULTA";
+            this.CONSULTA.UseVisualStyleBackColor = true;
+            this.CONSULTA.Click += new System.EventHandler(this.CONSULTA_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(105, 297);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 13);
+            this.label10.TabIndex = 67;
+            this.label10.Text = "PtoVenta";
+            // 
+            // tbPtoVentaConsulta
+            // 
+            this.tbPtoVentaConsulta.Location = new System.Drawing.Point(211, 294);
+            this.tbPtoVentaConsulta.Name = "tbPtoVentaConsulta";
+            this.tbPtoVentaConsulta.Size = new System.Drawing.Size(37, 20);
+            this.tbPtoVentaConsulta.TabIndex = 66;
+            // 
+            // cbTipoComprobanteConsulta
+            // 
+            this.cbTipoComprobanteConsulta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoComprobanteConsulta.FormattingEnabled = true;
+            this.cbTipoComprobanteConsulta.Location = new System.Drawing.Point(211, 319);
+            this.cbTipoComprobanteConsulta.Name = "cbTipoComprobanteConsulta";
+            this.cbTipoComprobanteConsulta.Size = new System.Drawing.Size(161, 21);
+            this.cbTipoComprobanteConsulta.TabIndex = 69;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(105, 323);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(94, 13);
+            this.label11.TabIndex = 68;
+            this.label11.Text = "Tipo Comprobante";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(254, 297);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(44, 13);
+            this.label12.TabIndex = 70;
+            this.label12.Text = "Numero";
+            // 
+            // tbNumeroConsulta
+            // 
+            this.tbNumeroConsulta.Location = new System.Drawing.Point(304, 295);
+            this.tbNumeroConsulta.Name = "tbNumeroConsulta";
+            this.tbNumeroConsulta.Size = new System.Drawing.Size(68, 20);
+            this.tbNumeroConsulta.TabIndex = 71;
+            // 
             // Testing_Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 296);
+            this.ClientSize = new System.Drawing.Size(389, 415);
+            this.Controls.Add(this.tbNumeroConsulta);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.cbTipoComprobanteConsulta);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.tbPtoVentaConsulta);
+            this.Controls.Add(this.CONSULTA);
+            this.Controls.Add(this.RESULTADO_CONSULTA);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
@@ -337,5 +423,13 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label RESULTADO_CONSULTA;
+        private System.Windows.Forms.Button CONSULTA;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox tbPtoVentaConsulta;
+        private System.Windows.Forms.ComboBox cbTipoComprobanteConsulta;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox tbNumeroConsulta;
     }
 }
