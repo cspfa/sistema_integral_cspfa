@@ -16,7 +16,7 @@ namespace SOCIOS.Factura_Electronica
    public enum Tipo_Comprobante_Enum
    {
        RECIBO_C     = 15,
-       NOTA_VENTA_C = 16
+       NOTA_VENTA_C = 13
 
    }
 
