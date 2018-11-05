@@ -1153,7 +1153,7 @@ namespace SOCIOS
                             html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " X TRIPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires,  </td></tr>";
                             break;
                     }
-                    html += "<tr><td colspan='2' style='font-size:16px;'>Documento no valido como factura</td></tr>";
+                    html += "<tr><td colspan='2' style='font-size:16px;'>Documento no válido como factura</td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Socio Titular:  </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Recib&iacute; del Sr./a:  </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Pesos: </td></tr>";
