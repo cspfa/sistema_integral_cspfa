@@ -106,6 +106,7 @@ namespace SOCIOS
         public string Ubicacion_Delfo;
         public string Servidor_Belgrano;
         public string Ubicacion_Belgrano;
+        public string Modo_Facturacion;
 
         public Datos_ini()
         {
@@ -136,6 +137,7 @@ namespace SOCIOS
             Ubicacion_Delfo = ini.ReadString("UBICACION_DELFO");
             Servidor_Belgrano = ini.ReadString("BELGRANO_TEST");
             Ubicacion_Belgrano = ini.ReadString("UBICACION_BELGRANO");
+            VGlobales.MODO_FACTURACION = ini.ReadString("MODO_FACTURACION");
         }
     }
 
@@ -451,13 +453,12 @@ namespace SOCIOS
 
         public static string PTO_VTA_N = "";
         public static string PTO_VTA_M = "";
-        public static string PTO_VTA_O = "";
         public static string ID_PTO_VTA_N = "";
         public static string ID_PTO_VTA_M = "";
-        public static string ID_PTO_VTA_O = "";
-        public static string ROL_NAME = "";
 
         public static int ID_CUOTA_PAGO = 0;
+        public static string PTO_VTA_O = "";
+        public static string MODO_FACTURACION = "";
 
 
        
