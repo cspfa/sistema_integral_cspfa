@@ -50,7 +50,7 @@ namespace SOCIOS.Factura_Electronica
             
             }
 
-            public string  Consulta(int TipoComprobante, int PtoVenta, int Numero)
+            public Afip.ComprobanteAfip Consulta(int TipoComprobante, int PtoVenta, int Numero)
             {
 
                 return   facturador.Consulta(TipoComprobante, PtoVenta, Numero);
