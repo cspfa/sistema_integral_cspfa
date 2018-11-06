@@ -38,10 +38,10 @@ namespace SOCIOS.Factura_Electronica
             {
 
                 Afip.AfipFactResults Result = new Afip.AfipFactResults();
-               
 
+           // rutaArchivos = "C:/ CSPFA_SOCIOS / AFIP / ";
 
-                return facturador.FacturacionUnitaria_SinIVA((int)fh.Pto_Venta, fh.TipoFactura, fh.Concepto, fh.Tipo_Documento, fh.Documento, (DateTime)fh.Fecha, (decimal)fh.Monto, rutaArchivos);
+            return facturador.FacturacionUnitaria_SinIVA((int)fh.Pto_Venta, fh.TipoFactura, fh.Concepto, fh.Tipo_Documento, fh.Documento, (DateTime)fh.Fecha, (decimal)fh.Monto, rutaArchivos);
                     
                     
 
@@ -73,7 +73,7 @@ namespace SOCIOS.Factura_Electronica
                rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Produccion.pfx";
                urlWsaa = "https://wsaa.afip.gov.ar/ws/services/LoginCms?WSDL";
                urlWsfe = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
-               rutaArchivos = "\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\XML";
+               rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\XML";
 
             }
            else
