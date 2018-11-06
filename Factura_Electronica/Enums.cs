@@ -7,9 +7,8 @@ namespace SOCIOS.Factura_Electronica
 {
     public enum Tipo_Doc_Enum
     {
-
-        DNI = 96,
-        CUIT = 80,
+        DNI              = 96,
+        CUIT             = 80,
         CONSUMIDOR_FINAL = 99
     }
 

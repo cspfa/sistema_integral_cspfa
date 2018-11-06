@@ -24,7 +24,7 @@ namespace SOCIOS.Factura_Electronica
        }
 
 
-       public string Consulta_Facturacion(int TipoComprobante ,int PuntoVenta,int Numero)
+       public Afip.ComprobanteAfip Consulta_Facturacion(int TipoComprobante ,int PuntoVenta,int Numero)
            {
 
                return sf.Consulta(TipoComprobante, PuntoVenta, Numero);

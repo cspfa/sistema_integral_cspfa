@@ -108,6 +108,11 @@ namespace SOCIOS.Factura_Electronica
            int ID_RECIBO = 99226;
            decimal Monto = Decimal.Parse(tbMonto.Text);
 
+           string Result = "";
+        
+
+
+
 
            serviceFactura.Facturo_Recibo(ID_RECIBO, Punto_Venta, (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI,Documento,Monto, System.DateTime.Now);
 
@@ -150,7 +155,16 @@ namespace SOCIOS.Factura_Electronica
             else
                 TipoComprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
 
-          RESULTADO_CONSULTA.Text= serviceFactura.Consulta_Facturacion(TipoComprobante, PuntoVenta, Numero);
+
+                 Afip.ComprobanteAfip comp = new Afip.ComprobanteAfip();
+          
+
+     
+
+
+            comp = serviceFactura.Consulta_Facturacion(TipoComprobante, PuntoVenta, Numero);
+
+           RESULTADO_CONSULTA.Text = "NRO: " + Numero.ToString() + "CAE :  " + comp.CAE.ToString() + " DOC  : " + comp.CUIT + "NETO  :" + comp.NETO.ToString() + " IVA  :" + comp.IVA.ToString() + " TOTAL  :" + comp.TOTAL;
         }
     }
 }

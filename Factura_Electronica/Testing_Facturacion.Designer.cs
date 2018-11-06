@@ -286,7 +286,7 @@
             // RESULTADO_CONSULTA
             // 
             this.RESULTADO_CONSULTA.AutoSize = true;
-            this.RESULTADO_CONSULTA.Location = new System.Drawing.Point(10, 382);
+            this.RESULTADO_CONSULTA.Location = new System.Drawing.Point(10, 349);
             this.RESULTADO_CONSULTA.Name = "RESULTADO_CONSULTA";
             this.RESULTADO_CONSULTA.Size = new System.Drawing.Size(65, 13);
             this.RESULTADO_CONSULTA.TabIndex = 64;
@@ -295,7 +295,7 @@
             // 
             // CONSULTA
             // 
-            this.CONSULTA.Location = new System.Drawing.Point(292, 346);
+            this.CONSULTA.Location = new System.Drawing.Point(569, 257);
             this.CONSULTA.Name = "CONSULTA";
             this.CONSULTA.Size = new System.Drawing.Size(75, 23);
             this.CONSULTA.TabIndex = 65;
@@ -306,7 +306,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(105, 297);
+            this.label10.Location = new System.Drawing.Point(382, 208);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(51, 13);
             this.label10.TabIndex = 67;
@@ -314,7 +314,7 @@
             // 
             // tbPtoVentaConsulta
             // 
-            this.tbPtoVentaConsulta.Location = new System.Drawing.Point(211, 294);
+            this.tbPtoVentaConsulta.Location = new System.Drawing.Point(488, 205);
             this.tbPtoVentaConsulta.Name = "tbPtoVentaConsulta";
             this.tbPtoVentaConsulta.Size = new System.Drawing.Size(37, 20);
             this.tbPtoVentaConsulta.TabIndex = 66;
@@ -323,7 +323,7 @@
             // 
             this.cbTipoComprobanteConsulta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoComprobanteConsulta.FormattingEnabled = true;
-            this.cbTipoComprobanteConsulta.Location = new System.Drawing.Point(211, 319);
+            this.cbTipoComprobanteConsulta.Location = new System.Drawing.Point(488, 230);
             this.cbTipoComprobanteConsulta.Name = "cbTipoComprobanteConsulta";
             this.cbTipoComprobanteConsulta.Size = new System.Drawing.Size(161, 21);
             this.cbTipoComprobanteConsulta.TabIndex = 69;
@@ -331,7 +331,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(105, 323);
+            this.label11.Location = new System.Drawing.Point(382, 234);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(94, 13);
             this.label11.TabIndex = 68;
@@ -340,7 +340,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(254, 297);
+            this.label12.Location = new System.Drawing.Point(531, 208);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(44, 13);
             this.label12.TabIndex = 70;
@@ -348,7 +348,7 @@
             // 
             // tbNumeroConsulta
             // 
-            this.tbNumeroConsulta.Location = new System.Drawing.Point(304, 295);
+            this.tbNumeroConsulta.Location = new System.Drawing.Point(581, 206);
             this.tbNumeroConsulta.Name = "tbNumeroConsulta";
             this.tbNumeroConsulta.Size = new System.Drawing.Size(68, 20);
             this.tbNumeroConsulta.TabIndex = 71;
@@ -357,7 +357,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 415);
+            this.ClientSize = new System.Drawing.Size(668, 415);
             this.Controls.Add(this.tbNumeroConsulta);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbTipoComprobanteConsulta);
