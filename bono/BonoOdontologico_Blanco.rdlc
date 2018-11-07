@@ -716,10 +716,10 @@
         <Source>Embedded</Source>
         <Value>Odonto</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>4.78305in</Top>
-        <Left>0.91333in</Left>
-        <Height>3.07292in</Height>
-        <Width>5.09375in</Width>
+        <Top>4.73277in</Top>
+        <Left>0.15775in</Left>
+        <Height>4.70653in</Height>
+        <Width>6.62016in</Width>
         <ZIndex>16</ZIndex>
         <Style>
           <Border>

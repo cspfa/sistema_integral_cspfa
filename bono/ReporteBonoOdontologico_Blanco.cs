@@ -33,8 +33,8 @@ namespace SOCIOS.bono
         {
      
             InitializeComponent();
-            ID          = ID_ROL;
-            CODINT      = COD_INT;
+            ID                 = ID_ROL;
+            CODINT             = COD_INT;
             PROFESIONAL_NOMBRE = PROFESIONAL;
 
         }
