@@ -12,6 +12,8 @@ using Microsoft.Reporting.WinForms;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using System.IO;
+using FirebirdSql.Data.FirebirdClient;
+using System.Data;
 namespace SOCIOS.Factura_Electronica
 {
     public class DataBarra
@@ -23,6 +25,7 @@ namespace SOCIOS.Factura_Electronica
     {
         string DIRECTORIO = "";
         string DIRECTORIO_TEMP = @"C:\CSPFA_SOCIOS\TMP\";
+        bo dlog = new bo();
         public Impresor_Factura(string pDIR)
         {
             DIRECTORIO = pDIR;
@@ -33,20 +36,21 @@ namespace SOCIOS.Factura_Electronica
 
         {
             ReportDataSource rds = new ReportDataSource();
-            ReportParameter[] para = new ReportParameter[15];
+            ReportParameter[] para = new ReportParameter[16];
             ReportViewer viewer = new ReportViewer();
             FacturaCSPFA facturaService = new FacturaCSPFA();
 
             string leyenda_TC = "";
-
-       
+            string Leyenda_Direccion  = "";
+          
 
             if (pTipo_Comprobante == (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C)
                 leyenda_TC = "RECIBO C";
             else
                 leyenda_TC = "NOTA DE CREDITO C ";
-            
 
+
+            Leyenda_Direccion = this.Direccion_Pto_Vta(pPunto_De_Venta);
 
             string fileName =leyenda_TC+"-PV " + pPunto_De_Venta.ToString() + "- NRO " + pNumero.ToString() + ".pdf";
           //  fileName = "testing.pdf";
@@ -66,7 +70,9 @@ namespace SOCIOS.Factura_Electronica
             ReportParameter Barra           = new ReportParameter("BARCODE",Codigo_Barra);
             ReportParameter Orden           = new ReportParameter("ORDEN", pOrden);
             ReportParameter Condicion_Venta = new ReportParameter("CONDICION_VENTA", pCondicion_Venta);
-            ReportParameter Concepto = new ReportParameter("CONCEPTO", pConcepto);
+            ReportParameter Concepto        = new ReportParameter("CONCEPTO", pConcepto);
+            ReportParameter Direccion       = new ReportParameter("DIRECCION",Leyenda_Direccion);
+
             para[0] = Tipo_Comp;
             para[1] = PtoVenta;
             para[2] = Numero;
@@ -83,6 +89,8 @@ namespace SOCIOS.Factura_Electronica
             para[12] = Orden;
             para[13] = Condicion_Venta;
             para[14] = Concepto;
+            para[15] = Direccion;
+
             string Excepcion = "";
 
             try
@@ -193,6 +201,30 @@ namespace SOCIOS.Factura_Electronica
 
                 inputDoc.Close();
             }
+        }
+
+
+        public string Direccion_Pto_Vta(int PuntoVenta)
+        {
+
+            string Punto_Venta = ToString().PadLeft(4, '0');
+
+            string QUERY = @"Select Domicilio from puntos_de_Venta where pto_Venta='" + Punto_Venta+"'";
+
+
+           
+
+
+            DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                return foundRows[0][0].ToString().Trim();
+            }
+            else
+                return "";
         }
 
        

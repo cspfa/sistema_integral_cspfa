@@ -48,33 +48,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>CIRCULO DE SUBOFICIALES </Value>
+                    <Value>            CSPFA</Value>
                     <Style>
-                      <FontSize>20pt</FontSize>
-                      <FontWeight>ExtraBold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>DE LA POLICIA </Value>
-                    <Style>
-                      <FontSize>20pt</FontSize>
-                      <FontWeight>ExtraBold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>FEDERAL ARGENTINA</Value>
-                    <Style>
-                      <FontSize>20pt</FontSize>
+                      <FontSize>25pt</FontSize>
                       <FontWeight>ExtraBold</FontWeight>
                     </Style>
                   </TextRun>
@@ -83,7 +59,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Height>1.19572in</Height>
+            <Top>0.19792in</Top>
+            <Left>0.06944in</Left>
+            <Height>0.51389in</Height>
             <Width>4.05647in</Width>
             <Style>
               <Border>
@@ -165,7 +143,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Av.Belgrano 2584 1096 CABA</Value>
+                    <Value>=Parameters!DIRECCION.Value</Value>
                     <Style>
                       <FontSize>16pt</FontSize>
                       <FontWeight>Light</FontWeight>
@@ -177,9 +155,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>1.34156in</Top>
-            <Left>0.10499in</Left>
+            <Left>0.11888in</Left>
             <Height>0.30482in</Height>
-            <Width>3.29532in</Width>
+            <Width>3.6726in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -437,6 +415,50 @@
             <Height>0.30482in</Height>
             <Width>3.75593in</Width>
             <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox27">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Circulo de Suboficiales de la Policia</Value>
+                    <Style>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Light</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value> Federal Argentina</Value>
+                    <Style>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Light</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox4</rd:DefaultName>
+            <Top>0.75347in</Top>
+            <Left>0.11888in</Left>
+            <Height>0.53253in</Height>
+            <Width>3.56615in</Width>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1594,6 +1616,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="CONCEPTO">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="DIRECCION">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
