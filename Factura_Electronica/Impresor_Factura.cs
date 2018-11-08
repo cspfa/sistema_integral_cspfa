@@ -209,7 +209,7 @@ namespace SOCIOS.Factura_Electronica
 
             string Punto_Venta = ToString().PadLeft(4, '0');
 
-            string QUERY = @"Select Domicilio from puntos_de_Venta where pto_Venta='" + Punto_Venta+"'";
+            string QUERY = @"Select Domicilio from puntos_de_Venta where pto_Vta='" + Punto_Venta+"'";
 
 
            
