@@ -24,6 +24,10 @@ namespace SOCIOS.Factura_Electronica
     public class Impresor_Factura
     {
         string DIRECTORIO = "";
+        string leyenda_TC = "";
+        string Leyenda_Direccion = "";
+        string Leyenda_Forma_Pago = "";
+        string Leyenda_Domicilio = "";
         string DIRECTORIO_TEMP = @"C:\CSPFA_SOCIOS\TMP\";
         bo dlog = new bo();
         public Impresor_Factura(string pDIR)
@@ -31,8 +35,7 @@ namespace SOCIOS.Factura_Electronica
             DIRECTORIO = pDIR;
         }
 
-        public void Genero_PDF(int pTipo_Comprobante,int pPunto_De_Venta,int pNumero,DateTime pFecha,string pCuit,string pIva,string pNombre,
-            string pDomicilio,decimal pMonto,string pCAE,string pVENC,string pOrden,string pCondicion_Venta, string pConcepto )
+        public void Genero_PDF(int pTipo_Comprobante,int pPunto_De_Venta,int pNumero,DateTime pFecha,string pCuit,string pIva,string pNombre,decimal pMonto,string pCAE,string pVENC,string pOrden, string pConcepto,int ID_BONO )
 
         {
             ReportDataSource rds = new ReportDataSource();
@@ -40,8 +43,7 @@ namespace SOCIOS.Factura_Electronica
             ReportViewer viewer = new ReportViewer();
             FacturaCSPFA facturaService = new FacturaCSPFA();
 
-            string leyenda_TC = "";
-            string Leyenda_Direccion  = "";
+           
           
 
             if (pTipo_Comprobante == (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C)
@@ -49,9 +51,8 @@ namespace SOCIOS.Factura_Electronica
             else
                 leyenda_TC = "NOTA DE CREDITO C ";
 
-
-            Leyenda_Direccion = this.Direccion_Pto_Vta(pPunto_De_Venta);
-
+         //   Leyenda_Direccion = this.Direccion_Pto_Vta(pPunto_De_Venta);
+            this.Get_Datos_Bono(ID_BONO);
             string fileName =leyenda_TC+"-PV " + pPunto_De_Venta.ToString() + "- NRO " + pNumero.ToString() + ".pdf";
           //  fileName = "testing.pdf";
 
@@ -63,13 +64,13 @@ namespace SOCIOS.Factura_Electronica
             ReportParameter Cuit            = new ReportParameter("CUIT_SOCIO",pCuit.ToString() );
             ReportParameter Iva             = new ReportParameter("IVA_SOCIO", pIva.ToString());
             ReportParameter Nombre          = new ReportParameter("NOMBRE_SOCIO", pNombre.ToString());
-            ReportParameter Domicilio       = new ReportParameter("DOMICILIO_SOCIO", pDomicilio.ToString());
+            ReportParameter Domicilio       = new ReportParameter("DOMICILIO_SOCIO", Leyenda_Domicilio);
             ReportParameter Monto           = new ReportParameter("MONTO", pMonto.ToString());
             ReportParameter CAE             = new ReportParameter("CAE", pCAE);
             ReportParameter VENC            = new ReportParameter("VENC", pVENC);
             ReportParameter Barra           = new ReportParameter("BARCODE",Codigo_Barra);
             ReportParameter Orden           = new ReportParameter("ORDEN", pOrden);
-            ReportParameter Condicion_Venta = new ReportParameter("CONDICION_VENTA", pCondicion_Venta);
+            ReportParameter Condicion_Venta = new ReportParameter("CONDICION_VENTA", Leyenda_Forma_Pago);
             ReportParameter Concepto        = new ReportParameter("CONCEPTO", pConcepto);
             ReportParameter Direccion       = new ReportParameter("DIRECCION",Leyenda_Direccion);
 
@@ -129,6 +130,7 @@ namespace SOCIOS.Factura_Electronica
 
         
         }
+
         private List<DataBarra> getCodigoBarra(string Codigo)
         {
             List<DataBarra> lista = new List<DataBarra>();
@@ -152,6 +154,7 @@ namespace SOCIOS.Factura_Electronica
 
         
         }
+
 
         private void BorrarUltimaPagina(string archivoBorrarPagina, string archivoBorradoPagina)
         {
@@ -208,8 +211,7 @@ namespace SOCIOS.Factura_Electronica
         {
 
             string Punto_Venta = ToString().PadLeft(4, '0');
-
-            string QUERY = @"Select Domicilio from puntos_de_Venta where pto_Vta='" + Punto_Venta+"'";
+            string QUERY = @"Select Domicilio from puntos_de_Venta where pto_Venta='" + Punto_Venta+"'";
 
 
            
@@ -227,7 +229,56 @@ namespace SOCIOS.Factura_Electronica
                 return "";
         }
 
-       
+        public void Get_Datos_Bono(int ID)
+
+        {
+            int Forma_Pago;
+            
+
+            string QUERY = @"select B.Forma_pago, trim(T.CALL_PAR) || ' '|| trim(T.NRO_PAR) || ' '|| trim(T.PIS_PAR) || ' '|| trim (T.DPT_PAR)   from bonos_caja B, Titular T where  B.dni=T.num_doc  and B.ID=" + ID.ToString();
+            
+
+
+
+            DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                Forma_Pago = Int32.Parse(foundRows[0][0].ToString());
+                Leyenda_Domicilio =foundRows[0][1].ToString();
+                this.Get_Forma_Pago(Forma_Pago);
+
+            }
+            
+        
+        }
+
+        public void Get_Forma_Pago(int ID)
+        {
+
+
+
+            string QUERY = @"select detalle from formas_De_pago where ID=" + ID.ToString();
+
+
+
+
+            DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                Leyenda_Forma_Pago = foundRows[0][0].ToString();
+            
+
+            }
+
+
+        }
+        
 
     }
 
