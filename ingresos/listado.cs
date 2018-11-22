@@ -76,6 +76,16 @@ namespace SOCIOS
                 panel5.Controls.Add(l);
                 panel5.Controls.Add(b);
             }
+
+            DataRow[] fRows6 = lp.listado(6);
+
+            for (int i = 0; i <= fRows6.Length - 1; i++)
+            {
+                Control l = nl.label(i, fRows6[i][0].ToString());
+                Control b = nb.nBullet(i, int.Parse(string.Format("{0}", fRows6[i][1])));
+                panel6.Controls.Add(l);
+                panel6.Controls.Add(b);
+            }
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -105,6 +115,12 @@ namespace SOCIOS
             }
 
             foreach (Control c in panel5.Controls)
+            {
+                if (c is PictureBox)
+                    c.Dispose();
+            }
+
+            foreach (Control c in panel6.Controls)
             {
                 if (c is PictureBox)
                     c.Dispose();
@@ -162,6 +178,16 @@ namespace SOCIOS
                 Control b = nb.nBullet(i, int.Parse(string.Format("{0}", fRows5[i][1])));
                 panel5.Controls.Add(l);
                 panel5.Controls.Add(b);
+            }
+
+            DataRow[] fRows6 = lp.listado(6);
+
+            for (int i = 0; i <= fRows6.Length - 1; i++)
+            {
+                Control l = nl.label(i, fRows6[i][0].ToString());
+                Control b = nb.nBullet(i, int.Parse(string.Format("{0}", fRows6[i][1])));
+                panel6.Controls.Add(l);
+                panel6.Controls.Add(b);
             }
         }
 

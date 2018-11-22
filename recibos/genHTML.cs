@@ -1142,24 +1142,32 @@ namespace SOCIOS
                     switch (i)
                     {
                         case 1:
-                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " X ORIGINAL N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
+                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " ORIGINAL N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
                             break;
 
                         case 2:
-                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " X DUPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
+                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " DUPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires, </td></tr>";
                             break;
 
                         case 3:
-                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " X TRIPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires,  </td></tr>";
+                            html += "<tr><td width='400' style='font-size:16px;'>" + TITULO + " TRIPLICADO N&deg; <strong>" + PTO_VTA + "-" + X + "</strong> </td><td width='380' align='left'>Buenos Aires,  </td></tr>";
                             break;
                     }
-                    html += "<tr><td colspan='2' style='font-size:16px;'>Documento no válido como factura</td></tr>";
+
+                    if (TITULO != "BONO")
+                        html += "<tr><td colspan='2' style='font-size:16px;'>Documento no válido como factura</td></tr>";
+
                     html += "<tr><td colspan='2' style='font-size:12px;'>Socio Titular:  </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Recib&iacute; del Sr./a:  </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Pesos: </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>en concepto de: </td></tr>";
                     html += "<tr><td colspan='2' style='font-size:12px;'>Obs:  </td></tr>";
-                    html += "<tr><td colspan='2' style='font-size:9px;'>Imp.Ganancias:Exento Art.20 Inc.F | Ley 20628(Lo.1997) | IVA:Exento Art.7 Inc. h apartado 6 | Ley 20631 (t.o.1997)<br/>Imp.Ingresos Brutos: Exento Art.34 inc.15 | Cod. Fiscal: (t.o. 2005) CABA</td></tr>";
+
+                    if(TITULO!="BONO")
+                        html += "<tr><td colspan='2' style='font-size:9px;'>Imp.Ganancias:Exento Art.20 Inc.F | Ley 20628(Lo.1997) | IVA:Exento Art.7 Inc. h apartado 6 | Ley 20631 (t.o.1997)<br/>Imp.Ingresos Brutos: Exento Art.34 inc.15 | Cod. Fiscal: (t.o. 2005) CABA</td></tr>";
+                    else
+                        html += "<tr><td colspan='2' style='font-size:9px;'>Imp.Ganancias:Exento Art.20 Inc.F | Ley 20628(Lo.1997) | IVA:Exento Art.7 Inc. h apartado 6 | Ley 20631 (t.o.1997)<br/>Imp.Ingresos Brutos: Exento Art.34 inc.15 | Cod. Fiscal: (t.o. 2005) CABA | Exceptuando de emitir comprobantes | Anexo 1 de la R.G. 1415 apartado K</td></tr>";
+                        
                     html += "</table>";
                     html += "<br style='line-height:40px;'/>";
                 }

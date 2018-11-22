@@ -155,6 +155,8 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.tESTINGFCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tESTINGFCToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -382,7 +384,8 @@
             this.ingresosPersonalYDirectivosToolStripMenuItem,
             this.importarBienestarToolStripMenuItem,
             this.planDeCuentaToolStripMenuItem,
-            this.turismoControlToolStripMenuItem});
+            this.turismoControlToolStripMenuItem,
+            this.tESTINGFCToolStripMenuItem});
             this.procesosToolStripMenuItem.Enabled = false;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -753,7 +756,8 @@
             this.imprimirRecibosEnBlancoToolStripMenuItem,
             this.cerrarCajaToolStripMenuItem,
             this.arancelesToolStripMenuItem,
-            this.puntosDeVentaToolStripMenuItem});
+            this.puntosDeVentaToolStripMenuItem,
+            this.tESTINGFCToolStripMenuItem1});
             this.cajaToolStripMenuItem.Enabled = false;
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
             this.cajaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -1297,6 +1301,20 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
+            // tESTINGFCToolStripMenuItem
+            // 
+            this.tESTINGFCToolStripMenuItem.Name = "tESTINGFCToolStripMenuItem";
+            this.tESTINGFCToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.tESTINGFCToolStripMenuItem.Text = "TESTING FC";
+            this.tESTINGFCToolStripMenuItem.Click += new System.EventHandler(this.tESTINGFCToolStripMenuItem_Click);
+            // 
+            // tESTINGFCToolStripMenuItem1
+            // 
+            this.tESTINGFCToolStripMenuItem1.Name = "tESTINGFCToolStripMenuItem1";
+            this.tESTINGFCToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            this.tESTINGFCToolStripMenuItem1.Text = "TESTING FC";
+            this.tESTINGFCToolStripMenuItem1.Click += new System.EventHandler(this.tESTINGFCToolStripMenuItem1_Click);
+            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1465,5 +1483,7 @@
         private System.Windows.Forms.ToolStripMenuItem turismoControlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bonosEnBlancoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem completarBonosEnBlancoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tESTINGFCToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tESTINGFCToolStripMenuItem1;
     }
 }

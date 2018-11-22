@@ -16,6 +16,13 @@ namespace SOCIOS
         public DataRow[] listado(int escalafon)
         {
             string query = "SELECT PERSONAS.NOMBRE, TEMP_PA.PA FROM PERSONAS, TEMP_PA WHERE PERSONAS.ESCALAFON = " + escalafon + " AND PERSONAS.ID = TEMP_PA.PERSONA AND PERSONAS.ESTADO = 1 ORDER BY PERSONAS.NOMBRE;";
+
+            if(escalafon == 5)
+                query = "SELECT FIRST(26) PERSONAS.NOMBRE, TEMP_PA.PA FROM PERSONAS, TEMP_PA WHERE PERSONAS.ESCALAFON = " + escalafon + " AND PERSONAS.ID = TEMP_PA.PERSONA AND PERSONAS.ESTADO = 1 ORDER BY PERSONAS.NOMBRE;";
+
+            if(escalafon == 6)
+                query = "SELECT SKIP(26) PERSONAS.NOMBRE, TEMP_PA.PA FROM PERSONAS, TEMP_PA WHERE PERSONAS.ESCALAFON = 5 AND PERSONAS.ID = TEMP_PA.PERSONA AND PERSONAS.ESTADO = 1 ORDER BY PERSONAS.NOMBRE;";
+
             DataRow[] fRows;
             fRows = dlog.BO_EjecutoDataTable(query).Select();
             return fRows;   

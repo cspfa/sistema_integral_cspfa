@@ -12,7 +12,6 @@ namespace SOCIOS
 {
     public partial class recibos : Form
     {
-        
         BO.bo_Caja BO_CAJA = new BO.bo_Caja();
         SOCIOS.CuentaSocio.PlanCuentaUtils pcu = new CuentaSocio.PlanCuentaUtils();
         bo dlog = new bo();
@@ -27,7 +26,7 @@ namespace SOCIOS
         maxid mid = new maxid();
         genHTML gh = new genHTML();
         FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-        bool Modo_Facturacion_Produccion = Convert.ToBoolean(Int32.Parse(Config.getValor("SISTEMAS", "MODO_FACT_PRO", 0)));
+        string Modo_Facturacion_Produccion = VGlobales.MODO_FACTURACION;
 
         private string MODIFICAR { get; set; }
         private string DENI { get; set; }
@@ -653,47 +652,28 @@ namespace SOCIOS
 
                             if (VGlobales.vp_role == "CAJA")
                             {
-                                //if (IMPORTE >= 5000 && TD != 80)
-                                //{
+                                if (IMPORTE > 0)
+                                {
                                     string DIR = "";
 
-                                    if (Modo_Facturacion_Produccion)
-                                    {
-                                        DIR = @"\\192.168.1.6\factura_electronica\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
-                                    }
+                                    if (Modo_Facturacion_Produccion=="TEST")
+                                        DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
                                     else
-                                    {
-                                        DIR = "\\192.168.1.6\\factura_electronica\\TEST\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
-                                    }
-                                    
+                                        DIR = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
+                                                                   
                                     Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                                     Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                     Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
-
-                                    result = fe.Facturo_Recibo(recibo_id,
-                                        int.Parse(PTO_VTA_O),
-                                        TC,
-                                        TD,
-                                        DENI,
-                                        IMPORTE,
-                                        DateTime.Now);
+                                    result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now);
 
                                     if (result.Result == true)
                                     {
-                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI,
-                                            "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE,
-                                            result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE, result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
                                         NRO_FACT_ELECT = result.Numero.ToString();
                                     }
                                     else
-                                    {
                                         MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
-                                    }
-                                /*}
-                                else
-                                {
-                                    MessageBox.Show("NO SE PUEDE REALIZAR EL RECIBO C\nEL MONTO EXCEDE EL PERMITIDO PARA UN CONSUMIDOR FINAL", "ERROR");
-                                }*/
+                                }
                             }
 
                             if (reintegro == "NO")
@@ -766,8 +746,6 @@ namespace SOCIOS
             string PTO_VTA_O = "";
             int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
             int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
-            string NRO_CUIT_TRIM = NRO_CUIT.Trim();
-            string NRO_DNI_TRIM = DENI.Trim();
             string CONCEPTO = "SERVICIOS PRESTADOS";
             string EXCEPTION = "";
             string NRO_FACT_ELECT = "XXXX";
@@ -815,6 +793,7 @@ namespace SOCIOS
                     string PTO_VTA = cbPtoVta.SelectedValue.ToString();
                     string MSG = "";
                     string BANCO_DEPO = cbBancoDepo.SelectedValue.ToString();
+                    string ROLE = "";
 
                     if (ACCION == "MODIFICAR")
                     {
@@ -835,38 +814,30 @@ namespace SOCIOS
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
                                 barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
-                                string PTO_VTA_AFIP = nr.obtenerPtoVtaOficial(VGlobales.ROL_NAME);
-                                string DIR = "";
-                                if (Modo_Facturacion_Produccion)
+                                if (ARANCEL > 0)
                                 {
-                                    DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
-                                }
-                                else
-                                {
-                                    DIR = @"\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "_TEST\\FACTURAS\\";
-                                }
-                                Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
-                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+                                    ROLE = nr.obtenerRole(PTO_VTA);
+                                    PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
 
-                                result = fe.Facturo_Recibo(recibo_id,
-                                    int.Parse(PTO_VTA_AFIP),
-                                    TC,
-                                    TD,
-                                    DENI,
-                                    decimal.Parse(ARANCEL.ToString()),
-                                    DateTime.Now);
+                                    string DIR = "";
 
-                                if (result.Result == true)
-                                {
-                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_AFIP), result.Numero, DateTime.Now, DENI,
-                                        "Consumidor Final", NOMBRE_SOCIO, "", decimal.Parse(ARANCEL.ToString()),
-                                        result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
-                                    NRO_FACT_ELECT = result.Numero.ToString();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
+                                    if (Modo_Facturacion_Produccion == "TEST")
+                                        DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
+                                    else
+                                        DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
+
+                                    Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                                    Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                    Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+                                    result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, Decimal.Parse(ARANCEL.ToString()), DateTime.Now);
+
+                                    if (result.Result == true)
+                                    {
+                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, "", Decimal.Parse(ARANCEL.ToString()), result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                        NRO_FACT_ELECT = result.Numero.ToString();
+                                    }
+                                    else
+                                        MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
                                 }
 
                                 if (PTO_VTA == "0004")

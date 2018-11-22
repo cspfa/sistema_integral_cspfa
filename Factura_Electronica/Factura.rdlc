@@ -59,7 +59,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.19792in</Top>
+            <Top>0.05556in</Top>
             <Left>0.06944in</Left>
             <Height>0.51389in</Height>
             <Width>4.05647in</Width>
@@ -137,38 +137,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="Textbox5">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!DIRECCION.Value</Value>
-                    <Style>
-                      <FontSize>16pt</FontSize>
-                      <FontWeight>Light</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.34156in</Top>
-            <Left>0.11888in</Left>
-            <Height>0.30482in</Height>
-            <Width>3.6726in</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Textbox Name="Textbox6">
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
@@ -186,11 +154,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>2.28016in</Top>
+            <Top>1.73666in</Top>
             <Left>0.10499in</Left>
-            <Height>0.30482in</Height>
-            <Width>3.05592in</Width>
-            <ZIndex>4</ZIndex>
+            <Height>0.27704in</Height>
+            <Width>3.58004in</Width>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -222,7 +190,7 @@
             <Left>3.68257in</Left>
             <Height>0.72351in</Height>
             <Width>3.77192in</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -254,7 +222,7 @@
             <Left>3.86092in</Left>
             <Height>0.25in</Height>
             <Width>3.41008in</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -286,7 +254,7 @@
             <Left>3.68257in</Left>
             <Height>0.30482in</Height>
             <Width>3.96217in</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -318,7 +286,7 @@
             <Left>3.86092in</Left>
             <Height>0.35197in</Height>
             <Width>3.59357in</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -350,7 +318,7 @@
             <Left>4.12591in</Left>
             <Height>0.45833in</Height>
             <Width>3.233in</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -378,11 +346,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>2.65442in</Top>
+            <Top>2.08315in</Top>
             <Left>0.10499in</Left>
-            <Height>0.30482in</Height>
-            <Width>3.05592in</Width>
-            <ZIndex>10</ZIndex>
+            <Height>0.24926in</Height>
+            <Width>3.52202in</Width>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -410,11 +378,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>1.71582in</Top>
-            <Left>0.10499in</Left>
-            <Height>0.30482in</Height>
-            <Width>3.75593in</Width>
-            <ZIndex>11</ZIndex>
+            <Top>1.41795in</Top>
+            <Left>0.0911in</Left>
+            <Height>0.26315in</Height>
+            <Width>3.70038in</Width>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -431,9 +399,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Circulo de Suboficiales de la Policia</Value>
+                    <Value>Circulo de Suboficiales </Value>
                     <Style>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Light</FontWeight>
                     </Style>
                   </TextRun>
@@ -443,9 +411,21 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value> Federal Argentina</Value>
+                    <Value>De La Policia</Value>
                     <Style>
-                      <FontSize>16pt</FontSize>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Light</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Federal Argentina</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Light</FontWeight>
                     </Style>
                   </TextRun>
@@ -454,11 +434,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
-            <Top>0.75347in</Top>
+            <Top>0.63889in</Top>
             <Left>0.11888in</Left>
-            <Height>0.53253in</Height>
+            <Height>0.7235in</Height>
             <Width>3.56615in</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1516,6 +1496,38 @@
         <Height>0.25in</Height>
         <Width>1.39218in</Width>
         <ZIndex>17</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox5">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!DIRECCION.Value</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Light</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>2.41063in</Top>
+        <Left>0.18841in</Left>
+        <Height>0.87136in</Height>
+        <Width>3.55757in</Width>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>

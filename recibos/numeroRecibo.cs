@@ -196,8 +196,37 @@ namespace SOCIOS
                 PTO_VTA_O = foundRows[0][0].ToString();
             }
 
-            return PTO_VTA_O = foundRows[0][0].ToString();
-            ;
+            return PTO_VTA_O;
+        }
+
+        public string obtenerRole(string PTO_VTA_INTERNO)
+        {
+            string ROLE = "";
+            string QUERY = "SELECT ROL FROM PUNTOS_DE_VENTA WHERE PTO_VTA = '" + PTO_VTA_INTERNO + "';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                ROLE = foundRows[0][0].ToString();
+            }
+
+            return ROLE.Trim();
+        }
+
+        public String obtenerCaePorRecibo(int NRO_E)
+        {
+            string CAE = "";
+            string QUERY = "SELECT CAE FROM RECIBOS_CAJA WHERE NUMERO_E = '" + NRO_E + "';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                CAE = foundRows[0][0].ToString();
+            }
+
+            return CAE.Trim();
         }
     }
 }

@@ -335,7 +335,7 @@ namespace SOCIOS
                         try
                         {
                             CAJA.importarRecibos(NRO_COMP, CUENTA_DEBE, CUENTA_HABER, VALOR, FORMA_PAGO, SECTACT, USUARIO_MOD, FECHA_RECIBO, ID_SOCIO, ID_PROFESIONAL,
-                            NOMBRE_SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, BARRA, NOMBRE_SOCIO, TIPO_SOCIO, DNI, PTO_VTA, CAJA_DIARIA, ROLE);
+                            NOMBRE_SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, BARRA, NOMBRE_SOCIO, TIPO_SOCIO, DNI, PTO_VTA, CAJA_DIARIA, ROLE, DEPOSITADO);
                         }
                         catch
                         {

@@ -137,7 +137,7 @@ namespace SOCIOS
                 {
                     if (ACCION == "N")
                     {
-                        gh.recibosEnBlanco(DESDE, HASTA, "RECIBO", PTO_VTA);
+                        gh.recibosEnBlanco(DESDE, HASTA, "RECIBO X", PTO_VTA);
                         p.printHTML("recibo_en_blanco.html");
                     }
                 }
@@ -325,7 +325,7 @@ namespace SOCIOS
                 {
                     if (TABLA == "RECIBOS_CAJA")
                     {
-                        gh.recibosEnBlanco(int.Parse(tbDesde.Text), int.Parse(tbHasta.Text), "RECIBO", PTO_VTA);
+                        gh.recibosEnBlanco(int.Parse(tbDesde.Text), int.Parse(tbHasta.Text), "RECIBO X", PTO_VTA);
                     }
 
                     if (TABLA == "BONOS_CAJA")

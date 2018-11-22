@@ -42,6 +42,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnListado = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -133,11 +134,12 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.panel6);
             this.groupBox5.Controls.Add(this.panel5);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(423, 14);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(210, 602);
+            this.groupBox5.Size = new System.Drawing.Size(414, 602);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Personal Contratado";
@@ -171,12 +173,19 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel6
+            // 
+            this.panel6.Location = new System.Drawing.Point(206, 26);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(191, 563);
+            this.panel6.TabIndex = 3;
+            // 
             // listadoPresentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(642, 621);
+            this.ClientSize = new System.Drawing.Size(852, 621);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnListado);
             this.Controls.Add(this.groupBox5);
@@ -215,6 +224,7 @@
         public System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button btnListado;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Panel panel6;
     }
 }
 

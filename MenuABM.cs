@@ -2188,5 +2188,17 @@ namespace SOCIOS
             Factura_Electronica.Testing_Facturacion tf = new Factura_Electronica.Testing_Facturacion();
             tf.ShowDialog();
         }
+
+        private void tESTINGFCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Factura_Electronica.Testing_Facturacion tf = new Factura_Electronica.Testing_Facturacion();
+            tf.ShowDialog();
+        }
+
+        private void tESTINGFCToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Factura_Electronica.Testing_Facturacion tf = new Factura_Electronica.Testing_Facturacion();
+            tf.ShowDialog();
+        }
     }
 }
