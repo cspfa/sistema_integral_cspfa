@@ -41,6 +41,7 @@ namespace SOCIOS.Factura_Electronica
 
            try
            {
+               
                Afip.AfipFactResults result_request = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
                this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento,true);
                return Exito_Request(result_request);
