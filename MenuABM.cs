@@ -278,8 +278,6 @@ namespace SOCIOS
             buscar frmbuscar = new buscar();
             frmbuscar.ShowDialog(this);
             Cursor = Cursors.Default;
-            //Form1 frmABM = new Form1();
-            //frmABM.ShowDialog(this);
         }
 
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)

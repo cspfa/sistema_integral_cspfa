@@ -668,7 +668,8 @@ namespace SOCIOS
 
                                     if (result.Result == true)
                                     {
-                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE, result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
+                                            result.Cae, FECHA_RECIBO, "ORIGINAL", "", recibo_id);
                                         NRO_FACT_ELECT = result.Numero.ToString();
                                     }
                                     else
@@ -818,6 +819,7 @@ namespace SOCIOS
                                 {
                                     ROLE = nr.obtenerRole(PTO_VTA);
                                     PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
+                                    int ID_RECIBO = nr.obtenerIdComprobante("RECIBO", PTO_VTA, NRO_COMP);
 
                                     string DIR = "";
 
@@ -833,7 +835,9 @@ namespace SOCIOS
 
                                     if (result.Result == true)
                                     {
-                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, "", Decimal.Parse(ARANCEL.ToString()), result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, Decimal.Parse(ARANCEL.ToString()),
+                                            result.Cae, FECHA_RECIBO, "ORIGINAL", "", ID_RECIBO);
+
                                         NRO_FACT_ELECT = result.Numero.ToString();
                                     }
                                     else

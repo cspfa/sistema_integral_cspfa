@@ -593,8 +593,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
-            <Top>0.63734in</Top>
-            <Left>3.51736in</Left>
+            <Top>0.66512in</Top>
+            <Left>3.50348in</Left>
             <Height>0.25in</Height>
             <Width>1.50712in</Width>
             <ZIndex>3</ZIndex>
@@ -709,7 +709,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DOMICILIO_SOCIO</rd:DefaultName>
-            <Top>0.63734in</Top>
+            <Top>0.66512in</Top>
             <Left>5.08004in</Left>
             <Height>0.25in</Height>
             <Width>2.29825in</Width>
@@ -754,7 +754,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Top>3.35143in</Top>
+        <Top>3.47643in</Top>
         <Left>0.11897in</Left>
         <Height>1.05537in</Height>
         <Width>7.54057in</Width>
@@ -1032,7 +1032,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataBarra</DataSetName>
-        <Top>4.47624in</Top>
+        <Top>4.60124in</Top>
         <Left>0.09896in</Left>
         <Height>0.5in</Height>
         <Width>7.56058in</Width>
@@ -1491,7 +1491,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
-        <Top>3.98877in</Top>
+        <Top>4.11377in</Top>
         <Left>0.22396in</Left>
         <Height>0.25in</Height>
         <Width>1.39218in</Width>

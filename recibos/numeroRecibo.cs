@@ -228,5 +228,27 @@ namespace SOCIOS
 
             return CAE.Trim();
         }
+
+        public int obtenerIdComprobante(string TIPO, string PTO_VTA, int NRO_COMP)
+        {
+            int ID = 0;
+            string QUERY = "";
+            string TABLA = "";
+
+            if (TIPO == "RECIBO")
+                TABLA = "RECIBOS_CAJA";
+
+            if (TIPO == "BONO")
+                TABLA = "BONOS_CAJA";
+
+            QUERY = "SELECT ID FROM " + TABLA + " WHERE PTO_VTA = '" + PTO_VTA + "' AND NRO_COMP = " + NRO_COMP + ";";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+                ID = int.Parse(foundRows[0][0].ToString());
+
+            return ID;
+        }
     }
 }

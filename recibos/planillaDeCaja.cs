@@ -4445,9 +4445,10 @@ namespace SOCIOS
                                     result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now);
 
                                     if (result.Result == true)
-                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Parse(FECHA_RECIBO), DENI, "Consumidor Final", NOMBRE_SOCIO, "", decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE),
+                                            result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
                                     //else
-                                      //  MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE\n" + result.Excepcion);
+                                    //  MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE\n" + result.Excepcion);
                                 }
                                 //else
                                     //MessageBox.Show("NO SE ENCONTRO UN PUNTO DE VENTA OFICIAL CARGADO PARA ESTE ROLE\n" + result.Excepcion);
@@ -4517,6 +4518,7 @@ namespace SOCIOS
                                     decimal IMPORTE = decimal.Parse(row.Cells[4].Value.ToString());
                                     string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
                                     string CONCEPTO = "SERVICIOS PRESTADOS";
+                                    int ID_COMP = nr.obtenerIdComprobante("RECIBO", PTO_VTA, int.Parse(NRO));
                                     anular(NRO, COMPROBANTE, TABLA, FECHA, PTO_VTA);
 
                                     if (VGlobales.vp_role == "CAJA")
@@ -4533,11 +4535,11 @@ namespace SOCIOS
                                         Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                                         Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                         Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
-
                                         result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now);
-
+                                        
                                         if (result.Result == true)
-                                            imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, "", IMPORTE, result.Cae, FECHA, "ORIGINAL", "CONTADO", CONCEPTO);
+                                            imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
+                                                result.Cae, FECHA, "ORIGINAL", CONCEPTO, ID_COMP);
                                         else
                                             MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
                                     }
@@ -4710,7 +4712,9 @@ namespace SOCIOS
                                 }
 
                                 Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, "Consumidor Final", NOMBRE_SOCIO, "", decimal.Parse(IMPORTE), CAE, FECHA_RECIBO, "ORIGINAL", "CONTADO", CONCEPTO);
+                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), 
+                                    CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+
                                 //MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
                             }
                             /*else
