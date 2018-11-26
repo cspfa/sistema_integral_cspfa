@@ -816,34 +816,34 @@ namespace SOCIOS
                                 barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
                                 if (ARANCEL > 0)
-                                {
-                                    ROLE = nr.obtenerRole(PTO_VTA);
-                                    PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
-                                    int ID_RECIBO = nr.obtenerIdComprobante("RECIBO", PTO_VTA, NRO_COMP);
-
-                                    string DIR = "";
-
-                                    if (Modo_Facturacion_Produccion == "TEST")
-                                        DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
-                                    else
-                                        DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
-
-                                    Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
-                                    Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                    Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
-                                    result = fe.Facturo_Recibo(ID_RECIBO, int.Parse(PTO_VTA_O), TC, TD, DENI, Decimal.Parse(ARANCEL.ToString()), DateTime.Now);
-
-                                    if (result.Result == true)
                                     {
-                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, Decimal.Parse(ARANCEL.ToString()),
-                                            result.Cae, FECHA_RECIBO, "ORIGINAL", "", ID_RECIBO);
+                                        ROLE = nr.obtenerRole(PTO_VTA);
+                                        PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
+                                        int ID_RECIBO = nr.obtenerIdComprobante("RECIBO", PTO_VTA, NRO_COMP);
 
-                                        NRO_FACT_ELECT = result.Numero.ToString();
+                                        string DIR = "";
+
+                                        if (Modo_Facturacion_Produccion == "TEST")
+                                            DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
+                                        else
+                                            DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
+
+                                        Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                                        Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                        Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+                                        result = fe.Facturo_Recibo(ID_RECIBO, int.Parse(PTO_VTA_O), TC, TD, DENI, Decimal.Parse(ARANCEL.ToString()), DateTime.Now);
+
+                                        if (result.Result == true)
+                                        {
+                                            imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, Decimal.Parse(ARANCEL.ToString()),
+                                                result.Cae, FECHA_RECIBO, "ORIGINAL", "", ID_RECIBO);
+
+                                            NRO_FACT_ELECT = result.Numero.ToString();
+                                        }
+                                        else
+                                            MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
                                     }
-                                    else
-                                        MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
-                                }
-
+                                
                                 if (PTO_VTA == "0004")
                                 {
                                     MessageBox.Show(MSG);
