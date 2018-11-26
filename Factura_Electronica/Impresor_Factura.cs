@@ -41,7 +41,7 @@ namespace SOCIOS.Factura_Electronica
             ReportDataSource rds = new ReportDataSource();
             ReportParameter[] para = new ReportParameter[16];
             ReportViewer viewer = new ReportViewer();
-            FacturaCSPFA facturaService = new FacturaCSPFA();
+            FacturaCSPFA facturaService = new FacturaCSPFA(pPunto_De_Venta);
 
            
           

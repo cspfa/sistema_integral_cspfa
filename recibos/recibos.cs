@@ -663,7 +663,7 @@ namespace SOCIOS
                                                                    
                                     Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                                     Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                    Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+                                    Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
                                     result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now);
 
                                     if (result.Result == true)
@@ -830,7 +830,7 @@ namespace SOCIOS
 
                                     Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                                     Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                    Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA();
+                                    Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
                                     result = fe.Facturo_Recibo(ID_RECIBO, int.Parse(PTO_VTA_O), TC, TD, DENI, Decimal.Parse(ARANCEL.ToString()), DateTime.Now);
 
                                     if (result.Result == true)
