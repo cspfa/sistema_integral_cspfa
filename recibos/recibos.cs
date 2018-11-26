@@ -815,7 +815,7 @@ namespace SOCIOS
                                 FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
                                 barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO);
 
-                                if (ARANCEL > 0)
+                                /*if (ARANCEL > 0)
                                     {
                                         ROLE = nr.obtenerRole(PTO_VTA);
                                         PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
@@ -842,7 +842,7 @@ namespace SOCIOS
                                         }
                                         else
                                             MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
-                                    }
+                                    }*/
                                 
                                 if (PTO_VTA == "0004")
                                 {
