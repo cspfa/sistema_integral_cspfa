@@ -231,7 +231,7 @@ namespace SOCIOS.Factura_Electronica
             int Forma_Pago;
             
 
-            string QUERY = @"select B.Forma_pago, trim(T.CALL_PAR) || ' '|| trim(T.NRO_PAR) || ' '|| trim(T.PIS_PAR) || ' '|| trim (T.DPT_PAR)   from bonos_caja B, Titular T where  B.dni=T.num_doc  and B.ID=" + ID.ToString();
+            string QUERY = @"select B.Forma_pago, trim(T.CALL_PAR) || ' '|| trim(T.NRO_PAR) || ' '|| trim(T.PIS_PAR) || ' '|| trim (T.DPT_PAR)   from recibos_caja B, Titular T where  B.dni=T.num_doc  and B.ID=" + ID.ToString();
             
 
 
