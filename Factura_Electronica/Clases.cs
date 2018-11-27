@@ -92,7 +92,7 @@ namespace SOCIOS.Factura_Electronica
 
         public Datos_Factura(string pTipoDNI, string pDNI, string pNOMBRE, string pDOMICILIO, string pCondicionIVA,int pTipoFactura, string pPTo_Venta, string pNumero, string pCAE, string pCAEVENC, decimal pMONTO)
         {
-            Factura_Electronica.FacturaCSPFA srvFactura = new FacturaCSPFA();
+            Factura_Electronica.FacturaCSPFA srvFactura = new FacturaCSPFA(Int32.Parse(pPTo_Venta));
             
             TIPO_DNI            = pTipoDNI;
             DNI                 = pDNI;

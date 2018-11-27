@@ -7,10 +7,18 @@ namespace SOCIOS.Factura_Electronica
 {
    public class FacturaCSPFA
     {
-       Facturacion_Electronica sf = new Facturacion_Electronica();
+       Facturacion_Electronica sf ;
        SOCIOS.BO.BO_Afip bo_Afip = new BO.BO_Afip();
        string CUIT_ENTIDAD = "30516588213";
+       public FacturaCSPFA(int PuntoVenta)
 
+       {
+           sf = new Facturacion_Electronica(PuntoVenta);
+
+
+       
+       
+       }
        public Afip.AfipFactResults Facturar(int PuntoVenta, DateTime Fecha, int TipoComprobante, int TipoDocumento, string Documento,int Concepto, Decimal Monto)
        {
 

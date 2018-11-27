@@ -15,7 +15,7 @@ namespace SOCIOS.Factura_Electronica
         string rutaArchivos;
         Afip.FacturadorAfip facturador;
         bool Modo_Facturacion_Produccion = false;
-       
+        string Punto_VENTA;
               
      
         
@@ -25,9 +25,10 @@ namespace SOCIOS.Factura_Electronica
         AfipFactResults Result;
         List<AfipFactErrores> Errors;
         #region Publicas
-            public Facturacion_Electronica()
+            public Facturacion_Electronica(int pPuntoVenta)
            {
-               this.Obtener_Configuracion(); // obtengo del config las rutas 
+               
+                this.Obtener_Configuracion(pPuntoVenta); // obtengo del config las rutas 
                this.GenerarTicketAcceso();   // genero xml de acceso a AFIP
                this.Logueo();                // me logueo en la factura electronica
            
@@ -58,7 +59,7 @@ namespace SOCIOS.Factura_Electronica
         #endregion
 
         #region Privadas
-       private void Obtener_Configuracion()
+       private void Obtener_Configuracion(int Punto_Venta)
 
        {
 
@@ -73,7 +74,7 @@ namespace SOCIOS.Factura_Electronica
                rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Produccion.pfx";
                urlWsaa = "https://wsaa.afip.gov.ar/ws/services/LoginCms?WSDL";
                urlWsfe = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
-               rutaArchivos = "\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\XML";
+               rutaArchivos = "\\192.168.1.6\\factura_electronica\\" + Punto_Venta.ToString().PadLeft(4,'0') + "\\XML";
 
             }
            else
@@ -81,7 +82,7 @@ namespace SOCIOS.Factura_Electronica
                rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Test.pfx";
                urlWsaa = "https://wsaahomo.afip.gov.ar/ws/services/LoginCms?WSDL";
                urlWsfe = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
-               rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + VGlobales.PTO_VTA_O + "\\XML";
+               rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + Punto_Venta.ToString().PadLeft(4, '0') + "\\XML";
 
             }
 

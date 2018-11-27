@@ -13,7 +13,7 @@ namespace SOCIOS.Factura_Electronica
     {
         int TipoComprobante = 0;
         int TipoDocumento = 0;
-        FacturaCSPFA serviceFactura = new FacturaCSPFA();
+        FacturaCSPFA serviceFactura;
         Afip.AfipFactResults result = new Afip.AfipFactResults();
         public Testing_Facturacion()
         {
@@ -60,7 +60,7 @@ namespace SOCIOS.Factura_Electronica
             else
                 TipoDocumento = (int)Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL; //Consumidor Final
 
-              
+             serviceFactura = new FacturaCSPFA(1);
 
         }
 
@@ -102,8 +102,9 @@ namespace SOCIOS.Factura_Electronica
 
         private void button1_Click(object sender, EventArgs e)
         {
-           FacturaCSPFA serviceFactura = new FacturaCSPFA();
+    
            int Punto_Venta = 1;
+           FacturaCSPFA serviceFactura = new FacturaCSPFA(Punto_Venta);
            string Documento =  "34068061";
            int ID_RECIBO = 99226;
            decimal Monto = Decimal.Parse(tbMonto.Text);
