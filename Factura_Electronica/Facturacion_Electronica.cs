@@ -74,7 +74,7 @@ namespace SOCIOS.Factura_Electronica
                rutaCert = "C:/CSPFA_SOCIOS/AFIP/cspfa_Produccion.pfx";
                urlWsaa = "https://wsaa.afip.gov.ar/ws/services/LoginCms?WSDL";
                urlWsfe = "https://servicios1.afip.gov.ar/wsfev1/service.asmx?WSDL";
-               rutaArchivos = "\\192.168.1.6\\factura_electronica\\" + Punto_Venta.ToString().PadLeft(4,'0') + "\\XML";
+               rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\" + Punto_Venta.ToString().PadLeft(4,'0') + "\\XML";
 
             }
            else
