@@ -131,6 +131,7 @@ namespace SOCIOS
 
 
 
+
         }
 
 
@@ -260,6 +261,51 @@ namespace SOCIOS
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
 
+        public void AUDITORIA(string ANTERIOR,string NUEVO,decimal MONTO,decimal MONTO_NUEVO)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ANTERIOR);
+            vector_contenidos.Add(System.DateTime.Now);
+            vector_contenidos.Add(NUEVO);
+            vector_contenidos.Add(MONTO);
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(VGlobales.vp_role);
+            vector_contenidos.Add(MONTO_NUEVO);
+           
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Float");
+         
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@PIN_ANTERIOR");
+            vector_nombres.Add("@PIN_FECHA");
+            vector_nombres.Add("@PIN_NUEVO");
+            vector_nombres.Add("@PIN_MONTO");
+            vector_nombres.Add("@PIN_USUARIO");
+            vector_nombres.Add("@PIN_ROL");
+            vector_nombres.Add("@PIN_MONTO_NUEVO");
+         
+
+            string vprocedure = "P_DESCUENTOS_AUDITORIA_I";
+
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        
+        
+        }
 
 
 
