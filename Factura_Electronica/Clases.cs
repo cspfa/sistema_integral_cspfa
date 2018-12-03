@@ -117,6 +117,38 @@ namespace SOCIOS.Factura_Electronica
 
     }
 
+    public class Check_Recibo
+    {
+        public int Pto_Venta { get; set; }
+        public int Numero    { get; set; }
+
+    }
+
+    public class Info_Afip_Comprobante
+    {
+        public int Pto_Venta      { get; set; }
+        public int Numero         { get; set; }
+        public string Fecha       { get; set; }
+        public double Total      { get; set; }
+        public string Documento   { get; set; }
+        public string CAE         { get; set; }
+        public string Vencimiento { get; set; }
+        
+        public Info_Afip_Comprobante(int pPtoVenta, int pNumero, string pFecha, double pTotal, string pDocumento, string pCAE, string pVencimiento)
+        {
+            Pto_Venta   = pPtoVenta;
+            Numero      = pNumero;
+            Fecha       = pFecha.Substring(6, 2) + "/" + pFecha.Substring(4, 2) + "/" + pFecha.Substring(0, 4);
+            Total       = pTotal;
+            Documento   = pDocumento;
+            CAE         = pCAE;
+            Vencimiento = pVencimiento.Substring(6, 2) + "/" + pVencimiento.Substring(4, 2) + "/" + pVencimiento.Substring(0, 4);
+
+        
+        }
+
+    
+    }
 
     #endregion
 }

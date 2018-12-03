@@ -357,7 +357,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(668, 415);
+            this.ClientSize = new System.Drawing.Size(668, 483);
             this.Controls.Add(this.tbNumeroConsulta);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.cbTipoComprobanteConsulta);
