@@ -48,5 +48,13 @@ namespace SOCIOS.Factura_Electronica
 
 
         }
+
+        private void btnConsultaUnitaria_Click(object sender, EventArgs e)
+        {
+            Consulta_Factura cf = new Consulta_Factura();
+            cf.ShowDialog();
+        }
+
+      
     }
 }

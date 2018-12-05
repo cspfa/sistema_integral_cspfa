@@ -36,7 +36,10 @@
             this.DGV_FACTURAS = new System.Windows.Forms.DataGridView();
             this.Consulta = new System.Windows.Forms.Button();
             this.ComboPtoVenta = new System.Windows.Forms.ComboBox();
+            this.btnConsultaUnitaria = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FACTURAS)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dpDesde
@@ -90,11 +93,11 @@
             // 
             // Consulta
             // 
-            this.Consulta.Location = new System.Drawing.Point(746, 35);
+            this.Consulta.Location = new System.Drawing.Point(416, 35);
             this.Consulta.Name = "Consulta";
-            this.Consulta.Size = new System.Drawing.Size(75, 23);
+            this.Consulta.Size = new System.Drawing.Size(141, 23);
             this.Consulta.TabIndex = 7;
-            this.Consulta.Text = "CONSULTA";
+            this.Consulta.Text = "CONSULTA x FECHA";
             this.Consulta.UseVisualStyleBackColor = true;
             this.Consulta.Click += new System.EventHandler(this.Consulta_Click);
             // 
@@ -107,11 +110,32 @@
             this.ComboPtoVenta.Size = new System.Drawing.Size(115, 21);
             this.ComboPtoVenta.TabIndex = 84;
             // 
+            // btnConsultaUnitaria
+            // 
+            this.btnConsultaUnitaria.Location = new System.Drawing.Point(6, 24);
+            this.btnConsultaUnitaria.Name = "btnConsultaUnitaria";
+            this.btnConsultaUnitaria.Size = new System.Drawing.Size(141, 23);
+            this.btnConsultaUnitaria.TabIndex = 85;
+            this.btnConsultaUnitaria.Text = "CONSULTA UNITARIA";
+            this.btnConsultaUnitaria.UseVisualStyleBackColor = true;
+            this.btnConsultaUnitaria.Click += new System.EventHandler(this.btnConsultaUnitaria_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnConsultaUnitaria);
+            this.groupBox1.Location = new System.Drawing.Point(656, 11);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(165, 55);
+            this.groupBox1.TabIndex = 86;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Consulta por Numero";
+            // 
             // Consulta_Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 390);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ComboPtoVenta);
             this.Controls.Add(this.Consulta);
             this.Controls.Add(this.DGV_FACTURAS);
@@ -123,6 +147,7 @@
             this.Name = "Consulta_Facturacion";
             this.Text = "CONSULTA INFO EN AFIP";
             ((System.ComponentModel.ISupportInitialize)(this.DGV_FACTURAS)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +163,7 @@
         private System.Windows.Forms.DataGridView DGV_FACTURAS;
         private System.Windows.Forms.Button Consulta;
         private System.Windows.Forms.ComboBox ComboPtoVenta;
+        private System.Windows.Forms.Button btnConsultaUnitaria;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
