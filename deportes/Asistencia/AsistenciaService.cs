@@ -30,6 +30,7 @@ namespace SOCIOS.deportes.Asistencia
        public DateTime VENCIMIENTO_APTO   { get; set; }
        public int Sectact                 { get; set; }
        public string ROL                  { get; set; }
+       public int    HORA                { get; set; }
     }
 
    public class AsistenciaService
@@ -177,7 +178,7 @@ namespace SOCIOS.deportes.Asistencia
        }
 
 
-       public List<ReporteAsistencia> Reporte_Verificacion_Asistencia(string SECT_ACT, string ROL,DateTime pDesde,DateTime pHasta)
+       public List<ReporteAsistencia> Reporte_Verificacion_Asistencia(string SECT_ACT, string ROL,DateTime pDesde,DateTime pHasta,int pHora)
        {
 
            string connectionString;
@@ -188,8 +189,8 @@ namespace SOCIOS.deportes.Asistencia
            SOCIOS.deportes.DeportesService ds = new DeportesService();
 
            DataTable dt1 = new DataTable("RESULTADOS");
-           string Query = @"select A.ID ID, A.NOMBRE NOMBRE, A.APELLIDO APELLIDO,A.FECHA FECHA,A.DNI , A.P PRESENTE, A.ROL ROL, A.SECTACT SECT from SOCIO_ACTIVIDADES_ASISTENCIA A
-                                      WHERE A.FECHA between '" + Desde + "' AND '" + Hasta + "' AND A.ROL='"  +ROL +"' and A.SECTACT= " + SECT_ACT.ToString() +  " order by DNI"  ;
+           string Query = @"select A.ID ID, A.NOMBRE NOMBRE, A.APELLIDO APELLIDO,A.FECHA FECHA,A.DNI , A.P PRESENTE, A.ROL ROL, A.SECTACT SECT,A.HORA HORA from SOCIO_ACTIVIDADES_ASISTENCIA A
+                                      WHERE A.FECHA between '" + Desde + "' AND '" + Hasta + "' AND A.ROL='"  +ROL +"' and A.SECTACT= " + SECT_ACT.ToString() +  " and A.HORA= "+ pHora.ToString() +"  order by DNI"  ;
            DataSet ds1 = new DataSet();
 
            Datos_ini ini3 = new Datos_ini();
@@ -241,7 +242,7 @@ namespace SOCIOS.deportes.Asistencia
                            item.PRESENTE = "X";
                        item.ROL = reader3.GetString(reader3.GetOrdinal("ROL")).TrimEnd().TrimStart();
                        item.Sectact = Int32.Parse(reader3.GetString(reader3.GetOrdinal("SECT")));
-
+                       item.HORA = Int32.Parse(reader3.GetString(reader3.GetOrdinal("HORA")));
                        
                        lista.Add(item);
 

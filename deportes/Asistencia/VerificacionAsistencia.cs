@@ -23,6 +23,7 @@ namespace SOCIOS.deportes.Asistencia
        string ROL = "";
        SOCIOS.deportes.Asistencia.AsistenciaService asist_service = new AsistenciaService();
        List<DateTime> Fechas = new List<DateTime>();
+       int HORA = 0;
 
 
         public VerificacionAsistencia()
@@ -111,7 +112,13 @@ namespace SOCIOS.deportes.Asistencia
         }
 
 
-        
+        private void Get_Hora()
+        {
+            if (cbHorario.Text.Length > 0)
+                HORA = Int32.Parse(cbHorario.Text);
+            else
+                MessageBox.Show("SELECCIONE HORARIO PARA LA CARGA \n", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
 
         private void Reporte_Click(object sender, EventArgs e)
         {
@@ -119,6 +126,7 @@ namespace SOCIOS.deportes.Asistencia
 
             string Actividad;
             string ID;
+            this.Get_Hora();
             Fecha = "DESDE" + dpFechaDesde.Value.Day.ToString() + " - " + dpFechaDesde.Value.Month.ToString() + " - " + dpFechaDesde.Value.Year.ToString() + " HASTA " +
                     dpFEchaHasta.Value.Day.ToString() + " - " + dpFEchaHasta.Value.Month.ToString() + " - " + dpFEchaHasta.Value.Year.ToString();
             Actividad = cbActividad.Text.Trim();
@@ -131,19 +139,19 @@ namespace SOCIOS.deportes.Asistencia
                 this.ArmoFecha();
                 bo dlog = new bo();
                 //Array que contendrá los parámetros
-                ReportParameter[] parameters = new ReportParameter[2];
+                ReportParameter[] parameters = new ReportParameter[3];
 
                 //Establecemos el valor de los parámetros
                 parameters[0] = new ReportParameter("Actividad", Actividad);
                 parameters[1] = new ReportParameter("Fecha", Fecha);
-                
+                parameters[2] = new ReportParameter("Hora", HORA.ToString());
 
 
                 this.reportViewer1.LocalReport.SetParameters(parameters);
                 reportViewer1.LocalReport.DataSources.Clear();
                 var reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
                 reportDataSource1.Name = "DataSet2";
-                reportDataSource1.Value = asist_service.Reporte_Verificacion_Asistencia(ID, ROL, dpFechaDesde.Value, dpFEchaHasta.Value);
+                reportDataSource1.Value = asist_service.Reporte_Verificacion_Asistencia(ID, ROL, dpFechaDesde.Value, dpFEchaHasta.Value,HORA);
 
 
               //  reportDataSource1.Value = asist_service.Verificar_Asistencia(ID, ROL,Fechas);       

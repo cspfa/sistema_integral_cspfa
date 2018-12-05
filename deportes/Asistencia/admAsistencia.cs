@@ -24,6 +24,7 @@ namespace SOCIOS.deportes
         string ROL = "";
         SOCIOS.deportes.CamposService cs = new CamposService();
         bool Mostrar_Asistencia = true;
+        int HORA;
         public admAsistencia()
         {
             InitializeComponent();
@@ -62,22 +63,22 @@ namespace SOCIOS.deportes
             Fecha = dpFecha.Value;
            
             ID = cbActividad.SelectedValue.ToString();
-
-            this.Refrescar_Grilla(Fecha, Int32.Parse(ID));
+            this.Get_Hora();
+            this.Refrescar_Grilla(Fecha, Int32.Parse(ID),HORA);
           
 
 
         }
 
-        private void Refrescar_Grilla(DateTime Fecha, int ID)
+        private void Refrescar_Grilla(DateTime Fecha, int ID,int Hora)
 
         {   
             
 
 
-            if (TieneAsistencia(ID.ToString(), Fecha))
+            if (TieneAsistencia(ID.ToString(), Fecha,Hora))
             {
-                dataGridView1.DataSource = this.GetAsistencia(ID.ToString(), Fecha);
+                dataGridView1.DataSource = this.GetAsistencia(ID.ToString(), Fecha,Hora);
                 Update = true;
 
 
@@ -104,13 +105,13 @@ namespace SOCIOS.deportes
 
 
 
-        private bool TieneAsistencia(string ID, DateTime fecha)
+        private bool TieneAsistencia(string ID, DateTime fecha,int Hora)
         {
             string Query = "select P , Id , Nombre,Apellido   from socio_actividades_asistencia"
             + " where SECTACT =" + ID +
             " AND (Extract (DAY from  FECHA))= " + fecha.Day.ToString() +
              " AND (Extract (MONTH from  FECHA))= " + fecha.Month.ToString() +
-              " AND (Extract (YEAR from  FECHA))= " + fecha.Year.ToString();
+              " AND (Extract (YEAR from  FECHA))= " + fecha.Year.ToString() + " AND HORA=  " + Hora.ToString();
 
              
 
@@ -127,15 +128,15 @@ namespace SOCIOS.deportes
                 return false;
         
         }
-        private DataTable GetAsistencia(string ID,DateTime fecha)
+        private DataTable GetAsistencia(string ID,DateTime fecha,int Hora)
         { string connectionString;
             DataTable dt1 = new DataTable("RESULTADOS");
 
-            string Query = "select P , Id , Nombre,Apellido,DNI   from socio_actividades_asistencia"
+            string Query = "select P , Id , Nombre,Apellido,DNI,HORA   from socio_actividades_asistencia"
                         + " where SECTACT =" + ID +
                         " AND (Extract (DAY from  FECHA))= " + fecha.Day.ToString() +
                          " AND (Extract (MONTH from  FECHA))= " + fecha.Month.ToString() +
-                          " AND (Extract (YEAR from  FECHA))= " + fecha.Year.ToString();
+                          " AND (Extract (YEAR from  FECHA))= " + fecha.Year.ToString() + " AND HORA= " + Hora.ToString();
 
 
             DataSet ds1 = new DataSet();
@@ -165,7 +166,7 @@ namespace SOCIOS.deportes
                     dt1.Columns.Add("Nombre", typeof(string));
                     dt1.Columns.Add("Apellido", typeof(string));
                     dt1.Columns.Add("DNI", typeof(string));
-
+                    dt1.Columns.Add("Hora", typeof(string));
 
                     ds1.Tables.Add(dt1);
 
@@ -179,7 +180,8 @@ namespace SOCIOS.deportes
                                      reader3.GetString(reader3.GetOrdinal("Id")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Nombre")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Apellido")).Trim(),
-                                      reader3.GetString(reader3.GetOrdinal("DNI")).Trim());
+                                      reader3.GetString(reader3.GetOrdinal("DNI")).Trim(),
+                                      reader3.GetString(reader3.GetOrdinal("HORA")).Trim());
 
                     }
 
@@ -207,8 +209,8 @@ namespace SOCIOS.deportes
             string connectionString;
             DataTable dt1 = new DataTable("RESULTADOS");
             
-            string Query = "select  '' P,D.ID_ROL Id, D.NOMBRE Nombre,D.APELLIDO Apellido,D.DNI DNI " +
-                         "from deportes_adm D , socio_actividades A , sectact S " +
+            string Query = "select  '' P,D.ID_ROL Id, D.NOMBRE Nombre,D.APELLIDO Apellido,D.DNI DNI," + HORA.ToString() + " HORA "+
+                         " from deportes_adm D , socio_actividades A , sectact S " +
                          "where D.ID_ROL =A.ID_DEPORTE  and S.ID =A.SECTACT    and S.ID =" + ID + " AND D.ROL ='" + ROL +"'" ;
 
             DataSet ds1 = new DataSet();
@@ -239,7 +241,7 @@ namespace SOCIOS.deportes
                     dt1.Columns.Add("Nombre", typeof(string));
                     dt1.Columns.Add("Apellido", typeof(string));
                     dt1.Columns.Add("DNI", typeof(string));
-
+                    dt1.Columns.Add("HORA", typeof(string));
 
                     ds1.Tables.Add(dt1);
 
@@ -253,7 +255,8 @@ namespace SOCIOS.deportes
                                      reader3.GetString(reader3.GetOrdinal("Id")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Nombre")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Apellido")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("DNI")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("DNI")).Trim(),
+                                     reader3.GetString(reader3.GetOrdinal("HORA")).Trim());
 
                     }
 
@@ -294,17 +297,28 @@ namespace SOCIOS.deportes
             }
         }
 
-        private void GrabarDatos(int ID,int SecAct, int P, string Nombre, string Apellido, DateTime Fecha,string ROL,string DNI)
+        private void Get_Hora()
         {
+            if (cbHorario.Text.Length>0)
+               HORA = Int32.Parse(cbHorario.Text);
+            else
+                MessageBox.Show("SELECCIONE HORARIO PARA LA CARGA \n", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void GrabarDatos(int ID,int SecAct, int P, string Nombre, string Apellido, DateTime Fecha,string ROL,string DNI,int HORARIO)
+        {
+
+            this.Get_Hora();
+            
             if (Update)
             {
-                dlog.UpdateAsistencia(ID, SecAct, P, Nombre, Apellido, Fecha,ROL,DNI);
+                dlog.UpdateAsistencia(ID, SecAct, P, Nombre, Apellido, Fecha,ROL,DNI,HORA);
                 
             }
             else
             {
 
-                dlog.AltaAsistencia(SecAct, P, Nombre, Apellido, Fecha,ROL,DNI);
+                dlog.AltaAsistencia(SecAct, P, Nombre, Apellido, Fecha,ROL,DNI,HORA);
                 
             }
 
@@ -321,7 +335,7 @@ namespace SOCIOS.deportes
             else
                 ROL = VGlobales.vp_role.TrimEnd().TrimStart();
 
-
+            this.Get_Hora();
          
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -344,14 +358,15 @@ namespace SOCIOS.deportes
 
                     }
                     if (bChecked == true)
-                        this.GrabarDatos(rID, SectAct, 1, Nombre, Apellido, Fecha, ROL, DNI);
+                        this.GrabarDatos(rID, SectAct, 1, Nombre, Apellido, Fecha, ROL, DNI,HORA);
                     else
-                        this.GrabarDatos(rID, SectAct, 0, Nombre, Apellido, Fecha, ROL, DNI);
+                        this.GrabarDatos(rID, SectAct, 0, Nombre, Apellido, Fecha, ROL, DNI,HORA);
 
 
                 }
+
                 MessageBox.Show("PROCESO REALIZADO CON EXITO", "MENSAJE", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Refrescar_Grilla(Fecha, SectAct);
+                this.Refrescar_Grilla(Fecha, SectAct,HORA);
 
            
 

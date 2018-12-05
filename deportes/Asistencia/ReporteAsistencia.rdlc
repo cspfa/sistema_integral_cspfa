@@ -310,7 +310,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -390,7 +389,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>="ACTIVIDAD :" &amp; Parameters!Actividad.Value.ToString() &amp; " - FECHA :" &amp; Parameters!Fecha.Value.ToString()</Value>
+                <Value>="ACTIVIDAD :" &amp; Parameters!Actividad.Value.ToString() &amp;"- HORA: "&amp; Parameters!Hora.Value &amp; " - FECHA :" &amp; Parameters!Fecha.Value.ToString()</Value>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
                 </Style>
@@ -459,6 +458,12 @@
     </ReportParameter>
     <ReportParameter Name="Fecha">
       <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Hora">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>

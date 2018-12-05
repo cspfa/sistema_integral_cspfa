@@ -36,6 +36,8 @@
             this.Reporte = new System.Windows.Forms.Button();
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.lbRol = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbHorario = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cbActividad
@@ -50,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 82);
+            this.label2.Location = new System.Drawing.Point(12, 88);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 77;
@@ -111,6 +113,42 @@
             this.lbRol.TabIndex = 93;
             this.lbRol.Text = "ROL:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(338, 88);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 95;
+            this.label1.Text = "HORARIO:";
+            // 
+            // cbHorario
+            // 
+            this.cbHorario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHorario.FormattingEnabled = true;
+            this.cbHorario.Items.AddRange(new object[] {
+            "0",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22"});
+            this.cbHorario.Location = new System.Drawing.Point(413, 85);
+            this.cbHorario.Name = "cbHorario";
+            this.cbHorario.Size = new System.Drawing.Size(54, 21);
+            this.cbHorario.TabIndex = 94;
+            // 
             // ReporteAsistencia
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -123,6 +161,8 @@
             this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
             this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
             this.ClientSize = new System.Drawing.Size(752, 451);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbHorario);
             this.Controls.Add(this.cbRol);
             this.Controls.Add(this.lbRol);
             this.Controls.Add(this.Reporte);
@@ -152,6 +192,8 @@
         private System.Windows.Forms.Button Reporte;
         private System.Windows.Forms.ComboBox cbRol;
         private System.Windows.Forms.Label lbRol;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbHorario;
 
     }
 }

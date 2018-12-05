@@ -39,6 +39,8 @@
             this.desAll = new System.Windows.Forms.Button();
             this.cbRol = new System.Windows.Forms.ComboBox();
             this.lbRol = new System.Windows.Forms.Label();
+            this.cbHorario = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -146,11 +148,49 @@
             this.lbRol.TabIndex = 91;
             this.lbRol.Text = "ROL:";
             // 
+            // cbHorario
+            // 
+            this.cbHorario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHorario.FormattingEnabled = true;
+            this.cbHorario.Items.AddRange(new object[] {
+            "0",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22"});
+            this.cbHorario.Location = new System.Drawing.Point(411, 16);
+            this.cbHorario.Name = "cbHorario";
+            this.cbHorario.Size = new System.Drawing.Size(54, 21);
+            this.cbHorario.TabIndex = 92;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(336, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 93;
+            this.label1.Text = "HORARIO:";
+            // 
             // admAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 544);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbHorario);
             this.Controls.Add(this.cbRol);
             this.Controls.Add(this.lbRol);
             this.Controls.Add(this.desAll);
@@ -183,5 +223,7 @@
         private System.Windows.Forms.Button desAll;
         private System.Windows.Forms.ComboBox cbRol;
         private System.Windows.Forms.Label lbRol;
+        private System.Windows.Forms.ComboBox cbHorario;
+        private System.Windows.Forms.Label label1;
     }
 }

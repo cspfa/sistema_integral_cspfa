@@ -22,6 +22,8 @@ namespace SOCIOS.deportes
        SOCIOS.bo dlog;
        SOCIOS.deportes.CamposService cs = new CamposService();
        string ROL = "";
+       int HORA   = 0;
+      
 
         public ReporteAsistencia()
         {
@@ -37,6 +39,14 @@ namespace SOCIOS.deportes
      
         
 
+        }
+
+        private void Get_Hora()
+        {
+            if (cbHorario.Text.Length > 0)
+                HORA = Int32.Parse(cbHorario.Text);
+            else
+                MessageBox.Show("SELECCIONE HORARIO PARA LA CARGA \n", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         //private void ComboActividad()
@@ -82,7 +92,7 @@ namespace SOCIOS.deportes
 
             this.reportViewer1.RefreshReport();
         }
-
+       
 
         private DataTable Datos(string ID)
 
@@ -178,14 +188,14 @@ namespace SOCIOS.deportes
             DataTable ds = this.Datos(ID);
             try
             {
-
+                this.Get_Hora();
                 bo dlog = new bo();
                 //Array que contendrá los parámetros
-                ReportParameter[] parameters = new ReportParameter[2];
+                ReportParameter[] parameters = new ReportParameter[3];
                 //Establecemos el valor de los parámetros
                 parameters[0] = new ReportParameter("Actividad", Actividad);
                 parameters[1] = new ReportParameter("Fecha", Fecha);
-
+                parameters[2] = new ReportParameter("Hora", Fecha);
 
 
 

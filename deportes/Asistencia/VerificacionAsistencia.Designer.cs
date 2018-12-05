@@ -38,6 +38,8 @@
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dpFEchaHasta = new System.Windows.Forms.DateTimePicker();
             this.label89 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbHorario = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // cbRol
@@ -130,11 +132,49 @@
             this.label89.TabIndex = 103;
             this.label89.Text = "HASTA";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(337, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 13);
+            this.label1.TabIndex = 105;
+            this.label1.Text = "HORARIO:";
+            // 
+            // cbHorario
+            // 
+            this.cbHorario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbHorario.FormattingEnabled = true;
+            this.cbHorario.Items.AddRange(new object[] {
+            "0",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22"});
+            this.cbHorario.Location = new System.Drawing.Point(412, 62);
+            this.cbHorario.Name = "cbHorario";
+            this.cbHorario.Size = new System.Drawing.Size(54, 21);
+            this.cbHorario.TabIndex = 104;
+            // 
             // VerificacionAsistencia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(710, 345);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbHorario);
             this.Controls.Add(this.label89);
             this.Controls.Add(this.dpFEchaHasta);
             this.Controls.Add(this.reportViewer1);
@@ -165,5 +205,7 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.DateTimePicker dpFEchaHasta;
         private System.Windows.Forms.Label label89;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbHorario;
     }
 }
