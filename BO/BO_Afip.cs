@@ -86,5 +86,87 @@ namespace SOCIOS.BO
 
 
        }
+
+       public void Marca_Afip_Recibo_Factura_I(int RECIBO, string CAE, string VencimientoCAE, int Pto_Venta, int Numero)
+       {
+           db resultado = new db();
+           ArrayList vector_contenidos = new ArrayList();
+           ArrayList vector_nombres = new ArrayList();
+           ArrayList vector_tipos = new ArrayList();
+
+           vector_contenidos.Add(RECIBO);
+           vector_tipos.Add("FbDbType.Integer");
+           vector_nombres.Add("@PIN_RECIBO_CAJA");
+
+           vector_contenidos.Add(CAE);
+           vector_tipos.Add("FbDbType.VarChar");
+           vector_nombres.Add("@PIN_CAE");
+
+           vector_contenidos.Add(VencimientoCAE);
+           vector_tipos.Add("FbDbType.VarChar");
+           vector_nombres.Add("@PIN_CAE_VENC");
+
+           vector_contenidos.Add(Pto_Venta);
+           vector_tipos.Add("FbDbType.Integer");
+           vector_nombres.Add("@PIN_PTO_VTA_E");
+
+           vector_contenidos.Add(System.DateTime.Now);
+           vector_tipos.Add("FbDbType.Varchar");
+           vector_nombres.Add("@PIN_FECHA");
+           
+           vector_contenidos.Add(VGlobales.vp_username);
+           vector_tipos.Add("FbDbType.Varchar");
+           vector_nombres.Add("@PIN_USUARIO");
+
+
+           string vprocedure = "P_FACTURO_RECIBO_CAJA_I";
+
+           resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+       
+       }
+
+
+       public void Marca_Afip_Recibo_Factura_U(int ID,int RECIBO, string CAE, string VencimientoCAE, int Pto_Venta, int Numero)
+       {
+           db resultado = new db();
+           ArrayList vector_contenidos = new ArrayList();
+           ArrayList vector_nombres = new ArrayList();
+           ArrayList vector_tipos = new ArrayList();
+
+           vector_contenidos.Add(ID);
+           vector_tipos.Add("FbDbType.Integer");
+           vector_nombres.Add("@PIN_ID");
+
+           vector_contenidos.Add(RECIBO);
+           vector_tipos.Add("FbDbType.Integer");
+           vector_nombres.Add("@PIN_RECIBO_CAJA");
+
+           vector_contenidos.Add(CAE);
+           vector_tipos.Add("FbDbType.VarChar");
+           vector_nombres.Add("@PIN_CAE");
+
+           vector_contenidos.Add(VencimientoCAE);
+           vector_tipos.Add("FbDbType.VarChar");
+           vector_nombres.Add("@PIN_CAE_VENC");
+
+           vector_contenidos.Add(Pto_Venta);
+           vector_tipos.Add("FbDbType.Integer");
+           vector_nombres.Add("@PIN_PTO_VTA_E");
+
+           vector_contenidos.Add(System.DateTime.Now);
+           vector_tipos.Add("FbDbType.Varchar");
+           vector_nombres.Add("@PIN_FECHA");
+
+           vector_contenidos.Add(VGlobales.vp_username);
+           vector_tipos.Add("FbDbType.Varchar");
+           vector_nombres.Add("@PIN_USUARIO");
+
+
+           string vprocedure = "P_FACTURO_RECIBO_CAJA_I";
+
+           resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+       }
+
     }
 }
