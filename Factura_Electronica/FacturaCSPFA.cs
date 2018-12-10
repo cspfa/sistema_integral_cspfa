@@ -153,15 +153,13 @@ namespace SOCIOS.Factura_Electronica
        //Tipo Documento      : 96 DNI      , 80 CUIT 
        public Recibo_Request Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha)
 
-       {
-           
+       {          
 
            try
            {
                
                Afip.AfipFactResults result_request = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
                this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento,true);
-              
                return Exito_Request(result_request);
 
 

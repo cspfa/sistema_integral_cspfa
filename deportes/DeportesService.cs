@@ -861,12 +861,12 @@ namespace SOCIOS.deportes
           DateTime desde = this.menorFecha(lista);
           DateTime hasta = this.mayorFecha(lista);
 
-
+          
           foreach (Asistencia.ReporteAsistencia item in asistenciaService.ReporteAsistencia_Remoto(Desde, Hasta, ROL))
           {
-
               Thread.Sleep(50);
-              dlog.AltaAsistencia(item.Sectact, Int32.Parse(item.PRESENTE), item.NOMBRE, item.APELLIDO, DateTime.Parse( item.FECHA), item.ROL, item.DNI);
+              
+              dlog.AltaAsistencia(item.Sectact, Int32.Parse(item.PRESENTE), item.NOMBRE, item.APELLIDO, DateTime.Parse( item.FECHA), item.ROL, item.DNI,item.HORA);
           
           }
 
