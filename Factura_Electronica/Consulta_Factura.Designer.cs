@@ -48,6 +48,8 @@
             this.lbDocumento = new System.Windows.Forms.TextBox();
             this.lbFecha = new System.Windows.Forms.TextBox();
             this.lbMonto = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbTipo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ComboPtoVenta
@@ -148,7 +150,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Maroon;
-            this.label2.Location = new System.Drawing.Point(44, 218);
+            this.label2.Location = new System.Drawing.Point(44, 257);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 100;
@@ -158,7 +160,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Maroon;
-            this.label4.Location = new System.Drawing.Point(44, 240);
+            this.label4.Location = new System.Drawing.Point(44, 279);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 102;
@@ -211,23 +213,45 @@
             // 
             // lbFecha
             // 
-            this.lbFecha.Location = new System.Drawing.Point(107, 215);
+            this.lbFecha.Location = new System.Drawing.Point(107, 254);
             this.lbFecha.Name = "lbFecha";
             this.lbFecha.Size = new System.Drawing.Size(150, 20);
             this.lbFecha.TabIndex = 110;
             // 
             // lbMonto
             // 
-            this.lbMonto.Location = new System.Drawing.Point(107, 237);
+            this.lbMonto.Location = new System.Drawing.Point(107, 276);
             this.lbMonto.Name = "lbMonto";
             this.lbMonto.Size = new System.Drawing.Size(150, 20);
             this.lbMonto.TabIndex = 111;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Maroon;
+            this.label5.Location = new System.Drawing.Point(26, 218);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(32, 13);
+            this.label5.TabIndex = 112;
+            this.label5.Text = "TIPO";
+            // 
+            // lbTipo
+            // 
+            this.lbTipo.AutoSize = true;
+            this.lbTipo.ForeColor = System.Drawing.Color.Maroon;
+            this.lbTipo.Location = new System.Drawing.Point(105, 218);
+            this.lbTipo.Name = "lbTipo";
+            this.lbTipo.Size = new System.Drawing.Size(10, 13);
+            this.lbTipo.TabIndex = 113;
+            this.lbTipo.Text = "-";
             // 
             // Consulta_Factura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 318);
+            this.Controls.Add(this.lbTipo);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lbMonto);
             this.Controls.Add(this.lbFecha);
             this.Controls.Add(this.lbDocumento);
@@ -277,5 +301,7 @@
         private System.Windows.Forms.TextBox lbDocumento;
         private System.Windows.Forms.TextBox lbFecha;
         private System.Windows.Forms.TextBox lbMonto;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbTipo;
     }
 }
