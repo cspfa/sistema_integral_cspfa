@@ -410,9 +410,11 @@ namespace SOCIOS
 
         }
 
+
+
         //Agregado por Sebastian - STORED ASISTENCIA ALTA
 
-        public void AltaAsistencia(int SECTACT, int P, string NOMBRE, string APELLIDO, DateTime FECHA,string ROL,string DNI)
+        public void AltaAsistencia(int SECTACT, int P, string NOMBRE, string APELLIDO, DateTime FECHA,string ROL,string DNI,int HORA)
         {
             db resultado = new db();
 
@@ -425,17 +427,19 @@ namespace SOCIOS
             vector_contenidos.Add(FECHA);
             vector_contenidos.Add(DNI);
             vector_contenidos.Add(ROL);
-      
-            ArrayList vector_tipos = new ArrayList();
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
+            vector_contenidos.Add(HORA);
 
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
 
             ArrayList vector_nombres = new ArrayList();
 
@@ -449,13 +453,14 @@ namespace SOCIOS
             vector_nombres.Add("@FECHA");
             vector_nombres.Add("@DNI");
             vector_nombres.Add("@ROL");
-           
+            vector_nombres.Add("@HORA");
+
             string vprocedure = "P_ASISTENCIA_DEPORTES_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
         }
         //Agregado por Sebastian - STORED UPDATE ASISTENCIA
-        public void UpdateAsistencia(int ID, int SECTACT, int P, string NOMBRE, string APELLIDO, DateTime FECHA,string ROL,string DNI)
+        public void UpdateAsistencia(int ID, int SECTACT, int P, string NOMBRE, string APELLIDO, DateTime FECHA,string ROL,string DNI,int HORA)
         {
             db resultado = new db();
 
@@ -468,6 +473,7 @@ namespace SOCIOS
             vector_contenidos.Add(FECHA);
             vector_contenidos.Add(ROL);
             vector_contenidos.Add(DNI);
+            vector_contenidos.Add(HORA);
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -477,7 +483,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
-
+            vector_tipos.Add("FbDbType.Integer");
             ArrayList vector_nombres = new ArrayList();
 
 
@@ -489,6 +495,7 @@ namespace SOCIOS
             vector_nombres.Add("@FECHA");
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@DNI");
+            vector_nombres.Add("@HORA");
             string vprocedure = "P_ASISTENCIA_DEPORTES_U";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
