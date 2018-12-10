@@ -58,6 +58,7 @@ namespace SOCIOS.Factura_Electronica
                     lbFecha.Text        = comp.FECHA;
                     lbVencimiento.Text  = comp.FECHA_VENC;
                     lbMonto.Text        = comp.TOTAL.ToString();
+                    
 
                 }
                 else

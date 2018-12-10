@@ -37,17 +37,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.lbPuntoVenta = new System.Windows.Forms.Label();
-            this.lbNumero = new System.Windows.Forms.Label();
-            this.lbVencimiento = new System.Windows.Forms.Label();
-            this.lbCAE = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lbDocumento = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbFecha = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lbMonto = new System.Windows.Forms.Label();
             this.lbEstado = new System.Windows.Forms.Label();
+            this.lbPuntoVenta = new System.Windows.Forms.TextBox();
+            this.lbNumero = new System.Windows.Forms.TextBox();
+            this.lbCAE = new System.Windows.Forms.TextBox();
+            this.lbVencimiento = new System.Windows.Forms.TextBox();
+            this.lbDocumento = new System.Windows.Forms.TextBox();
+            this.lbFecha = new System.Windows.Forms.TextBox();
+            this.lbMonto = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ComboPtoVenta
@@ -134,46 +134,6 @@
             this.label6.TabIndex = 94;
             this.label6.Text = "Punto de Venta";
             // 
-            // lbPuntoVenta
-            // 
-            this.lbPuntoVenta.AutoSize = true;
-            this.lbPuntoVenta.ForeColor = System.Drawing.Color.Maroon;
-            this.lbPuntoVenta.Location = new System.Drawing.Point(92, 107);
-            this.lbPuntoVenta.Name = "lbPuntoVenta";
-            this.lbPuntoVenta.Size = new System.Drawing.Size(10, 13);
-            this.lbPuntoVenta.TabIndex = 90;
-            this.lbPuntoVenta.Text = "-";
-            // 
-            // lbNumero
-            // 
-            this.lbNumero.AutoSize = true;
-            this.lbNumero.ForeColor = System.Drawing.Color.Maroon;
-            this.lbNumero.Location = new System.Drawing.Point(91, 129);
-            this.lbNumero.Name = "lbNumero";
-            this.lbNumero.Size = new System.Drawing.Size(10, 13);
-            this.lbNumero.TabIndex = 90;
-            this.lbNumero.Text = "-";
-            // 
-            // lbVencimiento
-            // 
-            this.lbVencimiento.AutoSize = true;
-            this.lbVencimiento.ForeColor = System.Drawing.Color.Maroon;
-            this.lbVencimiento.Location = new System.Drawing.Point(91, 169);
-            this.lbVencimiento.Name = "lbVencimiento";
-            this.lbVencimiento.Size = new System.Drawing.Size(10, 13);
-            this.lbVencimiento.TabIndex = 90;
-            this.lbVencimiento.Text = "-";
-            // 
-            // lbCAE
-            // 
-            this.lbCAE.AutoSize = true;
-            this.lbCAE.ForeColor = System.Drawing.Color.Maroon;
-            this.lbCAE.Location = new System.Drawing.Point(92, 149);
-            this.lbCAE.Name = "lbCAE";
-            this.lbCAE.Size = new System.Drawing.Size(10, 13);
-            this.lbCAE.TabIndex = 90;
-            this.lbCAE.Text = "-";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -183,16 +143,6 @@
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 98;
             this.label1.Text = "Documento";
-            // 
-            // lbDocumento
-            // 
-            this.lbDocumento.AutoSize = true;
-            this.lbDocumento.ForeColor = System.Drawing.Color.Maroon;
-            this.lbDocumento.Location = new System.Drawing.Point(92, 192);
-            this.lbDocumento.Name = "lbDocumento";
-            this.lbDocumento.Size = new System.Drawing.Size(10, 13);
-            this.lbDocumento.TabIndex = 90;
-            this.lbDocumento.Text = "-";
             // 
             // label2
             // 
@@ -204,16 +154,6 @@
             this.label2.TabIndex = 100;
             this.label2.Text = "Fecha";
             // 
-            // lbFecha
-            // 
-            this.lbFecha.AutoSize = true;
-            this.lbFecha.ForeColor = System.Drawing.Color.Maroon;
-            this.lbFecha.Location = new System.Drawing.Point(91, 218);
-            this.lbFecha.Name = "lbFecha";
-            this.lbFecha.Size = new System.Drawing.Size(10, 13);
-            this.lbFecha.TabIndex = 90;
-            this.lbFecha.Text = "-";
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -223,16 +163,6 @@
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 102;
             this.label4.Text = "Monto";
-            // 
-            // lbMonto
-            // 
-            this.lbMonto.AutoSize = true;
-            this.lbMonto.ForeColor = System.Drawing.Color.Maroon;
-            this.lbMonto.Location = new System.Drawing.Point(91, 240);
-            this.lbMonto.Name = "lbMonto";
-            this.lbMonto.Size = new System.Drawing.Size(10, 13);
-            this.lbMonto.TabIndex = 90;
-            this.lbMonto.Text = "-";
             // 
             // lbEstado
             // 
@@ -244,26 +174,75 @@
             this.lbEstado.TabIndex = 104;
             this.lbEstado.Text = "-";
             // 
+            // lbPuntoVenta
+            // 
+            this.lbPuntoVenta.Location = new System.Drawing.Point(108, 104);
+            this.lbPuntoVenta.Name = "lbPuntoVenta";
+            this.lbPuntoVenta.Size = new System.Drawing.Size(53, 20);
+            this.lbPuntoVenta.TabIndex = 105;
+            // 
+            // lbNumero
+            // 
+            this.lbNumero.Location = new System.Drawing.Point(108, 126);
+            this.lbNumero.Name = "lbNumero";
+            this.lbNumero.Size = new System.Drawing.Size(79, 20);
+            this.lbNumero.TabIndex = 106;
+            // 
+            // lbCAE
+            // 
+            this.lbCAE.Location = new System.Drawing.Point(108, 146);
+            this.lbCAE.Name = "lbCAE";
+            this.lbCAE.Size = new System.Drawing.Size(149, 20);
+            this.lbCAE.TabIndex = 107;
+            // 
+            // lbVencimiento
+            // 
+            this.lbVencimiento.Location = new System.Drawing.Point(108, 166);
+            this.lbVencimiento.Name = "lbVencimiento";
+            this.lbVencimiento.Size = new System.Drawing.Size(149, 20);
+            this.lbVencimiento.TabIndex = 108;
+            // 
+            // lbDocumento
+            // 
+            this.lbDocumento.Location = new System.Drawing.Point(108, 192);
+            this.lbDocumento.Name = "lbDocumento";
+            this.lbDocumento.Size = new System.Drawing.Size(149, 20);
+            this.lbDocumento.TabIndex = 109;
+            // 
+            // lbFecha
+            // 
+            this.lbFecha.Location = new System.Drawing.Point(107, 215);
+            this.lbFecha.Name = "lbFecha";
+            this.lbFecha.Size = new System.Drawing.Size(150, 20);
+            this.lbFecha.TabIndex = 110;
+            // 
+            // lbMonto
+            // 
+            this.lbMonto.Location = new System.Drawing.Point(107, 237);
+            this.lbMonto.Name = "lbMonto";
+            this.lbMonto.Size = new System.Drawing.Size(150, 20);
+            this.lbMonto.TabIndex = 111;
+            // 
             // Consulta_Factura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 318);
-            this.Controls.Add(this.lbEstado);
             this.Controls.Add(this.lbMonto);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.lbFecha);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lbDocumento);
+            this.Controls.Add(this.lbVencimiento);
+            this.Controls.Add(this.lbCAE);
+            this.Controls.Add(this.lbNumero);
+            this.Controls.Add(this.lbPuntoVenta);
+            this.Controls.Add(this.lbEstado);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.lbPuntoVenta);
-            this.Controls.Add(this.lbNumero);
-            this.Controls.Add(this.lbVencimiento);
-            this.Controls.Add(this.lbCAE);
             this.Controls.Add(this.CONSULTA);
             this.Controls.Add(this.tbNumeroConsulta);
             this.Controls.Add(this.label12);
@@ -287,16 +266,16 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lbPuntoVenta;
-        private System.Windows.Forms.Label lbNumero;
-        private System.Windows.Forms.Label lbVencimiento;
-        private System.Windows.Forms.Label lbCAE;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lbDocumento;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbFecha;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label lbMonto;
         private System.Windows.Forms.Label lbEstado;
+        private System.Windows.Forms.TextBox lbPuntoVenta;
+        private System.Windows.Forms.TextBox lbNumero;
+        private System.Windows.Forms.TextBox lbCAE;
+        private System.Windows.Forms.TextBox lbVencimiento;
+        private System.Windows.Forms.TextBox lbDocumento;
+        private System.Windows.Forms.TextBox lbFecha;
+        private System.Windows.Forms.TextBox lbMonto;
     }
 }
