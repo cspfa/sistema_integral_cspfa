@@ -17,8 +17,7 @@ namespace SOCIOS
         public void Txt_Activo_I(int Mes, int Anio, string ACRJP2, int CODINT, int CODCC, string TIPO, decimal MONTO)
         {
             db resultado = new db();
-
-            ArrayList vector_contenidos = new ArrayList();
+             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(Mes);
             vector_contenidos.Add(Anio);
             vector_contenidos.Add(ACRJP2);
@@ -224,10 +223,10 @@ namespace SOCIOS
 
         {
             db resultado = new db();
-
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
             ArrayList vector_nombres = new ArrayList();
+
 
             vector_contenidos.Add(ID);
             vector_tipos.Add("FbDbType.Integer");
@@ -251,9 +250,6 @@ namespace SOCIOS
             vector_nombres.Add("@FECHA_DTO");
 
             
-
-
-
 
             string vprocedure = "P_PAGOS_BONO_DTO";
 
