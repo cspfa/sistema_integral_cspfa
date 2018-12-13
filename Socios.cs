@@ -2608,7 +2608,7 @@ namespace SOCIOS
 
                             cmd.Parameters["@P18"].Value = (comboBox8.SelectedValue == null ? "" : comboBox8.SelectedValue.ToString());
 
-                            cmd.Parameters["@P19"].Value = (maskedTextBox9.Text == "_________" ? 0 : (int?)(System.Convert.ToInt32(maskedTextBox9.Text)));
+                            cmd.Parameters["@P19"].Value = (maskedTextBox9.Text == "_________" ? 0 : (int?)(System.Convert.ToInt64(maskedTextBox9.Text)));
 
                             if (maskedTextbox8.Text == " " || maskedTextbox8.Text.Length == 0)
                                 cmd.Parameters["@P20"].Value = null;

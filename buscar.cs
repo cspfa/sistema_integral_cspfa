@@ -327,9 +327,9 @@ namespace SOCIOS
             }
         }
 
-        public void mostrarObservaciones(int DNI)
+        public void mostrarObservaciones(string DNI)
         {
-            string query = "SELECT * FROM OBSERVACIONES_MEDICAS WHERE DNI = " + DNI + " ORDER BY FECHA DESC;";
+            string query = "SELECT * FROM OBSERVACIONES_MEDICAS WHERE DNI = '" + DNI + "' ORDER BY FECHA DESC;";
             string connectionString;
             DataSet ds1 = new DataSet();
             Datos_ini ini3 = new Datos_ini();
@@ -1832,7 +1832,7 @@ namespace SOCIOS
                     string  ID_DESTINO = vIdDestino.TrimEnd();
                     string  NRO_SOC = listView1.SelectedItems[0].SubItems[0].Text;
                     string  NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                    int     DNI = int.Parse(listView1.SelectedItems[0].SubItems[11].Text.Trim());
+                    string  DNI = listView1.SelectedItems[0].SubItems[11].Text.Trim();
                     string  COD_DTO = listView1.SelectedItems[0].SubItems[2].Text;
                     string  ID_PROF = vId;
                     string  USUARIO = VGlobales.vp_username;
@@ -1928,7 +1928,7 @@ namespace SOCIOS
                     string ID_DESTINO = vIdDestino.TrimEnd();
                     string NRO_SOC = listView1.SelectedItems[0].SubItems[0].Text;
                     string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
-                    int DNI = int.Parse(listView1.SelectedItems[0].SubItems[13].Text.Trim());
+                    string DNI = listView1.SelectedItems[0].SubItems[13].Text.Trim();
                     string COD_DTO = listView1.SelectedItems[0].SubItems[7].Text;
                     string ID_PROF = vId;
                     string USUARIO = VGlobales.vp_username;
@@ -2384,7 +2384,7 @@ namespace SOCIOS
 
                 if (VGlobales.vp_role == "SERVICIOS MEDICOS" || VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA")
                 {
-                    mostrarObservaciones(int.Parse(DNI));
+                    mostrarObservaciones(DNI);
                     mostrarTurnos(NRO_SOC, NRO_DEP, BARRA);
                 }
 
@@ -2442,7 +2442,7 @@ namespace SOCIOS
 
                     if (VGlobales.vp_role == "SERVICIOS MEDICOS" || VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA")
                     {
-                        mostrarObservaciones(int.Parse(DNI));
+                        mostrarObservaciones(DNI);
                         mostrarTurnos(NRO_ADH.ToString(), DEP_ADH.ToString(), BARRA);
                     }
                 }
@@ -2450,7 +2450,7 @@ namespace SOCIOS
                 {
                     if (VGlobales.vp_role == "SERVICIOS MEDICOS" || VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA")
                     {
-                        mostrarObservaciones(int.Parse(DNI));
+                        mostrarObservaciones(DNI);
                         mostrarTurnos(NRO_SOC.ToString(), NRO_DEP.ToString(), BARRA);
                     }
                 }

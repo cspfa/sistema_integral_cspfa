@@ -16,6 +16,22 @@ namespace SOCIOS.BO
     {
         db resultado = new db();
 
+        //STORED ASIGNAR RECIBO C A COMPROBANTE
+        public void asignarReciboC(int ID, string PTO_VTA)
+        {
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(PTO_VTA);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_nombres.Add("@PIN_ID");
+            vector_nombres.Add("@PIN_PTO_VTA");
+            string vprocedure = "ASIGNAR_RECIBO_C";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+        }
+
         //STORED IMPORTAR CAJA DIARIA
         public void importarCajaDiaria(string FECHA, string US_ALTA, decimal INGRESOS_EFECTIVO, decimal INGRESOS_OTROS, decimal SUBTOTAL_INGRESOS, decimal EGRESOS,
         decimal SALDO_CAJA, string ROL, decimal TOTAL, int DEPOSITADA, int BANCO, int IMPUTACION, int CAJA_DEPOSITADA, string CODIGO_DEPOSITO, int ID_ROL)
@@ -157,7 +173,8 @@ namespace SOCIOS.BO
         //STORED IMPORTAR RECIBOS
         public void importarRecibos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, decimal VALOR, string FORMA_DE_PAGO, int SECTACT,
             string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
-            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, int DNI, string PTO_VTA, int CAJA_DIARIA, string ROL, int DEPOSITADO)
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, int DNI, string PTO_VTA, int CAJA_DIARIA, string ROL, 
+            int DEPOSITADO, string CAE, string CAE_VENC, int PTO_VTA_E, int NUMERO_E, string USR_FACT)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
@@ -184,6 +201,11 @@ namespace SOCIOS.BO
             vector_contenidos.Add(CAJA_DIARIA);
             vector_contenidos.Add(ROL);
             vector_contenidos.Add(DEPOSITADO);
+            vector_contenidos.Add(CAE);
+            vector_contenidos.Add(CAE_VENC);
+            vector_contenidos.Add(PTO_VTA_E);
+            vector_contenidos.Add(NUMERO_E);
+            vector_contenidos.Add(USR_FACT);
 
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -206,6 +228,11 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
 
             vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@CUENTA_DEBE");
@@ -228,6 +255,11 @@ namespace SOCIOS.BO
             vector_nombres.Add("@CAJA_DIARIA");
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@DEPOSITADO");
+            vector_nombres.Add("@CAE");
+            vector_nombres.Add("@CAE_VENC");
+            vector_nombres.Add("@PTO_VTA_E");
+            vector_nombres.Add("@NUMERO_E");
+            vector_nombres.Add("@USR_FACT");
 
             string vprocedure = "RECIBOS_CAJA_IMPORTAR";
 

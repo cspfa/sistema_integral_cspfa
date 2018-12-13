@@ -319,7 +319,7 @@ namespace SOCIOS
                     int ID; int CUENTA_DEBE; int CUENTA_HABER; int SECTACT; int ID_SOCIO; decimal VALOR; string FECHA_ALTA; string FORMA_PAGO; string USUARIO; int DESTINO;
                     string USUARIO_MOD; string FECHA_RECIBO; int ID_PROFESIONAL; string ANULADO; string NOMBRE_SOCIO_TITULAR; string TIPO_SOCIO_TITULAR; string OBSERVACIONES;
                     string FECHA_CAJA; int BARRA; string NOMBRE_SOCIO; string TIPO_SOCIO; int DNI; string TIPO_SOCIO_NO_TITULAR; int CAJA_DIARIA; int DEPOSITADO; string ROL;
-                    int NRO_COMP; int EGRESO; string PTO_VTA; int EXPORTADO;
+                    int NRO_COMP; int EGRESO; string PTO_VTA; int EXPORTADO; string CAE; string CAE_VENC; int PTO_VTA_E = 0; int NUMERO_E = 0; string USR_FACT;
 
                     foreach (DataRow ROW_RECIBO in RECIBOS)
                     {
@@ -330,17 +330,29 @@ namespace SOCIOS
                         NOMBRE_SOCIO_TITULAR = ROW_RECIBO[14].ToString(); TIPO_SOCIO_TITULAR = ROW_RECIBO[15].ToString(); OBSERVACIONES = ROW_RECIBO[16].ToString(); FECHA_CAJA = ROW_RECIBO[17].ToString();
                         BARRA = int.Parse(ROW_RECIBO[18].ToString()); NOMBRE_SOCIO = ROW_RECIBO[19].ToString(); TIPO_SOCIO = ROW_RECIBO[20].ToString(); DNI = int.Parse(ROW_RECIBO[21].ToString());
                         TIPO_SOCIO_NO_TITULAR = ROW_RECIBO[22].ToString(); CAJA_DIARIA = int.Parse(ROW_RECIBO[23].ToString()); DEPOSITADO = int.Parse(ROW_RECIBO[24].ToString());
-                        ROL = ROW_RECIBO[25].ToString(); NRO_COMP = int.Parse(ROW_RECIBO[26].ToString()); EGRESO = int.Parse(ROW_RECIBO[27].ToString()); PTO_VTA = ROW_RECIBO[31].ToString(); EXPORTADO = int.Parse(ROW_RECIBO[32].ToString());
+                        ROL = ROW_RECIBO[25].ToString(); NRO_COMP = int.Parse(ROW_RECIBO[26].ToString()); EGRESO = int.Parse(ROW_RECIBO[27].ToString()); PTO_VTA = ROW_RECIBO[31].ToString();
+                        EXPORTADO = int.Parse(ROW_RECIBO[32].ToString());
+                        CAE = ROW_RECIBO[35].ToString();
+                        CAE_VENC = ROW_RECIBO[36].ToString();
+
+                        if(ROW_RECIBO[37].ToString()!="")
+                            PTO_VTA_E = int.Parse(ROW_RECIBO[37].ToString());
+
+                        if(ROW_RECIBO[38].ToString()!="")
+                            NUMERO_E = int.Parse(ROW_RECIBO[38].ToString());
+
+                        USR_FACT = ROW_RECIBO[39].ToString();
 
                         try
                         {
                             CAJA.importarRecibos(NRO_COMP, CUENTA_DEBE, CUENTA_HABER, VALOR, FORMA_PAGO, SECTACT, USUARIO_MOD, FECHA_RECIBO, ID_SOCIO, ID_PROFESIONAL,
-                            NOMBRE_SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, BARRA, NOMBRE_SOCIO, TIPO_SOCIO, DNI, PTO_VTA, CAJA_DIARIA, ROLE, DEPOSITADO);
+                            NOMBRE_SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, BARRA, NOMBRE_SOCIO, TIPO_SOCIO, DNI, PTO_VTA, CAJA_DIARIA, ROLE, DEPOSITADO, CAE, CAE_VENC, PTO_VTA_E, NUMERO_E, USR_FACT);
                         }
-                        catch
+                        catch(Exception error)
                         {
-                            MessageBox.Show(NRO_COMP+"-"+CUENTA_DEBE+"-"+CUENTA_HABER+"-"+VALOR+"-"+FORMA_PAGO+"-"+SECTACT+"-"+USUARIO_MOD+"-"+FECHA_RECIBO+"-"+ID_SOCIO+"-"+ID_PROFESIONAL,
-                            NOMBRE_SOCIO_TITULAR+"-"+TIPO_SOCIO_TITULAR+"-"+OBSERVACIONES+"-"+BARRA+"-"+NOMBRE_SOCIO+"-"+TIPO_SOCIO+"-"+DNI+"-"+PTO_VTA+"-"+CAJA_DIARIA+"-"+ROLE);
+                            MessageBox.Show(error.ToString());
+                            //MessageBox.Show(NRO_COMP+"-"+CUENTA_DEBE+"-"+CUENTA_HABER+"-"+VALOR+"-"+FORMA_PAGO+"-"+SECTACT+"-"+USUARIO_MOD+"-"+FECHA_RECIBO+"-"+ID_SOCIO+"-"+ID_PROFESIONAL,
+                            //NOMBRE_SOCIO_TITULAR+"-"+TIPO_SOCIO_TITULAR+"-"+OBSERVACIONES+"-"+BARRA+"-"+NOMBRE_SOCIO+"-"+TIPO_SOCIO+"-"+DNI+"-"+PTO_VTA+"-"+CAJA_DIARIA+"-"+ROLE);
                         }
 
                         marcarExportado("RECIBOS_CAJA", "EXPORTADO", ID);

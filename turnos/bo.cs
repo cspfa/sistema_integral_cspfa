@@ -533,7 +533,7 @@ namespace SOCIOS
 
         //STORED DAR INGRESO DESDE BUSQUEDA SOCIO //ANDRES
         public void Inserto_Ingreso(string vapellido, string vnombre, string vtipo, string vrol, string vdestino, string id_destino, string nro_soc, string nro_dep,
-            string nro_adh, string nro_depadh, string barra, Int64 dni, string vcod_dto, string vid_profesional, string egreso, string usuario, int GRUPO,
+            string nro_adh, string nro_depadh, string barra, string dni, string vcod_dto, string vid_profesional, string egreso, string usuario, int GRUPO,
             decimal IMPORTE, int NRO_PAGO, string FECHA_INGRESO, string MC, string CUIL)
         {
             db resultado = new db();
