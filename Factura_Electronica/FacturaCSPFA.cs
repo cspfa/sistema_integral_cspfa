@@ -151,16 +151,29 @@ namespace SOCIOS.Factura_Electronica
 
        //Tipo de Comprobante : 15 RECIBO c , 16 NOTA DE VENTA AL CONTADO
        //Tipo Documento      : 96 DNI      , 80 CUIT 
-       public Recibo_Request Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha)
+       public Recibo_Request Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha,int Modo_Facturacion)
 
        {          
 
            try
            {
-               
-               Afip.AfipFactResults result_request = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
-               this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento,true);
-               return Exito_Request(result_request);
+
+               if (Modo_Facturacion == (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA)
+               {
+                   // Facturacion Unitaria , factura como siempre
+                   Afip.AfipFactResults result_request = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
+
+
+                   this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento, true, Modo_Facturacion);
+
+                   return Exito_Request(result_request);
+               }
+               else
+               { // Facturacion Modal , Divide el monto en varias facturas sucesivas 
+                   Recibo_Request result = new Recibo_Request();
+
+                    return result;
+               }
 
 
            } catch(Exception EX)
@@ -175,6 +188,8 @@ namespace SOCIOS.Factura_Electronica
 
        
        }
+
+       
 
        private Recibo_Request Exito_Request(Afip.AfipFactResults result)
        {
@@ -195,13 +210,26 @@ namespace SOCIOS.Factura_Electronica
 
        
        
-       public void Marcar_Facturacion(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE,bool Recibo)
+       public void Marcar_Facturacion(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE,bool Recibo, int Modo_Facturacion)
 
        {
-          if (Recibo)
-             bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO,PTO_VENTA,NUMERO, CAE, VENC_CAE);
-          else
-              bo_Afip.Marca_Afip_Bono(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE);
+           if (Recibo)
+           {
+               if (Modo_Facturacion == (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA)
+               {
+                   bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE, Modo_Facturacion);
+                   bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO, CAE, VENC_CAE, PTO_VENTA, NUMERO);
+               }
+               else
+               { 
+               
+               
+               }
+           }
+           else
+               bo_Afip.Marca_Afip_Bono(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE);
+
+
        
        }
 

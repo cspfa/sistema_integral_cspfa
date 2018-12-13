@@ -30,7 +30,10 @@ namespace SOCIOS.CuentaSocio
         int ID_PLAN;
         
         int MODO = 1;
+<<<<<<< HEAD
         List<PLanDeCuenta> planes = new List<PLanDeCuenta>();
+=======
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
 
 
         public PlanCuenta(string ROL)
@@ -38,7 +41,11 @@ namespace SOCIOS.CuentaSocio
             InitializeComponent();
             utilsCuenta = new PlanCuentaUtils();
             this.ComboTipo();
+<<<<<<< HEAD
             comboFormasDePago();
+=======
+
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             this.Determinar_Modo(ROL);
 
             
@@ -74,8 +81,13 @@ namespace SOCIOS.CuentaSocio
 
         private void BindGrillaPLan(int Modo)
         {
+<<<<<<< HEAD
             planes = utilsCuenta.GetCuentas(Modo).ToList();
             dgvPlanes.DataSource = planes;
+=======
+
+            dgvPlanes.DataSource = utilsCuenta.GetCuentas(Modo);
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             this.FormatoGrilla();
         }
 
@@ -115,12 +127,16 @@ namespace SOCIOS.CuentaSocio
 
         private void BindCuotas(int Plan)
         {
+<<<<<<< HEAD
             
+=======
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             dgvCuotas.DataSource = null;
             dgvCuotas.DataSource = utilsCuenta.Cuotas(Plan);
 
             dgvPlanes.Columns[3].Width = 500;
             dgvPlanes.Columns[6].Width = 1000;
+<<<<<<< HEAD
              Montos_PLan m = new Montos_PLan();
             int contRow=0;
 
@@ -129,6 +145,11 @@ namespace SOCIOS.CuentaSocio
                   if (contRow ==0)
                       ID_PLAN = Int32.Parse((row.Cells[0].Value.ToString()));
                 contRow++;
+=======
+
+            foreach (DataGridViewRow row in dgvCuotas.Rows)
+            {
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
 
                 if (row.Cells[4].Value.ToString().Length > 1)
                 {
@@ -143,6 +164,7 @@ namespace SOCIOS.CuentaSocio
 
 
             }
+<<<<<<< HEAD
 
             m = utilsCuenta.getMontos(Plan);
 
@@ -154,6 +176,8 @@ namespace SOCIOS.CuentaSocio
 
             this.GetDataPlan(Plan);
              
+=======
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
         }
 
         private void dgvPlanes_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -179,6 +203,7 @@ namespace SOCIOS.CuentaSocio
             gpPlanCuota.Visible = true;
 
 
+<<<<<<< HEAD
             foreach (DataGridViewRow row in dgvCuotas.Rows)
             {
                 row.Selected = false;
@@ -190,6 +215,9 @@ namespace SOCIOS.CuentaSocio
 
             //this.FormatoGrilla();
         
+=======
+            //this.FormatoGrilla();
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
         
         }
 
@@ -210,6 +238,22 @@ namespace SOCIOS.CuentaSocio
             NRO_SOCIO_TIT = Int32.Parse(item.Nro_Socio_Tit);
             NRO_DEP_TIT = Int32.Parse(item.Nro_Dep_Tit);
             lbNombreCompleto.Text = item.Referente;
+        
+        }
+
+        private void FormateoCuotas()
+
+        {
+
+            foreach (DataGridViewRow dr in dgvCuotas.Rows)
+            {
+                if (dr.Cells[6].Value.ToString().Trim() != "0")
+                    dr.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
+
+
+
+            }
+            dgvCuotas.ClearSelection();
         
         }
 
@@ -358,15 +402,25 @@ namespace SOCIOS.CuentaSocio
             if (x != null)
             {
                 if (tbNombre.Text.Length > 0)
+<<<<<<< HEAD
                     x = x.Where(v=>v.Referente.Contains(tbNombre.Text)).ToList();
                 if (tbApellido.Text.Length > 0)
                     x = x.Where(v => v.Referente.Contains(tbApellido.Text)).ToList();
+=======
+                    x = x.Where(v=>v.Nombre.Contains(tbNombre.Text)).ToList();
+                if (tbApellido.Text.Length > 0)
+                    x = x.Where(v => v.Apellido.Contains(tbApellido.Text)).ToList();
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
                 if (tbSocio.Text.Length > 0)
                    x = x.Where(v => v.Nro_Socio.Contains(tbSocio.Text)).ToList();
                 if (tbDepuracion.Text.Length > 0)
                     x = x.Where(v => v.Nro_Dep.Contains(tbDepuracion.Text)).ToList();
                 if (tbDni.Text.Length > 0)
+<<<<<<< HEAD
                     x = x.Where(v => v.Referente_DNI.Contains(tbDni.Text)).ToList();
+=======
+                    x = x.Where(v => v.Dni.Contains(tbDni.Text)).ToList();
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
 
                 dgvPlanes.DataSource = x;
                 this.FormatoGrilla();
@@ -374,6 +428,7 @@ namespace SOCIOS.CuentaSocio
             }
         }
 
+<<<<<<< HEAD
         private void comboFormasDePago()
         {
             string query = "SELECT * FROM FORMAS_DE_PAGO ORDER BY ID ASC;";
@@ -444,6 +499,8 @@ namespace SOCIOS.CuentaSocio
             chkBono.Checked = false;
         }
 
+=======
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
       
        
     }

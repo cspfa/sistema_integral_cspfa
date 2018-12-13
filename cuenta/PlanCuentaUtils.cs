@@ -312,7 +312,11 @@ namespace SOCIOS.CuentaSocio
                     pc.ID = Int32.Parse(reader3.GetString(reader3.GetOrdinal("ID")).Trim());
                     pc.Monto = Decimal.Round(Decimal.Parse(reader3.GetString(reader3.GetOrdinal("MONTO")).Trim()), 2);
                     pc.Detalle = reader3.GetString(reader3.GetOrdinal("CUOTA")).Trim();
+<<<<<<< HEAD
                     pc.Nro_Soc = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_SOCIO")).Trim());
+=======
+                    pc.Nro_Soc = Int32.Parse(reader3.GetString(reader3.GetOrdinal("NRO_SOC")).Trim());
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
                     pc.Nro_Dep = Int32.Parse( reader3.GetString(reader3.GetOrdinal("NRO_DEP")).Trim());
                     pc.Barra = Int32.Parse(reader3.GetString(reader3.GetOrdinal("BARRA")).Trim());
                     string recibo = reader3.GetString(reader3.GetOrdinal("RECIBO")).Trim();
@@ -449,6 +453,7 @@ namespace SOCIOS.CuentaSocio
 
         }
 
+<<<<<<< HEAD
         public Montos_PLan getMontos(int ID)
 
         {
@@ -501,6 +506,8 @@ namespace SOCIOS.CuentaSocio
         
         }
 
+=======
+>>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
 
 
     }

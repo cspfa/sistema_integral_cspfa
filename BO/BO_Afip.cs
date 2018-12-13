@@ -14,7 +14,7 @@ namespace SOCIOS.BO
 {
    public  class BO_Afip:bo
     {
-       public void Marca_Afip_Recibo(int ID,int PTO_VTA,int NUMERO, string CAE, string VencimientoCAE)
+       public void Marca_Afip_Recibo(int ID,int PTO_VTA,int NUMERO, string CAE, string VencimientoCAE,int Tipo_Facturacion)
 
        {
 
@@ -43,7 +43,11 @@ namespace SOCIOS.BO
            vector_tipos.Add("FbDbType.Integer");
            vector_nombres.Add("@PIN_NUMERO_E");
 
-           
+           vector_contenidos.Add(Tipo_Facturacion);
+           vector_tipos.Add("FbDbType.Integer");
+           vector_nombres.Add("@PIN_MODO_FACTURA");
+                   
+
            string vprocedure = "P_RECIBOS_MARCA_AFIP";
 
            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
@@ -160,7 +164,6 @@ namespace SOCIOS.BO
            vector_contenidos.Add(VGlobales.vp_username);
            vector_tipos.Add("FbDbType.Varchar");
            vector_nombres.Add("@PIN_USUARIO");
-
 
            string vprocedure = "P_FACTURO_RECIBO_CAJA_I";
 
