@@ -53,6 +53,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -61,10 +65,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPlanilla = new System.Windows.Forms.TabPage();
             this.btnDepoCajaCampo = new System.Windows.Forms.Button();
@@ -98,6 +98,8 @@
             this.btnQuitarCheque = new System.Windows.Forms.Button();
             this.dgEgresos = new System.Windows.Forms.DataGridView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnAsignarEfectivo = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.btnVerReciboEfectivo = new System.Windows.Forms.Button();
             this.btnDesanularEfectivo = new System.Windows.Forms.Button();
             this.btnAnularEfectivo = new System.Windows.Forms.Button();
@@ -118,6 +120,8 @@
             this.btnNuevoPagoEfectivo = new System.Windows.Forms.Button();
             this.dgEfectivo = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btnAsignarOtros = new System.Windows.Forms.Button();
+            this.btnGenPdfOtros = new System.Windows.Forms.Button();
             this.btnVerReciboOtros = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnDesanularOtros = new System.Windows.Forms.Button();
@@ -146,6 +150,11 @@
             this.btnAgregarCheque = new System.Windows.Forms.Button();
             this.dgCheques = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.btnAsignarBuscador = new System.Windows.Forms.Button();
+            this.btnGenPdfBuscador = new System.Windows.Forms.Button();
+            this.btnVerReciboBuscador = new System.Windows.Forms.Button();
+            this.pbFacturarBuscador = new System.Windows.Forms.ProgressBar();
+            this.btnFacturarBuscador = new System.Windows.Forms.Button();
             this.cbBuscarPorRole = new System.Windows.Forms.CheckBox();
             this.label28 = new System.Windows.Forms.Label();
             this.cbRolesBuscador = new System.Windows.Forms.ComboBox();
@@ -179,12 +188,8 @@
             this.tbNroDesde = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgBuscador = new System.Windows.Forms.DataGridView();
-            this.btnGenPdfOtros = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.pbFacturarBuscador = new System.Windows.Forms.ProgressBar();
-            this.btnFacturarBuscador = new System.Windows.Forms.Button();
-            this.btnGenPdfBuscador = new System.Windows.Forms.Button();
-            this.btnVerReciboBuscador = new System.Windows.Forms.Button();
+            this.btnControlAfip = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPlanilla.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -745,6 +750,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnControlAfip);
+            this.tabPage1.Controls.Add(this.btnAsignarEfectivo);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.btnVerReciboEfectivo);
             this.tabPage1.Controls.Add(this.btnDesanularEfectivo);
@@ -772,6 +779,26 @@
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "INGRESOS DEL DÍA EN EFECTIVO";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnAsignarEfectivo
+            // 
+            this.btnAsignarEfectivo.Location = new System.Drawing.Point(567, 65);
+            this.btnAsignarEfectivo.Name = "btnAsignarEfectivo";
+            this.btnAsignarEfectivo.Size = new System.Drawing.Size(165, 23);
+            this.btnAsignarEfectivo.TabIndex = 158;
+            this.btnAsignarEfectivo.Text = "ASIGNAR RECIBO C";
+            this.btnAsignarEfectivo.UseVisualStyleBackColor = true;
+            this.btnAsignarEfectivo.Click += new System.EventHandler(this.btnAsignarEfectivo_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(254, 65);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(214, 23);
+            this.button4.TabIndex = 157;
+            this.button4.Text = "GENERAR PDF(S)";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnVerReciboEfectivo
             // 
@@ -1006,6 +1033,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.btnAsignarOtros);
             this.tabPage2.Controls.Add(this.btnGenPdfOtros);
             this.tabPage2.Controls.Add(this.btnVerReciboOtros);
             this.tabPage2.Controls.Add(this.button3);
@@ -1034,6 +1063,26 @@
             this.tabPage2.TabIndex = 3;
             this.tabPage2.Text = "INGRESOS DEL DÍA - CHEQUES, DEPÓSITOS Y TARJETAS";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnAsignarOtros
+            // 
+            this.btnAsignarOtros.Location = new System.Drawing.Point(567, 65);
+            this.btnAsignarOtros.Name = "btnAsignarOtros";
+            this.btnAsignarOtros.Size = new System.Drawing.Size(165, 23);
+            this.btnAsignarOtros.TabIndex = 159;
+            this.btnAsignarOtros.Text = "ASIGNAR RECIBO C";
+            this.btnAsignarOtros.UseVisualStyleBackColor = true;
+            this.btnAsignarOtros.Click += new System.EventHandler(this.btnAsignarOtros_Click);
+            // 
+            // btnGenPdfOtros
+            // 
+            this.btnGenPdfOtros.Location = new System.Drawing.Point(254, 65);
+            this.btnGenPdfOtros.Name = "btnGenPdfOtros";
+            this.btnGenPdfOtros.Size = new System.Drawing.Size(214, 23);
+            this.btnGenPdfOtros.TabIndex = 156;
+            this.btnGenPdfOtros.Text = "GENERAR PDF(S)";
+            this.btnGenPdfOtros.UseVisualStyleBackColor = true;
+            this.btnGenPdfOtros.Click += new System.EventHandler(this.btnGenPdfOtros_Click);
             // 
             // btnVerReciboOtros
             // 
@@ -1232,41 +1281,41 @@
             this.dgOtros.AllowUserToDeleteRows = false;
             this.dgOtros.AllowUserToResizeColumns = false;
             this.dgOtros.AllowUserToResizeRows = false;
-            dataGridViewCellStyle65.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgOtros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle65;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgOtros.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
             this.dgOtros.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgOtros.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgOtros.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle66.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle66.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgOtros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgOtros.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
             this.dgOtros.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle67.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle67.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle67.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle67.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgOtros.DefaultCellStyle = dataGridViewCellStyle67;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgOtros.DefaultCellStyle = dataGridViewCellStyle39;
             this.dgOtros.Location = new System.Drawing.Point(8, 96);
             this.dgOtros.Margin = new System.Windows.Forms.Padding(5);
             this.dgOtros.Name = "dgOtros";
             this.dgOtros.ReadOnly = true;
             this.dgOtros.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle68.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle68.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle68.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle68.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgOtros.RowHeadersDefaultCellStyle = dataGridViewCellStyle68;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgOtros.RowHeadersDefaultCellStyle = dataGridViewCellStyle40;
             this.dgOtros.RowHeadersVisible = false;
             this.dgOtros.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(1);
             this.dgOtros.RowTemplate.ReadOnly = true;
@@ -1341,41 +1390,41 @@
             this.dgCheques.AllowUserToDeleteRows = false;
             this.dgCheques.AllowUserToResizeColumns = false;
             this.dgCheques.AllowUserToResizeRows = false;
-            dataGridViewCellStyle69.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgCheques.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle69;
+            dataGridViewCellStyle65.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgCheques.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle65;
             this.dgCheques.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgCheques.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgCheques.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle70.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle70.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCheques.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle70;
+            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle66.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle66.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle66.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCheques.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle66;
             this.dgCheques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle71.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle71.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgCheques.DefaultCellStyle = dataGridViewCellStyle71;
+            dataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle67.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle67.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle67.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle67.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgCheques.DefaultCellStyle = dataGridViewCellStyle67;
             this.dgCheques.Location = new System.Drawing.Point(8, 42);
             this.dgCheques.Margin = new System.Windows.Forms.Padding(5);
             this.dgCheques.Name = "dgCheques";
             this.dgCheques.ReadOnly = true;
             this.dgCheques.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle72.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle72.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle72.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle72.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle72.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCheques.RowHeadersDefaultCellStyle = dataGridViewCellStyle72;
+            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle68.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle68.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle68.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle68.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle68.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCheques.RowHeadersDefaultCellStyle = dataGridViewCellStyle68;
             this.dgCheques.RowHeadersVisible = false;
             this.dgCheques.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(1);
             this.dgCheques.RowTemplate.ReadOnly = true;
@@ -1386,6 +1435,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.btnAsignarBuscador);
             this.tabPage4.Controls.Add(this.btnGenPdfBuscador);
             this.tabPage4.Controls.Add(this.btnVerReciboBuscador);
             this.tabPage4.Controls.Add(this.pbFacturarBuscador);
@@ -1431,6 +1481,54 @@
             this.tabPage4.Text = "BUSCADOR";
             this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // btnAsignarBuscador
+            // 
+            this.btnAsignarBuscador.Location = new System.Drawing.Point(929, 111);
+            this.btnAsignarBuscador.Name = "btnAsignarBuscador";
+            this.btnAsignarBuscador.Size = new System.Drawing.Size(187, 23);
+            this.btnAsignarBuscador.TabIndex = 177;
+            this.btnAsignarBuscador.Text = "ASIGNAR RECIBO C";
+            this.btnAsignarBuscador.UseVisualStyleBackColor = true;
+            this.btnAsignarBuscador.Click += new System.EventHandler(this.btnAsignarBuscador_Click);
+            // 
+            // btnGenPdfBuscador
+            // 
+            this.btnGenPdfBuscador.Location = new System.Drawing.Point(709, 112);
+            this.btnGenPdfBuscador.Name = "btnGenPdfBuscador";
+            this.btnGenPdfBuscador.Size = new System.Drawing.Size(214, 23);
+            this.btnGenPdfBuscador.TabIndex = 176;
+            this.btnGenPdfBuscador.Text = "GENERAR PDF(S)";
+            this.btnGenPdfBuscador.UseVisualStyleBackColor = true;
+            this.btnGenPdfBuscador.Click += new System.EventHandler(this.btnGenPdfBuscador_Click);
+            // 
+            // btnVerReciboBuscador
+            // 
+            this.btnVerReciboBuscador.Location = new System.Drawing.Point(540, 112);
+            this.btnVerReciboBuscador.Name = "btnVerReciboBuscador";
+            this.btnVerReciboBuscador.Size = new System.Drawing.Size(163, 23);
+            this.btnVerReciboBuscador.TabIndex = 175;
+            this.btnVerReciboBuscador.Text = "VER RECIBO C";
+            this.btnVerReciboBuscador.UseVisualStyleBackColor = true;
+            this.btnVerReciboBuscador.Click += new System.EventHandler(this.btnVerReciboBuscador_Click);
+            // 
+            // pbFacturarBuscador
+            // 
+            this.pbFacturarBuscador.Location = new System.Drawing.Point(265, 113);
+            this.pbFacturarBuscador.Name = "pbFacturarBuscador";
+            this.pbFacturarBuscador.Size = new System.Drawing.Size(214, 21);
+            this.pbFacturarBuscador.TabIndex = 174;
+            this.pbFacturarBuscador.Visible = false;
+            // 
+            // btnFacturarBuscador
+            // 
+            this.btnFacturarBuscador.Location = new System.Drawing.Point(96, 112);
+            this.btnFacturarBuscador.Name = "btnFacturarBuscador";
+            this.btnFacturarBuscador.Size = new System.Drawing.Size(163, 23);
+            this.btnFacturarBuscador.TabIndex = 173;
+            this.btnFacturarBuscador.Text = "FACTURAR";
+            this.btnFacturarBuscador.UseVisualStyleBackColor = true;
+            this.btnFacturarBuscador.Click += new System.EventHandler(this.btnFacturarBuscador_Click);
             // 
             // cbBuscarPorRole
             // 
@@ -1749,41 +1847,41 @@
             this.dgBuscador.AllowUserToDeleteRows = false;
             this.dgBuscador.AllowUserToResizeColumns = false;
             this.dgBuscador.AllowUserToResizeRows = false;
-            dataGridViewCellStyle37.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgBuscador.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle37;
+            dataGridViewCellStyle69.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgBuscador.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle69;
             this.dgBuscador.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgBuscador.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgBuscador.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle38.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle38.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle38.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle38.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle38.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgBuscador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle38;
+            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle70.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle70.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle70.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgBuscador.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle70;
             this.dgBuscador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle39.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle39.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle39.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle39.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle39.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle39.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgBuscador.DefaultCellStyle = dataGridViewCellStyle39;
+            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle71.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle71.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle71.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgBuscador.DefaultCellStyle = dataGridViewCellStyle71;
             this.dgBuscador.Location = new System.Drawing.Point(8, 143);
             this.dgBuscador.Margin = new System.Windows.Forms.Padding(5);
             this.dgBuscador.Name = "dgBuscador";
             this.dgBuscador.ReadOnly = true;
             this.dgBuscador.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgBuscador.RowHeadersDefaultCellStyle = dataGridViewCellStyle40;
+            dataGridViewCellStyle72.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle72.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle72.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle72.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle72.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle72.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle72.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgBuscador.RowHeadersDefaultCellStyle = dataGridViewCellStyle72;
             this.dgBuscador.RowHeadersVisible = false;
             this.dgBuscador.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(1);
             this.dgBuscador.RowTemplate.ReadOnly = true;
@@ -1792,63 +1890,25 @@
             this.dgBuscador.Size = new System.Drawing.Size(1133, 467);
             this.dgBuscador.TabIndex = 73;
             // 
-            // btnGenPdfOtros
+            // btnControlAfip
             // 
-            this.btnGenPdfOtros.Location = new System.Drawing.Point(254, 65);
-            this.btnGenPdfOtros.Name = "btnGenPdfOtros";
-            this.btnGenPdfOtros.Size = new System.Drawing.Size(214, 23);
-            this.btnGenPdfOtros.TabIndex = 156;
-            this.btnGenPdfOtros.Text = "GENERAR PDF(S)";
-            this.btnGenPdfOtros.UseVisualStyleBackColor = true;
-            this.btnGenPdfOtros.Click += new System.EventHandler(this.btnGenPdfOtros_Click);
+            this.btnControlAfip.Location = new System.Drawing.Point(822, 65);
+            this.btnControlAfip.Name = "btnControlAfip";
+            this.btnControlAfip.Size = new System.Drawing.Size(290, 23);
+            this.btnControlAfip.TabIndex = 159;
+            this.btnControlAfip.Text = "CONTROL UNITARIO AFIP";
+            this.btnControlAfip.UseVisualStyleBackColor = true;
+            this.btnControlAfip.Click += new System.EventHandler(this.btnControlAfip_Click);
             // 
-            // button4
+            // button5
             // 
-            this.button4.Location = new System.Drawing.Point(254, 65);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(214, 23);
-            this.button4.TabIndex = 157;
-            this.button4.Text = "GENERAR PDF(S)";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // pbFacturarBuscador
-            // 
-            this.pbFacturarBuscador.Location = new System.Drawing.Point(265, 113);
-            this.pbFacturarBuscador.Name = "pbFacturarBuscador";
-            this.pbFacturarBuscador.Size = new System.Drawing.Size(214, 21);
-            this.pbFacturarBuscador.TabIndex = 174;
-            this.pbFacturarBuscador.Visible = false;
-            // 
-            // btnFacturarBuscador
-            // 
-            this.btnFacturarBuscador.Location = new System.Drawing.Point(96, 112);
-            this.btnFacturarBuscador.Name = "btnFacturarBuscador";
-            this.btnFacturarBuscador.Size = new System.Drawing.Size(163, 23);
-            this.btnFacturarBuscador.TabIndex = 173;
-            this.btnFacturarBuscador.Text = "FACTURAR";
-            this.btnFacturarBuscador.UseVisualStyleBackColor = true;
-            this.btnFacturarBuscador.Click += new System.EventHandler(this.btnFacturarBuscador_Click);
-            // 
-            // btnGenPdfBuscador
-            // 
-            this.btnGenPdfBuscador.Location = new System.Drawing.Point(709, 112);
-            this.btnGenPdfBuscador.Name = "btnGenPdfBuscador";
-            this.btnGenPdfBuscador.Size = new System.Drawing.Size(214, 23);
-            this.btnGenPdfBuscador.TabIndex = 176;
-            this.btnGenPdfBuscador.Text = "GENERAR PDF(S)";
-            this.btnGenPdfBuscador.UseVisualStyleBackColor = true;
-            this.btnGenPdfBuscador.Click += new System.EventHandler(this.btnGenPdfBuscador_Click);
-            // 
-            // btnVerReciboBuscador
-            // 
-            this.btnVerReciboBuscador.Location = new System.Drawing.Point(540, 112);
-            this.btnVerReciboBuscador.Name = "btnVerReciboBuscador";
-            this.btnVerReciboBuscador.Size = new System.Drawing.Size(163, 23);
-            this.btnVerReciboBuscador.TabIndex = 175;
-            this.btnVerReciboBuscador.Text = "VER RECIBO C";
-            this.btnVerReciboBuscador.UseVisualStyleBackColor = true;
-            this.btnVerReciboBuscador.Click += new System.EventHandler(this.btnVerReciboBuscador_Click);
+            this.button5.Location = new System.Drawing.Point(822, 64);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(290, 23);
+            this.button5.TabIndex = 160;
+            this.button5.Text = "CONTROL UNITARIO AFIP";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // planillaDeCaja
             // 
@@ -2016,5 +2076,10 @@
         private System.Windows.Forms.Button btnFacturarBuscador;
         private System.Windows.Forms.Button btnGenPdfBuscador;
         private System.Windows.Forms.Button btnVerReciboBuscador;
+        private System.Windows.Forms.Button btnAsignarEfectivo;
+        private System.Windows.Forms.Button btnAsignarOtros;
+        private System.Windows.Forms.Button btnAsignarBuscador;
+        private System.Windows.Forms.Button btnControlAfip;
+        private System.Windows.Forms.Button button5;
     }
 }

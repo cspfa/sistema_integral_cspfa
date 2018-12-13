@@ -172,7 +172,7 @@ namespace SOCIOS
         public string obtenerObservacion(int ID)
         {
             string OBSERVACION = "";
-            string QUERY = "SELECT OBSERVACION FROM RECIBOS_CAJA ID = " + ID + ";";
+            string QUERY = "SELECT OBSERVACIONES FROM RECIBOS_CAJA WHERE ID = " + ID + ";";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
@@ -249,6 +249,40 @@ namespace SOCIOS
                 ID = int.Parse(foundRows[0][0].ToString());
 
             return ID;
+        }
+
+        public DataRow[] obtenerPuntosPorRole(string ROLE)
+        {
+            string QUERY = "SELECT PTO_VTA FROM PUNTOS_DE_VENTA WHERE ROL = '" + ROLE + "';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            return foundRows;
+        }
+
+        public bool existeReciboC(string PTO_VTA, string NRO_RECIBO)
+        {
+            bool EXISTE = true;
+            string QUERY = "SELECT ID FROM RECIBOS_CAJA WHERE PTO_VTA_E = '" + PTO_VTA + "' AND NUMERO_E = '" + NRO_RECIBO + "';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length == 0)
+                EXISTE = false;
+
+            return EXISTE;
+        }
+
+        public string obnenerCondicionPorCuit(string CUIT)
+        {
+            string CONDICION = "";
+            string QUERY = "SELECT C.DETALLE FROM CONDICIONES_IVA C, TITULAR T WHERE T.NUM_DOC = " + CUIT + " AND T.COND_IVA = C.ID;";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+                CONDICION = foundRows[0][0].ToString();
+
+            return CONDICION;
         }
     }
 }

@@ -547,31 +547,19 @@ namespace SOCIOS
             string CONCEPTO = "SERVICIOS PRESTADOS";
             string EXCEPTION = "";
             string NRO_FACT_ELECT = "XXXX";
+            string COND_IVA = "CONSUMIDOR FINAL";
 
-            if (DENI == "98765432")
+            if (DENI != "0" && DENI != "")
             {
-                CONCEPTO = tbObservaciones.Text.Trim();
-            }
+                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
 
-            /* CONS FINAL 99
-             * DNI 96
-             * CUIT 80
-             * DNI 0 = 15905
-             * CON CUIT = 1 dep 20
-             * CON DNI 24705
-             */
-
-            if (NRO_DNI_TRIM == "0" || NRO_DNI_TRIM == "")
-            {
-                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+                if (DENI.Length > 8)
+                {
+                    TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                    CONCEPTO = tbObservaciones.Text.Trim();
+                    COND_IVA = nr.obnenerCondicionPorCuit(DENI);
+                }
             }
-
-            if (NRO_CUIT_TRIM != "" && NRO_CUIT_TRIM != "0" && NRO_DNI_TRIM == "98765432")
-            {
-                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
-                DENI = NRO_CUIT_TRIM;
-            }
-           
 
             if (cbPtoVta.SelectedValue.ToString() == "0005")
             {
@@ -583,7 +571,6 @@ namespace SOCIOS
                 PTO_VTA_M = VGlobales.PTO_VTA_M;
                 PTO_VTA_O = VGlobales.PTO_VTA_O;
             }
-
             
             if (cbDobleDuplicado.Checked == true)
             {
@@ -668,7 +655,7 @@ namespace SOCIOS
 
                                     if (result.Result == true)
                                     {
-                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
+                                        imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, IMPORTE,
                                             result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
                                         NRO_FACT_ELECT = result.Numero.ToString();
                                     }

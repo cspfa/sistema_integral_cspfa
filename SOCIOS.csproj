@@ -170,6 +170,16 @@
       <DependentUpon>abmCargos.cs</DependentUpon>
     </Compile>
     <Compile Include="actSociosUpdate.cs" />
+    <Compile Include="Factura_Electronica\Consulta_Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Factura_Electronica\Consulta_Factura.Designer.cs" />
+    <Compile Include="recibos\asignarReciboC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recibos\asignarReciboC.Designer.cs">
+      <DependentUpon>asignarReciboC.cs</DependentUpon>
+    </Compile>
     <Compile Include="bono\Bonos\Carga_Bono_Blanco_Socio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1230,6 +1240,10 @@
     <Compile Include="Utils\XLS.cs" />
     <EmbeddedResource Include="abmCargos.resx">
       <DependentUpon>abmCargos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Factura_Electronica\Consulta_Factura.resx" />
+    <EmbeddedResource Include="recibos\asignarReciboC.resx">
+      <DependentUpon>asignarReciboC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bono\BonoHotel_Blanco.rdlc" />
     <EmbeddedResource Include="bono\BonoPaquete_Blanco.rdlc" />

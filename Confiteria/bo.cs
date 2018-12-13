@@ -257,7 +257,7 @@ namespace Confiteria
             vector_tipos.Add("FbDbType.Numeric");
 
             ArrayList vector_nombres = new ArrayList();
-            vector_nombres.Add("@ITEM");
+            vector_nombres.Add("@FECHA");
             vector_nombres.Add("@NOM_SOC");
             vector_nombres.Add("@IMPORTE");
             vector_nombres.Add("@DESTINO");
