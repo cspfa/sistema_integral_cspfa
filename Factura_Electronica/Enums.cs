@@ -19,4 +19,11 @@ namespace SOCIOS.Factura_Electronica
 
    }
 
+   public enum Tipo_FACTURACION_ENUM
+   {
+       UNITARIA     = 1,
+       DUAL         = 2
+
+   }
+
 }
