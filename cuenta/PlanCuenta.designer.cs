@@ -73,18 +73,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-<<<<<<< HEAD
             this.lbNombreCompleto = new System.Windows.Forms.Label();
-=======
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCuotas)).BeginInit();
             this.gpDescuento.SuspendLayout();
             this.gpPlanCuota.SuspendLayout();
-<<<<<<< HEAD
             this.gpPago.SuspendLayout();
-=======
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             this.gpRol.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,11 +87,7 @@
             this.dgvPlanes.AllowUserToAddRows = false;
             this.dgvPlanes.AllowUserToDeleteRows = false;
             this.dgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-<<<<<<< HEAD
             this.dgvPlanes.Location = new System.Drawing.Point(12, 147);
-=======
-            this.dgvPlanes.Location = new System.Drawing.Point(12, 123);
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             this.dgvPlanes.MultiSelect = false;
             this.dgvPlanes.Name = "dgvPlanes";
             this.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -267,11 +257,7 @@
             this.gpPlanCuota.Controls.Add(this.butonInfoDescuento);
             this.gpPlanCuota.Location = new System.Drawing.Point(10, 303);
             this.gpPlanCuota.Name = "gpPlanCuota";
-<<<<<<< HEAD
             this.gpPlanCuota.Size = new System.Drawing.Size(1043, 345);
-=======
-            this.gpPlanCuota.Size = new System.Drawing.Size(1043, 271);
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             this.gpPlanCuota.TabIndex = 91;
             this.gpPlanCuota.TabStop = false;
             this.gpPlanCuota.Text = "Plan de Cuotas";
@@ -578,7 +564,6 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-<<<<<<< HEAD
             // lbNombreCompleto
             // 
             this.lbNombreCompleto.AutoSize = true;
@@ -588,17 +573,11 @@
             this.lbNombreCompleto.TabIndex = 97;
             this.lbNombreCompleto.Text = "-";
             // 
-=======
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             // PlanCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(1067, 652);
-=======
-            this.ClientSize = new System.Drawing.Size(1067, 586);
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.tbDni);
             this.Controls.Add(this.label11);
@@ -623,11 +602,8 @@
             this.gpDescuento.PerformLayout();
             this.gpPlanCuota.ResumeLayout(false);
             this.gpPlanCuota.PerformLayout();
-<<<<<<< HEAD
             this.gpPago.ResumeLayout(false);
             this.gpPago.PerformLayout();
-=======
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
             this.gpRol.ResumeLayout(false);
             this.gpRol.PerformLayout();
             this.ResumeLayout(false);
@@ -666,7 +642,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnBuscar;
-<<<<<<< HEAD
         private System.Windows.Forms.GroupBox gpPago;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -684,7 +659,5 @@
         private System.Windows.Forms.Label lbMonto;
         private System.Windows.Forms.Label LBCUOTA;
         private System.Windows.Forms.Label lbNombreCompleto;
-=======
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
     }
 }

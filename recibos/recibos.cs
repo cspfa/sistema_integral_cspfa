@@ -542,6 +542,7 @@ namespace SOCIOS
             string PTO_VTA_O = "";
             int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
             int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+            int TF = (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA;
             string NRO_CUIT_TRIM = NRO_CUIT.Trim();
             string NRO_DNI_TRIM = DENI.Trim();
             string CONCEPTO = "SERVICIOS PRESTADOS";
@@ -651,7 +652,7 @@ namespace SOCIOS
                                     Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                                     Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                     Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
-                                    result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now);
+                                    result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, TF);
 
                                     if (result.Result == true)
                                     {
@@ -691,17 +692,12 @@ namespace SOCIOS
                                 if (VGlobales.ID_CUOTA_PAGO != 0)
                                    this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, false, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));
                             }
-<<<<<<< HEAD
-=======
                             else
                             {
                                 if (VGlobales.ID_CUOTA_PAGO != 0)
                                     this.Desmarcar_Cuota(VGlobales.ID_CUOTA_PAGO,IMPORTE);
 
                             }
-
-
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
                         }
 
                         string DETALLE = lbSectAct.Text + " - " + lbNombreProf.Text;

@@ -98,7 +98,6 @@ namespace SOCIOS
           resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
 
       }
-<<<<<<< HEAD
 
       public void Update_Fecha_Nacimiento(DateTime Fecha_Nacimiento, int ID, int Nro_Soc, int Nro_Dep, int Barra, string Tipo)
       {
@@ -146,7 +145,4 @@ namespace SOCIOS
       
       }
   }
-=======
-    }
->>>>>>> 101f5219f1f7aa8eff9c9b150ffe2e620f2705cf
 }

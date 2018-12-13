@@ -115,7 +115,7 @@ namespace SOCIOS.Factura_Electronica
 
 
 
-           serviceFactura.Facturo_Recibo(ID_RECIBO, Punto_Venta, (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI,Documento,Monto, System.DateTime.Now);
+           serviceFactura.Facturo_Recibo(ID_RECIBO, Punto_Venta, (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C, (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI,Documento,Monto, System.DateTime.Now, 1);
 
                
         }

@@ -4415,6 +4415,7 @@ namespace SOCIOS
             string DENI = "";
             int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
             int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+            int TF = (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA;
             int recibo_id = 0;
             string IMPORTE = "";
             string FECHA_RECIBO = "";
@@ -4479,7 +4480,7 @@ namespace SOCIOS
                                 {
                                     if (decimal.Parse(row.Cells[4].Value.ToString()) < 5000) //VALIDO QUE SEA MENOR A 5 MIL
                                     {
-                                        result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now);
+                                        result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                         if (result.Result == true)
                                             imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
                                         //else
@@ -4494,22 +4495,23 @@ namespace SOCIOS
                                             decimal CANTIDAD_FACTURAS_FLOOR = Math.Floor(CANTIDAD_FACTURAS);
                                             decimal IMPORTE_FACTURADO = CANTIDAD_FACTURAS_FLOOR * 4999;
                                             decimal IMPORTE_RESTANTE = decimal.Parse(IMPORTE) - IMPORTE_FACTURADO;
+                                            TF = (int)Factura_Electronica.Tipo_FACTURACION_ENUM.DUAL;
 
                                             for (int i = 1; i <= CANTIDAD_FACTURAS_FLOOR; i++)
                                             {
-                                                result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, 4999, DateTime.Now);
+                                                result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, 4999, DateTime.Now, TF);
 
                                                 if (result.Result == true)
                                                     imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, 4999, result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
                                             }
 
-                                            result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE_RESTANTE, DateTime.Now);
+                                            result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE_RESTANTE, DateTime.Now, TF);
                                             if (result.Result == true)
                                                 imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE_RESTANTE, result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
                                         }
                                         else // SI NO ES CONSUMIDOR FINAL HAGO UN SOLO RECIBO C
                                         {
-                                            result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now);
+                                            result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                             if (result.Result == true)
                                                 imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
                                             PB.PerformStep();
@@ -4598,7 +4600,7 @@ namespace SOCIOS
                                         Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                                         Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                         Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(Int32.Parse(VGlobales.PTO_VTA_O));
-                                        result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now);
+                                        result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, 1);
                                         
                                         if (result.Result == true)
                                             imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
