@@ -2198,5 +2198,11 @@ namespace SOCIOS
             Factura_Electronica.Testing_Facturacion tf = new Factura_Electronica.Testing_Facturacion();
             tf.ShowDialog();
         }
+
+        private void confiteríaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Confiteria.importador imp = new Confiteria.importador("CPOCABA");
+            imp.ShowDialog();
+        }
     }
 }

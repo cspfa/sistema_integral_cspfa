@@ -71,6 +71,7 @@
             this.importarBienestarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.planDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turismoControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tESTINGFCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afiliacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirAutorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renunciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,6 +99,7 @@
             this.cerrarCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arancelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puntosDeVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tESTINGFCToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deportesToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.actualizarMorososToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteAsistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -155,8 +157,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.tESTINGFCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tESTINGFCToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.confiteríaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -407,10 +408,11 @@
             this.delfoCabreraToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.comprobantesToolStripMenuItem,
             this.entradasToolStripMenuItem,
-            this.movimientosToolStripMenuItem});
+            this.movimientosToolStripMenuItem,
+            this.confiteríaToolStripMenuItem1});
             this.delfoCabreraToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("delfoCabreraToolStripMenuItem.Image")));
             this.delfoCabreraToolStripMenuItem.Name = "delfoCabreraToolStripMenuItem";
-            this.delfoCabreraToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.delfoCabreraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.delfoCabreraToolStripMenuItem.Text = "Delfo Cabrera";
             // 
             // comprobantesToolStripMenuItem
@@ -445,7 +447,7 @@
             this.toolStripMenuItem12});
             this.generalBelgranoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.bullet_green;
             this.generalBelgranoToolStripMenuItem.Name = "generalBelgranoToolStripMenuItem";
-            this.generalBelgranoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.generalBelgranoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.generalBelgranoToolStripMenuItem.Text = "General Belgrano";
             this.generalBelgranoToolStripMenuItem.Click += new System.EventHandler(this.generalBelgranoToolStripMenuItem_Click);
             // 
@@ -560,6 +562,13 @@
             this.turismoControlToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.turismoControlToolStripMenuItem.Text = "Turismo Control";
             this.turismoControlToolStripMenuItem.Click += new System.EventHandler(this.turismoControlToolStripMenuItem_Click);
+            // 
+            // tESTINGFCToolStripMenuItem
+            // 
+            this.tESTINGFCToolStripMenuItem.Name = "tESTINGFCToolStripMenuItem";
+            this.tESTINGFCToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.tESTINGFCToolStripMenuItem.Text = "TESTING FC";
+            this.tESTINGFCToolStripMenuItem.Click += new System.EventHandler(this.tESTINGFCToolStripMenuItem_Click);
             // 
             // afiliacionesToolStripMenuItem
             // 
@@ -803,6 +812,13 @@
             this.puntosDeVentaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.puntosDeVentaToolStripMenuItem.Text = "Puntos de Venta";
             this.puntosDeVentaToolStripMenuItem.Click += new System.EventHandler(this.puntosDeVentaToolStripMenuItem_Click);
+            // 
+            // tESTINGFCToolStripMenuItem1
+            // 
+            this.tESTINGFCToolStripMenuItem1.Name = "tESTINGFCToolStripMenuItem1";
+            this.tESTINGFCToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+            this.tESTINGFCToolStripMenuItem1.Text = "TESTING FC";
+            this.tESTINGFCToolStripMenuItem1.Click += new System.EventHandler(this.tESTINGFCToolStripMenuItem1_Click);
             // 
             // deportesToolStrip
             // 
@@ -1301,19 +1317,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // tESTINGFCToolStripMenuItem
+            // confiteríaToolStripMenuItem1
             // 
-            this.tESTINGFCToolStripMenuItem.Name = "tESTINGFCToolStripMenuItem";
-            this.tESTINGFCToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.tESTINGFCToolStripMenuItem.Text = "TESTING FC";
-            this.tESTINGFCToolStripMenuItem.Click += new System.EventHandler(this.tESTINGFCToolStripMenuItem_Click);
-            // 
-            // tESTINGFCToolStripMenuItem1
-            // 
-            this.tESTINGFCToolStripMenuItem1.Name = "tESTINGFCToolStripMenuItem1";
-            this.tESTINGFCToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
-            this.tESTINGFCToolStripMenuItem1.Text = "TESTING FC";
-            this.tESTINGFCToolStripMenuItem1.Click += new System.EventHandler(this.tESTINGFCToolStripMenuItem1_Click);
+            this.confiteríaToolStripMenuItem1.Image = global::SOCIOS.Properties.Resources.bullet_green;
+            this.confiteríaToolStripMenuItem1.Name = "confiteríaToolStripMenuItem1";
+            this.confiteríaToolStripMenuItem1.Size = new System.Drawing.Size(190, 22);
+            this.confiteríaToolStripMenuItem1.Text = "Confitería";
+            this.confiteríaToolStripMenuItem1.Click += new System.EventHandler(this.confiteríaToolStripMenuItem1_Click);
             // 
             // MenuABM
             // 
@@ -1485,5 +1495,6 @@
         private System.Windows.Forms.ToolStripMenuItem completarBonosEnBlancoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tESTINGFCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tESTINGFCToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem confiteríaToolStripMenuItem1;
     }
 }

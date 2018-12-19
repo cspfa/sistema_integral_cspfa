@@ -101,6 +101,12 @@
     <Compile Include="grillaPreComanda.Designer.cs">
       <DependentUpon>grillaPreComanda.cs</DependentUpon>
     </Compile>
+    <Compile Include="importador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="importador.Designer.cs">
+      <DependentUpon>importador.cs</DependentUpon>
+    </Compile>
     <Compile Include="imprimir.cs" />
     <Compile Include="listadoAranceles.cs">
       <SubType>Form</SubType>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="grillaPreComanda.resx">
       <DependentUpon>grillaPreComanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="importador.resx">
+      <DependentUpon>importador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="listadoAranceles.resx">
       <DependentUpon>listadoAranceles.cs</DependentUpon>
