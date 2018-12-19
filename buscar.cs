@@ -536,7 +536,7 @@ namespace SOCIOS
                     cmd.Parameters.Add(new FbParameter("@VPCRJP3", FbDbType.Integer));
                     cmd.Parameters.Add(new FbParameter("@VPCRJP2", FbDbType.Integer));
                     cmd.Parameters.Add(new FbParameter("@VPCRJP1", FbDbType.Integer));
-                    cmd.Parameters.Add(new FbParameter("@VNRODOC", FbDbType.Integer));
+                    cmd.Parameters.Add(new FbParameter("@VNRODOC", FbDbType.BigInt));
                     cmd.Parameters.Add(new FbParameter("@VID_EMPLEADO", FbDbType.Integer));
 
                     // SE CARGAN LOS PARAMETROS CON LOS VALORES DEL WINFORM.-
@@ -550,7 +550,7 @@ namespace SOCIOS
                     cmd.Parameters["@VPCRJP3"].Value = ((textBox10.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox10.Text))));
                     cmd.Parameters["@VPCRJP2"].Value = ((textBox9.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox9.Text))));
                     cmd.Parameters["@VPCRJP1"].Value = ((textBox8.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox8.Text))));
-                    cmd.Parameters["@VNRODOC"].Value = ((textBox14.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox14.Text))));
+                    cmd.Parameters["@VNRODOC"].Value = ((textBox14.Text == "" ? 0 : (int)(System.Convert.ToInt64(textBox14.Text))));
                     cmd.Parameters["@VID_EMPLEADO"].Value = ((mtbIdEmpleado.Text == "" ? 0 : (int?)(System.Convert.ToInt32(mtbIdEmpleado.Text))));
                         
                     // SE EJECUTA EL COMANDO DE LECTURA CON TODOS LOS PARAMETROS.-
@@ -648,7 +648,9 @@ namespace SOCIOS
                         
                     if (BAJA != "")
                         BAJA = BAJA.Substring(0, 10);
-                    
+
+                    string NUM_DOC = reader.GetString(reader.GetOrdinal("NUM_DOC"));
+
                     ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("NRO_SOC")).PadLeft(5, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NRO_DEP")).PadLeft(3, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("COD_DTO")).PadLeft(3, '0'));
@@ -660,7 +662,7 @@ namespace SOCIOS
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ID")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_DEPORTES")));
-                    listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NUM_DOC")));
+                    listItem.SubItems.Add(NUM_DOC);
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("COD_CAT_SOC")));
                     listItem.SubItems.Add(BAJA); 
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_NO_DESC")));

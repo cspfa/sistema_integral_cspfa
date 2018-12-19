@@ -1068,7 +1068,7 @@
             this.textBox14.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.textBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox14.Location = new System.Drawing.Point(983, 61);
-            this.textBox14.Mask = "99999999";
+            this.textBox14.Mask = "99999999999";
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(92, 20);
             this.textBox14.TabIndex = 11;
@@ -1080,11 +1080,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(899, 65);
+            this.label11.Location = new System.Drawing.Point(859, 65);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(80, 13);
+            this.label11.Size = new System.Drawing.Size(119, 13);
             this.label11.TabIndex = 32;
-            this.label11.Text = "DOCUMENTO:";
+            this.label11.Text = "DOCUMENTO /  CUIT:";
             // 
             // label10
             // 
