@@ -1114,7 +1114,8 @@ namespace SOCIOS.BO
         //STORED MODIFICAR RECIBOS EN BLANCO
         public void modificarRecibosEnBlanco(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, float VALOR, string FORMA_DE_PAGO, int SECTACT, 
             string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, 
-            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, string DNI, string PTO_VTA, string BANCO_DEPO)
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, string DNI, string PTO_VTA, string BANCO_DEPO, string CAE, 
+            string VENCE_CAE, string PTO_VTA_E, string NUMERO_E)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
@@ -1139,6 +1140,10 @@ namespace SOCIOS.BO
             vector_contenidos.Add(DNI);
             vector_contenidos.Add(PTO_VTA);
             vector_contenidos.Add(BANCO_DEPO);
+            vector_contenidos.Add(CAE);
+            vector_contenidos.Add(VENCE_CAE);
+            vector_contenidos.Add(PTO_VTA_E);
+            vector_contenidos.Add(NUMERO_E);
 
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
@@ -1159,7 +1164,11 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Char");
-            
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
             vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@CUENTA_DEBE");
             vector_nombres.Add("@CUENTA_HABER");
@@ -1179,6 +1188,10 @@ namespace SOCIOS.BO
             vector_nombres.Add("@DNI");
             vector_nombres.Add("@PTO_VTA");
             vector_nombres.Add("@BANCO_DEPO");
+            vector_nombres.Add("@CAE");
+            vector_nombres.Add("@VENCE_CAE");
+            vector_nombres.Add("@PTO_VTA_E");
+            vector_nombres.Add("@NUMERO_E");
 
             string vprocedure = "RECIBOS_CAJA_U";
 

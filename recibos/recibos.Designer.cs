@@ -79,6 +79,10 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbReintegro = new System.Windows.Forms.Label();
             this.lbDisponibles = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tbCAE = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dpVenceCAE = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -91,6 +95,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dpVenceCAE);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.tbCAE);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.cbBancoDepo);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnImprimirTicket);
@@ -123,7 +131,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(8, 175);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(624, 305);
+            this.groupBox1.Size = new System.Drawing.Size(624, 321);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS DEL RECIBO";
@@ -148,7 +156,7 @@
             // 
             // btnImprimirTicket
             // 
-            this.btnImprimirTicket.Location = new System.Drawing.Point(121, 264);
+            this.btnImprimirTicket.Location = new System.Drawing.Point(257, 288);
             this.btnImprimirTicket.Name = "btnImprimirTicket";
             this.btnImprimirTicket.Size = new System.Drawing.Size(119, 25);
             this.btnImprimirTicket.TabIndex = 81;
@@ -236,7 +244,7 @@
             this.tbObservaciones.MaxLength = 120;
             this.tbObservaciones.Multiline = true;
             this.tbObservaciones.Name = "tbObservaciones";
-            this.tbObservaciones.Size = new System.Drawing.Size(353, 51);
+            this.tbObservaciones.Size = new System.Drawing.Size(353, 46);
             this.tbObservaciones.TabIndex = 72;
             // 
             // cbSinCargo
@@ -608,11 +616,44 @@
             this.lbDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbDisponibles.Visible = false;
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(78, 268);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 13);
+            this.label10.TabIndex = 84;
+            this.label10.Text = "CAE:";
+            // 
+            // tbCAE
+            // 
+            this.tbCAE.Location = new System.Drawing.Point(121, 264);
+            this.tbCAE.Name = "tbCAE";
+            this.tbCAE.Size = new System.Drawing.Size(119, 20);
+            this.tbCAE.TabIndex = 85;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(2, 294);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(108, 13);
+            this.label11.TabIndex = 86;
+            this.label11.Text = "VENCIMIENTO CAE:";
+            // 
+            // dpVenceCAE
+            // 
+            this.dpVenceCAE.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpVenceCAE.Location = new System.Drawing.Point(121, 290);
+            this.dpVenceCAE.Name = "dpVenceCAE";
+            this.dpVenceCAE.Size = new System.Drawing.Size(119, 20);
+            this.dpVenceCAE.TabIndex = 87;
+            // 
             // recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 487);
+            this.ClientSize = new System.Drawing.Size(638, 502);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -690,5 +731,9 @@
         private System.Windows.Forms.Label lbReintegro;
         private System.Windows.Forms.ComboBox cbBancoDepo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox tbCAE;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker dpVenceCAE;
+        private System.Windows.Forms.Label label11;
     }
 }

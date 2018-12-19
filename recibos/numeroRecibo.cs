@@ -284,5 +284,18 @@ namespace SOCIOS
 
             return CONDICION;
         }
+
+        public string obtAccionPorPtoVta(string PTO_VTA)
+        {
+            string ACCION = "";
+            string QUERY = "SELECT ACCION FROM PUNTOS_DE_VENTA WHERE PTO_VTA = '" + PTO_VTA + "';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+                ACCION = foundRows[0][0].ToString();
+
+            return ACCION;
+        }
     }
 }
