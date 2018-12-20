@@ -4483,8 +4483,8 @@ namespace SOCIOS
                                         result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                         if (result.Result == true)
                                             imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
-                                        //else
-                                            //MessageBox.Show(result.Excepcion.ToString());
+                                        else
+                                            MessageBox.Show(result.Excepcion.ToString());
                                         PB.PerformStep();
                                     }
                                     else //SI ES MAYOR O IGUAL A 5 MIL
@@ -4782,13 +4782,13 @@ namespace SOCIOS
                                 imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), 
                                     CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
 
-                                //MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
+                                MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
                             }
                             /*else
                             {
                                 MessageBox.Show("EL ARCHIVO YA EXISTE", "ERROR");
                             }*/
-                            MessageBox.Show("ARCHIVOS PDF GENERADOS CORRECTAMENTE", "LISTO!");
+                            //MessageBox.Show("ARCHIVOS PDF GENERADOS CORRECTAMENTE", "LISTO!");
                         }
                         catch (Exception error)
                         {
