@@ -623,7 +623,7 @@ namespace SOCIOS
                 listView1.Columns.Add("ID");
                 listView1.Columns.Add("MC");
                 listView1.Columns.Add("MD");
-                listView1.Columns.Add("DNI");
+                listView1.Columns.Add("DNI/CUIT");
                 listView1.Columns.Add("CAT_SOC");
                 listView1.Columns.Add("BAJA");
                 listView1.Columns.Add("MND");
