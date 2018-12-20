@@ -2520,7 +2520,7 @@ namespace SOCIOS
                             cmd.Parameters.Add(new FbParameter("@P16", FbDbType.Char, 8));
                             cmd.Parameters.Add(new FbParameter("@P17", FbDbType.Char, 8));
                             cmd.Parameters.Add(new FbParameter("@P18", FbDbType.Char, 1));
-                            cmd.Parameters.Add(new FbParameter("@P19", FbDbType.Integer));
+                            cmd.Parameters.Add(new FbParameter("@P19", FbDbType.BigInt)); //DNI
                             cmd.Parameters.Add(new FbParameter("@P20", FbDbType.Char, 8));
                             cmd.Parameters.Add(new FbParameter("@P21", FbDbType.Char, 40));
                             cmd.Parameters.Add(new FbParameter("@P22", FbDbType.Char, 5));
@@ -2608,7 +2608,14 @@ namespace SOCIOS
 
                             cmd.Parameters["@P18"].Value = (comboBox8.SelectedValue == null ? "" : comboBox8.SelectedValue.ToString());
 
-                            cmd.Parameters["@P19"].Value = (maskedTextBox9.Text == "_________" ? 0 : (int?)(System.Convert.ToInt64(maskedTextBox9.Text)));
+                            Int64 DNI = 0;
+
+                            if (maskedTextBox9.Text != "___________")
+                                DNI = Int64.Parse(maskedTextBox9.Text);
+
+                            cmd.Parameters["@P19"].Value = DNI;
+
+                            //cmd.Parameters["@P19"].Value = (maskedTextBox9.Text == "___________" ? 0 : (int)(System.Convert.ToInt64(maskedTextBox9.Text)));
 
                             if (maskedTextbox8.Text == " " || maskedTextbox8.Text.Length == 0)
                                 cmd.Parameters["@P20"].Value = null;
