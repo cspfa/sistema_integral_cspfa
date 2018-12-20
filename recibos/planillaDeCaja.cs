@@ -4732,67 +4732,74 @@ namespace SOCIOS
                 {
                     if (row.Cells[0].Value.ToString().Substring(0, 1) == "R")
                     {
-                        try
+                        if (row.Cells[11].Value.ToString() != "")
                         {
-                            string PTO_VTA = row.Cells[10].Value.ToString();
-                            string ROLE = nr.obtenerRole(PTO_VTA);
-                            string PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
-                            string PTO_VTA_F = PTO_VTA_O.Replace("0", "");
-                            string NRO_E = row.Cells[11].Value.ToString();
-                            string FILE = "";
-                            if (Modo_Facturacion_Produccion == "TEST")
-                                FILE = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\RECIBO C-PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
-                            else
-                                FILE = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\RECIBO C-PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
-
-                            if (!File.Exists(FILE))
+                            try
                             {
-                                string DIR = "";
-
+                                string PTO_VTA = row.Cells[10].Value.ToString();
+                                string ROLE = nr.obtenerRole(PTO_VTA);
+                                string PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
+                                string PTO_VTA_F = PTO_VTA_O.Replace("0", "");
+                                string NRO_E = row.Cells[11].Value.ToString();
+                                string FILE = "";
                                 if (Modo_Facturacion_Produccion == "TEST")
-                                    DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
+                                    FILE = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\RECIBO C-PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
                                 else
-                                    DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
+                                    FILE = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\RECIBO C-PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
 
-                                int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
-                                int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
-
-                                string DENI = row.Cells[12].Value.ToString();
-                                int recibo_id = int.Parse(row.Cells[9].Value.ToString());
-                                string IMPORTE = row.Cells[4].Value.ToString();
-                                string FECHA_RECIBO = row.Cells[6].Value.ToString().Substring(0, 10);
-                                string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
-                                string CONCEPTO = "SERVICIOS PRESTADOS";
-                                string CAE = nr.obtenerCaePorRecibo(int.Parse(NRO_E));
-                                string COND_IVA = "CONSUMIDOR FINAL";
-
-                                if (DENI != "0" && DENI != "")
+                                if (!File.Exists(FILE))
                                 {
-                                    TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+                                    string DIR = "";
 
-                                    if (DENI.Length > 8)
+                                    if (Modo_Facturacion_Produccion == "TEST")
+                                        DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
+                                    else
+                                        DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
+
+                                    int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+                                    int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+
+                                    string DENI = row.Cells[12].Value.ToString();
+                                    int recibo_id = int.Parse(row.Cells[9].Value.ToString());
+                                    string IMPORTE = row.Cells[4].Value.ToString();
+                                    string FECHA_RECIBO = row.Cells[6].Value.ToString().Substring(0, 10);
+                                    string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+                                    string CONCEPTO = "SERVICIOS PRESTADOS";
+                                    string CAE = nr.obtenerCaePorRecibo(int.Parse(NRO_E));
+                                    string COND_IVA = "CONSUMIDOR FINAL";
+
+                                    if (DENI != "0" && DENI != "")
                                     {
-                                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
-                                        CONCEPTO = nr.obtenerObservacion(recibo_id);
-                                        COND_IVA = nr.obnenerCondicionPorCuit(DENI);
+                                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+
+                                        if (DENI.Length > 8)
+                                        {
+                                            TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                            CONCEPTO = nr.obtenerObservacion(recibo_id);
+                                            COND_IVA = nr.obnenerCondicionPorCuit(DENI);
+                                        }
                                     }
+
+                                    Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE),
+                                        CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+
+                                    MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
                                 }
-
-                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), 
-                                    CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
-
-                                MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
+                                /*else
+                                {
+                                    MessageBox.Show("EL ARCHIVO YA EXISTE", "ERROR");
+                                }*/
+                                //MessageBox.Show("ARCHIVOS PDF GENERADOS CORRECTAMENTE", "LISTO!");
                             }
-                            /*else
+                            catch (Exception error)
                             {
-                                MessageBox.Show("EL ARCHIVO YA EXISTE", "ERROR");
-                            }*/
-                            //MessageBox.Show("ARCHIVOS PDF GENERADOS CORRECTAMENTE", "LISTO!");
+                                MessageBox.Show("OCURRIO UN ERROR AL GENERAR EL ARCHIVO PDF\n" + error, "ERROR");
+                            }
                         }
-                        catch (Exception error)
+                        else
                         {
-                            MessageBox.Show("OCURRIO UN ERROR AL GENERAR EL ARCHIVO PDF\n" + error, "ERROR");
+                            MessageBox.Show("EL CAMPO NE NO PUEDE ESTAR VACÍO", "ERROR");
                         }
                     }
                     else
