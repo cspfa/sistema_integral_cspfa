@@ -660,8 +660,8 @@ namespace SOCIOS
                                             result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
                                         NRO_FACT_ELECT = result.Numero.ToString();
                                     }
-                                    else
-                                        MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
+                                    //else
+                                        //MessageBox.Show("NO SE PUDO REALIZAR EL RECIBO C\nINTENTAR NUEVAMENTE DESDE LA PLANILLA DE CAJA\n" + result.Excepcion);
                                 }
                             }
 
@@ -792,8 +792,8 @@ namespace SOCIOS
                     string ACTION = "";
                     string CAE = "";
                     string VENCE_CAE = "";
-                    string PTO_VTA_E = "";
-                    string NUMERO_E = "";
+                    int PTO_VTA_E = 0;
+                    int NUMERO_E = 0;
 
                     if (ACCION == "MODIFICAR")
                     {
@@ -822,8 +822,8 @@ namespace SOCIOS
                                     {
                                         CAE = tbCAE.Text.Trim();
                                         VENCE_CAE = dpVenceCAE.Text.Substring(6, 4) + "" + dpVenceCAE.Text.Substring(3, 2) + "" + dpVenceCAE.Text.Substring(0, 2);
-                                        PTO_VTA_E = PTO_VTA;
-                                        NUMERO_E = NRO_COMP.ToString();
+                                        PTO_VTA_E = int.Parse(PTO_VTA);
+                                        NUMERO_E = NRO_COMP;
                                     }
                                     
                                     BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,

@@ -218,7 +218,7 @@ namespace SOCIOS.Factura_Electronica
                if (Modo_Facturacion == (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA)
                {
                    bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE, Modo_Facturacion);
-                   bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO, CAE, VENC_CAE, PTO_VENTA, NUMERO);
+                  // bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO, CAE, VENC_CAE, PTO_VENTA, NUMERO);
                }
                else
                { 

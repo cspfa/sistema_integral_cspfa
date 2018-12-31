@@ -1115,7 +1115,7 @@ namespace SOCIOS.BO
         public void modificarRecibosEnBlanco(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, float VALOR, string FORMA_DE_PAGO, int SECTACT, 
             string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, 
             string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, string DNI, string PTO_VTA, string BANCO_DEPO, string CAE, 
-            string VENCE_CAE, string PTO_VTA_E, string NUMERO_E)
+            string VENCE_CAE, int PTO_VTA_E, int NUMERO_E)
         {
             ArrayList vector_contenidos = new ArrayList();
             ArrayList vector_tipos = new ArrayList();
@@ -1166,8 +1166,8 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
 
             vector_nombres.Add("@NRO_COMP");
             vector_nombres.Add("@CUENTA_DEBE");
