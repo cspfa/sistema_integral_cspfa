@@ -2969,21 +2969,30 @@ namespace SOCIOS
             Excel.Worksheet EGRESOS;
             Excel.Worksheet CHEQUES;
             Excel.Worksheet TOTALES;
+
             object misValue = System.Reflection.Missing.Value;
             xlApp = new Excel.Application();
             xlWorkBook = xlApp.Workbooks.Add();
+            
+
             Excel.Worksheet CHEQUES_WS;
             CHEQUES_WS = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+
             Excel.Worksheet TOTALES_WS;
             TOTALES_WS = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+
             EFECTIVO = xlWorkBook.Worksheets[1];
             EFECTIVO.Name = "EFECTIVO";
+
             OTROS = xlWorkBook.Worksheets[2];
             OTROS.Name = "CHEQUES, DEPOSITOS Y TARJETAS";
+
             EGRESOS = xlWorkBook.Worksheets[3];
             EGRESOS.Name = "EGRESOS";
+
             CHEQUES = xlWorkBook.Worksheets[4];
             CHEQUES.Name = "CHEQUES";
+
             TOTALES = xlWorkBook.Worksheets[5];
             TOTALES.Name = "TOTALES";
 
@@ -4656,7 +4665,7 @@ namespace SOCIOS
 
         }
 
-        private void btnDesanularEfectivo_Click(object sender, EventArgs e)
+        private void btnDesanularEfectivo_Click(object sender, EventArgs e) //DESANULAR EFECTIVO
         {
 
         }

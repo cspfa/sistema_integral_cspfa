@@ -246,7 +246,7 @@ namespace Confiteria
             vector_contenidos.Add(COMANDA);
 
             ArrayList vector_tipos = new ArrayList();
-            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Date");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.VarChar");

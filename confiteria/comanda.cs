@@ -630,7 +630,7 @@ namespace Confiteria
             string BENEFICIO = AFIL_BENEF[1];
             string NOM_SOC = dgSocio[3, dgSocio.CurrentCell.RowIndex].Value.ToString();
             decimal IMPORTE = Convert.ToDecimal(tbTotal.Text);
-            string FECHA = DateTime.Today.ToShortDateString();
+            string FECHA = DateTime.Today.ToString();
             SOCIOS.obtenerDestino od = new obtenerDestino();
             string DESTINO = od.get(NRO_SOC, NRO_DEP);
             SOCIOS.obtenerLegPer olp = new obtenerLegPer();
@@ -639,7 +639,11 @@ namespace Confiteria
             int MESA = int.Parse(tbMesa.Text);
             int SECUENCIA = int.Parse(dgSocio[4, dgSocio.CurrentCell.RowIndex].Value.ToString());
             int D_ADTO = 1;
-            int M_ADTO = DateTime.Today.Month + 1;
+            int M_ADTO = DateTime.Today.Month;
+
+            if (M_ADTO < 12)
+                M_ADTO = M_ADTO + 1;
+
             int Y_ADTO = DateTime.Today.Year;
             string A_DTO = D_ADTO.ToString() + "/" + M_ADTO.ToString() + "/" + Y_ADTO.ToString();
             int TIPO_COMANDA = int.Parse(cbTipoDeComanda.SelectedValue.ToString());
@@ -668,6 +672,11 @@ namespace Confiteria
 
                             if (FORMA_DE_PAGO == "8")
                             {
+                                int HORA = DateTime.Now.Hour;
+                                int MINUTO = DateTime.Now.Minute;
+                                int SEGUNDO = DateTime.Now.Second;
+                                string TIEMPO = HORA.ToString() + ":" + MINUTO.ToString() + ":" + SEGUNDO.ToString();
+                                FECHA = dpFechaComanda.Text + " " + TIEMPO;
                                 dlog.nuevaSolicitudDescuentoConfiteria(FECHA, NOM_SOC, IMPORTE, DESTINO, LEG_PER, AFILIADO, BENEFICIO, A_DTO, ID_COM);
                                 int ID_SOLICITUD = int.Parse(mid.m("ID", "CONFITERIA_SOL_DESC"));
                                 listadoComandas lc = new listadoComandas();
