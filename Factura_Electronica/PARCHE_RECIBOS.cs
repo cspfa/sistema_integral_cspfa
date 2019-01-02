@@ -174,7 +174,7 @@ namespace SOCIOS.Factura_Electronica
                                "FRANGOULIDES, ALEJANDRO RUBEN", "002", "Generado Automaticamente sistemas", "19/12/2018", 0,
                                "FRANGOULIDES, ALEJANDRO RUBEN", "14011143", "VITALICIO", 91230, "004", 0,
                                "PATAGONIA");
-            BO_AFIP.Marca_Afip_Recibo(recibo_id, 2, 2358, "68513994254985", "20181229", 1);
+            BO_AFIP.Marca_Afip_Recibo(recibo_id, 2, 2368, "68513994254985", "20181229", 1);
              
             //2380
             recibo_id = int.Parse(mid.m("ID", "RECIBOS_CAJA")) + 1;
@@ -379,14 +379,14 @@ namespace SOCIOS.Factura_Electronica
               BO_AFIP.Marca_Afip_Recibo(recibo_id, 2, 2387, "68513995983894", "20181229", 1);
 
 
-                    // 2341
+                    // 2391
             recibo_id = int.Parse(mid.m("ID", "RECIBOS_CAJA")) + 1;
 
             BO_CAJA.nuevoReciboCaja(recibo_id, 301101, 100111, 112, 11616994, 110, "1", "PCABROL", 193,
                             "BAKIRDJIAN, JORGE", "002", "Generado Automaticamente sistemas", "19/12/2018", 0,
                             "BAKIRDJIAN, JORGE", "8462275", "VITALICIO", 91227, "004", 0,
                             "PATAGONIA");
-              BO_AFIP.Marca_Afip_Recibo(recibo_id, 2, 2341, "68513996024701", "20181229", 1);
+              BO_AFIP.Marca_Afip_Recibo(recibo_id, 2, 2391, "68513996024701", "20181229", 1);
 
 
 
