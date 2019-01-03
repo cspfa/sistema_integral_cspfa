@@ -1161,7 +1161,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.BigInt");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.VarChar");
