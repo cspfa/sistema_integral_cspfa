@@ -4756,8 +4756,8 @@ namespace SOCIOS
                                 else
                                     FILE = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\RECIBO C-PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
 
-                                if (!File.Exists(FILE))
-                                {
+                                //if (!File.Exists(FILE))
+                                //{
                                     string DIR = "";
 
                                     if (Modo_Facturacion_Produccion == "TEST")
@@ -4794,7 +4794,7 @@ namespace SOCIOS
                                         CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
 
                                     MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
-                                }
+                                //}
                                 /*else
                                 {
                                     MessageBox.Show("EL ARCHIVO YA EXISTE", "ERROR");
