@@ -42,9 +42,6 @@
             this.ESPECIALES = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.dgComandas = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnImportar = new System.Windows.Forms.Button();
-            this.pbImportar = new System.Windows.Forms.ProgressBar();
             this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IMPORTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +49,9 @@
             this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_COMANDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnImportar = new System.Windows.Forms.Button();
+            this.pbImportar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgCajasAnteriores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgComandas)).BeginInit();
             this.SuspendLayout();
@@ -188,35 +188,8 @@
             this.dgComandas.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgComandas.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgComandas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgComandas.Size = new System.Drawing.Size(785, 291);
+            this.dgComandas.Size = new System.Drawing.Size(785, 248);
             this.dgComandas.TabIndex = 60;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 184);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(138, 13);
-            this.label2.TabIndex = 61;
-            this.label2.Text = "COMANDAS A IMPORTAR";
-            // 
-            // btnImportar
-            // 
-            this.btnImportar.Location = new System.Drawing.Point(692, 506);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(105, 23);
-            this.btnImportar.TabIndex = 62;
-            this.btnImportar.Text = "IMPORTAR";
-            this.btnImportar.UseVisualStyleBackColor = true;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
-            // 
-            // pbImportar
-            // 
-            this.pbImportar.Location = new System.Drawing.Point(10, 508);
-            this.pbImportar.Name = "pbImportar";
-            this.pbImportar.Size = new System.Drawing.Size(676, 20);
-            this.pbImportar.TabIndex = 87;
-            this.pbImportar.Visible = false;
             // 
             // CANTIDAD
             // 
@@ -265,11 +238,38 @@
             this.ID_COMANDA.Name = "ID_COMANDA";
             this.ID_COMANDA.ReadOnly = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 184);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 13);
+            this.label2.TabIndex = 61;
+            this.label2.Text = "COMANDAS A IMPORTAR";
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.Location = new System.Drawing.Point(692, 464);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(105, 23);
+            this.btnImportar.TabIndex = 62;
+            this.btnImportar.Text = "IMPORTAR";
+            this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
+            // pbImportar
+            // 
+            this.pbImportar.Location = new System.Drawing.Point(12, 465);
+            this.pbImportar.Name = "pbImportar";
+            this.pbImportar.Size = new System.Drawing.Size(676, 20);
+            this.pbImportar.TabIndex = 87;
+            this.pbImportar.Visible = false;
+            // 
             // importador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 540);
+            this.ClientSize = new System.Drawing.Size(812, 500);
             this.Controls.Add(this.pbImportar);
             this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.label2);
