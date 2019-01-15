@@ -4565,6 +4565,9 @@ namespace SOCIOS
                 string TIPO = cbTipoProveedor.SelectedValue.ToString();
                 string TIPO_DE_CUENTA = cbTipoDeCuenta.SelectedValue.ToString();
 
+                if (TIPO_DE_CUENTA == "4")
+                    TIPO_DE_CUENTA = "A";
+
                 RAZON_SOCIAL = (tbRazonSocial.Text.Trim() != "") ? tbRazonSocial.Text.Trim() : null;
                 EMAIL = (tbEmail.Text.Trim() != "") ? tbEmail.Text.Trim() : null;
                 DOMICILIO = (tbDomicilio.Text.Trim() != "") ? tbDomicilio.Text.Trim() : null;
@@ -4675,6 +4678,9 @@ namespace SOCIOS
                 string CBU = tbCBU.Text.Trim();
                 string TIPO = null;
                 string TIPO_DE_CUENTA = cbTipoDeCuenta.SelectedValue.ToString();
+
+                if (TIPO_DE_CUENTA == "4")
+                    TIPO_DE_CUENTA = "A";
 
                 RAZON_SOCIAL = (tbRazonSocial.Text.Trim() != "") ? tbRazonSocial.Text.Trim() : null;
                 EMAIL = (tbEmail.Text.Trim() != "") ? tbEmail.Text.Trim() : null;

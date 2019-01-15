@@ -430,6 +430,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AID_SOL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmEstadoOP = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.vERDETALLEOPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vERPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aNULARORDENDEPAGOToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cONFIRMARANULACIÓNToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -452,7 +453,6 @@
             this.aNULADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMPLETADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eNTREGADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vERDETALLEOPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -4900,7 +4900,15 @@
             this.cONFIRMARANULACIÓNToolStripMenuItem,
             this.cANCELARANULACIONToolStripMenuItem});
             this.cmEstadoOP.Name = "cmEstadoOP";
-            this.cmEstadoOP.Size = new System.Drawing.Size(237, 136);
+            this.cmEstadoOP.Size = new System.Drawing.Size(237, 114);
+            // 
+            // vERDETALLEOPToolStripMenuItem
+            // 
+            this.vERDETALLEOPToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_view_columns;
+            this.vERDETALLEOPToolStripMenuItem.Name = "vERDETALLEOPToolStripMenuItem";
+            this.vERDETALLEOPToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.vERDETALLEOPToolStripMenuItem.Text = "VER DETALLE ORDEN DE PAGO";
+            this.vERDETALLEOPToolStripMenuItem.Click += new System.EventHandler(this.vERDETALLEOPToolStripMenuItem_Click);
             // 
             // vERPDFToolStripMenuItem
             // 
@@ -5086,14 +5094,6 @@
             this.eNTREGADAToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
             this.eNTREGADAToolStripMenuItem.Text = "Entregada";
             this.eNTREGADAToolStripMenuItem.Click += new System.EventHandler(this.eNTREGADAToolStripMenuItem_Click);
-            // 
-            // vERDETALLEOPToolStripMenuItem
-            // 
-            this.vERDETALLEOPToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_view_columns;
-            this.vERDETALLEOPToolStripMenuItem.Name = "vERDETALLEOPToolStripMenuItem";
-            this.vERDETALLEOPToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
-            this.vERDETALLEOPToolStripMenuItem.Text = "VER DETALLE ORDEN DE PAGO";
-            this.vERDETALLEOPToolStripMenuItem.Click += new System.EventHandler(this.vERDETALLEOPToolStripMenuItem_Click);
             // 
             // compras
             // 
