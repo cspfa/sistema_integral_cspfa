@@ -29,8 +29,8 @@ namespace Confiteria
             vector_contenidos.Add(MOZO); vector_contenidos.Add(IMPORTE);
             vector_contenidos.Add(NRO_SOC); vector_contenidos.Add(NRO_DEP);
             vector_contenidos.Add(BARRA); vector_contenidos.Add(PERSONAS);
-            vector_contenidos.Add(NOMBRE_SOCIO); vector_contenidos.Add(AFILIADO);
-            vector_contenidos.Add(BENEFICIO); vector_contenidos.Add(USUARIO);
+            vector_contenidos.Add(AFILIADO); vector_contenidos.Add(BENEFICIO);
+            vector_contenidos.Add(NOMBRE_SOCIO); vector_contenidos.Add(USUARIO);
             vector_contenidos.Add(DESCUENTO); vector_contenidos.Add(FORMA_DE_PAGO);
             vector_contenidos.Add(RENDIDA); vector_contenidos.Add(CONTRALOR);
             vector_contenidos.Add(ANULADA); vector_contenidos.Add(USR_ANULA);
@@ -39,28 +39,13 @@ namespace Confiteria
             vector_contenidos.Add(IMPORTE_DESCONTADO); vector_contenidos.Add(NRO_COMANDA);
             vector_contenidos.Add(ROL);
 
-            ArrayList vector_tipos = new ArrayList();
-            vector_tipos.Add("FbDbType.Date"); vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Numeric");
-            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.VarChar"); vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar"); vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.VarChar"); vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Numeric"); vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.VarChar");
-
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@FECHA"); vector_nombres.Add("@MESA");
             vector_nombres.Add("@MOZO"); vector_nombres.Add("@IMPORTE");
             vector_nombres.Add("@NRO_SOC"); vector_nombres.Add("@NRO_DEP");
             vector_nombres.Add("@BARRA"); vector_nombres.Add("@PERSONAS");
-            vector_nombres.Add("@NOMBRE_SOCIO"); vector_nombres.Add("@AFILIADO");
-            vector_nombres.Add("@BENEFICIO"); vector_nombres.Add("@USUARIO");
+            vector_nombres.Add("@AFILIADO"); vector_nombres.Add("@BENEFICIO");
+            vector_nombres.Add("@NOMBRE_SOCIO"); vector_nombres.Add("@USUARIO");
             vector_nombres.Add("@DESCUENTO"); vector_nombres.Add("@FORMA_DE_PAGO");
             vector_nombres.Add("@RENDIDA"); vector_nombres.Add("@CONTRALOR");
             vector_nombres.Add("@ANULADA"); vector_nombres.Add("@USR_ANULA");
@@ -70,44 +55,67 @@ namespace Confiteria
             vector_nombres.Add("@ROL");
 
 
-            string vprocedure = "CONFITERIA_IMPORTAR_CD";
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Timestamp"); vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char"); vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char"); vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar"); vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Char"); vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer"); vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Numeric"); vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            string vprocedure = "CONFITERIA_IMPORTAR_COM";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
 
         //IMPORTAR CAJA DIARIA CONFITERIA
-        public void impCajaDiariaConfiteria(string FECHA, string USUARIO, decimal EFECTIVO, decimal TARJETAS, decimal DESCUENTOS, decimal ESPECIALES, string ROL)
+        public bool impCajaDiariaConfiteria(string FECHA, string USUARIO, decimal EFECTIVO, decimal TARJETAS, decimal DESCUENTOS, decimal ESPECIALES, string ROL)
         {
-            SOCIOS.db resultado = new SOCIOS.db();
+            try
+            {
+                SOCIOS.db resultado = new SOCIOS.db();
 
-            ArrayList vector_contenidos = new ArrayList();
-            vector_contenidos.Add(FECHA);
-            vector_contenidos.Add(USUARIO);
-            vector_contenidos.Add(EFECTIVO);
-            vector_contenidos.Add(TARJETAS);
-            vector_contenidos.Add(DESCUENTOS);
-            vector_contenidos.Add(ESPECIALES);
-            vector_contenidos.Add(ROL);
+                ArrayList vector_contenidos = new ArrayList();
+                vector_contenidos.Add(FECHA);
+                vector_contenidos.Add(USUARIO);
+                vector_contenidos.Add(EFECTIVO);
+                vector_contenidos.Add(TARJETAS);
+                vector_contenidos.Add(DESCUENTOS);
+                vector_contenidos.Add(ESPECIALES);
+                vector_contenidos.Add(ROL);
 
-            ArrayList vector_tipos = new ArrayList();
-            vector_tipos.Add("FbDbType.Date");
-            vector_tipos.Add("FbDbType.Char");
-            vector_tipos.Add("FbDbType.Numeric");
-            vector_tipos.Add("FbDbType.Numeric");
-            vector_tipos.Add("FbDbType.Numeric");
-            vector_tipos.Add("FbDbType.Numeric");
-            vector_tipos.Add("FbDbType.Char");
+                ArrayList vector_tipos = new ArrayList();
+                vector_tipos.Add("FbDbType.Date");
+                vector_tipos.Add("FbDbType.Char");
+                vector_tipos.Add("FbDbType.Numeric");
+                vector_tipos.Add("FbDbType.Numeric");
+                vector_tipos.Add("FbDbType.Numeric");
+                vector_tipos.Add("FbDbType.Numeric");
+                vector_tipos.Add("FbDbType.Char");
 
-            ArrayList vector_nombres = new ArrayList();
-            vector_nombres.Add("@FECHA");
-            vector_nombres.Add("@USUARIO");
-            vector_nombres.Add("@EFECTIVO");
-            vector_nombres.Add("@TARJETAS");
-            vector_nombres.Add("@DESCUENTOS");
-            vector_nombres.Add("@ESPECIALES");
-            vector_nombres.Add("@ROL");
+                ArrayList vector_nombres = new ArrayList();
+                vector_nombres.Add("@FECHA");
+                vector_nombres.Add("@USUARIO");
+                vector_nombres.Add("@EFECTIVO");
+                vector_nombres.Add("@TARJETAS");
+                vector_nombres.Add("@DESCUENTOS");
+                vector_nombres.Add("@ESPECIALES");
+                vector_nombres.Add("@ROL");
 
-            string vprocedure = "CONFITERIA_IMPORTAR_CD";
-            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+                string vprocedure = "CONFITERIA_IMPORTAR_CD";
+                resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         //RENDIDA EN COMANDAS

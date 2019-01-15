@@ -10,7 +10,6 @@ using System.IO;
 using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
 using SOCIOS;
-
 namespace Confiteria
 {
     public partial class comanda : Form
