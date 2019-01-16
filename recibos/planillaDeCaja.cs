@@ -4675,6 +4675,65 @@ namespace SOCIOS
 
         }
 
+
+        //private void GenerarNotaCredito(DataGridView GRID)
+        //{
+
+        //    if (GRID.SelectedRows.Count == 1)
+        //    {
+        //        foreach (DataGridViewRow row in GRID.SelectedRows)
+        //        {
+        //            if (row.Cells[0].Value.ToString().Substring(0, 1) == "R")
+        //            {
+        //                 Cursor = Cursors.WaitCursor;
+        //                            string NRO = row.Cells[0].Value.ToString().Replace("R", "");
+                                    
+        //                            string FECHA = DateTime.Now.ToString();
+        //                            string PTO_VTA = row.Cells[10].Value.ToString();
+        //                            string DENI = row.Cells[11].Value.ToString();
+        //                            decimal IMPORTE = decimal.Parse(row.Cells[4].Value.ToString());
+        //                            string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+        //                            string CONCEPTO = "SERVICIOS PRESTADOS";
+                                  
+
+        //                            if (VGlobales.vp_role == "CAJA")
+        //                            {
+        //                                string DIR = "";
+        //                                int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
+        //                                int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+
+        //                                if (Modo_Facturacion_Produccion == "TEST")
+        //                                    DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA + "\\NOTAS_DE_CREDITO\\";
+        //                                else
+        //                                    DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA + "\\NOTAS_DE_CREDITO\\";
+
+        //                                Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+        //                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+        //                                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(Int32.Parse(VGlobales.PTO_VTA_O));
+        //                                result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, 1);
+                                        
+        //                                if (result.Result == true)
+        //                                    imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
+        //                                        result.Cae, FECHA, "ORIGINAL", CONCEPTO, ID_COMP);
+        //                                else
+        //                                    MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
+        //                            }
+        //                            MessageBox.Show("COMPROBANTE ANULADO CORRECTAMENTE", "LISTO");
+        //                        }
+        //                        catch (Exception error)
+        //                        {
+        //                            MessageBox.Show("NO SE PUDO ANULAR EL COMPROBANTE\n" + error, "ERROR");
+        //                        }
+        //                        Cursor = Cursors.Default;
+        //                    }
+
+        //            }
+        //        }
+
+        //    }
+        //}
+
+
         private void verReciboC(DataGridView GRID)
         {
             if (GRID.SelectedRows.Count == 1)
@@ -4774,7 +4833,7 @@ namespace SOCIOS
                                     string FECHA_RECIBO = row.Cells[6].Value.ToString().Substring(0, 10);
                                     string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
                                     string CONCEPTO = "SERVICIOS PRESTADOS";
-                                    string CAE = nr.obtenerCaePorRecibo(int.Parse(NRO_E));
+                                    string CAE = nr.obtenerCaePorRecibo(PTO_VTA_F, int.Parse(NRO_E));
                                     string COND_IVA = "CONSUMIDOR FINAL";
 
                                     if (DENI != "0" && DENI != "")

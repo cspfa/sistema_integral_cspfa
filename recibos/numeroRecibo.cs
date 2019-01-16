@@ -214,10 +214,10 @@ namespace SOCIOS
             return ROLE.Trim();
         }
 
-        public String obtenerCaePorRecibo(int NRO_E)
+        public String obtenerCaePorRecibo(string PTO_VTA_E,int NRO_E)
         {
             string CAE = "";
-            string QUERY = "SELECT CAE FROM RECIBOS_CAJA WHERE NUMERO_E = '" + NRO_E + "';";
+            string QUERY = "SELECT CAE FROM RECIBOS_CAJA WHERE NUMERO_E = '" + NRO_E +  "' AND PTO_VTA_E= "+ PTO_VTA_E  + " ;";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
