@@ -271,6 +271,7 @@ namespace SOCIOS
             comboFormasDePago(cbNuevoPagoEfectivo);
             comboFormasDePago(cbNuevoPagoOtros);
             comboFormasDePago(cbFormaPagoBuscador);
+            comboFormasDePago(cbPagoFiltro);
 
             buscarCajas(1, dgCajasDepositadas);
             buscar("E", dgEgresos, CAJA);
@@ -385,6 +386,10 @@ namespace SOCIOS
         private void comboFormasDePago(ComboBox CB)
         {
             string query = "SELECT ID, DETALLE FROM FORMAS_DE_PAGO WHERE ID <> 10 ORDER BY ID;";
+
+            if(CB == cbPagoFiltro)
+                query = "SELECT ID, DETALLE FROM FORMAS_DE_PAGO ORDER BY ID;";
+
             CB.DataSource = null;
             CB.Items.Clear();
             CB.DataSource = dlog.BO_EjecutoDataTable(query);
@@ -3875,6 +3880,7 @@ namespace SOCIOS
             string PTO_VTA = "";
             string COMPROBANTE = "";
             string COMP_MIN = "";
+            string FORMA_PAGO = "1";
             DataGridView GRID = dgBuscador;
 
             if (cbBuscarNumeros.Checked == false && cbBuscarFechas.Checked == false)
@@ -3916,11 +3922,12 @@ namespace SOCIOS
                 COMPROBANTE = cbTipos.SelectedItem.ToString();
                 COMP_MIN = COMPROBANTE.Substring(0, 1);
                 PTO_VTA = tbPtoVta.Text.Trim();
-                buscador(DESDE, HASTA, COMPROBANTE, GRID, PTO_VTA, F_DESDE, F_HASTA);
+                FORMA_PAGO = cbPagoFiltro.SelectedValue.ToString();
+                buscador(DESDE, HASTA, COMPROBANTE, GRID, PTO_VTA, F_DESDE, F_HASTA, FORMA_PAGO);
             }
         }
 
-        private string queryBuscador(int DESDE, int HASTA, string COMPROBANTE, string PTO, string F_DESDE, string F_HASTA)
+        private string queryBuscador(int DESDE, int HASTA, string COMPROBANTE, string PTO, string F_DESDE, string F_HASTA, string FORMA_PAGO)
         {
             string query = "";
 
@@ -3933,21 +3940,15 @@ namespace SOCIOS
                 query += "WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID AND B.REINTEGRO_DE IS NOT NULL AND B.PTO_VTA = '0005' ";
 
                 if (HASTA == 0 && cbBuscarNumeros.Checked == true)
-                {
                     query += "AND B.NRO_COMP = " + DESDE;
-                }
 
                 if (HASTA > 0 && cbBuscarNumeros.Checked == true)
-                {
                     query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
-                }
 
                 if (F_DESDE != "" && F_HASTA != "")
                 {
                     if (HASTA == 0 && cbBuscarNumeros.Checked == true)
-                    {
                         query += " AND B.NRO_COMP = " + DESDE;
-                    }
 
                     query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
                 }
@@ -3955,9 +3956,7 @@ namespace SOCIOS
                 if (F_DESDE != "" && F_HASTA != "")
                 {
                     if (HASTA > 0 && cbBuscarNumeros.Checked == true)
-                    {
                         query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
-                    }
 
                     query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
                 }
@@ -3971,21 +3970,15 @@ namespace SOCIOS
                 query += "WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID AND B.REINTEGRO_DE IS NOT NULL AND B.PTO_VTA = '0005' ";
 
                 if (HASTA == 0 && cbBuscarNumeros.Checked == true)
-                {
                     query += "AND B.NRO_COMP = " + DESDE;
-                }
 
                 if (HASTA > 0 && cbBuscarNumeros.Checked == true)
-                {
                     query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
-                }
 
                 if (F_DESDE != "" && F_HASTA != "")
                 {
                     if (HASTA == 0 && cbBuscarNumeros.Checked == true)
-                    {
                         query += " AND B.NRO_COMP = " + DESDE;
-                    }
 
                     query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
                 }
@@ -3993,9 +3986,7 @@ namespace SOCIOS
                 if (F_DESDE != "" && F_HASTA != "")
                 {
                     if (HASTA > 0 && cbBuscarNumeros.Checked == true)
-                    {
                         query += " AND B.NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
-                    }
 
                     query += " AND B.FECHA_RECIBO >= '" + F_DESDE + "' AND B.FECHA_RECIBO <= '" + F_HASTA + "' ";
                 }
@@ -4008,7 +3999,7 @@ namespace SOCIOS
                     query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
                     query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, 0 AS NRO_E, B.DNI FROM ";
                     query += "BONOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID";
-                }
+                 }
 
                 if (COMPROBANTE == "RECIBOS")
                 {
@@ -4018,21 +4009,15 @@ namespace SOCIOS
                 }
 
                 if (HASTA == 0 && cbBuscarNumeros.Checked == true)
-                {
                     query += "AND NRO_COMP = " + DESDE;
-                }
 
                 if (HASTA > 0 && cbBuscarNumeros.Checked == true)
-                {
                     query += " AND NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
-                }
 
                 if (F_DESDE != "" && F_HASTA != "")
                 {
                     if (HASTA == 0 && cbBuscarNumeros.Checked == true)
-                    {
                         query += " AND NRO_COMP = " + DESDE;
-                    }
 
                     query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
                 }
@@ -4040,9 +4025,7 @@ namespace SOCIOS
                 if (F_DESDE != "" && F_HASTA != "")
                 {
                     if (HASTA > 0 && cbBuscarNumeros.Checked == true)
-                    {
                         query += " AND NRO_COMP BETWEEN " + DESDE + " AND " + HASTA;
-                    }
 
                     query += " AND FECHA_RECIBO >= '" + F_DESDE + "' AND FECHA_RECIBO <= '" + F_HASTA + "' ";
                 }
@@ -4070,18 +4053,21 @@ namespace SOCIOS
                     }
                 }
 
+                if (FORMA_PAGO != "10")
+                    query += " AND B.FORMA_PAGO = '" + FORMA_PAGO + "'";
+
                 query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC;";
             }
 
             return query;
         }
 
-        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID, string PTO, string F_DESDE, string F_HASTA)
+        private void buscador(int DESDE, int HASTA, string COMPROBANTE, DataGridView GRID, string PTO, string F_DESDE, string F_HASTA, string FORMA_PAGO)
         {
             try
             {
                 DataSet ds1 = new DataSet();
-                string query = queryBuscador(DESDE, HASTA, COMPROBANTE, PTO, F_DESDE, F_HASTA);
+                string query = queryBuscador(DESDE, HASTA, COMPROBANTE, PTO, F_DESDE, F_HASTA, FORMA_PAGO);
                 conString cs = new conString();
                 string connectionString = cs.get();
 
@@ -4659,22 +4645,6 @@ namespace SOCIOS
             anularComprobante(dgEfectivo);
             buscar("1", dgEfectivo, CAJA);
         }
-
-        private void button3_Click(object sender, EventArgs e) //DESANULAR OTROS
-        {
-
-        }
-
-        private void btnDesanularEfectivo_Click(object sender, EventArgs e) //DESANULAR EFECTIVO
-        {
-
-        }
-
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         //private void GenerarNotaCredito(DataGridView GRID)
         //{
