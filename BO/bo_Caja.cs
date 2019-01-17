@@ -173,7 +173,7 @@ namespace SOCIOS.BO
         //STORED IMPORTAR RECIBOS
         public void importarRecibos(int NRO_COMP, int CUENTA_DEBE, int CUENTA_HABER, decimal VALOR, string FORMA_DE_PAGO, int SECTACT,
             string USUARIO_MOD, string FECHA_RECIBO, int ID_SOCIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
-            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, int DNI, string PTO_VTA, int CAJA_DIARIA, string ROL, 
+            string OBSERVACIONES, int BARRA, string NOMBRE_SOCIO, string TIPO_SOCIO, Int64 DNI, string PTO_VTA, int CAJA_DIARIA, string ROL, 
             int DEPOSITADO, string CAE, string CAE_VENC, int PTO_VTA_E, int NUMERO_E, string USR_FACT)
         {
             ArrayList vector_contenidos = new ArrayList();
@@ -223,7 +223,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.BigInt");
             vector_tipos.Add("FbDbType.VarChar");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");

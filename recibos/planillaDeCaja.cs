@@ -4979,5 +4979,17 @@ namespace SOCIOS
             Factura_Electronica.Consulta_Factura cf = new Factura_Electronica.Consulta_Factura();
             cf.ShowDialog();
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            Factura_Electronica.Consulta_Factura cf = new Factura_Electronica.Consulta_Factura();
+            cf.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Factura_Electronica.Consulta_Factura cf = new Factura_Electronica.Consulta_Factura();
+            cf.ShowDialog();
+        }
     }
 }
