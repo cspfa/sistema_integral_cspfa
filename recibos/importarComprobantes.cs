@@ -318,7 +318,7 @@ namespace SOCIOS
                 {
                     int ID; int CUENTA_DEBE; int CUENTA_HABER; int SECTACT; int ID_SOCIO; decimal VALOR; string FECHA_ALTA; string FORMA_PAGO; string USUARIO; int DESTINO;
                     string USUARIO_MOD; string FECHA_RECIBO; int ID_PROFESIONAL; string ANULADO; string NOMBRE_SOCIO_TITULAR; string TIPO_SOCIO_TITULAR; string OBSERVACIONES;
-                    string FECHA_CAJA; int BARRA; string NOMBRE_SOCIO; string TIPO_SOCIO; int DNI; string TIPO_SOCIO_NO_TITULAR; int CAJA_DIARIA; int DEPOSITADO; string ROL;
+                    string FECHA_CAJA; int BARRA; string NOMBRE_SOCIO; string TIPO_SOCIO; Int64 DNI; string TIPO_SOCIO_NO_TITULAR; int CAJA_DIARIA; int DEPOSITADO; string ROL;
                     int NRO_COMP; int EGRESO; string PTO_VTA; int EXPORTADO; string CAE; string CAE_VENC; int PTO_VTA_E = 0; int NUMERO_E = 0; string USR_FACT;
 
                     foreach (DataRow ROW_RECIBO in RECIBOS)
@@ -328,7 +328,7 @@ namespace SOCIOS
                         FECHA_ALTA = ROW_RECIBO[6].ToString(); FORMA_PAGO = ROW_RECIBO[7].ToString(); USUARIO = ROW_RECIBO[8].ToString(); DESTINO = int.Parse(ROW_RECIBO[9].ToString());
                         USUARIO_MOD = ROW_RECIBO[10].ToString(); FECHA_RECIBO = ROW_RECIBO[11].ToString(); ID_PROFESIONAL = int.Parse(ROW_RECIBO[12].ToString()); ANULADO = ROW_RECIBO[13].ToString();
                         NOMBRE_SOCIO_TITULAR = ROW_RECIBO[14].ToString(); TIPO_SOCIO_TITULAR = ROW_RECIBO[15].ToString(); OBSERVACIONES = ROW_RECIBO[16].ToString(); FECHA_CAJA = ROW_RECIBO[17].ToString();
-                        BARRA = int.Parse(ROW_RECIBO[18].ToString()); NOMBRE_SOCIO = ROW_RECIBO[19].ToString(); TIPO_SOCIO = ROW_RECIBO[20].ToString(); DNI = int.Parse(ROW_RECIBO[21].ToString());
+                        BARRA = int.Parse(ROW_RECIBO[18].ToString()); NOMBRE_SOCIO = ROW_RECIBO[19].ToString(); TIPO_SOCIO = ROW_RECIBO[20].ToString(); DNI = Int64.Parse(ROW_RECIBO[21].ToString());
                         TIPO_SOCIO_NO_TITULAR = ROW_RECIBO[22].ToString(); CAJA_DIARIA = int.Parse(ROW_RECIBO[23].ToString()); DEPOSITADO = int.Parse(ROW_RECIBO[24].ToString());
                         ROL = ROW_RECIBO[25].ToString(); NRO_COMP = int.Parse(ROW_RECIBO[26].ToString()); EGRESO = int.Parse(ROW_RECIBO[27].ToString());
                         PTO_VTA = ROW_RECIBO[31].ToString();
