@@ -1798,11 +1798,17 @@ namespace SOCIOS
 
                         if ((VGlobales.vp_role.Trim() == "SERVICIOS MEDICOS") || (VGlobales.vp_role.Trim() == "INFORMES") || (VGlobales.vp_role.Trim() == "DEPORTES")
                             || (VGlobales.vp_role.Trim() == "INTERIOR") || (VGlobales.vp_role.Trim() == "CAJA")
-                            || (VGlobales.vp_role.Trim() == "CONFITERIA") || (VGlobales.vp_role.Trim() == "SSADPADUA") || (VGlobales.vp_role.Trim() == "CONTADURIA"))
+                            || (VGlobales.vp_role.Trim() == "CONFITERIA") || (VGlobales.vp_role.Trim() == "SSADPADUA"))
                         {
-                            string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO = '0005';";
+                            string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO IN ('0005');";
                         }
-                        
+
+                        if ((VGlobales.vp_role.Trim() == "CONTADURIA"))
+                        {
+                            string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO IN ('0005', '0014');";
+                        }
+
+
                         if ((VGlobales.vp_role.Trim() == "CPOCABA")) 
                         {
                             string_combo = "SELECT SUBSTR(CODIGO,2,4) AS CODIGO, DESCRIP FROM P_OBTENER_TABLA ('CA') WHERE CODIGO = '0013';";
@@ -3303,6 +3309,14 @@ namespace SOCIOS
                     Datos_ini ini_carnet = new Datos_ini();
                     int TipoCarnet;
                     SOCIOS.Carnet.GeneradorCarnet genCarnet;
+
+
+
+
+
+
+
+
 
 
                     if (comboBox1.SelectedValue.ToString() == "001" || comboBox1.SelectedValue.ToString() == "003")
