@@ -29,7 +29,6 @@ namespace Confiteria
         private void cargaInicial()
         {
             cajasDiarias(G_ROL);
-            comandas(G_ROL);
         }
 
         private void cajasDiarias(string ROL)
@@ -54,9 +53,9 @@ namespace Confiteria
             }
         }
 
-        private void comandas(string ROL)
+        private void comandas(string ROL, int CAJA_DIARIA)
         {
-            string QUERY = "SELECT NRO_COMANDA, FECHA, IMPORTE, NOMBRE_SOCIO, NRO_SOC, NRO_DEP, ID FROM CONFITERIA_COMANDAS WHERE EXPORTADA = 0 AND ROL = '" + ROL + "';";
+            string QUERY = "SELECT NRO_COMANDA, FECHA, IMPORTE, NOMBRE_SOCIO, NRO_SOC, NRO_DEP, ID FROM CONFITERIA_COMANDAS WHERE EXPORTADA = 0 AND RENDIDA = " + CAJA_DIARIA + " AND ROL = '" + ROL + "';";
             DataSet COMANDAS = cu.getDataFromQuery(QUERY, ROL);
             dgComandas.Rows.Clear();
 
@@ -246,6 +245,20 @@ namespace Confiteria
         private void btnImportar_Click(object sender, EventArgs e)
         {
             importar();
+        }
+
+        private void dgCajasAnteriores_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int CAJA_DIARIA = 0;
+
+            foreach (DataGridViewRow row in dgCajasAnteriores.SelectedRows)
+            {
+                if(row.Cells[0].Value.ToString() != "")
+                    CAJA_DIARIA = int.Parse(row.Cells[0].Value.ToString());
+            }
+
+            if (CAJA_DIARIA > 0)
+                comandas(G_ROL, CAJA_DIARIA);
         }
     }
 }

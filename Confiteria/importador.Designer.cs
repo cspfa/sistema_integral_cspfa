@@ -81,6 +81,7 @@
             this.dgCajasAnteriores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCajasAnteriores.Size = new System.Drawing.Size(785, 135);
             this.dgCajasAnteriores.TabIndex = 30;
+            this.dgCajasAnteriores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCajasAnteriores_CellContentClick);
             // 
             // ID
             // 
