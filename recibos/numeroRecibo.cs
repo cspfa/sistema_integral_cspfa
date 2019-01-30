@@ -229,6 +229,22 @@ namespace SOCIOS
             return CAE.Trim();
         }
 
+
+        public String obtenerCaePorNC(string PTO_VTA_E, int NRO_NC_E)
+        {
+            string CAE = "";
+            string QUERY = "SELECT CAE_NC FROM RECIBOS_CAJA WHERE NUMERO_NC_E = '" + NRO_NC_E + "' AND PTO_VTA_E= " + PTO_VTA_E + " ;";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                CAE = foundRows[0][0].ToString();
+            }
+
+            return CAE.Trim();
+        }
+
         public int obtenerIdComprobante(string TIPO, string PTO_VTA, int NRO_COMP)
         {
             int ID = 0;

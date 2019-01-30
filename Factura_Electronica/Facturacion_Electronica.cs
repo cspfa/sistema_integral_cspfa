@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
+using FirebirdSql.Data.FirebirdClient;
+using System.Data;
 
 namespace SOCIOS.Factura_Electronica
 {
@@ -37,17 +40,13 @@ namespace SOCIOS.Factura_Electronica
             public Afip.AfipFactResults Facturar(FacturaHead fh)
 
             {
-
                 Afip.AfipFactResults Result = new Afip.AfipFactResults();
-               
-
-
+                               
                 return facturador.FacturacionUnitaria_SinIVA((int)fh.Pto_Venta, fh.TipoFactura, fh.Concepto, fh.Tipo_Documento, fh.Documento, (DateTime)fh.Fecha, (decimal)fh.Monto, rutaArchivos);
-                    
-                    
+                                       
 
 
-
+                
             
             }
 
@@ -115,4 +114,34 @@ namespace SOCIOS.Factura_Electronica
        }
        #endregion
     }
+       
+     
+
+
+   public class Factura_Helper
+   { 
+   
+     public int Punto_Venta_Electronico (string Pto_Vta)
+
+     {
+         string QUERY = @"select  P.PTO_VTA from puntos_de_Venta P, puntos_de_Venta E WHERE P.ROL=E.ROL and E.PTO_VTA=  " + Pto_Vta + " AND  P.WS=1";
+
+
+
+
+         DataRow[] foundRows;
+         BO.BO_Afip dlog = new BO.BO_Afip();
+         foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+         if (foundRows.Length > 0)
+         {
+
+             return Int32.Parse(foundRows[0][0].ToString().Trim());
+         }
+     
+         return 0;
+     }
+   
+   }
+
 }
