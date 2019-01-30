@@ -4410,104 +4410,108 @@ namespace SOCIOS
 
         private void facturar(DataGridView GRID, ProgressBar PB)
         {
-            string EXCEPTION = "";
-            string DENI = "";
-            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
-            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
-            int TF = (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA;
-            int recibo_id = 0;
-            string IMPORTE = "";
-            string FECHA_RECIBO = "";
-            string NOMBRE_SOCIO = "";
-            string CONCEPTO = "SERVICIOS PRESTADOS";
-            string PTO_VTA = "";
-            string ROLE = "";
-            string PTO_VTA_O = "";
-            string DIR = "";
-            string COND_IVA = "CONSUMIDOR FINAL";
-
-            if (GRID.SelectedRows.Count == 0)
-                MessageBox.Show("SELECCIONAR AL MENOS UN COMPROBANTE PARA FACTURAR");
-            else
+            if (MessageBox.Show("Se va a proceder a Facturar , De Acuerdo?", "Facturar ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                PB.Visible = true;
-                PB.Minimum = 0;
-                PB.Maximum = GRID.SelectedRows.Count;
-                PB.Value = 1;
-                PB.Step = 1;
-                Cursor = Cursors.WaitCursor;
 
-                foreach (DataGridViewRow row in GRID.SelectedRows)
+                string EXCEPTION = "";
+                string DENI = "";
+                int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+                int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+                int TF = (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA;
+                int recibo_id = 0;
+                string IMPORTE = "";
+                string FECHA_RECIBO = "";
+                string NOMBRE_SOCIO = "";
+                string CONCEPTO = "SERVICIOS PRESTADOS";
+                string PTO_VTA = "";
+                string ROLE = "";
+                string PTO_VTA_O = "";
+                string DIR = "";
+                string COND_IVA = "CONSUMIDOR FINAL";
+
+                if (GRID.SelectedRows.Count == 0)
+                    MessageBox.Show("SELECCIONAR AL MENOS UN COMPROBANTE PARA FACTURAR");
+                else
                 {
-                    DENI = row.Cells[12].Value.ToString();
-                    recibo_id = int.Parse(row.Cells[9].Value.ToString());
-                    IMPORTE = row.Cells[4].Value.ToString();
-                    FECHA_RECIBO = row.Cells[6].Value.ToString();
-                    NOMBRE_SOCIO = row.Cells[1].Value.ToString();
-                    PTO_VTA = row.Cells[10].Value.ToString();
-                    ROLE = nr.obtenerRole(PTO_VTA);
-                    PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
+                    PB.Visible = true;
+                    PB.Minimum = 0;
+                    PB.Maximum = GRID.SelectedRows.Count;
+                    PB.Value = 1;
+                    PB.Step = 1;
+                    Cursor = Cursors.WaitCursor;
 
-                    if (DENI != "0" && DENI != "")
+                    foreach (DataGridViewRow row in GRID.SelectedRows)
                     {
-                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+                        DENI = row.Cells[12].Value.ToString();
+                        recibo_id = int.Parse(row.Cells[9].Value.ToString());
+                        IMPORTE = row.Cells[4].Value.ToString();
+                        FECHA_RECIBO = row.Cells[6].Value.ToString();
+                        NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+                        PTO_VTA = row.Cells[10].Value.ToString();
+                        ROLE = nr.obtenerRole(PTO_VTA);
+                        PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
 
-                        if (DENI.Length > 8)
+                        if (DENI != "0" && DENI != "")
                         {
-                            TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
-                            CONCEPTO = nr.obtenerObservacion(recibo_id);
-                            COND_IVA = nr.obnenerCondicionPorCuit(DENI);
-                        }
-                    }
+                            TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
 
-                    if (PTO_VTA_O != "") //VALIDO QUE EXISTA PUNTO DE VENTA CARGADO
-                    {
-                        if (Modo_Facturacion_Produccion == "TEST") //DEFINO EL DIRECTORIO PARA GUARDAR LOS ARCHIVOS
-                            DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
-                        else
-                            DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
-
-                        Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
-                        Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
-                        Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-
-                        if (row.Cells[0].Value.ToString().Substring(0, 1) == "R") //VALIDO TIPO DE COMPROBANTE
-                        {
-                            if (row.Cells[11].Value.ToString() == "" || row.Cells[11].Value.ToString() == "0") //VALIDO NUMERO ELECTRONICO
+                            if (DENI.Length > 8)
                             {
-                                if (row.Cells[4].Value.ToString() != "0,00") //VALIDO IMPORTE DIFERENTE A 0
+                                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                CONCEPTO = nr.obtenerObservacion(recibo_id);
+                                COND_IVA = nr.obnenerCondicionPorCuit(DENI);
+                            }
+                        }
+
+                        if (PTO_VTA_O != "") //VALIDO QUE EXISTA PUNTO DE VENTA CARGADO
+                        {
+                            if (Modo_Facturacion_Produccion == "TEST") //DEFINO EL DIRECTORIO PARA GUARDAR LOS ARCHIVOS
+                                DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
+                            else
+                                DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
+
+                            Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                            Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
+                            Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+
+                            if (row.Cells[0].Value.ToString().Substring(0, 1) == "R") //VALIDO TIPO DE COMPROBANTE
+                            {
+                                if (row.Cells[11].Value.ToString() == "" || row.Cells[11].Value.ToString() == "0") //VALIDO NUMERO ELECTRONICO
                                 {
-                                    if (decimal.Parse(row.Cells[4].Value.ToString()) < 5000) //VALIDO QUE SEA MENOR A 5 MIL
+                                    if (row.Cells[4].Value.ToString() != "0,00") //VALIDO IMPORTE DIFERENTE A 0
                                     {
-                                        result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
-                                        if (result.Result == true)
-                                            imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
-                                        else
-                                            MessageBox.Show(result.Excepcion.ToString());
-                                        PB.PerformStep();
-                                    }
-                                    else //SI ES MAYOR O IGUAL A 5 MIL
-                                    {
-                                        if (TD == 99) // SI ES CONSUMIDOR FINAL DIVIDO Y HAGO VARIOS RECIBOS C
-                                        {
-                                           
-                                        }
-                                        else // SI NO ES CONSUMIDOR FINAL HAGO UN SOLO RECIBO C
+                                        if (decimal.Parse(row.Cells[4].Value.ToString()) < 5000) //VALIDO QUE SEA MENOR A 5 MIL
                                         {
                                             result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                             if (result.Result == true)
-                                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                            else
+                                                MessageBox.Show(result.Excepcion.ToString());
                                             PB.PerformStep();
+                                        }
+                                        else //SI ES MAYOR O IGUAL A 5 MIL
+                                        {
+                                            if (TD == 99) // SI ES CONSUMIDOR FINAL DIVIDO Y HAGO VARIOS RECIBOS C
+                                            {
+
+                                            }
+                                            else // SI NO ES CONSUMIDOR FINAL HAGO UN SOLO RECIBO C
+                                            {
+                                                result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
+                                                if (result.Result == true)
+                                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                                PB.PerformStep();
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                }
 
-                Cursor = Cursors.Default;
-                PB.Visible = false;
+                    Cursor = Cursors.Default;
+                    PB.Visible = false;
+                }
             }
         }
 
