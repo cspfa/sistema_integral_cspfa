@@ -4486,23 +4486,7 @@ namespace SOCIOS
                                     {
                                         if (TD == 99) // SI ES CONSUMIDOR FINAL DIVIDO Y HAGO VARIOS RECIBOS C
                                         {
-                                            decimal CANTIDAD_FACTURAS = decimal.Parse(IMPORTE) / 4999;
-                                            decimal CANTIDAD_FACTURAS_FLOOR = Math.Floor(CANTIDAD_FACTURAS);
-                                            decimal IMPORTE_FACTURADO = CANTIDAD_FACTURAS_FLOOR * 4999;
-                                            decimal IMPORTE_RESTANTE = decimal.Parse(IMPORTE) - IMPORTE_FACTURADO;
-                                            TF = (int)Factura_Electronica.Tipo_FACTURACION_ENUM.DUAL;
-
-                                            for (int i = 1; i <= CANTIDAD_FACTURAS_FLOOR; i++)
-                                            {
-                                                result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, 4999, DateTime.Now, TF);
-
-                                                if (result.Result == true)
-                                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, 4999, result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
-                                            }
-
-                                            result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE_RESTANTE, DateTime.Now, TF);
-                                            if (result.Result == true)
-                                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE_RESTANTE, result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                            //
                                         }
                                         else // SI NO ES CONSUMIDOR FINAL HAGO UN SOLO RECIBO C
                                         {

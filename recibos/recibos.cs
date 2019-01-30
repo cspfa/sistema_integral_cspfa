@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using FirebirdSql.Data.Firebird;
+using System.Threading;
 
 
 namespace SOCIOS
@@ -549,6 +550,7 @@ namespace SOCIOS
             string EXCEPTION = "";
             string NRO_FACT_ELECT = "XXXX";
             string COND_IVA = "CONSUMIDOR FINAL";
+            bool RECIBOS_MULTIPLES = false;
 
             if (DENI != "0" && DENI != "")
             {
@@ -630,15 +632,41 @@ namespace SOCIOS
                         string NRO_COMP = (int.Parse(lbNroRecibo.Text)).ToString();
                         int NUM_COMP = int.Parse(lbNroRecibo.Text);
 
-                        if (RECIBO_BONO == "R")
+                        if (RECIBO_BONO == "R") //RECIBOS PROVISORIOS
                         {
-                            BO_CAJA.nuevoReciboCaja(recibo_id, int.Parse(cbCuentasDebe.Text), int.Parse(cbCuentasHaber.Text),
-                                idsectact, idsoc, IMPORTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
-                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
-                                NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE, 
-                                BANCO_DEPO);
+                            if (TD == 99)
+                            {
+                                RECIBOS_MULTIPLES = true;
+                                decimal CANTIDAD_FACTURAS = IMPORTE / 4999;
+                                decimal CANTIDAD_FACTURAS_FLOOR = Math.Floor(CANTIDAD_FACTURAS);
+                                decimal IMPORTE_FACTURADO = CANTIDAD_FACTURAS_FLOOR * 4999;
+                                decimal IMPORTE_RESTANTE = IMPORTE - IMPORTE_FACTURADO;
 
-                            if (VGlobales.vp_role == "CAJA")
+                                for (int i = 1; i <= CANTIDAD_FACTURAS_FLOOR; i++)
+                                {
+                                    BO_CAJA.nuevoReciboCaja(recibo_id, int.Parse(cbCuentasDebe.Text), int.Parse(cbCuentasHaber.Text),
+                                    idsectact, idsoc, 4999, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
+                                    lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
+                                    NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE,
+                                    BANCO_DEPO);
+                                }
+
+                                BO_CAJA.nuevoReciboCaja(recibo_id, int.Parse(cbCuentasDebe.Text), int.Parse(cbCuentasHaber.Text),
+                                    idsectact, idsoc, IMPORTE_RESTANTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
+                                    lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
+                                    NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE,
+                                    BANCO_DEPO);
+                            }
+                            else
+                            {
+                                BO_CAJA.nuevoReciboCaja(recibo_id, int.Parse(cbCuentasDebe.Text), int.Parse(cbCuentasHaber.Text),
+                                    idsectact, idsoc, IMPORTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
+                                    lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, FECHA_RECIBO, barra,
+                                    NOMBRE_SOCIO, DENI, lbTipoSocioNoTitular.Text, int.Parse(lbNroRecibo.Text), PTO_VTA_N, REINTEGRO_DE,
+                                    BANCO_DEPO);
+                            }
+
+                            if (VGlobales.vp_role == "CAJA" && RECIBOS_MULTIPLES == false) //RECIBOS ELECTRONICOS
                             {
                                 if (IMPORTE > 0)
                                 {
@@ -649,7 +677,7 @@ namespace SOCIOS
                                     else
                                         DIR = "\\\\192.168.1.6\\factura_electronica\\" + VGlobales.PTO_VTA_O + "\\FACTURAS\\";
                                                                    
-                                   Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                                    Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
                                     Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                     Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
                                     result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, TF);
@@ -665,7 +693,7 @@ namespace SOCIOS
                                 }
                             }
 
-                            if (reintegro == "NO")
+                            if (reintegro == "NO") //REINTEGROS
                             {
                                 BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP, IMPORTE);
                                 if (VGlobales.ID_CUOTA_PAGO != 0)
@@ -679,7 +707,7 @@ namespace SOCIOS
                             }
                         }
 
-                        if (RECIBO_BONO == "B")
+                        if (RECIBO_BONO == "B") // BONOS PROVISORIOS
                         {
                             BO_CAJA.nuevoBonoCaja(recibo_id, int.Parse(cbCuentasDebe.Text), int.Parse(cbCuentasHaber.Text),
                                 idsectact, idsoc, IMPORTE, cbFormaDePago.SelectedValue.ToString(), cs.UserID, idprof,
@@ -705,7 +733,7 @@ namespace SOCIOS
                         int BONO = 0;
                     }
 
-                    if (COMPROBANTE == "RECIBO")
+                    if (COMPROBANTE == "RECIBO") //IMPRIME RECIBO EN A4
                     {
                         gh.gHTML(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, IMPORTE.ToString(), idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, PTO_VTA_N, RECIBO_BONO);
@@ -713,7 +741,7 @@ namespace SOCIOS
                         p.printHTML("recibo_temp.html");
                     }
 
-                    if (COMPROBANTE == "TICKET")
+                    if (COMPROBANTE == "TICKET") //IMPRIME TICKET EN COMANDERA
                     {
                         DateTime Hoy = DateTime.Today;
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, 
@@ -818,17 +846,59 @@ namespace SOCIOS
                                 }
                                 else
                                 {
-                                    if(ACTION == "L")
+                                    if(ACTION == "L")  //CARGA DE RECIBO ELECTRONICO HECHO POR WEB
                                     {
                                         CAE = tbCAE.Text.Trim();
                                         VENCE_CAE = dpVenceCAE.Text.Substring(6, 4) + "" + dpVenceCAE.Text.Substring(3, 2) + "" + dpVenceCAE.Text.Substring(0, 2);
                                         PTO_VTA_E = int.Parse(PTO_VTA);
                                         NUMERO_E = NRO_COMP;
                                     }
-                                    
-                                    BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
-                                    FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
-                                    barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO, CAE, VENCE_CAE, PTO_VTA_E, NUMERO_E);
+
+                                    int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+
+                                    if (DENI != "0" && DENI != "")
+                                    {
+                                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+
+                                        if (DENI.Length > 8)
+                                        {
+                                            TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                        }
+
+                                    }
+
+                                    if (TD == 99)
+                                    {
+                                        decimal CANTIDAD_FACTURAS = Convert.ToDecimal(ARANCEL) / 4999;
+                                        decimal CANTIDAD_FACTURAS_FLOOR = Math.Floor(CANTIDAD_FACTURAS);
+                                        decimal IMPORTE_FACTURADO = CANTIDAD_FACTURAS_FLOOR * 4999;
+                                        decimal IMPORTE_RESTANTE = Convert.ToDecimal(ARANCEL) - IMPORTE_FACTURADO;
+                                        pbMultiples.Visible = true;
+                                        pbMultiples.Step = 1;
+                                        pbMultiples.Maximum = Convert.ToInt32(CANTIDAD_FACTURAS_FLOOR + 1);
+
+                                        for (int i = 1; i <= CANTIDAD_FACTURAS_FLOOR; i++)
+                                        {
+                                            BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, 4999, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
+                                            FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
+                                            barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO, CAE, VENCE_CAE, PTO_VTA_E, NUMERO_E);
+                                            NRO_COMP = NRO_COMP + 1;
+                                            Thread.Sleep(250);
+                                            pbMultiples.PerformStep();
+                                        }
+
+                                        BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, float.Parse(IMPORTE_RESTANTE.ToString()), FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
+                                        FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
+                                        barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO, CAE, VENCE_CAE, PTO_VTA_E, NUMERO_E);
+                                        pbMultiples.PerformStep();
+                                        pbMultiples.Visible = false;
+                                    }
+                                    else
+                                    {
+                                        BO_CAJA.modificarRecibosEnBlanco(NRO_COMP, DEBE, HABER, ARANCEL, FORMA_DE_PAGO, idsectact, VGlobales.vp_username,
+                                        FECHA_RECIBO, ID_SOCIO, idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text,
+                                        barra, lbNombreSocio.Text, lbTipoSocioNoTitular.Text, DENI, PTO_VTA, BANCO_DEPO, CAE, VENCE_CAE, PTO_VTA_E, NUMERO_E);
+                                    }
 
                                     if (PTO_VTA == "0004")
                                     {

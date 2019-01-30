@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dpVenceCAE = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
+            this.tbCAE = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.cbBancoDepo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnImprimirTicket = new System.Windows.Forms.Button();
@@ -79,10 +83,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbReintegro = new System.Windows.Forms.Label();
             this.lbDisponibles = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.tbCAE = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.dpVenceCAE = new System.Windows.Forms.DateTimePicker();
+            this.pbMultiples = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -95,6 +96,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pbMultiples);
             this.groupBox1.Controls.Add(this.dpVenceCAE);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.tbCAE);
@@ -135,6 +137,39 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS DEL RECIBO";
+            // 
+            // dpVenceCAE
+            // 
+            this.dpVenceCAE.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpVenceCAE.Location = new System.Drawing.Point(121, 290);
+            this.dpVenceCAE.Name = "dpVenceCAE";
+            this.dpVenceCAE.Size = new System.Drawing.Size(119, 20);
+            this.dpVenceCAE.TabIndex = 87;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(2, 294);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(108, 13);
+            this.label11.TabIndex = 86;
+            this.label11.Text = "VENCIMIENTO CAE:";
+            // 
+            // tbCAE
+            // 
+            this.tbCAE.Location = new System.Drawing.Point(121, 264);
+            this.tbCAE.Name = "tbCAE";
+            this.tbCAE.Size = new System.Drawing.Size(119, 20);
+            this.tbCAE.TabIndex = 85;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(78, 268);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(31, 13);
+            this.label10.TabIndex = 84;
+            this.label10.Text = "CAE:";
             // 
             // cbBancoDepo
             // 
@@ -616,38 +651,13 @@
             this.lbDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbDisponibles.Visible = false;
             // 
-            // label10
+            // pbMultiples
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(78, 268);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(31, 13);
-            this.label10.TabIndex = 84;
-            this.label10.Text = "CAE:";
-            // 
-            // tbCAE
-            // 
-            this.tbCAE.Location = new System.Drawing.Point(121, 264);
-            this.tbCAE.Name = "tbCAE";
-            this.tbCAE.Size = new System.Drawing.Size(119, 20);
-            this.tbCAE.TabIndex = 85;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(2, 294);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(108, 13);
-            this.label11.TabIndex = 86;
-            this.label11.Text = "VENCIMIENTO CAE:";
-            // 
-            // dpVenceCAE
-            // 
-            this.dpVenceCAE.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpVenceCAE.Location = new System.Drawing.Point(121, 290);
-            this.dpVenceCAE.Name = "dpVenceCAE";
-            this.dpVenceCAE.Size = new System.Drawing.Size(119, 20);
-            this.dpVenceCAE.TabIndex = 87;
+            this.pbMultiples.Location = new System.Drawing.Point(382, 289);
+            this.pbMultiples.Name = "pbMultiples";
+            this.pbMultiples.Size = new System.Drawing.Size(228, 23);
+            this.pbMultiples.TabIndex = 88;
+            this.pbMultiples.Visible = false;
             // 
             // recibos
             // 
@@ -735,5 +745,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DateTimePicker dpVenceCAE;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ProgressBar pbMultiples;
     }
 }
