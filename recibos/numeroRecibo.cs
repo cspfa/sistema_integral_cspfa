@@ -10,6 +10,7 @@ namespace SOCIOS
     {
         bo dlog = new bo();
 
+                     
         public string obtener(string ROL)
         { 
             string NRO_RECIBO = "0";
@@ -39,7 +40,7 @@ namespace SOCIOS
 
         public int obtenerCuenta(string PTO_VTA)
         {
-            int CUENTA = 0;
+            int CUENTA = 301101;
 
             try
             {
