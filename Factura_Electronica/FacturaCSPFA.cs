@@ -16,6 +16,7 @@ namespace SOCIOS.Factura_Electronica
        Facturacion_Electronica sf ;
        SOCIOS.BO.BO_Afip bo_Afip = new BO.BO_Afip();
        string CUIT_ENTIDAD = "30516588213";
+       SOCIOS.Factura_Electronica.PreFacturado prefact = new PreFacturado();
        public FacturaCSPFA(int PuntoVenta)
 
        {
@@ -74,8 +75,7 @@ namespace SOCIOS.Factura_Electronica
            List<Check_Recibo> Lista = new List<Check_Recibo>();
 
            string Query = "SELECT NUMERO_E  NUM from recibos_caja where char_length(CAE)>0 and PTO_VTA_E=" + Punto_Venta.ToString()+ " and Fecha_recibo  Between  '" + Desde + "' AND '" + Hasta + "'";;
-
-
+           
 
            string connectionString;
 
@@ -153,8 +153,8 @@ namespace SOCIOS.Factura_Electronica
        //Tipo Documento      : 96 DNI      , 80 CUIT 
        public Recibo_Request Facturo_Recibo(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha,int Modo_Facturacion)
 
-       {          
-
+       {
+           
            try
            {
 
@@ -162,10 +162,14 @@ namespace SOCIOS.Factura_Electronica
                {
                    // Facturacion Unitaria , factura como siempre
                    Afip.AfipFactResults result_request = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
-
-
-                   this.Marcar_Facturacion(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento, true, Modo_Facturacion);
-
+                   if (Tipo_COMPROBANTE == (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C)
+                   {
+                       this.Marcar_NC(ID_REGISTRO_RECIBO, result_request.Numero, result_request.Cae, result_request.Vencimiento);
+                   }
+                   else
+                   {
+                       this.Marcar_Factura(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento, true, Modo_Facturacion, Monto, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Fecha);
+                   }
                    return Exito_Request(result_request);
                }
                else
@@ -189,9 +193,57 @@ namespace SOCIOS.Factura_Electronica
        
        }
 
+       private void Facturacion_Multiple(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha)
+
+       {
+           List<InfoPreFactura>  pre_Facturas = new List<InfoPreFactura>();
+
+           decimal CANTIDAD_FACTURAS = Decimal.Round( Monto / 4999);
+           decimal CANTIDAD_FACTURAS_FLOOR = Math.Floor(CANTIDAD_FACTURAS);
+           decimal IMPORTE_FACTURADO = CANTIDAD_FACTURAS_FLOOR * 4999;
+           decimal IMPORTE_RESTANTE = Decimal.Round( Monto - IMPORTE_FACTURADO,2);
+           
+           // Primero se Graban todas las cantidades de facturas, luego. se barre el grabado y se factura 
+           for (int i = 1; i <= CANTIDAD_FACTURAS_FLOOR; i++)
+           {
+               
+               bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO,Fecha, "","", PTO_VENTA,0,IMPORTE_FACTURADO,TipoDocumento,Documento,2,Tipo_COMPROBANTE);
+
+            
+           }
+
+           // resto de facturacion
+
+           bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO,Fecha, "", "", PTO_VENTA, 0, IMPORTE_RESTANTE,TipoDocumento, Documento, 2, Tipo_COMPROBANTE);
+
+           pre_Facturas = prefact.Facturar_Registros_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA);
+
+           foreach (InfoPreFactura item in pre_Facturas)
+           {
+               if (item.Cae.Length > 0)
+
+               {
+
+                   bo_Afip.Marca_Afip_Recibo_Factura_U(item.ID, item.Cae, item.Vencimiento, item.Punto_Venta, item.Numero);  
+               
+               }
+           }
+
+           
+
+          
+
+
+
+       
+       
+       }
+
        
 
-       private Recibo_Request Exito_Request(Afip.AfipFactResults result)
+       
+
+       public Recibo_Request Exito_Request(Afip.AfipFactResults result)
        {
            Recibo_Request item = new Recibo_Request();
            item.Cae = result.Cae;
@@ -210,21 +262,18 @@ namespace SOCIOS.Factura_Electronica
 
        
        
-       public void Marcar_Facturacion(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE,bool Recibo, int Modo_Facturacion)
+       public void Marcar_Factura(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE,bool Recibo, int Modo_Facturacion,decimal Monto,int Tipo_Comprobante,int tipo_Documento,string Documento,int Concepto,DateTime fecha)
 
        {
            if (Recibo)
            {
-               if (Modo_Facturacion == (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA)
-               {
+               
+                   
                    bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE, Modo_Facturacion);
-                  // bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO, CAE, VENC_CAE, PTO_VENTA, NUMERO);
-               }
-               else
-               { 
+                 
+                   
+                   //  bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO,fecha, CAE, VENC_CAE, PTO_VENTA, NUMERO,Monto,tipo_Documento,Documento,Concepto,Tipo_Comprobante);
                
-               
-               }
            }
            else
                bo_Afip.Marca_Afip_Bono(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE);
@@ -232,10 +281,38 @@ namespace SOCIOS.Factura_Electronica
 
        
        }
-
-       public string Codigo_Barra(string TipoFactura,int Pto,string CAE,string VencimientoCAE)
+       public void Marcar_NC(int ID_REGISTRO_RECIBO, int NUMERO, string CAE, string VENC_CAE)
        {
-           
+
+           bo_Afip.Marca_Afip_Nota_Credito(ID_REGISTRO_RECIBO, NUMERO, CAE, VENC_CAE);
+
+       }
+      
+       public bool Validar_Recibo_NC(int ID_REGISTRO_RECIBO)
+       {
+           string QUERY = "SELECT ANULADO from Recibos_caja where ID= " + ID_REGISTRO_RECIBO.ToString();
+            
+            DataRow[] foundRows;
+            foundRows =  bo_Afip.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                if (foundRows[0][0].ToString().Trim().Length == 0)
+                    throw new Exception("El Recibo no tiene Anulacion, no se puede efectuar la NC a afip");
+                return false;
+            }
+            else
+                return false;
+
+                  
+
+       
+       }
+
+     
+       
+       public string Codigo_Barra(string TipoFactura,int Pto,string CAE,string VencimientoCAE)
+       {           
         return CUIT_ENTIDAD +TipoFactura + Utils.CompletarCeros(Pto.ToString(), false, 4) + Utils.CompletarCeros(CAE, false, 13) + VencimientoCAE + "9";
        }
 

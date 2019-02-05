@@ -15,6 +15,7 @@ using System.Diagnostics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Excel = Microsoft.Office.Interop.Excel;
+using SOCIOS.Factura_Electronica;
 
 namespace SOCIOS
 {
@@ -4004,7 +4005,7 @@ namespace SOCIOS
                 if (COMPROBANTE == "RECIBOS")
                 {
                     query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                    query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, B.NUMERO_E AS NRO_E, B.DNI FROM ";
+                    query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, B.NUMERO_E AS NRO_E, B.DNI,B.NUMERO_NC_E FROM ";
                     query += "RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID";
                 }
 
@@ -4089,6 +4090,8 @@ namespace SOCIOS
                     dt1.Columns.Add("PV", typeof(string));
                     dt1.Columns.Add("NE", typeof(string));
                     dt1.Columns.Add("DNI", typeof(string));
+                    dt1.Columns.Add("NUMERO_NC_E", typeof(string));
+                    
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -4111,7 +4114,7 @@ namespace SOCIOS
                     string PTO_VTA = string.Empty;
                     string NRO_E = string.Empty;
                     string DNI = string.Empty;
-
+                    string NRO_NC = string.Empty;
                     while (reader.Read())
                     {
                         TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
@@ -4130,7 +4133,8 @@ namespace SOCIOS
                         PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
                         NRO_E = reader.GetString(reader.GetOrdinal("NRO_E"));
                         DNI = reader.GetString(reader.GetOrdinal("DNI"));
-                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NRO_E, DNI);
+                        NRO_NC = reader.GetString(reader.GetOrdinal("NUMERO_NC_E"));
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NRO_E, DNI,NRO_NC);
                     }
 
                     reader.Close();
@@ -4406,104 +4410,108 @@ namespace SOCIOS
 
         private void facturar(DataGridView GRID, ProgressBar PB)
         {
-            string EXCEPTION = "";
-            string DENI = "";
-            int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
-            int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
-            int TF = (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA;
-            int recibo_id = 0;
-            string IMPORTE = "";
-            string FECHA_RECIBO = "";
-            string NOMBRE_SOCIO = "";
-            string CONCEPTO = "SERVICIOS PRESTADOS";
-            string PTO_VTA = "";
-            string ROLE = "";
-            string PTO_VTA_O = "";
-            string DIR = "";
-            string COND_IVA = "CONSUMIDOR FINAL";
-
-            if (GRID.SelectedRows.Count == 0)
-                MessageBox.Show("SELECCIONAR AL MENOS UN COMPROBANTE PARA FACTURAR");
-            else
+            if (MessageBox.Show("Se va a proceder a Facturar , De Acuerdo?", "Facturar ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                PB.Visible = true;
-                PB.Minimum = 0;
-                PB.Maximum = GRID.SelectedRows.Count;
-                PB.Value = 1;
-                PB.Step = 1;
-                Cursor = Cursors.WaitCursor;
 
-                foreach (DataGridViewRow row in GRID.SelectedRows)
+                string EXCEPTION = "";
+                string DENI = "";
+                int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+                int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+                int TF = (int)SOCIOS.Factura_Electronica.Tipo_FACTURACION_ENUM.UNITARIA;
+                int recibo_id = 0;
+                string IMPORTE = "";
+                string FECHA_RECIBO = "";
+                string NOMBRE_SOCIO = "";
+                string CONCEPTO = "SERVICIOS PRESTADOS";
+                string PTO_VTA = "";
+                string ROLE = "";
+                string PTO_VTA_O = "";
+                string DIR = "";
+                string COND_IVA = "CONSUMIDOR FINAL";
+
+                if (GRID.SelectedRows.Count == 0)
+                    MessageBox.Show("SELECCIONAR AL MENOS UN COMPROBANTE PARA FACTURAR");
+                else
                 {
-                    DENI = row.Cells[12].Value.ToString();
-                    recibo_id = int.Parse(row.Cells[9].Value.ToString());
-                    IMPORTE = row.Cells[4].Value.ToString();
-                    FECHA_RECIBO = row.Cells[6].Value.ToString();
-                    NOMBRE_SOCIO = row.Cells[1].Value.ToString();
-                    PTO_VTA = row.Cells[10].Value.ToString();
-                    ROLE = nr.obtenerRole(PTO_VTA);
-                    PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
+                    PB.Visible = true;
+                    PB.Minimum = 0;
+                    PB.Maximum = GRID.SelectedRows.Count;
+                    PB.Value = 1;
+                    PB.Step = 1;
+                    Cursor = Cursors.WaitCursor;
 
-                    if (DENI != "0" && DENI != "")
+                    foreach (DataGridViewRow row in GRID.SelectedRows)
                     {
-                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+                        DENI = row.Cells[12].Value.ToString();
+                        recibo_id = int.Parse(row.Cells[9].Value.ToString());
+                        IMPORTE = row.Cells[4].Value.ToString();
+                        FECHA_RECIBO = row.Cells[6].Value.ToString();
+                        NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+                        PTO_VTA = row.Cells[10].Value.ToString();
+                        ROLE = nr.obtenerRole(PTO_VTA);
+                        PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
 
-                        if (DENI.Length > 8)
+                        if (DENI != "0" && DENI != "")
                         {
-                            TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
-                            CONCEPTO = nr.obtenerObservacion(recibo_id);
-                            COND_IVA = nr.obnenerCondicionPorCuit(DENI);
-                        }
-                    }
+                            TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
 
-                    if (PTO_VTA_O != "") //VALIDO QUE EXISTA PUNTO DE VENTA CARGADO
-                    {
-                        if (Modo_Facturacion_Produccion == "TEST") //DEFINO EL DIRECTORIO PARA GUARDAR LOS ARCHIVOS
-                            DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
-                        else
-                            DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
-
-                        Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
-                        Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
-                        Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-
-                        if (row.Cells[0].Value.ToString().Substring(0, 1) == "R") //VALIDO TIPO DE COMPROBANTE
-                        {
-                            if (row.Cells[11].Value.ToString() == "" || row.Cells[11].Value.ToString() == "0") //VALIDO NUMERO ELECTRONICO
+                            if (DENI.Length > 8)
                             {
-                                if (row.Cells[4].Value.ToString() != "0,00") //VALIDO IMPORTE DIFERENTE A 0
+                                TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                CONCEPTO = nr.obtenerObservacion(recibo_id);
+                                COND_IVA = nr.obnenerCondicionPorCuit(DENI);
+                            }
+                        }
+
+                        if (PTO_VTA_O != "") //VALIDO QUE EXISTA PUNTO DE VENTA CARGADO
+                        {
+                            if (Modo_Facturacion_Produccion == "TEST") //DEFINO EL DIRECTORIO PARA GUARDAR LOS ARCHIVOS
+                                DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
+                            else
+                                DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
+
+                            Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                            Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(int.Parse(PTO_VTA_O));
+                            Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+
+                            if (row.Cells[0].Value.ToString().Substring(0, 1) == "R") //VALIDO TIPO DE COMPROBANTE
+                            {
+                                if (row.Cells[11].Value.ToString() == "" || row.Cells[11].Value.ToString() == "0") //VALIDO NUMERO ELECTRONICO
                                 {
-                                    if (decimal.Parse(row.Cells[4].Value.ToString()) < 5000) //VALIDO QUE SEA MENOR A 5 MIL
+                                    if (row.Cells[4].Value.ToString() != "0,00") //VALIDO IMPORTE DIFERENTE A 0
                                     {
-                                        result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
-                                        if (result.Result == true)
-                                            imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
-                                        else
-                                            MessageBox.Show(result.Excepcion.ToString());
-                                        PB.PerformStep();
-                                    }
-                                    else //SI ES MAYOR O IGUAL A 5 MIL
-                                    {
-                                        if (TD == 99) // SI ES CONSUMIDOR FINAL DIVIDO Y HAGO VARIOS RECIBOS C
-                                        {
-                                            //
-                                        }
-                                        else // SI NO ES CONSUMIDOR FINAL HAGO UN SOLO RECIBO C
+                                        if (decimal.Parse(row.Cells[4].Value.ToString()) < 5000) //VALIDO QUE SEA MENOR A 5 MIL
                                         {
                                             result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                             if (result.Result == true)
-                                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                            else
+                                                MessageBox.Show(result.Excepcion.ToString());
                                             PB.PerformStep();
+                                        }
+                                        else //SI ES MAYOR O IGUAL A 5 MIL
+                                        {
+                                            if (TD == 99) // SI ES CONSUMIDOR FINAL DIVIDO Y HAGO VARIOS RECIBOS C
+                                            {
+
+                                            }
+                                            else // SI NO ES CONSUMIDOR FINAL HAGO UN SOLO RECIBO C
+                                            {
+                                                result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
+                                                if (result.Result == true)
+                                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                                PB.PerformStep();
+                                            }
                                         }
                                     }
                                 }
                             }
                         }
                     }
-                }
 
-                Cursor = Cursors.Default;
-                PB.Visible = false;
+                    Cursor = Cursors.Default;
+                    PB.Visible = false;
+                }
             }
         }
 
@@ -4566,26 +4574,26 @@ namespace SOCIOS
                                     anular(NRO, COMPROBANTE, TABLA, FECHA, PTO_VTA);
 
                                     if (VGlobales.vp_role == "CAJA")
-                                    {
-                                        string DIR = "";
-                                        int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
-                                        int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+                                    {   // Seba 30-01-2019 : no va a afip al anular
+                                        //string DIR = "";
+                                        //int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
+                                        //int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
 
-                                        if (Modo_Facturacion_Produccion == "TEST")
-                                            DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA + "\\NOTAS_DE_CREDITO\\";
-                                        else
-                                            DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA + "\\NOTAS_DE_CREDITO\\";
+                                        //if (Modo_Facturacion_Produccion == "TEST")
+                                        //    DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA + "\\NOTAS_DE_CREDITO\\";
+                                        //else
+                                        //    DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA + "\\NOTAS_DE_CREDITO\\";
 
-                                        Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
-                                        Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                        Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(Int32.Parse(VGlobales.PTO_VTA_O));
-                                        result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, 1);
+                                        //Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                                        //Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                        //Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(Int32.Parse(VGlobales.PTO_VTA_O));
+                                        //result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, 1);
                                         
-                                        if (result.Result == true)
-                                            imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
-                                                result.Cae, FECHA, "ORIGINAL", CONCEPTO, ID_COMP);
-                                        else
-                                            MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
+                                        //if (result.Result == true)
+                                        //    imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
+                                        //        result.Cae, FECHA, "ORIGINAL", CONCEPTO, ID_COMP);
+                                        //else
+                                        //    MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
                                     }
                                     MessageBox.Show("COMPROBANTE ANULADO CORRECTAMENTE", "LISTO");
                                 }
@@ -4629,6 +4637,79 @@ namespace SOCIOS
             anularComprobante(dgEfectivo);
             buscar("1", dgEfectivo, CAJA);
         }
+
+
+        private void GenerarNotaCredito(DataGridView GRID)
+        {
+            Factura_Helper helper_f = new Factura_Helper();
+            
+
+            try
+            {
+                if (GRID.SelectedRows.Count == 1)
+                {
+                    foreach (DataGridViewRow row in GRID.SelectedRows)
+                    {
+                        if (row.Cells[0].Value.ToString().Substring(0, 1) == "R")
+                        {
+                            Cursor = Cursors.WaitCursor;
+                            string NRO = row.Cells[9].Value.ToString();
+
+                            string FECHA = DateTime.Now.ToString();
+                            int PTO_VTA =  helper_f.Punto_Venta_Electronico( row.Cells[10].Value.ToString());
+                     
+
+                            
+                            string DENI = row.Cells[11].Value.ToString();
+                            decimal IMPORTE = this.IMPORTE_NC(Int32.Parse(NRO));
+                            string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+                            string CONCEPTO = "Anulacion FC";
+
+
+                            if (VGlobales.vp_role == "CAJA")
+                            {
+                                string DIR = "";
+                                int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
+                                int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+
+                                string PTO_VTA_D = PTO_VTA.ToString("0000");
+
+                                if (Modo_Facturacion_Produccion == "TEST")
+                                    DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_D + "\\NOTAS_DE_CREDITO\\";
+                                else
+                                    DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_D + "\\NOTAS_DE_CREDITO\\";
+
+
+
+                                Factura_Electronica.Recibo_Request result = new Factura_Electronica.Recibo_Request();
+                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(PTO_VTA);
+                                fe.Validar_Recibo_NC(Int32.Parse(NRO));
+                                
+                                result = fe.Facturo_Recibo(int.Parse(NRO), PTO_VTA, TC, TD, DENI, IMPORTE, DateTime.Now, 1);
+
+                                if (result.Result == true)
+                                    imp_fact.Genero_PDF(TC, PTO_VTA, result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
+                                        result.Cae, FECHA, "ORIGINAL", CONCEPTO, int.Parse(NRO));
+
+                                else
+                                    MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
+                            }
+                            MessageBox.Show("COMPROBANTE ANULADO CORRECTAMENTE", "LISTO");
+                        }
+                        
+                        Cursor = Cursors.Default;
+                    }
+
+                }
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show("NO SE PUDO INFORMAR LA NC  DEL COMPROBANTE\n" + error.Message, "ERROR");
+            }
+
+                }
+
 
         //private void GenerarNotaCredito(DataGridView GRID)
         //{
@@ -4945,5 +5026,194 @@ namespace SOCIOS
             Factura_Electronica.Consulta_Factura cf = new Factura_Electronica.Consulta_Factura();
             cf.ShowDialog();
         }
+
+        private void btnNotaCredito_Click(object sender, EventArgs e)
+        {
+            this.GenerarNotaCredito(dgBuscador);
+        }
+
+        private void genPdfNota(DataGridView GRID)
+        {
+            if (GRID.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow row in GRID.SelectedRows)
+                {
+                    if (row.Cells[0].Value.ToString().Substring(0, 1) == "R")
+                    {
+                        if (row.Cells[11].Value.ToString() != "")
+                        {
+                            try
+                            {
+                                string PTO_VTA = row.Cells[10].Value.ToString();
+                                string ROLE = nr.obtenerRole(PTO_VTA);
+                                string PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
+                                string PTO_VTA_F = PTO_VTA_O.Replace("0", "");
+                                string NRO_E = row.Cells[13].Value.ToString();
+                                string FILE = "";
+                                if (Modo_Facturacion_Produccion == "TEST")
+                                    FILE = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\NOTAS_DE_CREDITO\\NOTA DE CREDITO C -PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
+                                else
+                                    FILE = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\NOTAS_DE_CREDITO\\NOTA DE CREDITO C -PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
+
+                                //if (!File.Exists(FILE))
+                                //{
+
+                                string DIR = "";
+
+                                if (Modo_Facturacion_Produccion == "TEST")
+                                    DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\NOTAS_DE_CREDITO\\";
+                                else
+                                    DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\NOTAS_DE_CREDITO\\";
+
+                                int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
+                                int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+
+                                string DENI = row.Cells[12].Value.ToString();
+                                int recibo_id = int.Parse(row.Cells[9].Value.ToString());
+                                decimal IMPORTE = IMPORTE_NC(recibo_id); 
+                                string FECHA_RECIBO = row.Cells[6].Value.ToString().Substring(0, 10);
+                                string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+                                string CONCEPTO = "SERVICIOS PRESTADOS";
+                                string CAE = nr.obtenerCaePorNC(PTO_VTA_F, int.Parse(NRO_E));
+                                string COND_IVA = "CONSUMIDOR FINAL";
+
+                                if (DENI != "0" && DENI != "")
+                                {
+                                    TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+
+                                    if (DENI.Length > 8)
+                                    {
+                                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                        CONCEPTO = nr.obtenerObservacion(recibo_id);
+                                        COND_IVA = nr.obnenerCondicionPorCuit(DENI);
+                                    }
+                                }
+
+                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, IMPORTE,
+                                    CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+
+                                MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
+                                //}
+                                /*else
+                                {
+                                    MessageBox.Show("EL ARCHIVO YA EXISTE", "ERROR");
+                                }*/
+                                //MessageBox.Show("ARCHIVOS PDF GENERADOS CORRECTAMENTE", "LISTO!");
+                            }
+                            catch (Exception error)
+                            {
+                                MessageBox.Show("OCURRIO UN ERROR AL GENERAR EL ARCHIVO PDF\n" + error, "ERROR");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("EL CAMPO NE NO PUEDE ESTAR VACÍO", "ERROR");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("SELECCIONAR UN RECIBO PARA GENERAR LOS PDFS", "ERROR");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("SELECCIONAR AL MENOS UN RECIBO", "ERROR");
+            }
+        }
+
+        public decimal IMPORTE_NC(int ID_REGISTRO_RECIBO)
+        {
+            string QUERY = "SELECT VALOR from Recibos_caja where ID= " + ID_REGISTRO_RECIBO.ToString();
+
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                return Decimal.Parse(foundRows[0][0].ToString());
+
+            }
+            else
+                return 0;
+
+
+
+
+        }
+
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            genPdfNota(dgBuscador);
+
+        }
+
+
+        private void verNotaC(DataGridView GRID)
+        {
+            if (GRID.SelectedRows.Count == 1)
+            {
+                foreach (DataGridViewRow row in GRID.SelectedRows)
+                {
+                    if (row.Cells[0].Value.ToString().Substring(0, 1) == "R")
+                    {
+                        try
+                        {
+                            string PTO_VTA = row.Cells[10].Value.ToString();
+                            string ROLE = nr.obtenerRole(PTO_VTA);
+                            string PTO_VTA_O = nr.obtenerPtoVtaOficial(ROLE);
+                            string PTO_VTA_F = PTO_VTA_O.Replace("0", "");
+                            string NRO_E = row.Cells[13].Value.ToString();
+                            string FILE = "";
+
+                            if (Modo_Facturacion_Produccion == "TEST")
+                                FILE = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\NOTAS_DE_CREDITO\\NOTA DE CREDITO C -PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
+                            else
+                                FILE = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\NOTAS_DE_CREDITO\\NOTA DE CREDITO C -PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
+
+                            if (File.Exists(FILE))
+                            {
+                                Process.Start(FILE);
+                            }
+                            else
+                            {
+                                MessageBox.Show("EL ARCHIVO NO EXISTE", "ERROR");
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show("OCURRIO UN ERROR AL ABRIR EL ARCHIVO PDF\n" + error, "ERROR");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("SELECCIONAR UN RECIBO PARA VER EL ARCHIVO PDF", "ERROR");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("SELECCIONAR SOLO UN COMPROBANTE", "ERROR");
+            }
+        }
+
+        private void btnNotaCredito_Ver_Click(object sender, EventArgs e)
+        {
+            verNotaC(dgBuscador);
+        }
+
+        private void btnDesanularOtros_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDesanularEfectivo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
