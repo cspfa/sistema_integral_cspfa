@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pbMultiples = new System.Windows.Forms.ProgressBar();
             this.dpVenceCAE = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.tbCAE = new System.Windows.Forms.TextBox();
@@ -83,7 +84,6 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbReintegro = new System.Windows.Forms.Label();
             this.lbDisponibles = new System.Windows.Forms.Label();
-            this.pbMultiples = new System.Windows.Forms.ProgressBar();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -137,6 +137,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS DEL RECIBO";
+            // 
+            // pbMultiples
+            // 
+            this.pbMultiples.Location = new System.Drawing.Point(382, 289);
+            this.pbMultiples.Name = "pbMultiples";
+            this.pbMultiples.Size = new System.Drawing.Size(228, 23);
+            this.pbMultiples.TabIndex = 88;
+            this.pbMultiples.Visible = false;
             // 
             // dpVenceCAE
             // 
@@ -609,6 +617,7 @@
             this.cbPtoVta.Name = "cbPtoVta";
             this.cbPtoVta.Size = new System.Drawing.Size(279, 26);
             this.cbPtoVta.TabIndex = 82;
+            this.cbPtoVta.SelectionChangeCommitted += new System.EventHandler(this.cbPtoVta_SelectionChangeCommitted);
             // 
             // groupBox3
             // 
@@ -650,14 +659,6 @@
             this.lbDisponibles.Text = "DISPONIBLES";
             this.lbDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbDisponibles.Visible = false;
-            // 
-            // pbMultiples
-            // 
-            this.pbMultiples.Location = new System.Drawing.Point(382, 289);
-            this.pbMultiples.Name = "pbMultiples";
-            this.pbMultiples.Size = new System.Drawing.Size(228, 23);
-            this.pbMultiples.TabIndex = 88;
-            this.pbMultiples.Visible = false;
             // 
             // recibos
             // 

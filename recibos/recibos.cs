@@ -1130,11 +1130,20 @@ namespace SOCIOS
             bono   = EsRecibo==false?NroPago:0;
             pcu.MarcarPagaCuota(ID_PAGO, NroPago, EsRecibo, FormaPago, FechaPago);
         }
-        private void Desmarcar_Cuota(int ID_PAGO,decimal MONTO)
 
+        private void Desmarcar_Cuota(int ID_PAGO,decimal MONTO)
         {
             pcu.DesmarcarPagaCuota(ID_PAGO,MONTO);
 
+        }
+       
+        private void cbPtoVta_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string PTO_VTA = cbPtoVta.SelectedValue.ToString();
+            numeroRecibo nr = new numeroRecibo();
+            int CUENTA = nr.obtenerCuenta(PTO_VTA);
+            cbCuentasDebe.SelectedValue = CUENTA;
+            lbNombreCuentaDebe.Text = nc.nombre(cbCuentasDebe.SelectedValue.ToString());
         }
     }
 }
