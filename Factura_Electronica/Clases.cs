@@ -25,6 +25,17 @@ namespace SOCIOS.Factura_Electronica
     
     }
 
+    public class InfoPreFactura : Recibo_Request
+    {
+        public int    ID               { get; set; }
+        public int    TIPO_DOC         { get; set; }
+        public string DOC              { get; set; }
+        public int    TIPO_COMPROBANTE { get; set; }
+        public int    CONCEPTO         { get; set; }
+        public DateTime FECHA          { get; set; }
+        public decimal  MONTO          { get; set; }
+    }
+
     public class AfipFactErrores
     {
         public int Numero { get; set; }
@@ -72,6 +83,7 @@ namespace SOCIOS.Factura_Electronica
 
 
     }
+
 
 
     public class Datos_Factura
@@ -150,5 +162,25 @@ namespace SOCIOS.Factura_Electronica
     
     }
 
+    public class Info_Pre_Facturado
+    {
+        public int Pto_Venta        { get; set; }
+        public int Tipo_Comprobante { get; set; }
+        public int Tipo_Documento    { get; set; }
+        public string Documento     { get; set; }
+        public DateTime Fecha       { get; set; }
+        public Info_Pre_Facturado(int pPtoVta, int pTipoC, int pTipoDoc, string pDoc, DateTime pFecha)
+        {
+            Pto_Venta        = pPtoVta;
+            Tipo_Comprobante = pTipoC;
+            Tipo_Documento   = pTipoDoc;
+            Documento        = pDoc;
+            Fecha            = pFecha;
+
+        
+        }
+    }
+
+    
     #endregion
 }
