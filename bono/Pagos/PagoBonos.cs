@@ -49,6 +49,16 @@ namespace SOCIOS.bono
         public bool Control_Fecha_Cuotas = false;
         public int Cantidad_Control_Fechas_Cuota = 3;
         DateTime Fecha_Referencia_Cuotas=System.DateTime.Now;
+        
+        public decimal Efectivo           = 0;
+        public decimal Tarjeta_credito    = 0;
+        public int Tarjeta_credito_cuotas = 0;
+        public decimal Tarjeta_Debito     = 0;
+        public decimal Planilla           = 0;
+        public int     Planilla_Cuotas    = 0;
+
+
+        
 
 
         public PagoBonos(int pidBono, string pROL, decimal pSaldo, bool Financiable, int pNro_Soc, int pNro_Dep, int pBarra, int pNro_Socio_Titular, string Beneficio,DateTime? pFecha_Referencia_Cuotas )
@@ -289,13 +299,16 @@ namespace SOCIOS.bono
                         this.ValidarMonto(Saldo);
                         formaPago = formaPago + ", Se va a a Abonar el Bono en 1 solo pago  en  Efectivo de :$" + Saldo.ToString();
                         SaldoIngreso = Saldo;
+                        Efectivo = Saldo;
                         break;
                     case 2:
                         //Parte en Efectivo , Parte en Debito
                        // this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Efectivo:$ " + lbMonto1.Text + " , Debito: $ " + lbMonto2.Text;
-                        SaldoIngreso = Decimal.Parse(lbMonto1.Text);
+                        SaldoIngreso    = Decimal.Parse(lbMonto1.Text);
+                        Efectivo        = Decimal.Round(Decimal.Parse(lbMonto1.Text), 2);
+                        Tarjeta_Debito = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
 
                         break;
                     case 3:
@@ -304,7 +317,8 @@ namespace SOCIOS.bono
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
                         //30-08-2017 se cambia lbMontoTarjeta.Text por las cuotas
                         formaPago = formaPago + ", Se va a Abonar el Bono en Efectivo $ " + lbMonto1.Text + " , Tarjeta de Credito $ "+ lbMonto2.Text + " en " +  CuotasTarjeta.ToString()  + " Cuotas";
-                        SaldoIngreso = Decimal.Parse(lbMonto1.Text);
+                        SaldoIngreso = Decimal.Round(Decimal.Parse(lbMonto1.Text),2);
+                        
                         
                       
                         SaldoInteres = Decimal.Round(Decimal.Parse(lbMontoTarjeta.Text)  - Decimal.Parse(lbMonto2.Text),2);
@@ -313,6 +327,10 @@ namespace SOCIOS.bono
                         // 9-08-2017 - no se agrega el interes en el valor del bono  
                         Saldo =  Decimal.Round(Decimal.Parse(lbMonto2.Text),2);
                         this.ValidarTarjeta();
+
+                        Efectivo = SaldoIngreso;
+                        Tarjeta_credito = Saldo;
+                        Tarjeta_credito_cuotas = CuotasTarjeta;
                         
                         
                       
@@ -329,7 +347,11 @@ namespace SOCIOS.bono
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Efectivo $" + lbMonto1.Text + " ,  " + lbMonto2.Text +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
-                        SaldoIngreso = Decimal.Parse(lbMonto1.Text);
+                        SaldoIngreso = Decimal.Round( Decimal.Parse(lbMonto1.Text),2);
+
+                        Efectivo = SaldoIngreso;
+                        Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
+                        Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
                        
                         
                         break;
@@ -343,8 +365,11 @@ namespace SOCIOS.bono
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Debito $" + lbMonto1.Text + " ,  " + lbMonto2.Text +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
-                        SaldoIngreso = Decimal.Parse(lbMonto1.Text);
+                        SaldoIngreso = Decimal.Round(Decimal.Parse(lbMonto1.Text),2);
 
+                        Tarjeta_Debito = SaldoIngreso;
+                        Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
+                        Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
                         break;
 
                     case 8:
@@ -356,8 +381,13 @@ namespace SOCIOS.bono
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Tarjeta de Credito $" + lbMonto1.Text + " ,  " + lbMonto2.Text +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
-                        SaldoIngreso = Decimal.Parse(lbMonto1.Text);
+                        SaldoIngreso = Decimal.Round(Decimal.Parse(lbMonto1.Text),2);
                         this.ValidarTarjeta();
+
+                        Tarjeta_credito        = SaldoIngreso;
+                        Tarjeta_credito_cuotas = Int32.Parse(tbCantidadCuotas.Text);
+                       
+
                         break;
 
                     case 5:
@@ -376,6 +406,8 @@ namespace SOCIOS.bono
                         formaPago = formaPago + ", Financiacion por planilla $ " + lblSaldo.Text +
                         ",a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" +tbMontoCuotas.Text;
                         SaldoIngreso = 0;
+                        Planilla = Decimal.Round(Decimal.Parse(lblSaldo.Text), 2);
+                        Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
                         break;
                     case 6:
                         //Todo en Financiacion Efectivo
@@ -388,8 +420,8 @@ namespace SOCIOS.bono
                         formaPago = formaPago + ", Financiacion Efectivo, Seña $ " + lbSeniaMonto.Text +
                         ",Saldo de $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
                        
-                        SaldoIngreso = Decimal.Parse(lbSeniaMonto.Text);
-
+                        SaldoIngreso = Decimal.Round( Decimal.Parse(lbSeniaMonto.Text),2);
+                        Efectivo = SaldoIngreso;
                        
                         break;
 

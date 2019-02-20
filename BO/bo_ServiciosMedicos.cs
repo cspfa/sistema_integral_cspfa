@@ -48,7 +48,7 @@ namespace SOCIOS.BO
 
 
         }
-        public void InsertOdontologico(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, string DNI, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal SALDO_INTERES, string NOMBRE, string APELLIDO, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PROF, string PAGO, int TURNO, string USR, int CONTRALOR, string ROL,int CODINT,int CODCP,string BONO_BLANCO)
+        public void InsertOdontologico(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, string DNI, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal SALDO_INTERES, string NOMBRE, string APELLIDO, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PROF, string PAGO, int TURNO, string USR, int CONTRALOR, string ROL,int CODINT,int CODCP,string BONO_BLANCO,decimal EFECTIVO,decimal TARJETA_CREDITO,int CUOTAS_TARJETA,decimal TARJETA_DEBITO,decimal PLANILLA,int PLANILLA_CUOTAS )
         {
             db resultado = new db();
 
@@ -101,6 +101,14 @@ namespace SOCIOS.BO
             vector_contenidos.Add(CODINT);
             vector_contenidos.Add(CODCP);
             vector_contenidos.Add(BONO_BLANCO);
+          
+            vector_contenidos.Add(EFECTIVO);
+            vector_contenidos.Add(TARJETA_CREDITO);
+            vector_contenidos.Add(CUOTAS_TARJETA);
+            vector_contenidos.Add(TARJETA_DEBITO);
+            vector_contenidos.Add(PLANILLA);
+            vector_contenidos.Add(PLANILLA_CUOTAS);
+
             ArrayList vector_tipos = new ArrayList();
 
             vector_tipos.Add("FbDbType.Integer");
@@ -151,6 +159,13 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.VarChar");
+
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.Integer");
             ArrayList vector_nombres = new ArrayList();
 
 
@@ -193,11 +208,18 @@ namespace SOCIOS.BO
             vector_nombres.Add("@CODINT");
             vector_nombres.Add("@CODCP");
             vector_nombres.Add("@BONO_BLANCO");
+            
+            vector_nombres.Add("@EFECTIVO");
+            vector_nombres.Add("@CREDITO");
+            vector_nombres.Add("@CREDITO_CUOTAS");
+            vector_nombres.Add("@DEBITO");
+            vector_nombres.Add("@PLANILLA");
+            vector_nombres.Add("@PLANILLA_CUOTAS");
             string vprocedure = "P_BONO_ODONTOLOGICO_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
         }
-            
-            public void UpdateOdontologico(int ID,int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, string DNI, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal SALDO_INTERES, string NOMBRE, string APELLIDO, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PROF, string PAGO, int TURNO, string USR, int CONTRALOR, string ROL,int CODINT,int CODCP,string BONO_BLANCO)
+
+        public void UpdateOdontologico(int ID, int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, string DNI, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal SALDO_INTERES, string NOMBRE, string APELLIDO, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PROF, string PAGO, int TURNO, string USR, int CONTRALOR, string ROL, int CODINT, int CODCP, string BONO_BLANCO, decimal EFECTIVO, decimal TARJETA_CREDITO, int CUOTAS_TARJETA, decimal TARJETA_DEBITO, decimal PLANILLA, int PLANILLA_CUOTAS)
         {
             db resultado = new db();
 
@@ -377,9 +399,33 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.VarChar");
             vector_nombres.Add("@PIN_BONO_BLANCO");
             vector_contenidos.Add(BONO_BLANCO);
-         
 
-          
+            vector_tipos.Add("FbDbType.Float");
+            vector_nombres.Add("@PIN_EFECTIVO");
+            vector_contenidos.Add(EFECTIVO);
+
+            vector_tipos.Add("FbDbType.Float");
+            vector_nombres.Add("@PIN_TARJETA_CREDITO");
+            vector_contenidos.Add(TARJETA_CREDITO);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_CREDITO_CUOTAS");
+            vector_contenidos.Add(CUOTAS_TARJETA);
+
+            vector_tipos.Add("FbDbType.Float");
+            vector_nombres.Add("@PIN_TARJETA_DEBITO");
+            vector_contenidos.Add(TARJETA_DEBITO);
+
+            vector_tipos.Add("FbDbType.Float");
+            vector_nombres.Add("@PIN_PLANILLA");
+            vector_contenidos.Add(PLANILLA);
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_PLANILLA_CUOTAS");
+            vector_contenidos.Add(PLANILLA_CUOTAS);
+
+         
+                      
            
             string vprocedure = "P_BONO_ODONTOLOGICO_U";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);

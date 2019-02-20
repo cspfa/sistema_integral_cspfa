@@ -13,9 +13,18 @@ using FirebirdSql.Data.Server;
 using System.Data;
 using System.Data.SqlClient;
 using Microsoft.Reporting.WinForms;
+using System.IO;
 
 namespace SOCIOS.bono
 {
+    public class Montos_Bono
+    {
+        public string Efectivo { get; set; }
+        public string Debito   { get; set; }
+        public string Credito  { get; set; }
+        public string Planilla { get; set; }
+    
+    }
     public partial class ReporteBonoOdontologico : Form
     {   CabeceraTitular CAB;
         DatoSocio SOC;
@@ -63,6 +72,7 @@ namespace SOCIOS.bono
         {
             string FechaS;
             string Actividad;
+            Montos_Bono mb = new bono.Montos_Bono();
          
 
             FechaS = Fecha.Day.ToString("00") + "-" + Fecha.Month.ToString("00") + "-" + Fecha.Year.ToString();
@@ -72,11 +82,13 @@ namespace SOCIOS.bono
 
             BonoAnulado = this.Anulado(ID);
 
+            // Traigo Montos
+            mb = this.Montos_Bono(ID);
             bo dlog = new bo();
             //Codigo de Barra
             string Barra = "OD" + ID.ToString("0000000000");
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[22];
+            ReportParameter[] parameters = new ReportParameter[26];
             //Establecemos el valor de los parámetros
             int nroContraLor = this.Contralor(ID);
             string Contralor = nroContraLor.ToString();
@@ -110,6 +122,11 @@ namespace SOCIOS.bono
             parameters[19] = new ReportParameter("Categoria",SOC.TIPO );
             parameters[20] = new ReportParameter("Directivo", "");
             parameters[21] = new ReportParameter("Cargo", "");
+
+            parameters[22] = new ReportParameter("EFECTIVO", mb.Efectivo);
+            parameters[23] = new ReportParameter("PLANILLA", mb.Planilla);
+            parameters[24] = new ReportParameter("DEBITO", mb.Debito);
+            parameters[25] = new ReportParameter("CREDITO", mb.Credito);
 
 
             this.reportViewer.LocalReport.SetParameters(parameters);
@@ -226,6 +243,46 @@ namespace SOCIOS.bono
         
         }
 
+
+        private Montos_Bono Montos_Bono (int pBono)
+        {
+            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS from  BONO_ODONTOLOGICO WHERE   ID= " + pBono.ToString();
+            DataRow[] foundRows;
+            Montos_Bono mb = new bono.Montos_Bono();
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            
+            if (foundRows.Length > 0)
+            {
+                mb.Efectivo = Decimal.Round(Decimal.Parse(foundRows[0][0].ToString()), 2).ToString();
+              
+                if (foundRows[0][2].ToString() != "0")
+                {
+                    mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + foundRows[0][2].ToString() + " Cuotas";
+
+                }
+                else
+                    mb.Credito = "0";
+
+                mb.Debito = Decimal.Round(Decimal.Parse(foundRows[0][3].ToString()), 2).ToString();
+
+                if (foundRows[0][5].ToString() != "0")
+                {
+                    mb.Planilla = Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2).ToString() + " - " + foundRows[0][5].ToString() + " Cuotas";
+
+                }
+                else
+                    mb.Planilla = "0";
+              
+
+                
+            }
+            return mb;
+
+        }
+
+
         private void Print_Click(object sender, EventArgs e)
         {
             SOCIOS.ReportPrintDocument rp = new ReportPrintDocument(reportViewer.LocalReport);
@@ -237,6 +294,16 @@ namespace SOCIOS.bono
         {
             SOCIOS.ReportPrintDocument rp = new ReportPrintDocument(reportViewer.LocalReport);
             rp.Print();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            byte[] Bytes = reportViewer.LocalReport.Render(format: "PDF", deviceInfo: "");
+
+            using (FileStream stream = new FileStream("\\\\192.168.1.6\\factura_electronica\\1\\test.pdf", FileMode.Create))
+            {
+                stream.Write(Bytes, 0, Bytes.Length);
+            }  
         }
 
 
