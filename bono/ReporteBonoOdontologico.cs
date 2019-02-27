@@ -78,6 +78,7 @@ namespace SOCIOS.bono
             FechaS = Fecha.Day.ToString("00") + "-" + Fecha.Month.ToString("00") + "-" + Fecha.Year.ToString();
             DataTable ds = this.Datos(ID.ToString());
             
+
             //Determinar si el bono es Anulado o No
 
             BonoAnulado = this.Anulado(ID);
@@ -291,7 +292,7 @@ namespace SOCIOS.bono
 
         public void ImprimirDirecto()
 
-        {
+        {  
             SOCIOS.ReportPrintDocument rp = new ReportPrintDocument(reportViewer.LocalReport);
             rp.Print();
         }

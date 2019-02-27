@@ -277,10 +277,11 @@ namespace SOCIOS.bono
         {
             string fPago = FormaPagoBono();
             ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text));
-            
-            rb.ImprimirDirecto();
-            rb.ImprimirDirecto();
-            rb.ImprimirDirecto();
+            rb.Show();
+
+           // rb.ImprimirDirecto();
+           // rb.ImprimirDirecto();
+           // rb.ImprimirDirecto();
         
         }
       
@@ -683,6 +684,7 @@ namespace SOCIOS.bono
             if (MessageBox.Show("Esta Seguro de Limpiar Los Datos de la Pantalla?", "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 Tratamientos = new List<Tratamiento>();
+
 
                 PagosBono = new List<PagoBono>();
                 gvTratamientos.DataSource = Tratamientos;

@@ -363,7 +363,7 @@ namespace SOCIOS
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(63, 22);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(69, 22);
             this.bindingNavigatorMoveFirstItem.Text = "Primero";
             this.bindingNavigatorMoveFirstItem.Click += new System.EventHandler(this.bindingNavigatorMoveFirstItem_Click);
             // 
@@ -377,7 +377,7 @@ namespace SOCIOS
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(66, 22);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(70, 22);
             this.bindingNavigatorMovePreviousItem.Text = "Anterior";
             this.bindingNavigatorMovePreviousItem.Click += new System.EventHandler(this.bindingNavigatorMovePreviousItem_Click);
             // 
@@ -391,7 +391,7 @@ namespace SOCIOS
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(71, 22);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(76, 22);
             this.bindingNavigatorMoveNextItem.Text = "Siguiente";
             this.bindingNavigatorMoveNextItem.Click += new System.EventHandler(this.bindingNavigatorMoveNextItem_Click);
             // 
@@ -405,7 +405,7 @@ namespace SOCIOS
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(56, 22);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(63, 22);
             this.bindingNavigatorMoveLastItem.Text = "Ultimo";
             this.bindingNavigatorMoveLastItem.Click += new System.EventHandler(this.bindingNavigatorMoveLastItem_Click);
             // 
@@ -419,7 +419,7 @@ namespace SOCIOS
             this.nuevo.Image = ((System.Drawing.Image)(resources.GetObject("nuevo.Image")));
             this.nuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.nuevo.Name = "nuevo";
-            this.nuevo.Size = new System.Drawing.Size(58, 22);
+            this.nuevo.Size = new System.Drawing.Size(62, 22);
             this.nuevo.Text = "Nuevo";
             this.nuevo.Click += new System.EventHandler(this.nuevo_Click);
             // 
@@ -434,7 +434,7 @@ namespace SOCIOS
             this.editar.Image = ((System.Drawing.Image)(resources.GetObject("editar.Image")));
             this.editar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.editar.Name = "editar";
-            this.editar.Size = new System.Drawing.Size(55, 22);
+            this.editar.Size = new System.Drawing.Size(57, 22);
             this.editar.Text = "Editar";
             this.editar.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -448,7 +448,7 @@ namespace SOCIOS
             this.cancelar.Image = ((System.Drawing.Image)(resources.GetObject("cancelar.Image")));
             this.cancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(69, 22);
+            this.cancelar.Size = new System.Drawing.Size(73, 22);
             this.cancelar.Text = "Cancelar";
             this.cancelar.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -462,7 +462,7 @@ namespace SOCIOS
             this.grabar.Image = ((System.Drawing.Image)(resources.GetObject("grabar.Image")));
             this.grabar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.grabar.Name = "grabar";
-            this.grabar.Size = new System.Drawing.Size(60, 22);
+            this.grabar.Size = new System.Drawing.Size(62, 22);
             this.grabar.Text = "Grabar";
             this.grabar.Click += new System.EventHandler(this.grabar_Click);
             // 
@@ -476,7 +476,7 @@ namespace SOCIOS
             this.buscar.Image = ((System.Drawing.Image)(resources.GetObject("buscar.Image")));
             this.buscar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.buscar.Name = "buscar";
-            this.buscar.Size = new System.Drawing.Size(59, 22);
+            this.buscar.Size = new System.Drawing.Size(62, 22);
             this.buscar.Text = "Buscar";
             this.buscar.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -490,7 +490,7 @@ namespace SOCIOS
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(60, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(62, 22);
             this.toolStripButton1.Text = "Carnet";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
@@ -504,7 +504,7 @@ namespace SOCIOS
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(65, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(73, 22);
             this.toolStripButton2.Text = "Imprimir";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click_2);
             // 
@@ -518,7 +518,7 @@ namespace SOCIOS
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(86, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(94, 22);
             this.toolStripButton3.Text = "Autorizacion";
             this.toolStripButton3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
@@ -561,8 +561,8 @@ namespace SOCIOS
             // 
             // richTextbox1
             // 
-            this.richTextbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextbox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextbox1.BusinessObjectEvaluated = true;
             this.richTextbox1.FormattingToolStrip = this.richTextToolStrip1;
@@ -579,7 +579,7 @@ namespace SOCIOS
             this.richTextToolStrip1.Location = new System.Drawing.Point(190, 18);
             this.richTextToolStrip1.Name = "richTextToolStrip1";
             this.richTextToolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.richTextToolStrip1.Size = new System.Drawing.Size(541, 25);
+            this.richTextToolStrip1.Size = new System.Drawing.Size(543, 25);
             this.richTextToolStrip1.TabIndex = 0;
             this.richTextToolStrip1.Text = "richTextBox1";
             // 
@@ -594,6 +594,7 @@ namespace SOCIOS
             // 
             // tabPage7
             // 
+            this.tabPage7.Enabled = true;
             this.tabPage7.Location = new System.Drawing.Point(4, 23);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.ParentContainer = this;
@@ -608,6 +609,7 @@ namespace SOCIOS
             // 
             // tabPage10
             // 
+            this.tabPage10.Enabled = true;
             this.tabPage10.Location = new System.Drawing.Point(4, 23);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.ParentContainer = this;
@@ -2828,7 +2830,7 @@ namespace SOCIOS
             this.ListarVit});
             this.toolStrip3.Location = new System.Drawing.Point(283, 328);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(322, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(336, 25);
             this.toolStrip3.TabIndex = 64;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -2837,7 +2839,7 @@ namespace SOCIOS
             this.NuevoVit.Image = ((System.Drawing.Image)(resources.GetObject("NuevoVit.Image")));
             this.NuevoVit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.NuevoVit.Name = "NuevoVit";
-            this.NuevoVit.Size = new System.Drawing.Size(58, 22);
+            this.NuevoVit.Size = new System.Drawing.Size(62, 22);
             this.NuevoVit.Text = "Nuevo";
             this.NuevoVit.Click += new System.EventHandler(this.NuevoVit_Click_1);
             // 
@@ -2851,7 +2853,7 @@ namespace SOCIOS
             this.EditarVit.Image = ((System.Drawing.Image)(resources.GetObject("EditarVit.Image")));
             this.EditarVit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.EditarVit.Name = "EditarVit";
-            this.EditarVit.Size = new System.Drawing.Size(55, 22);
+            this.EditarVit.Size = new System.Drawing.Size(57, 22);
             this.EditarVit.Text = "Editar";
             this.EditarVit.Click += new System.EventHandler(this.EditarVit_Click_1);
             // 
@@ -2865,7 +2867,7 @@ namespace SOCIOS
             this.CancelarVit.Image = ((System.Drawing.Image)(resources.GetObject("CancelarVit.Image")));
             this.CancelarVit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.CancelarVit.Name = "CancelarVit";
-            this.CancelarVit.Size = new System.Drawing.Size(69, 22);
+            this.CancelarVit.Size = new System.Drawing.Size(73, 22);
             this.CancelarVit.Text = "Cancelar";
             this.CancelarVit.Click += new System.EventHandler(this.CancelarVit_Click_1);
             // 
@@ -2879,7 +2881,7 @@ namespace SOCIOS
             this.GrabarVit.Image = ((System.Drawing.Image)(resources.GetObject("GrabarVit.Image")));
             this.GrabarVit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.GrabarVit.Name = "GrabarVit";
-            this.GrabarVit.Size = new System.Drawing.Size(60, 22);
+            this.GrabarVit.Size = new System.Drawing.Size(62, 22);
             this.GrabarVit.Text = "Grabar";
             this.GrabarVit.Click += new System.EventHandler(this.GrabarVit_Click_1);
             // 
@@ -2893,7 +2895,7 @@ namespace SOCIOS
             this.ListarVit.Image = ((System.Drawing.Image)(resources.GetObject("ListarVit.Image")));
             this.ListarVit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ListarVit.Name = "ListarVit";
-            this.ListarVit.Size = new System.Drawing.Size(53, 22);
+            this.ListarVit.Size = new System.Drawing.Size(55, 22);
             this.ListarVit.Text = "Listar";
             // 
             // TabServicios

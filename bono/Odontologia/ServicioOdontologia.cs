@@ -55,7 +55,14 @@ namespace SOCIOS.bono.Odontologia
 
       public int GetMax_ID_ROL(string ROL, int CODINT)
       {
-          string QUERY = "SELECT coalesce (MAX(ID_ROL),0) FROM Bono_Odontologico WHERE ROL='" + ROL + "' and CODINT=" + CODINT.ToString();
+
+          string Query = "";
+          QUERY = "SELECT coalesce (MAX(ID_ROL),0) FROM Bono_Odontologico WHERE ROL='" + ROL + "' and CODINT=" + CODINT.ToString();
+          if (CODINT == 10236 ||CODINT ==  10380)
+          {
+              QUERY = "SELECT coalesce (MAX(ID_ROL),0) FROM Bono_Odontologico WHERE ROL='" + ROL + "' and (CODINT=10236 or CODINT=10380)";
+          }
+          
           DataRow[] foundRows;
           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
@@ -120,6 +127,16 @@ namespace SOCIOS.bono.Odontologia
 
                   CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-ANER", "COD_ODONTO", 2));
                   break;
+              case 122:
+
+                  CodInt = Int32.Parse(Config.getValor("ODON-PROTESIS-VILLAGRAN", "COD_ODONTO", 2));
+                  break;
+              case 374:
+                  CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-ANER", "COD_ODONTO", 2));
+                  break;
+
+
+
           }
 
           return CodInt;

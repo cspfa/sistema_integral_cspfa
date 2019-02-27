@@ -50,7 +50,8 @@ namespace SOCIOS
         public string TIPO { get; set; }
         public int DESTINO { get; set; }
         public int PROF { get; set; }
-        bo dlog = new bo();
+        bo_Bonos  dlog = new bo_Bonos();
+
 
         CabeceraTitular DatosSocio = new CabeceraTitular();
         public IngresoBono(int ID, string ROL, bool Pago, decimal Monto,int pNro_Socio,int pNro_Dep,int pBarra,int pNRo_SocioADH, int pNro_DepADH,string Dni,string Nombre,string Apellido,int Destino,int Prof,string Titulo,int BONO)

@@ -193,6 +193,9 @@ namespace SOCIOS
                if (pRol.Length ==0)
                   if (pRol != "SISTEMAS" )
                      Query = Query + " AND ROL = '" + pRol + "'";
+
+               if (pRol.Contains("ODON"))
+                    Query = Query + " AND ROL = '" + pRol + "'";
                
                if (dlog.BO_EjecutoDataTable(Query).Rows[0]["VALOR"].ToString().Trim().Length > 0)
                    return dlog.BO_EjecutoDataTable(Query).Rows[0]["VALOR"].ToString().Trim();
