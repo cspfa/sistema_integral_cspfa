@@ -45,7 +45,7 @@ namespace SOCIOS.bono
             string Desde = this.fechaUSA(DateTime.Parse(dpDesde.Text));
             string Hasta = this.fechaUSA(DateTime.Parse(dpHasta.Text));
 
-            string query = @"select B.ID_ROL ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA   from turnos_medicos  TM, Bono_Odontologico B ,SECTACT S
+            string query = @"select B.ID_ROL ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA, B.ID SEC   from turnos_medicos  TM, Bono_Odontologico B ,SECTACT S
             where    B.turno = TM.ID AND TM.ESPECIALIDAD=S.ID 
             AND    B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
            
@@ -94,6 +94,7 @@ namespace SOCIOS.bono
                     dt1.Columns.Add("PROFESIONAL", typeof(string));
                     dt1.Columns.Add("SALDO", typeof(string));
                     dt1.Columns.Add("BAJA", typeof(string));
+                    dt1.Columns.Add("SEC", typeof(string));
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -109,7 +110,9 @@ namespace SOCIOS.bono
                                      reader3.GetString(reader3.GetOrdinal("TRATAMIENTO")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("PROFESIONAL")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("SALDO")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("BAJA")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("BAJA")).Trim(),
+                                      reader3.GetString(reader3.GetOrdinal("SEC")).Trim()
+                                     );
                     }
 
                     reader3.Close();
@@ -159,9 +162,11 @@ namespace SOCIOS.bono
         }
         private void Imprimir_Click(object sender, EventArgs e)
         {
-           
-            
-            SOCIOS.bono.Odontologico odonto = new bono.Odontologico(ID, true);
+           bool retorno=  Valido_Seleccion();
+           if (retorno)
+           {
+               SOCIOS.bono.Odontologico odonto = new bono.Odontologico(ID, true);
+           }
         }
 
         private void dgBonos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -173,16 +178,26 @@ namespace SOCIOS.bono
         {
             if (MessageBox.Show("Esta Seguro de Anular el Bono?", "Anulacion Bono ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                dlog.BajaOdontologico(ID, VGlobales.vp_username, System.DateTime.Now);
-                MessageBox.Show("Bono Anulado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.RefrescarGrilla();
+                bool retorno=  Valido_Seleccion();
+                if (retorno)
+                {
+
+                    dlog.BajaOdontologico(ID, VGlobales.vp_username, System.DateTime.Now);
+                    MessageBox.Show("Bono Anulado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.RefrescarGrilla();
+                }
             }
         }
 
-        private void Valido_Seleccion()
-
-        { if (ID==0)
-            MessageBox.Show("Seleccione un Bono", "Seleccione un Bono", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        private bool Valido_Seleccion()
+        {
+            bool valido = true;
+            if (ID == 0)
+            {
+                valido = false;
+                MessageBox.Show("Seleccione un Bono", "Seleccione un Bono", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return valido;
         }
 
         private void btnFiltro_Click(object sender, EventArgs e)
@@ -203,7 +218,7 @@ namespace SOCIOS.bono
 
         private void dgBonos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            ID = Int32.Parse(dgBonos.SelectedRows[0].Cells[0].Value.ToString());
+            ID = Int32.Parse(dgBonos.SelectedRows[0].Cells[8].Value.ToString());
         }
     }
 }
