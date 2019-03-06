@@ -13,6 +13,7 @@ namespace SOCIOS.bono
         bo dlog = new bo();
         BonoOdontologico bono;
         int idBono;
+        int IdRol;
         string Nro_Socio="", Nro_Dep="", Barra="", Nro_Socio_Titular="", Nro_Dep_titular="", Prof="", formaPago="", Obs="";
         int SECACT=0, TURNO=0;
         decimal Saldo = 0;
@@ -23,7 +24,7 @@ namespace SOCIOS.bono
         public Odontologico(int ID, bool Directo)
         {
             this.Datos(ID, Directo);
-            ReporteBonoOdontologico rb = new ReporteBonoOdontologico(bono.srvDatosSocio.CAB, bono.persona, Fecha,idBono, Prof, formaPago, Obs, Saldo);
+            ReporteBonoOdontologico rb = new ReporteBonoOdontologico(bono.srvDatosSocio.CAB, bono.persona, Fecha,idBono, Prof, formaPago, Obs, Saldo,IdRol);
             rb.ShowDialog();
             rb.Focus();
         }
@@ -35,7 +36,7 @@ namespace SOCIOS.bono
 
         {
          
-            string QUERY = "SELECT  ID,Fe_Bono,SALDO_INICIAL,Nro_Socio,Nro_Dep,Barra,Nro_Socio_Titular,NRO_DEP_TITULAR,Sec_Act,Turno,Prof,Pago,Obs FROM BONO_ODONTOLOGICO";
+            string QUERY = "SELECT  ID,Fe_Bono,SALDO_INICIAL,Nro_Socio,Nro_Dep,Barra,Nro_Socio_Titular,NRO_DEP_TITULAR,Sec_Act,Turno,Prof,Pago,Obs,ID_ROL FROM BONO_ODONTOLOGICO";
             
             if (Directo)
                 QUERY= QUERY +    " WHERE ID=" + ID.ToString();
@@ -61,8 +62,8 @@ namespace SOCIOS.bono
                Prof              = foundRows[0][10].ToString();
                formaPago         = foundRows[0][11].ToString();
                Obs               = foundRows[0][12].ToString();
-               
-               bono = new BonoOdontologico(Nro_Socio, Nro_Dep, Barra, Nro_Socio_Titular, Nro_Dep_titular,SECACT,TURNO,false,"TURNO");
+              IdRol              = Int32.Parse(foundRows[0][13].ToString());
+                bono = new BonoOdontologico(Nro_Socio, Nro_Dep, Barra, Nro_Socio_Titular, Nro_Dep_titular,SECACT,TURNO,false,"TURNO");
                
 
             }

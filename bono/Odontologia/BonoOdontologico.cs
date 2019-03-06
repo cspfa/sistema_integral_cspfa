@@ -260,7 +260,7 @@ namespace SOCIOS.bono
                     nombreProfesional = Nombre_profesional(idProfesional);
                 }
 
-                ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text));
+                ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text),ID_ROL);
                 rb.ShowDialog();
                 rb.Focus();
             }
@@ -276,7 +276,7 @@ namespace SOCIOS.bono
 
         {
             string fPago = FormaPagoBono();
-            ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text));
+            ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text),ID_ROL);
             rb.Show();
 
            // rb.ImprimirDirecto();
@@ -426,31 +426,9 @@ namespace SOCIOS.bono
         private void parche_Tratamiento_Odontologico()
 
         {
-            if (idProfesional == 26)
-            {
-                idProfesional = Int32.Parse(Config.getValor("SERVICIOS_MEDICOS", "ANER", 1));
-            }
+            CodInt = odontoService.Tratamiento_Odontologico_CodInt(idProfesional,SecAct);
 
-            switch (idProfesional)
-            {
-                case 27:
-                    CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-TAVELLA", "COD_ODONTO", 2));  
-                    break;
-                case 28:
-                    {
-                     if (SecAct ==110)
-                         CodInt= Int32.Parse(Config.getValor("ODON-GENERAL-VILLAGRAN", "COD_ODONTO", 2));
-                     else
-                         CodInt = Int32.Parse(Config.getValor("ODON-PROTESIS-VILLAGRAN", "COD_ODONTO", 2));
-                    }
-                    break;
-                case 170:
 
-                    CodInt = Int32.Parse(Config.getValor("ODON-GENERAL-ANER", "COD_ODONTO", 2));
-                    break;
-            }
-            
-            
         }
 
         private void ComboTratamiento()

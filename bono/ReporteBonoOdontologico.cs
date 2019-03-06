@@ -34,14 +34,16 @@ namespace SOCIOS.bono
         string Obs;
         string FormaPago;
         int ID;
+        int ID_ROL;
         string Prof;
         int BonoAnulado;
         
-        public ReporteBonoOdontologico(CabeceraTitular pCAB,DatoSocio pSOC,DateTime pfecha, int pBono,string pProf,string pFormaPago,string pObs,decimal pTotal)
+        public ReporteBonoOdontologico(CabeceraTitular pCAB,DatoSocio pSOC,DateTime pfecha, int pBono,string pProf,string pFormaPago,string pObs,decimal pTotal,int pID_ROL)
         {
             CAB = new CabeceraTitular();
             SOC = new DatoSocio();
             ID = pBono;
+            ID_ROL = pID_ROL;
             FormaPago = pFormaPago;
             Obs = pObs;
             Total = pTotal;
@@ -87,7 +89,7 @@ namespace SOCIOS.bono
             mb = this.Montos_Bono(ID);
             bo dlog = new bo();
             //Codigo de Barra
-            string Barra = "OD" + ID.ToString("0000000000");
+            string Barra = "OD" + ID_ROL.ToString("0000000000");
             //Array que contendrá los parámetros
             ReportParameter[] parameters = new ReportParameter[26];
             //Establecemos el valor de los parámetros
@@ -97,7 +99,7 @@ namespace SOCIOS.bono
             if (nroContraLor != 0)
                 Contralor = "Contralor DTO : "+  nroContraLor.ToString();
             parameters[0] = new ReportParameter("Fecha", FechaS);
-            parameters[1] = new ReportParameter("Bono", ID.ToString("000000"));
+            parameters[1] = new ReportParameter("Bono", ID_ROL.ToString("000000"));
             parameters[2] = new ReportParameter("Socio", CAB.NroSocioTitular);
             parameters[3] = new ReportParameter("Dni", CAB.Dni);
             parameters[4] = new ReportParameter("Afiliado", CAB.NroAfiliadoTitular);
