@@ -260,7 +260,7 @@ namespace SOCIOS.bono
                     nombreProfesional = Nombre_profesional(idProfesional);
                 }
 
-                ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text));
+                ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text),ID_ROL);
                 rb.ShowDialog();
                 rb.Focus();
             }
@@ -276,7 +276,7 @@ namespace SOCIOS.bono
 
         {
             string fPago = FormaPagoBono();
-            ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text));
+            ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text),ID_ROL);
             
             rb.ImprimirDirecto();
             rb.ImprimirDirecto();
