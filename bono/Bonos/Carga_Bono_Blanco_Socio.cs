@@ -76,7 +76,7 @@ namespace SOCIOS.bono.Bonos
 
             string query = "";
 
-            query = "Select ID ID,ID_ROL SECUENCIA,FE_BONO FECHA, SEC_ACT SECTACT,PROFESIONAL PROF FROM BONO_ODONTOLOGICO WHERE BONO_BLANCO='SI'  ";
+            query = "Select B.ID ID,B.ID_ROL SECUENCIA,B.FE_BONO FECHA, B.SEC_ACT SECTACT,B.PROFESIONAL PROF,P.NOMBRE NOMBRE_PROF  FROM BONO_ODONTOLOGICO B, PROFESIONALES P  WHERE BONO_BLANCO='SI' and P.ID=B.PROFESIONAL  ";
 
             if (cbFecha.Checked)
             {
@@ -121,6 +121,7 @@ namespace SOCIOS.bono.Bonos
                     dt1.Columns.Add("FECHA", typeof(string));
                     dt1.Columns.Add("SECTACT", typeof(string));
                     dt1.Columns.Add("PROF", typeof(string));
+                    dt1.Columns.Add("NOMBRE_PROF", typeof(string));
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -131,7 +132,7 @@ namespace SOCIOS.bono.Bonos
                     {
                         dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ID")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("SECUENCIA")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("FECHA")).Trim(), reader3.GetString(reader3.GetOrdinal("SECTACT")).Trim(),reader3.GetString(reader3.GetOrdinal("PROF")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("FECHA")).Trim(), reader3.GetString(reader3.GetOrdinal("SECTACT")).Trim(), reader3.GetString(reader3.GetOrdinal("PROF")).Trim(), reader3.GetString(reader3.GetOrdinal("NOMBRE_PROF")).Trim());
                     }
 
                     reader3.Close();
@@ -224,7 +225,7 @@ namespace SOCIOS.bono.Bonos
                     {
                         dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ID")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("SECUENCIA")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("FECHA")).Trim());
+                                    DateTime.Parse(reader3.GetString(reader3.GetOrdinal("FECHA")).Trim()).ToShortDateString());
                     }
 
                     reader3.Close();
@@ -377,6 +378,13 @@ namespace SOCIOS.bono.Bonos
         private void dgvDatos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void dgvDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgvDatos.Columns[3].Visible = false;
+            dgvDatos.Columns[4].Visible = false;
+            
         }
     }
 }
