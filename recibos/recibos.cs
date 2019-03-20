@@ -27,6 +27,8 @@ namespace SOCIOS
         maxid mid = new maxid();
         genHTML gh = new genHTML();
         FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+        SOCIOS.bono.BonoUtils bonoUtils = new bono.BonoUtils();
+
         string Modo_Facturacion_Produccion = VGlobales.MODO_FACTURACION;
 
         private string MODIFICAR { get; set; }
@@ -54,6 +56,9 @@ namespace SOCIOS
         private int reintegro_de { get; set; }
         private decimal importe_traido { get; set; }
         private string NRO_CUIT { get; set; }
+        private int ID_PROFESIONAL { get; set; }
+        private string Leyenda_Profesional { get; set; }
+
 
         public recibos(int var_IdSocio, int var_IdSecAct, int var_IdProf, int var_Secuencia, string var_Apellido, string var_Nombre, 
             string var_TipSoc, string var_Barra, string var_CodDto, string var_NroRecibo, string NUMERO_SOCIO, string NUMERO_DEP, 
@@ -101,6 +106,7 @@ namespace SOCIOS
             string[] arancel = { "A", "A" };
             reintegro = REINTEGRO;
             string NUMERO_DE_RECIBO = var_NroRecibo;
+            ID_PROFESIONAL = var_IdProf;
             comboBancoDepo();
 
             if (REINTEGRO == "NO")
@@ -598,6 +604,9 @@ namespace SOCIOS
                 }
             }
 
+            Leyenda_Profesional = bonoUtils.Leyenda_Bono_Profesional(ID_PROFESIONAL);
+
+
             bool CHECK_R = checkReintegro(IMPORTE, REINTEGRO_DE);
 
             if (cbCuentasDebe.SelectedValue.ToString() == "0")
@@ -733,10 +742,12 @@ namespace SOCIOS
                         int BONO = 0;
                     }
 
+
+
                     if (COMPROBANTE == "RECIBO") //IMPRIME RECIBO EN A4
                     {
                         gh.gHTML(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, IMPORTE.ToString(), idprof,
-                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, PTO_VTA_N, RECIBO_BONO);
+                                lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, PTO_VTA_N, RECIBO_BONO,Leyenda_Profesional);
                         printhtml p = new printhtml();
                         p.printHTML("recibo_temp.html");
                     }
@@ -746,7 +757,7 @@ namespace SOCIOS
                         DateTime Hoy = DateTime.Today;
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, 
                             IMPORTE.ToString(), idprof, lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, 
-                            NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA_N, Hoy.ToString("dd/MM/yyyy"), reintegro, PTO_VTA_O, NRO_FACT_ELECT);
+                            NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE, HABER, RECIBO_BONO, PTO_VTA_N, Hoy.ToString("dd/MM/yyyy"), reintegro, PTO_VTA_O, NRO_FACT_ELECT,Leyenda_Profesional);
                     }
 
                     this.Close();
@@ -822,6 +833,7 @@ namespace SOCIOS
                     string VENCE_CAE = "";
                     int PTO_VTA_E = 0;
                     int NUMERO_E = 0;
+                    Leyenda_Profesional = bonoUtils.Leyenda_Bono_Profesional(ID_PROFESIONAL);
 
                     if (ACCION == "MODIFICAR")
                     {
@@ -911,7 +923,7 @@ namespace SOCIOS
                                             BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                             DateTime Hoy = DateTime.Today;
                                             gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                            lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO", "", "");
+                                            lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO", "", "",Leyenda_Profesional);
                                         }
 
                                         if (ENBLANCO == "BLANCO")
@@ -953,7 +965,7 @@ namespace SOCIOS
                                         BO_CAJA.reciboEnIngresos(secuencia, NRO_COMP.ToString(), decimal.Parse(ARANCEL.ToString()));
                                         DateTime Hoy = DateTime.Today;
                                         gh.reciboTicket(tbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, ARANCEL.ToString(), idprof,
-                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO", "", "");
+                                        lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, cbCuentasDebe.SelectedValue.ToString(), cbCuentasHaber.SelectedValue.ToString(), RECIBO_BONO, PTO_VTA, Hoy.ToString("dd/MM/yyyy"), "NO", "", "",Leyenda_Profesional);
                                     }
 
                                     if (ENBLANCO == "BLANCO")
@@ -973,7 +985,7 @@ namespace SOCIOS
                     {
                         gh.reciboTicket(lbNroRecibo.Text, lbNombreSocio.Text, cbFormaDePago.SelectedText.ToString(), lbSectAct.Text, lbArancel.Text, idprof,
                                 lbNombreSocioTitular.Text, lbTipoSocio.Text.Substring(0, 3), tbObservaciones.Text, NRO_SOC, NRO_DEP, DOBLE_DUPLICADO, DENI, DEBE.ToString(), 
-                                HABER.ToString(), RECIBO_BONO, PTO_VTA, FECHA_RECIBO, "NO", "", "");
+                                HABER.ToString(), RECIBO_BONO, PTO_VTA, FECHA_RECIBO, "NO", "", "",Leyenda_Profesional);
                       string NRO_COMP = lbNroRecibo.Text;
                         if (VGlobales.ID_CUOTA_PAGO != 0)
                             this.Marcar_Cuota(VGlobales.ID_CUOTA_PAGO, false, Int32.Parse(NRO_COMP), Int32.Parse(cbFormaDePago.SelectedValue.ToString()), DateTime.Parse(FECHA_RECIBO));

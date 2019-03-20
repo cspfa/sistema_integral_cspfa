@@ -199,7 +199,7 @@ namespace SOCIOS
 
         public void reciboTicket(string NRO_RECIBO, string NOMBRE_SOCIO, string FORMAPAGO, string SECTACT, string VALOR, int ID_PROFESIONAL, string SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, 
             string OBSERVACIONES, string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, 
-            string COMPROBANTE, string PTO_VTA, string FECHA, string REINTEGRO, string PTO_VTA_O, string NRO_FACT_ELEC)
+            string COMPROBANTE, string PTO_VTA, string FECHA, string REINTEGRO, string PTO_VTA_O, string NRO_FACT_ELEC,string LEYENDA)
         {
             nombreProf np = new nombreProf();
             string PROFESIONAL = np.nombre(ID_PROFESIONAL);
@@ -213,7 +213,7 @@ namespace SOCIOS
             int CANTIDAD = 2;
             string BR = COMPROBANTE;
             string[] DATOS = { NRO_RECIBO, FECHA_LETRAS, NOMBRE_SOCIO, FORMAPAGO, SECTACT, VALOR, VALOR_LETRAS, FECHA, PROFESIONAL, SOCIO_TITULAR, TIPO_SOCIO_TITULAR, OBSERVACIONES, NRO_SOC,
-                               NRO_DEP, DOBLE_DUPLICADO, DNI, CANTIDAD.ToString(), BR, PTO_VTA, REINTEGRO, PTO_VTA_O, NRO_FACT_ELEC };
+                               NRO_DEP, DOBLE_DUPLICADO, DNI, CANTIDAD.ToString(), BR, PTO_VTA, REINTEGRO, PTO_VTA_O, NRO_FACT_ELEC,LEYENDA };
             DATOS_BR = DATOS;
             print();
         }
@@ -362,6 +362,11 @@ namespace SOCIOS
             graphics.DrawString("Observaciones", courier_big, black, startX, startY + Offset);
             Offset = Offset + sep2;
             graphics.DrawString(DATOS_BR[11], courier_big, black, startX, startY + Offset);
+            if (DATOS_BR[22].Length > 0)
+            {
+                Offset = Offset + sep2;
+                graphics.DrawString(DATOS_BR[22], courier_big, black, startX, startY + Offset);
+            }
             Offset = Offset + sep2;
             graphics.DrawImage(bm, startX, startY + Offset);
         }
@@ -1046,7 +1051,7 @@ namespace SOCIOS
 
         //HTML RECIBO / BONO
         public void gHTML(string NRO_RECIBO, string NOMBRE_SOCIO, string FORMAPAGO, string SECTACT, string VALOR, int ID_PROFESIONAL, string SOCIO_TITULAR, string TIPO_SOCIO_TITULAR, string OBSERVACIONES, 
-                          string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, string PTO_VTA, string RECIBO_BONO)        {
+                          string NRO_SOC, string NRO_DEP, string DOBLE_DUPLICADO, string DNI, string DEBE, string HABER, string PTO_VTA, string RECIBO_BONO,string LEYENDA)        {
             Bitmap barCode = null;
             nombreProf np = new nombreProf();
             numerosAletras nal = new numerosAletras();
@@ -1110,6 +1115,8 @@ namespace SOCIOS
                 html += "<tr><td colspan='2' style='font-size:12px;'>Recib&iacute; del Sr./a: " + NOMBRE_SOCIO + "</td></tr>";
                 html += "<tr><td colspan='2' style='font-size:12px;'>Pesos: " + VALOR + " (" + VALOR_LETRAS + ")</td></tr>";
                 html += "<tr><td colspan='2' style='font-size:12px;'>en concepto de: " + SECTACT + " - " + profesional + " - D: " + DEBE + " - H: " + HABER + "</td></tr>";
+                if (LEYENDA.Length >0)
+                    html += "<tr><td colspan='2' style='font-size:12px;'>Obs: " + LEYENDA + "</td></tr>";
                 html += "<tr><td colspan='2' style='font-size:12px;'>Obs: " + OBSERVACIONES + "</td></tr>";
                 html += "<tr><td colspan='2' style='font-size:9px;'>Imp.Ganancias:Exento Art.20 Inc.F | Ley 20628(Lo.1997) | IVA:Exento Art.7 Inc. h apartado 6 | Ley 20631 (t.o.1997)<br/>Imp.Ingresos Brutos: Exento Art.34 inc.15 | Cod. Fiscal: (t.o. 2005) CABA | Exceptuando de emitir comprobantes | Anexo 1 de la R.G. 1415 apartado K</td></tr>";
                 html += "</table>";

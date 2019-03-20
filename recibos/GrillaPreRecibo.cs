@@ -34,6 +34,7 @@ namespace SOCIOS
                 v_consulta = v_consulta + " FROM INGRESOS_A_PROCESAR A, SECTACT SA, PROFESIONALES P";
                 v_consulta = v_consulta + " WHERE A.ID_DESTINO IN (SELECT C.SECTACT FROM ARANCELES C WHERE C.FE_BAJA IS NULL GROUP BY C.SECTACT) AND A.ID_DESTINO <> 50 AND A.SECUENCIA > 268461";
 
+
                 if (VGlobales.vp_role == "INTERIOR")
                 {
                     v_consulta = v_consulta + " AND A.ROL = 'ALOJAMIENTO'";
@@ -124,6 +125,8 @@ namespace SOCIOS
                     dt1.Columns.Add("IMPORTE", typeof(string));
                     dt1.Columns.Add("NRO_PAGO", typeof(string));
                     dt1.Columns.Add("CUIL/CUIT", typeof(string));
+                   
+
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(v_consulta, connection, transaction);
                     FbDataReader reader3 = cmd.ExecuteReader();
@@ -153,7 +156,9 @@ namespace SOCIOS
                                      reader3.GetString(reader3.GetOrdinal("GRUPO")), //20
                                      reader3.GetString(reader3.GetOrdinal("IMPORTE")),//21
                                      reader3.GetString(reader3.GetOrdinal("NRO_PAGO")),//22 
-                                     reader3.GetString(reader3.GetOrdinal("CUIL"))); //23
+                                     reader3.GetString(reader3.GetOrdinal("CUIL"))//23,
+                                     
+                                     ); 
                     }
 
                     reader3.Close();
@@ -401,6 +406,8 @@ namespace SOCIOS
 
             if (RB == "B")
                 VGlobales.vp_NroRecibo = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+
+
 
             string NRO_SOC = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             string NRO_DEP = dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString();

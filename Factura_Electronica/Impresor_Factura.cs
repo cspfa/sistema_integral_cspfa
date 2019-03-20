@@ -28,6 +28,7 @@ namespace SOCIOS.Factura_Electronica
         string Leyenda_Direccion = "";
         string Leyenda_Forma_Pago = "";
         string Leyenda_Domicilio = "";
+        string Leyenda_Profesional = "";
         string DIRECTORIO_TEMP = @"C:\CSPFA_SOCIOS\TMP\";
         bo dlog = new bo();
         public Impresor_Factura(string pDIR)
@@ -39,7 +40,7 @@ namespace SOCIOS.Factura_Electronica
 
         {
             ReportDataSource rds = new ReportDataSource();
-            ReportParameter[] para = new ReportParameter[16];
+            ReportParameter[] para = new ReportParameter[17];
             ReportViewer viewer = new ReportViewer();
             FacturaCSPFA facturaService = new FacturaCSPFA(pPunto_De_Venta);
 
@@ -72,8 +73,8 @@ namespace SOCIOS.Factura_Electronica
             ReportParameter Orden           = new ReportParameter("ORDEN", pOrden);
             ReportParameter Condicion_Venta = new ReportParameter("CONDICION_VENTA", Leyenda_Forma_Pago);
             ReportParameter Concepto        = new ReportParameter("CONCEPTO", pConcepto);
-            ReportParameter Direccion       = new ReportParameter("DIRECCION",Leyenda_Direccion);
-
+            ReportParameter Direccion                  =  new ReportParameter("DIRECCION",Leyenda_Direccion);
+            ReportParameter Leyenda_profesional         = new ReportParameter("LEYENDA", Leyenda_Profesional);
             para[0] = Tipo_Comp;
             para[1] = PtoVenta;
             para[2] = Numero;
@@ -91,6 +92,7 @@ namespace SOCIOS.Factura_Electronica
             para[13] = Condicion_Venta;
             para[14] = Concepto;
             para[15] = Direccion;
+            para[16] = Leyenda_profesional;
 
             string Excepcion = "";
 
@@ -231,7 +233,7 @@ namespace SOCIOS.Factura_Electronica
             int Forma_Pago;
             
 
-            string QUERY = @"select B.Forma_pago, trim(T.CALL_PAR) || ' '|| trim(T.NRO_PAR) || ' '|| trim(T.PIS_PAR) || ' '|| trim (T.DPT_PAR)   from recibos_caja B, Titular T where  B.dni=T.num_doc  and B.ID=" + ID.ToString();
+            string QUERY = @"select B.Forma_pago, trim(T.CALL_PAR) || ' '|| trim(T.NRO_PAR) || ' '|| trim(T.PIS_PAR) || ' '|| trim (T.DPT_PAR),P.LEYENDA, P.NOMBRE   from recibos_caja B, Titular T,Profesionales P  where  B.dni=T.num_doc and B.ID_PROFESIONAL=P.ID  and B.ID=" + ID.ToString();
             
 
 
@@ -245,6 +247,7 @@ namespace SOCIOS.Factura_Electronica
                 Forma_Pago = Int32.Parse(foundRows[0][0].ToString());
                 Leyenda_Domicilio =foundRows[0][1].ToString();
                 this.Get_Forma_Pago(Forma_Pago);
+                Leyenda_Profesional = foundRows[0][2].ToString() + " " + foundRows[0][3].ToString();
 
             }
             
