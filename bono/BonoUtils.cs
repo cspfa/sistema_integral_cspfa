@@ -135,5 +135,57 @@ namespace SOCIOS.bono
 
        }
 
+       public string Leyenda_Bono_Profesional(int ID_Profesional)
+
+       {
+
+
+           string Query = @"select Leyenda,Nombre   from PROFESIONALES  WHERE ID= " + ID_Profesional.ToString();
+           Comision_Directiva item = new Comision_Directiva();
+
+
+           DataRow[] foundRows;
+
+           foundRows = dlog.BO_EjecutoDataTable(Query).Select();
+           int I = 0;
+           if (foundRows.Length > 0)
+           {
+
+               if (foundRows[I][0].ToString().Length > 0)
+                 return  foundRows[I][0].ToString() + " " + foundRows[I][1].ToString();
+
+
+           }
+
+
+
+
+           return "";
+       
+       }
+
+       public string LEYENDA_BONO_PROFESIONAL_DESDE_BONO(int pBono)
+       {
+           string QUERY = "select P.LEYENDA FROM  BONO_ODONTOLOGICO B, PROFESIONAL P  WHERE P.ID=B.PROFESIONAL  and B.ID= " + pBono.ToString();
+           DataRow[] foundRows;
+
+
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+
+           if (foundRows.Length > 0)
+           {
+
+               if (foundRows[0][0].ToString().Length > 0)
+                   return foundRows[0][0].ToString();
+               else
+                   return "";
+
+           }
+           return "";
+
+       }
+
+
     }
 }
