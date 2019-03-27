@@ -290,7 +290,7 @@ namespace SOCIOS.Factura_Electronica
       
        public bool Validar_Recibo_NC(int ID_REGISTRO_RECIBO)
        {
-           string QUERY = "SELECT ANULADO from Recibos_caja where ID= " + ID_REGISTRO_RECIBO.ToString();
+           string QUERY = "SELECT ANULADO,CAE_NC from Recibos_caja where ID= " + ID_REGISTRO_RECIBO.ToString();
             
             DataRow[] foundRows;
             foundRows =  bo_Afip.BO_EjecutoDataTable(QUERY).Select();
@@ -299,6 +299,8 @@ namespace SOCIOS.Factura_Electronica
             {
                 if (foundRows[0][0].ToString().Trim().Length == 0)
                     throw new Exception("El Recibo no tiene Anulacion, no se puede efectuar la NC a afip");
+                if (foundRows[0][1].ToString().Trim().Length > 0)
+                    throw new Exception("El Recibo ya tiene NC!");
                 return false;
             }
             else

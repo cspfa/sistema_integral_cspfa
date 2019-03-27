@@ -247,7 +247,11 @@ namespace SOCIOS.Factura_Electronica
                 Forma_Pago = Int32.Parse(foundRows[0][0].ToString());
                 Leyenda_Domicilio =foundRows[0][1].ToString();
                 this.Get_Forma_Pago(Forma_Pago);
-                Leyenda_Profesional = foundRows[0][2].ToString() + " " + foundRows[0][3].ToString();
+
+                if (foundRows[0][2].ToString().Length > 0)
+                    Leyenda_Profesional = foundRows[0][2].ToString() + " " + foundRows[0][3].ToString();
+                else
+                    Leyenda_Profesional = "";
 
             }
             

@@ -4660,7 +4660,7 @@ namespace SOCIOS
                      
 
                             
-                            string DENI = row.Cells[11].Value.ToString();
+                            string DENI = row.Cells[12].Value.ToString();
                             decimal IMPORTE = this.IMPORTE_NC(Int32.Parse(NRO));
                             string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
                             string CONCEPTO = "Anulacion FC";
@@ -5187,6 +5187,7 @@ namespace SOCIOS
                             MessageBox.Show("OCURRIO UN ERROR AL ABRIR EL ARCHIVO PDF\n" + error, "ERROR");
                         }
                     }
+
                     else
                     {
                         MessageBox.Show("SELECCIONAR UN RECIBO PARA VER EL ARCHIVO PDF", "ERROR");

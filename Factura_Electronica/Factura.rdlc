@@ -596,7 +596,7 @@
             <Top>0.66512in</Top>
             <Left>3.50348in</Left>
             <Height>0.25in</Height>
-            <Width>1.50712in</Width>
+            <Width>0.88212in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -710,9 +710,9 @@
             </Paragraphs>
             <rd:DefaultName>DOMICILIO_SOCIO</rd:DefaultName>
             <Top>0.66512in</Top>
-            <Left>5.08004in</Left>
-            <Height>0.25in</Height>
-            <Width>2.29825in</Width>
+            <Left>4.45504in</Left>
+            <Height>0.5625in</Height>
+            <Width>2.90387in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -756,7 +756,7 @@
         </ReportItems>
         <Top>3.47643in</Top>
         <Left>0.11897in</Left>
-        <Height>1.05537in</Height>
+        <Height>1.33314in</Height>
         <Width>7.54057in</Width>
         <ZIndex>1</ZIndex>
         <Style>
@@ -1032,7 +1032,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataBarra</DataSetName>
-        <Top>4.60124in</Top>
+        <Top>4.85124in</Top>
         <Left>0.09896in</Left>
         <Height>0.5in</Height>
         <Width>7.56058in</Width>
@@ -1553,7 +1553,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>LEYENDA</rd:DefaultName>
-        <Top>5.17068in</Top>
+        <Top>5.42068in</Top>
         <Left>0.11897in</Left>
         <Height>0.25in</Height>
         <Width>7.54057in</Width>
