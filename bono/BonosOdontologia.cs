@@ -45,9 +45,8 @@ namespace SOCIOS.bono
             string Desde = this.fechaUSA(DateTime.Parse(dpDesde.Text));
             string Hasta = this.fechaUSA(DateTime.Parse(dpHasta.Text));
 
-            string query = @"select B.ID_ROL ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA, B.ID SEC   from turnos_medicos  TM, Bono_Odontologico B ,SECTACT S
-            where    B.turno = TM.ID AND TM.ESPECIALIDAD=S.ID 
-            AND    B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
+            string query = @"select B.ID_ROL ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA, B.ID SEC  from  Bono_Odontologico B inner join SECTACT S on B.SEC_ACT = S.ID 
+            where   B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
            
             if (cbFiltro.Text.Contains("ACTIVOS"))
                 query = query + " AND coalesce(B.FE_BAJA,'1') <> '1' ";
