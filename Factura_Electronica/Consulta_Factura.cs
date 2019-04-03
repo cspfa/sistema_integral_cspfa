@@ -38,6 +38,13 @@ namespace SOCIOS.Factura_Electronica
         {
              int Punto = Int32.Parse(ComboPtoVenta.SelectedValue.ToString());
              int Numero = Int32.Parse(tbNumeroConsulta.Text);
+             int Tipo_Comprobante = 0;
+
+             if (cbNotaCreditoC.Checked)
+                 Tipo_Comprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+             else
+                 Tipo_Comprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
+
             lbEstado.Text ="";
             lbCAE.Text ="";
             lbDocumento.Text ="";
@@ -47,7 +54,10 @@ namespace SOCIOS.Factura_Electronica
             lbVencimiento.Text ="";
           
             serviceFactura = new FacturaCSPFA(Punto);
-            comp =    serviceFactura.Consulta_Facturacion((int)Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C,Punto,Numero );
+         
+
+
+            comp =    serviceFactura.Consulta_Facturacion(Tipo_Comprobante,Punto,Numero );
                 if (comp.CAE.Length > 0)
                 {
                     lbEstado.Text       = "Comprobante Encontrado en AFIP";
@@ -68,6 +78,21 @@ namespace SOCIOS.Factura_Electronica
                     
         
                 }
+
+        }
+
+        private void cbFacturaC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFacturaC.Checked)
+                cbNotaCreditoC.Checked = false;
+
+
+        }
+
+        private void cbNotaCreditoC_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbNotaCreditoC.Checked)
+                cbFacturaC.Checked = false;
 
         }
     }
