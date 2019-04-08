@@ -7,6 +7,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
+using SOCIOS;
 
 namespace Confiteria
 {
@@ -36,13 +37,14 @@ namespace Confiteria
             {
                 SOCIOS.conString conString = new SOCIOS.conString();
                 string connectionString = conString.get();
+                string ROLE = "MENU " + VGlobales.vp_role;
 
                 using (FbConnection connection = new FbConnection(connectionString))
                 {
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string query = "SELECT * FROM CONFITERIA_ARANCELES;";
+                    string query = "SELECT * FROM CONFITERIA_ARANCELES('" + ROLE+ "');";
                     FbCommand cmd = new FbCommand(query, connection, transaction);
                     cmd.CommandText = query;
                     cmd.Connection = connection;
