@@ -125,5 +125,80 @@ namespace Confiteria
 
             return GRABA;
         }
+
+        public bool setItemStock(int ID_PROFESIONAL, int STOCK)
+        {
+            try
+            {
+                string QUERY = "UPDATE PROFESIONALES SET STOCK = " + STOCK + " WHERE ID = " + ID_PROFESIONAL + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
+        public int getItemStock(int ID_PROFESIONAL)
+        {
+            int STOCK = 0;
+            string QUERY = "SELECT STOCK FROM PROFESIONALES WHERE ID = " + ID_PROFESIONAL + ";";
+            DataSet GET = getDataFromQuery(QUERY);
+
+            try
+            {
+                if (GET.Tables.Count > 0)
+                {
+                    foreach (DataRow ROW in GET.Tables[0].Rows)
+                    {
+                        STOCK = Convert.ToInt32(ROW[0]);
+                    }
+                }
+
+                return STOCK;
+            }
+            catch (Exception error)
+            {
+                return STOCK;
+            }
+        }
+
+        public int getStockFinal(int ITEM_STOCK, int CANTIDAD, string OPER)
+        {
+            if (ITEM_STOCK > 0)
+            {
+                if(OPER == "-")
+                    return ITEM_STOCK - CANTIDAD;
+                else
+                    return ITEM_STOCK + CANTIDAD;
+            }
+            else
+                return 0;
+        }
+
+        public bool isStockeable(int ITEM)
+        {
+            bool STOCKEABLE = false;
+            string QUERY = "SELECT STOCKEABLE FROM PROFESIONALES WHERE ID = " + ITEM + ";";
+            DataSet GET = getDataFromQuery(QUERY);
+
+            try
+            {
+                if (GET.Tables.Count > 0)
+                {
+                    foreach (DataRow ROW in GET.Tables[0].Rows)
+                    {
+                        STOCKEABLE = Convert.ToBoolean(ROW[0]);
+                    }
+                }
+
+                return STOCKEABLE;
+            }
+            catch (Exception error)
+            {
+                return STOCKEABLE;
+            }
+        }
     }
 }

@@ -27,7 +27,9 @@ namespace Confiteria
                 string DETALLE = row[0].ToString().Trim();
                 string NOMBRE = row[1].ToString().Trim();
                 string ARANCEL = row[2].ToString().Trim();
-                dgListadoAranceles.Rows.Add(DETALLE, NOMBRE, ARANCEL);
+                int STOCK = Convert.ToInt32(row[3]);
+                int ID = Convert.ToInt32(row[4]);
+                dgListadoAranceles.Rows.Add(ID, DETALLE, NOMBRE, ARANCEL, STOCK);
             }
         }
 
@@ -277,6 +279,34 @@ namespace Confiteria
                 releaseObject(xlWorkBook);
                 releaseObject(xlApp);
             }  
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (tbStock.Text != "")
+            {
+                if (dgListadoAranceles.SelectedRows.Count == 1)
+                {
+                    foreach (DataGridViewRow row in dgListadoAranceles.SelectedRows)
+                    {
+                        int ID = Convert.ToInt32(row.Cells[0].Value);
+                        int STOCK = Convert.ToInt32(tbStock.Text);
+                        Utils utils = new Utils();
+                        bool SET_ITEM_STOCK = utils.setItemStock(ID, STOCK);
+
+                        if (SET_ITEM_STOCK == true)
+                            MessageBox.Show("STOCK ACTUALIZADO");
+                        else
+                            MessageBox.Show("NO SE PUDO ACTUALIZAR EL STOCK");
+
+                        buscarAranceles();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("INGRESAR UN NUMERO DE STOCK");
+            }
         }
     }
 }
