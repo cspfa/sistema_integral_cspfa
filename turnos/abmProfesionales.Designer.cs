@@ -81,6 +81,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.cbDetalle = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cbStockeable = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgProfesionales)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -240,7 +242,7 @@
             // lbIdProf
             // 
             this.lbIdProf.AutoSize = true;
-            this.lbIdProf.Location = new System.Drawing.Point(615, 363);
+            this.lbIdProf.Location = new System.Drawing.Point(731, 414);
             this.lbIdProf.Name = "lbIdProf";
             this.lbIdProf.Size = new System.Drawing.Size(13, 13);
             this.lbIdProf.TabIndex = 74;
@@ -580,11 +582,31 @@
             this.cbDetalle.Size = new System.Drawing.Size(239, 21);
             this.cbDetalle.TabIndex = 77;
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(565, 362);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(43, 13);
+            this.label16.TabIndex = 79;
+            this.label16.Text = "STOCK";
+            // 
+            // cbStockeable
+            // 
+            this.cbStockeable.AutoSize = true;
+            this.cbStockeable.Location = new System.Drawing.Point(615, 362);
+            this.cbStockeable.Name = "cbStockeable";
+            this.cbStockeable.Size = new System.Drawing.Size(15, 14);
+            this.cbStockeable.TabIndex = 80;
+            this.cbStockeable.UseVisualStyleBackColor = true;
+            // 
             // abmProfesionales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 632);
+            this.Controls.Add(this.cbStockeable);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.cbDetalle);
             this.Controls.Add(this.label13);
@@ -681,5 +703,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox cbDetalle;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox cbStockeable;
     }
 }

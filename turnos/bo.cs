@@ -4144,7 +4144,7 @@ namespace SOCIOS
         }
 
         //STORED NUEVO PROFESIONAL
-        public void nuevoProfesional(string NOMBRE, string MATRICULA, int DNI, string CORREO, int TELEFONO, int CELULAR, int TIPO_CONTRATO, string ROL, string COMPROBANTE, int CUENTA)
+        public void nuevoProfesional(string NOMBRE, string MATRICULA, int DNI, string CORREO, int TELEFONO, int CELULAR, int TIPO_CONTRATO, string ROL, string COMPROBANTE, int CUENTA, string STOCKEABLE)
         {
             db resultado = new db();
 
@@ -4160,6 +4160,8 @@ namespace SOCIOS
             vector_contenidos.Add(ROL);
             vector_contenidos.Add(COMPROBANTE);
             vector_contenidos.Add(CUENTA);
+            vector_contenidos.Add(STOCKEABLE);
+
 
             ArrayList vector_tipos = new ArrayList();
 
@@ -4173,6 +4175,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@NOMBRE");
@@ -4185,6 +4188,7 @@ namespace SOCIOS
             vector_nombres.Add("@ROL");
             vector_nombres.Add("@COMPROBANTE");
             vector_nombres.Add("@CUENTA");
+            vector_nombres.Add("@STOCKEABLE");
 
             string vprocedure = "PROFESIONALES_I";
 
@@ -4192,7 +4196,8 @@ namespace SOCIOS
         }
 
         //STORED MODIFICAR PROFESIONAL
-        public void modificarProfesional(int ID, string NOMBRE, string MATRICULA, int DNI, string CORREO, int TELEFONO, int CELULAR, int TIPO_CONTRATO, string COMPROBANTE, string CUENTA)
+        public void modificarProfesional(int ID, string NOMBRE, string MATRICULA, int DNI, string CORREO, int TELEFONO, 
+            int CELULAR, int TIPO_CONTRATO, string COMPROBANTE, string CUENTA, string STOCKEABLE)
         {
             db resultado = new db();
 
@@ -4208,6 +4213,7 @@ namespace SOCIOS
             vector_contenidos.Add(TIPO_CONTRATO);
             vector_contenidos.Add(COMPROBANTE);
             vector_contenidos.Add(CUENTA);
+            vector_contenidos.Add(STOCKEABLE);
 
             ArrayList vector_tipos = new ArrayList();
 
@@ -4221,6 +4227,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Varchar");
             vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Char");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@ID");
@@ -4233,6 +4240,7 @@ namespace SOCIOS
             vector_nombres.Add("@TIPO_CONTRATO");
             vector_nombres.Add("@COMPROBANTE");
             vector_nombres.Add("@CUENTA");
+            vector_nombres.Add("@STOCKEABLE");
 
             string vprocedure = "PROFESIONALES_U";
 

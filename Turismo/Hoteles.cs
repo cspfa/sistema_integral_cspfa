@@ -309,7 +309,7 @@ namespace SOCIOS.turismos
                     if (MODO == "INS")
                     {
                         dlog.InsertHotel(tbNombre.Text, Int32.Parse(cbProvincia.SelectedValue.ToString()), Int32.Parse(cbLocalidad.SelectedValue.ToString()), tbDomicilio.Text, tbTelefono.Text, Int32.Parse(cbEstrellas.SelectedItem.ToString()), tbObservaciones.Text, tbCuit.Text, tbResponsable.Text,tbMailOperacion.Text,tbMailReservas.Text,tbMailAdm.Text,tbMailInfo.Text,tbCheckIn.Text,tbCheckOut.Text, System.DateTime.Now, VGlobales.vp_username,Propio,Social,Decimal.Parse(tbLateCheckOut.Text));
-                        dlog.nuevoProfesional("EMPLEADOS CSPFA", "0", 0, "@", 0, 0, 1, "HOTELES", "R", 0);
+                        dlog.nuevoProfesional("EMPLEADOS CSPFA", "0", 0, "@", 0, 0, 1, "HOTELES", "R", 0, "false");
                         maxid mid = new maxid();
                         int PROFESIONAL = int.Parse(mid.m("ID", "PROFESIONALES"));
                         int ESPECIALIDAD = int.Parse(mid.m("ID", "SECTACT"));

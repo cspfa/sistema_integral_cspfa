@@ -203,6 +203,12 @@ namespace SOCIOS
                 tbCelular.Text = row[7].ToString();
                 cbContratos.SelectedValue = Convert.ToInt16(row[10]);
                 cbComprobante.SelectedValue = row[12].ToString();
+                string STOCKEABLE = row[18].ToString();
+
+                if (STOCKEABLE.Trim() == "true")
+                    cbStockeable.Checked = true;
+                else
+                    cbStockeable.Checked = false;
             }
         }
 
@@ -346,7 +352,14 @@ namespace SOCIOS
                     string ROL = cbEspecialidades.Text;
                     string[] ROL_SPLITED = ROL.Split('-');
                     string ROL_FINAL = ROL_SPLITED[0].Trim();
-                    dlog.nuevoProfesional(NOMBRE, MATRICULA, DNI, CORREO, TELEFONO, CELULAR, TIPO_CONTRATO, ROL_FINAL, COMPROBANTE, CUENTA);
+                    string STOCKEABLE = "false";
+
+                    if (cbStockeable.Checked)
+                        STOCKEABLE = "true";
+                    else
+                        STOCKEABLE = "false";
+
+                    dlog.nuevoProfesional(NOMBRE, MATRICULA, DNI, CORREO, TELEFONO, CELULAR, TIPO_CONTRATO, ROL_FINAL, COMPROBANTE, CUENTA, STOCKEABLE);
                     maxid maxid = new maxid();
                     int ID = int.Parse(maxid.m("ID", "PROFESIONALES"));
                     dlog.nuevoProfEsp(ID, ESPECIALIDAD);
@@ -384,7 +397,14 @@ namespace SOCIOS
                     string COMPROBANTE = cbComprobante.SelectedValue.ToString();
                     string CUENTA = tbCuenta.Text.Trim();
                     int ESPECIALIDAD = int.Parse(cbEspecialidades.SelectedValue.ToString());
-                    dlog.modificarProfesional(ID, NOMBRE, MATRICULA, DNI, CORREO, TELEFONO, CELULAR, TIPO_CONTRATO, COMPROBANTE, CUENTA);
+                    string STOCKEABLE = "false";
+
+                    if (cbStockeable.Checked)
+                        STOCKEABLE = "true";
+                    else
+                        STOCKEABLE = "false";
+
+                    dlog.modificarProfesional(ID, NOMBRE, MATRICULA, DNI, CORREO, TELEFONO, CELULAR, TIPO_CONTRATO, COMPROBANTE, CUENTA, STOCKEABLE);
                     dlog.modificarProfEsp(ID, ESPECIALIDAD);
                     MessageBox.Show("PROFESIONAL MODIFICADO CORRECTAMENTE", "LISTO!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     string ROL = cbFiltroRoles.SelectedValue.ToString();

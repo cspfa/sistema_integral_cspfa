@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Linq;
 using System.Windows.Forms;
-using System.IO;
-using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
 using SOCIOS;
+
 namespace Confiteria
 {
     public partial class comanda : Form
     {
         bo dlog = new bo();
-
+        Utils utils = new Utils();
         private string _MOROSO { get; set; }
         private DataSet COMANDA { get; set; }
         private DataSet SOLICITUD { get; set; }
@@ -27,14 +24,13 @@ namespace Confiteria
         private int ID_COM { get; set; }
         List<ITEMS_CONFITERIA> LISTA_ITEMS;
       
-
         public comanda(string NRO_SOC, string NRO_DEP, string BARRA, string SOCIO, int SECUENCIA, int GROUP, int MESA, int ID_COMANDA, int PERSONAS, int PAGO, string MOROSO, string NRO_MESA, int NRO_COMANDA)
         {
             InitializeComponent();
             _MOROSO = MOROSO;
             this.ControlBox = false;
             llenarGrillaSocio(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA);
-            comboSectAct("MENU CONFITERIA");
+            comboSectAct("MENU " + VGlobales.vp_role);
             comboProfesionales(cbSectAct.SelectedValue.ToString());
             tbMesa.Text = NRO_MESA;
             GRUPO = GROUP;
@@ -288,8 +284,13 @@ namespace Confiteria
         {
             if (tbCantidad.Text == "")
             {
-                MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD","ERROR");
+                MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD", "ERROR");
                 tbCantidad.Focus();
+            }
+            else if (utils.isStockeable(Convert.ToInt32(dgResultados[0, dgResultados.CurrentCell.RowIndex].Value.ToString())) == true 
+                && Convert.ToInt32(tbCantidad.Text) > Convert.ToInt32(tbStock.Text))
+            {
+                MessageBox.Show("LA CANTIDAD INGRESADA ES MAYOR QUE EL STOCK DISPONIBLE", "ERROR");
             }
             else if (cbSectAct.SelectedValue.ToString() == "")
             {
@@ -368,7 +369,11 @@ namespace Confiteria
                     int ITEM = int.Parse(row.Cells[5].Value.ToString());
                     int TIPO = int.Parse(row.Cells[6].Value.ToString());
                     string OBSERVACION = row.Cells[10].Value.ToString();
+                    int ITEM_STOCK = utils.getItemStock(ITEM);
+                    int STOCK_FINAL = utils.getStockFinal(ITEM_STOCK, CANTIDAD, "-");
+                    bool SET_STOCK = utils.setItemStock(ITEM, STOCK_FINAL);
                     dlog.guardaItems(ID_COM, ITEM, CANTIDAD, TIPO, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL, "NO", OBSERVACION);
+
                 }
                 else if (row.Cells[8].Value.ToString() == "SI")
                 {
@@ -384,20 +389,32 @@ namespace Confiteria
 
             foreach (DataGridViewRow row in dgItems.Rows)
             {
+                int CANTIDAD = int.Parse(row.Cells[0].Value.ToString());
+                int ITEM = int.Parse(row.Cells[5].Value.ToString());
+
                 if (row.Cells[7].Value.ToString() == "X")
                 {
-                    int CANTIDAD = int.Parse(row.Cells[0].Value.ToString());
                     string TIPO_DETALLE = row.Cells[1].Value.ToString();
                     string ITEM_DETALLE = row.Cells[2].Value.ToString();
                     decimal VALOR = Convert.ToDecimal(row.Cells[3].Value.ToString());
                     decimal SUBTOTAL = Convert.ToDecimal(row.Cells[4].Value.ToString());
-                    int ITEM = int.Parse(row.Cells[5].Value.ToString());
                     int TIPO = int.Parse(row.Cells[6].Value.ToString());
                     string OBSERVACION = row.Cells[10].Value.ToString();
+
+                    if (utils.isStockeable(ITEM) == true)
+                    {
+                        int ITEM_STOCK = utils.getItemStock(ITEM);
+                        int STOCK_FINAL = utils.getStockFinal(ITEM_STOCK, CANTIDAD, "-");
+                        bool SET_STOCK = utils.setItemStock(ITEM, STOCK_FINAL);
+                    }
+                    
                     dlog.guardaItems(COMANDA, ITEM, CANTIDAD, TIPO, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL, "NO", OBSERVACION);
                 }
                 else if (row.Cells[8].Value.ToString() == "SI")
                 {
+                    int ITEM_STOCK = utils.getItemStock(ITEM);
+                    int STOCK_FINAL = utils.getStockFinal(ITEM_STOCK, CANTIDAD, "+");
+                    bool SET_STOCK = utils.setItemStock(ITEM, STOCK_FINAL);
                     int ID = int.Parse(row.Cells[7].Value.ToString());
                     dlog.eliminaItems(ID);
                 }
@@ -538,7 +555,7 @@ namespace Confiteria
         {
             try
             {
-                if (tbNroComanda.Text == "")
+                if (tbNroComanda.Text == "") // NUEVA COMANDA
                 {
                     int SECUENCIA = int.Parse(dgSocio[4, dgSocio.CurrentCell.RowIndex].Value.ToString());
                     guardarMesa(0, MSG);
@@ -550,7 +567,7 @@ namespace Confiteria
                     ID_COM = int.Parse(ID_COMANDA);
                     buscarItems(int.Parse(ID_COMANDA), "SI", "X");
                 }
-                else
+                else // MODIFICA COMANDA
                 {
                     guardarMesa(ID_COM, MSG);
                     agregarItems();
@@ -889,7 +906,7 @@ namespace Confiteria
             try
             {
                 LISTA_ITEMS = new List<ITEMS_CONFITERIA>();
-                string QUERY = "SELECT P.ID, PE.ESPECIALIDAD, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND P.ROL = 'MENU CONFITERIA' AND P.BAJA IS NULL ORDER BY P.NOMBRE ASC;";
+                string QUERY = "SELECT P.ID, PE.ESPECIALIDAD, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND P.ROL = 'MENU " + VGlobales.vp_role + "' AND P.BAJA IS NULL ORDER BY P.NOMBRE ASC;";
                 DataSet ds1 = new DataSet();
                 conString conString = new conString();
                 string connectionString = conString.get();
@@ -926,6 +943,14 @@ namespace Confiteria
         {
             string SEL_TIPO = dgResultados[1, dgResultados.CurrentCell.RowIndex].Value.ToString();
             string SEL_ITEM = dgResultados[0, dgResultados.CurrentCell.RowIndex].Value.ToString();
+            int STOCK = utils.getItemStock(Convert.ToInt32(SEL_ITEM));
+            tbStock.Text = STOCK.ToString();
+
+            if (STOCK < 10 && STOCK > 0)
+                lbStockMenor10.Visible = true;
+            else
+                lbStockMenor10.Visible = false;
+
             cargarItemEnCombos(SEL_TIPO, SEL_ITEM);
             mostrarArancel();
         }

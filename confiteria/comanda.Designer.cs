@@ -100,6 +100,9 @@
             this.label18 = new System.Windows.Forms.Label();
             this.tbComandaBorrador = new System.Windows.Forms.TextBox();
             this.tbIdComanda = new System.Windows.Forms.TextBox();
+            this.lbStockMenor10 = new System.Windows.Forms.Label();
+            this.tbStock = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgSocio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultados)).BeginInit();
@@ -573,15 +576,15 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(597, 232);
+            this.label10.Location = new System.Drawing.Point(563, 232);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(56, 13);
+            this.label10.Size = new System.Drawing.Size(13, 13);
             this.label10.TabIndex = 78;
-            this.label10.Text = "IMPORTE";
+            this.label10.Text = "$";
             // 
             // tbImporteItem
             // 
-            this.tbImporteItem.Location = new System.Drawing.Point(663, 228);
+            this.tbImporteItem.Location = new System.Drawing.Point(583, 228);
             this.tbImporteItem.Name = "tbImporteItem";
             this.tbImporteItem.ReadOnly = true;
             this.tbImporteItem.Size = new System.Drawing.Size(51, 20);
@@ -653,7 +656,7 @@
             this.dgResultados.MultiSelect = false;
             this.dgResultados.Name = "dgResultados";
             this.dgResultados.RowHeadersVisible = false;
-            this.dgResultados.Size = new System.Drawing.Size(632, 121);
+            this.dgResultados.Size = new System.Drawing.Size(632, 97);
             this.dgResultados.TabIndex = 87;
             this.dgResultados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResultados_CellClick);
             // 
@@ -758,11 +761,42 @@
             this.tbIdComanda.TabIndex = 99;
             this.tbIdComanda.Visible = false;
             // 
+            // lbStockMenor10
+            // 
+            this.lbStockMenor10.AutoSize = true;
+            this.lbStockMenor10.ForeColor = System.Drawing.Color.Red;
+            this.lbStockMenor10.Location = new System.Drawing.Point(461, 202);
+            this.lbStockMenor10.Name = "lbStockMenor10";
+            this.lbStockMenor10.Size = new System.Drawing.Size(170, 13);
+            this.lbStockMenor10.TabIndex = 100;
+            this.lbStockMenor10.Text = "STOCK MENOR A 10 UNIDADES";
+            this.lbStockMenor10.Visible = false;
+            // 
+            // tbStock
+            // 
+            this.tbStock.Location = new System.Drawing.Point(663, 228);
+            this.tbStock.Name = "tbStock";
+            this.tbStock.ReadOnly = true;
+            this.tbStock.Size = new System.Drawing.Size(51, 20);
+            this.tbStock.TabIndex = 101;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(643, 232);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(14, 13);
+            this.label19.TabIndex = 102;
+            this.label19.Text = "#";
+            // 
             // comanda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 669);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.tbStock);
+            this.Controls.Add(this.lbStockMenor10);
             this.Controls.Add(this.tbIdComanda);
             this.Controls.Add(this.tbDescuento);
             this.Controls.Add(this.label18);
@@ -890,5 +924,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AFILIADO;
         private System.Windows.Forms.DataGridViewTextBoxColumn BENEFICIO;
         private System.Windows.Forms.TextBox tbIdComanda;
+        private System.Windows.Forms.Label lbStockMenor10;
+        private System.Windows.Forms.TextBox tbStock;
+        private System.Windows.Forms.Label label19;
     }
 }

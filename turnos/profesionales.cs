@@ -184,7 +184,7 @@ namespace SOCIOS
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            existe ex = new existe();
+            /*existe ex = new existe();
 
             if (tbNombre.Text == "")
             {
@@ -228,7 +228,7 @@ namespace SOCIOS
                 {
                     MessageBox.Show("No se pudo crear el registro\n" + error.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+            }*/
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
