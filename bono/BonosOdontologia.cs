@@ -151,7 +151,7 @@ namespace SOCIOS.bono
         {
             foreach (DataGridViewRow dr in dgBonos.Rows)
             {
-                if (dr.Cells[7].Value.ToString().Trim() == "1")
+                if (dr.Cells[7].Value.ToString().Trim() != "1")
                     dr.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
 
 

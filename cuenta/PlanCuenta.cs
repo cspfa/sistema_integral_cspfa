@@ -28,6 +28,7 @@ namespace SOCIOS.CuentaSocio
         int NRO_SOCIO_TIT;
         int NRO_DEP_TIT;
         int ID_PLAN;
+        int ID_PLAN_GRAL;
         
         int MODO = 1;
         List<PLanDeCuenta> planes = new List<PLanDeCuenta>();
@@ -168,6 +169,7 @@ namespace SOCIOS.CuentaSocio
 
             dgvCuotas.ClearSelection();
             ID_PLAN = Convert.ToInt32(dgvPlanes[0, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
+            ID_PLAN_GRAL = Convert.ToInt32(dgvPlanes[0, dgvPlanes.CurrentCell.RowIndex].Value.ToString());
             LBCUOTA.Text = "";
             this.BindCuotas(ID_PLAN);
 
@@ -423,7 +425,7 @@ namespace SOCIOS.CuentaSocio
                 utilsCuenta.MarcarPagaCuota(CuotaID, NroPago, EsRecibo, FormaPago, dpFecha.Value);
                 gpPago.Visible = false;
                 gpDescuento.Visible = false;
-                this.BindCuotas(ID_PLAN);
+                this.BindCuotas(ID_PLAN_GRAL);
                 gpPlanCuota.Visible = false;
                 gpPago.Visible = false;
                 MessageBox.Show("Pago Realizado Con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
