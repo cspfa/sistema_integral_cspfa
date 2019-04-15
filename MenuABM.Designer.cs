@@ -157,6 +157,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.speechTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -194,7 +195,7 @@
             this.MenuStrip1.Name = "MenuStrip1";
             this.MenuStrip1.Padding = new System.Windows.Forms.Padding(0, 10, 1, 0);
             this.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.MenuStrip1.Size = new System.Drawing.Size(120, 614);
+            this.MenuStrip1.Size = new System.Drawing.Size(121, 614);
             this.MenuStrip1.TabIndex = 1;
             this.MenuStrip1.Text = "MenuStrip1";
             // 
@@ -205,7 +206,7 @@
             this.toolStripMenuItem13,
             this.ToolStripMenuItem9});
             this.ToolStripMenuItem3.Name = "ToolStripMenuItem3";
-            this.ToolStripMenuItem3.Size = new System.Drawing.Size(117, 18);
+            this.ToolStripMenuItem3.Size = new System.Drawing.Size(118, 18);
             this.ToolStripMenuItem3.Text = "A&rchivo";
             this.ToolStripMenuItem3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -243,7 +244,7 @@
             this.verTicketsToolStripMenuItem});
             this.soporteTñecnicoToolStripMenuItem.Enabled = false;
             this.soporteTñecnicoToolStripMenuItem.Name = "soporteTñecnicoToolStripMenuItem";
-            this.soporteTñecnicoToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.soporteTñecnicoToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.soporteTñecnicoToolStripMenuItem.Text = "Asistencia Técnica";
             this.soporteTñecnicoToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -271,7 +272,7 @@
             this.capturarFotoToolStripMenuItem,
             this.calcularCuotasToolStripMenuItem});
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(117, 18);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(118, 18);
             this.toolStripMenuItem11.Text = "Socios";
             this.toolStripMenuItem11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -280,7 +281,7 @@
             this.aBMToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.group;
             this.aBMToolStripMenuItem.Name = "aBMToolStripMenuItem";
             this.aBMToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.aBMToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.aBMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aBMToolStripMenuItem.Text = "ABM";
             this.aBMToolStripMenuItem.Click += new System.EventHandler(this.aBMToolStripMenuItem_Click);
             // 
@@ -288,7 +289,7 @@
             // 
             this.ingresosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresosToolStripMenuItem.Image")));
             this.ingresosToolStripMenuItem.Name = "ingresosToolStripMenuItem";
-            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ingresosToolStripMenuItem.Text = "Ingresos";
             this.ingresosToolStripMenuItem.Click += new System.EventHandler(this.ingresosToolStripMenuItem_Click_1);
             // 
@@ -296,7 +297,7 @@
             // 
             this.capturarFotoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.webcam;
             this.capturarFotoToolStripMenuItem.Name = "capturarFotoToolStripMenuItem";
-            this.capturarFotoToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.capturarFotoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.capturarFotoToolStripMenuItem.Text = "Capturar Foto";
             this.capturarFotoToolStripMenuItem.Click += new System.EventHandler(this.capturarFotoToolStripMenuItem_Click_1);
             // 
@@ -304,7 +305,7 @@
             // 
             this.calcularCuotasToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("calcularCuotasToolStripMenuItem.Image")));
             this.calcularCuotasToolStripMenuItem.Name = "calcularCuotasToolStripMenuItem";
-            this.calcularCuotasToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.calcularCuotasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.calcularCuotasToolStripMenuItem.Text = "Calcular Cuotas";
             this.calcularCuotasToolStripMenuItem.Click += new System.EventHandler(this.calcularCuotasToolStripMenuItem_Click);
             // 
@@ -314,7 +315,7 @@
             this.aBMToolStripMenuItem1});
             this.patrimonioToolStripMenuItem.Enabled = false;
             this.patrimonioToolStripMenuItem.Name = "patrimonioToolStripMenuItem";
-            this.patrimonioToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.patrimonioToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.patrimonioToolStripMenuItem.Text = "Patrimonio";
             this.patrimonioToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -335,7 +336,7 @@
             this.listadoIngresosPersonalToolStripMenuItem});
             this.camposToolStripMenuItem1.Enabled = false;
             this.camposToolStripMenuItem1.Name = "camposToolStripMenuItem1";
-            this.camposToolStripMenuItem1.Size = new System.Drawing.Size(117, 18);
+            this.camposToolStripMenuItem1.Size = new System.Drawing.Size(118, 18);
             this.camposToolStripMenuItem1.Text = "Campos";
             this.camposToolStripMenuItem1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -385,10 +386,11 @@
             this.importarBienestarToolStripMenuItem,
             this.planDeCuentaToolStripMenuItem,
             this.turismoControlToolStripMenuItem,
-            this.tESTINGFCToolStripMenuItem});
+            this.tESTINGFCToolStripMenuItem,
+            this.speechTestingToolStripMenuItem});
             this.procesosToolStripMenuItem.Enabled = false;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.procesosToolStripMenuItem.Text = "Sistemas";
             this.procesosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -590,7 +592,7 @@
             this.deCABAAPFAToolStripMenuItem});
             this.afiliacionesToolStripMenuItem.Enabled = false;
             this.afiliacionesToolStripMenuItem.Name = "afiliacionesToolStripMenuItem";
-            this.afiliacionesToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.afiliacionesToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.afiliacionesToolStripMenuItem.Text = "Registro de Socios";
             this.afiliacionesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -674,7 +676,7 @@
             this.completarBonosEnBlancoToolStripMenuItem});
             this.servToolStrip.Enabled = false;
             this.servToolStrip.Name = "servToolStrip";
-            this.servToolStrip.Size = new System.Drawing.Size(117, 18);
+            this.servToolStrip.Size = new System.Drawing.Size(118, 18);
             this.servToolStrip.Text = "Servicios Médicos";
             this.servToolStrip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -775,7 +777,7 @@
             this.puntosDeVentaToolStripMenuItem});
             this.cajaToolStripMenuItem.Enabled = false;
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
-            this.cajaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.cajaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.cajaToolStripMenuItem.Text = "Caja";
             this.cajaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -831,7 +833,7 @@
             this.exportarToolStripMenuItem});
             this.deportesToolStrip.Enabled = false;
             this.deportesToolStrip.Name = "deportesToolStrip";
-            this.deportesToolStrip.Size = new System.Drawing.Size(117, 18);
+            this.deportesToolStrip.Size = new System.Drawing.Size(118, 18);
             this.deportesToolStrip.Text = "Deportes";
             this.deportesToolStrip.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -899,7 +901,7 @@
             this.nominalToolStripMenuItem});
             this.AsambleatoolStripMenuItem7.Enabled = false;
             this.AsambleatoolStripMenuItem7.Name = "AsambleatoolStripMenuItem7";
-            this.AsambleatoolStripMenuItem7.Size = new System.Drawing.Size(117, 18);
+            this.AsambleatoolStripMenuItem7.Size = new System.Drawing.Size(118, 18);
             this.AsambleatoolStripMenuItem7.Text = "Asamblea";
             this.AsambleatoolStripMenuItem7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -953,7 +955,7 @@
             this.archivosProcesadosToolStripMenuItem});
             this.creditosToolStripMenuItem.Enabled = false;
             this.creditosToolStripMenuItem.Name = "creditosToolStripMenuItem";
-            this.creditosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.creditosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.creditosToolStripMenuItem.Text = "Créditos";
             this.creditosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -995,7 +997,7 @@
             this.bonosEnBlancoToolStripMenuItem});
             this.turismoToolStripMenuItem.Enabled = false;
             this.turismoToolStripMenuItem.Name = "turismoToolStripMenuItem";
-            this.turismoToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.turismoToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.turismoToolStripMenuItem.Text = "Turismo";
             this.turismoToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1082,7 +1084,7 @@
             this.proveedoresToolStripMenuItem});
             this.tesoreríaToolStripMenuItem.Enabled = false;
             this.tesoreríaToolStripMenuItem.Name = "tesoreríaToolStripMenuItem";
-            this.tesoreríaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.tesoreríaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.tesoreríaToolStripMenuItem.Text = "Tesorería";
             this.tesoreríaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1103,7 +1105,7 @@
             this.listaDePreciosToolStripMenuItem});
             this.confiteríaToolStripMenuItem.Enabled = false;
             this.confiteríaToolStripMenuItem.Name = "confiteríaToolStripMenuItem";
-            this.confiteríaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.confiteríaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.confiteríaToolStripMenuItem.Text = "Confitería";
             this.confiteríaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1145,7 +1147,7 @@
             this.toolStripMenuItem1});
             this.contaduríaToolStripMenuItem.Enabled = false;
             this.contaduríaToolStripMenuItem.Name = "contaduríaToolStripMenuItem";
-            this.contaduríaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.contaduríaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.contaduríaToolStripMenuItem.Text = "Contaduría";
             this.contaduríaToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1164,7 +1166,7 @@
             this.hotelXHabitaciónToolStripMenuItem});
             this.interiorToolStripMenuItem.Enabled = false;
             this.interiorToolStripMenuItem.Name = "interiorToolStripMenuItem";
-            this.interiorToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.interiorToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.interiorToolStripMenuItem.Text = "Interior";
             this.interiorToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1190,7 +1192,7 @@
             this.toolStripMenuItem4});
             this.comprasToolStripMenuItem.Enabled = false;
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
-            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.comprasToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.comprasToolStripMenuItem.Text = "Compras";
             this.comprasToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -1206,7 +1208,7 @@
             // 
             this.conveniosToolStripMenuItem.Enabled = false;
             this.conveniosToolStripMenuItem.Name = "conveniosToolStripMenuItem";
-            this.conveniosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.conveniosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.conveniosToolStripMenuItem.Text = "Convenios";
             this.conveniosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.conveniosToolStripMenuItem.Click += new System.EventHandler(this.conveniosToolStripMenuItem_Click);
@@ -1222,10 +1224,10 @@
             this.lbVersion,
             this.lbServidor,
             this.tsUpdater});
-            this.themedStatusStrip1.Location = new System.Drawing.Point(120, 592);
+            this.themedStatusStrip1.Location = new System.Drawing.Point(121, 592);
             this.themedStatusStrip1.Name = "themedStatusStrip1";
             this.themedStatusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.themedStatusStrip1.Size = new System.Drawing.Size(1242, 22);
+            this.themedStatusStrip1.Size = new System.Drawing.Size(1241, 22);
             this.themedStatusStrip1.TabIndex = 4;
             this.themedStatusStrip1.Text = "themedStatusStrip1";
             // 
@@ -1315,6 +1317,13 @@
             this.pbFoto.TabIndex = 10;
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
+            // 
+            // speechTestingToolStripMenuItem
+            // 
+            this.speechTestingToolStripMenuItem.Name = "speechTestingToolStripMenuItem";
+            this.speechTestingToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.speechTestingToolStripMenuItem.Text = "Speech Testing";
+            this.speechTestingToolStripMenuItem.Click += new System.EventHandler(this.speechTestingToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1486,5 +1495,6 @@
         private System.Windows.Forms.ToolStripMenuItem completarBonosEnBlancoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tESTINGFCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem confiteríaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem speechTestingToolStripMenuItem;
     }
 }
