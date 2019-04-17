@@ -25,7 +25,7 @@ namespace SOCIOS.bono.Odontologia
         {
             InitializeComponent();
             ID = pID;
-            ID_ROL = pID;
+            ID_ROL = pIdRol;
             SecAct = pSecAct;
             Profesional = pProfesional;
             lbInfo.Text = "CARGA DE BONO ID : " + pIdRol.ToString();

@@ -45,13 +45,13 @@ namespace SOCIOS.bono
             string Desde = this.fechaUSA(DateTime.Parse(dpDesde.Text));
             string Hasta = this.fechaUSA(DateTime.Parse(dpHasta.Text));
 
-            string query = @"select B.ID_ROL ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA, B.ID SEC  from  Bono_Odontologico B inner join SECTACT S on B.SEC_ACT = S.ID 
+            string query = @"select B.ID_ROL ID,B.FE_BONO FECHA,B.NOMBRE NOMBRE,B.APELLIDO, S.DETALLE TRATAMIENTO,B.PROF PROFESIONAL,B.SALDO SALDO,coalesce(B.FE_BAJA,'1') BAJA, B.ID SEC,B.FE_BAJA BAJ,B.USR_BAJA USR  from  Bono_Odontologico B inner join SECTACT S on B.SEC_ACT = S.ID 
             where   B.FE_BONO Between  '" + Desde + "' AND '" + Hasta + "'";
            
             if (cbFiltro.Text.Contains("ACTIVOS"))
-                query = query + " AND coalesce(B.FE_BAJA,'1') <> '1' ";
+                query = query + " AND coalesce(B.FE_BAJA,'1') = '1' ";
             else if (cbFiltro.Text.Contains("ANULADOS"))
-                query = query + " AND coalesce(B.FE_BAJA,'1') = '1' "; 
+                query = query + " AND coalesce(B.FE_BAJA,'1') <> '1' "; 
             
             
            query = query +  " order by B.ID descending";
@@ -94,6 +94,8 @@ namespace SOCIOS.bono
                     dt1.Columns.Add("SALDO", typeof(string));
                     dt1.Columns.Add("BAJA", typeof(string));
                     dt1.Columns.Add("SEC", typeof(string));
+                    dt1.Columns.Add("BAJ", typeof(string));
+                    dt1.Columns.Add("USR", typeof(string));
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -110,7 +112,9 @@ namespace SOCIOS.bono
                                      reader3.GetString(reader3.GetOrdinal("PROFESIONAL")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("SALDO")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("BAJA")).Trim(),
-                                      reader3.GetString(reader3.GetOrdinal("SEC")).Trim()
+                                      reader3.GetString(reader3.GetOrdinal("SEC")).Trim(),
+                                        reader3.GetString(reader3.GetOrdinal("BAJ")).Trim(),
+                                          reader3.GetString(reader3.GetOrdinal("USR")).Trim()
                                      );
                     }
 

@@ -251,7 +251,8 @@ namespace SOCIOS.bono
 
         private void ImprimirBono()
 
-        {
+        {   int ID=idBono;
+
             string fPago = FormaPagoBono();
             if (fPago.Length > 0)
             {
@@ -260,7 +261,9 @@ namespace SOCIOS.bono
                     nombreProfesional = Nombre_profesional(idProfesional);
                 }
 
-                ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, idBono, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text),ID_ROL);
+                if (BONO_BLANCO)//  17-04-2019 correcion bug de id e base en los update
+                    ID = ID_ROL;
+                ReporteBonoOdontologico rb = new ReporteBonoOdontologico(srvDatosSocio.CAB, persona, dpFecha.Value, ID, nombreProfesional, fPago, tbObs.Text, Decimal.Parse(lbSaldoTotal.Text),ID_ROL);
                 rb.ShowDialog();
                 rb.Focus();
             }
@@ -698,7 +701,8 @@ namespace SOCIOS.bono
             if (MessageBox.Show("Esta Seguro de Anular el Bono?", "Anulacion Bono ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 dlog.BajaOdontologico(idBono, VGlobales.vp_username, System.DateTime.Now);
-                this.ImprimirBonoDirecto();
+                this.ImprimirBono();
+                //this.ImprimirBonoDirecto();
                 MessageBox.Show("Bono Anulado con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
