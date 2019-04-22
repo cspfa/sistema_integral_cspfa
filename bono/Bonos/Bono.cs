@@ -18,7 +18,7 @@ namespace SOCIOS.bono
         public int Nro_Socio_titular;
          public int Nro_Dep_Titular;
          SOCIOS.edad srvEDad = new edad();
-         bo dlog = new bo();
+         BO.bo_ServiciosMedicos dlog = new BO.bo_ServiciosMedicos();
 
          public int Socios=0 ;
          public int Intercirculo=0;
@@ -861,9 +861,11 @@ namespace SOCIOS.bono
         public void SetPaciente()
 
         {
-            PACIENTE_NOMBRE = dgvGrupo.Rows[0].Cells[4].Value.ToString() + "," + dgvGrupo.Rows[0].Cells[5].Value.ToString();
-            PACIENTE_DNI    = dgvGrupo.Rows[0].Cells[7].Value.ToString();
-         
+            if (dgvGrupo.Rows.Count > 0)
+            {
+                PACIENTE_NOMBRE = dgvGrupo.Rows[0].Cells[4].Value.ToString() + "," + dgvGrupo.Rows[0].Cells[5].Value.ToString();
+                PACIENTE_DNI = dgvGrupo.Rows[0].Cells[7].Value.ToString();
+            }
         }
 
         private void label13_Click(object sender, EventArgs e)
