@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.tbNumeroElectronico = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.pbMultiples = new System.Windows.Forms.ProgressBar();
             this.dpVenceCAE = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
@@ -96,6 +98,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.tbNumeroElectronico);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.pbMultiples);
             this.groupBox1.Controls.Add(this.dpVenceCAE);
             this.groupBox1.Controls.Add(this.label11);
@@ -137,6 +141,22 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DATOS DEL RECIBO";
+            // 
+            // tbNumeroElectronico
+            // 
+            this.tbNumeroElectronico.Location = new System.Drawing.Point(395, 239);
+            this.tbNumeroElectronico.Name = "tbNumeroElectronico";
+            this.tbNumeroElectronico.Size = new System.Drawing.Size(158, 20);
+            this.tbNumeroElectronico.TabIndex = 90;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(254, 244);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(137, 13);
+            this.label12.TabIndex = 89;
+            this.label12.Text = "NUMERO ELECTRONICO:";
             // 
             // pbMultiples
             // 
@@ -227,7 +247,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(297, 215);
+            this.label9.Location = new System.Drawing.Point(297, 169);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 13);
             this.label9.TabIndex = 78;
@@ -235,7 +255,7 @@
             // 
             // tbFactorArancel
             // 
-            this.tbFactorArancel.Location = new System.Drawing.Point(257, 211);
+            this.tbFactorArancel.Location = new System.Drawing.Point(257, 165);
             this.tbFactorArancel.Mask = "9";
             this.tbFactorArancel.Name = "tbFactorArancel";
             this.tbFactorArancel.Size = new System.Drawing.Size(34, 20);
@@ -245,7 +265,7 @@
             // cbDobleDuplicado
             // 
             this.cbDobleDuplicado.AutoSize = true;
-            this.cbDobleDuplicado.Location = new System.Drawing.Point(481, 186);
+            this.cbDobleDuplicado.Location = new System.Drawing.Point(481, 140);
             this.cbDobleDuplicado.Name = "cbDobleDuplicado";
             this.cbDobleDuplicado.Size = new System.Drawing.Size(127, 17);
             this.cbDobleDuplicado.TabIndex = 76;
@@ -256,7 +276,7 @@
             // cbEditarArancel
             // 
             this.cbEditarArancel.AutoSize = true;
-            this.cbEditarArancel.Location = new System.Drawing.Point(356, 186);
+            this.cbEditarArancel.Location = new System.Drawing.Point(356, 140);
             this.cbEditarArancel.Name = "cbEditarArancel";
             this.cbEditarArancel.Size = new System.Drawing.Size(119, 17);
             this.cbEditarArancel.TabIndex = 75;
@@ -274,7 +294,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(498, 216);
+            this.label8.Location = new System.Drawing.Point(498, 170);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 13);
             this.label8.TabIndex = 73;
@@ -283,7 +303,7 @@
             // tbObservaciones
             // 
             this.tbObservaciones.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbObservaciones.Location = new System.Drawing.Point(257, 238);
+            this.tbObservaciones.Location = new System.Drawing.Point(257, 192);
             this.tbObservaciones.MaxLength = 120;
             this.tbObservaciones.Multiline = true;
             this.tbObservaciones.Name = "tbObservaciones";
@@ -293,7 +313,7 @@
             // cbSinCargo
             // 
             this.cbSinCargo.AutoSize = true;
-            this.cbSinCargo.Location = new System.Drawing.Point(257, 186);
+            this.cbSinCargo.Location = new System.Drawing.Point(257, 140);
             this.cbSinCargo.Name = "cbSinCargo";
             this.cbSinCargo.Size = new System.Drawing.Size(85, 17);
             this.cbSinCargo.TabIndex = 71;
@@ -325,7 +345,7 @@
             // 
             this.lbNombreCuentaHaber.AutoSize = true;
             this.lbNombreCuentaHaber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNombreCuentaHaber.Location = new System.Drawing.Point(257, 156);
+            this.lbNombreCuentaHaber.Location = new System.Drawing.Point(257, 118);
             this.lbNombreCuentaHaber.Name = "lbNombreCuentaHaber";
             this.lbNombreCuentaHaber.Size = new System.Drawing.Size(135, 13);
             this.lbNombreCuentaHaber.TabIndex = 70;
@@ -335,7 +355,7 @@
             // 
             this.lbNombreCuentaDebe.AutoSize = true;
             this.lbNombreCuentaDebe.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNombreCuentaDebe.Location = new System.Drawing.Point(256, 124);
+            this.lbNombreCuentaDebe.Location = new System.Drawing.Point(256, 86);
             this.lbNombreCuentaDebe.Name = "lbNombreCuentaDebe";
             this.lbNombreCuentaDebe.Size = new System.Drawing.Size(135, 13);
             this.lbNombreCuentaDebe.TabIndex = 70;
@@ -409,7 +429,7 @@
             // 
             this.lbNombreProf.AutoSize = true;
             this.lbNombreProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNombreProf.Location = new System.Drawing.Point(352, 92);
+            this.lbNombreProf.Location = new System.Drawing.Point(352, 62);
             this.lbNombreProf.Name = "lbNombreProf";
             this.lbNombreProf.Size = new System.Drawing.Size(93, 13);
             this.lbNombreProf.TabIndex = 65;
@@ -428,7 +448,7 @@
             // lbProfesional
             // 
             this.lbProfesional.AutoSize = true;
-            this.lbProfesional.Location = new System.Drawing.Point(256, 92);
+            this.lbProfesional.Location = new System.Drawing.Point(256, 62);
             this.lbProfesional.Name = "lbProfesional";
             this.lbProfesional.Size = new System.Drawing.Size(85, 13);
             this.lbProfesional.TabIndex = 64;
@@ -747,5 +767,7 @@
         private System.Windows.Forms.DateTimePicker dpVenceCAE;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ProgressBar pbMultiples;
+        private System.Windows.Forms.TextBox tbNumeroElectronico;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -832,8 +832,13 @@ namespace SOCIOS
                     string CAE = "";
                     string VENCE_CAE = "";
                     int PTO_VTA_E = 0;
-                    int NUMERO_E = 0;
+                    int NUMERO_E = 0; ;
                     Leyenda_Profesional = bonoUtils.Leyenda_Bono_Profesional(ID_PROFESIONAL);
+                   
+                    if (tbNumeroElectronico.Text.Length > 0) // seba 22-04
+                    {
+                        NUMERO_E = Int32.Parse(tbNumeroElectronico.Text);
+                    }
 
                     if (ACCION == "MODIFICAR")
                     {
