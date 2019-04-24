@@ -4663,7 +4663,7 @@ namespace SOCIOS
                             string DENI = row.Cells[12].Value.ToString();
                             decimal IMPORTE = this.IMPORTE_NC(Int32.Parse(NRO));
                             string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
-                            string CONCEPTO = "Anulacion FC";
+                            string CONCEPTO = "Anulacion RC";
 
 
                             if (VGlobales.vp_role == "CAJA")
