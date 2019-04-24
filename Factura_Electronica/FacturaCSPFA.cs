@@ -271,7 +271,7 @@ namespace SOCIOS.Factura_Electronica
                    
                    bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE, Modo_Facturacion);
                  
-                   
+                  
                    //  bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO,fecha, CAE, VENC_CAE, PTO_VENTA, NUMERO,Monto,tipo_Documento,Documento,Concepto,Tipo_Comprobante);
                
            }
@@ -286,11 +286,12 @@ namespace SOCIOS.Factura_Electronica
 
            bo_Afip.Marca_Afip_Nota_Credito(ID_REGISTRO_RECIBO, NUMERO, CAE, VENC_CAE);
 
+
        }
       
        public bool Validar_Recibo_NC(int ID_REGISTRO_RECIBO)
        {
-           string QUERY = "SELECT ANULADO,CAE_NC from Recibos_caja where ID= " + ID_REGISTRO_RECIBO.ToString();
+           string QUERY = "SELECT ANULADO,CAE_NC,CAE from Recibos_caja where ID= " + ID_REGISTRO_RECIBO.ToString();
             
             DataRow[] foundRows;
             foundRows =  bo_Afip.BO_EjecutoDataTable(QUERY).Select();
@@ -301,6 +302,9 @@ namespace SOCIOS.Factura_Electronica
                     throw new Exception("El Recibo no tiene Anulacion, no se puede efectuar la NC a afip");
                 if (foundRows[0][1].ToString().Trim().Length > 0)
                     throw new Exception("El Recibo ya tiene NC!");
+                if (foundRows[0][2].ToString().Trim().Length == 0)
+                    throw new Exception("El Recibo no esta facturado en AFIP!");
+
                 return false;
             }
             else
@@ -310,6 +314,64 @@ namespace SOCIOS.Factura_Electronica
 
        
        }
+
+       public void Generar_Recibo_Interno_NC(int ID_REGISTRO_RECIBO)
+       {
+
+
+             numeroRecibo nr = new numeroRecibo();
+            maxid mid = new maxid();
+           SOCIOS.BO.bo_Caja bo_caja = new BO.bo_Caja();
+
+           string Query = "select Cuenta_Debe,CUENTA_HABER,SECTACT,ID_SOCIO,VALOR,FORMA_DE_PAGO,USUARIO,ID_PROFESIONAL,NOMBRE_SOCIO_TITULAR,TIPO_SOCIO_TITULAR,OBSERVACIONES,FECHA_RECIBO,BARRA,NOMBRE_SOCIO,DNI,TIPO_SOCIO_NO_TITULAR,NRO_COMP,PTO_VTA,REINTEGRO_DE,BANCO_DEPO,pto_vta_e,Numero_NC_E,CAE_NC,USR_FACT_NC  from recibos_caja where ID=" + ID_REGISTRO_RECIBO.ToString(); 
+
+
+           string connectionString;
+
+           DataRow[] foundRows;
+           foundRows =  bo_caja.BO_EjecutoDataTable(Query).Select();
+
+           if (foundRows.Length > 0)
+           {
+                int  numero_recibo = nr.obtenerNroComprobante("RECIBO", "0005");
+                int  recibo_id = int.Parse(mid.m("ID", "RECIBOS_CAJA")) + 1;
+                int cuenta_debe= Int32.Parse( foundRows[0][1].ToString().Trim());
+                int cuenta_haber= Int32.Parse( foundRows[0][2].ToString().Trim());
+                int secact= Int32.Parse( foundRows[0][3].ToString().Trim());
+                int id_socio= Int32.Parse( foundRows[0][4].ToString().Trim());
+                decimal valor = Decimal.Parse( foundRows[0][5].ToString().Trim());
+                string forma_de_pago =foundRows[0][6].ToString().Trim();
+                string User          =foundRows[0][7].ToString().Trim();
+                int profesional_id = Int32.Parse(foundRows[0][8].ToString().Trim());
+
+                string Nombre_socio_titular          =foundRows[0][9].ToString().Trim();
+                string Tipo_Socio_Titular          =foundRows[0][10].ToString().Trim();
+                string Observaciones          =foundRows[0][11].ToString().Trim();
+                string Fecha_Recibo          =foundRows[0][12].ToString().Trim();
+                int Barra = Int32.Parse(foundRows[0][13].ToString().Trim());
+                string Nombre_Socio        =foundRows[0][14].ToString().Trim();
+                string dni         =foundRows[0][15].ToString().Trim();
+                string Tipo_Socio_No_Titular          =foundRows[0][16].ToString().Trim();
+                string Punto_Venta=foundRows[0][17].ToString().Trim();
+                int Reintegro_de= Int32.Parse(foundRows[0][18].ToString().Trim());
+                string  BANCO_DEPO=foundRows[0][19].ToString().Trim();
+                int NUMERO_NC= Int32.Parse(foundRows[0][20].ToString().Trim());
+                string CAE_NC =foundRows[0][21].ToString().Trim();
+                string CAE_VENC_NC = foundRows[0][22].ToString().Trim();
+                string USR_NC = foundRows[0][23].ToString().Trim();
+
+
+                bo_caja.nuevoReciboCaja_NC(recibo_id, cuenta_debe, cuenta_haber, secact, id_socio, valor, forma_de_pago, User, profesional_id, Nombre_socio_titular, Tipo_Socio_Titular, Observaciones, Fecha_Recibo, Barra, Nombre_Socio, dni, Tipo_Socio_No_Titular, numero_recibo, Punto_Venta, Reintegro_de,BANCO_DEPO, NUMERO_NC, CAE_NC,CAE_VENC_NC,USR_NC);
+
+
+
+              ;
+           }
+         
+
+
+           }
+       
 
      
        
