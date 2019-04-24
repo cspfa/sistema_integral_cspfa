@@ -91,6 +91,8 @@ namespace SOCIOS.BO
 
        }
 
+
+
        public void Marca_Afip_Recibo_Factura_I(int RECIBO,DateTime Fecha_Facturacion, string CAE, string VencimientoCAE, int Pto_Venta, int Numero,decimal MONTO,int TIPO_DOC, string DOC, int CONCEPTO,int TIPO_COMPROBANTE)
        {
            db resultado = new db();
@@ -231,6 +233,9 @@ namespace SOCIOS.BO
 
 
        }
+
+       
+
 
 
     }
