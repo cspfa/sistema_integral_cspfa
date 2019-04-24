@@ -711,6 +711,107 @@ namespace SOCIOS.BO
            
         }
 
+
+        public void nuevoReciboCaja_NC(int ID, int CUENTA_DEBE, int CUENTA_HABER, int SECTACT, int ID_SOCIO, decimal VALOR,
+          string FORMA_DE_PAGO, string USUARIO, int ID_PROFESIONAL, string NOMBRE_SOCIO_TITULAR, string TIPO_SOCIO_TITULAR,
+          string OBSERVACIONES, string FECHA_RECIBO, int BARRA, string NOMBRE_SOCIO, string DNI, string TIPO_SOCIO_NO_TITULAR,
+          int NRO_COMP, string PTO_VTA, int REINTEGRO_DE, string BANCO_DEPO,int NUMERO_NC,string CAE_NC, string CAE_VENC_NC,string USR_NC)
+        {
+
+            try
+            {
+                Valido_Recibo_Existe(PTO_VTA, NRO_COMP);
+
+                ArrayList vector_contenidos = new ArrayList();
+                ArrayList vector_tipos = new ArrayList();
+                ArrayList vector_nombres = new ArrayList();
+
+                vector_contenidos.Add(ID);
+                vector_contenidos.Add(CUENTA_DEBE);
+                vector_contenidos.Add(CUENTA_HABER);
+                vector_contenidos.Add(SECTACT);
+                vector_contenidos.Add(ID_SOCIO);
+                vector_contenidos.Add(VALOR);
+                vector_contenidos.Add(FORMA_DE_PAGO);
+                vector_contenidos.Add(USUARIO);
+                vector_contenidos.Add(ID_PROFESIONAL);
+                vector_contenidos.Add(NOMBRE_SOCIO_TITULAR);
+                vector_contenidos.Add(TIPO_SOCIO_TITULAR);
+                vector_contenidos.Add(OBSERVACIONES);
+                vector_contenidos.Add(FECHA_RECIBO);
+                vector_contenidos.Add(BARRA);
+                vector_contenidos.Add(NOMBRE_SOCIO);
+                vector_contenidos.Add(DNI);
+                vector_contenidos.Add(TIPO_SOCIO_NO_TITULAR);
+                vector_contenidos.Add(NRO_COMP);
+                vector_contenidos.Add(PTO_VTA);
+                vector_contenidos.Add(REINTEGRO_DE);
+                vector_contenidos.Add(BANCO_DEPO);
+            
+                vector_contenidos.Add(NUMERO_NC);
+                vector_contenidos.Add(CAE_NC);
+                vector_contenidos.Add(CAE_VENC_NC);
+                vector_contenidos.Add(USR_NC);
+
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Numeric");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Char");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.Char");
+                vector_tipos.Add("FbDbType.Integer");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+                vector_tipos.Add("FbDbType.VarChar");
+
+                vector_nombres.Add("@ID");
+                vector_nombres.Add("@CUENTA_DEBE");
+                vector_nombres.Add("@CUENTA_HABER");
+                vector_nombres.Add("@SECTACT");
+                vector_nombres.Add("@ID_SOCIO");
+                vector_nombres.Add("@VALOR");
+                vector_nombres.Add("@FORMA_DE_PAGO");
+                vector_nombres.Add("@USUARIO");
+                vector_nombres.Add("@ID_PROFESIONAL");
+                vector_nombres.Add("@NOMBRE_SOCIO_TITULAR");
+                vector_nombres.Add("@TIPO_SOCIO_TITULAR");
+                vector_nombres.Add("@OBSERVACIONES");
+                vector_nombres.Add("@FECHA_RECIBO");
+                vector_nombres.Add("@BARRA");
+                vector_nombres.Add("@NOMBRE_SOCIO");
+                vector_nombres.Add("@DNI");
+                vector_nombres.Add("@TIPO_SOCIO_NO_TITULAR");
+                vector_nombres.Add("@NRO_COMP");
+                vector_nombres.Add("@PTO_VTA");
+                vector_nombres.Add("@REINTEGRO_DE");
+                vector_nombres.Add("@BANCO_DEPO");
+
+                string vprocedure = "RECIBOS_CAJA_NC_I";
+
+                resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public void Valido_Recibo_Existe(string PTO_VTA,int RECIBO)
         {
             string QUERY = "SELECT ID from Recibos_caja where PTO_VTA= " + PTO_VTA + " AND NRO_COMP=" + RECIBO;
