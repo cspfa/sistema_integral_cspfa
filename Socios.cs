@@ -4702,7 +4702,17 @@ namespace SOCIOS
 
            Cargar_Solapa_Inp();
        }
-     
+
+       private void Condicion_Iva_Click(object sender, EventArgs e)
+       {
+           int id_titular = (Socios.vp_nro_soc * 1000) + Socios.vp_nro_dep;
+           Condicion_IVA ci = new Condicion_IVA(id_titular);
+
+           if (ci.ShowDialog() == DialogResult.OK)
+           {
+               MessageBox.Show("Informacion IVA actualizada con Exito!");
+           }
+       }
     }
 }
 
