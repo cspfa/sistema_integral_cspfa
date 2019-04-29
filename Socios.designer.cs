@@ -30,17 +30,17 @@ namespace SOCIOS
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Socios));
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem(new string[] {
             "",
             "",
             ""}, -1);
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -283,6 +283,7 @@ namespace SOCIOS
             this.dgvGrupo = new System.Windows.Forms.DataGridView();
             this.btnVerFormulario = new System.Windows.Forms.Button();
             this.cbServicio = new System.Windows.Forms.ComboBox();
+            this.Condicion_Iva = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -561,8 +562,8 @@ namespace SOCIOS
             // 
             // richTextbox1
             // 
-            this.richTextbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.richTextbox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextbox1.BusinessObjectEvaluated = true;
             this.richTextbox1.FormattingToolStrip = this.richTextToolStrip1;
@@ -676,7 +677,7 @@ namespace SOCIOS
             this.TabsSocios.Location = new System.Drawing.Point(4, 28);
             this.TabsSocios.Name = "TabsSocios";
             this.TabsSocios.SelectedIndex = 0;
-            this.TabsSocios.Size = new System.Drawing.Size(931, 582);
+            this.TabsSocios.Size = new System.Drawing.Size(931, 602);
             this.TabsSocios.TabIndex = 46;
             // 
             // TabTitular
@@ -688,7 +689,7 @@ namespace SOCIOS
             this.TabTitular.Location = new System.Drawing.Point(4, 22);
             this.TabTitular.Name = "TabTitular";
             this.TabTitular.Padding = new System.Windows.Forms.Padding(3);
-            this.TabTitular.Size = new System.Drawing.Size(923, 556);
+            this.TabTitular.Size = new System.Drawing.Size(923, 576);
             this.TabTitular.TabIndex = 0;
             this.TabTitular.Text = "TITULAR";
             this.TabTitular.UseVisualStyleBackColor = true;
@@ -729,7 +730,7 @@ namespace SOCIOS
             this.groupBox7.Controls.Add(this.maskedTextbox25);
             this.groupBox7.Controls.Add(this.label43);
             this.groupBox7.Controls.Add(this.comboBox4);
-            this.groupBox7.Location = new System.Drawing.Point(12, 416);
+            this.groupBox7.Location = new System.Drawing.Point(12, 439);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(903, 130);
             this.groupBox7.TabIndex = 7;
@@ -1152,7 +1153,7 @@ namespace SOCIOS
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.maskedTextbox19);
-            this.groupBox6.Location = new System.Drawing.Point(12, 250);
+            this.groupBox6.Location = new System.Drawing.Point(12, 273);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(905, 160);
             this.groupBox6.TabIndex = 6;
@@ -1455,6 +1456,7 @@ namespace SOCIOS
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.Condicion_Iva);
             this.groupBox5.Controls.Add(this.btnBeneficio);
             this.groupBox5.Controls.Add(this.textBox1);
             this.groupBox5.Controls.Add(this.btnAdquirir);
@@ -1505,7 +1507,7 @@ namespace SOCIOS
             this.groupBox5.Controls.Add(this.label19);
             this.groupBox5.Location = new System.Drawing.Point(12, 68);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(908, 176);
+            this.groupBox5.Size = new System.Drawing.Size(908, 199);
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "DATOS PERSONALES";
@@ -2305,7 +2307,7 @@ namespace SOCIOS
             this.listView2.GridLines = true;
             this.listView2.HideSelection = false;
             this.listView2.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            listViewItem4});
             this.listView2.LargeImageList = this.imageList1;
             this.listView2.Location = new System.Drawing.Point(2, 2);
             this.listView2.MultiSelect = false;
@@ -2384,10 +2386,10 @@ namespace SOCIOS
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            listViewItem2.Checked = true;
-            listViewItem2.StateImageIndex = 14;
+            listViewItem1.Checked = true;
+            listViewItem1.StateImageIndex = 14;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.listView1.Location = new System.Drawing.Point(3, 3);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -2487,7 +2489,7 @@ namespace SOCIOS
             this.listView3.GridLines = true;
             this.listView3.HideSelection = false;
             this.listView3.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3});
+            listViewItem2});
             this.listView3.LargeImageList = this.imageList1;
             this.listView3.Location = new System.Drawing.Point(0, 2);
             this.listView3.MultiSelect = false;
@@ -2928,23 +2930,23 @@ namespace SOCIOS
             this.dgvGrupo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvGrupo.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvGrupo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvGrupo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvGrupo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvGrupo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvGrupo.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvGrupo.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvGrupo.GridColor = System.Drawing.SystemColors.Control;
             this.dgvGrupo.Location = new System.Drawing.Point(8, 7);
             this.dgvGrupo.Name = "dgvGrupo";
@@ -2974,6 +2976,16 @@ namespace SOCIOS
             this.cbServicio.Size = new System.Drawing.Size(274, 21);
             this.cbServicio.TabIndex = 58;
             // 
+            // Condicion_Iva
+            // 
+            this.Condicion_Iva.Location = new System.Drawing.Point(702, 169);
+            this.Condicion_Iva.Name = "Condicion_Iva";
+            this.Condicion_Iva.Size = new System.Drawing.Size(180, 23);
+            this.Condicion_Iva.TabIndex = 51;
+            this.Condicion_Iva.Text = "Condicion IVA";
+            this.Condicion_Iva.UseVisualStyleBackColor = true;
+            this.Condicion_Iva.Click += new System.EventHandler(this.Condicion_Iva_Click);
+            // 
             // Socios
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -2985,7 +2997,7 @@ namespace SOCIOS
             this.BrokenRulesAlertText = "Business_BrokenRulesAlertText";
             this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
             this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
-            this.ClientSize = new System.Drawing.Size(944, 614);
+            this.ClientSize = new System.Drawing.Size(944, 631);
             this.Controls.Add(this.TabsSocios);
             this.Controls.Add(this.bindingNavigator1);
             this.ErrorProviderBlinkStyle = System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError;
@@ -3291,6 +3303,7 @@ namespace SOCIOS
         private System.Windows.Forms.Button btnImpInvPart;
         private System.Windows.Forms.TextBox tbCUIL;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button Condicion_Iva;
     }
 }
 
