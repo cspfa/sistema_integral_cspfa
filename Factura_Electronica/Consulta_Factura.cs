@@ -41,9 +41,9 @@ namespace SOCIOS.Factura_Electronica
              int Tipo_Comprobante = 0;
 
              if (cbNotaCreditoC.Checked)
-                 Tipo_Comprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
-             else
                  Tipo_Comprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C;
+             else
+                 Tipo_Comprobante = (int)Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
 
             lbEstado.Text ="";
             lbCAE.Text ="";

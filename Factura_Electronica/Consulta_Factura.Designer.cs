@@ -254,9 +254,9 @@
             this.cbFacturaC.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbFacturaC.Location = new System.Drawing.Point(15, 13);
             this.cbFacturaC.Name = "cbFacturaC";
-            this.cbFacturaC.Size = new System.Drawing.Size(72, 17);
+            this.cbFacturaC.Size = new System.Drawing.Size(70, 17);
             this.cbFacturaC.TabIndex = 114;
-            this.cbFacturaC.Text = "Factura C";
+            this.cbFacturaC.Text = "Recibo C";
             this.cbFacturaC.UseVisualStyleBackColor = true;
             this.cbFacturaC.CheckedChanged += new System.EventHandler(this.cbFacturaC_CheckedChanged);
             // 
