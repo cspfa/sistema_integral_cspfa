@@ -1318,7 +1318,7 @@ namespace SOCIOS.bono
 
             if (ID_CUOTA != 0)
             {
-                Mensaje = Mensaje + " Bono Nro: " + BONO.ToString();
+                Mensaje = " Bono Nro: " + BONO.ToString() + " " +  Mensaje;
 
                 if (Tipo == 3)
                 {
