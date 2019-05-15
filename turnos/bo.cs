@@ -453,6 +453,99 @@ namespace SOCIOS
 
         }
 
+        public void InsertPagoBono(int Bono, int TipoPago, decimal Monto, decimal Interes, string Cuota, string POC, DateTime fecha, int CodInt, int CodCp, DateTime? A_Dto, string User, string Fupdate, string NroBeneficio, string Rol, int Nro_Soc, int Nro_Dep, int Barra, int Nro_Soc_titular, int Nro_dep_titular, int PlanCuenta, int SUBCODIGO)
+        {
+            db resultado = new db();
+
+
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(0);
+            vector_contenidos.Add(Bono);
+            vector_contenidos.Add(TipoPago);
+            vector_contenidos.Add(Monto);
+            vector_contenidos.Add(Cuota);
+            vector_contenidos.Add(fecha);
+            vector_contenidos.Add(CodInt);
+            if (A_Dto == null)
+                vector_contenidos.Add("null");
+            else
+                vector_contenidos.Add(A_Dto);
+            vector_contenidos.Add(User);
+            vector_contenidos.Add(Fupdate);
+            vector_contenidos.Add(NroBeneficio);
+            vector_contenidos.Add(Rol);
+
+
+            vector_contenidos.Add(Nro_Soc);
+            vector_contenidos.Add(Nro_Dep);
+            vector_contenidos.Add(Barra);
+            vector_contenidos.Add(Nro_Soc_titular);
+            vector_contenidos.Add(POC);
+            vector_contenidos.Add(CodCp);
+            vector_contenidos.Add(PlanCuenta);
+            vector_contenidos.Add(Nro_dep_titular);
+            vector_contenidos.Add(SUBCODIGO);
+            vector_contenidos.Add(Interes);
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
+            ArrayList vector_nombres = new ArrayList();
+
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@BONO");
+            vector_nombres.Add("@TIPOPAGO");
+            vector_nombres.Add("@MONTO");
+            vector_nombres.Add("@CUOTA");
+            vector_nombres.Add("@FECHA");
+            vector_nombres.Add("@CODINT");
+            vector_nombres.Add("@A_DTO");
+            vector_nombres.Add("@USR_U");
+            vector_nombres.Add("@F_U");
+            vector_nombres.Add("@NRO_BENEF");
+            vector_nombres.Add("@ROL");
+            vector_nombres.Add("@NRO_SOC");
+            vector_nombres.Add("@NRO_DEP");
+            vector_nombres.Add("@BARRA");
+            vector_nombres.Add("@NRO_SOCIO_TITULAR");
+            vector_nombres.Add("@POC");
+            vector_nombres.Add("@CODCP");
+            vector_nombres.Add("@PLAN_CUENTA");
+            vector_nombres.Add("@NRO_DEP_TITULAR");
+            vector_nombres.Add("@SUBCOD");
+            vector_nombres.Add("@INTERES");
+            string vprocedure = "P_PAGOS_BONO_I";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+
+
+
         //STORED MODIFICAR TIPO DE COMANDA CONFITERIA
         public void modificarTipoDeComanda(int ID_COMANDA, int TIPO_DE_COMANDA)
         {
@@ -4964,92 +5057,7 @@ namespace SOCIOS
 
         }
 
-        public void InsertPagoBono(int Bono, int TipoPago, decimal Monto, string Cuota, string POC, DateTime fecha, int CodInt, int CodCp, DateTime? A_Dto, string User, string Fupdate, string NroBeneficio, string Rol, int Nro_Soc, int Nro_Dep, int Barra, int Nro_Soc_titular, int Nro_dep_titular, int PlanCuenta,int SUBCODIGO)
-        {
-            db resultado = new db();
-
-
-
-            ArrayList vector_contenidos = new ArrayList();
-            vector_contenidos.Add(0);
-            vector_contenidos.Add(Bono);
-            vector_contenidos.Add(TipoPago);
-            vector_contenidos.Add(Monto);
-            vector_contenidos.Add(Cuota);
-            vector_contenidos.Add(fecha);
-            vector_contenidos.Add(CodInt);
-            if (A_Dto == null)
-                vector_contenidos.Add("null");
-            else
-                vector_contenidos.Add(A_Dto);
-            vector_contenidos.Add(User);
-            vector_contenidos.Add(Fupdate);
-            vector_contenidos.Add(NroBeneficio);
-            vector_contenidos.Add(Rol);
-
-
-            vector_contenidos.Add(Nro_Soc);
-            vector_contenidos.Add(Nro_Dep);
-            vector_contenidos.Add(Barra);
-            vector_contenidos.Add(Nro_Soc_titular);
-            vector_contenidos.Add(POC);
-            vector_contenidos.Add(CodCp);
-            vector_contenidos.Add(PlanCuenta);
-            vector_contenidos.Add(Nro_dep_titular);
-            vector_contenidos.Add(SUBCODIGO);
-            ArrayList vector_tipos = new ArrayList();
-
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Float");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.VarChar");
-
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-
-            vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
-            ArrayList vector_nombres = new ArrayList();
-
-
-            vector_nombres.Add("@ID");
-            vector_nombres.Add("@BONO");
-            vector_nombres.Add("@TIPOPAGO");
-            vector_nombres.Add("@MONTO");
-            vector_nombres.Add("@CUOTA");
-            vector_nombres.Add("@FECHA");
-            vector_nombres.Add("@CODINT");
-            vector_nombres.Add("@A_DTO");
-            vector_nombres.Add("@USR_U");
-            vector_nombres.Add("@F_U");
-            vector_nombres.Add("@NRO_BENEF");
-            vector_nombres.Add("@ROL");
-            vector_nombres.Add("@NRO_SOC");
-            vector_nombres.Add("@NRO_DEP");
-            vector_nombres.Add("@BARRA");
-            vector_nombres.Add("@NRO_SOCIO_TITULAR");
-            vector_nombres.Add("@POC");
-            vector_nombres.Add("@CODCP");
-            vector_nombres.Add("@PLAN_CUENTA");
-            vector_nombres.Add("@NRO_DEP_TITULAR");
-            vector_nombres.Add("@SUBCOD");
-            string vprocedure = "P_PAGOS_BONO_I";
-            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
-
-        }
+       
 
         //Agregado por Sebastian - VER 14-12-2015
         public void Baja_PagosBono(int idBono)
