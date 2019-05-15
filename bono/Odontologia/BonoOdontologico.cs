@@ -677,7 +677,7 @@ namespace SOCIOS.bono
             {
 
 
-                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO, p.CUOTA, p.POC, dpFecha.Value, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), srvDatosSocio.CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA), Nro_Socio_titular, Nro_Dep_Titular, Plan,SUBCODIGO);
+                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO,p.Interes, p.CUOTA, p.POC, dpFecha.Value, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), srvDatosSocio.CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA), Nro_Socio_titular, Nro_Dep_Titular, Plan,SUBCODIGO);
         
             }
         

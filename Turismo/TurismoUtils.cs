@@ -460,7 +460,7 @@ namespace SOCIOS.Turismo
 
             foreach (bono.PagoBono p in PagosBono)
             {
-                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO, p.CUOTA, p.POC, Fecha, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), 0, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Plan,SUBCODIGO);
+                dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO,p.Interes, p.CUOTA, p.POC, Fecha, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), 0, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Plan,SUBCODIGO);
 
             }
 

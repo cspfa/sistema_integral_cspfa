@@ -134,6 +134,7 @@ namespace SOCIOS.bono
         public int TIPO             {get;set;}
         public DateTime FECHA_DTO   {get;set;}
         public bool Ingreso_Caja    {get;set;}
+        public decimal Interes     { get; set; }
     
     
     }

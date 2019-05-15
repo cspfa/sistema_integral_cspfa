@@ -1273,6 +1273,7 @@ namespace SOCIOS.bono
             decimal Monto = 0;
             string QUERY = "";
             string Mensaje = "";
+            decimal Interes=0;
 
             //parche para ADH
             if (NRO_DEP == 978)
@@ -1288,18 +1289,18 @@ namespace SOCIOS.bono
 
             if (Tipo == 1) //Efectivo
             {
-                QUERY = "select ID,MONTO from PAGOS_BONO WHERE TIPOPAGO=1 AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'";
+                QUERY = "select ID,MONTO,Interes from PAGOS_BONO WHERE TIPOPAGO=1 AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'";
                 Mensaje = "Efectivo, ";
             }
             else if (Tipo == 2) // Debito
             {
-                QUERY = "select ID,MONTO from PAGOS_BONO WHERE (TIPOPAGO=2 or TIPOPAGO=9) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
+                QUERY = "select ID,MONTO,Interes from PAGOS_BONO WHERE (TIPOPAGO=2 or TIPOPAGO=9) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
                 Mensaje = "Tarjeta Debito, ";
 
             }
             else  // Credito
             {
-                QUERY = "select ID,MONTO from PAGOS_BONO WHERE (TIPOPAGO=3 or TIPOPAGO=10) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
+                QUERY = "select ID,MONTO,Interes from PAGOS_BONO WHERE (TIPOPAGO=3 or TIPOPAGO=10) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
                 
                 Mensaje = "Tarjeta Credito, "+ InfoTarjeta;
             }
@@ -1311,13 +1312,23 @@ namespace SOCIOS.bono
             {
                 ID_CUOTA = Int32.Parse(foundRows[0][0].ToString());
                 Monto = Decimal.Round(decimal.Parse(foundRows[0][1].ToString()), 2);
+                if (foundRows[0][2].ToString().Length>0)
+                        Interes  = Decimal.Round(decimal.Parse(foundRows[0][2].ToString()), 2);
             }
 
             if (ID_CUOTA != 0)
             {
                 Mensaje = Mensaje + " Bono Nro: " + BONO.ToString();
-                    
-                ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false, Monto, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL, Mensaje,BONO);
+
+                if (Tipo == 3)
+                {
+                    this.IngresoCredito(ID_CUOTA, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, BONO, Monto, Interes, Mensaje);
+                }
+                else
+                {
+                    ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false, Monto, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL, Mensaje, BONO);
+                }
+            
             }
 
 
@@ -1330,10 +1341,14 @@ namespace SOCIOS.bono
         
         }
 
-        private void IngresoCredito()
+        private void IngresoCredito(int ID_CUOTA,int BARRA,int NRO_SOCIO_ADH,int NRO_DEP_ADH,string DNI, string NOMBRE,string APELLIDO,int BONO, decimal Tarjeta,decimal Tarjeta_Interes,string Mensaje)
+        {
 
-        { 
-        
+            string Mensaje_Tarjeta = "T.C: $" + Tarjeta + " " + Mensaje;
+            string Mensaje_Interes = "T.C: $" + Tarjeta_Interes + " " + Mensaje;
+
+            ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false,Tarjeta, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL,Mensaje_Tarjeta, BONO);
+            ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false,Tarjeta_Interes, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL, Mensaje_Interes, BONO);
         
         }
 

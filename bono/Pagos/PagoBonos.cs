@@ -53,6 +53,8 @@ namespace SOCIOS.bono
         public decimal Efectivo           = 0;
         public decimal Tarjeta_credito    = 0;
         public int Tarjeta_credito_cuotas = 0;
+        public decimal Interes_Tarjeta_Credito = 0;
+
         public decimal Tarjeta_Debito     = 0;
         public decimal Planilla           = 0;
         public int     Planilla_Cuotas    = 0;
@@ -723,33 +725,33 @@ namespace SOCIOS.bono
             //1 Pago  Todo En Efectivo
             if (tipoPago == 1)
             {
-                this.GraboPago(tipoPago, Saldo,System.DateTime.Now,"UNICO PAGO","C",true);
+                this.GraboPago(tipoPago, Saldo,0,System.DateTime.Now,"UNICO PAGO","C",true);
 
             }
             else if (tipoPago == 2 || tipoPago == 3)
             {
-                this.GraboPago(1, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "UNICO PAGO", "C",true);
+                this.GraboPago(1, decimal.Parse(lbMonto1.Text),0, System.DateTime.Now, "UNICO PAGO", "C",true);
                 if (tipoPago==2)
-                   this.GraboPago(9, decimal.Parse(lbMonto2.Text), System.DateTime.Now, "RESTO EN DEBITO", "C",true);
+                   this.GraboPago(9, decimal.Parse(lbMonto2.Text),0, System.DateTime.Now, "RESTO EN DEBITO", "C",true);
                 else
-                    this.GraboPago(10, decimal.Parse(lbMonto2.Text), System.DateTime.Now, "RESTO EN CREDITO", "C",true);
+                    this.GraboPago(10, Tarjeta_credito,Interes_Tarjeta_Credito, System.DateTime.Now, "RESTO EN CREDITO", "C",true);
             }
             else if (tipoPago == 4 || tipoPago==7 || tipoPago==8)
             {
 
                if (tipoPago==4)
-                   this.GraboPago(1, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN EFECTIVO", "C",true);
+                   this.GraboPago(1, decimal.Parse(lbMonto1.Text),0, System.DateTime.Now, "1ER PAGO EN EFECTIVO", "C",true);
                else if (tipoPago == 7 )
-                   this.GraboPago(9, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN DEBITO", "C",true);
+                   this.GraboPago(9, decimal.Parse(lbMonto1.Text),0, System.DateTime.Now, "1ER PAGO EN DEBITO", "C",true);
                 else
-                    this.GraboPago(10, decimal.Parse(lbMonto1.Text), System.DateTime.Now, "1ER PAGO EN CREDITO", "C",true);
+                    this.GraboPago(10, decimal.Parse(lbMonto1.Text),0, System.DateTime.Now, "1ER PAGO EN CREDITO", "C",true);
 
                 this.GenerarPLanDePago(tipoPago,tbCantidadCuotas,tbMontoCuotas,dpFecha);
             }
             else if (tipoPago == 6)
-            //
+            
             {
-                this.GraboPago(1, Decimal.Parse(lbSeniaMonto.Text), System.DateTime.Now, "Seña ", "C", true);
+                this.GraboPago(1, Decimal.Parse(lbSeniaMonto.Text),0, System.DateTime.Now, "Seña ", "C", true);
                 this.GenerarPLanDePago(tipoPago,tbSeniaCantidadCuotas,lbMontoCuotaSenia,dpSeniaFecha);
             }
             else
@@ -779,13 +781,13 @@ namespace SOCIOS.bono
             for (i = 1; i <= CantidadCuotas; i++)
             {
                 fecha = fecha.AddMonths(1);
-                this.GraboPago(tipo, MontoCuota, fecha, "Cuota :" + i.ToString(), "P",false);
+                this.GraboPago(tipo, MontoCuota,0, fecha, "Cuota :" + i.ToString(), "P",false);
 
 
             }
 
         }
-        private void GraboPago(int TipoPago, decimal Monto, DateTime A_DTO, string desCuota, string POC,bool IngresoCaja)
+        private void GraboPago(int TipoPago, decimal Monto,decimal Interes, DateTime A_DTO, string desCuota, string POC,bool IngresoCaja)
         {
             bono.PagoBono item = new PagoBono();
             item.FECHA = dpFecha.Value;
@@ -799,6 +801,8 @@ namespace SOCIOS.bono
             item.MONTO = Monto;
             item.POC = POC;
             item.Ingreso_Caja = false;
+            item.Interes = Interes;
+
 
             Pagos.Add(item);
             this.Refrescar_Grilla_Memoria();
@@ -1006,10 +1010,18 @@ namespace SOCIOS.bono
             if (dr == DialogResult.OK)
 
             {
-                InfoTarjeta = "TOTAL TARJETA CREDITO   $ " + tar.IMPORTE_TOTAL + ", EN " + tar.CUOTAS.ToString() + " DE  $ " + tar.IMPORTE_CUOTA;
+
+                Interes_Tarjeta_Credito = decimal.Round(Decimal.Parse(tar.IMPORTE_TOTAL) - Monto, 2);
+                Tarjeta_credito = Decimal.Round(Monto,2);
+
+                InfoTarjeta = "TOTAL TARJETA CREDITO   $ " + tar.IMPORTE_TOTAL + ", EN " + tar.CUOTAS.ToString() + " DE  $ " + tar.IMPORTE_CUOTA + " - TOTAL INTERES $" + Interes_Tarjeta_Credito.ToString();
                 lbMontoTarjeta.Text = tar.IMPORTE_TOTAL;
                 CuotasTarjeta = tar.CUOTAS;
                 Tarjeta = true;
+                
+
+
+
              }
         }
 

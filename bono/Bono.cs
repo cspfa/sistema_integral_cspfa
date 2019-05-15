@@ -18,7 +18,7 @@ namespace SOCIOS.bono
         public int Nro_Socio_titular;
          public int Nro_Dep_Titular;
          SOCIOS.edad srvEDad = new edad();
-         bo dlog = new bo();
+         BO.bo_ServiciosMedicos dlog = new BO.bo_ServiciosMedicos();
 
          public int Socios=0 ;
          public int Intercirculo=0;
@@ -39,6 +39,9 @@ namespace SOCIOS.bono
        public  SOCIOS.IngresoBono ingreso;
        public  int Contralor=0;
        public string InfoTarjeta = "";
+
+       public string PACIENTE_NOMBRE="";
+       public string PACIENTE_DNI="";
         public Bono()
         { 
         
@@ -771,7 +774,10 @@ namespace SOCIOS.bono
                 item.NroDep = Int32.Parse(tit.NroDepTitular);
                 item.Barra = Int32.Parse("0");
                 item.Tipo =   tit.TipoTitular;
-                item.Origen = 3;
+                if (item.Tipo.Contains("NO SOCIO"))
+                    item.Origen = 3;
+                else
+                    item.Origen = 1;
 
 
                 var testRepetido = listaPersonas.Where(x => (x.NroSocio == item.NroSocio && x.NroDep == item.NroDep && x.Barra == item.Barra && x.Origen == item.Origen)).FirstOrDefault();
@@ -849,6 +855,17 @@ namespace SOCIOS.bono
         {
             return dgvGrupo;
         
+        }
+
+
+        public void SetPaciente()
+
+        {
+            if (dgvGrupo.Rows.Count > 0)
+            {
+                PACIENTE_NOMBRE = dgvGrupo.Rows[0].Cells[4].Value.ToString() + "," + dgvGrupo.Rows[0].Cells[5].Value.ToString();
+                PACIENTE_DNI = dgvGrupo.Rows[0].Cells[7].Value.ToString();
+            }
         }
 
         private void label13_Click(object sender, EventArgs e)
@@ -1014,10 +1031,12 @@ namespace SOCIOS.bono
         {   
             int TopeEdad;
 
-            if (tipoBono == "PAQUETE")
-               TopeEdad = 3;
-            else
-                TopeEdad =18;
+            //if (tipoBono == "PAQUETE")
+            //   TopeEdad = 3;
+            //else
+            //    TopeEdad =18;
+
+            TopeEdad = 3; // Tope ,se cambia a 3 para todos, no solo para paquete (antes 18 hoteles, 2 paquete )
            
             Socios        = 0;
             MenorSocio    = 0;
@@ -1037,7 +1056,14 @@ namespace SOCIOS.bono
                 if (item.Edad == null)
                     throw new Exception("Existen Personas Sin Edad Cargada en la Lista De Personas");
 
-                if ( item.Origen ==1) //Origen 1, familiares
+
+                if (item.NroDep == 12)
+                {
+                    item.Tipo = "NO SOCIO";
+                    item.Origen = 3;
+                }
+
+                if ( item.Origen ==1) //Origen 1, familiares, Socios
                 {
 
                    Socios      = this.StatsTipoMayor(Socios, item.Edad, TopeEdad);
@@ -1247,6 +1273,7 @@ namespace SOCIOS.bono
             decimal Monto = 0;
             string QUERY = "";
             string Mensaje = "";
+            decimal Interes=0;
 
             //parche para ADH
             if (NRO_DEP == 978)
@@ -1262,18 +1289,18 @@ namespace SOCIOS.bono
 
             if (Tipo == 1) //Efectivo
             {
-                QUERY = "select ID,MONTO from PAGOS_BONO WHERE TIPOPAGO=1 AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'";
+                QUERY = "select ID,MONTO,Interes from PAGOS_BONO WHERE TIPOPAGO=1 AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'";
                 Mensaje = "Efectivo, ";
             }
             else if (Tipo == 2) // Debito
             {
-                QUERY = "select ID,MONTO from PAGOS_BONO WHERE (TIPOPAGO=2 or TIPOPAGO=9) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
+                QUERY = "select ID,MONTO,Interes from PAGOS_BONO WHERE (TIPOPAGO=2 or TIPOPAGO=9) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
                 Mensaje = "Tarjeta Debito, ";
 
             }
             else  // Credito
             {
-                QUERY = "select ID,MONTO from PAGOS_BONO WHERE (TIPOPAGO=3 or TIPOPAGO=10) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
+                QUERY = "select ID,MONTO,Interes from PAGOS_BONO WHERE (TIPOPAGO=3 or TIPOPAGO=10) AND BONO   =" + BONO.ToString() + "AND ROL='" + VGlobales.vp_role + "'"; ;
                 
                 Mensaje = "Tarjeta Credito, "+ InfoTarjeta;
             }
@@ -1285,13 +1312,23 @@ namespace SOCIOS.bono
             {
                 ID_CUOTA = Int32.Parse(foundRows[0][0].ToString());
                 Monto = Decimal.Round(decimal.Parse(foundRows[0][1].ToString()), 2);
+                if (foundRows[0][2].ToString().Length>0)
+                        Interes  = Decimal.Round(decimal.Parse(foundRows[0][2].ToString()), 2);
             }
 
             if (ID_CUOTA != 0)
             {
                 Mensaje = Mensaje + " Bono Nro: " + BONO.ToString();
-                    
-                ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false, Monto, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL, Mensaje,BONO);
+
+                if (Tipo == 3)
+                {
+                    this.IngresoCredito(ID_CUOTA, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, BONO, Monto, Interes, Mensaje);
+                }
+                else
+                {
+                    ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false, Monto, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL, Mensaje, BONO);
+                }
+            
             }
 
 
@@ -1304,10 +1341,14 @@ namespace SOCIOS.bono
         
         }
 
-        private void IngresoCredito()
+        private void IngresoCredito(int ID_CUOTA,int BARRA,int NRO_SOCIO_ADH,int NRO_DEP_ADH,string DNI, string NOMBRE,string APELLIDO,int BONO, decimal Tarjeta,decimal Tarjeta_Interes,string Mensaje)
+        {
 
-        { 
-        
+            string Mensaje_Tarjeta = "T.C: $" + Tarjeta + " " + Mensaje;
+            string Mensaje_Interes = "T.C: $" + Tarjeta_Interes + " " + Mensaje;
+
+            ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false,Tarjeta, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL,Mensaje_Tarjeta, BONO);
+            ingreso = new IngresoBono(ID_CUOTA, VGlobales.vp_role, false,Tarjeta_Interes, Nro_Socio_titular, Nro_Dep_Titular, BARRA, NRO_SOCIO_ADH, NRO_DEP_ADH, DNI, NOMBRE, APELLIDO, DESTINO, PROFESIONAL, Mensaje_Interes, BONO);
         
         }
 
