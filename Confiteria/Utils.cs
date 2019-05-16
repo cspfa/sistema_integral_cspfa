@@ -5,7 +5,7 @@ using System;
 
 namespace Confiteria
 {
-    class Utils
+    public class Utils
     {
         bo dlog = new bo();
         db db = new db();

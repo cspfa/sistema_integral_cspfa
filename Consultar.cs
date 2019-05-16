@@ -44,7 +44,6 @@ namespace SOCIOS
         public Consulta()
         {
             InitializeComponent();
-            lleno_combos_Buscar();
         }
 
         BO_Datos dlog = new BO_Datos();
@@ -55,7 +54,7 @@ namespace SOCIOS
             {
                 btnImprimir.Visible = false;
             }
-            lleno_combos2();
+            lleno_combos_Buscar();
             Consultar_Visitas(dlog);
 
         }
@@ -63,59 +62,13 @@ namespace SOCIOS
         private void lleno_combos_Buscar()
         {
 
-            string dato1 = "SELECT DISTINCT ROL FROM SECTACT ORDER BY ROL";
-
-            string connectionString;
-            DataSet ds1 = new DataSet();
-            Datos_ini ini3 = new Datos_ini();
-            try
-            {
-                FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-
-                cs.DataSource = ini3.Servidor; //cs.Port = int.Parse(ini3.Puerto);
-                cs.Database = ini3.Ubicacion;
-                cs.UserID = VGlobales.vp_username;
-                cs.Password = VGlobales.vp_password;
-                cs.Role = VGlobales.vp_role;
-                cs.Dialect = 3;
-                connectionString = cs.ToString();
-
-                using (FbConnection connection = new FbConnection(connectionString))
-                {
-                    connection.Open();
-
-                    FbTransaction transaction = connection.BeginTransaction();
-
-                    //Carga COMBOBOX1
-
-                    DataTable dt1 = new DataTable("ROLES");
-                    dt1.Columns.Add("ROL", typeof(string));
-                    ds1.Tables.Add(dt1);
-
-                    FbCommand cmd = new FbCommand(dato1, connection, transaction);
-                    FbDataReader reader3 = cmd.ExecuteReader();
-
-                    while (reader3.Read())
-                    {
-                        dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ROL")).Trim());
-                    }
-                    reader3.Close();
-
-                    comboBox1.DisplayMember = "ROL";
-                    comboBox1.ValueMember = "ROL";
-                    comboBox1.DataSource = dt1;
-                    comboBox1.SelectedIndex = -1;
-
-                    transaction.Commit();
-
-                }
-
-            }
-            catch
-            {
-                MessageBox.Show("ERROR AL CARGAR EL COMBO ROL");
-            }
-
+            string QUERY = "SELECT DISTINCT ROL FROM SECTACT WHERE ROL = '"+VGlobales.vp_role+ "' ORDER BY ROL;";
+            comboBox1.DataSource = null;
+            comboBox1.Items.Clear();
+            comboBox1.DataSource = dlog.BO_EjecutoDataTable(QUERY);
+            comboBox1.DisplayMember = "ROL";
+            comboBox1.ValueMember = "ROL";
+            comboBox1.SelectedItem = 0;
         }
 
         private void Consultar_Visitas(BO_Datos datos)
@@ -184,7 +137,7 @@ namespace SOCIOS
         }
 
 
-        private void lleno_combos2()
+        /*private void lleno_combos2()
         {
 
             string dato1 = "SELECT DISTINCT ROL FROM SECTACT ORDER BY ROL";
@@ -246,7 +199,7 @@ namespace SOCIOS
                 MessageBox.Show("ERROR AL CARGAR EL COMBO ROL");
             }
 
-        }
+        }*/
 
 
 
@@ -494,7 +447,75 @@ namespace SOCIOS
             }
         }
 
+        private bool cambiarEstado(string ESTADO, int SECUENCIA, string PUESTO_ATENCION)
+        {
+            try
+            {
+                db db = new db();
+                string QUERY = "UPDATE INGRESOS_A_PROCESAR SET TILDE = '" + ESTADO + "', PUESTO_ATENCION = '" + PUESTO_ATENCION + "' WHERE SECUENCIA = " + SECUENCIA + ";";  
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
 
+        private void btnLlamar_Click(object sender, EventArgs e)
+        {
+            int SECUENCIA = 0;
 
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            bool ce = cambiarEstado("L", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Consultar_Visitas(dlog);
+            }
+        }
+
+        private void btnEnEspera_Click(object sender, EventArgs e)
+        {
+            int SECUENCIA = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            bool ce = cambiarEstado("E", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Consultar_Visitas(dlog);
+            }
+        }
+
+        private void btnAtendido_Click(object sender, EventArgs e)
+        {
+            int SECUENCIA = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            bool ce = cambiarEstado("A", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Consultar_Visitas(dlog);
+            }
+        }
+
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

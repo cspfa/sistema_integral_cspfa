@@ -104,8 +104,6 @@ namespace Confiteria
             QUERY = QUERY + " A.APELLIDO, A.NOMBRE, A.TIP_SOCIO, A.ROL, A.ID_DESTINO, A.ID_PROFESIONAL, A.SECUENCIA, A.BARRA, A.COD_DTO, SA.DETALLE, P.NOMBRE AS NOMBREPROF,";
             QUERY = QUERY + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.MOROSO";
             QUERY = QUERY + " FROM INGRESOS_A_PROCESAR A, SECTACT SA, PROFESIONALES P";
-            //QUERY = QUERY + " WHERE A.ROL IN (SELECT B.ROL FROM SECTACT B WHERE B.ID IN (SELECT C.SECTACT FROM ARANCELES C))";
-            //QUERY = QUERY + " AND A.ID_DESTINO IN (SELECT D.SECTACT FROM ARANCELES D) ";
             QUERY = QUERY + " WHERE A.NRO_SOC != 300 AND A.NRO_SOC != 200";
 
             if (FECHA == "XXX")
@@ -132,6 +130,11 @@ namespace Confiteria
             {
                 QUERY = QUERY + " AND A.COMANDA IS NOT NULL";
             }
+
+            if(VGlobales.vp_role != "CONFITERIA")
+
+                QUERY = QUERY + " AND A.ROL = '" + VGlobales.vp_role;
+
 
             QUERY = QUERY + " AND A.ID_DESTINO = SA.ID";
             QUERY = QUERY + " AND A.ID_PROFESIONAL = P.ID";

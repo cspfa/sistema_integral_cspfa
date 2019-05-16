@@ -45,6 +45,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.btnBono = new System.Windows.Forms.Button();
+            this.btnLlamar = new System.Windows.Forms.Button();
+            this.btnEnEspera = new System.Windows.Forms.Button();
+            this.btnAtendido = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +74,7 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
+            this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
             // 
             // btnFiltros
             // 
@@ -222,6 +226,36 @@
             this.btnBono.Visible = false;
             this.btnBono.Click += new System.EventHandler(this.btnBono_Click);
             // 
+            // btnLlamar
+            // 
+            this.btnLlamar.Location = new System.Drawing.Point(10, 70);
+            this.btnLlamar.Name = "btnLlamar";
+            this.btnLlamar.Size = new System.Drawing.Size(93, 23);
+            this.btnLlamar.TabIndex = 47;
+            this.btnLlamar.Text = "LLAMAR [F1]";
+            this.btnLlamar.UseVisualStyleBackColor = true;
+            this.btnLlamar.Click += new System.EventHandler(this.btnLlamar_Click);
+            // 
+            // btnEnEspera
+            // 
+            this.btnEnEspera.Location = new System.Drawing.Point(109, 70);
+            this.btnEnEspera.Name = "btnEnEspera";
+            this.btnEnEspera.Size = new System.Drawing.Size(118, 23);
+            this.btnEnEspera.TabIndex = 48;
+            this.btnEnEspera.Text = "EN ESPERA [F2]";
+            this.btnEnEspera.UseVisualStyleBackColor = true;
+            this.btnEnEspera.Click += new System.EventHandler(this.btnEnEspera_Click);
+            // 
+            // btnAtendido
+            // 
+            this.btnAtendido.Location = new System.Drawing.Point(231, 70);
+            this.btnAtendido.Name = "btnAtendido";
+            this.btnAtendido.Size = new System.Drawing.Size(118, 23);
+            this.btnAtendido.TabIndex = 49;
+            this.btnAtendido.Text = "ATENDIDO [F3]";
+            this.btnAtendido.UseVisualStyleBackColor = true;
+            this.btnAtendido.Click += new System.EventHandler(this.btnAtendido_Click);
+            // 
             // Consulta
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -234,6 +268,9 @@
             this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
             this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
             this.ClientSize = new System.Drawing.Size(1074, 461);
+            this.Controls.Add(this.btnAtendido);
+            this.Controls.Add(this.btnEnEspera);
+            this.Controls.Add(this.btnLlamar);
             this.Controls.Add(this.btnBono);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.button2);
@@ -282,7 +319,9 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button btnBono;
-
+        private System.Windows.Forms.Button btnLlamar;
+        private System.Windows.Forms.Button btnEnEspera;
+        private System.Windows.Forms.Button btnAtendido;
     }
 }
 

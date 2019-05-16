@@ -73,6 +73,7 @@
             this.planDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turismoControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tESTINGFCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.speechTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afiliacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirAutorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renunciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -157,7 +158,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.speechTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.turneroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -387,7 +388,8 @@
             this.planDeCuentaToolStripMenuItem,
             this.turismoControlToolStripMenuItem,
             this.tESTINGFCToolStripMenuItem,
-            this.speechTestingToolStripMenuItem});
+            this.speechTestingToolStripMenuItem,
+            this.turneroToolStripMenuItem});
             this.procesosToolStripMenuItem.Enabled = false;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -578,6 +580,13 @@
             this.tESTINGFCToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.tESTINGFCToolStripMenuItem.Text = "TESTING FC";
             this.tESTINGFCToolStripMenuItem.Click += new System.EventHandler(this.tESTINGFCToolStripMenuItem_Click);
+            // 
+            // speechTestingToolStripMenuItem
+            // 
+            this.speechTestingToolStripMenuItem.Name = "speechTestingToolStripMenuItem";
+            this.speechTestingToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.speechTestingToolStripMenuItem.Text = "Speech Testing";
+            this.speechTestingToolStripMenuItem.Click += new System.EventHandler(this.speechTestingToolStripMenuItem_Click);
             // 
             // afiliacionesToolStripMenuItem
             // 
@@ -1318,12 +1327,12 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // speechTestingToolStripMenuItem
+            // turneroToolStripMenuItem
             // 
-            this.speechTestingToolStripMenuItem.Name = "speechTestingToolStripMenuItem";
-            this.speechTestingToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.speechTestingToolStripMenuItem.Text = "Speech Testing";
-            this.speechTestingToolStripMenuItem.Click += new System.EventHandler(this.speechTestingToolStripMenuItem_Click);
+            this.turneroToolStripMenuItem.Name = "turneroToolStripMenuItem";
+            this.turneroToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.turneroToolStripMenuItem.Text = "Turnero";
+            this.turneroToolStripMenuItem.Click += new System.EventHandler(this.turneroToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1496,5 +1505,6 @@
         private System.Windows.Forms.ToolStripMenuItem tESTINGFCToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem confiteríaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem speechTestingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem turneroToolStripMenuItem;
     }
 }
