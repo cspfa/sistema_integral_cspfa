@@ -30,7 +30,7 @@ namespace SOCIOS
                 v_consulta = "SELECT CASE TIP_SOCIO WHEN 'ADH' THEN A.NRO_ADH WHEN 'INP' THEN A.NRO_ADH WHEN 'VIS' THEN A.NRO_SOC ELSE A.NRO_SOC END AS NRO_SOC,";
                 v_consulta = v_consulta + " CASE TIP_SOCIO WHEN 'ADH' THEN A.NRO_DEPADH WHEN 'INP' THEN A.NRO_DEPADH WHEN 'VIS' THEN A.NRO_DEP ELSE A.NRO_DEP END AS NRO_DEP,";
                 v_consulta = v_consulta + " A.APELLIDO, A.NOMBRE, A.TIP_SOCIO, A.ROL, A.ID_DESTINO, A.ID_PROFESIONAL, A.SECUENCIA, A.BARRA, A.COD_DTO, SA.DETALLE, P.NOMBRE AS NOMBREPROF,";
-                v_consulta = v_consulta + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.IMPORTE , A.NRO_PAGO NRO_PAGO, A.CUIL";
+                v_consulta = v_consulta + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.IMPORTE , A.NRO_PAGO NRO_PAGO, A.CUIL,A.DESTINO DESTINO_DETA ";
                 v_consulta = v_consulta + " FROM INGRESOS_A_PROCESAR A, SECTACT SA, PROFESIONALES P";
                 v_consulta = v_consulta + " WHERE A.ID_DESTINO IN (SELECT C.SECTACT FROM ARANCELES C WHERE C.FE_BAJA IS NULL GROUP BY C.SECTACT) AND A.ID_DESTINO <> 50 AND A.SECUENCIA > 268461";
 
@@ -115,6 +115,7 @@ namespace SOCIOS
                     dt1.Columns.Add("RECIBO", typeof(string));
                     dt1.Columns.Add("ID_PROFESIONAL", typeof(string));
                     dt1.Columns.Add("ID_DESTINO", typeof(string));
+                    dt1.Columns.Add("DESTINO_DETA", typeof(string));
                     dt1.Columns.Add("NRO_SOC", typeof(string));
                     dt1.Columns.Add("NRO_DEP", typeof(string));
                     dt1.Columns.Add("BONO", typeof(string));
@@ -147,16 +148,17 @@ namespace SOCIOS
                                      reader3.GetString(reader3.GetOrdinal("NRO_RECIBO")).Trim(), //11
                                      reader3.GetString(reader3.GetOrdinal("ID_PROFESIONAL")).Trim(), //12
                                      reader3.GetString(reader3.GetOrdinal("ID_DESTINO")).Trim(), //13
-                                     reader3.GetString(reader3.GetOrdinal("NUMERO_SOCIO")).Trim(), //14
-                                     reader3.GetString(reader3.GetOrdinal("NUMERO_DEPURACION")).Trim(),//15
-                                     reader3.GetString(reader3.GetOrdinal("NRO_BONO")).Trim(), //16
-                                     reader3.GetString(reader3.GetOrdinal("BONO_RECIBO")).Trim(), //17
-                                     reader3.GetString(reader3.GetOrdinal("CUENTA")).Trim(), //18
-                                     reader3.GetString(reader3.GetOrdinal("DNI")), //19
-                                     reader3.GetString(reader3.GetOrdinal("GRUPO")), //20
-                                     reader3.GetString(reader3.GetOrdinal("IMPORTE")),//21
-                                     reader3.GetString(reader3.GetOrdinal("NRO_PAGO")),//22 
-                                     reader3.GetString(reader3.GetOrdinal("CUIL"))//23,
+                                      reader3.GetString(reader3.GetOrdinal("DESTINO_DETA")).TrimEnd().TrimStart(), //14
+                                     reader3.GetString(reader3.GetOrdinal("NUMERO_SOCIO")).Trim(), //15
+                                     reader3.GetString(reader3.GetOrdinal("NUMERO_DEPURACION")).Trim(),//16
+                                     reader3.GetString(reader3.GetOrdinal("NRO_BONO")).Trim(), //17
+                                     reader3.GetString(reader3.GetOrdinal("BONO_RECIBO")).Trim(), //18
+                                     reader3.GetString(reader3.GetOrdinal("CUENTA")).Trim(),//19 
+                                     reader3.GetString(reader3.GetOrdinal("DNI")), //20
+                                     reader3.GetString(reader3.GetOrdinal("GRUPO")), //21
+                                     reader3.GetString(reader3.GetOrdinal("IMPORTE")),//22
+                                     reader3.GetString(reader3.GetOrdinal("NRO_PAGO")), //23
+                                     reader3.GetString(reader3.GetOrdinal("CUIL"))//24,
                                      
                                      ); 
                     }
@@ -174,17 +176,17 @@ namespace SOCIOS
                     dataGridView1.Columns[9].Width = 40;
                     dataGridView1.Columns[10].Width = 40;
                     dataGridView1.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    dataGridView1.Columns[16].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                    dataGridView1.Columns[17].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     transaction.Commit();
                     dataGridView1.Columns[8].Visible = false;
                     dataGridView1.Columns[12].Visible = false;
                     dataGridView1.Columns[13].Visible = false;
-                    dataGridView1.Columns[14].Visible = false;
-                    dataGridView1.Columns[15].Visible = false;
+                    //dataGridView1.Columns[14].Visible = false;
+                    dataGridView1.Columns[16].Visible = false;
                     dataGridView1.Columns[17].Visible = false;
                     dataGridView1.Columns[18].Visible = false;
-                    dataGridView1.Columns[19].Visible = false;
                     dataGridView1.Columns[20].Visible = false;
+                   // dataGridView1.Columns[21].Visible = false;
                     //dataGridView1.Columns[21].Visible = false;
                     //pintarAnulados();
                 }
@@ -313,7 +315,8 @@ namespace SOCIOS
                 int index = s - 1;
                 string FORMA_DE_PAGO = sender.ToString().Substring(0, index);
                 string RECIBO = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-                string BONO = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+               
+                string BONO = dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString();
                 modificarFormaDePago(RECIBO, BONO, FORMA_DE_PAGO);
             }
             catch (Exception error)
@@ -381,7 +384,7 @@ namespace SOCIOS
         private void eliminarCajaDiariaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string RECIBO = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string BONO = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string BONO = dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             elimiarCajaDiaria(RECIBO, BONO);
         }
 
@@ -390,6 +393,7 @@ namespace SOCIOS
             Cursor = Cursors.WaitCursor;
             VGlobales.vp_IdScocio = Convert.ToInt32(dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString()) * 1000;
             VGlobales.vp_IdScocio = VGlobales.vp_IdScocio + Convert.ToInt32(dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+        
             VGlobales.vp_IdSecAct = Convert.ToInt32(dataGridView1[13, dataGridView1.CurrentCell.RowIndex].Value.ToString());
             VGlobales.vp_IDProf = Convert.ToInt32(dataGridView1[12, dataGridView1.CurrentCell.RowIndex].Value.ToString());
             VGlobales.vp_Secuencia = Convert.ToInt32(dataGridView1[8, dataGridView1.CurrentCell.RowIndex].Value.ToString());
@@ -399,34 +403,37 @@ namespace SOCIOS
             VGlobales.vp_Barra = dataGridView1[9, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             VGlobales.vp_CodDto = dataGridView1[10, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
-            string RB = dataGridView1[17, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string RB = dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
             if (RB == "R")
                 VGlobales.vp_NroRecibo = dataGridView1[11, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
             if (RB == "B")
-                VGlobales.vp_NroRecibo = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+                VGlobales.vp_NroRecibo = dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
 
 
             string NRO_SOC = dataGridView1[0, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             string NRO_DEP = dataGridView1[1, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string TIT_SOC = dataGridView1[14, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string TIT_DEP = dataGridView1[15, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+           
+             string TIT_SOC = dataGridView1[15, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string TIT_DEP = dataGridView1[16, dataGridView1.CurrentCell.RowIndex].Value.ToString();
             string ROLE = dataGridView1[5, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string DNI = dataGridView1[19, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            int GRUPO = int.Parse(dataGridView1[20, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+           
+            string DNI = dataGridView1[20, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            int GRUPO = int.Parse(dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+           
             int CUENTA = 0;
-            decimal IMPORTE = decimal.Parse(dataGridView1[21, dataGridView1.CurrentCell.RowIndex].Value.ToString());
-            string ID_PAGO = dataGridView1[22, dataGridView1.CurrentCell.RowIndex].Value.ToString();
-            string CUIT = dataGridView1[23, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            decimal IMPORTE = decimal.Parse(dataGridView1[22, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+            string ID_PAGO = dataGridView1[23, dataGridView1.CurrentCell.RowIndex].Value.ToString();
+            string CUIT = dataGridView1[24, dataGridView1.CurrentCell.RowIndex].Value.ToString();
 
             if (ID_PAGO.Length > 0)
                 VGlobales.ID_CUOTA_PAGO = Int32.Parse(ID_PAGO);
 
             if (dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString() != "")
             {
-                CUENTA = int.Parse(dataGridView1[18, dataGridView1.CurrentCell.RowIndex].Value.ToString());
+                CUENTA = int.Parse(dataGridView1[19, dataGridView1.CurrentCell.RowIndex].Value.ToString());
             }
 
             if (VGlobales.vp_IdScocio == 0)
