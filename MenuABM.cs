@@ -33,6 +33,7 @@ namespace SOCIOS
             if (s != "/u1/Data/CSPFA_DATOS7.FDB")
             {
                 lbServidor.Text = "SERVIDOR PRUEBA";
+                VGlobales.PRODUCCION = false;
             }
             else
             {
@@ -2208,6 +2209,12 @@ namespace SOCIOS
         private void speechTestingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void turneroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Turnero tu = new Turnero();
+            tu.ShowDialog();
         }
     }
 }

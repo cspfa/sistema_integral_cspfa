@@ -454,7 +454,7 @@ namespace SOCIOS
 
         private void comboCuentasDebe()
         {
-            string query = "SELECT NUMEROCTA FROM CUENTAS WHERE NUMEROCTA >= 1000 AND NUMEROCTA <= 109100 ";
+            string query = "SELECT NUMEROCTA FROM CUENTAS WHERE NUMEROCTA >= 1000 AND NUMEROCTA <= 202000 ";
             query += "OR NUMEROCTA >= 401101 AND NUMEROCTA <= 480206 ";
             query += "OR NUMEROCTA >= 301101 AND NUMEROCTA <= 301184 ";
             query += "OR NUMEROCTA >= 801100 AND NUMEROCTA <= 802000";
@@ -469,7 +469,7 @@ namespace SOCIOS
 
         private void comboCuentasHaber()
         {
-            string query = "SELECT NUMEROCTA FROM CUENTAS WHERE NUMEROCTA >= 1000 AND NUMEROCTA <= 109100 ";
+            string query = "SELECT NUMEROCTA FROM CUENTAS WHERE NUMEROCTA >= 1000 AND NUMEROCTA <= 202000 ";
             query += "OR NUMEROCTA >= 401101 AND NUMEROCTA <= 480206 ";
             query += "OR NUMEROCTA >= 301101 AND NUMEROCTA <= 301184 ";
             query += "OR NUMEROCTA >= 801100 AND NUMEROCTA <= 802000";

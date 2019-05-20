@@ -289,10 +289,13 @@ namespace Confiteria
                 {
                     foreach (DataGridViewRow row in dgListadoAranceles.SelectedRows)
                     {
+                        int STOCK_TOTAL = 0;
+                        int STOCK_ACTUAL = Convert.ToInt32(row.Cells[4].Value);
                         int ID = Convert.ToInt32(row.Cells[0].Value);
                         int STOCK = Convert.ToInt32(tbStock.Text);
+                        STOCK_TOTAL = STOCK_ACTUAL + STOCK;
                         Utils utils = new Utils();
-                        bool SET_ITEM_STOCK = utils.setItemStock(ID, STOCK);
+                        bool SET_ITEM_STOCK = utils.setItemStock(ID, STOCK_TOTAL);
 
                         if (SET_ITEM_STOCK == true)
                             MessageBox.Show("STOCK ACTUALIZADO");
