@@ -64,7 +64,7 @@ namespace SOCIOS.bono.Bonos
                 {
                     
 
-                    dlog.InsertOdontologico(0,0,0," ",0,0,System.DateTime.Now, PROFESIONAL,SECTACT, 0,0,0,0," "," "," "," "," "," ",0,0,0,0,0,0,0,0," "," "," ",0, VGlobales.vp_username, 0, VGlobales.vp_role,CODINT,0,"SI",0,0,0,0,0,0);
+                    dlog.InsertOdontologico(0,0,0," ",0,0,System.DateTime.Now, PROFESIONAL,SECTACT, 0,0,0,0," "," "," "," "," "," ",0,0,0,0,0,0,0,0," "," "," ",0, VGlobales.vp_username, 0, VGlobales.vp_role,CODINT,0,"SI",0,0,0,0,0,0,0);
 
                
                     //Obtener Proximo ID_ROL

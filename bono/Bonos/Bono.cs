@@ -42,6 +42,8 @@ namespace SOCIOS.bono
 
        public string PACIENTE_NOMBRE="";
        public string PACIENTE_DNI="";
+       public int Cuenta_Contable = 0;
+       public SOCIOS.bono.BonoUtils bonoService = new BonoUtils();
         public Bono()
         { 
         

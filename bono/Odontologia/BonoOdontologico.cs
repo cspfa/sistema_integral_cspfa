@@ -189,13 +189,13 @@ namespace SOCIOS.bono
 
                     if (BONO_BLANCO) //27-08-2018 si el bono es blanco, hay que hacerle un update
                     {
-                        dlog.UpdateOdontologico(ID_REGISTRO, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas);
+                        dlog.UpdateOdontologico(ID_REGISTRO, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Cuenta_Contable);
                         idBono = ID_REGISTRO;
 
                     }
                     else
                     {
-                        dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas);
+                        dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Cuenta_Contable);
                         idBono = odontoService.GetMaxID(persona.NRO_SOCIO, persona.NRO_DEP, persona.BARRA);
                      }
 
@@ -631,7 +631,9 @@ namespace SOCIOS.bono
 
             PROFESIONAL = idProfesional;
 
-            valor_arancel = arancelService.valorGrupo(Sec_act, grupo,idProfesional).ToString(); 
+            valor_arancel   = arancelService.valorGrupo(Sec_act, grupo,idProfesional).ToString();
+            Cuenta_Contable = bonoService.Cuenta_Profesional(PROFESIONAL);
+
 
                 if (valor_arancel != "X")
                     return Decimal.Parse(valor_arancel);

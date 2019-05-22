@@ -186,6 +186,28 @@ namespace SOCIOS.bono
 
        }
 
+       public int Cuenta_Profesional(int Profesional)
+
+       {
+
+           string QUERY = "select CUENTA   FROM PROFESIONALES WHERE  ID=" +  Profesional.ToString();
+           DataRow[] foundRows;
+
+
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+
+           if (foundRows.Length > 0)
+           {
+
+               if (foundRows[0][0].ToString().Length > 0)
+                   return Int32.Parse( foundRows[0][0].ToString());
+               else
+                   return 0;
+
+           }
+           return 0;
+       }
 
     }
 }
