@@ -18,6 +18,7 @@ namespace Confiteria
         db db = new db();
         Utils cu = new Utils();
         maxid mid = new maxid();
+        private int CAJA_SELECCIONADA { get; set; }
 
         public importador(string P_ROL)
         {
@@ -29,6 +30,7 @@ namespace Confiteria
         private void cargaInicial()
         {
             cajasDiarias(G_ROL);
+
         }
 
         private void cajasDiarias(string ROL)
@@ -75,7 +77,7 @@ namespace Confiteria
             }
         }
 
-        private void importarComandas(DataSet COMANDAS, int ID_CAJA)
+        private void importarComandas(DataSet COMANDAS)
         {
             if (COMANDAS.Tables.Count > 0)
             {
@@ -87,7 +89,7 @@ namespace Confiteria
                 int ID; string FECHA; int MESA; int MOZO; decimal IMPORTE; int NRO_SOC; int NRO_DEP; int BARRA; int PERSONAS; string NOMBRE_SOCIO;
                 string AFILIADO; string BENEFICIO; string USUARIO; int DESCUENTO = 0; int FORMA_DE_PAGO; int RENDIDA; int CONTRALOR = 0; string ANULADA;
                 string USR_ANULA; int COM_BORRADOR = 0; string CONSUME; int TIPO_COMANDA = 0; int DESCUENTO_APLICADO = 0; decimal IMPORTE_DESCONTADO = 0;
-                int NRO_COMANDA; string ROL;
+                int NRO_COMANDA; string ROL; int EXPORTADA; int ID_ANTERIOR;
 
                 foreach (DataRow ROW_COMANDA in COMANDAS.Tables[0].Rows)
                 {
@@ -100,9 +102,9 @@ namespace Confiteria
 
                     if (ROW_COMANDA[13].ToString() != "")
                         DESCUENTO = int.Parse(ROW_COMANDA[13].ToString());
-                    
+
                     FORMA_DE_PAGO = int.Parse(ROW_COMANDA[14].ToString());
-                    RENDIDA = ID_CAJA;
+                    RENDIDA = int.Parse(ROW_COMANDA[14].ToString());
 
                     if (ROW_COMANDA[16].ToString() != "")
                         CONTRALOR = int.Parse(ROW_COMANDA[16].ToString());
@@ -115,7 +117,7 @@ namespace Confiteria
 
                     CONSUME = ROW_COMANDA[20].ToString();
 
-                    if(ROW_COMANDA[21].ToString() != "")
+                    if (ROW_COMANDA[21].ToString() != "")
                         TIPO_COMANDA = int.Parse(ROW_COMANDA[21].ToString());
 
                     if (ROW_COMANDA[22].ToString() != "")
@@ -125,12 +127,13 @@ namespace Confiteria
                         IMPORTE_DESCONTADO = decimal.Parse(ROW_COMANDA[23].ToString());
 
                     NRO_COMANDA = int.Parse(ROW_COMANDA[24].ToString()); ROL = ROW_COMANDA[25].ToString();
+                    EXPORTADA = 1; ID_ANTERIOR = int.Parse(ROW_COMANDA[27].ToString());
 
                     try
                     {
                         dlog.impComandaConfiteria(FECHA, MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, NOMBRE_SOCIO, AFILIADO, BENEFICIO, USUARIO,
                             DESCUENTO, FORMA_DE_PAGO, RENDIDA, CONTRALOR, ANULADA, USR_ANULA, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO,
-                            IMPORTE_DESCONTADO, NRO_COMANDA, ROL);
+                            IMPORTE_DESCONTADO, NRO_COMANDA, ROL, EXPORTADA, ID_ANTERIOR);
 
                         bool SET_EXPORTADO = cu.setExportado("CONFITERIA_COMANDAS", "EXPORTADA", ID, G_ROL, 1);
 
@@ -139,11 +142,11 @@ namespace Confiteria
                             MessageBox.Show("NO SE PUDO MARCAR LA COMANDA " + NRO_COMANDA + " COMO EXPORTADA\nES POSIBLE QUE SIGA APARECIENDO EN LOS LISTADOS", "ERROR!");
                         }
                     }
-                    catch(Exception error)
+                    catch (Exception error)
                     {
                         MessageBox.Show("NO SE PUDO IMPORTAR LA COMANDA " + NRO_COMANDA + "\nSE INTENTARÁ IMPORTAR LAS SIGUIENTES COMANDAS\n" + error, "ERROR!");
                     }
-                    
+
                     pbImportar.PerformStep();
                 }
             }
@@ -153,10 +156,6 @@ namespace Confiteria
         {
             if (MessageBox.Show("¿IMPORTAR COMANDAS Y CAJAS DIARIAS?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                string QUERY = "SELECT * FROM CONFITERIA_CAJA_DIARIA WHERE EXPORTADA = 0 AND ROL = '" + G_ROL + "';";
-                DataSet CAJAS = cu.getDataFromQuery(QUERY, G_ROL);
-                QUERY = "SELECT * FROM CONFITERIA_COMANDAS WHERE EXPORTADA = 0 AND ROL = '" + G_ROL + "';";
-                DataSet COMANDAS = cu.getDataFromQuery(QUERY, G_ROL);
                 string GRABA_CAJA = cu.getGrabaCaja();
                 string GRABA_COMANDA = cu.getGrabaComanda();
 
@@ -167,49 +166,61 @@ namespace Confiteria
 
                     if (SET_GRABA_CAJA == true && SET_GRABA_COMANDA == true)
                     {
+                        bool SET_ID_ANTERIOR_CAJA = cu.setIdAnteriorCaja(G_ROL);
+                        bool SET_ID_ANTERIO_COMANDA = cu.setIdAnteriorComanda(G_ROL);
+
+                        string QUERY = "SELECT * FROM CONFITERIA_CAJA_DIARIA WHERE EXPORTADA = 0 AND ROL = '" + G_ROL + "';";
+                        DataSet CAJAS = cu.getDataFromQuery(QUERY, G_ROL);
+                        QUERY = "SELECT * FROM CONFITERIA_COMANDAS WHERE EXPORTADA = 0 AND ROL = '" + G_ROL + "';";
+                        DataSet COMANDAS = cu.getDataFromQuery(QUERY, G_ROL);
+
                         if (CAJAS.Tables.Count > 0)
                         {
-                            int MAX = CAJAS.Tables[0].Rows.Count;
-                            pbImportar.Visible = true;
-                            pbImportar.Maximum = MAX;
-                            pbImportar.Step = 1;
-
-                            int ID; string FECHA; string USUARIO; decimal EFECTIVO; decimal TARJETAS; decimal DESCUENTOS; decimal ESPECIALES;
-                            string ROL;
-
-                            foreach (DataRow ROW_CAJA in CAJAS.Tables[0].Rows)
+                            if (SET_ID_ANTERIOR_CAJA == true)
                             {
-                                ID = int.Parse(ROW_CAJA[0].ToString());
-                                FECHA = ROW_CAJA[1].ToString().Replace(" 00:00:00", "");
-                                USUARIO = ROW_CAJA[2].ToString().Trim();
-                                EFECTIVO = decimal.Parse(ROW_CAJA[3].ToString());
-                                TARJETAS = decimal.Parse(ROW_CAJA[4].ToString());
-                                DESCUENTOS = decimal.Parse(ROW_CAJA[5].ToString());
-                                ESPECIALES = decimal.Parse(ROW_CAJA[6].ToString());
-                                ROL = ROW_CAJA[7].ToString().Trim();
-                                
-                                bool IMPORTAR = dlog.impCajaDiariaConfiteria(FECHA, USUARIO, EFECTIVO, TARJETAS, DESCUENTOS, ESPECIALES, ROL);
+                                int MAX = CAJAS.Tables[0].Rows.Count;
+                                pbImportar.Visible = true;
+                                pbImportar.Maximum = MAX;
+                                pbImportar.Step = 1;
 
-                                if (IMPORTAR == true)
+                                int ID; string FECHA; string USUARIO; decimal EFECTIVO; decimal TARJETAS; decimal DESCUENTOS; decimal ESPECIALES;
+                                string ROL; int EXPORTADA; int ID_ANTERIOR;
+
+                                foreach (DataRow ROW_CAJA in CAJAS.Tables[0].Rows)
                                 {
-                                    bool SET_EXPORTADO = cu.setExportado("CONFITERIA_CAJA_DIARIA", "EXPORTADA", ID, ROL, 1);
+                                    ID = int.Parse(ROW_CAJA[0].ToString());
+                                    FECHA = ROW_CAJA[1].ToString().Replace(" 00:00:00", "");
+                                    USUARIO = ROW_CAJA[2].ToString().Trim();
+                                    EFECTIVO = decimal.Parse(ROW_CAJA[3].ToString());
+                                    TARJETAS = decimal.Parse(ROW_CAJA[4].ToString());
+                                    DESCUENTOS = decimal.Parse(ROW_CAJA[5].ToString());
+                                    ESPECIALES = decimal.Parse(ROW_CAJA[6].ToString());
+                                    ROL = ROW_CAJA[7].ToString().Trim();
+                                    EXPORTADA = 1;
+                                    ID_ANTERIOR = int.Parse(ROW_CAJA[9].ToString());
 
-                                    if (SET_EXPORTADO == false)
+                                    bool IMPORTAR = dlog.impCajaDiariaConfiteria(FECHA, USUARIO, EFECTIVO, TARJETAS, DESCUENTOS, ESPECIALES, ROL, EXPORTADA, ID_ANTERIOR);
+
+                                    if (IMPORTAR == true)
                                     {
-                                        MessageBox.Show("NO SE PUDO MARCAR LA CAJA DEL DIA " + FECHA + " COMO EXPORTADA\nES POSIBLE QUE SIGA APARECIENDO EN LOS LISTADOS", "ERROR!");
+                                        bool SET_EXPORTADO = cu.setExportado("CONFITERIA_CAJA_DIARIA", "EXPORTADA", ID, ROL, 1);
+
+                                        if (SET_EXPORTADO == false)
+                                        {
+                                            MessageBox.Show("NO SE PUDO MARCAR LA CAJA DEL DIA " + FECHA + " COMO EXPORTADA\nES POSIBLE QUE SIGA APARECIENDO EN LOS LISTADOS", "ERROR!");
+                                        }
+                                        else
+                                        {
+                                            importarComandas(COMANDAS);
+                                        }
                                     }
                                     else
                                     {
-                                        string ID_CAJA = mid.m("ID", "CONFITERIA_CAJA_DIARIA");
-                                        importarComandas(COMANDAS, int.Parse(ID_CAJA));
+                                        MessageBox.Show("NO SE PUDO IMPORTAR LA CAJA DEL DIA " + FECHA + "\nSE INTENTARÁ IMPORTAR LAS SIGUIENTES CAJAS", "ERROR!");
                                     }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("NO SE PUDO IMPORTAR LA CAJA DEL DIA " + FECHA + "\nSE INTENTARÁ IMPORTAR LAS SIGUIENTES CAJAS", "ERROR!");
-                                }
 
-                                pbImportar.PerformStep();
+                                    pbImportar.PerformStep();
+                                }
                             }
 
                             pbImportar.Visible = false;
@@ -253,7 +264,7 @@ namespace Confiteria
 
             foreach (DataGridViewRow row in dgCajasAnteriores.SelectedRows)
             {
-                if(row.Cells[0].Value.ToString() != "")
+                if (row.Cells[0].Value.ToString() != "")
                     CAJA_DIARIA = int.Parse(row.Cells[0].Value.ToString());
             }
 

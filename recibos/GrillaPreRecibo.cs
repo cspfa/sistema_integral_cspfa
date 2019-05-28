@@ -467,5 +467,20 @@ namespace SOCIOS
         {
             imprimirComprobante("SI");
         }
+
+        private void btnLlamar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEnEspera_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAtendido_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

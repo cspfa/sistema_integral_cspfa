@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using FirebirdSql.Data.FirebirdClient;
 using SOCIOS;
+using System.Text.RegularExpressions;
 
 namespace Confiteria
 {
@@ -822,6 +823,14 @@ namespace Confiteria
         
         private void cbProf_SelectionChangeCommitted(object sender, EventArgs e)
         {
+            int SEL_ITEM = int.Parse(cbProf.SelectedValue.ToString());
+            int STOCK = utils.getItemStock(Convert.ToInt32(SEL_ITEM));
+            tbStock.Text = STOCK.ToString();
+
+            if (STOCK < 10 && STOCK > 0)
+                lbStockMenor10.Visible = true;
+            else
+                lbStockMenor10.Visible = false;
             mostrarArancel();
         }
 
@@ -865,7 +874,9 @@ namespace Confiteria
 
         public void buscarItems(string CONDICION)
         {
-            var FILTRO = LISTA_ITEMS.Where(x => x.NOMBRE.Contains(CONDICION)).ToList();
+            byte[] bytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(CONDICION);
+            string CONDICION_LIMPIA = System.Text.Encoding.UTF8.GetString(bytes);
+            var FILTRO = LISTA_ITEMS.Where(x => x.NOMBRE.Contains(CONDICION_LIMPIA)).ToList();
             dgResultados.DataSource = null;
             dgResultados.DataSource = FILTRO;
             dgResultados.Columns[0].Visible = false;
@@ -923,7 +934,9 @@ namespace Confiteria
                         string ID = reader.GetString(reader.GetOrdinal("ID")).Trim();
                         string ESPECIALIDAD = reader.GetString(reader.GetOrdinal("ESPECIALIDAD")).Trim();
                         string NOMBRE = reader.GetString(reader.GetOrdinal("NOMBRE")).Trim();
-                        LISTA_ITEMS.Add(new ITEMS_CONFITERIA(ID, ESPECIALIDAD, NOMBRE));
+                        byte[] bytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(NOMBRE);
+                        string NOMBRE_LIMPIO = System.Text.Encoding.UTF8.GetString(bytes);
+                        LISTA_ITEMS.Add(new ITEMS_CONFITERIA(ID, ESPECIALIDAD, NOMBRE_LIMPIO));
                     }
                 }
             }
@@ -979,6 +992,6 @@ namespace Confiteria
             }
 
             resetNroContralor();
-        }
+        }        
     }
 }

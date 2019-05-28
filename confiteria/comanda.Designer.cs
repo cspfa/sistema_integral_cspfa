@@ -233,6 +233,7 @@
             // cbSectAct
             // 
             this.cbSectAct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSectAct.Enabled = false;
             this.cbSectAct.FormattingEnabled = true;
             this.cbSectAct.Location = new System.Drawing.Point(190, 260);
             this.cbSectAct.Name = "cbSectAct";
@@ -252,6 +253,7 @@
             // cbProf
             // 
             this.cbProf.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProf.Enabled = false;
             this.cbProf.FormattingEnabled = true;
             this.cbProf.Location = new System.Drawing.Point(460, 260);
             this.cbProf.Name = "cbProf";
@@ -779,6 +781,7 @@
             this.tbStock.ReadOnly = true;
             this.tbStock.Size = new System.Drawing.Size(51, 20);
             this.tbStock.TabIndex = 101;
+            this.tbStock.Text = "0";
             // 
             // label19
             // 

@@ -63,6 +63,10 @@ namespace SOCIOS
         {
 
             string QUERY = "SELECT DISTINCT ROL FROM SECTACT WHERE ROL = '"+VGlobales.vp_role+ "' ORDER BY ROL;";
+
+            if (VGlobales.vp_role == "INFORMES")
+                QUERY = "SELECT DISTINCT ROL FROM SECTACT ORDER BY ROL;";
+
             comboBox1.DataSource = null;
             comboBox1.Items.Clear();
             comboBox1.DataSource = dlog.BO_EjecutoDataTable(QUERY);

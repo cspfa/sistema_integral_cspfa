@@ -50,6 +50,34 @@ namespace Confiteria
             }
         }
 
+        public bool setIdAnteriorComanda(string ROL)
+        {
+            try
+            {
+                string QUERY = "UPDATE CONFITERIA_COMANDAS SET ID_ANTERIOR = ID WHERE EXPORTADA = 0 AND ROL = '" + ROL + "';";
+                db.Ejecuto_Consulta_Remota(QUERY, ROL);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
+        public bool setIdAnteriorCaja(string ROL)
+        {
+            try
+            {
+                string QUERY = "UPDATE CONFITERIA_CAJA_DIARIA SET ID_ANTERIOR = ID WHERE EXPORTADA = 0 AND ROL = '" + ROL + "';";
+                db.Ejecuto_Consulta_Remota(QUERY, ROL);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
         public bool setExportado(string TABLA, string CAMPO, int ID, string  ROL, int VALOR)
         {
             try

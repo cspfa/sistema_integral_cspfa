@@ -40,6 +40,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.modificarFormaDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnReintegro = new MicroFour.StrataFrame.UI.Windows.Forms.Button();
+            this.btnLlamar = new System.Windows.Forms.Button();
+            this.btnEnEspera = new System.Windows.Forms.Button();
+            this.btnAtendido = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -101,12 +104,12 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 42);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1237, 500);
+            this.dataGridView1.Size = new System.Drawing.Size(1237, 470);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDown);
             // 
@@ -126,13 +129,13 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modificarFormaDePagoToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(193, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(209, 26);
             // 
             // modificarFormaDePagoToolStripMenuItem
             // 
             this.modificarFormaDePagoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.money;
             this.modificarFormaDePagoToolStripMenuItem.Name = "modificarFormaDePagoToolStripMenuItem";
-            this.modificarFormaDePagoToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.modificarFormaDePagoToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.modificarFormaDePagoToolStripMenuItem.Text = "Modificar Forma de Pago";
             // 
             // btnReintegro
@@ -146,11 +149,44 @@
             this.btnReintegro.Text = "REINTEGRO";
             this.btnReintegro.Click += new System.EventHandler(this.btnReintegro_Click);
             // 
+            // btnLlamar
+            // 
+            this.btnLlamar.Location = new System.Drawing.Point(12, 10);
+            this.btnLlamar.Name = "btnLlamar";
+            this.btnLlamar.Size = new System.Drawing.Size(109, 23);
+            this.btnLlamar.TabIndex = 10;
+            this.btnLlamar.Text = "LLAMAR";
+            this.btnLlamar.UseVisualStyleBackColor = true;
+            this.btnLlamar.Click += new System.EventHandler(this.btnLlamar_Click);
+            // 
+            // btnEnEspera
+            // 
+            this.btnEnEspera.Location = new System.Drawing.Point(127, 10);
+            this.btnEnEspera.Name = "btnEnEspera";
+            this.btnEnEspera.Size = new System.Drawing.Size(109, 23);
+            this.btnEnEspera.TabIndex = 11;
+            this.btnEnEspera.Text = "EN ESPERA";
+            this.btnEnEspera.UseVisualStyleBackColor = true;
+            this.btnEnEspera.Click += new System.EventHandler(this.btnEnEspera_Click);
+            // 
+            // btnAtendido
+            // 
+            this.btnAtendido.Location = new System.Drawing.Point(242, 10);
+            this.btnAtendido.Name = "btnAtendido";
+            this.btnAtendido.Size = new System.Drawing.Size(109, 23);
+            this.btnAtendido.TabIndex = 12;
+            this.btnAtendido.Text = "ATENDIDO";
+            this.btnAtendido.UseVisualStyleBackColor = true;
+            this.btnAtendido.Click += new System.EventHandler(this.btnAtendido_Click);
+            // 
             // GrillaPreRecibo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1263, 562);
+            this.Controls.Add(this.btnAtendido);
+            this.Controls.Add(this.btnEnEspera);
+            this.Controls.Add(this.btnLlamar);
             this.Controls.Add(this.btnReintegro);
             this.Controls.Add(this.btnSociosAbm);
             this.Controls.Add(this.dataGridView1);
@@ -185,5 +221,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem modificarFormaDePagoToolStripMenuItem;
         private MicroFour.StrataFrame.UI.Windows.Forms.Button btnReintegro;
+        private System.Windows.Forms.Button btnLlamar;
+        private System.Windows.Forms.Button btnEnEspera;
+        private System.Windows.Forms.Button btnAtendido;
     }
 }

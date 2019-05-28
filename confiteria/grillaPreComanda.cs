@@ -133,7 +133,7 @@ namespace Confiteria
 
             if(VGlobales.vp_role != "CONFITERIA")
 
-                QUERY = QUERY + " AND A.ROL = '" + VGlobales.vp_role;
+                QUERY = QUERY + " AND A.ROL = '" + VGlobales.vp_role + "'";
 
 
             QUERY = QUERY + " AND A.ID_DESTINO = SA.ID";
