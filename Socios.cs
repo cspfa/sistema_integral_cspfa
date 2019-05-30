@@ -802,7 +802,7 @@ namespace SOCIOS
                 Busco_Primero();
             }
 
-            if (VGlobales.vp_role.Trim() != "SISTEMAS") //PESTAÑA CONFIDENCIALES
+            if (VGlobales.vp_role.Trim() != "SISTEMAS" && VGlobales.vp_role.Trim() != "PROSECRETARIA") //PESTAÑA CONFIDENCIALES
             {
                 TabConfidenciales.Dispose();
                 vp_tabpage = -1;
@@ -1274,7 +1274,7 @@ namespace SOCIOS
 
             maskedTextbox26.ReadOnly = false;
 
-            if (VGlobales.vp_role == "SISTEMAS")
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "PROSECRETARIA")
             {
                 textBox19.ReadOnly = false;
                 comboBox5.PreventDropDown = false;
