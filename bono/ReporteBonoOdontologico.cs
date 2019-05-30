@@ -40,6 +40,7 @@ namespace SOCIOS.bono
         
         public ReporteBonoOdontologico(CabeceraTitular pCAB,DatoSocio pSOC,DateTime pfecha, int pBono,string pProf,string pFormaPago,string pObs,decimal pTotal,int pID_ROL)
         {
+
             CAB = new CabeceraTitular();
             SOC = new DatoSocio();
             ID = pBono;
