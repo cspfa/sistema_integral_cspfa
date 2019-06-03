@@ -668,8 +668,8 @@ namespace SOCIOS.bono
         private void GrabarPagos()
         {
             decimal Saldo = Decimal.Parse(lbSaldoTotal.Text);
-      
-           dlog_pc.PlanCuenta_Insert(Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Saldo, Saldo, idBono,TipoPago,(int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS,PACIENTE_NOMBRE,PACIENTE_DNI);
+            
+           dlog_pc.PlanCuenta_Insert(Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Saldo, Saldo, idBono,TipoPago,(int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS,PACIENTE_NOMBRE,PACIENTE_DNI,this.get_Dni());
 
             maxid m = new maxid();
 

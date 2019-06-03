@@ -1369,6 +1369,12 @@ namespace SOCIOS.bono
 
             }
         }
+
+        public int get_Dni()
+        {
+            return Int32.Parse(Dni.Text);
+        
+        }
        
 
     }

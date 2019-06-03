@@ -449,19 +449,20 @@ namespace SOCIOS.Turismo
         public void GrabarPagos(int idBono,List<bono.PagoBono> PagosBono,DateTime Fecha,int CodInt,bono.CabeceraTitular CAB,decimal Saldo,int TipoPago,int SUBCODIGO)
         {
 
+
+            int DNI_TITULAR= this.DNI_Titular(CAB.NroSocioTitular,CAB.NroDepTitular);
             
             //VER QUE PASA ACA CON EL WORKBENCH
-            dlog.PlanCuenta_Insert(Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Saldo, Saldo, idBono, TipoPago,  (int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS,"","");
+            dlog.PlanCuenta_Insert(Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Saldo, Saldo, idBono, TipoPago,  (int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS,"","",DNI_TITULAR);
 
              maxid m = new maxid();
 
              int Plan = Int32.Parse(m.m("ID", "PLAN_CUENTA").ToString());
-          
+             
 
             foreach (bono.PagoBono p in PagosBono)
             {
                 dlog.InsertPagoBono(idBono, p.TIPO, p.MONTO,p.Interes, p.CUOTA, p.POC, Fecha, CodInt, 0, p.FECHA_DTO, VGlobales.vp_username, System.DateTime.Now.ToString(), CAB.NroBeneficioTitular, VGlobales.vp_role, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), 0, Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Plan,SUBCODIGO);
-
             }
 
 
@@ -698,6 +699,28 @@ namespace SOCIOS.Turismo
             QUERY = QUERY + " FROM TURISMO_FILIALES WHERE ID =  " + ID.ToString();
 
        
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                return Int32.Parse(foundRows[0][0].ToString().Trim());
+            }
+            else
+                return 0;
+
+        }
+
+
+        public int DNI_Titular(string Nro_Soc, string Dep)
+        {
+
+            string QUERY = "select num_doc from titular where nro_soc= " + Nro_Soc.ToString() + " and nro_dep= " + Dep.ToString();
+         
+
+           
+
+
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
