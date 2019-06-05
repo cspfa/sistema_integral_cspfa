@@ -446,14 +446,14 @@ namespace SOCIOS.Turismo
         
         }
 
-        public void GrabarPagos(int idBono,List<bono.PagoBono> PagosBono,DateTime Fecha,int CodInt,bono.CabeceraTitular CAB,decimal Saldo,int TipoPago,int SUBCODIGO)
+        public void GrabarPagos(int idBono,List<bono.PagoBono> PagosBono,DateTime Fecha,int CodInt,bono.CabeceraTitular CAB,decimal Saldo,int TipoPago,int SUBCODIGO,int Nro_Socio,int Nro_Dep)
         {
 
 
             int DNI_TITULAR= this.DNI_Titular(CAB.NroSocioTitular,CAB.NroDepTitular);
             
             //VER QUE PASA ACA CON EL WORKBENCH
-            dlog.PlanCuenta_Insert(Int32.Parse(CAB.NroSocioTitular), Int32.Parse(CAB.NroDepTitular), Saldo, Saldo, idBono, TipoPago,  (int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS,"","",DNI_TITULAR);
+            dlog.PlanCuenta_Insert(Nro_Socio  ,Nro_Dep , Saldo, Saldo, idBono, TipoPago,  (int)SOCIOS.CuentaSocio.Tipo_Cuenta.CUOTAS,"","",DNI_TITULAR,Int32.Parse(CAB.NroSocioTitular),Int32.Parse(CAB.NroDepTitular));
 
              maxid m = new maxid();
 

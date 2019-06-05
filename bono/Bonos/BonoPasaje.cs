@@ -453,7 +453,7 @@ namespace SOCIOS.bono
                         {
                             int CodInt = 0;
                             // Grabar Pagos
-                            utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB,Saldo + Recargo,TipoPago,SUBCODIGO);
+                            utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB,Saldo + Recargo,TipoPago,SUBCODIGO,Int32.Parse(persona.NRO_SOCIO),Int32.Parse(persona.NRO_DEP));
                             //Grabar Personas 
                             utilsTurismo.GrabarPersonas(ID, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), listaPersonas,"TURISMO");
                             //Grabar Pasajes
