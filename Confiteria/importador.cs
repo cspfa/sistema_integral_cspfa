@@ -77,7 +77,42 @@ namespace Confiteria
             }
         }
 
-        private void importarComandas(DataSet COMANDAS)
+        private void importarItems(int ID_COMANDA, int N_ID_COMANDA)
+        {
+            string QUERY = "SELECT * FROM CONFITERIA_COMANDA_ITEM WHERE COMANDA = " + ID_COMANDA + " AND ROL = '" + G_ROL + "';";
+            DataSet ITEMS = cu.getDataFromQuery(QUERY, G_ROL);
+
+            if (ITEMS.Tables.Count > 0)
+            {
+                int ID; int COMANDA; int ITEM; int CANTIDAD; int TIPO; decimal VALOR; decimal SUBTOTAL; string ITEM_DETALLE; string TIPO_DETALLE; string IMPRESO; string OBSERVACIONES; string ROL;
+
+                foreach (DataRow ROW_ITEM in ITEMS.Tables[0].Rows)
+                {
+                    ID = int.Parse(ROW_ITEM[0].ToString()); COMANDA = N_ID_COMANDA; ITEM = int.Parse(ROW_ITEM[2].ToString()); CANTIDAD = int.Parse(ROW_ITEM[3].ToString()); TIPO = int.Parse(ROW_ITEM[4].ToString());
+                    VALOR = decimal.Parse(ROW_ITEM[5].ToString()); SUBTOTAL = decimal.Parse(ROW_ITEM[6].ToString()); ITEM_DETALLE = ROW_ITEM[7].ToString(); TIPO_DETALLE = ROW_ITEM[8].ToString(); IMPRESO = ROW_ITEM[9].ToString();
+                    OBSERVACIONES = ROW_ITEM[10].ToString(); ROL = ROW_ITEM[11].ToString();
+
+                    try
+                    {
+                        int N_ID_ITEM = cu.getGeneratorValue("CONFITERIA_COMANDA_ITEM_GEN");
+                        string IMP_ITEM_QUERY = "INSERT INTO CONFITERIA_COMANDA_ITEM (ID, COMANDA, ITEM, CANTIDAD, TIPO, VALOR, SUBTOTAL, ITEM_DETALLE, TIPO_DETALLE, IMPRESO, OBSERVACIONES, ROL) " +
+                            "VALUES (" + N_ID_ITEM + ", " + N_ID_COMANDA + ", " + ITEM + ", " + CANTIDAD + ", " + TIPO + ", " + VALOR + ", " + SUBTOTAL + ", '" + ITEM_DETALLE + "', '" + TIPO_DETALLE + "', '" + IMPRESO + "', '" + OBSERVACIONES + 
+                            "', '" + ROL + "')";
+
+                        db.Ejecuto_Consulta(IMP_ITEM_QUERY);
+
+                        cu.setGeneratorValue("CONFITERIA_COMANDA_ITEM_GEN", N_ID_ITEM + 1);
+
+                    }
+                    catch (Exception error)
+                    {
+                        MessageBox.Show("NO SE PUDO INSERTAR EL ITEM " + ID + "\n\r" + error);
+                    }
+                }
+            }
+        }
+
+        private void importarComandas(DataSet COMANDAS, int ID_CAJA)
         {
             if (COMANDAS.Tables.Count > 0)
             {
@@ -86,14 +121,14 @@ namespace Confiteria
                 pbImportar.Maximum = MAX;
                 pbImportar.Step = 1;
 
-                int ID; string FECHA; int MESA; int MOZO; decimal IMPORTE; int NRO_SOC; int NRO_DEP; int BARRA; int PERSONAS; string NOMBRE_SOCIO;
-                string AFILIADO; string BENEFICIO; string USUARIO; int DESCUENTO = 0; int FORMA_DE_PAGO; int RENDIDA; int CONTRALOR = 0; string ANULADA;
-                string USR_ANULA; int COM_BORRADOR = 0; string CONSUME; int TIPO_COMANDA = 0; int DESCUENTO_APLICADO = 0; decimal IMPORTE_DESCONTADO = 0;
-                int NRO_COMANDA; string ROL; int EXPORTADA; int ID_ANTERIOR;
+                int ID; DateTime FECHA; int MESA; int MOZO; decimal IMPORTE; int NRO_SOC; int NRO_DEP; int BARRA; int PERSONAS; string NOMBRE_SOCIO;
+                string AFILIADO; string BENEFICIO; string USUARIO; int DESCUENTO = 0; int FORMA_DE_PAGO; int RENDIDA; int CONTRALOR = 0;
+                Nullable<DateTime> ANULADA; string ANULADA_STR = "NULL"; string USR_ANULA; int COM_BORRADOR = 0; string CONSUME; int TIPO_COMANDA = 0; int DESCUENTO_APLICADO = 0;
+                decimal IMPORTE_DESCONTADO = 0; int NRO_COMANDA; string ROL; int EXPORTADA; int ID_ANTERIOR;
 
                 foreach (DataRow ROW_COMANDA in COMANDAS.Tables[0].Rows)
                 {
-                    ID = int.Parse(ROW_COMANDA[0].ToString()); FECHA = ROW_COMANDA[1].ToString();
+                    ID = int.Parse(ROW_COMANDA[0].ToString()); FECHA = Convert.ToDateTime(ROW_COMANDA[1]);
                     MESA = int.Parse(ROW_COMANDA[2].ToString()); MOZO = int.Parse(ROW_COMANDA[3].ToString());
                     IMPORTE = decimal.Parse(ROW_COMANDA[4].ToString()); NRO_SOC = int.Parse(ROW_COMANDA[5].ToString());
                     NRO_DEP = int.Parse(ROW_COMANDA[6].ToString()); BARRA = int.Parse(ROW_COMANDA[7].ToString());
@@ -104,12 +139,16 @@ namespace Confiteria
                         DESCUENTO = int.Parse(ROW_COMANDA[13].ToString());
 
                     FORMA_DE_PAGO = int.Parse(ROW_COMANDA[14].ToString());
-                    RENDIDA = int.Parse(ROW_COMANDA[14].ToString());
+                    RENDIDA = ID_CAJA;
 
                     if (ROW_COMANDA[16].ToString() != "")
                         CONTRALOR = int.Parse(ROW_COMANDA[16].ToString());
 
-                    ANULADA = ROW_COMANDA[17].ToString();
+                    if (ROW_COMANDA[17].ToString() == "")
+                        ANULADA = null;
+                    else
+                        ANULADA = Convert.ToDateTime(ROW_COMANDA[17]);
+
                     USR_ANULA = ROW_COMANDA[18].ToString();
 
                     if (ROW_COMANDA[19].ToString() != "")
@@ -131,9 +170,30 @@ namespace Confiteria
 
                     try
                     {
-                        dlog.impComandaConfiteria(FECHA, MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, NOMBRE_SOCIO, AFILIADO, BENEFICIO, USUARIO,
-                            DESCUENTO, FORMA_DE_PAGO, RENDIDA, CONTRALOR, ANULADA, USR_ANULA, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO,
-                            IMPORTE_DESCONTADO, NRO_COMANDA, ROL, EXPORTADA, ID_ANTERIOR);
+                        int N_ID_COM = cu.getGeneratorValue("CONFITERIA_COMANDAS_GEN");
+
+                        string IMP_COM_QUERY = "INSERT INTO CONFITERIA_COMANDAS (ID, MESA, FECHA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, " +
+                            "AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, DESCUENTO, FORMA_DE_PAGO, RENDIDA, CONTRALOR, ANULADA, USR_ANULA, COM_BORRADOR, " +
+                            "CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, ROL, NRO_COMANDA, EXPORTADA, ID_ANTERIOR) VALUES " +
+                            "(" + N_ID_COM + "," + MESA + ",'" + FECHA + "'," + MOZO + "," + IMPORTE + "," + NRO_SOC + "," + NRO_DEP + "," + BARRA + "," +
+                            PERSONAS + ",'" + AFILIADO.Trim() + "','" + BENEFICIO.Trim() + "','" + NOMBRE_SOCIO.Trim() + "','" + USUARIO.Trim() + "'," +
+                            DESCUENTO + "," + FORMA_DE_PAGO + "," + RENDIDA + "," + CONTRALOR + ",";
+
+                        if (ANULADA == null)
+                        {
+                            IMP_COM_QUERY += ANULADA_STR + ",";
+                        }
+                        else
+                        {
+                            IMP_COM_QUERY += "'" + ANULADA + "'";
+                        }
+
+                        IMP_COM_QUERY += "'" + USR_ANULA.Trim() + "'," + COM_BORRADOR + ",'" + CONSUME.Trim() + "'," + TIPO_COMANDA + "," + DESCUENTO_APLICADO + "," + IMPORTE_DESCONTADO + ",'" + 
+                        ROL.Trim() + "'," + NRO_COMANDA + "," + EXPORTADA + "," + ID_ANTERIOR + ");";
+
+                        db.Ejecuto_Consulta(IMP_COM_QUERY);
+
+                        
 
                         bool SET_EXPORTADO = cu.setExportado("CONFITERIA_COMANDAS", "EXPORTADA", ID, G_ROL, 1);
 
@@ -141,6 +201,12 @@ namespace Confiteria
                         {
                             MessageBox.Show("NO SE PUDO MARCAR LA COMANDA " + NRO_COMANDA + " COMO EXPORTADA\nES POSIBLE QUE SIGA APARECIENDO EN LOS LISTADOS", "ERROR!");
                         }
+                        else
+                        {
+                            importarItems(ID, N_ID_COM);
+                        }
+
+                        cu.setGeneratorValue("CONFITERIA_COMANDAS_GEN", N_ID_COM + 1);
                     }
                     catch (Exception error)
                     {
@@ -200,6 +266,7 @@ namespace Confiteria
                                     ID_ANTERIOR = int.Parse(ROW_CAJA[9].ToString());
 
                                     bool IMPORTAR = dlog.impCajaDiariaConfiteria(FECHA, USUARIO, EFECTIVO, TARJETAS, DESCUENTOS, ESPECIALES, ROL, EXPORTADA, ID_ANTERIOR);
+                                    int ID_CAJA = int.Parse(mid.m("ID", "CONFITERIA_CAJA_DIARIA"));
 
                                     if (IMPORTAR == true)
                                     {
@@ -211,7 +278,7 @@ namespace Confiteria
                                         }
                                         else
                                         {
-                                            importarComandas(COMANDAS);
+                                            importarComandas(COMANDAS, ID_CAJA);
                                         }
                                     }
                                     else

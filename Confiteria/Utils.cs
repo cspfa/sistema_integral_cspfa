@@ -50,6 +50,37 @@ namespace Confiteria
             }
         }
 
+        public int getGeneratorValue(string GENERATOR)
+        {
+            int VALUE = 0;
+            string QUERY = "SELECT NEXT VALUE FOR " + GENERATOR + " FROM RDB$DATABASE;";
+            DataSet GET = getDataFromQuery(QUERY);
+
+            if (GET.Tables.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                    VALUE = Convert.ToInt32(ROW[0]);
+                }
+            }
+
+            return VALUE;
+        }
+
+        public bool setGeneratorValue(string GENERATOR, int VALUE)
+        {
+            try
+            {
+                string QUERY = "SET GENERATOR " + GENERATOR + " TO " + VALUE + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
         public bool setIdAnteriorComanda(string ROL)
         {
             try

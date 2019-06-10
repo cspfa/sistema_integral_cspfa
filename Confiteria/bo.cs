@@ -18,7 +18,7 @@ namespace Confiteria
         }
 
         //IMPORTAR COMANDAS CONFITERIA
-        public void impComandaConfiteria(string FECHA, int MESA, int MOZO, decimal IMPORTE, int NRO_SOC, int NRO_DEP, int BARRA, int PERSONAS, 
+        public void impComandaConfiteria(DateTime FECHA, int MESA, int MOZO, decimal IMPORTE, int NRO_SOC, int NRO_DEP, int BARRA, int PERSONAS, 
             string NOMBRE_SOCIO, string AFILIADO, string BENEFICIO, string USUARIO, int DESCUENTO, int FORMA_DE_PAGO, int RENDIDA, int CONTRALOR, string ANULADA, 
             string USR_ANULA, int COM_BORRADOR, string CONSUME, int TIPO_COMANDA, int DESCUENTO_APLICADO, decimal IMPORTE_DESCONTADO, int NRO_COMANDA, string ROL,
             int EXPORTADA, int ID_ANTERIOR)
