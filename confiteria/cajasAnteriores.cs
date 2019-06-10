@@ -37,7 +37,7 @@ namespace Confiteria
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string QUERY = "SELECT * FROM CONFITERIA_CAJA_DIARIA_S;";
+                    string QUERY = "SELECT * FROM CONFITERIA_CAJA_DIARIA_S WHERE ROL = '" + VGlobales.vp_role + "';";
                     FbCommand cmd = new FbCommand(QUERY, connection, transaction);
                     cmd.CommandText = QUERY;
                     cmd.Connection = connection;
