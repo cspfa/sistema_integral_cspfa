@@ -266,8 +266,8 @@ namespace SOCIOS.registroSocios
             OleDbConnection con = new System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ARCHIVO + ";Mode=ReadWrite;Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\"");
             con.Open();
             DataSet dset = new DataSet();
-            OleDbDataAdapter dadp = new OleDbDataAdapter("SELECT * FROM [Hoja1$] WHERE LP IS NOT NULL;", con);
-            dadp.TableMappings.Add("APELLIDOS", "LP");
+            OleDbDataAdapter dadp = new OleDbDataAdapter("SELECT * FROM [Promo233$] WHERE LP IS NOT NULL;", con);
+            dadp.TableMappings.Add("LP", "DNI");
             dadp.Fill(dset);
             DataTable table = dset.Tables[0];
             int CANTIDAD = table.Rows.Count;
@@ -281,29 +281,36 @@ namespace SOCIOS.registroSocios
 
             for (int i = 0; i < table.Rows.Count; i++)
             {
-                string ORDEN =     table.Rows[i][0].ToString().Replace(".", "");
-                string ELEPE =     table.Rows[i][1].ToString().Replace(".", "");
-                string APELLIDOS = table.Rows[i][2].ToString().Trim().ToUpper();
-                string NOMBRES =   table.Rows[i][3].ToString().Trim().ToUpper();
-                string GENERO =    table.Rows[i][4].ToString().Trim().ToUpper();
-                string ALTA =      table.Rows[i][5].ToString();
-                string S_DNI =     table.Rows[i][6].ToString().Replace(".", "");
-                string AFIL =      table.Rows[i][7].ToString().Replace(".", "");
-                //string ESCALAFON = table.Rows[i][5].ToString().Trim().ToUpper();
+                try
+                {
+                    //string ORDEN =     table.Rows[i][0].ToString().Replace(".", "");
+                    string ELEPE = table.Rows[i][0].ToString().Replace(".", "");
+                    //string APELLIDOS = table.Rows[i][2].ToString().Trim().ToUpper();
+                    string NOMBRES = table.Rows[i][2].ToString().Trim().ToUpper();
+                    //string GENERO =    table.Rows[i][4].ToString().Trim().ToUpper();
+                    //string ALTA =      table.Rows[i][5].ToString();
+                    string S_DNI = table.Rows[i][1].ToString().Replace(".", "");
+                    string AFIL = table.Rows[i][3].ToString().Replace(".", "");
+                    //string ESCALAFON = table.Rows[i][5].ToString().Trim().ToUpper();
 
-                if (ORDEN != "")
-                    ORD = int.Parse(ORDEN);
+                    /*if (ORDEN != "")
+                        ORD = int.Parse(ORDEN);*/
 
-                if (ELEPE != "")
-                    LP = int.Parse(ELEPE);
+                    if (ELEPE != "")
+                        LP = int.Parse(ELEPE);
 
-                if (S_DNI != "")
-                    DNI = int.Parse(S_DNI);
+                    if (S_DNI != "")
+                        DNI = int.Parse(S_DNI);
 
-                if (AFIL != "")
-                    AFILIADO = int.Parse(AFIL);
+                    if (AFIL != "")
+                        AFILIADO = int.Parse(AFIL);
 
-                ASPIRANTES.Add(new ASPIRANTES(ORD, LP, APELLIDOS, NOMBRES, DNI, GENERO, ALTA.Replace(" 0:00:00", ""), AFILIADO, 0));
+                    ASPIRANTES.Add(new ASPIRANTES(0, LP, "", NOMBRES, DNI, "", "", AFILIADO, 0));
+                }
+                catch(Exception error)
+                {
+                    MessageBox.Show("ERROR EN EL ASPIRANTE " + i);
+                }
             }
 
             dgAspirantes.DataSource = ASPIRANTES;

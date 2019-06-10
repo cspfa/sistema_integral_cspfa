@@ -1586,7 +1586,7 @@ namespace SOCIOS
                 TABLA_INGRESOS.WidthPercentage = 100;
                 TABLA_INGRESOS.SpacingAfter = 10;
                 TABLA_INGRESOS.SpacingBefore = 10;
-                TABLA_INGRESOS.SetWidths(new float[] { 1.6f, 1.6f, 4f, 6f, 1.5f, 2f, 2f, 5f, 2f });
+                TABLA_INGRESOS.SetWidths(new float[] { 2f, 1.6f, 4f, 6f, 1.5f, 2f, 2f, 5f, 2f });
                 PdfPCell CELDA_NUM = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_NUM_E = new PdfPCell(new Phrase("#E", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
@@ -1649,7 +1649,7 @@ namespace SOCIOS
                 TABLA_INGRESOS_OTROS.WidthPercentage = 100;
                 TABLA_INGRESOS_OTROS.SpacingAfter = 10;
                 TABLA_INGRESOS_OTROS.SpacingBefore = 10;
-                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 1.8f, 1.8f, 4f, 6f, 1.5f, 2.5f, 2.5f, 5f, 2f, 2f });
+                TABLA_INGRESOS_OTROS.SetWidths(new float[] { 2f, 1.8f, 4f, 6f, 1.5f, 2.5f, 2.5f, 5f, 2f, 2f });
                 PdfPCell CELDA_NUM_OTROS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                 PdfPCell CELDA_NUM_OTROS_E = new PdfPCell(new Phrase("#E", _mediumFontBoldWhite));
                 PdfPCell CELDA_APENOM_OTROS = new PdfPCell(new Phrase("APELLIDO Y NOMBRES", _mediumFontBoldWhite));
@@ -1720,7 +1720,7 @@ namespace SOCIOS
                     TABLA_EGRESOS.WidthPercentage = 100;
                     TABLA_EGRESOS.SpacingAfter = 10;
                     TABLA_EGRESOS.SpacingBefore = 10;
-                    TABLA_EGRESOS.SetWidths(new float[] { 1.4f, 4f, 1f, 2f, 5f, 2f, 2f });
+                    TABLA_EGRESOS.SetWidths(new float[] { 2f, 4f, 1f, 2f, 5f, 2f, 2f });
                     PdfPCell CELDA_NUM_EGRESOS = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
                     PdfPCell CELDA_APENOM_EGRESOS = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
                     PdfPCell CELDA_IMPUTACION_EGRESOS = new PdfPCell(new Phrase("DEBE", _mediumFontBoldWhite));
