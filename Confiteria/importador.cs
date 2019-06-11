@@ -193,8 +193,6 @@ namespace Confiteria
 
                         db.Ejecuto_Consulta(IMP_COM_QUERY);
 
-                        
-
                         bool SET_EXPORTADO = cu.setExportado("CONFITERIA_COMANDAS", "EXPORTADA", ID, G_ROL, 1);
 
                         if (SET_EXPORTADO == false)
@@ -206,7 +204,6 @@ namespace Confiteria
                             importarItems(ID, N_ID_COM);
                         }
 
-                        cu.setGeneratorValue("CONFITERIA_COMANDAS_GEN", N_ID_COM + 1);
                     }
                     catch (Exception error)
                     {
