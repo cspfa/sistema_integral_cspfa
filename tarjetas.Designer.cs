@@ -43,6 +43,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.lbCuota = new System.Windows.Forms.Label();
+            this.lbTotalInteres = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -97,7 +99,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(80, 131);
+            this.button1.Location = new System.Drawing.Point(80, 154);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 5;
@@ -126,7 +128,7 @@
             // btCerrar
             // 
             this.btCerrar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btCerrar.Location = new System.Drawing.Point(322, 131);
+            this.btCerrar.Location = new System.Drawing.Point(322, 154);
             this.btCerrar.Name = "btCerrar";
             this.btCerrar.Size = new System.Drawing.Size(100, 23);
             this.btCerrar.TabIndex = 7;
@@ -136,7 +138,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(201, 131);
+            this.button2.Location = new System.Drawing.Point(201, 154);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 6;
@@ -180,12 +182,33 @@
             this.lbCuota.TabIndex = 13;
             this.lbCuota.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // lbTotalInteres
+            // 
+            this.lbTotalInteres.AutoSize = true;
+            this.lbTotalInteres.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotalInteres.Location = new System.Drawing.Point(330, 116);
+            this.lbTotalInteres.Name = "lbTotalInteres";
+            this.lbTotalInteres.Size = new System.Drawing.Size(15, 20);
+            this.lbTotalInteres.TabIndex = 14;
+            this.lbTotalInteres.Text = "-";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(198, 124);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "INTERES";
+            // 
             // tarjetas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(443, 172);
+            this.ClientSize = new System.Drawing.Size(443, 191);
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.lbTotalInteres);
             this.Controls.Add(this.lbCuota);
             this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.txtVoucher);
@@ -206,6 +229,7 @@
             this.Name = "tarjetas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tarjetas de Crédito - Cálculo de Cuotas";
+            this.Load += new System.EventHandler(this.tarjetas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +252,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Label lbCuota;
+        private System.Windows.Forms.Label lbTotalInteres;
+        private System.Windows.Forms.Label label5;
     }
 }
