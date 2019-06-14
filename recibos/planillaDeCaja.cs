@@ -4484,7 +4484,7 @@ namespace SOCIOS
                                         {
                                             result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                             if (result.Result == true)
-                                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, DateTime.Parse(FECHA_RECIBO).AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
                                             else
                                                 MessageBox.Show(result.Excepcion.ToString());
                                             PB.PerformStep();
@@ -4499,7 +4499,7 @@ namespace SOCIOS
                                             {
                                                 result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                                 if (result.Result == true)
-                                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae,DateTime.Parse(FECHA_RECIBO).AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
                                                 PB.PerformStep();
                                             }
                                         }
@@ -4690,7 +4690,7 @@ namespace SOCIOS
 
                                 if (result.Result == true)
                                     imp_fact.Genero_PDF(TC, PTO_VTA, result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
-                                        result.Cae, FECHA, "ORIGINAL", CONCEPTO, int.Parse(NRO));
+                                        result.Cae, DateTime.Now.AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, int.Parse(NRO));
 
                                 else
                                     MessageBox.Show("LA NOTA DE CREDITO NO SE PUDO REALIZAR\nINTENTAR NUEVAMENTE DESDE EL LISTADO DE INGRESOS\n" + result.Excepcion);
@@ -4885,7 +4885,7 @@ namespace SOCIOS
 
                                     Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                     imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE),
-                                        CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                        CAE, DateTime.Parse(FECHA_RECIBO).AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
 
                                     MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
                                 //}
@@ -5089,9 +5089,11 @@ namespace SOCIOS
                                     }
                                 }
 
+                                DateTime fechaR = DateTime.Parse(FECHA_RECIBO);
+
                                 Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, IMPORTE,
-                                    CAE, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), fechaR, DENI, COND_IVA, NOMBRE_SOCIO, IMPORTE,
+                                    CAE, fechaR.AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
 
                                 MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
                                 //}
