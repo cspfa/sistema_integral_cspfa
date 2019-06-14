@@ -821,14 +821,8 @@ namespace SOCIOS.BO
 
             if (foundRows.Length > 0)
             {
-
                 throw new Exception("Ya existe ese numero de recibo asociado a ese punto de venta!");
             }
-    
-
-
-
-
         }
 
 
