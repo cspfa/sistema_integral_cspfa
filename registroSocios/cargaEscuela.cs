@@ -58,12 +58,12 @@ namespace SOCIOS.registroSocios
                     int ACRJP1 = 0;
                     int ACRJP2 = int.Parse(row.Cells[7].Value.ToString());
                     int ACRJP3 = 0;
-                    string APE_SOC = row.Cells[2].Value.ToString();
-                    string NOM_SOC = row.Cells[3].Value.ToString();
+                    string APE_SOC = row.Cells[3].Value.ToString().Split(',')[0];
+                    string NOM_SOC = row.Cells[3].Value.ToString().Split(',')[1];
                     int NUM_DOC = int.Parse(row.Cells[6].Value.ToString());
                     string COD_DTO = "640";
                     string NCOD_DTO = "633";
-                    string F_ALTPO = row.Cells[5].Value.ToString();
+                    string F_ALTPO = "01/06/2019";
                     string F_ALTCI = dpAdto.Text;
                     string A_DTO = dpAdto.Text;
                     string DESTINO = "0175";
@@ -73,7 +73,7 @@ namespace SOCIOS.registroSocios
                     string CALL_PAR = "";
                     string LOC_PAR = "";
                     string NUM_TE1 = "";
-                    string SEX = row.Cells[4].Value.ToString().Substring(0,1);
+                    string SEX = "";
                     string OBRA_SOCIAL = "";
                     string F_NACIM = "01/01/1990";
 
@@ -135,9 +135,12 @@ namespace SOCIOS.registroSocios
                     byte[] OBSERVACIONES = imageToByteArray(pbFoto.Image);
                     #endregion
 
-                    dlog.insertarTitularesEscuela(ID_TITULAR, AAR, ACRJP1, ACRJP2, ACRJP3, PAR, PCRJP1, PCRJP2, PCRJP3, APE_SOC, NOM_SOC,
+                    if (row.Cells[8].Value.ToString() == "0")
+                    {
+                        dlog.insertarTitularesEscuela(ID_TITULAR, AAR, ACRJP1, ACRJP2, ACRJP3, PAR, PCRJP1, PCRJP2, PCRJP3, APE_SOC, NOM_SOC,
                            NRO_SOC, NRO_DEP, JERARQ, LEG_PER, DESTINO, F_ALTPO, F_ALTCI, TIP_DOC, NUM_DOC, NUM_CED, CALL_PAR, LOC_PAR,
-                           NUM_TE1, NUM_TE2, COD_DTO, CAT_SOC, GIMNASIO, ESCALA, A_DTO, USR_ALTA, NCOD_DTO, ORIGEN_ALTA, FOTO, OBSERVACIONES, OBS, F_NACIM, SEX,PRO_PAR);
+                           NUM_TE1, NUM_TE2, COD_DTO, CAT_SOC, GIMNASIO, ESCALA, A_DTO, USR_ALTA, NCOD_DTO, ORIGEN_ALTA, FOTO, OBSERVACIONES, OBS, F_NACIM, SEX, PRO_PAR);
+                    }
 
                     progressBar1.PerformStep();
                     CANTIDAD++;

@@ -814,7 +814,7 @@ namespace SOCIOS.BO
 
         public void Valido_Recibo_Existe(string PTO_VTA,int RECIBO)
         {
-            string QUERY = "SELECT ID from Recibos_caja where PTO_VTA= " + PTO_VTA + " AND NRO_COMP=" + RECIBO;
+            string QUERY = "SELECT ID FROM RECIBOS_CAJA WHERE PTO_VTA = '" + PTO_VTA + "' AND NRO_COMP = " + RECIBO;
 
             DataRow[] foundRows;
             foundRows = this.BO_EjecutoDataTable(QUERY).Select();
