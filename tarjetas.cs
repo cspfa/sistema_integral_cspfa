@@ -93,13 +93,18 @@ namespace SOCIOS
                  CUOTAS = Convert.ToInt16(txtCuotas.Text.Trim());
                 decimal TOTAL = calcularTotal(TARJETA, IMPORTE, CUOTAS);
                 decimal VALOR_CUOTA = TOTAL / CUOTAS;
+                decimal INTERES = 0;
 
                 IMPORTE_TOTAL = string.Format("{0:n}", TOTAL);
                 IMPORTE_CUOTA = string.Format("{0:n}", VALOR_CUOTA);
+               
 
                 lbTotal.Text = IMPORTE_TOTAL.ToString();
                 lbCuota.Text = IMPORTE_CUOTA.ToString();
+                lbTotalInteres.Text = string.Format("{0:n}", decimal.Round(TOTAL - IMPORTE, 2).ToString());
                 btCerrar.Visible = true;
+
+
             }
         }
 
@@ -121,8 +126,9 @@ namespace SOCIOS
                 string VOUCHER = txtVoucher.Text;
                 string IMPORTE_FINANCIADO = lbTotal.Text;
                 string VALOR_CUOTA = lbCuota.Text;
+                string INTERES = lbTotalInteres.Text;
                 genHTML gen = new genHTML();
-                gen.cuotasTarjetas(CUOTAS, TARJETA, IMPORTE, IMPORTE_FINANCIADO, VALOR_CUOTA, VOUCHER);
+                gen.cuotasTarjetas(CUOTAS, TARJETA, IMPORTE,INTERES, IMPORTE_FINANCIADO, VALOR_CUOTA, VOUCHER);
                 printhtml p = new printhtml();
                 p.printHTML("tarjetas_cuotas.html");
             }
@@ -130,6 +136,11 @@ namespace SOCIOS
             {
                 MessageBox.Show("ERROR AL INTENTAR IMPRIMIR\n" + error);
             }
+        }
+
+        private void tarjetas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

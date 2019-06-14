@@ -178,15 +178,15 @@ namespace SOCIOS
         #endregion
 
         #region CUOTAS TARJETAS
-        public void cuotasTarjetas(string CUOTAS, string TARJETA, string IMPORTE, string IMPORTE_FINANCIADO, string VALOR_CUOTA, string VOUCHER)
+        public void cuotasTarjetas(string CUOTAS, string TARJETA, string IMPORTE,string INTERES, string IMPORTE_FINANCIADO, string VALOR_CUOTA, string VOUCHER)
         {
             string html = "<html><meta charset='UTF-8'><body>";
-            html += "<table border='0' width='685' height='100' cellspacing='0' cellpadding='6' style='font-family:courier;border:1px solid #333;'>";
+            html += "<table border='0' width='685' height='100' cellspacing='0' cellpadding='7' style='font-family:courier;border:1px solid #333;'>";
             html += "<tr style='font-size:16px;' align='center'>";
-            html += "<td>TARJETA</td> <td>CUOTAS</td> <td>IMPORTE</td> <td>IMPORTE FINANCIADO</td> <td>VALOR CUOTA</td> <td>VOUCHER</td>";
+            html += "<td>TARJETA</td> <td>CUOTAS</td> <td>IMPORTE</td> <td>INTERES</td> <td>FINANCIADO</td>  <td>VALOR CUOTA</td> <td>VOUCHER</td>";
             html += "</tr>";
             html += "<tr style='font-size:20px;' align='center'>";
-            html += "<td>" + TARJETA + "</td> <td>" + CUOTAS + "</td> <td>" + IMPORTE + "</td> <td>" + IMPORTE_FINANCIADO + "</td> <td>" + VALOR_CUOTA + "</td> <td>" + VOUCHER + "</td>";
+            html += "<td>" + TARJETA + "</td> <td>" + CUOTAS + "</td> <td>" + IMPORTE + "</td> <td>" + INTERES + "</td> <td>" + IMPORTE_FINANCIADO + "</td> <td>" + VALOR_CUOTA + "</td> <td>" + VOUCHER + "</td>";
             html += "</tr>";
             html += "</table>";
             html += "</body></html>";
