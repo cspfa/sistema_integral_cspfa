@@ -290,7 +290,7 @@ namespace SOCIOS.bono
         private void  Control_Efectivo(decimal Efectivo)
 
         {
-          if (Efectivo > 9600)
+          if (Efectivo > 9900)
                     throw new Exception("No se puede abonar mas de 9600 en efectivo!");
         }
 
