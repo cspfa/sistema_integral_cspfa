@@ -28,7 +28,7 @@ namespace SOCIOS.bono
         int Barra;
         string NroBeneficio;
         int Nro_Socio_Titular;
-        decimal Saldo;
+        decimal Saldo=0;
 
         decimal MontoCuota;
         int CantidadCuotas;
@@ -287,6 +287,13 @@ namespace SOCIOS.bono
                 NumeroContraLor = Int32.Parse(tbContralor.Text);        
         }
 
+        private void  Control_Efectivo(decimal Efectivo)
+
+        {
+          if (Efectivo > 9600)
+                    throw new Exception("No se puede abonar mas de 9600 en efectivo!");
+        }
+
         private void btnGrabar_Click(object sender, EventArgs e)
         {
             tipoPago = this.GetTipoPago();
@@ -299,9 +306,12 @@ namespace SOCIOS.bono
                     case 1:
                         // Todo en Efectivo, 1 solo pago
                         this.ValidarMonto(Saldo);
+                      
                         formaPago = formaPago + ", Se va a a Abonar el Bono en 1 solo pago  en  Efectivo de :$" + Saldo.ToString();
                         SaldoIngreso = Saldo;
                         Efectivo = Saldo;
+                        Control_Efectivo(Efectivo);
+                       
                         break;
                     case 2:
                         //Parte en Efectivo , Parte en Debito
@@ -311,6 +321,9 @@ namespace SOCIOS.bono
                         SaldoIngreso    = Decimal.Parse(lbMonto1.Text);
                         Efectivo        = Decimal.Round(Decimal.Parse(lbMonto1.Text), 2);
                         Tarjeta_Debito = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
+
+                        Control_Efectivo(Efectivo);
+
 
                         break;
                     case 3:
@@ -333,7 +346,7 @@ namespace SOCIOS.bono
                         Efectivo = SaldoIngreso;
                         Tarjeta_credito = Saldo;
                         Tarjeta_credito_cuotas = CuotasTarjeta;
-                        
+                        Control_Efectivo(Efectivo);
                         
                       
                         
@@ -352,6 +365,7 @@ namespace SOCIOS.bono
                         SaldoIngreso = Decimal.Round( Decimal.Parse(lbMonto1.Text),2);
 
                         Efectivo = SaldoIngreso;
+                        Control_Efectivo(Efectivo);
                         Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
                         Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
                        
@@ -515,20 +529,29 @@ namespace SOCIOS.bono
 
         private void cbTipoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-            if (Inicio == true)
-                return;
-            string st = cbTipoPago.SelectedValue.ToString();
-            int tipo = Int32.Parse(st);
+            try
+            {
+                if (Inicio == true)
+                    return;
+                string st = cbTipoPago.SelectedValue.ToString();
+                int tipo = Int32.Parse(st);
 
-            this.SeteoPago(tipo);
-            OK.Visible = true;
+                this.SeteoPago(tipo);
+                OK.Visible = true;
+            }
+            catch (Exception ex)
+
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            
+            }
 
         }
 
         private void SeteoPago(int idTipoPago)
         {
-        
+            decimal control_saldo = Decimal.Parse(lblSaldo.Text);
             //this.SetearCBpago(Saldo, idTipoPago,sPorc);
             Recargo = 0;
             Tarjeta = false;
@@ -540,6 +563,8 @@ namespace SOCIOS.bono
                 gpPlanilla.Visible = false;
                 gpPago.Visible = false;
                 gpSenia.Visible = true;
+               
+
                 return;
             }
             else
@@ -1018,6 +1043,8 @@ namespace SOCIOS.bono
                 lbMontoTarjeta.Text = tar.IMPORTE_TOTAL;
                 CuotasTarjeta = tar.CUOTAS;
                 Tarjeta = true;
+
+
                 
 
 
