@@ -1118,6 +1118,7 @@ namespace SOCIOS
         {
             if (MODIFICAR == "NO")
             {
+
                 Cursor = Cursors.WaitCursor;
                 guardarImprimirRecibo("TICKET");
                 Cursor = Cursors.Default;
