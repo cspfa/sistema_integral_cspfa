@@ -44,7 +44,8 @@ namespace SOCIOS
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataTable dt1 = new DataTable("RESULTADOS");
-                    dt1.Columns.Add("#", typeof(int));
+                    dt1.Columns.Add("PTO_VENTA", typeof(int));
+                    dt1.Columns.Add("COMP", typeof(int));
                     dt1.Columns.Add("TIPO", typeof(string));
                     dt1.Columns.Add("DEBE", typeof(int));
                     dt1.Columns.Add("HABER", typeof(int));
@@ -73,7 +74,8 @@ namespace SOCIOS
                         IMPORTE = reader3.GetDecimal(reader3.GetOrdinal("VALOR"));
                         VALOR = string.Format("{0:n}", IMPORTE);
 
-                        dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ID")).Trim(),
+                        dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("PTO_VTA")).Trim(),
+                                     reader3.GetString(reader3.GetOrdinal("NRO_COMP")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("BR")).Trim(),         
                                      reader3.GetString(reader3.GetOrdinal("CUENTA_DEBE")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("CUENTA_HABER")).Trim(),
