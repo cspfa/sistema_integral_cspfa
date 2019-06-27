@@ -50,6 +50,28 @@ namespace Confiteria
             }
         }
 
+        public bool getTieneDescuento(int TIPO_COMANDA)
+        {
+            bool RESULTADO = false;
+            int DESC = 0;
+
+            string QUERY = "SELECT DESCUENTO FROM CONFITERIA_TIPO_COMANDA WHERE ID = " + TIPO_COMANDA + ";";
+            DataSet GET = getDataFromQuery(QUERY);
+
+            if (GET.Tables.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                     DESC = Convert.ToInt32(ROW[0]);
+                }
+            }
+
+            if (DESC > 0)
+                RESULTADO = true;
+
+            return RESULTADO;
+        }
+
         public int getGeneratorValue(string GENERATOR)
         {
             int VALUE = 0;

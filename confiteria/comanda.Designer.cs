@@ -276,6 +276,7 @@
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(51, 20);
             this.tbCantidad.TabIndex = 55;
+            this.tbCantidad.Text = "1";
             // 
             // label5
             // 
@@ -733,7 +734,6 @@
             this.tbDescuento.Name = "tbDescuento";
             this.tbDescuento.Size = new System.Drawing.Size(33, 20);
             this.tbDescuento.TabIndex = 62;
-            this.tbDescuento.Text = "0";
             // 
             // label18
             // 
