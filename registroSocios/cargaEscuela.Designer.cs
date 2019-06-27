@@ -50,6 +50,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgAspirantes = new System.Windows.Forms.DataGridView();
             this.dgNetos = new System.Windows.Forms.DataGridView();
+            this.tbNombreHoja = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tpCruzarConNetos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
@@ -123,6 +125,8 @@
             // 
             // tpCruzarConNetos
             // 
+            this.tpCruzarConNetos.Controls.Add(this.tbNombreHoja);
+            this.tpCruzarConNetos.Controls.Add(this.label5);
             this.tpCruzarConNetos.Controls.Add(this.btnListadoFinal);
             this.tpCruzarConNetos.Controls.Add(this.pbFoto);
             this.tpCruzarConNetos.Controls.Add(this.tbPromocion);
@@ -283,6 +287,22 @@
             this.dgNetos.Size = new System.Drawing.Size(856, 195);
             this.dgNetos.TabIndex = 25;
             // 
+            // tbNombreHoja
+            // 
+            this.tbNombreHoja.Location = new System.Drawing.Point(448, 71);
+            this.tbNombreHoja.Name = "tbNombreHoja";
+            this.tbNombreHoja.Size = new System.Drawing.Size(129, 20);
+            this.tbNombreHoja.TabIndex = 52;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(404, 75);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "HOJA ";
+            // 
             // cargaEscuela
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,5 +346,7 @@
         private System.Windows.Forms.DateTimePicker dpAdto;
         private System.Windows.Forms.Button btnImportarRegistros;
         private System.Windows.Forms.Button btnListadoFinal;
+        private System.Windows.Forms.TextBox tbNombreHoja;
+        private System.Windows.Forms.Label label5;
     }
 }
