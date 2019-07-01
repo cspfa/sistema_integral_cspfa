@@ -13,9 +13,23 @@ namespace Confiteria
 {
     public partial class listadoAranceles : Form
     {
+        bo dlog = new bo();
+
         public listadoAranceles()
         {
             InitializeComponent();
+            comboCategorias(VGlobales.vp_role);
+        }
+
+        public void comboCategorias(string ROL)
+        {
+            cbCategoria.DataSource = null;
+            string query = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = 'MENU " + ROL + "' AND ESTADO = 1 ORDER BY DETALLE;";
+            cbCategoria.Items.Clear();
+            cbCategoria.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbCategoria.DisplayMember = "DETALLE";
+            cbCategoria.ValueMember = "ID";
+            cbCategoria.SelectedIndex = 0;
         }
 
         private void mostrarAranceles(DataSet ds)
@@ -33,7 +47,7 @@ namespace Confiteria
             }
         }
 
-        private void buscarAranceles()
+        private void buscarAranceles(string CATEGORIA)
         {
             try
             {
@@ -46,7 +60,15 @@ namespace Confiteria
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string query = "SELECT * FROM CONFITERIA_ARANCELES('" + ROLE+ "');";
+                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, P.STOCK, P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                    query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+
+                    if (CATEGORIA !="X")
+                    {
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, P.STOCK, P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                        query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND S.DETALLE = '" + CATEGORIA + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+                    }
+
                     FbCommand cmd = new FbCommand(query, connection, transaction);
                     cmd.CommandText = query;
                     cmd.Connection = connection;
@@ -80,7 +102,7 @@ namespace Confiteria
 
         private void listadoAranceles_Load(object sender, EventArgs e)
         {
-            buscarAranceles();
+            buscarAranceles("X");
         }
 
         static void OpenAdobeAcrobat(string f)
@@ -110,22 +132,29 @@ namespace Confiteria
             Document doc = new Document(PageSize.A4);
             //doc.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(RUTA, FileMode.Create));
-            doc.AddTitle("LISTADO ARANCELES COMEDOR CSPFA");
+            doc.AddTitle("LISTADO ARANCELES COMEDOR " + VGlobales.vp_role);
             doc.AddCreator("CSPFA");
             doc.Open();
 
-            Paragraph header = new Paragraph("LISTADO ARANCELES COMEDOR CSPFA", _standardFontBold);
+            Paragraph header = new Paragraph("LISTADO ARANCELES COMEDOR " + VGlobales.vp_role, _standardFontBold);
             header.Alignment = Element.ALIGN_CENTER;
             header.SpacingAfter = 5;
             doc.Add(header);
 
-            PdfPTable TABLA_ARANCELES = new PdfPTable(3);
+            PdfPTable TABLA_ARANCELES = new PdfPTable(5);
             TABLA_ARANCELES.WidthPercentage = 100;
             TABLA_ARANCELES.SpacingAfter = 5;
             TABLA_ARANCELES.SpacingBefore = 5;
-            TABLA_ARANCELES.SetWidths(new float[] { 1f, 1f, 1f });
+            TABLA_ARANCELES.SetWidths(new float[] { 1f, 1f, 2f, 1f, 1f });
 
-            PdfPCell CELDA_TIPO = new PdfPCell(new Phrase("TIPO", _mediumFontBoldWhite));
+            PdfPCell CELDA_ID = new PdfPCell(new Phrase("ID", _mediumFontBoldWhite));
+            CELDA_ID.BackgroundColor = topo;
+            CELDA_ID.BorderColor = blanco;
+            CELDA_ID.HorizontalAlignment = 1;
+            CELDA_ID.FixedHeight = 16f;
+            TABLA_ARANCELES.AddCell(CELDA_ID);
+            
+            PdfPCell CELDA_TIPO = new PdfPCell(new Phrase("CATEGORIA", _mediumFontBoldWhite));
             CELDA_TIPO.BackgroundColor = topo;
             CELDA_TIPO.BorderColor = blanco;
             CELDA_TIPO.HorizontalAlignment = 1;
@@ -146,6 +175,13 @@ namespace Confiteria
             CELDA_ARANCEL.FixedHeight = 16f;
             TABLA_ARANCELES.AddCell(CELDA_ARANCEL);
 
+            PdfPCell CELDA_STOCK = new PdfPCell(new Phrase("STOCK", _mediumFontBoldWhite));
+            CELDA_STOCK.BackgroundColor = topo;
+            CELDA_STOCK.BorderColor = blanco;
+            CELDA_STOCK.HorizontalAlignment = 1;
+            CELDA_STOCK.FixedHeight = 16f;
+            TABLA_ARANCELES.AddCell(CELDA_STOCK);
+
             if (dgListadoAranceles.Rows.Count > 0)
             {
                 int X = 0;
@@ -153,9 +189,11 @@ namespace Confiteria
 
                 foreach (DataGridViewRow row in dgListadoAranceles.Rows)
                 {
-                    string TIPO = row.Cells[0].Value.ToString();
-                    string NOMBRE = row.Cells[1].Value.ToString();
-                    string ARANCEL = row.Cells[2].Value.ToString();
+                    string ID = row.Cells[0].Value.ToString();
+                    string TIPO = row.Cells[1].Value.ToString();
+                    string NOMBRE = row.Cells[2].Value.ToString();
+                    string ARANCEL = row.Cells[3].Value.ToString();
+                    string STOCK = row.Cells[4].Value.ToString();
 
                     if (X == 0)
                     {
@@ -167,6 +205,13 @@ namespace Confiteria
                         colorFondo = new BaseColor(240, 240, 240);
                         X--;
                     }
+
+                    PdfPCell CELL_ID = new PdfPCell(new Phrase(ID, _mediumFont));
+                    CELL_ID.HorizontalAlignment = 1;
+                    CELL_ID.BorderWidth = 0;
+                    CELL_ID.BackgroundColor = colorFondo;
+                    CELL_ID.FixedHeight = 14f;
+                    TABLA_ARANCELES.AddCell(CELL_ID);
 
                     PdfPCell CELL_TIPO = new PdfPCell(new Phrase(TIPO, _mediumFont));
                     CELL_TIPO.HorizontalAlignment = 1;
@@ -188,6 +233,13 @@ namespace Confiteria
                     CELL_ARANCEL.BackgroundColor = colorFondo;
                     CELL_ARANCEL.FixedHeight = 14f;
                     TABLA_ARANCELES.AddCell(CELL_ARANCEL);
+
+                    PdfPCell CELL_STOCK = new PdfPCell(new Phrase(STOCK, _mediumFont));
+                    CELL_STOCK.HorizontalAlignment = 1;
+                    CELL_STOCK.BorderWidth = 0;
+                    CELL_STOCK.BackgroundColor = colorFondo;
+                    CELL_STOCK.FixedHeight = 14f;
+                    TABLA_ARANCELES.AddCell(CELL_STOCK);
                 }
             }
 
@@ -302,7 +354,8 @@ namespace Confiteria
                         else
                             MessageBox.Show("NO SE PUDO ACTUALIZAR EL STOCK");
 
-                        buscarAranceles();
+                        string CATEGORIA = cbCategoria.Text.Trim();
+                        buscarAranceles("X");
                     }
                 }
             }
@@ -310,6 +363,17 @@ namespace Confiteria
             {
                 MessageBox.Show("INGRESAR UN NUMERO DE STOCK");
             }
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string CATEGORIA = cbCategoria.Text.Trim();
+            buscarAranceles(CATEGORIA);
+        }
+
+        private void btnVerTodos_Click(object sender, EventArgs e)
+        {
+            buscarAranceles("X");
         }
     }
 }
