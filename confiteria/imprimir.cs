@@ -300,10 +300,15 @@ namespace Confiteria
                 graphics.DrawString("HORA DEL PEDIDO ", courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
                 graphics.DrawString(row[1].ToString(), courier_big, black, startX, startY + Offset);
-                Offset = Offset + 20;
-                graphics.DrawString("HORA DE ENTREGA ", courier_big, black, startX, startY + Offset);
-                Offset = Offset + 20;
-                graphics.DrawString(row[20].ToString(), courier_big, black, startX, startY + Offset);
+
+                if (VGlobales.vp_role == "CPOCABA")
+                {
+                    Offset = Offset + 20;
+                    graphics.DrawString("HORA DE ENTREGA ", courier_big, black, startX, startY + Offset);
+                    Offset = Offset + 20;
+                    graphics.DrawString(row[20].ToString(), courier_big, black, startX, startY + Offset);
+                }
+                
                 Offset = Offset + 20;
                 graphics.DrawString("COMANDA " + row[19].ToString(), courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
