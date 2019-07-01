@@ -1114,7 +1114,35 @@ namespace SOCIOS
             lbNombreCuentaHaber.Text = nc.nombre(cbCuentasHaber.SelectedValue.ToString());
         }
 
+
+       
+
         private void btnImprimirTicket_Click(object sender, EventArgs e)
+        {
+
+            bool Control = false;
+            int Forma_Pago= Int32.Parse( cbFormaDePago.SelectedValue.ToString());
+
+            if (Forma_Pago == 1) // si es efectvo, controlar que no sea mas de 9900 por dni, por fecha 
+              Control=  Control_Efectivo();
+
+
+            if (Control == true)
+            {
+                DialogResult res = MessageBox.Show("El total de la sumatoria de  cobro en efectivo en una misma  fecha para un solo DNI es 9900, el valor total de la fecha se excede , Proceder?", "ALERTA", MessageBoxButtons.YesNo);
+                if (res == DialogResult.Yes)
+                    Imprimir();
+            }
+            else
+            {
+                Imprimir();
+            }
+
+           
+        }
+
+        public void Imprimir()
+
         {
             if (MODIFICAR == "NO")
             {
@@ -1137,6 +1165,7 @@ namespace SOCIOS
                 modificarImprimirRecibo("TICKET", "IMPRIMIR");
                 Cursor = Cursors.Default;
             }
+        
         }
 
         private void Marcar_Cuota(int ID_PAGO,bool EsRecibo,int NroPago,int FormaPago,DateTime FechaPago)
@@ -1162,6 +1191,44 @@ namespace SOCIOS
             int CUENTA = nr.obtenerCuenta(PTO_VTA);
             cbCuentasDebe.SelectedValue = CUENTA;
             lbNombreCuentaDebe.Text = nc.nombre(cbCuentasDebe.SelectedValue.ToString());
+        }
+
+        public bool Control_Efectivo()
+        {
+
+            string DNI = "";
+            string FECHA_RECIBO = DateTime.Today.ToShortDateString();
+            decimal Valor = 0;
+
+
+            string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO=' " + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                 if (foundRows[0][0].ToString().Length>0)       
+                     Valor = Decimal.Parse(foundRows[0][0].ToString().Trim());
+            }
+            else
+               Valor= 0;
+
+
+            decimal Total = Valor + Decimal.Parse(tbArancel.Text);
+
+            if (Total > 9900)
+            {
+
+                return true;
+                
+
+
+            }
+            else
+                return false;
+
+
+
         }
     }
 }
