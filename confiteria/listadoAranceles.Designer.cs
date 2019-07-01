@@ -44,12 +44,13 @@
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnVerTodos = new System.Windows.Forms.Button();
+            this.btnImportar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoAranceles)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPdf
             // 
-            this.btnPdf.Location = new System.Drawing.Point(433, 6);
+            this.btnPdf.Location = new System.Drawing.Point(433, 65);
             this.btnPdf.Name = "btnPdf";
             this.btnPdf.Size = new System.Drawing.Size(127, 23);
             this.btnPdf.TabIndex = 79;
@@ -83,7 +84,7 @@
             this.dgListadoAranceles.ShowCellToolTips = false;
             this.dgListadoAranceles.ShowEditingIcon = false;
             this.dgListadoAranceles.ShowRowErrors = false;
-            this.dgListadoAranceles.Size = new System.Drawing.Size(548, 435);
+            this.dgListadoAranceles.Size = new System.Drawing.Size(415, 435);
             this.dgListadoAranceles.TabIndex = 80;
             this.dgListadoAranceles.TabStop = false;
             // 
@@ -119,11 +120,11 @@
             // 
             // btnExportarXls
             // 
-            this.btnExportarXls.Location = new System.Drawing.Point(433, 36);
+            this.btnExportarXls.Location = new System.Drawing.Point(433, 94);
             this.btnExportarXls.Name = "btnExportarXls";
-            this.btnExportarXls.Size = new System.Drawing.Size(127, 23);
+            this.btnExportarXls.Size = new System.Drawing.Size(127, 54);
             this.btnExportarXls.TabIndex = 81;
-            this.btnExportarXls.Text = "EXPORTAR A XLS";
+            this.btnExportarXls.Text = "EXPORTAR XLS PARA ACTUALIZACION";
             this.btnExportarXls.UseVisualStyleBackColor = true;
             this.btnExportarXls.Click += new System.EventHandler(this.btnExportarXls_Click);
             // 
@@ -191,11 +192,22 @@
             this.btnVerTodos.UseVisualStyleBackColor = true;
             this.btnVerTodos.Click += new System.EventHandler(this.btnVerTodos_Click);
             // 
+            // btnImportar
+            // 
+            this.btnImportar.Location = new System.Drawing.Point(433, 154);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(127, 54);
+            this.btnImportar.TabIndex = 89;
+            this.btnImportar.Text = "IMPORTAR XLS PARA ACTUALIZACION";
+            this.btnImportar.UseVisualStyleBackColor = true;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
             // listadoAranceles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(568, 512);
+            this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.btnVerTodos);
             this.Controls.Add(this.btnFiltrar);
             this.Controls.Add(this.cbCategoria);
@@ -235,5 +247,6 @@
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnVerTodos;
+        private System.Windows.Forms.Button btnImportar;
     }
 }

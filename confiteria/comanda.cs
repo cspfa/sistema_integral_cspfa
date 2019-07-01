@@ -62,6 +62,7 @@ namespace Confiteria
                 CANTIDAD_ITEMS = dgItems.Rows.Count;
                 string[] DATOS_COMANDA = obtenerDatosComanda(ID_COMANDA);
                 decimal TOTAL = decimal.Parse(DATOS_COMANDA[4].ToString());
+                dpEntrega.Text = DATOS_COMANDA[5];
                 tbTotal.Text = TOTAL.ToString().Trim();
                 tbContralor.Text = DATOS_COMANDA[0].Trim();
                 cbMozo.SelectedValue = DATOS_COMANDA[1];
@@ -82,7 +83,7 @@ namespace Confiteria
      
         private string[] obtenerDatosComanda(int ID_COMANDA)
         {
-            string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA, IMPORTE FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
+            string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA, IMPORTE, ENTREGA FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
             string[] RETURN;
