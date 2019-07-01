@@ -51,14 +51,16 @@ namespace Confiteria
                 tbPersonas.Text = PERSONAS.ToString();
                 cbFormaDePago.SelectedValue = PAGO;
                 buscarItems(ID_COMANDA, "SI", "X");
-                decimal TOTAL = sumarTotal();
-                tbTotal.Text = TOTAL.ToString().Trim();
                 CANTIDAD_ITEMS = dgItems.Rows.Count;
                 string[] DATOS_COMANDA = obtenerDatosComanda(ID_COMANDA);
+                decimal TOTAL = decimal.Parse(DATOS_COMANDA[4].ToString());
+                tbTotal.Text = TOTAL.ToString().Trim();
                 tbContralor.Text = DATOS_COMANDA[0].Trim();
                 cbMozo.SelectedValue = DATOS_COMANDA[1];
                 tbComandaBorrador.Text = DATOS_COMANDA[2].Trim();
                 cbTipoDeComanda.SelectedValue = DATOS_COMANDA[3];
+                int TIPO_COMANDA = int.Parse(cbTipoDeComanda.SelectedValue.ToString());
+                cambiarDescuento(TIPO_COMANDA);
 
                 if (DATOS_COMANDA[3] == "2")
                 {
@@ -72,18 +74,18 @@ namespace Confiteria
      
         private string[] obtenerDatosComanda(int ID_COMANDA)
         {
-            string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
+            string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA, IMPORTE FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
             string[] RETURN;
 
             if (foundRows.Length > 0)
             {
-                RETURN = new string[] { foundRows[0][0].ToString(), foundRows[0][1].ToString(), foundRows[0][2].ToString(), foundRows[0][3].ToString() };
+                RETURN = new string[] { foundRows[0][0].ToString(), foundRows[0][1].ToString(), foundRows[0][2].ToString(), foundRows[0][3].ToString(), foundRows[0][4].ToString() };
             }
             else
             {
-                RETURN = new string[] { "X", "X", "X", "X" };
+                RETURN = new string[] { "X", "X", "X", "X", "X" };
             }
 
             return RETURN;
@@ -351,6 +353,15 @@ namespace Confiteria
                 }
             }
 
+            if (tbDescuento.Text != "")
+            {
+                if (int.Parse(tbDescuento.Text) >= 0 && int.Parse(tbDescuento.Text) <= 100)
+                {
+                    int DESC = int.Parse(tbDescuento.Text);
+                    TOTAL = TOTAL - (TOTAL * DESC / 100);
+                }
+            }
+
             return TOTAL;
         }
 
@@ -448,7 +459,7 @@ namespace Confiteria
                 string TIEMPO = HORA.ToString() + ":" + MINUTO.ToString() + ":" + SEGUNDO.ToString();
                 string FECHA = dpFechaComanda.Text + " " + TIEMPO;
                 int NRO_MESA = int.Parse(tbMesa.Text);
-                decimal IMPORTE = sumarTotal();
+                decimal IMPORTE = decimal.Parse(tbTotal.Text);
                 int NRO_SOC = int.Parse(dgSocio[0, dgSocio.CurrentCell.RowIndex].Value.ToString());
                 int NRO_DEP = int.Parse(dgSocio[1, dgSocio.CurrentCell.RowIndex].Value.ToString());
                 afiliadoBeneficio ab = new afiliadoBeneficio();
@@ -465,15 +476,17 @@ namespace Confiteria
                 string COM_BORRADOR = tbComandaBorrador.Text.Trim();
                 string CONSUME = tbConsume.Text.Trim();
                 int TIPO_COMANDA = int.Parse(cbTipoDeComanda.SelectedValue.ToString());
-                int DESCUENTO_APLICADO = 0;
+                decimal DESCUENTO_APLICADO = 0;
                 decimal IMPORTE_DESCONTADO = 0;
                 int NRO_COMANDA = 0;
                 string NCOM = "";
+                bool TIENE_DESCUENTO = utils.getTieneDescuento(TIPO_COMANDA);
                 
-                if (TIPO_COMANDA == 2)
+                if (TIENE_DESCUENTO == true)
                 {
-                    DESCUENTO_APLICADO = int.Parse(tbDescuento.Text);
-                    IMPORTE_DESCONTADO = IMPORTE - ((IMPORTE * DESCUENTO_APLICADO) / 100);
+                    DESCUENTO_APLICADO = decimal.Parse(tbDescuento.Text);
+                    IMPORTE_DESCONTADO = decimal.Parse(tbTotal.Text);
+                    //IMPORTE_DESCONTADO = IMPORTE - ((IMPORTE * DESCUENTO_APLICADO) / 100);
                 }
 
                 if (cbFormaDePago.SelectedValue.ToString() == "8")
@@ -597,11 +610,11 @@ namespace Confiteria
                 MessageBox.Show("NO SE ENCONTRO NINGUN ITEM EN LA LISTA", "ERROR");
                 btnGuardar.Enabled = true;
             }
-            else if (cbMozo.SelectedValue.ToString() == "1")
+            /*else if (cbMozo.SelectedValue.ToString() == "1")
             {
                 MessageBox.Show("NO SE SELECCIONO NINGÚN MOZO", "ERROR");
                 btnGuardar.Enabled = true;
-            }
+            }*/
             else if (cbFormaDePago.SelectedValue.ToString() == "8" && tbContralor.Text == "")
             {
                 MessageBox.Show("INGRESAR EL NUMERO DE CONTRALOR", "ERROR");
@@ -612,11 +625,11 @@ namespace Confiteria
                 MessageBox.Show("EL NUMERO DE CONTRALOR INGRESADO YA FUE ASIGNADO", "ERROR");
                 btnGuardar.Enabled = true;
             }
-            else if (tbPersonas.Text == "0")
+            /*else if (tbPersonas.Text == "0")
             {
                 MessageBox.Show("NUMERO DE PERSONAS NO ESPECIFICADO", "ERROR");
                 btnGuardar.Enabled = true;
-            }
+            }*/
             else if (VGlobales.vp_role != "CONFITERIA" && cbFormaDePago.SelectedValue.ToString() == "8")
             {
                 MessageBox.Show("FORMA DE PAGO NO ACEPTADA", "ERROR");
@@ -992,6 +1005,8 @@ namespace Confiteria
             }
 
             resetNroContralor();
+            decimal TOTAL = sumarTotal();
+            tbTotal.Text = TOTAL.ToString();
         }        
     }
 }

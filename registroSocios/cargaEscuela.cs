@@ -135,16 +135,16 @@ namespace SOCIOS.registroSocios
                     byte[] OBSERVACIONES = imageToByteArray(pbFoto.Image);
                     #endregion
 
-                    if (row.Cells[8].Value.ToString() == "0")
-                    {
+                    //if (row.Cells[8].Value.ToString() == "0")
+                    //{
                         dlog.insertarTitularesEscuela(ID_TITULAR, AAR, ACRJP1, ACRJP2, ACRJP3, PAR, PCRJP1, PCRJP2, PCRJP3, APE_SOC, NOM_SOC,
                            NRO_SOC, NRO_DEP, JERARQ, LEG_PER, DESTINO, F_ALTPO, F_ALTCI, TIP_DOC, NUM_DOC, NUM_CED, CALL_PAR, LOC_PAR,
                            NUM_TE1, NUM_TE2, COD_DTO, CAT_SOC, GIMNASIO, ESCALA, A_DTO, USR_ALTA, NCOD_DTO, ORIGEN_ALTA, FOTO, OBSERVACIONES, OBS, F_NACIM, SEX, PRO_PAR);
-                    }
+                    //}
 
                     progressBar1.PerformStep();
                     CANTIDAD++;
-                    Thread.Sleep(50);
+                    Thread.Sleep(30);
                 }
 
                 progressBar1.Value = 0;
@@ -269,7 +269,7 @@ namespace SOCIOS.registroSocios
             OleDbConnection con = new System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ARCHIVO + ";Mode=ReadWrite;Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\"");
             con.Open();
             DataSet dset = new DataSet();
-            OleDbDataAdapter dadp = new OleDbDataAdapter("SELECT * FROM [Promo233$] WHERE LP IS NOT NULL;", con);
+            OleDbDataAdapter dadp = new OleDbDataAdapter("SELECT * FROM [" + tbNombreHoja.Text.Trim() + "$] WHERE LP IS NOT NULL;", con);
             dadp.TableMappings.Add("LP", "DNI");
             dadp.Fill(dset);
             DataTable table = dset.Tables[0];

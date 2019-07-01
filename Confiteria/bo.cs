@@ -542,7 +542,7 @@ namespace Confiteria
         }
 
         //STORED MODIFICAR MESA
-        public void modificarMesa(int ID_COMANDA, int MOZO, decimal IMPORTE, int PERSONAS, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, int DESCUENTO_APLICADO, decimal IMPORTE_DESCONTADO)
+        public void modificarMesa(int ID_COMANDA, int MOZO, decimal IMPORTE, int PERSONAS, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, decimal DESCUENTO_APLICADO, decimal IMPORTE_DESCONTADO)
         {
             SOCIOS.db resultado = new SOCIOS.db();
 
@@ -569,7 +569,7 @@ namespace Confiteria
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Numeric");
 
             ArrayList vector_nombres = new ArrayList();
@@ -592,7 +592,7 @@ namespace Confiteria
 
         //STORED GUARDA MESA
         public void guardaMesa(string FECHA, int MESA, int MOZO, decimal IMPORTE, int NRO_SOC, int NRO_DEP, int BARRA, int PERSONAS, string AFILIADO, string BENEFICIO,
-                               string NOMBRE_SOCIO, string USUARIO, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, int DESCUENTO_APLICADO,
+                               string NOMBRE_SOCIO, string USUARIO, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, decimal DESCUENTO_APLICADO,
                                decimal IMPORTE_DESCONTADO, int NRO_COMANDA)
         {
             SOCIOS.db resultado = new SOCIOS.db();
@@ -637,7 +637,7 @@ namespace Confiteria
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Integer");
-            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Integer");
 
