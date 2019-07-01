@@ -103,6 +103,8 @@
             this.lbStockMenor10 = new System.Windows.Forms.Label();
             this.tbStock = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.dpEntrega = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgSocio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultados)).BeginInit();
@@ -275,7 +277,7 @@
             this.tbCantidad.Location = new System.Drawing.Point(82, 260);
             this.tbCantidad.Name = "tbCantidad";
             this.tbCantidad.Size = new System.Drawing.Size(51, 20);
-            this.tbCantidad.TabIndex = 55;
+            this.tbCantidad.TabIndex = 2;
             this.tbCantidad.Text = "1";
             // 
             // label5
@@ -431,7 +433,7 @@
             this.btnAgregar.Location = new System.Drawing.Point(460, 346);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(121, 23);
-            this.btnAgregar.TabIndex = 64;
+            this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "AGREGAR ITEM";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
@@ -642,7 +644,7 @@
             this.textBox1.Location = new System.Drawing.Point(82, 66);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(632, 20);
-            this.textBox1.TabIndex = 86;
+            this.textBox1.TabIndex = 1;
             this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // dgResultados
@@ -670,7 +672,7 @@
             this.tbItemObservacion.MaxLength = 31;
             this.tbItemObservacion.Name = "tbItemObservacion";
             this.tbItemObservacion.Size = new System.Drawing.Size(254, 20);
-            this.tbItemObservacion.TabIndex = 59;
+            this.tbItemObservacion.TabIndex = 3;
             // 
             // label14
             // 
@@ -792,11 +794,31 @@
             this.label19.TabIndex = 102;
             this.label19.Text = "#";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(13, 205);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(59, 13);
+            this.label20.TabIndex = 103;
+            this.label20.Text = "ENTREGA";
+            this.label20.Visible = false;
+            // 
+            // dpEntrega
+            // 
+            this.dpEntrega.Location = new System.Drawing.Point(82, 202);
+            this.dpEntrega.Name = "dpEntrega";
+            this.dpEntrega.Size = new System.Drawing.Size(99, 20);
+            this.dpEntrega.TabIndex = 104;
+            this.dpEntrega.Visible = false;
+            // 
             // comanda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 669);
+            this.Controls.Add(this.dpEntrega);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.tbStock);
             this.Controls.Add(this.lbStockMenor10);
@@ -930,5 +952,7 @@
         private System.Windows.Forms.Label lbStockMenor10;
         private System.Windows.Forms.TextBox tbStock;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DateTimePicker dpEntrega;
     }
 }

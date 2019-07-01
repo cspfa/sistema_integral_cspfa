@@ -542,7 +542,7 @@ namespace Confiteria
         }
 
         //STORED MODIFICAR MESA
-        public void modificarMesa(int ID_COMANDA, int MOZO, decimal IMPORTE, int PERSONAS, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, decimal DESCUENTO_APLICADO, decimal IMPORTE_DESCONTADO)
+        public void modificarMesa(int ID_COMANDA, int MOZO, decimal IMPORTE, int PERSONAS, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, decimal DESCUENTO_APLICADO, decimal IMPORTE_DESCONTADO, string ENTREGA)
         {
             SOCIOS.db resultado = new SOCIOS.db();
 
@@ -558,6 +558,7 @@ namespace Confiteria
             vector_contenidos.Add(TIPO_COMANDA);
             vector_contenidos.Add(DESCUENTO_APLICADO);
             vector_contenidos.Add(IMPORTE_DESCONTADO);
+            vector_contenidos.Add(ENTREGA);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
@@ -571,6 +572,7 @@ namespace Confiteria
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Numeric");
+            vector_tipos.Add("FbDbType.VarChar");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@ID");
@@ -584,6 +586,7 @@ namespace Confiteria
             vector_nombres.Add("@TIPO_COMANDA");
             vector_nombres.Add("@DESCUENTO_APLICADO");
             vector_nombres.Add("@IMPORTE_DESCONTADO");
+            vector_nombres.Add("@ENTREGA");
 
             string vprocedure = "CONFITERIA_COMANDAS_U";
 
@@ -593,7 +596,7 @@ namespace Confiteria
         //STORED GUARDA MESA
         public void guardaMesa(string FECHA, int MESA, int MOZO, decimal IMPORTE, int NRO_SOC, int NRO_DEP, int BARRA, int PERSONAS, string AFILIADO, string BENEFICIO,
                                string NOMBRE_SOCIO, string USUARIO, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, decimal DESCUENTO_APLICADO,
-                               decimal IMPORTE_DESCONTADO, int NRO_COMANDA)
+                               decimal IMPORTE_DESCONTADO, int NRO_COMANDA, string ENTREGA)
         {
             SOCIOS.db resultado = new SOCIOS.db();
 
@@ -618,6 +621,7 @@ namespace Confiteria
             vector_contenidos.Add(DESCUENTO_APLICADO);
             vector_contenidos.Add(IMPORTE_DESCONTADO);
             vector_contenidos.Add(NRO_COMANDA);
+            vector_contenidos.Add(ENTREGA);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Date");
@@ -640,6 +644,7 @@ namespace Confiteria
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Char");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@FECHA");
@@ -662,6 +667,7 @@ namespace Confiteria
             vector_nombres.Add("@DESCUENTO_APLICADO");
             vector_nombres.Add("@IMPORTE_DESCONTADO");
             vector_nombres.Add("@NRO_COMANDA");
+            vector_nombres.Add("@ENTREG");
 
             string vprocedure = "CONFITERIA_COMANDAS_I";
 

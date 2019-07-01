@@ -284,14 +284,26 @@ namespace Confiteria
             string TOTAL = "";
             string A_PAGAR = "";
             string DESC = "";
-            graphics.DrawString("CONFITERÍA CSPFA", courier_big, black, startX, startY + Offset);
+            
+            if(VGlobales.vp_role != "CONFITERIA")
+                graphics.DrawString("CONFITERÍA " + VGlobales.vp_role, courier_big, black, startX, startY + Offset);
+            else
+                graphics.DrawString("CONFITERÍA CSPFA", courier_big, black, startX, startY + Offset);
+
             Offset = Offset + 20;
 
             foreach (DataRow row in COMANDA.Tables[0].Rows)
             {
                 code39.Code = "CO" + row[19].ToString().Trim();
                 Bitmap bm = new Bitmap(code39.CreateDrawingImage(Color.Black, Color.White));
+
+                graphics.DrawString("HORA DEL PEDIDO ", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
                 graphics.DrawString(row[1].ToString(), courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("HORA DE ENTREGA ", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString(row[20].ToString(), courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
                 graphics.DrawString("COMANDA " + row[19].ToString(), courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
