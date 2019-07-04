@@ -90,11 +90,11 @@ namespace Confiteria
 
             if (foundRows.Length > 0)
             {
-                RETURN = new string[] { foundRows[0][0].ToString(), foundRows[0][1].ToString(), foundRows[0][2].ToString(), foundRows[0][3].ToString(), foundRows[0][4].ToString() };
+                RETURN = new string[] { foundRows[0][0].ToString(), foundRows[0][1].ToString(), foundRows[0][2].ToString(), foundRows[0][3].ToString(), foundRows[0][4].ToString(), foundRows[0][5].ToString() };
             }
             else
             {
-                RETURN = new string[] { "X", "X", "X", "X", "X" };
+                RETURN = new string[] { "X", "X", "X", "X", "X", "X" };
             }
 
             return RETURN;
