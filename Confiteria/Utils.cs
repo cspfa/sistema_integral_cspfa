@@ -50,6 +50,35 @@ namespace Confiteria
             }
         }
 
+        public string[] getDataForItem(int ID)
+        {
+            string QUERY = "";
+            DataSet GET = getDataFromQuery(QUERY);
+            string[] RETURN = { "X" };
+
+            foreach (DataRow ROW in GET.Tables[0].Rows)
+            {
+                RETURN = new string[] { ROW[0].ToString(), ROW[1].ToString(), ROW[2].ToString(), ROW[3].ToString(), ROW[4].ToString() };
+            }
+
+            return RETURN;
+        }
+
+        public bool setArancel()
+        {
+            try
+            {
+                string QUERY = "INSERT INTO ARANCELES (ID, SECTACT, CATSOC, PROFESIONAL, ARANCEL, US_ALTA, FE_ALTA, REGIMEN, HABITACION) ";
+                QUERY += " VALUES(ID, SECTACT, CATSOC, PROFESIONAL, ARANCEL, US_ALTA, FE_ALTA, REGIMEN, HABITACION);";
+                //db.Ejecuto_Consulta_Remota(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
         public bool getTieneDescuento(int TIPO_COMANDA)
         {
             bool RESULTADO = false;

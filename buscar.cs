@@ -2488,7 +2488,7 @@ namespace SOCIOS
             }
 
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "CAJA" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONTADURIA"
-                || VGlobales.vp_role == "JARDIN MATERNAL" || VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES")
+                || VGlobales.vp_role == "JARDIN MATERNAL" || VGlobales.vp_role == "CPOCABA" || VGlobales.vp_role == "CPOPOLVORINES" || VGlobales.vp_role == "INTERIOR")
             {
                 btnCargarRecibo.Enabled = true;
             }
