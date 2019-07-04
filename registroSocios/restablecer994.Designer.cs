@@ -108,7 +108,6 @@
             // 
             this.tbNroSoc.Location = new System.Drawing.Point(76, 90);
             this.tbNroSoc.Name = "tbNroSoc";
-            this.tbNroSoc.ReadOnly = true;
             this.tbNroSoc.Size = new System.Drawing.Size(59, 20);
             this.tbNroSoc.TabIndex = 9;
             // 
