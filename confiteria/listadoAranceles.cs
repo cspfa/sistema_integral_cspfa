@@ -8,14 +8,29 @@ using iTextSharp.text.pdf;
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 using SOCIOS;
+using System.Data.OleDb;
 
 namespace Confiteria
 {
     public partial class listadoAranceles : Form
     {
+        bo dlog = new bo();
+
         public listadoAranceles()
         {
             InitializeComponent();
+            comboCategorias(VGlobales.vp_role);
+        }
+
+        public void comboCategorias(string ROL)
+        {
+            cbCategoria.DataSource = null;
+            string query = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = 'MENU " + ROL + "' AND ESTADO = 1 ORDER BY DETALLE;";
+            cbCategoria.Items.Clear();
+            cbCategoria.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbCategoria.DisplayMember = "DETALLE";
+            cbCategoria.ValueMember = "ID";
+            cbCategoria.SelectedIndex = 0;
         }
 
         private void mostrarAranceles(DataSet ds)
@@ -33,7 +48,7 @@ namespace Confiteria
             }
         }
 
-        private void buscarAranceles()
+        private void buscarAranceles(string CATEGORIA)
         {
             try
             {
@@ -46,7 +61,15 @@ namespace Confiteria
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string query = "SELECT * FROM CONFITERIA_ARANCELES('" + ROLE+ "');";
+                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, P.STOCK, P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                    query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+
+                    if (CATEGORIA !="X")
+                    {
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, P.STOCK, P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                        query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND S.DETALLE = '" + CATEGORIA + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+                    }
+
                     FbCommand cmd = new FbCommand(query, connection, transaction);
                     cmd.CommandText = query;
                     cmd.Connection = connection;
@@ -80,7 +103,7 @@ namespace Confiteria
 
         private void listadoAranceles_Load(object sender, EventArgs e)
         {
-            buscarAranceles();
+            buscarAranceles("X");
         }
 
         static void OpenAdobeAcrobat(string f)
@@ -110,22 +133,29 @@ namespace Confiteria
             Document doc = new Document(PageSize.A4);
             //doc.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
             PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(RUTA, FileMode.Create));
-            doc.AddTitle("LISTADO ARANCELES COMEDOR CSPFA");
+            doc.AddTitle("LISTADO ARANCELES COMEDOR " + VGlobales.vp_role);
             doc.AddCreator("CSPFA");
             doc.Open();
 
-            Paragraph header = new Paragraph("LISTADO ARANCELES COMEDOR CSPFA", _standardFontBold);
+            Paragraph header = new Paragraph("LISTADO ARANCELES COMEDOR " + VGlobales.vp_role, _standardFontBold);
             header.Alignment = Element.ALIGN_CENTER;
             header.SpacingAfter = 5;
             doc.Add(header);
 
-            PdfPTable TABLA_ARANCELES = new PdfPTable(3);
+            PdfPTable TABLA_ARANCELES = new PdfPTable(5);
             TABLA_ARANCELES.WidthPercentage = 100;
             TABLA_ARANCELES.SpacingAfter = 5;
             TABLA_ARANCELES.SpacingBefore = 5;
-            TABLA_ARANCELES.SetWidths(new float[] { 1f, 1f, 1f });
+            TABLA_ARANCELES.SetWidths(new float[] { 1f, 1f, 2f, 1f, 1f });
 
-            PdfPCell CELDA_TIPO = new PdfPCell(new Phrase("TIPO", _mediumFontBoldWhite));
+            PdfPCell CELDA_ID = new PdfPCell(new Phrase("ID", _mediumFontBoldWhite));
+            CELDA_ID.BackgroundColor = topo;
+            CELDA_ID.BorderColor = blanco;
+            CELDA_ID.HorizontalAlignment = 1;
+            CELDA_ID.FixedHeight = 16f;
+            TABLA_ARANCELES.AddCell(CELDA_ID);
+            
+            PdfPCell CELDA_TIPO = new PdfPCell(new Phrase("CATEGORIA", _mediumFontBoldWhite));
             CELDA_TIPO.BackgroundColor = topo;
             CELDA_TIPO.BorderColor = blanco;
             CELDA_TIPO.HorizontalAlignment = 1;
@@ -146,6 +176,13 @@ namespace Confiteria
             CELDA_ARANCEL.FixedHeight = 16f;
             TABLA_ARANCELES.AddCell(CELDA_ARANCEL);
 
+            PdfPCell CELDA_STOCK = new PdfPCell(new Phrase("STOCK", _mediumFontBoldWhite));
+            CELDA_STOCK.BackgroundColor = topo;
+            CELDA_STOCK.BorderColor = blanco;
+            CELDA_STOCK.HorizontalAlignment = 1;
+            CELDA_STOCK.FixedHeight = 16f;
+            TABLA_ARANCELES.AddCell(CELDA_STOCK);
+
             if (dgListadoAranceles.Rows.Count > 0)
             {
                 int X = 0;
@@ -153,9 +190,11 @@ namespace Confiteria
 
                 foreach (DataGridViewRow row in dgListadoAranceles.Rows)
                 {
-                    string TIPO = row.Cells[0].Value.ToString();
-                    string NOMBRE = row.Cells[1].Value.ToString();
-                    string ARANCEL = row.Cells[2].Value.ToString();
+                    string ID = row.Cells[0].Value.ToString();
+                    string TIPO = row.Cells[1].Value.ToString();
+                    string NOMBRE = row.Cells[2].Value.ToString();
+                    string ARANCEL = row.Cells[3].Value.ToString();
+                    string STOCK = row.Cells[4].Value.ToString();
 
                     if (X == 0)
                     {
@@ -167,6 +206,13 @@ namespace Confiteria
                         colorFondo = new BaseColor(240, 240, 240);
                         X--;
                     }
+
+                    PdfPCell CELL_ID = new PdfPCell(new Phrase(ID, _mediumFont));
+                    CELL_ID.HorizontalAlignment = 1;
+                    CELL_ID.BorderWidth = 0;
+                    CELL_ID.BackgroundColor = colorFondo;
+                    CELL_ID.FixedHeight = 14f;
+                    TABLA_ARANCELES.AddCell(CELL_ID);
 
                     PdfPCell CELL_TIPO = new PdfPCell(new Phrase(TIPO, _mediumFont));
                     CELL_TIPO.HorizontalAlignment = 1;
@@ -188,6 +234,13 @@ namespace Confiteria
                     CELL_ARANCEL.BackgroundColor = colorFondo;
                     CELL_ARANCEL.FixedHeight = 14f;
                     TABLA_ARANCELES.AddCell(CELL_ARANCEL);
+
+                    PdfPCell CELL_STOCK = new PdfPCell(new Phrase(STOCK, _mediumFont));
+                    CELL_STOCK.HorizontalAlignment = 1;
+                    CELL_STOCK.BorderWidth = 0;
+                    CELL_STOCK.BackgroundColor = colorFondo;
+                    CELL_STOCK.FixedHeight = 14f;
+                    TABLA_ARANCELES.AddCell(CELL_STOCK);
                 }
             }
 
@@ -198,8 +251,12 @@ namespace Confiteria
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Archivo PDF|*.pdf";
+            saveFileDialog1.Title = "Guardar Listado";
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
+            {  
                 string RUTA = saveFileDialog1.FileName;
                 listadoPDF(RUTA);
 
@@ -214,10 +271,12 @@ namespace Confiteria
 
         private void btnExportarXls_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Archivo XLS|*.xls";
+            saveFileDialog1.Title = "Guardar Listado";
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                saveFileDialog1.Filter = "Archivo XLS|*.xls";
-                saveFileDialog1.Title = "Guardar Listado";
                 string RUTA = saveFileDialog1.FileName;
                 listadoExcel(RUTA);
                 DialogResult result = MessageBox.Show("LISTADO GENERADO CORRECTAMENTE", "LISTO!", MessageBoxButtons.YesNo);
@@ -254,22 +313,37 @@ namespace Confiteria
                 xlWorkBook = xlApp.Workbooks.Add();
                 ARANCELES = xlWorkBook.Worksheets[1];
                 ARANCELES.Name = "ARANCELES";
-                ARANCELES.Cells[1, 1] = "TIPO";
-                ARANCELES.Cells[1, 2] = "NOMBRE";
-                ARANCELES.Cells[1, 2] = "ARANCEL";
+                ARANCELES.Cells[1, 1] = "ID";
+                ARANCELES.Cells[1, 2] = "CATEGORIA";
+                ARANCELES.Cells[1, 3] = "NOMBRE";
+                ARANCELES.Cells[1, 4] = "PRECIO";
+                ARANCELES.Cells[1, 5] = "STOCK";
+                string ID = "";
+                string CATEGORIA = "";
+                string NOMBRE = "";
+                string PRECIO = "";
+                string STOCK = "";
                 int X = 2;
 
                 foreach (DataGridViewRow row in dgListadoAranceles.Rows)
                 {
-                    string TIPO = row.Cells[0].Value.ToString();
-                    string NOMBRE = row.Cells[1].Value.ToString();
-                    string ARANCEL = row.Cells[2].Value.ToString();
-                    ARANCELES.Cells[X, 1] = TIPO;
+                    ID = row.Cells[0].Value.ToString();
+                    CATEGORIA = row.Cells[1].Value.ToString();
+                    NOMBRE = row.Cells[2].Value.ToString();
+                    PRECIO = row.Cells[3].Value.ToString();
+                    STOCK = row.Cells[4].Value.ToString();
+
+                    ARANCELES.Cells[X, 1] = ID;
                     ARANCELES.Columns[1].AutoFit();
-                    ARANCELES.Cells[X, 2] = NOMBRE;
+                    ARANCELES.Cells[X, 2] = CATEGORIA;
                     ARANCELES.Columns[2].AutoFit();
-                    ARANCELES.Cells[X, 3] = DETALLE;
+                    ARANCELES.Cells[X, 3] = NOMBRE;
                     ARANCELES.Columns[3].AutoFit();
+                    ARANCELES.Cells[X, 4] = PRECIO;
+                    ARANCELES.Columns[4].AutoFit();
+                    ARANCELES.Cells[X, 5] = STOCK;
+                    ARANCELES.Columns[5].AutoFit();
+                    X++;
                 }
 
                 xlWorkBook.SaveAs(RUTA, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
@@ -302,13 +376,63 @@ namespace Confiteria
                         else
                             MessageBox.Show("NO SE PUDO ACTUALIZAR EL STOCK");
 
-                        buscarAranceles();
+                        string CATEGORIA = cbCategoria.Text.Trim();
+                        buscarAranceles("X");
                     }
                 }
             }
             else
             {
                 MessageBox.Show("INGRESAR UN NUMERO DE STOCK");
+            }
+        }
+
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            string CATEGORIA = cbCategoria.Text.Trim();
+            buscarAranceles(CATEGORIA);
+        }
+
+        private void btnVerTodos_Click(object sender, EventArgs e)
+        {
+            buscarAranceles("X");
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.FileName = "*.xls";
+            ofd.ShowDialog();
+            string ARCHIVO = ofd.FileName;
+
+            if (ARCHIVO != "*.xls")
+            {
+                if (MessageBox.Show("¿CONFIRMA IMPORTAR LOS ARANCELES?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    Cursor = Cursors.WaitCursor;
+                    OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ARCHIVO + ";Mode=ReadWrite;Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\"");
+                    con.Open();
+                    DataSet dset = new DataSet();
+                    OleDbDataAdapter dadp = new OleDbDataAdapter("SELECT * FROM [ARANCELES$] WHERE ID IS NOT NULL;", con);
+                    dadp.TableMappings.Add("ID", "CATEGORIA");
+                    dadp.Fill(dset);
+                    DataTable table = dset.Tables[0];
+
+                    for (int i = 0; i < table.Rows.Count; i++)
+                    {
+                        try
+                        {
+                            string ID = table.Rows[i][0].ToString();
+                            string CATEGORIA = table.Rows[i][1].ToString();
+                            string NOMBRE = table.Rows[i][2].ToString();
+                            string PRECIO = table.Rows[i][3].ToString();
+                            string STOCK = table.Rows[i][4].ToString();
+                        }
+                        catch (Exception) { }
+                    }
+
+                    Cursor = Cursors.Default;
+                }
             }
         }
     }

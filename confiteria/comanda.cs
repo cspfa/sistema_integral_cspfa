@@ -43,6 +43,14 @@ namespace Confiteria
             ID_MESA = MESA;
             NU_MESA = int.Parse(NRO_MESA);
             ID_COM = ID_COMANDA;
+            dpEntrega.Format = DateTimePickerFormat.Time;
+            dpEntrega.ShowUpDown = true;
+
+            if(VGlobales.vp_role == "CPOCABA")
+            {
+                dpEntrega.Visible = true;
+                label20.Visible = true;
+            }
 
             if (ID_COMANDA != 0)
             {
@@ -54,6 +62,7 @@ namespace Confiteria
                 CANTIDAD_ITEMS = dgItems.Rows.Count;
                 string[] DATOS_COMANDA = obtenerDatosComanda(ID_COMANDA);
                 decimal TOTAL = decimal.Parse(DATOS_COMANDA[4].ToString());
+                dpEntrega.Text = DATOS_COMANDA[5];
                 tbTotal.Text = TOTAL.ToString().Trim();
                 tbContralor.Text = DATOS_COMANDA[0].Trim();
                 cbMozo.SelectedValue = DATOS_COMANDA[1];
@@ -74,7 +83,7 @@ namespace Confiteria
      
         private string[] obtenerDatosComanda(int ID_COMANDA)
         {
-            string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA, IMPORTE FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
+            string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA, IMPORTE, ENTREGA FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
             string[] RETURN;
@@ -152,7 +161,7 @@ namespace Confiteria
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.NRO_COMANDA ";
+                    string QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.NRO_COMANDA, C.ENTREGA ";
                     QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                     QUERY += "WHERE C.ID = " + ID_COMANDA + " AND C.MOZO = M.ID AND C.FORMA_DE_PAGO = F.ID; ";
                     FbCommand cmd = new FbCommand(QUERY, connection, transaction);
@@ -481,6 +490,7 @@ namespace Confiteria
                 int NRO_COMANDA = 0;
                 string NCOM = "";
                 bool TIENE_DESCUENTO = utils.getTieneDescuento(TIPO_COMANDA);
+                string ENTREGA = dpEntrega.Text;
                 
                 if (TIENE_DESCUENTO == true)
                 {
@@ -505,7 +515,7 @@ namespace Confiteria
                     }
                     
                     NRO_COMANDA = NRO_COMANDA + 1;
-                    dlog.guardaMesa(FECHA, NU_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA);                    
+                    dlog.guardaMesa(FECHA, NU_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA, ENTREGA);                    
                     tbNroComanda.Text = NRO_COMANDA.ToString();
                     int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
                     guardarItems(ID_COM);
@@ -513,7 +523,7 @@ namespace Confiteria
                 }
                 else
                 {
-                    dlog.modificarMesa(ID_COMANDA, MOZO, IMPORTE, PERSONAS, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO);   
+                    dlog.modificarMesa(ID_COMANDA, MOZO, IMPORTE, PERSONAS, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, ENTREGA);   
                 }
 
                 if (MSG == "SI")
@@ -699,6 +709,11 @@ namespace Confiteria
                             buscarItems(ID_COM, "NO", "X");
                             imprimir i = new imprimir();
                             i.imprimirComanda(ITEMS, COMANDA, "SOCIO");
+
+                            /*if (VGlobales.vp_role == "CPOCABA")
+                            {
+                                i.imprimirComanda(ITEMS, COMANDA, "COCINA");
+                            }*/
 
                             if (FORMA_DE_PAGO == "8")
                             {
