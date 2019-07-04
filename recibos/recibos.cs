@@ -1201,17 +1201,17 @@ namespace SOCIOS
             decimal Valor = 0;
 
 
-            string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO=' " + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
-            DataRow[] foundRows;
-            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            //string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO=' " + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
+            //DataRow[] foundRows;
+            //foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
-            if (foundRows.Length > 0)
-            {
-                 if (foundRows[0][0].ToString().Length>0)       
-                     Valor = Decimal.Parse(foundRows[0][0].ToString().Trim());
-            }
-            else
-               Valor= 0;
+            //if (foundRows.Length > 0)
+            //{
+            //     if (foundRows[0][0].ToString().Length>0)       
+            //         Valor = Decimal.Parse(foundRows[0][0].ToString().Trim());
+            //}
+            //else
+            //   Valor= 0;
 
 
             decimal Total = Valor + Decimal.Parse(tbArancel.Text);
