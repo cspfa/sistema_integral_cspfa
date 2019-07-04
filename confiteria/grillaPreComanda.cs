@@ -1415,11 +1415,11 @@ namespace Confiteria
             sub5.SpacingAfter = 5;
             doc.Add(sub5);
 
-            PdfPTable TABLA_EMPLEADOS = new PdfPTable(9);
+            PdfPTable TABLA_EMPLEADOS = new PdfPTable(8);
             TABLA_EMPLEADOS.WidthPercentage = 100;
             TABLA_EMPLEADOS.SpacingAfter = 5;
             TABLA_EMPLEADOS.SpacingBefore = 5;
-            TABLA_EMPLEADOS.SetWidths(new float[] { 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f, 1f });
+            TABLA_EMPLEADOS.SetWidths(new float[] { 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f });
 
             PdfPCell CELDA_NRO_COMANDA_EMP = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
             CELDA_NRO_COMANDA_EMP.BackgroundColor = topo;
@@ -1476,13 +1476,6 @@ namespace Confiteria
             CELDA_DESC_AP_COMANDA_EMP.HorizontalAlignment = 1;
             CELDA_DESC_AP_COMANDA_EMP.FixedHeight = 16f;
             TABLA_EMPLEADOS.AddCell(CELDA_DESC_AP_COMANDA_EMP);
-
-            PdfPCell CELDA_IMP_FINAL_COMANDA_EMP = new PdfPCell(new Phrase("A DESC", _mediumFontBoldWhite));
-            CELDA_IMP_FINAL_COMANDA_EMP.BackgroundColor = topo;
-            CELDA_IMP_FINAL_COMANDA_EMP.BorderColor = blanco;
-            CELDA_IMP_FINAL_COMANDA_EMP.HorizontalAlignment = 1;
-            CELDA_IMP_FINAL_COMANDA_EMP.FixedHeight = 16f;
-            TABLA_EMPLEADOS.AddCell(CELDA_IMP_FINAL_COMANDA_EMP);
 
             #endregion
 
@@ -1579,13 +1572,6 @@ namespace Confiteria
                     CELL_DESC_AP_EMP.BackgroundColor = colorFondo;
                     CELL_DESC_AP_EMP.FixedHeight = 14f;
                     TABLA_EMPLEADOS.AddCell(CELL_DESC_AP_EMP);
-
-                    PdfPCell CELL_IMP_DESC_EMP = new PdfPCell(new Phrase(IMP_DESC_FINAL, _mediumFont));
-                    CELL_IMP_DESC_EMP.HorizontalAlignment = 1;
-                    CELL_IMP_DESC_EMP.BorderWidth = 0;
-                    CELL_IMP_DESC_EMP.BackgroundColor = colorFondo;
-                    CELL_IMP_DESC_EMP.FixedHeight = 14f;
-                    TABLA_EMPLEADOS.AddCell(CELL_IMP_DESC_EMP);
                 }
             }
 
@@ -1601,7 +1587,7 @@ namespace Confiteria
             TABLA_EMPLEADOS_TOTAL.SpacingBefore = 5;
             TABLA_EMPLEADOS_TOTAL.SetWidths(new float[] { 1f });
 
-            PdfPCell CELDA_TOTAL_EMPLEADOS = new PdfPCell(new Phrase("TOTAL A DESCONTAR $ " + string.Format("{0:n}", TOTAL_EMPLEADOS), _mediumFontBoldWhite));
+            PdfPCell CELDA_TOTAL_EMPLEADOS = new PdfPCell(new Phrase("TOTAL EMPLEADOS $ " + string.Format("{0:n}", TOTAL_EMPLEADOS), _mediumFontBoldWhite));
             CELDA_TOTAL_EMPLEADOS.BackgroundColor = topo;
             CELDA_TOTAL_EMPLEADOS.BorderColor = blanco;
             CELDA_TOTAL_EMPLEADOS.HorizontalAlignment = 2;
@@ -1699,7 +1685,7 @@ namespace Confiteria
                             else
                                 QUERY += "AND RENDIDA IS NULL ";
 
-                            if (ORDEN == "COMANDA")
+                        if (ORDEN == "COMANDA")
                                 QUERY += "ORDER BY C.NRO_COMANDA ASC;";
                             else
                                 QUERY += "ORDER BY C.COM_BORRADOR ASC;";
