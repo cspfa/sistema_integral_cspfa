@@ -53,6 +53,7 @@ namespace Confiteria
             this.cbOrdenListado = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbBuscarIngresos = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgMesas)).BeginInit();
             this.cmMesas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -61,7 +62,7 @@ namespace Confiteria
             // btnABM
             // 
             this.btnABM.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnABM.Location = new System.Drawing.Point(941, 612);
+            this.btnABM.Location = new System.Drawing.Point(1093, 612);
             this.btnABM.Name = "btnABM";
             this.btnABM.Size = new System.Drawing.Size(97, 32);
             this.btnABM.TabIndex = 13;
@@ -96,13 +97,13 @@ namespace Confiteria
             this.forzarCierreToolStripMenuItem,
             this.cambiarDeMesaToolStripMenuItem});
             this.cmMesas.Name = "cmMesas";
-            this.cmMesas.Size = new System.Drawing.Size(153, 114);
+            this.cmMesas.Size = new System.Drawing.Size(160, 92);
             // 
             // abrirMesaToolStripMenuItem
             // 
             this.abrirMesaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("abrirMesaToolStripMenuItem.Image")));
             this.abrirMesaToolStripMenuItem.Name = "abrirMesaToolStripMenuItem";
-            this.abrirMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrirMesaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.abrirMesaToolStripMenuItem.Text = "Abrir Mesa";
             this.abrirMesaToolStripMenuItem.Click += new System.EventHandler(this.abrirMesaToolStripMenuItem_Click);
             // 
@@ -110,7 +111,7 @@ namespace Confiteria
             // 
             this.modificarMesaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("modificarMesaToolStripMenuItem.Image")));
             this.modificarMesaToolStripMenuItem.Name = "modificarMesaToolStripMenuItem";
-            this.modificarMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.modificarMesaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.modificarMesaToolStripMenuItem.Text = "Ver Comanda";
             this.modificarMesaToolStripMenuItem.Click += new System.EventHandler(this.modificarMesaToolStripMenuItem_Click);
             // 
@@ -118,7 +119,7 @@ namespace Confiteria
             // 
             this.forzarCierreToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("forzarCierreToolStripMenuItem.Image")));
             this.forzarCierreToolStripMenuItem.Name = "forzarCierreToolStripMenuItem";
-            this.forzarCierreToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.forzarCierreToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.forzarCierreToolStripMenuItem.Text = "Forzar Cierre";
             this.forzarCierreToolStripMenuItem.Click += new System.EventHandler(this.forzarCierreToolStripMenuItem_Click);
             // 
@@ -128,14 +129,14 @@ namespace Confiteria
             this.toolStripMenuItem1});
             this.cambiarDeMesaToolStripMenuItem.Image = global::Confiteria.Properties.Resources.arrow_switch;
             this.cambiarDeMesaToolStripMenuItem.Name = "cambiarDeMesaToolStripMenuItem";
-            this.cambiarDeMesaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cambiarDeMesaToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.cambiarDeMesaToolStripMenuItem.Text = "Cambiar a Mesa";
             this.cambiarDeMesaToolStripMenuItem.MouseHover += new System.EventHandler(this.cambiarDeMesaToolStripMenuItem_MouseHover);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(67, 22);
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // label2
@@ -189,7 +190,7 @@ namespace Confiteria
             // btnActualizarGrillas
             // 
             this.btnActualizarGrillas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarGrillas.Location = new System.Drawing.Point(556, 612);
+            this.btnActualizarGrillas.Location = new System.Drawing.Point(708, 612);
             this.btnActualizarGrillas.Name = "btnActualizarGrillas";
             this.btnActualizarGrillas.Size = new System.Drawing.Size(145, 32);
             this.btnActualizarGrillas.TabIndex = 23;
@@ -200,7 +201,7 @@ namespace Confiteria
             // btnBuscarComandas
             // 
             this.btnBuscarComandas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarComandas.Location = new System.Drawing.Point(706, 612);
+            this.btnBuscarComandas.Location = new System.Drawing.Point(858, 612);
             this.btnBuscarComandas.Name = "btnBuscarComandas";
             this.btnBuscarComandas.Size = new System.Drawing.Size(230, 32);
             this.btnBuscarComandas.TabIndex = 24;
@@ -272,11 +273,23 @@ namespace Confiteria
             this.tbBuscarIngresos.TabIndex = 31;
             this.tbBuscarIngresos.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarIngresos_KeyUp);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(556, 612);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(147, 32);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "LISTADO COMPLETO";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // grillaPreComanda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1334, 653);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tbBuscarIngresos);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbOrdenListado);
@@ -328,5 +341,6 @@ namespace Confiteria
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbBuscarIngresos;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.Button button1;
     }
 }

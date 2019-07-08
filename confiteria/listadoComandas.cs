@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
-using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
 using Excel = Microsoft.Office.Interop.Excel;
 using SOCIOS;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace Confiteria
 {
@@ -912,6 +909,19 @@ namespace Confiteria
                 cbFormaDePago.SelectedIndex = 0;
                 cbTipoComprobante.Enabled = true;
                 cbFormaDePago.Enabled = true;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Archivo PDF|*.pdf";
+            saveFileDialog1.Title = "Guardar Informe";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //grillaPreComanda gpc = new grillaPreComanda();
+                //gpc.listadoPDF();
             }
         }
     }

@@ -550,7 +550,7 @@ namespace Confiteria
         }
 
         #region LISTADO PDF
-        private void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, DataSet EMPLEADOS)
+        public void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, DataSet EMPLEADOS, string COMPLETO)
         {
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _standardFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
@@ -574,7 +574,7 @@ namespace Confiteria
             doc.AddCreator("CSPFA");
             doc.Open();
 
-            Paragraph header = new Paragraph("LISTADO COMANDAS COMEDOR CSPFA", _standardFontBold);
+            Paragraph header = new Paragraph("LISTADO COMANDAS " + VGlobales.vp_role, _standardFontBold);
             header.Alignment = Element.ALIGN_CENTER;
             header.SpacingAfter = 5;
             doc.Add(header);
@@ -583,88 +583,93 @@ namespace Confiteria
             sub.Alignment = Element.ALIGN_CENTER;
             sub.SpacingAfter = 5;
             doc.Add(sub);
-            
-            #region TABLA EFECTIVO
 
             PdfPTable TABLA_EFECTIVO = new PdfPTable(9);
-            TABLA_EFECTIVO.WidthPercentage = 100;
-            TABLA_EFECTIVO.SpacingAfter = 5;
-            TABLA_EFECTIVO.SpacingBefore = 5;
-            TABLA_EFECTIVO.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f });
 
-            PdfPCell CELDA_NRO_COMANDA = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
-            CELDA_NRO_COMANDA.BackgroundColor = topo;
-            CELDA_NRO_COMANDA.BorderColor = blanco;
-            CELDA_NRO_COMANDA.HorizontalAlignment = 1;
-            CELDA_NRO_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_NRO_COMANDA);
+            #region TABLA EFECTIVO
 
-            PdfPCell CELDA_NRO_BORRADOR = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
-            CELDA_NRO_BORRADOR.BackgroundColor = topo;
-            CELDA_NRO_BORRADOR.BorderColor = blanco;
-            CELDA_NRO_BORRADOR.HorizontalAlignment = 1;
-            CELDA_NRO_BORRADOR.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_NRO_BORRADOR);
+            if (EFECTIVO.Tables.Count > 0)
+            {
+                TABLA_EFECTIVO.WidthPercentage = 100;
+                TABLA_EFECTIVO.SpacingAfter = 5;
+                TABLA_EFECTIVO.SpacingBefore = 5;
+                TABLA_EFECTIVO.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f });
 
-            PdfPCell CELDA_FECHA_COMANDA = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
-            CELDA_FECHA_COMANDA.BackgroundColor = topo;
-            CELDA_FECHA_COMANDA.BorderColor = blanco;
-            CELDA_FECHA_COMANDA.HorizontalAlignment = 1;
-            CELDA_FECHA_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_FECHA_COMANDA);
+                PdfPCell CELDA_NRO_COMANDA = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
+                CELDA_NRO_COMANDA.BackgroundColor = topo;
+                CELDA_NRO_COMANDA.BorderColor = blanco;
+                CELDA_NRO_COMANDA.HorizontalAlignment = 1;
+                CELDA_NRO_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_NRO_COMANDA);
 
-            PdfPCell CELDA_NRO_SOC_COMANDA = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
-            CELDA_NRO_SOC_COMANDA.BackgroundColor = topo;
-            CELDA_NRO_SOC_COMANDA.BorderColor = blanco;
-            CELDA_NRO_SOC_COMANDA.HorizontalAlignment = 1;
-            CELDA_NRO_SOC_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_NRO_SOC_COMANDA);
+                PdfPCell CELDA_NRO_BORRADOR = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
+                CELDA_NRO_BORRADOR.BackgroundColor = topo;
+                CELDA_NRO_BORRADOR.BorderColor = blanco;
+                CELDA_NRO_BORRADOR.HorizontalAlignment = 1;
+                CELDA_NRO_BORRADOR.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_NRO_BORRADOR);
 
-            PdfPCell CELDA_AFILIADO_COMANDA = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
-            CELDA_AFILIADO_COMANDA.BackgroundColor = topo;
-            CELDA_AFILIADO_COMANDA.BorderColor = blanco;
-            CELDA_AFILIADO_COMANDA.HorizontalAlignment = 1;
-            CELDA_AFILIADO_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_AFILIADO_COMANDA);
+                PdfPCell CELDA_FECHA_COMANDA = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_COMANDA.BackgroundColor = topo;
+                CELDA_FECHA_COMANDA.BorderColor = blanco;
+                CELDA_FECHA_COMANDA.HorizontalAlignment = 1;
+                CELDA_FECHA_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_FECHA_COMANDA);
 
-            PdfPCell CELDA_BENEFICIO_COMANDA = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
-            CELDA_BENEFICIO_COMANDA.BackgroundColor = topo;
-            CELDA_BENEFICIO_COMANDA.BorderColor = blanco;
-            CELDA_BENEFICIO_COMANDA.HorizontalAlignment = 1;
-            CELDA_BENEFICIO_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_BENEFICIO_COMANDA);
+                PdfPCell CELDA_NRO_SOC_COMANDA = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
+                CELDA_NRO_SOC_COMANDA.BackgroundColor = topo;
+                CELDA_NRO_SOC_COMANDA.BorderColor = blanco;
+                CELDA_NRO_SOC_COMANDA.HorizontalAlignment = 1;
+                CELDA_NRO_SOC_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_NRO_SOC_COMANDA);
 
-            PdfPCell CELDA_NOMAPE_COMANDA = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
-            CELDA_NOMAPE_COMANDA.BackgroundColor = topo;
-            CELDA_NOMAPE_COMANDA.BorderColor = blanco;
-            CELDA_NOMAPE_COMANDA.HorizontalAlignment = 1;
-            CELDA_NOMAPE_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_NOMAPE_COMANDA);
+                PdfPCell CELDA_AFILIADO_COMANDA = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
+                CELDA_AFILIADO_COMANDA.BackgroundColor = topo;
+                CELDA_AFILIADO_COMANDA.BorderColor = blanco;
+                CELDA_AFILIADO_COMANDA.HorizontalAlignment = 1;
+                CELDA_AFILIADO_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_AFILIADO_COMANDA);
 
-            PdfPCell CELDA_IMPORTE_COMANDA = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-            CELDA_IMPORTE_COMANDA.BackgroundColor = topo;
-            CELDA_IMPORTE_COMANDA.BorderColor = blanco;
-            CELDA_IMPORTE_COMANDA.HorizontalAlignment = 1;
-            CELDA_IMPORTE_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_IMPORTE_COMANDA);
+                PdfPCell CELDA_BENEFICIO_COMANDA = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
+                CELDA_BENEFICIO_COMANDA.BackgroundColor = topo;
+                CELDA_BENEFICIO_COMANDA.BorderColor = blanco;
+                CELDA_BENEFICIO_COMANDA.HorizontalAlignment = 1;
+                CELDA_BENEFICIO_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_BENEFICIO_COMANDA);
 
-            PdfPCell CELDA_ANULADA_COMANDA = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
-            CELDA_ANULADA_COMANDA.BackgroundColor = topo;
-            CELDA_ANULADA_COMANDA.BorderColor = blanco;
-            CELDA_ANULADA_COMANDA.HorizontalAlignment = 1;
-            CELDA_ANULADA_COMANDA.FixedHeight = 16f;
-            TABLA_EFECTIVO.AddCell(CELDA_ANULADA_COMANDA);
+                PdfPCell CELDA_NOMAPE_COMANDA = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
+                CELDA_NOMAPE_COMANDA.BackgroundColor = topo;
+                CELDA_NOMAPE_COMANDA.BorderColor = blanco;
+                CELDA_NOMAPE_COMANDA.HorizontalAlignment = 1;
+                CELDA_NOMAPE_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_NOMAPE_COMANDA);
+
+                PdfPCell CELDA_IMPORTE_COMANDA = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_COMANDA.BackgroundColor = topo;
+                CELDA_IMPORTE_COMANDA.BorderColor = blanco;
+                CELDA_IMPORTE_COMANDA.HorizontalAlignment = 1;
+                CELDA_IMPORTE_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_IMPORTE_COMANDA);
+
+                PdfPCell CELDA_ANULADA_COMANDA = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
+                CELDA_ANULADA_COMANDA.BackgroundColor = topo;
+                CELDA_ANULADA_COMANDA.BorderColor = blanco;
+                CELDA_ANULADA_COMANDA.HorizontalAlignment = 1;
+                CELDA_ANULADA_COMANDA.FixedHeight = 16f;
+                TABLA_EFECTIVO.AddCell(CELDA_ANULADA_COMANDA);
+            }
 
             #endregion
 
             #region DATOS EFECTIVO
+
             decimal TOTAL_EFECTIVO = 0;
 
             if (EFECTIVO.Tables.Count > 0)
             {
                 int X = 0;
                 BaseColor colorFondo = new BaseColor(255, 255, 255);
-                
+                BaseColor blancoFondo = new BaseColor(255, 255, 255);
 
                 foreach (DataRow row in EFECTIVO.Tables[0].Rows)
                 {
@@ -757,10 +762,12 @@ namespace Confiteria
                     CELL_ANULADA_COMANDA.BackgroundColor = colorFondo;
                     CELL_ANULADA_COMANDA.FixedHeight = 14f;
                     TABLA_EFECTIVO.AddCell(CELL_ANULADA_COMANDA);
-                }
-            }
 
-            doc.Add(TABLA_EFECTIVO);
+                    
+                }
+
+                doc.Add(TABLA_EFECTIVO);
+            }
 
             #endregion
 
@@ -1610,7 +1617,7 @@ namespace Confiteria
         }
         #endregion
 
-        private DataSet buscarComandas(string FECHA, string FORMA_DE_PAGO, string ORDEN, int RENDIDA)
+        public DataSet buscarComandas(string FECHA, string FORMA_DE_PAGO, string ORDEN, int RENDIDA)
         {
             conString conString = new conString();
             string connectionString = conString.get();
@@ -1846,7 +1853,7 @@ namespace Confiteria
             pbMarcandoComandas.Visible = false;
         }
 
-        public void imprimirListado(string CONTROL, int RENDIDA)
+        public void imprimirListado(string CONTROL, int RENDIDA, string COMPLETO)
         {
             string ORDEN = cbOrdenListado.SelectedItem.ToString();
             string FECHA = dpFechaListado.Text;
@@ -1864,7 +1871,7 @@ namespace Confiteria
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string RUTA = saveFileDialog1.FileName;
-                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, EMPLEADOS);
+                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, EMPLEADOS, COMPLETO);
 
                 if (CONTROL == "NO")
                 {
@@ -1905,7 +1912,7 @@ namespace Confiteria
             if (MessageBox.Show("¿CONFIRMA CERRAR LA CAJA DEL DIA?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (validarCajaCerrada() == false)
-                    imprimirListado("NO", 0);
+                    imprimirListado("NO", 0, "NO");
                 else
                     MessageBox.Show("LA CAJA DEL DIA DE HOY YA FUE CERRADA", "ERROR");
             }
@@ -2027,7 +2034,7 @@ namespace Confiteria
 
         private void btnListadoControl_Click(object sender, EventArgs e)
         {
-            imprimirListado("SI", 0);
+            imprimirListado("SI", 0, "NO");
         }
 
         private void grillaPreComanda_Load(object sender, EventArgs e)
@@ -2074,6 +2081,11 @@ namespace Confiteria
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            imprimirListado("SI", 0, "SI");
         }
     }
 }

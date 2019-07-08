@@ -77,7 +77,7 @@ namespace Confiteria
         {
             grillaPreComanda gp = new grillaPreComanda();
             int RENDIDA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
-            gp.imprimirListado("SI", RENDIDA);
+            gp.imprimirListado("SI", RENDIDA, "NO");
         }
     }
 }
