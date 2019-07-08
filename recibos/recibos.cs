@@ -1124,8 +1124,9 @@ namespace SOCIOS
             int Forma_Pago= Int32.Parse( cbFormaDePago.SelectedValue.ToString());
 
             if (Forma_Pago == 1) // si es efectvo, controlar que no sea mas de 9900 por dni, por fecha 
-              Control=  Control_Efectivo();
-
+            {
+                Control = Control_Efectivo();
+            }
 
             if (Control == true)
             {
@@ -1199,22 +1200,30 @@ namespace SOCIOS
             string DNI = "";
             string FECHA_RECIBO = DateTime.Today.ToShortDateString();
             decimal Valor = 0;
+            decimal Valor_Control = 0;
+
+            if (tbArancel.Visible && !lbArancel.Visible)
+                Valor_Control = Decimal.Parse(tbArancel.Text);
+            else
+                Valor_Control = Decimal.Parse(lbArancel.Text);
 
 
-            //string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO=' " + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
-            //DataRow[] foundRows;
-            //foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
-
-            //if (foundRows.Length > 0)
-            //{
-            //     if (foundRows[0][0].ToString().Length>0)       
-            //         Valor = Decimal.Parse(foundRows[0][0].ToString().Trim());
-            //}
-            //else
-            //   Valor= 0;
 
 
-            decimal Total = Valor + Decimal.Parse(tbArancel.Text);
+            string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO=' " + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                if (foundRows[0][0].ToString().Length > 0)
+                    Valor = Decimal.Parse(foundRows[0][0].ToString().Trim());
+            }
+            else
+                Valor = 0;
+
+
+            decimal Total = Valor + Decimal.Round( Valor_Control,2);
 
             if (Total > 9900)
             {
