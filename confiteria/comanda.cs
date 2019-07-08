@@ -90,11 +90,11 @@ namespace Confiteria
 
             if (foundRows.Length > 0)
             {
-                RETURN = new string[] { foundRows[0][0].ToString(), foundRows[0][1].ToString(), foundRows[0][2].ToString(), foundRows[0][3].ToString(), foundRows[0][4].ToString() };
+                RETURN = new string[] { foundRows[0][0].ToString(), foundRows[0][1].ToString(), foundRows[0][2].ToString(), foundRows[0][3].ToString(), foundRows[0][4].ToString(), foundRows[0][5].ToString() };
             }
             else
             {
-                RETURN = new string[] { "X", "X", "X", "X", "X" };
+                RETURN = new string[] { "X", "X", "X", "X", "X", "X" };
             }
 
             return RETURN;
@@ -523,7 +523,7 @@ namespace Confiteria
                 }
                 else
                 {
-                    dlog.modificarMesa(ID_COMANDA, MOZO, IMPORTE, PERSONAS, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, ENTREGA);   
+                    dlog.modificarMesa(ID_COMANDA, MOZO, IMPORTE, PERSONAS, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO);   
                 }
 
                 if (MSG == "SI")

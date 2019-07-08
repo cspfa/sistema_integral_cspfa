@@ -50,7 +50,7 @@
             // 
             // btnPdf
             // 
-            this.btnPdf.Location = new System.Drawing.Point(433, 65);
+            this.btnPdf.Location = new System.Drawing.Point(523, 64);
             this.btnPdf.Name = "btnPdf";
             this.btnPdf.Size = new System.Drawing.Size(127, 23);
             this.btnPdf.TabIndex = 79;
@@ -84,7 +84,7 @@
             this.dgListadoAranceles.ShowCellToolTips = false;
             this.dgListadoAranceles.ShowEditingIcon = false;
             this.dgListadoAranceles.ShowRowErrors = false;
-            this.dgListadoAranceles.Size = new System.Drawing.Size(415, 435);
+            this.dgListadoAranceles.Size = new System.Drawing.Size(505, 435);
             this.dgListadoAranceles.TabIndex = 80;
             this.dgListadoAranceles.TabStop = false;
             // 
@@ -120,7 +120,7 @@
             // 
             // btnExportarXls
             // 
-            this.btnExportarXls.Location = new System.Drawing.Point(433, 94);
+            this.btnExportarXls.Location = new System.Drawing.Point(523, 93);
             this.btnExportarXls.Name = "btnExportarXls";
             this.btnExportarXls.Size = new System.Drawing.Size(127, 54);
             this.btnExportarXls.TabIndex = 81;
@@ -194,7 +194,7 @@
             // 
             // btnImportar
             // 
-            this.btnImportar.Location = new System.Drawing.Point(433, 154);
+            this.btnImportar.Location = new System.Drawing.Point(523, 153);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(127, 54);
             this.btnImportar.TabIndex = 89;
@@ -206,7 +206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 512);
+            this.ClientSize = new System.Drawing.Size(662, 512);
             this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.btnVerTodos);
             this.Controls.Add(this.btnFiltrar);

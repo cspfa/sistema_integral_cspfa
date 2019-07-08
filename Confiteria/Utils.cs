@@ -50,6 +50,34 @@ namespace Confiteria
             }
         }
 
+        public bool setStock(int STOCK, int ID_PROF)
+        {
+            try
+            {
+                string QUERY = "UPDATE PROFESIONALES SET STOCK = " + STOCK + " WHERE ID = " + ID_PROF + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
+        public bool setArancel(decimal ARANCEL, int ID_PROF)
+        {
+            try
+            {
+                string QUERY = "UPDATE ARANCELES SET ARANCEL = " + ARANCEL + " WHERE PROFESIONAL = " + ID_PROF + " AND FE_BAJA IS NULL;";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
         public bool getTieneDescuento(int TIPO_COMANDA)
         {
             bool RESULTADO = false;

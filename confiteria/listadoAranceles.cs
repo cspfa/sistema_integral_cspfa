@@ -15,6 +15,7 @@ namespace Confiteria
     public partial class listadoAranceles : Form
     {
         bo dlog = new bo();
+        Utils utils = new Utils();
 
         public listadoAranceles()
         {
@@ -368,7 +369,6 @@ namespace Confiteria
                         int ID = Convert.ToInt32(row.Cells[0].Value);
                         int STOCK = Convert.ToInt32(tbStock.Text);
                         STOCK_TOTAL = STOCK_ACTUAL + STOCK;
-                        Utils utils = new Utils();
                         bool SET_ITEM_STOCK = utils.setItemStock(ID, STOCK_TOTAL);
 
                         if (SET_ITEM_STOCK == true)
@@ -377,7 +377,7 @@ namespace Confiteria
                             MessageBox.Show("NO SE PUDO ACTUALIZAR EL STOCK");
 
                         string CATEGORIA = cbCategoria.Text.Trim();
-                        buscarAranceles("X");
+                        buscarAranceles(CATEGORIA);
                     }
                 }
             }
@@ -422,15 +422,18 @@ namespace Confiteria
                     {
                         try
                         {
-                            string ID = table.Rows[i][0].ToString();
-                            string CATEGORIA = table.Rows[i][1].ToString();
-                            string NOMBRE = table.Rows[i][2].ToString();
-                            string PRECIO = table.Rows[i][3].ToString();
-                            string STOCK = table.Rows[i][4].ToString();
+                            int ID = Convert.ToInt32(table.Rows[i][0]);
+                            decimal PRECIO = Convert.ToDecimal(table.Rows[i][3]);
+                            int STOCK = Convert.ToInt32(table.Rows[i][4]);
+                            utils.setArancel(PRECIO, ID);
+                            utils.setStock(STOCK, ID);
                         }
                         catch (Exception) { }
                     }
 
+                    MessageBox.Show("ARANCELES Y STOCK IMPORTADOS CORRECTAMENTE");
+                    string CATEGORIA = cbCategoria.Text.Trim();
+                    buscarAranceles(CATEGORIA);
                     Cursor = Cursors.Default;
                 }
             }

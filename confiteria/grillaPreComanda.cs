@@ -550,7 +550,7 @@ namespace Confiteria
         }
 
         #region LISTADO PDF
-        private void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL)
+        private void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, DataSet EMPLEADOS)
         {
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _standardFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
@@ -1408,6 +1408,196 @@ namespace Confiteria
 
             #endregion
 
+            #region TABLA EMPLEADOS
+
+            /*Paragraph sub5 = new Paragraph("EMPLEADOS", _standardFontBold);
+            sub5.Alignment = Element.ALIGN_CENTER;
+            sub5.SpacingAfter = 5;
+            doc.Add(sub5);
+
+            PdfPTable TABLA_EMPLEADOS = new PdfPTable(8);
+            TABLA_EMPLEADOS.WidthPercentage = 100;
+            TABLA_EMPLEADOS.SpacingAfter = 5;
+            TABLA_EMPLEADOS.SpacingBefore = 5;
+            TABLA_EMPLEADOS.SetWidths(new float[] { 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f });
+
+            PdfPCell CELDA_NRO_COMANDA_EMP = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
+            CELDA_NRO_COMANDA_EMP.BackgroundColor = topo;
+            CELDA_NRO_COMANDA_EMP.BorderColor = blanco;
+            CELDA_NRO_COMANDA_EMP.HorizontalAlignment = 1;
+            CELDA_NRO_COMANDA_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_NRO_COMANDA_EMP);
+
+            PdfPCell CELDA_NRO_BORRADOR_EMP = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
+            CELDA_NRO_BORRADOR_EMP.BackgroundColor = topo;
+            CELDA_NRO_BORRADOR_EMP.BorderColor = blanco;
+            CELDA_NRO_BORRADOR_EMP.HorizontalAlignment = 1;
+            CELDA_NRO_BORRADOR_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_NRO_BORRADOR_EMP);
+
+            PdfPCell CELDA_FECHA_COMANDA_EMP = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+            CELDA_FECHA_COMANDA_EMP.BackgroundColor = topo;
+            CELDA_FECHA_COMANDA_EMP.BorderColor = blanco;
+            CELDA_FECHA_COMANDA_EMP.HorizontalAlignment = 1;
+            CELDA_FECHA_COMANDA_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_FECHA_COMANDA_EMP);
+
+            PdfPCell CELDA_NRO_SOC_COMANDA_EMP = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
+            CELDA_NRO_SOC_COMANDA_EMP.BackgroundColor = topo;
+            CELDA_NRO_SOC_COMANDA_EMP.BorderColor = blanco;
+            CELDA_NRO_SOC_COMANDA_EMP.HorizontalAlignment = 1;
+            CELDA_NRO_SOC_COMANDA_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_NRO_SOC_COMANDA_EMP);
+
+            PdfPCell CELDA_NOMAPE_COMANDA_EMP = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
+            CELDA_NOMAPE_COMANDA_EMP.BackgroundColor = topo;
+            CELDA_NOMAPE_COMANDA_EMP.BorderColor = blanco;
+            CELDA_NOMAPE_COMANDA_EMP.HorizontalAlignment = 1;
+            CELDA_NOMAPE_COMANDA_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_NOMAPE_COMANDA_EMP);
+
+            PdfPCell CELDA_IMPORTE_COMANDA_EMP = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+            CELDA_IMPORTE_COMANDA_EMP.BackgroundColor = topo;
+            CELDA_IMPORTE_COMANDA_EMP.BorderColor = blanco;
+            CELDA_IMPORTE_COMANDA_EMP.HorizontalAlignment = 1;
+            CELDA_IMPORTE_COMANDA_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_IMPORTE_COMANDA_EMP);
+
+            PdfPCell CELDA_ANULADA_COMANDA_EMP = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
+            CELDA_ANULADA_COMANDA_EMP.BackgroundColor = topo;
+            CELDA_ANULADA_COMANDA_EMP.BorderColor = blanco;
+            CELDA_ANULADA_COMANDA_EMP.HorizontalAlignment = 1;
+            CELDA_ANULADA_COMANDA_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_ANULADA_COMANDA_EMP);
+
+            PdfPCell CELDA_DESC_AP_COMANDA_EMP = new PdfPCell(new Phrase("% DESC", _mediumFontBoldWhite));
+            CELDA_DESC_AP_COMANDA_EMP.BackgroundColor = topo;
+            CELDA_DESC_AP_COMANDA_EMP.BorderColor = blanco;
+            CELDA_DESC_AP_COMANDA_EMP.HorizontalAlignment = 1;
+            CELDA_DESC_AP_COMANDA_EMP.FixedHeight = 16f;
+            TABLA_EMPLEADOS.AddCell(CELDA_DESC_AP_COMANDA_EMP);
+
+            #endregion
+
+            #region DATOS EMPLEADOS
+            decimal TOTAL_EMPLEADOS = 0;
+
+            if (EMPLEADOS.Tables.Count > 0)
+            {
+                int X = 0;
+                BaseColor colorFondo = new BaseColor(255, 255, 255);
+
+                foreach (DataRow row in EMPLEADOS.Tables[0].Rows)
+                {
+                    string NRO_COMANDA = row[0].ToString();
+                    string FECHA = row[1].ToString();
+                    decimal IMPORTE = Convert.ToDecimal(row[4].ToString());
+                    string IMP_FINAL = string.Format("{0:n}", IMPORTE);
+                    string NRO_SOC = row[5].ToString() + " " + row[6].ToString() + " " + row[7].ToString();
+                    string NOM_APE = row[9].ToString();
+                    string ANULADA = row[14].ToString();
+                    string COM_BORRADOR = row[15].ToString();
+                    string DESCUENTO_APLICADO = "% " + row[16].ToString();
+                    decimal IMPORTE_DESCONTADO = Convert.ToDecimal(row[17].ToString());
+                    string IMP_DESC_FINAL = string.Format("{0:n}", IMPORTE_DESCONTADO);
+
+                    if (ANULADA == "")
+                        TOTAL_EMPLEADOS = TOTAL_EMPLEADOS + IMPORTE_DESCONTADO;
+                    else
+                        TOTAL_EMPLEADOS = TOTAL_EMPLEADOS + 0;
+
+                    if (X == 0)
+                    {
+                        colorFondo = new BaseColor(255, 255, 255);
+                        X++;
+                    }
+                    else
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
+                        X--;
+                    }
+
+                    PdfPCell CELL_NUMERO_COMANDA_EMP = new PdfPCell(new Phrase(NRO_COMANDA, _mediumFont));
+                    CELL_NUMERO_COMANDA_EMP.HorizontalAlignment = 1;
+                    CELL_NUMERO_COMANDA_EMP.BorderWidth = 0;
+                    CELL_NUMERO_COMANDA_EMP.BackgroundColor = colorFondo;
+                    CELL_NUMERO_COMANDA_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_NUMERO_COMANDA_EMP);
+
+                    PdfPCell CELL_NUMERO_BORRADOR_EMP = new PdfPCell(new Phrase(COM_BORRADOR, _mediumFont));
+                    CELL_NUMERO_BORRADOR_EMP.HorizontalAlignment = 1;
+                    CELL_NUMERO_BORRADOR_EMP.BorderWidth = 0;
+                    CELL_NUMERO_BORRADOR_EMP.BackgroundColor = colorFondo;
+                    CELL_NUMERO_BORRADOR_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_NUMERO_BORRADOR_EMP);
+
+                    PdfPCell CELL_FECHA_COMANDA_EMP = new PdfPCell(new Phrase(FECHA, _mediumFont));
+                    CELL_FECHA_COMANDA_EMP.HorizontalAlignment = 1;
+                    CELL_FECHA_COMANDA_EMP.BorderWidth = 0;
+                    CELL_FECHA_COMANDA_EMP.BackgroundColor = colorFondo;
+                    CELL_FECHA_COMANDA_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_FECHA_COMANDA_EMP);
+
+                    PdfPCell CELL_NRO_SOC_COMANDA_EMP = new PdfPCell(new Phrase(NRO_SOC, _mediumFont));
+                    CELL_NRO_SOC_COMANDA_EMP.HorizontalAlignment = 1;
+                    CELL_NRO_SOC_COMANDA_EMP.BorderWidth = 0;
+                    CELL_NRO_SOC_COMANDA_EMP.BackgroundColor = colorFondo;
+                    CELL_NRO_SOC_COMANDA_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_NRO_SOC_COMANDA_EMP);
+
+                    PdfPCell CELL_NOMAPE_COMANDA_EMP = new PdfPCell(new Phrase(NOM_APE, _mediumFont));
+                    CELL_NOMAPE_COMANDA_EMP.HorizontalAlignment = 1;
+                    CELL_NOMAPE_COMANDA_EMP.BorderWidth = 0;
+                    CELL_NOMAPE_COMANDA_EMP.BackgroundColor = colorFondo;
+                    CELL_NOMAPE_COMANDA_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_NOMAPE_COMANDA_EMP);
+
+                    PdfPCell CELL_IMPORTE_COMANDA_EMP = new PdfPCell(new Phrase(IMP_FINAL, _mediumFont));
+                    CELL_IMPORTE_COMANDA_EMP.HorizontalAlignment = 1;
+                    CELL_IMPORTE_COMANDA_EMP.BorderWidth = 0;
+                    CELL_IMPORTE_COMANDA_EMP.BackgroundColor = colorFondo;
+                    CELL_IMPORTE_COMANDA_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_IMPORTE_COMANDA_EMP);
+
+                    PdfPCell CELL_ANULADA_COMANDA_EMP = new PdfPCell(new Phrase(ANULADA, _mediumFont));
+                    CELL_ANULADA_COMANDA_EMP.HorizontalAlignment = 1;
+                    CELL_ANULADA_COMANDA_EMP.BorderWidth = 0;
+                    CELL_ANULADA_COMANDA_EMP.BackgroundColor = colorFondo;
+                    CELL_ANULADA_COMANDA_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_ANULADA_COMANDA_EMP);
+
+                    PdfPCell CELL_DESC_AP_EMP = new PdfPCell(new Phrase(DESCUENTO_APLICADO, _mediumFont));
+                    CELL_DESC_AP_EMP.HorizontalAlignment = 1;
+                    CELL_DESC_AP_EMP.BorderWidth = 0;
+                    CELL_DESC_AP_EMP.BackgroundColor = colorFondo;
+                    CELL_DESC_AP_EMP.FixedHeight = 14f;
+                    TABLA_EMPLEADOS.AddCell(CELL_DESC_AP_EMP);
+                }
+            }
+
+            doc.Add(TABLA_EMPLEADOS);
+
+            #endregion
+
+            #region TABLA TOTAL EMPLEADOS
+
+            PdfPTable TABLA_EMPLEADOS_TOTAL = new PdfPTable(1);
+            TABLA_EMPLEADOS_TOTAL.WidthPercentage = 100;
+            TABLA_EMPLEADOS_TOTAL.SpacingAfter = 5;
+            TABLA_EMPLEADOS_TOTAL.SpacingBefore = 5;
+            TABLA_EMPLEADOS_TOTAL.SetWidths(new float[] { 1f });
+
+            PdfPCell CELDA_TOTAL_EMPLEADOS = new PdfPCell(new Phrase("TOTAL EMPLEADOS $ " + string.Format("{0:n}", TOTAL_EMPLEADOS), _mediumFontBoldWhite));
+            CELDA_TOTAL_EMPLEADOS.BackgroundColor = topo;
+            CELDA_TOTAL_EMPLEADOS.BorderColor = blanco;
+            CELDA_TOTAL_EMPLEADOS.HorizontalAlignment = 2;
+            CELDA_TOTAL_EMPLEADOS.FixedHeight = 16f;
+            TABLA_EMPLEADOS_TOTAL.AddCell(CELDA_TOTAL_EMPLEADOS);
+
+            doc.Add(TABLA_EMPLEADOS_TOTAL);*/
+
+            #endregion
+
             doc.Close();
             writer.Close();
             AddPageNumber(RUTA);
@@ -1437,7 +1627,7 @@ namespace Confiteria
                     case "EFECTIVO":
                         QUERY  = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4) AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -1454,7 +1644,7 @@ namespace Confiteria
                     case "TARJETA":
                         QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND (C.FORMA_DE_PAGO = 3 OR C.FORMA_DE_PAGO = 4 OR C.FORMA_DE_PAGO = 5 OR C.FORMA_DE_PAGO = 6) AND C.TIPO_COMANDA = 1 AND C.ROL = '" + VGlobales.vp_role + "'";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND (C.FORMA_DE_PAGO = 3 OR C.FORMA_DE_PAGO = 4 OR C.FORMA_DE_PAGO = 5 OR C.FORMA_DE_PAGO = 6) AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4) AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -1495,12 +1685,29 @@ namespace Confiteria
                             else
                                 QUERY += "AND RENDIDA IS NULL ";
 
-                            if (ORDEN == "COMANDA")
+                        if (ORDEN == "COMANDA")
                                 QUERY += "ORDER BY C.NRO_COMANDA ASC;";
                             else
                                 QUERY += "ORDER BY C.COM_BORRADOR ASC;";
 
                             break;
+
+                    case "EMPLEADOS":
+                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.ID ";
+                        QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.TIPO_COMANDA = 4 AND C.ROL = '" + VGlobales.vp_role + "'";
+
+                        if (RENDIDA > 0)
+                            QUERY += "AND RENDIDA = " + RENDIDA + " ";
+                        else
+                            QUERY += "AND RENDIDA IS NULL ";
+
+                        if (ORDEN == "COMANDA")
+                            QUERY += "ORDER BY C.NRO_COMANDA ASC;";
+                        else
+                            QUERY += "ORDER BY C.COM_BORRADOR ASC;";
+
+                        break;
                 }
 
                 FbCommand cmd = new FbCommand(QUERY, connection, transaction);
@@ -1648,6 +1855,7 @@ namespace Confiteria
             DataSet TARJETA = buscarComandas(FECHA, "TARJETA", ORDEN, RENDIDA);
             DataSet DESCUENTO = buscarComandas(FECHA, "DESCUENTO", ORDEN, RENDIDA);
             DataSet ESPECIALES = buscarComandas(FECHA, "ESPECIALES", ORDEN, RENDIDA);
+            DataSet EMPLEADOS = buscarComandas(FECHA, "EMPLEADOS", ORDEN, RENDIDA);
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Archivo PDF|*.PDF";
@@ -1656,7 +1864,7 @@ namespace Confiteria
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string RUTA = saveFileDialog1.FileName;
-                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL);
+                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, EMPLEADOS);
 
                 if (CONTROL == "NO")
                 {
