@@ -2128,7 +2128,9 @@ namespace Confiteria
 
         private void btnListadoControl_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             imprimirListado("SI", 0, "NO");
+            Cursor = Cursors.Default;
         }
 
         private void grillaPreComanda_Load(object sender, EventArgs e)
@@ -2179,7 +2181,9 @@ namespace Confiteria
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             imprimirListado("SI", 0, "SI");
+            Cursor = Cursors.Default;
         }
     }
 }

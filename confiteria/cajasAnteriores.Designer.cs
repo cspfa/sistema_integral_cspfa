@@ -37,6 +37,7 @@
             this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ESPECIALES = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnImprimirListado = new System.Windows.Forms.Button();
+            this.btnListadoCompleto = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCajasAnteriores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,11 +120,22 @@
             this.btnImprimirListado.UseVisualStyleBackColor = true;
             this.btnImprimirListado.Click += new System.EventHandler(this.btnImprimirListado_Click);
             // 
+            // btnListadoCompleto
+            // 
+            this.btnListadoCompleto.Location = new System.Drawing.Point(162, 460);
+            this.btnListadoCompleto.Name = "btnListadoCompleto";
+            this.btnListadoCompleto.Size = new System.Drawing.Size(206, 23);
+            this.btnListadoCompleto.TabIndex = 31;
+            this.btnListadoCompleto.Text = "IMPRIMIR LISTADO COMPLETO";
+            this.btnListadoCompleto.UseVisualStyleBackColor = true;
+            this.btnListadoCompleto.Click += new System.EventHandler(this.btnListadoCompleto_Click);
+            // 
             // cajasAnteriores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(694, 495);
+            this.Controls.Add(this.btnListadoCompleto);
             this.Controls.Add(this.btnImprimirListado);
             this.Controls.Add(this.dgCajasAnteriores);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -147,5 +159,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCUENTO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ESPECIALES;
         private System.Windows.Forms.Button btnImprimirListado;
+        private System.Windows.Forms.Button btnListadoCompleto;
     }
 }

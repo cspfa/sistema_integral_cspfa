@@ -75,9 +75,20 @@ namespace Confiteria
 
         private void btnImprimirListado_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             grillaPreComanda gp = new grillaPreComanda();
             int RENDIDA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
             gp.imprimirListado("SI", RENDIDA, "NO");
+            Cursor = Cursors.Default;
+        }
+
+        private void btnListadoCompleto_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            grillaPreComanda gp = new grillaPreComanda();
+            int RENDIDA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
+            gp.imprimirListado("SI", RENDIDA, "SI");
+            Cursor = Cursors.Default;
         }
     }
 }
