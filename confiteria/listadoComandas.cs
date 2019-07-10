@@ -4,9 +4,6 @@ using System.Windows.Forms;
 using FirebirdSql.Data.FirebirdClient;
 using Excel = Microsoft.Office.Interop.Excel;
 using SOCIOS;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.IO;
 
 namespace Confiteria
 {
@@ -18,6 +15,7 @@ namespace Confiteria
         private DataSet COMANDA { get; set; }
         private DataSet SOLICITUD { get; set; }
         private DataSet LISTADO { get; set; }
+        private DataSet COMANDAS_LISTADO { get; set; }
 
         public listadoComandas()
         {
@@ -165,6 +163,8 @@ namespace Confiteria
                     {
                         if (reader.Read())
                         {
+                            COMANDAS_LISTADO = ds;
+
                             if (ID_COMANDA == 0)
                                 mostrarComandas(ds);
                             else
@@ -912,17 +912,20 @@ namespace Confiteria
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnListado_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Archivo PDF|*.pdf";
-            saveFileDialog1.Title = "Guardar Informe";
+            Cursor = Cursors.WaitCursor;
+            grillaPreComanda gpc = new grillaPreComanda();
+            gpc.imprimirListado(COMANDAS_LISTADO, "SI", "NO");
+            Cursor = Cursors.Default;
+        }
 
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                //grillaPreComanda gpc = new grillaPreComanda();
-                //gpc.listadoPDF();
-            }
+        private void btnListadoCompleto_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            grillaPreComanda gpc = new grillaPreComanda();
+            gpc.imprimirListado(COMANDAS_LISTADO, "SI", "SI");
+            Cursor = Cursors.Default;
         }
     }
 }

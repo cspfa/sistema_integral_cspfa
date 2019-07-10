@@ -551,7 +551,7 @@ namespace Confiteria
         }
 
         #region LISTADO PDF
-        public void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, DataSet EMPLEADOS, string COMPLETO)
+        public void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, DataSet EMPLEADOS, string COMPLETO, DataSet COMANDAS = null)
         {
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _standardFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
@@ -581,17 +581,21 @@ namespace Confiteria
             header.SpacingAfter = 5;
             doc.Add(header);
 
-            Paragraph sub = new Paragraph("EFECTIVO", _standardFontBold);
-            sub.Alignment = Element.ALIGN_CENTER;
-            sub.SpacingAfter = 5;
-            doc.Add(sub);
-
             PdfPTable TABLA_EFECTIVO = new PdfPTable(9);
+            PdfPTable TABLA_TARJETAS = new PdfPTable(9);
+            PdfPTable TABLA_DESCUENTO = new PdfPTable(10);
+            PdfPTable TABLA_ESPECIALES = new PdfPTable(9);
+            PdfPTable TABLA_FILTRADAS = new PdfPTable(9);
 
             #region TABLA EFECTIVO
 
             if (EFECTIVO.Tables.Count > 0)
             {
+                Paragraph sub = new Paragraph("EFECTIVO", _standardFontBold);
+                sub.Alignment = Element.ALIGN_CENTER;
+                sub.SpacingAfter = 5;
+                doc.Add(sub);
+
                 TABLA_EFECTIVO.WidthPercentage = 100;
                 TABLA_EFECTIVO.SpacingAfter = 5;
                 TABLA_EFECTIVO.SpacingBefore = 5;
@@ -795,98 +799,103 @@ namespace Confiteria
 
             #region TABLA TOTAL EFECTIVO
 
-            PdfPTable TABLA_EFECTIVO_TOTAL = new PdfPTable(1);
-            TABLA_EFECTIVO_TOTAL.WidthPercentage = 100;
-            TABLA_EFECTIVO_TOTAL.SpacingAfter = 5;
-            TABLA_EFECTIVO_TOTAL.SpacingBefore = 5;
-            TABLA_EFECTIVO_TOTAL.SetWidths(new float[] { 1f });
+            if (EFECTIVO.Tables.Count > 0)
+            {
+                PdfPTable TABLA_EFECTIVO_TOTAL = new PdfPTable(1);
+                TABLA_EFECTIVO_TOTAL.WidthPercentage = 100;
+                TABLA_EFECTIVO_TOTAL.SpacingAfter = 5;
+                TABLA_EFECTIVO_TOTAL.SpacingBefore = 5;
+                TABLA_EFECTIVO_TOTAL.SetWidths(new float[] { 1f });
 
-            PdfPCell CELDA_TOTAL_EFECTIVO = new PdfPCell(new Phrase("TOTAL EFECTIVO $ " + string.Format("{0:n}", TOTAL_EFECTIVO), _mediumFontBoldWhite));
-            CELDA_TOTAL_EFECTIVO.BackgroundColor = topo;
-            CELDA_TOTAL_EFECTIVO.BorderColor = blanco;
-            CELDA_TOTAL_EFECTIVO.HorizontalAlignment = 2;
-            CELDA_TOTAL_EFECTIVO.FixedHeight = 16f;
-            TABLA_EFECTIVO_TOTAL.AddCell(CELDA_TOTAL_EFECTIVO);
+                PdfPCell CELDA_TOTAL_EFECTIVO = new PdfPCell(new Phrase("TOTAL EFECTIVO $ " + string.Format("{0:n}", TOTAL_EFECTIVO), _mediumFontBoldWhite));
+                CELDA_TOTAL_EFECTIVO.BackgroundColor = topo;
+                CELDA_TOTAL_EFECTIVO.BorderColor = blanco;
+                CELDA_TOTAL_EFECTIVO.HorizontalAlignment = 2;
+                CELDA_TOTAL_EFECTIVO.FixedHeight = 16f;
+                TABLA_EFECTIVO_TOTAL.AddCell(CELDA_TOTAL_EFECTIVO);
 
-            doc.Add(TABLA_EFECTIVO_TOTAL);
+                doc.Add(TABLA_EFECTIVO_TOTAL);
+            }
 
             #endregion
 
             #region TABLA TARJETAS
 
-            Paragraph sub2 = new Paragraph("TARJETAS", _standardFontBold);
-            sub2.Alignment = Element.ALIGN_CENTER;
-            sub2.SpacingAfter = 5;
-            doc.Add(sub2);
-            
-            PdfPTable TABLA_TARJETAS = new PdfPTable(9);
-            TABLA_TARJETAS.WidthPercentage = 100;
-            TABLA_TARJETAS.SpacingAfter = 5;
-            TABLA_TARJETAS.SpacingBefore = 5;
-            TABLA_TARJETAS.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f });
+            if (TARJETA.Tables.Count > 0)
+            {
+                Paragraph sub2 = new Paragraph("TARJETAS", _standardFontBold);
+                sub2.Alignment = Element.ALIGN_CENTER;
+                sub2.SpacingAfter = 5;
+                doc.Add(sub2);
+                
+                TABLA_TARJETAS.WidthPercentage = 100;
+                TABLA_TARJETAS.SpacingAfter = 5;
+                TABLA_TARJETAS.SpacingBefore = 5;
+                TABLA_TARJETAS.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f });
 
-            PdfPCell CELDA_NRO_COMANDA_T = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
-            CELDA_NRO_COMANDA_T.BackgroundColor = topo;
-            CELDA_NRO_COMANDA_T.BorderColor = blanco;
-            CELDA_NRO_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_NRO_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_NRO_COMANDA_T);
+                PdfPCell CELDA_NRO_COMANDA_T = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
+                CELDA_NRO_COMANDA_T.BackgroundColor = topo;
+                CELDA_NRO_COMANDA_T.BorderColor = blanco;
+                CELDA_NRO_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_NRO_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_NRO_COMANDA_T);
 
-            PdfPCell CELDA_NRO_BORRADOR_T = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
-            CELDA_NRO_BORRADOR_T.BackgroundColor = topo;
-            CELDA_NRO_BORRADOR_T.BorderColor = blanco;
-            CELDA_NRO_BORRADOR_T.HorizontalAlignment = 1;
-            CELDA_NRO_BORRADOR_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_NRO_BORRADOR_T);
+                PdfPCell CELDA_NRO_BORRADOR_T = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
+                CELDA_NRO_BORRADOR_T.BackgroundColor = topo;
+                CELDA_NRO_BORRADOR_T.BorderColor = blanco;
+                CELDA_NRO_BORRADOR_T.HorizontalAlignment = 1;
+                CELDA_NRO_BORRADOR_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_NRO_BORRADOR_T);
 
-            PdfPCell CELDA_FECHA_COMANDA_T = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
-            CELDA_FECHA_COMANDA_T.BackgroundColor = topo;
-            CELDA_FECHA_COMANDA_T.BorderColor = blanco;
-            CELDA_FECHA_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_FECHA_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_FECHA_COMANDA_T);
+                PdfPCell CELDA_FECHA_COMANDA_T = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_COMANDA_T.BackgroundColor = topo;
+                CELDA_FECHA_COMANDA_T.BorderColor = blanco;
+                CELDA_FECHA_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_FECHA_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_FECHA_COMANDA_T);
 
-            PdfPCell CELDA_NRO_SOC_COMANDA_T = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
-            CELDA_NRO_SOC_COMANDA_T.BackgroundColor = topo;
-            CELDA_NRO_SOC_COMANDA_T.BorderColor = blanco;
-            CELDA_NRO_SOC_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_NRO_SOC_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_NRO_SOC_COMANDA_T);
+                PdfPCell CELDA_NRO_SOC_COMANDA_T = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
+                CELDA_NRO_SOC_COMANDA_T.BackgroundColor = topo;
+                CELDA_NRO_SOC_COMANDA_T.BorderColor = blanco;
+                CELDA_NRO_SOC_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_NRO_SOC_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_NRO_SOC_COMANDA_T);
 
-            PdfPCell CELDA_AFILIADO_COMANDA_T = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
-            CELDA_AFILIADO_COMANDA_T.BackgroundColor = topo;
-            CELDA_AFILIADO_COMANDA_T.BorderColor = blanco;
-            CELDA_AFILIADO_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_AFILIADO_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_AFILIADO_COMANDA_T);
+                PdfPCell CELDA_AFILIADO_COMANDA_T = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
+                CELDA_AFILIADO_COMANDA_T.BackgroundColor = topo;
+                CELDA_AFILIADO_COMANDA_T.BorderColor = blanco;
+                CELDA_AFILIADO_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_AFILIADO_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_AFILIADO_COMANDA_T);
 
-            PdfPCell CELDA_BENEFICIO_COMANDA_T = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
-            CELDA_BENEFICIO_COMANDA_T.BackgroundColor = topo;
-            CELDA_BENEFICIO_COMANDA_T.BorderColor = blanco;
-            CELDA_BENEFICIO_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_BENEFICIO_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_BENEFICIO_COMANDA_T);
+                PdfPCell CELDA_BENEFICIO_COMANDA_T = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
+                CELDA_BENEFICIO_COMANDA_T.BackgroundColor = topo;
+                CELDA_BENEFICIO_COMANDA_T.BorderColor = blanco;
+                CELDA_BENEFICIO_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_BENEFICIO_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_BENEFICIO_COMANDA_T);
 
-            PdfPCell CELDA_NOMAPE_COMANDA_T = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
-            CELDA_NOMAPE_COMANDA_T.BackgroundColor = topo;
-            CELDA_NOMAPE_COMANDA_T.BorderColor = blanco;
-            CELDA_NOMAPE_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_NOMAPE_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_NOMAPE_COMANDA_T);
+                PdfPCell CELDA_NOMAPE_COMANDA_T = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
+                CELDA_NOMAPE_COMANDA_T.BackgroundColor = topo;
+                CELDA_NOMAPE_COMANDA_T.BorderColor = blanco;
+                CELDA_NOMAPE_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_NOMAPE_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_NOMAPE_COMANDA_T);
 
-            PdfPCell CELDA_IMPORTE_COMANDA_T = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-            CELDA_IMPORTE_COMANDA_T.BackgroundColor = topo;
-            CELDA_IMPORTE_COMANDA_T.BorderColor = blanco;
-            CELDA_IMPORTE_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_IMPORTE_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_IMPORTE_COMANDA_T);
+                PdfPCell CELDA_IMPORTE_COMANDA_T = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_COMANDA_T.BackgroundColor = topo;
+                CELDA_IMPORTE_COMANDA_T.BorderColor = blanco;
+                CELDA_IMPORTE_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_IMPORTE_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_IMPORTE_COMANDA_T);
 
-            PdfPCell CELDA_ANULADA_COMANDA_T = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
-            CELDA_ANULADA_COMANDA_T.BackgroundColor = topo;
-            CELDA_ANULADA_COMANDA_T.BorderColor = blanco;
-            CELDA_ANULADA_COMANDA_T.HorizontalAlignment = 1;
-            CELDA_ANULADA_COMANDA_T.FixedHeight = 16f;
-            TABLA_TARJETAS.AddCell(CELDA_ANULADA_COMANDA_T);
+                PdfPCell CELDA_ANULADA_COMANDA_T = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
+                CELDA_ANULADA_COMANDA_T.BackgroundColor = topo;
+                CELDA_ANULADA_COMANDA_T.BorderColor = blanco;
+                CELDA_ANULADA_COMANDA_T.HorizontalAlignment = 1;
+                CELDA_ANULADA_COMANDA_T.FixedHeight = 16f;
+                TABLA_TARJETAS.AddCell(CELDA_ANULADA_COMANDA_T);
+            }
 
             #endregion
 
@@ -1022,106 +1031,110 @@ namespace Confiteria
 
             #region TABLA TOTAL TARJETAS
 
-            PdfPTable TABLA_TARJETAS_TOTAL = new PdfPTable(1);
-            TABLA_TARJETAS_TOTAL.WidthPercentage = 100;
-            TABLA_TARJETAS_TOTAL.SpacingAfter = 5;
-            TABLA_TARJETAS_TOTAL.SpacingBefore = 5;
-            TABLA_TARJETAS_TOTAL.SetWidths(new float[] { 1f });
+            if (TARJETA.Tables.Count > 0)
+            {
+                PdfPTable TABLA_TARJETAS_TOTAL = new PdfPTable(1);
+                TABLA_TARJETAS_TOTAL.WidthPercentage = 100;
+                TABLA_TARJETAS_TOTAL.SpacingAfter = 5;
+                TABLA_TARJETAS_TOTAL.SpacingBefore = 5;
+                TABLA_TARJETAS_TOTAL.SetWidths(new float[] { 1f });
 
-            PdfPCell CELDA_TOTAL_TARJETAS = new PdfPCell(new Phrase("TOTAL TARJETAS $ " + string.Format("{0:n}", TOTAL_TARJETAS), _mediumFontBoldWhite));
-            CELDA_TOTAL_TARJETAS.BackgroundColor = topo;
-            CELDA_TOTAL_TARJETAS.BorderColor = blanco;
-            CELDA_TOTAL_TARJETAS.HorizontalAlignment = 2;
-            CELDA_TOTAL_TARJETAS.FixedHeight = 16f;
-            TABLA_TARJETAS_TOTAL.AddCell(CELDA_TOTAL_TARJETAS);
+                PdfPCell CELDA_TOTAL_TARJETAS = new PdfPCell(new Phrase("TOTAL TARJETAS $ " + string.Format("{0:n}", TOTAL_TARJETAS), _mediumFontBoldWhite));
+                CELDA_TOTAL_TARJETAS.BackgroundColor = topo;
+                CELDA_TOTAL_TARJETAS.BorderColor = blanco;
+                CELDA_TOTAL_TARJETAS.HorizontalAlignment = 2;
+                CELDA_TOTAL_TARJETAS.FixedHeight = 16f;
+                TABLA_TARJETAS_TOTAL.AddCell(CELDA_TOTAL_TARJETAS);
 
-            doc.Add(TABLA_TARJETAS_TOTAL);
+                doc.Add(TABLA_TARJETAS_TOTAL);
+            }
 
             #endregion
 
             #region TABLA DESCUENTO
 
-            Paragraph sub3 = new Paragraph("DESCUENTO", _standardFontBold);
-            sub3.Alignment = Element.ALIGN_CENTER;
-            sub3.SpacingAfter = 5;
-            doc.Add(sub3);
+            if (DESCUENTO.Tables.Count > 0)
+            {
+                Paragraph sub3 = new Paragraph("DESCUENTO", _standardFontBold);
+                sub3.Alignment = Element.ALIGN_CENTER;
+                sub3.SpacingAfter = 5;
+                doc.Add(sub3);
 
-            PdfPTable TABLA_DESCUENTO = new PdfPTable(10);
-            TABLA_DESCUENTO.WidthPercentage = 100;
-            TABLA_DESCUENTO.SpacingAfter = 5;
-            TABLA_DESCUENTO.SpacingBefore = 5;
-            TABLA_DESCUENTO.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f });
+                TABLA_DESCUENTO.WidthPercentage = 100;
+                TABLA_DESCUENTO.SpacingAfter = 5;
+                TABLA_DESCUENTO.SpacingBefore = 5;
+                TABLA_DESCUENTO.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f });
 
-            PdfPCell CELDA_NRO_COMANDA_D = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
-            CELDA_NRO_COMANDA_D.BackgroundColor = topo;
-            CELDA_NRO_COMANDA_D.BorderColor = blanco;
-            CELDA_NRO_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_NRO_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_NRO_COMANDA_D);
+                PdfPCell CELDA_NRO_COMANDA_D = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
+                CELDA_NRO_COMANDA_D.BackgroundColor = topo;
+                CELDA_NRO_COMANDA_D.BorderColor = blanco;
+                CELDA_NRO_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_NRO_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_NRO_COMANDA_D);
 
-            PdfPCell CELDA_NRO_BORRADOR_D = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
-            CELDA_NRO_BORRADOR_D.BackgroundColor = topo;
-            CELDA_NRO_BORRADOR_D.BorderColor = blanco;
-            CELDA_NRO_BORRADOR_D.HorizontalAlignment = 1;
-            CELDA_NRO_BORRADOR_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_NRO_BORRADOR_D);
+                PdfPCell CELDA_NRO_BORRADOR_D = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
+                CELDA_NRO_BORRADOR_D.BackgroundColor = topo;
+                CELDA_NRO_BORRADOR_D.BorderColor = blanco;
+                CELDA_NRO_BORRADOR_D.HorizontalAlignment = 1;
+                CELDA_NRO_BORRADOR_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_NRO_BORRADOR_D);
 
-            PdfPCell CELDA_FECHA_COMANDA_D = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
-            CELDA_FECHA_COMANDA_D.BackgroundColor = topo;
-            CELDA_FECHA_COMANDA_D.BorderColor = blanco;
-            CELDA_FECHA_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_FECHA_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_FECHA_COMANDA_D);
+                PdfPCell CELDA_FECHA_COMANDA_D = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_COMANDA_D.BackgroundColor = topo;
+                CELDA_FECHA_COMANDA_D.BorderColor = blanco;
+                CELDA_FECHA_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_FECHA_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_FECHA_COMANDA_D);
 
-            PdfPCell CELDA_NRO_SOC_COMANDA_D = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
-            CELDA_NRO_SOC_COMANDA_D.BackgroundColor = topo;
-            CELDA_NRO_SOC_COMANDA_D.BorderColor = blanco;
-            CELDA_NRO_SOC_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_NRO_SOC_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_NRO_SOC_COMANDA_D);
+                PdfPCell CELDA_NRO_SOC_COMANDA_D = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
+                CELDA_NRO_SOC_COMANDA_D.BackgroundColor = topo;
+                CELDA_NRO_SOC_COMANDA_D.BorderColor = blanco;
+                CELDA_NRO_SOC_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_NRO_SOC_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_NRO_SOC_COMANDA_D);
 
-            PdfPCell CELDA_AFILIADO_COMANDA_D = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
-            CELDA_AFILIADO_COMANDA_D.BackgroundColor = topo;
-            CELDA_AFILIADO_COMANDA_D.BorderColor = blanco;
-            CELDA_AFILIADO_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_AFILIADO_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_AFILIADO_COMANDA_D);
+                PdfPCell CELDA_AFILIADO_COMANDA_D = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
+                CELDA_AFILIADO_COMANDA_D.BackgroundColor = topo;
+                CELDA_AFILIADO_COMANDA_D.BorderColor = blanco;
+                CELDA_AFILIADO_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_AFILIADO_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_AFILIADO_COMANDA_D);
 
-            PdfPCell CELDA_BENEFICIO_COMANDA_D = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
-            CELDA_BENEFICIO_COMANDA_D.BackgroundColor = topo;
-            CELDA_BENEFICIO_COMANDA_D.BorderColor = blanco;
-            CELDA_BENEFICIO_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_BENEFICIO_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_BENEFICIO_COMANDA_D);
+                PdfPCell CELDA_BENEFICIO_COMANDA_D = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
+                CELDA_BENEFICIO_COMANDA_D.BackgroundColor = topo;
+                CELDA_BENEFICIO_COMANDA_D.BorderColor = blanco;
+                CELDA_BENEFICIO_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_BENEFICIO_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_BENEFICIO_COMANDA_D);
 
-            PdfPCell CELDA_NOMAPE_COMANDA_D = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
-            CELDA_NOMAPE_COMANDA_D.BackgroundColor = topo;
-            CELDA_NOMAPE_COMANDA_D.BorderColor = blanco;
-            CELDA_NOMAPE_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_NOMAPE_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_NOMAPE_COMANDA_D);
+                PdfPCell CELDA_NOMAPE_COMANDA_D = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
+                CELDA_NOMAPE_COMANDA_D.BackgroundColor = topo;
+                CELDA_NOMAPE_COMANDA_D.BorderColor = blanco;
+                CELDA_NOMAPE_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_NOMAPE_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_NOMAPE_COMANDA_D);
 
-            PdfPCell CELDA_IMPORTE_COMANDA_D = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-            CELDA_IMPORTE_COMANDA_D.BackgroundColor = topo;
-            CELDA_IMPORTE_COMANDA_D.BorderColor = blanco;
-            CELDA_IMPORTE_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_IMPORTE_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_IMPORTE_COMANDA_D);
+                PdfPCell CELDA_IMPORTE_COMANDA_D = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_COMANDA_D.BackgroundColor = topo;
+                CELDA_IMPORTE_COMANDA_D.BorderColor = blanco;
+                CELDA_IMPORTE_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_IMPORTE_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_IMPORTE_COMANDA_D);
 
-            PdfPCell CELDA_ANULADA_COMANDA_D = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
-            CELDA_ANULADA_COMANDA_D.BackgroundColor = topo;
-            CELDA_ANULADA_COMANDA_D.BorderColor = blanco;
-            CELDA_ANULADA_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_ANULADA_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_ANULADA_COMANDA_D);
+                PdfPCell CELDA_ANULADA_COMANDA_D = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
+                CELDA_ANULADA_COMANDA_D.BackgroundColor = topo;
+                CELDA_ANULADA_COMANDA_D.BorderColor = blanco;
+                CELDA_ANULADA_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_ANULADA_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_ANULADA_COMANDA_D);
 
-            PdfPCell CELDA_DESCUENTO_COMANDA_D = new PdfPCell(new Phrase("DESCUENTO", _mediumFontBoldWhite));
-            CELDA_DESCUENTO_COMANDA_D.BackgroundColor = topo;
-            CELDA_DESCUENTO_COMANDA_D.BorderColor = blanco;
-            CELDA_DESCUENTO_COMANDA_D.HorizontalAlignment = 1;
-            CELDA_DESCUENTO_COMANDA_D.FixedHeight = 16f;
-            TABLA_DESCUENTO.AddCell(CELDA_DESCUENTO_COMANDA_D);
-
+                PdfPCell CELDA_DESCUENTO_COMANDA_D = new PdfPCell(new Phrase("DESCUENTO", _mediumFontBoldWhite));
+                CELDA_DESCUENTO_COMANDA_D.BackgroundColor = topo;
+                CELDA_DESCUENTO_COMANDA_D.BorderColor = blanco;
+                CELDA_DESCUENTO_COMANDA_D.HorizontalAlignment = 1;
+                CELDA_DESCUENTO_COMANDA_D.FixedHeight = 16f;
+                TABLA_DESCUENTO.AddCell(CELDA_DESCUENTO_COMANDA_D);
+            }
             #endregion
 
             #region DATOS DESCUENTO
@@ -1264,98 +1277,103 @@ namespace Confiteria
 
             #region TABLA TOTAL DESCUENTO
 
-            PdfPTable TABLA_DESCUENTO_TOTAL = new PdfPTable(1);
-            TABLA_DESCUENTO_TOTAL.WidthPercentage = 100;
-            TABLA_DESCUENTO_TOTAL.SpacingAfter = 5;
-            TABLA_DESCUENTO_TOTAL.SpacingBefore = 5;
-            TABLA_DESCUENTO_TOTAL.SetWidths(new float[] { 1f });
+            if (DESCUENTO.Tables.Count > 0)
+            {
+                PdfPTable TABLA_DESCUENTO_TOTAL = new PdfPTable(1);
+                TABLA_DESCUENTO_TOTAL.WidthPercentage = 100;
+                TABLA_DESCUENTO_TOTAL.SpacingAfter = 5;
+                TABLA_DESCUENTO_TOTAL.SpacingBefore = 5;
+                TABLA_DESCUENTO_TOTAL.SetWidths(new float[] { 1f });
 
-            PdfPCell CELDA_TOTAL_DESCUENTO = new PdfPCell(new Phrase("TOTAL DESCUENTOS $ " + string.Format("{0:n}", TOTAL_DESCUENTO), _mediumFontBoldWhite));
-            CELDA_TOTAL_DESCUENTO.BackgroundColor = topo;
-            CELDA_TOTAL_DESCUENTO.BorderColor = blanco;
-            CELDA_TOTAL_DESCUENTO.HorizontalAlignment = 2;
-            CELDA_TOTAL_DESCUENTO.FixedHeight = 16f;
-            TABLA_DESCUENTO_TOTAL.AddCell(CELDA_TOTAL_DESCUENTO);
+                PdfPCell CELDA_TOTAL_DESCUENTO = new PdfPCell(new Phrase("TOTAL DESCUENTOS $ " + string.Format("{0:n}", TOTAL_DESCUENTO), _mediumFontBoldWhite));
+                CELDA_TOTAL_DESCUENTO.BackgroundColor = topo;
+                CELDA_TOTAL_DESCUENTO.BorderColor = blanco;
+                CELDA_TOTAL_DESCUENTO.HorizontalAlignment = 2;
+                CELDA_TOTAL_DESCUENTO.FixedHeight = 16f;
+                TABLA_DESCUENTO_TOTAL.AddCell(CELDA_TOTAL_DESCUENTO);
 
-            doc.Add(TABLA_DESCUENTO_TOTAL);
+                doc.Add(TABLA_DESCUENTO_TOTAL);
+            }
 
             #endregion
 
             #region TABLA ESPECIALES
 
-            Paragraph sub4 = new Paragraph("ESPECIALES", _standardFontBold);
-            sub4.Alignment = Element.ALIGN_CENTER;
-            sub4.SpacingAfter = 5;
-            doc.Add(sub4);
+            if (ESPECIALES.Tables.Count > 0)
+            {
+                Paragraph sub4 = new Paragraph("ESPECIALES", _standardFontBold);
+                sub4.Alignment = Element.ALIGN_CENTER;
+                sub4.SpacingAfter = 5;
+                doc.Add(sub4);
 
-            PdfPTable TABLA_ESPECIALES = new PdfPTable(9);
-            TABLA_ESPECIALES.WidthPercentage = 100;
-            TABLA_ESPECIALES.SpacingAfter = 5;
-            TABLA_ESPECIALES.SpacingBefore = 5;
-            TABLA_ESPECIALES.SetWidths(new float[] { 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f, 1f });
+                                TABLA_ESPECIALES.WidthPercentage = 100;
+                TABLA_ESPECIALES.SpacingAfter = 5;
+                TABLA_ESPECIALES.SpacingBefore = 5;
+                TABLA_ESPECIALES.SetWidths(new float[] { 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f, 1f });
 
-            PdfPCell CELDA_NRO_COMANDA_E = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
-            CELDA_NRO_COMANDA_E.BackgroundColor = topo;
-            CELDA_NRO_COMANDA_E.BorderColor = blanco;
-            CELDA_NRO_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_NRO_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_NRO_COMANDA_E);
+                PdfPCell CELDA_NRO_COMANDA_E = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
+                CELDA_NRO_COMANDA_E.BackgroundColor = topo;
+                CELDA_NRO_COMANDA_E.BorderColor = blanco;
+                CELDA_NRO_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_NRO_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_NRO_COMANDA_E);
 
-            PdfPCell CELDA_NRO_BORRADOR_E = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
-            CELDA_NRO_BORRADOR_E.BackgroundColor = topo;
-            CELDA_NRO_BORRADOR_E.BorderColor = blanco;
-            CELDA_NRO_BORRADOR_E.HorizontalAlignment = 1;
-            CELDA_NRO_BORRADOR_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_NRO_BORRADOR_E);
+                PdfPCell CELDA_NRO_BORRADOR_E = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
+                CELDA_NRO_BORRADOR_E.BackgroundColor = topo;
+                CELDA_NRO_BORRADOR_E.BorderColor = blanco;
+                CELDA_NRO_BORRADOR_E.HorizontalAlignment = 1;
+                CELDA_NRO_BORRADOR_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_NRO_BORRADOR_E);
 
-            PdfPCell CELDA_FECHA_COMANDA_E = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
-            CELDA_FECHA_COMANDA_E.BackgroundColor = topo;
-            CELDA_FECHA_COMANDA_E.BorderColor = blanco;
-            CELDA_FECHA_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_FECHA_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_FECHA_COMANDA_E);
+                PdfPCell CELDA_FECHA_COMANDA_E = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_COMANDA_E.BackgroundColor = topo;
+                CELDA_FECHA_COMANDA_E.BorderColor = blanco;
+                CELDA_FECHA_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_FECHA_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_FECHA_COMANDA_E);
 
-            PdfPCell CELDA_NRO_SOC_COMANDA_E = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
-            CELDA_NRO_SOC_COMANDA_E.BackgroundColor = topo;
-            CELDA_NRO_SOC_COMANDA_E.BorderColor = blanco;
-            CELDA_NRO_SOC_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_NRO_SOC_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_NRO_SOC_COMANDA_E);
+                PdfPCell CELDA_NRO_SOC_COMANDA_E = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
+                CELDA_NRO_SOC_COMANDA_E.BackgroundColor = topo;
+                CELDA_NRO_SOC_COMANDA_E.BorderColor = blanco;
+                CELDA_NRO_SOC_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_NRO_SOC_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_NRO_SOC_COMANDA_E);
 
-            PdfPCell CELDA_NOMAPE_COMANDA_E = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
-            CELDA_NOMAPE_COMANDA_E.BackgroundColor = topo;
-            CELDA_NOMAPE_COMANDA_E.BorderColor = blanco;
-            CELDA_NOMAPE_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_NOMAPE_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_NOMAPE_COMANDA_E);
+                PdfPCell CELDA_NOMAPE_COMANDA_E = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
+                CELDA_NOMAPE_COMANDA_E.BackgroundColor = topo;
+                CELDA_NOMAPE_COMANDA_E.BorderColor = blanco;
+                CELDA_NOMAPE_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_NOMAPE_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_NOMAPE_COMANDA_E);
 
-            PdfPCell CELDA_IMPORTE_COMANDA_E = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-            CELDA_IMPORTE_COMANDA_E.BackgroundColor = topo;
-            CELDA_IMPORTE_COMANDA_E.BorderColor = blanco;
-            CELDA_IMPORTE_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_IMPORTE_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_IMPORTE_COMANDA_E);
+                PdfPCell CELDA_IMPORTE_COMANDA_E = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_COMANDA_E.BackgroundColor = topo;
+                CELDA_IMPORTE_COMANDA_E.BorderColor = blanco;
+                CELDA_IMPORTE_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_IMPORTE_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_IMPORTE_COMANDA_E);
 
-            PdfPCell CELDA_ANULADA_COMANDA_E = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
-            CELDA_ANULADA_COMANDA_E.BackgroundColor = topo;
-            CELDA_ANULADA_COMANDA_E.BorderColor = blanco;
-            CELDA_ANULADA_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_ANULADA_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_ANULADA_COMANDA_E);
+                PdfPCell CELDA_ANULADA_COMANDA_E = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
+                CELDA_ANULADA_COMANDA_E.BackgroundColor = topo;
+                CELDA_ANULADA_COMANDA_E.BorderColor = blanco;
+                CELDA_ANULADA_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_ANULADA_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_ANULADA_COMANDA_E);
 
-            PdfPCell CELDA_DESC_AP_COMANDA_E = new PdfPCell(new Phrase("% DESC", _mediumFontBoldWhite));
-            CELDA_DESC_AP_COMANDA_E.BackgroundColor = topo;
-            CELDA_DESC_AP_COMANDA_E.BorderColor = blanco;
-            CELDA_DESC_AP_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_DESC_AP_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_DESC_AP_COMANDA_E);
+                PdfPCell CELDA_DESC_AP_COMANDA_E = new PdfPCell(new Phrase("% DESC", _mediumFontBoldWhite));
+                CELDA_DESC_AP_COMANDA_E.BackgroundColor = topo;
+                CELDA_DESC_AP_COMANDA_E.BorderColor = blanco;
+                CELDA_DESC_AP_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_DESC_AP_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_DESC_AP_COMANDA_E);
 
-            PdfPCell CELDA_IMP_FINAL_COMANDA_E = new PdfPCell(new Phrase("A DESC", _mediumFontBoldWhite));
-            CELDA_IMP_FINAL_COMANDA_E.BackgroundColor = topo;
-            CELDA_IMP_FINAL_COMANDA_E.BorderColor = blanco;
-            CELDA_IMP_FINAL_COMANDA_E.HorizontalAlignment = 1;
-            CELDA_IMP_FINAL_COMANDA_E.FixedHeight = 16f;
-            TABLA_ESPECIALES.AddCell(CELDA_IMP_FINAL_COMANDA_E);
+                PdfPCell CELDA_IMP_FINAL_COMANDA_E = new PdfPCell(new Phrase("A DESC", _mediumFontBoldWhite));
+                CELDA_IMP_FINAL_COMANDA_E.BackgroundColor = topo;
+                CELDA_IMP_FINAL_COMANDA_E.BorderColor = blanco;
+                CELDA_IMP_FINAL_COMANDA_E.HorizontalAlignment = 1;
+                CELDA_IMP_FINAL_COMANDA_E.FixedHeight = 16f;
+                TABLA_ESPECIALES.AddCell(CELDA_IMP_FINAL_COMANDA_E);
+            }
 
             #endregion
 
@@ -1492,20 +1510,23 @@ namespace Confiteria
 
             #region TABLA TOTAL ESPECIALES
 
-            PdfPTable TABLA_ESPECIALES_TOTAL = new PdfPTable(1);
-            TABLA_ESPECIALES_TOTAL.WidthPercentage = 100;
-            TABLA_ESPECIALES_TOTAL.SpacingAfter = 5;
-            TABLA_ESPECIALES_TOTAL.SpacingBefore = 5;
-            TABLA_ESPECIALES_TOTAL.SetWidths(new float[] { 1f });
+            if (ESPECIALES.Tables.Count > 0)
+            {
+                PdfPTable TABLA_ESPECIALES_TOTAL = new PdfPTable(1);
+                TABLA_ESPECIALES_TOTAL.WidthPercentage = 100;
+                TABLA_ESPECIALES_TOTAL.SpacingAfter = 5;
+                TABLA_ESPECIALES_TOTAL.SpacingBefore = 5;
+                TABLA_ESPECIALES_TOTAL.SetWidths(new float[] { 1f });
 
-            PdfPCell CELDA_TOTAL_ESPECIALES = new PdfPCell(new Phrase("TOTAL A DESCONTAR $ " + string.Format("{0:n}", TOTAL_ESPECIALES), _mediumFontBoldWhite));
-            CELDA_TOTAL_ESPECIALES.BackgroundColor = topo;
-            CELDA_TOTAL_ESPECIALES.BorderColor = blanco;
-            CELDA_TOTAL_ESPECIALES.HorizontalAlignment = 2;
-            CELDA_TOTAL_ESPECIALES.FixedHeight = 16f;
-            TABLA_ESPECIALES_TOTAL.AddCell(CELDA_TOTAL_ESPECIALES);
+                PdfPCell CELDA_TOTAL_ESPECIALES = new PdfPCell(new Phrase("TOTAL A DESCONTAR $ " + string.Format("{0:n}", TOTAL_ESPECIALES), _mediumFontBoldWhite));
+                CELDA_TOTAL_ESPECIALES.BackgroundColor = topo;
+                CELDA_TOTAL_ESPECIALES.BorderColor = blanco;
+                CELDA_TOTAL_ESPECIALES.HorizontalAlignment = 2;
+                CELDA_TOTAL_ESPECIALES.FixedHeight = 16f;
+                TABLA_ESPECIALES_TOTAL.AddCell(CELDA_TOTAL_ESPECIALES);
 
-            doc.Add(TABLA_ESPECIALES_TOTAL);
+                doc.Add(TABLA_ESPECIALES_TOTAL);
+            }
 
             #endregion
 
@@ -1696,6 +1717,219 @@ namespace Confiteria
             TABLA_EMPLEADOS_TOTAL.AddCell(CELDA_TOTAL_EMPLEADOS);
 
             doc.Add(TABLA_EMPLEADOS_TOTAL);*/
+
+            #endregion
+
+            #region TABLA COMANDAS FILTRADAS
+
+            if (COMANDAS.Tables.Count > 0)
+            {
+                Paragraph sub4 = new Paragraph("COMANDAS FILTRADAS", _standardFontBold);
+                sub4.Alignment = Element.ALIGN_CENTER;
+                sub4.SpacingAfter = 5;
+                doc.Add(sub4);
+
+                TABLA_FILTRADAS.WidthPercentage = 100;
+                TABLA_FILTRADAS.SpacingAfter = 5;
+                TABLA_FILTRADAS.SpacingBefore = 5;
+                TABLA_FILTRADAS.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f });
+
+                PdfPCell CELDA_NRO_COMANDA = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
+                CELDA_NRO_COMANDA.BackgroundColor = topo;
+                CELDA_NRO_COMANDA.BorderColor = blanco;
+                CELDA_NRO_COMANDA.HorizontalAlignment = 1;
+                CELDA_NRO_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_NRO_COMANDA);
+
+                PdfPCell CELDA_NRO_BORRADOR = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
+                CELDA_NRO_BORRADOR.BackgroundColor = topo;
+                CELDA_NRO_BORRADOR.BorderColor = blanco;
+                CELDA_NRO_BORRADOR.HorizontalAlignment = 1;
+                CELDA_NRO_BORRADOR.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_NRO_BORRADOR);
+
+                PdfPCell CELDA_FECHA_COMANDA = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_COMANDA.BackgroundColor = topo;
+                CELDA_FECHA_COMANDA.BorderColor = blanco;
+                CELDA_FECHA_COMANDA.HorizontalAlignment = 1;
+                CELDA_FECHA_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_FECHA_COMANDA);
+
+                PdfPCell CELDA_NRO_SOC_COMANDA = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
+                CELDA_NRO_SOC_COMANDA.BackgroundColor = topo;
+                CELDA_NRO_SOC_COMANDA.BorderColor = blanco;
+                CELDA_NRO_SOC_COMANDA.HorizontalAlignment = 1;
+                CELDA_NRO_SOC_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_NRO_SOC_COMANDA);
+
+                PdfPCell CELDA_AFILIADO_COMANDA = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
+                CELDA_AFILIADO_COMANDA.BackgroundColor = topo;
+                CELDA_AFILIADO_COMANDA.BorderColor = blanco;
+                CELDA_AFILIADO_COMANDA.HorizontalAlignment = 1;
+                CELDA_AFILIADO_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_AFILIADO_COMANDA);
+
+                PdfPCell CELDA_BENEFICIO_COMANDA = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
+                CELDA_BENEFICIO_COMANDA.BackgroundColor = topo;
+                CELDA_BENEFICIO_COMANDA.BorderColor = blanco;
+                CELDA_BENEFICIO_COMANDA.HorizontalAlignment = 1;
+                CELDA_BENEFICIO_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_BENEFICIO_COMANDA);
+
+                PdfPCell CELDA_NOMAPE_COMANDA = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
+                CELDA_NOMAPE_COMANDA.BackgroundColor = topo;
+                CELDA_NOMAPE_COMANDA.BorderColor = blanco;
+                CELDA_NOMAPE_COMANDA.HorizontalAlignment = 1;
+                CELDA_NOMAPE_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_NOMAPE_COMANDA);
+
+                PdfPCell CELDA_IMPORTE_COMANDA = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_COMANDA.BackgroundColor = topo;
+                CELDA_IMPORTE_COMANDA.BorderColor = blanco;
+                CELDA_IMPORTE_COMANDA.HorizontalAlignment = 1;
+                CELDA_IMPORTE_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_IMPORTE_COMANDA);
+
+                PdfPCell CELDA_ANULADA_COMANDA = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
+                CELDA_ANULADA_COMANDA.BackgroundColor = topo;
+                CELDA_ANULADA_COMANDA.BorderColor = blanco;
+                CELDA_ANULADA_COMANDA.HorizontalAlignment = 1;
+                CELDA_ANULADA_COMANDA.FixedHeight = 16f;
+                TABLA_FILTRADAS.AddCell(CELDA_ANULADA_COMANDA);
+            }
+
+            #endregion
+
+            #region DATOS COMANDAS FILTRADAS
+
+            decimal TOTAL_FILTRADAS = 0;
+
+            if (COMANDAS.Tables.Count > 0)
+            {
+                int X = 0;
+                BaseColor colorFondo = new BaseColor(255, 255, 255);
+
+                foreach (DataRow row in COMANDAS.Tables[0].Rows)
+                {
+                    //SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, 
+                    //C.PERSONAS, C.NRO_COMANDA, C.MESA 
+
+                    string NRO_COMANDA = row[16].ToString();
+                    string FECHA = row[1].ToString();
+                    decimal IMPORTE = Convert.ToDecimal(row[2].ToString());
+                    string IMP_FINAL = string.Format("{0:n}", IMPORTE);
+                    string NRO_SOC = row[4].ToString() + " " + row[5].ToString() + " " + row[6].ToString();
+                    string NOM_APE = row[3].ToString();
+                    string AFILIADO = row[7].ToString();
+                    string BENEFICIO = row[8].ToString();
+                    string ANULADA = row[12].ToString();
+                    string COM_BORRADOR = row[13].ToString();
+                    string ID_COMANDA = row[0].ToString();
+
+                    if (ANULADA == "")
+                        TOTAL_FILTRADAS = TOTAL_FILTRADAS + IMPORTE;
+                    else
+                        TOTAL_FILTRADAS = TOTAL_FILTRADAS + 0;
+
+                    if (X == 0)
+                    {
+                        colorFondo = new BaseColor(255, 255, 255);
+                        X++;
+                    }
+                    else
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
+                        X--;
+                    }
+
+                    if (COMPLETO == "SI")
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
+                    }
+
+                    PdfPCell CELL_NUMERO_COMANDA = new PdfPCell(new Phrase(NRO_COMANDA, _mediumFont));
+                    CELL_NUMERO_COMANDA.HorizontalAlignment = 1;
+                    CELL_NUMERO_COMANDA.BorderWidth = 0;
+                    CELL_NUMERO_COMANDA.BackgroundColor = colorFondo;
+                    CELL_NUMERO_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_NUMERO_COMANDA);
+
+                    PdfPCell CELL_NUMERO_BORRADOR = new PdfPCell(new Phrase(COM_BORRADOR, _mediumFont));
+                    CELL_NUMERO_BORRADOR.HorizontalAlignment = 1;
+                    CELL_NUMERO_BORRADOR.BorderWidth = 0;
+                    CELL_NUMERO_BORRADOR.BackgroundColor = colorFondo;
+                    CELL_NUMERO_BORRADOR.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_NUMERO_BORRADOR);
+
+                    PdfPCell CELL_FECHA_COMANDA = new PdfPCell(new Phrase(FECHA, _mediumFont));
+                    CELL_FECHA_COMANDA.HorizontalAlignment = 1;
+                    CELL_FECHA_COMANDA.BorderWidth = 0;
+                    CELL_FECHA_COMANDA.BackgroundColor = colorFondo;
+                    CELL_FECHA_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_FECHA_COMANDA);
+
+                    PdfPCell CELL_NRO_SOC_COMANDA = new PdfPCell(new Phrase(NRO_SOC, _mediumFont));
+                    CELL_NRO_SOC_COMANDA.HorizontalAlignment = 1;
+                    CELL_NRO_SOC_COMANDA.BorderWidth = 0;
+                    CELL_NRO_SOC_COMANDA.BackgroundColor = colorFondo;
+                    CELL_NRO_SOC_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_NRO_SOC_COMANDA);
+
+                    PdfPCell CELL_AFILIADO_COMANDA = new PdfPCell(new Phrase(AFILIADO, _mediumFont));
+                    CELL_AFILIADO_COMANDA.HorizontalAlignment = 1;
+                    CELL_AFILIADO_COMANDA.BorderWidth = 0;
+                    CELL_AFILIADO_COMANDA.BackgroundColor = colorFondo;
+                    CELL_AFILIADO_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_AFILIADO_COMANDA);
+
+                    PdfPCell CELL_BENEFICIO_COMANDA = new PdfPCell(new Phrase(BENEFICIO, _mediumFont));
+                    CELL_BENEFICIO_COMANDA.HorizontalAlignment = 1;
+                    CELL_BENEFICIO_COMANDA.BorderWidth = 0;
+                    CELL_BENEFICIO_COMANDA.BackgroundColor = colorFondo;
+                    CELL_BENEFICIO_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_BENEFICIO_COMANDA);
+
+                    PdfPCell CELL_NOMAPE_COMANDA = new PdfPCell(new Phrase(NOM_APE, _mediumFont));
+                    CELL_NOMAPE_COMANDA.HorizontalAlignment = 1;
+                    CELL_NOMAPE_COMANDA.BorderWidth = 0;
+                    CELL_NOMAPE_COMANDA.BackgroundColor = colorFondo;
+                    CELL_NOMAPE_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_NOMAPE_COMANDA);
+
+                    PdfPCell CELL_IMPORTE_COMANDA = new PdfPCell(new Phrase(IMP_FINAL, _mediumFont));
+                    CELL_IMPORTE_COMANDA.HorizontalAlignment = 1;
+                    CELL_IMPORTE_COMANDA.BorderWidth = 0;
+                    CELL_IMPORTE_COMANDA.BackgroundColor = colorFondo;
+                    CELL_IMPORTE_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_IMPORTE_COMANDA);
+
+                    PdfPCell CELL_ANULADA_COMANDA = new PdfPCell(new Phrase(ANULADA, _mediumFont));
+                    CELL_ANULADA_COMANDA.HorizontalAlignment = 1;
+                    CELL_ANULADA_COMANDA.BorderWidth = 0;
+                    CELL_ANULADA_COMANDA.BackgroundColor = colorFondo;
+                    CELL_ANULADA_COMANDA.FixedHeight = 14f;
+                    TABLA_FILTRADAS.AddCell(CELL_ANULADA_COMANDA);
+
+                    if (COMPLETO == "SI")
+                    {
+                        DataSet ITEMS = utils.getItemsByComanda(Convert.ToInt32(ID_COMANDA));
+
+                        foreach (DataRow ROW_ITEM in ITEMS.Tables[0].Rows)
+                        {
+                            string PHRASE = ROW_ITEM[0] + " - " + ROW_ITEM[1] + " - " + ROW_ITEM[2] + " - $ " + ROW_ITEM[3] + " - $ " + ROW_ITEM[4];
+                            PdfPCell CELL_ITEMS = new PdfPCell(new Phrase(PHRASE, _mediumFont));
+                            CELL_ITEMS.HorizontalAlignment = 0;
+                            CELL_ITEMS.BorderWidth = 0;
+                            CELL_ITEMS.BackgroundColor = blancoFondo;
+                            CELL_ITEMS.FixedHeight = 14f;
+                            CELL_ITEMS.Colspan = 9;
+                            TABLA_FILTRADAS.AddCell(CELL_ITEMS);
+                        }
+                    }
+                }
+            }
+
+            doc.Add(TABLA_FILTRADAS);
 
             #endregion
 
@@ -1945,6 +2179,37 @@ namespace Confiteria
             }
 
             pbMarcandoComandas.Visible = false;
+        }
+
+        public void imprimirListado(DataSet COMANDAS, string CONTROL, string COMPLETO)
+        {
+            DataSet EFECTIVO = new DataSet();
+            DataSet TARJETA = new DataSet();
+            DataSet DESCUENTO = new DataSet();
+            DataSet ESPECIALES = new DataSet();
+            DataSet EMPLEADOS = new DataSet();
+
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "Archivo PDF|*.PDF";
+            saveFileDialog1.Title = "Guardar Listado";
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string RUTA = saveFileDialog1.FileName;
+                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, EMPLEADOS, COMPLETO, COMANDAS);
+
+                if (CONTROL == "NO")
+                {
+                    marcarComandasRendidas(EFECTIVO, TARJETA, DESCUENTO, ESPECIALES);
+                }
+
+                DialogResult result = MessageBox.Show("LISTADO GENERADO CORRECTAMENTE \n\n ¿ABRIR EL ARCHIVO?", "LISTO!", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    OpenAdobeAcrobat(RUTA);
+                }
+            }
         }
 
         public void imprimirListado(string CONTROL, int RENDIDA, string COMPLETO)
