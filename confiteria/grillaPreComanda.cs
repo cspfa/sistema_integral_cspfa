@@ -586,6 +586,13 @@ namespace Confiteria
             PdfPTable TABLA_DESCUENTO = new PdfPTable(10);
             PdfPTable TABLA_ESPECIALES = new PdfPTable(9);
             PdfPTable TABLA_FILTRADAS = new PdfPTable(9);
+            PdfPTable TABLA_ESTADISTICAS = new PdfPTable(2);
+            DataSet ESTADISTICAS = new DataSet();
+
+            if (COMANDAS != null && COMPLETO == "SI")
+            {
+                ESTADISTICAS = utils.getItemsSuma(COMANDAS);
+            }
 
             #region TABLA EFECTIVO
 
@@ -1811,9 +1818,6 @@ namespace Confiteria
 
                 foreach (DataRow row in COMANDAS.Tables[0].Rows)
                 {
-                    //SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, 
-                    //C.PERSONAS, C.NRO_COMANDA, C.MESA 
-
                     string NRO_COMANDA = row[16].ToString();
                     string FECHA = row[1].ToString();
                     decimal IMPORTE = Convert.ToDecimal(row[2].ToString());
@@ -1933,6 +1937,99 @@ namespace Confiteria
 
             #endregion
 
+            #region TABLA DATOS ESTADISTICOS
+            
+            if(ESTADISTICAS.Tables.Count>0)
+            {
+                Paragraph sub = new Paragraph("DATOS ESTADISTICOS", _standardFontBold);
+                sub.Alignment = Element.ALIGN_CENTER;
+                sub.SpacingAfter = 5;
+                doc.Add(sub);
+
+                TABLA_ESTADISTICAS.WidthPercentage = 50;
+                TABLA_ESTADISTICAS.SpacingAfter = 5;
+                TABLA_ESTADISTICAS.SpacingBefore = 5;
+                TABLA_ESTADISTICAS.SetWidths(new float[] { 6f, 3f });
+
+                PdfPCell CELDA_ITEM = new PdfPCell(new Phrase("ITEM", _mediumFontBoldWhite));
+                CELDA_ITEM.BackgroundColor = topo;
+                CELDA_ITEM.BorderColor = blanco;
+                CELDA_ITEM.HorizontalAlignment = 0;
+                CELDA_ITEM.FixedHeight = 16f;
+                TABLA_ESTADISTICAS.AddCell(CELDA_ITEM);
+
+                PdfPCell CELDA_TOTAL = new PdfPCell(new Phrase("TOTAL", _mediumFontBoldWhite));
+                CELDA_TOTAL.BackgroundColor = topo;
+                CELDA_TOTAL.BorderColor = blanco;
+                CELDA_TOTAL.HorizontalAlignment = 2;
+                CELDA_TOTAL.FixedHeight = 16f;
+                TABLA_ESTADISTICAS.AddCell(CELDA_TOTAL);
+            }
+
+            #endregion
+
+            #region DATOS ESTADISTICOS
+
+            decimal TOTAL_ESTADISTICAS = 0;
+
+            if (ESTADISTICAS.Tables.Count > 0)
+            {
+                int X = 0;
+                BaseColor colorFondo = new BaseColor(255, 255, 255);
+
+                foreach (DataRow row in ESTADISTICAS.Tables[0].Rows)
+                {
+                    string NOMBRE_ITEM = row[0].ToString();
+                    decimal IMPORTE = Convert.ToDecimal(row[1].ToString());
+                    string IMP_FINAL = string.Format("{0:n}", IMPORTE);
+
+                    if (X == 0)
+                    {
+                        colorFondo = new BaseColor(255, 255, 255);
+                        X++;
+                    }
+                    else
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
+                        X--;
+                    }
+
+                    TOTAL_ESTADISTICAS = TOTAL_ESTADISTICAS + IMPORTE;
+
+                    PdfPCell CELL_NOMBRE_ITEM = new PdfPCell(new Phrase(NOMBRE_ITEM, _mediumFont));
+                    CELL_NOMBRE_ITEM.HorizontalAlignment = 0;
+                    CELL_NOMBRE_ITEM.BorderWidth = 0;
+                    CELL_NOMBRE_ITEM.BackgroundColor = colorFondo;
+                    CELL_NOMBRE_ITEM.FixedHeight = 14f;
+                    TABLA_ESTADISTICAS.AddCell(CELL_NOMBRE_ITEM);
+
+                    PdfPCell CELL_IMPORTE_ITEM = new PdfPCell(new Phrase("$ " + IMP_FINAL, _mediumFont));
+                    CELL_IMPORTE_ITEM.HorizontalAlignment = 2;
+                    CELL_IMPORTE_ITEM.BorderWidth = 0;
+                    CELL_IMPORTE_ITEM.BackgroundColor = colorFondo;
+                    CELL_IMPORTE_ITEM.FixedHeight = 14f;
+                    TABLA_ESTADISTICAS.AddCell(CELL_IMPORTE_ITEM);
+                }
+
+                PdfPCell CELL_NOMBRE_TOTAL = new PdfPCell(new Phrase("TOTAL", _mediumFont));
+                CELL_NOMBRE_TOTAL.HorizontalAlignment = 0;
+                CELL_NOMBRE_TOTAL.BorderWidth = 0;
+                CELL_NOMBRE_TOTAL.BackgroundColor = colorFondo;
+                CELL_NOMBRE_TOTAL.FixedHeight = 14f;
+                TABLA_ESTADISTICAS.AddCell(CELL_NOMBRE_TOTAL);
+
+                PdfPCell CELL_IMPORTE_TOTAL = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_ESTADISTICAS), _mediumFont));
+                CELL_IMPORTE_TOTAL.HorizontalAlignment = 2;
+                CELL_IMPORTE_TOTAL.BorderWidth = 0;
+                CELL_IMPORTE_TOTAL.BackgroundColor = colorFondo;
+                CELL_IMPORTE_TOTAL.FixedHeight = 14f;
+                TABLA_ESTADISTICAS.AddCell(CELL_IMPORTE_TOTAL);
+            }
+
+            doc.Add(TABLA_ESTADISTICAS);
+
+            #endregion
+
             doc.Close();
             writer.Close();
             AddPageNumber(RUTA);
@@ -1943,6 +2040,7 @@ namespace Confiteria
                 dlog.confiteriaCajaDiaria(DateTime.Today.ToShortDateString(), VGlobales.vp_username, TOTAL_EFECTIVO, TOTAL_TARJETAS, TOTAL_DESCUENTO, TOTAL_ESPECIALES);
             }
         }
+
         #endregion
 
         public DataSet buscarComandas(string FECHA, string FORMA_DE_PAGO, string ORDEN, int RENDIDA)

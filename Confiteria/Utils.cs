@@ -50,6 +50,22 @@ namespace Confiteria
             }
         }
 
+        public DataSet getItemsSuma(DataSet COMANDAS)
+        {
+            string QUERY = "SELECT ITEM_DETALLE, SUM(SUBTOTAL) FROM CONFITERIA_COMANDA_ITEM WHERE COMANDA IN(";
+            int TOTAL = COMANDAS.Tables[0].Rows.Count;
+
+            foreach (DataRow ROW in COMANDAS.Tables[0].Rows)
+            {
+                QUERY += Convert.ToInt32(ROW[0])+",";               
+            }
+
+            QUERY = QUERY.TrimEnd(',');
+            QUERY +=") GROUP BY ITEM_DETALLE;";
+            DataSet GET = getDataFromQuery(QUERY);
+            return GET;
+        }
+
         public DataSet getItemsByComanda(int ID_COMANDA)
         {
             string QUERY = "SELECT CANTIDAD, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL FROM CONFITERIA_COMANDA_ITEM WHERE COMANDA = " + ID_COMANDA + " ORDER BY ID DESC;";
