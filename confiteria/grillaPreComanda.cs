@@ -20,6 +20,7 @@ namespace Confiteria
     public partial class grillaPreComanda : Form
     {
         bo dlog = new bo();
+        Utils utils = new Utils();
 
         public grillaPreComanda()
         {
@@ -565,6 +566,7 @@ namespace Confiteria
             BaseColor gris = new BaseColor(230, 230, 230);
             BaseColor topo = new BaseColor(100, 100, 100);
             BaseColor blanco = new BaseColor(255, 255, 255);
+            BaseColor blancoFondo = new BaseColor(255, 255, 255);
 
             Document doc = new Document(PageSize.A4);
             doc.SetPageSize(iTextSharp.text.PageSize.A4.Rotate());
@@ -669,8 +671,7 @@ namespace Confiteria
             {
                 int X = 0;
                 BaseColor colorFondo = new BaseColor(255, 255, 255);
-                BaseColor blancoFondo = new BaseColor(255, 255, 255);
-
+                
                 foreach (DataRow row in EFECTIVO.Tables[0].Rows)
                 {
                     string NRO_COMANDA = row[0].ToString();
@@ -683,6 +684,7 @@ namespace Confiteria
                     string BENEFICIO = row[11].ToString();
                     string ANULADA = row[14].ToString();
                     string COM_BORRADOR = row[15].ToString();
+                    string ID_COMANDA = row[16].ToString();
 
                     if (ANULADA == "")
                         TOTAL_EFECTIVO = TOTAL_EFECTIVO + IMPORTE;
@@ -698,6 +700,11 @@ namespace Confiteria
                     {
                         colorFondo = new BaseColor(240, 240, 240);
                         X--;
+                    }
+
+                    if (COMPLETO == "SI")
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
                     }
 
                     PdfPCell CELL_NUMERO_COMANDA = new PdfPCell(new Phrase(NRO_COMANDA, _mediumFont));
@@ -763,7 +770,22 @@ namespace Confiteria
                     CELL_ANULADA_COMANDA.FixedHeight = 14f;
                     TABLA_EFECTIVO.AddCell(CELL_ANULADA_COMANDA);
 
-                    
+                    if (COMPLETO == "SI")
+                    {
+                        DataSet ITEMS = utils.getItemsByComanda(Convert.ToInt32(ID_COMANDA));
+
+                        foreach (DataRow ROW_ITEM in ITEMS.Tables[0].Rows)
+                        {
+                            string PHRASE = ROW_ITEM[0] + " - " + ROW_ITEM[1] + " - " + ROW_ITEM[2] + " - $ " + ROW_ITEM[3] + " - $ " + ROW_ITEM[4];
+                            PdfPCell CELL_ITEMS = new PdfPCell(new Phrase(PHRASE, _mediumFont));
+                            CELL_ITEMS.HorizontalAlignment = 0;
+                            CELL_ITEMS.BorderWidth = 0;
+                            CELL_ITEMS.BackgroundColor = blancoFondo;
+                            CELL_ITEMS.FixedHeight = 14f;
+                            CELL_ITEMS.Colspan = 9;
+                            TABLA_EFECTIVO.AddCell(CELL_ITEMS);
+                        }
+                    }
                 }
 
                 doc.Add(TABLA_EFECTIVO);
@@ -869,6 +891,7 @@ namespace Confiteria
             #endregion
 
             #region DATOS TARJETAS
+
             decimal TOTAL_TARJETAS = 0;
 
             if (TARJETA.Tables.Count > 0)
@@ -888,6 +911,7 @@ namespace Confiteria
                     string BENEFICIO = row[11].ToString();
                     string ANULADA = row[14].ToString();
                     string COM_BORRADOR = row[15].ToString();
+                    string ID_COMANDA = row[16].ToString();
 
                     if (ANULADA == "")
                         TOTAL_TARJETAS = TOTAL_TARJETAS + IMPORTE;
@@ -903,6 +927,11 @@ namespace Confiteria
                     {
                         colorFondo = new BaseColor(240, 240, 240);
                         X--;
+                    }
+
+                    if (COMPLETO == "SI")
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
                     }
 
                     PdfPCell CELL_NUMERO_COMANDA_T = new PdfPCell(new Phrase(NRO_COMANDA, _mediumFont));
@@ -967,6 +996,23 @@ namespace Confiteria
                     CELL_ANULADA_COMANDA_T.BackgroundColor = colorFondo;
                     CELL_ANULADA_COMANDA_T.FixedHeight = 14f;
                     TABLA_TARJETAS.AddCell(CELL_ANULADA_COMANDA_T);
+
+                    if (COMPLETO == "SI")
+                    {
+                        DataSet ITEMS = utils.getItemsByComanda(Convert.ToInt32(ID_COMANDA));
+
+                        foreach (DataRow ROW_ITEM in ITEMS.Tables[0].Rows)
+                        {
+                            string PHRASE = ROW_ITEM[0] + " - " + ROW_ITEM[1] + " - " + ROW_ITEM[2] + " - $ " + ROW_ITEM[3] + " - $ " + ROW_ITEM[4];
+                            PdfPCell CELL_ITEMS = new PdfPCell(new Phrase(PHRASE, _mediumFont));
+                            CELL_ITEMS.HorizontalAlignment = 0;
+                            CELL_ITEMS.BorderWidth = 0;
+                            CELL_ITEMS.BackgroundColor = blancoFondo;
+                            CELL_ITEMS.FixedHeight = 14f;
+                            CELL_ITEMS.Colspan = 9;
+                            TABLA_TARJETAS.AddCell(CELL_ITEMS);
+                        }
+                    }
                 }
             }
 
@@ -1079,6 +1125,7 @@ namespace Confiteria
             #endregion
 
             #region DATOS DESCUENTO
+
             decimal TOTAL_DESCUENTO = 0;
 
             if (DESCUENTO.Tables.Count > 0)
@@ -1099,6 +1146,7 @@ namespace Confiteria
                     string SOL_DESC = row[12].ToString();
                     string ANULADA = row[14].ToString();
                     string COM_BORRADOR = row[15].ToString();
+                    string ID_COMANDA = row[16].ToString();
 
                     if (ANULADA == "")
                         TOTAL_DESCUENTO = TOTAL_DESCUENTO + IMPORTE;
@@ -1114,6 +1162,11 @@ namespace Confiteria
                     {
                         colorFondo = new BaseColor(240, 240, 240);
                         X--;
+                    }
+
+                    if (COMPLETO == "SI")
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
                     }
 
                     PdfPCell CELL_NUMERO_COMANDA_D = new PdfPCell(new Phrase(NRO_COMANDA, _mediumFont));
@@ -1185,6 +1238,23 @@ namespace Confiteria
                     CELL_DESCUENTO_COMANDA_D.BackgroundColor = colorFondo;
                     CELL_DESCUENTO_COMANDA_D.FixedHeight = 14f;
                     TABLA_DESCUENTO.AddCell(CELL_DESCUENTO_COMANDA_D);
+
+                    if (COMPLETO == "SI")
+                    {
+                        DataSet ITEMS = utils.getItemsByComanda(Convert.ToInt32(ID_COMANDA));
+
+                        foreach (DataRow ROW_ITEM in ITEMS.Tables[0].Rows)
+                        {
+                            string PHRASE = ROW_ITEM[0] + " - " + ROW_ITEM[1] + " - " + ROW_ITEM[2] + " - $ " + ROW_ITEM[3] + " - $ " + ROW_ITEM[4];
+                            PdfPCell CELL_ITEMS = new PdfPCell(new Phrase(PHRASE, _mediumFont));
+                            CELL_ITEMS.HorizontalAlignment = 0;
+                            CELL_ITEMS.BorderWidth = 0;
+                            CELL_ITEMS.BackgroundColor = blancoFondo;
+                            CELL_ITEMS.FixedHeight = 14f;
+                            CELL_ITEMS.Colspan = 9;
+                            TABLA_DESCUENTO.AddCell(CELL_ITEMS);
+                        }
+                    }
                 }
             }
 
@@ -1290,6 +1360,7 @@ namespace Confiteria
             #endregion
 
             #region DATOS ESPECIALES
+
             decimal TOTAL_ESPECIALES = 0;
 
             if (ESPECIALES.Tables.Count > 0)
@@ -1310,6 +1381,7 @@ namespace Confiteria
                     string DESCUENTO_APLICADO = "% " + row[16].ToString();
                     decimal IMPORTE_DESCONTADO = Convert.ToDecimal(row[17].ToString());
                     string IMP_DESC_FINAL = string.Format("{0:n}", IMPORTE_DESCONTADO);
+                    string ID_COMANDA = row[18].ToString();
 
                     if (ANULADA == "")
                         TOTAL_ESPECIALES = TOTAL_ESPECIALES + IMPORTE_DESCONTADO;
@@ -1325,6 +1397,11 @@ namespace Confiteria
                     {
                         colorFondo = new BaseColor(240, 240, 240);
                         X--;
+                    }
+
+                    if (COMPLETO == "SI")
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
                     }
 
                     PdfPCell CELL_NUMERO_COMANDA_E = new PdfPCell(new Phrase(NRO_COMANDA, _mediumFont));
@@ -1389,6 +1466,23 @@ namespace Confiteria
                     CELL_IMP_DESC_E.BackgroundColor = colorFondo;
                     CELL_IMP_DESC_E.FixedHeight = 14f;
                     TABLA_ESPECIALES.AddCell(CELL_IMP_DESC_E);
+
+                    if (COMPLETO == "SI")
+                    {
+                        DataSet ITEMS = utils.getItemsByComanda(Convert.ToInt32(ID_COMANDA));
+
+                        foreach (DataRow ROW_ITEM in ITEMS.Tables[0].Rows)
+                        {
+                            string PHRASE = ROW_ITEM[0] + " - " + ROW_ITEM[1] + " - " + ROW_ITEM[2] + " - $ " + ROW_ITEM[3] + " - $ " + ROW_ITEM[4];
+                            PdfPCell CELL_ITEMS = new PdfPCell(new Phrase(PHRASE, _mediumFont));
+                            CELL_ITEMS.HorizontalAlignment = 0;
+                            CELL_ITEMS.BorderWidth = 0;
+                            CELL_ITEMS.BackgroundColor = blancoFondo;
+                            CELL_ITEMS.FixedHeight = 14f;
+                            CELL_ITEMS.Colspan = 9;
+                            TABLA_ESPECIALES.AddCell(CELL_ITEMS);
+                        }
+                    }
                 }
             }
 

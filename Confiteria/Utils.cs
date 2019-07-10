@@ -50,6 +50,13 @@ namespace Confiteria
             }
         }
 
+        public DataSet getItemsByComanda(int ID_COMANDA)
+        {
+            string QUERY = "SELECT CANTIDAD, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL FROM CONFITERIA_COMANDA_ITEM WHERE COMANDA = " + ID_COMANDA + " ORDER BY ID DESC;";
+            DataSet GET = getDataFromQuery(QUERY);
+            return GET;
+        }
+
         public bool setStock(int STOCK, int ID_PROF)
         {
             try
