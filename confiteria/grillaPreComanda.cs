@@ -586,7 +586,7 @@ namespace Confiteria
             PdfPTable TABLA_DESCUENTO = new PdfPTable(10);
             PdfPTable TABLA_ESPECIALES = new PdfPTable(9);
             PdfPTable TABLA_FILTRADAS = new PdfPTable(9);
-            PdfPTable TABLA_ESTADISTICAS = new PdfPTable(2);
+            PdfPTable TABLA_ESTADISTICAS = new PdfPTable(4);
             DataSet ESTADISTICAS = new DataSet();
 
             if (COMANDAS != null && COMPLETO == "SI")
@@ -1949,7 +1949,14 @@ namespace Confiteria
                 TABLA_ESTADISTICAS.WidthPercentage = 50;
                 TABLA_ESTADISTICAS.SpacingAfter = 5;
                 TABLA_ESTADISTICAS.SpacingBefore = 5;
-                TABLA_ESTADISTICAS.SetWidths(new float[] { 6f, 3f });
+                TABLA_ESTADISTICAS.SetWidths(new float[] { 2f, 6f, 3f, 3f });
+
+                PdfPCell CELDA_CANTIDAD = new PdfPCell(new Phrase("#", _mediumFontBoldWhite));
+                CELDA_CANTIDAD.BackgroundColor = topo;
+                CELDA_CANTIDAD.BorderColor = blanco;
+                CELDA_CANTIDAD.HorizontalAlignment = 0;
+                CELDA_CANTIDAD.FixedHeight = 16f;
+                TABLA_ESTADISTICAS.AddCell(CELDA_CANTIDAD);
 
                 PdfPCell CELDA_ITEM = new PdfPCell(new Phrase("ITEM", _mediumFontBoldWhite));
                 CELDA_ITEM.BackgroundColor = topo;
@@ -1958,7 +1965,14 @@ namespace Confiteria
                 CELDA_ITEM.FixedHeight = 16f;
                 TABLA_ESTADISTICAS.AddCell(CELDA_ITEM);
 
-                PdfPCell CELDA_TOTAL = new PdfPCell(new Phrase("TOTAL", _mediumFontBoldWhite));
+                PdfPCell CELDA_IMPORTE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE.BackgroundColor = topo;
+                CELDA_IMPORTE.BorderColor = blanco;
+                CELDA_IMPORTE.HorizontalAlignment = 2;
+                CELDA_IMPORTE.FixedHeight = 16f;
+                TABLA_ESTADISTICAS.AddCell(CELDA_IMPORTE);
+
+                PdfPCell CELDA_TOTAL = new PdfPCell(new Phrase("SUBTOTAL", _mediumFontBoldWhite));
                 CELDA_TOTAL.BackgroundColor = topo;
                 CELDA_TOTAL.BorderColor = blanco;
                 CELDA_TOTAL.HorizontalAlignment = 2;
@@ -1979,9 +1993,12 @@ namespace Confiteria
 
                 foreach (DataRow row in ESTADISTICAS.Tables[0].Rows)
                 {
-                    string NOMBRE_ITEM = row[0].ToString();
-                    decimal IMPORTE = Convert.ToDecimal(row[1].ToString());
-                    string IMP_FINAL = string.Format("{0:n}", IMPORTE);
+                    int CANTIDAD = Convert.ToInt32(row[0]);
+                    string NOMBRE_ITEM = row[1].ToString();
+                    decimal SUBTOTAL = Convert.ToDecimal(row[2]);
+                    string SUBTOTAL_FINAL = string.Format("{0:n}", SUBTOTAL);
+                    decimal IMPORTE = SUBTOTAL / CANTIDAD;
+                    string IMPORTE_FINAL = string.Format("{0:n}", IMPORTE);
 
                     if (X == 0)
                     {
@@ -1996,6 +2013,13 @@ namespace Confiteria
 
                     TOTAL_ESTADISTICAS = TOTAL_ESTADISTICAS + IMPORTE;
 
+                    PdfPCell CELL_CANTIDAD_ITEM = new PdfPCell(new Phrase(CANTIDAD.ToString(), _mediumFont));
+                    CELL_CANTIDAD_ITEM.HorizontalAlignment = 0;
+                    CELL_CANTIDAD_ITEM.BorderWidth = 0;
+                    CELL_CANTIDAD_ITEM.BackgroundColor = colorFondo;
+                    CELL_CANTIDAD_ITEM.FixedHeight = 14f;
+                    TABLA_ESTADISTICAS.AddCell(CELL_CANTIDAD_ITEM);
+
                     PdfPCell CELL_NOMBRE_ITEM = new PdfPCell(new Phrase(NOMBRE_ITEM, _mediumFont));
                     CELL_NOMBRE_ITEM.HorizontalAlignment = 0;
                     CELL_NOMBRE_ITEM.BorderWidth = 0;
@@ -2003,12 +2027,19 @@ namespace Confiteria
                     CELL_NOMBRE_ITEM.FixedHeight = 14f;
                     TABLA_ESTADISTICAS.AddCell(CELL_NOMBRE_ITEM);
 
-                    PdfPCell CELL_IMPORTE_ITEM = new PdfPCell(new Phrase("$ " + IMP_FINAL, _mediumFont));
+                    PdfPCell CELL_IMPORTE_ITEM = new PdfPCell(new Phrase("$ " + IMPORTE_FINAL, _mediumFont));
                     CELL_IMPORTE_ITEM.HorizontalAlignment = 2;
                     CELL_IMPORTE_ITEM.BorderWidth = 0;
                     CELL_IMPORTE_ITEM.BackgroundColor = colorFondo;
                     CELL_IMPORTE_ITEM.FixedHeight = 14f;
                     TABLA_ESTADISTICAS.AddCell(CELL_IMPORTE_ITEM);
+
+                    PdfPCell CELL_SUBTOTAL_ITEM = new PdfPCell(new Phrase("$ " + SUBTOTAL_FINAL, _mediumFont));
+                    CELL_SUBTOTAL_ITEM.HorizontalAlignment = 2;
+                    CELL_SUBTOTAL_ITEM.BorderWidth = 0;
+                    CELL_SUBTOTAL_ITEM.BackgroundColor = colorFondo;
+                    CELL_SUBTOTAL_ITEM.FixedHeight = 14f;
+                    TABLA_ESTADISTICAS.AddCell(CELL_SUBTOTAL_ITEM);
                 }
 
                 PdfPCell CELL_NOMBRE_TOTAL = new PdfPCell(new Phrase("TOTAL", _mediumFont));

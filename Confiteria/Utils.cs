@@ -50,9 +50,23 @@ namespace Confiteria
             }
         }
 
+        public bool setBarcode(int ITEM, string BARCODE)
+        {
+            try
+            {
+                string QUERY = "UPDATE PROFESIONALES SET BARCODE = " + BARCODE + " WHERE ID = " + ITEM + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
         public DataSet getItemsSuma(DataSet COMANDAS)
         {
-            string QUERY = "SELECT ITEM_DETALLE, SUM(SUBTOTAL) FROM CONFITERIA_COMANDA_ITEM WHERE COMANDA IN(";
+            string QUERY = "SELECT COUNT(ITEM_DETALLE) AS CANTIDAD, ITEM_DETALLE, SUM(SUBTOTAL) FROM CONFITERIA_COMANDA_ITEM WHERE COMANDA IN(";
             int TOTAL = COMANDAS.Tables[0].Rows.Count;
 
             foreach (DataRow ROW in COMANDAS.Tables[0].Rows)

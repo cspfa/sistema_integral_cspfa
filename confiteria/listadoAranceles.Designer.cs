@@ -45,12 +45,17 @@
             this.btnFiltrar = new System.Windows.Forms.Button();
             this.btnVerTodos = new System.Windows.Forms.Button();
             this.btnImportar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbBarCode = new System.Windows.Forms.TextBox();
+            this.btnAsignarBarras = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbBarCodeSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoAranceles)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPdf
             // 
-            this.btnPdf.Location = new System.Drawing.Point(523, 64);
+            this.btnPdf.Location = new System.Drawing.Point(783, 64);
             this.btnPdf.Name = "btnPdf";
             this.btnPdf.Size = new System.Drawing.Size(127, 23);
             this.btnPdf.TabIndex = 79;
@@ -84,7 +89,7 @@
             this.dgListadoAranceles.ShowCellToolTips = false;
             this.dgListadoAranceles.ShowEditingIcon = false;
             this.dgListadoAranceles.ShowRowErrors = false;
-            this.dgListadoAranceles.Size = new System.Drawing.Size(505, 435);
+            this.dgListadoAranceles.Size = new System.Drawing.Size(765, 435);
             this.dgListadoAranceles.TabIndex = 80;
             this.dgListadoAranceles.TabStop = false;
             // 
@@ -120,7 +125,7 @@
             // 
             // btnExportarXls
             // 
-            this.btnExportarXls.Location = new System.Drawing.Point(523, 93);
+            this.btnExportarXls.Location = new System.Drawing.Point(783, 93);
             this.btnExportarXls.Name = "btnExportarXls";
             this.btnExportarXls.Size = new System.Drawing.Size(127, 54);
             this.btnExportarXls.TabIndex = 81;
@@ -194,7 +199,7 @@
             // 
             // btnImportar
             // 
-            this.btnImportar.Location = new System.Drawing.Point(523, 153);
+            this.btnImportar.Location = new System.Drawing.Point(783, 153);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(127, 54);
             this.btnImportar.TabIndex = 89;
@@ -202,11 +207,62 @@
             this.btnImportar.UseVisualStyleBackColor = true;
             this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(394, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 91;
+            this.label3.Text = "ASIGNAR BARRAS";
+            // 
+            // tbBarCode
+            // 
+            this.tbBarCode.Location = new System.Drawing.Point(506, 8);
+            this.tbBarCode.Name = "tbBarCode";
+            this.tbBarCode.Size = new System.Drawing.Size(193, 20);
+            this.tbBarCode.TabIndex = 90;
+            this.tbBarCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBarCode_KeyPress);
+            this.tbBarCode.Leave += new System.EventHandler(this.tbBarCode_Leave);
+            // 
+            // btnAsignarBarras
+            // 
+            this.btnAsignarBarras.Location = new System.Drawing.Point(705, 7);
+            this.btnAsignarBarras.Name = "btnAsignarBarras";
+            this.btnAsignarBarras.Size = new System.Drawing.Size(95, 23);
+            this.btnAsignarBarras.TabIndex = 92;
+            this.btnAsignarBarras.Text = "ASIGNAR";
+            this.btnAsignarBarras.UseVisualStyleBackColor = true;
+            this.btnAsignarBarras.Click += new System.EventHandler(this.btnAsignarBarras_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(398, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 13);
+            this.label4.TabIndex = 94;
+            this.label4.Text = "BUSCAR BARRAS";
+            // 
+            // tbBarCodeSearch
+            // 
+            this.tbBarCodeSearch.Location = new System.Drawing.Point(506, 37);
+            this.tbBarCodeSearch.Name = "tbBarCodeSearch";
+            this.tbBarCodeSearch.Size = new System.Drawing.Size(193, 20);
+            this.tbBarCodeSearch.TabIndex = 93;
+            this.tbBarCodeSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBarCodeSearch_KeyPress);
+            this.tbBarCodeSearch.Leave += new System.EventHandler(this.tbBarCodeSearch_Leave);
+            // 
             // listadoAranceles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 512);
+            this.ClientSize = new System.Drawing.Size(922, 512);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.tbBarCodeSearch);
+            this.Controls.Add(this.btnAsignarBarras);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbBarCode);
             this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.btnVerTodos);
             this.Controls.Add(this.btnFiltrar);
@@ -248,5 +304,10 @@
         private System.Windows.Forms.Button btnFiltrar;
         private System.Windows.Forms.Button btnVerTodos;
         private System.Windows.Forms.Button btnImportar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbBarCode;
+        private System.Windows.Forms.Button btnAsignarBarras;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbBarCodeSearch;
     }
 }

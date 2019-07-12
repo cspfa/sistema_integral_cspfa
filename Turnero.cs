@@ -92,6 +92,11 @@ namespace SOCIOS
             }
 
             dgLlamadas.ClearSelection();
+        }     
+
+        private void Turnero_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
     }
 }

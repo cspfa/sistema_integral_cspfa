@@ -49,7 +49,7 @@ namespace Confiteria
             }
         }
 
-        private void buscarAranceles(string CATEGORIA)
+        private void buscarAranceles(string CATEGORIA, string BARCODE = null)
         {
             try
             {
@@ -62,13 +62,19 @@ namespace Confiteria
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, P.STOCK, P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
                     query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
 
                     if (CATEGORIA !="X")
                     {
-                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, P.STOCK, P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
                         query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND S.DETALLE = '" + CATEGORIA + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+                    }
+
+                    if (BARCODE != null)
+                    {
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                        query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND P.BARCODE = '" + BARCODE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
                     }
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -272,16 +278,21 @@ namespace Confiteria
 
         private void btnExportarXls_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Archivo XLS|*.xls";
             saveFileDialog1.Title = "Guardar Listado";
+            string RUTA = "";
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string RUTA = saveFileDialog1.FileName;
-                listadoExcel(RUTA);
-                DialogResult result = MessageBox.Show("LISTADO GENERADO CORRECTAMENTE", "LISTO!", MessageBoxButtons.YesNo);
+                RUTA = saveFileDialog1.FileName;
             }
+
+            listadoExcel(RUTA);
+            MessageBox.Show("LISTADO GENERADO CORRECTAMENTE", "LISTO!");
+
+            Cursor = Cursors.Default;
         }
 
         private void releaseObject(object obj)
@@ -407,7 +418,7 @@ namespace Confiteria
 
             if (ARCHIVO != "*.xls")
             {
-                if (MessageBox.Show("¿CONFIRMA IMPORTAR LOS ARANCELES?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("¿CONFIRMA IMPORTAR LOS DATOS DEL ARCHIVO " + ARCHIVO + " ?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     Cursor = Cursors.WaitCursor;
                     OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ARCHIVO + ";Mode=ReadWrite;Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\"");
@@ -436,6 +447,54 @@ namespace Confiteria
                     buscarAranceles(CATEGORIA);
                     Cursor = Cursors.Default;
                 }
+            }
+        }
+
+        private void tbBarCode_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            /*if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }*/
+        }
+
+        private void tbBarCode_Leave(object sender, EventArgs e)
+        {
+            //MessageBox.Show(sender.ToString());
+        }
+
+        private void btnAsignarBarras_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow ROW in dgListadoAranceles.SelectedRows)
+            {
+                if (ROW.Cells[0].Value.ToString() != "")
+                {
+                    bool SET_BARCODE = utils.setBarcode(Convert.ToInt32(ROW.Cells[0].Value), tbBarCode.Text.Trim());
+
+                    if (SET_BARCODE == true)
+                    {
+                        MessageBox.Show("CÓDIGO DE BARRAS ACTUALIZADO");
+                    }
+                    else
+                    {
+                        MessageBox.Show("OCURRIO UN ERROR");
+                    }
+                }
+            }
+        }
+
+        private void tbBarCodeSearch_Leave(object sender, EventArgs e)
+        {
+            buscarAranceles("X", tbBarCodeSearch.Text.Trim());
+        }
+
+        private void tbBarCodeSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
             }
         }
     }

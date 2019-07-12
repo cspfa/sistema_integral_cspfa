@@ -90,10 +90,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgLlamadas);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Turnero";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Turnero";
             this.Load += new System.EventHandler(this.Turnero_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Turnero_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgLlamadas)).EndInit();
             this.ResumeLayout(false);
 
