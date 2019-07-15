@@ -1210,7 +1210,7 @@ namespace SOCIOS
                 Valor_Control = Decimal.Parse(lbArancel.Text);
 
 
-            string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO='" + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
+            string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO='" + FR_FINAL + "' AND FORMA_PAGO='1' ";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
