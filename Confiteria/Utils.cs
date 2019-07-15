@@ -50,11 +50,18 @@ namespace Confiteria
             }
         }
 
+        public DataSet barCodeSearch(string BARCODE)
+        {
+            string QUERY = "SELECT P.ID, PE.ESPECIALIDAD, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND P.ROL = 'MENU " + VGlobales.vp_role + "' AND P.BARCODE = '" + BARCODE + "';";
+            DataSet GET = getDataFromQuery(QUERY);
+            return GET;
+        }
+
         public bool setBarcode(int ITEM, string BARCODE)
         {
             try
             {
-                string QUERY = "UPDATE PROFESIONALES SET BARCODE = " + BARCODE + " WHERE ID = " + ITEM + ";";
+                string QUERY = "UPDATE PROFESIONALES SET BARCODE = '" + BARCODE + "' WHERE ID = " + ITEM + ";";
                 db.Ejecuto_Consulta(QUERY);
                 return true;
             }

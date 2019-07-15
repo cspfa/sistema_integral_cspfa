@@ -292,6 +292,22 @@ namespace Confiteria
             mostrarArancel();
         }
 
+        private void agregarItem()
+        {
+            int CANTIDAD = int.Parse(tbCantidad.Text.Trim());
+            string TIPO = cbSectAct.Text.Trim();
+            int SEC_ACT = int.Parse(cbSectAct.SelectedValue.ToString());
+            int PROF = int.Parse(cbProf.SelectedValue.ToString());
+            string ITEM = cbProf.Text.Trim();
+            decimal VALOR = decimal.Parse(tbImporteItem.Text.Trim());
+            decimal SUBTOTAL = VALOR * CANTIDAD;
+            string OBSERVACION = tbItemObservacion.Text.Trim();
+            dgItems.Rows.Add(CANTIDAD, TIPO, ITEM, VALOR, SUBTOTAL, PROF, SEC_ACT, "X", "NO", "NO", OBSERVACION);
+            decimal TOTAL = sumarTotal();
+            tbTotal.Text = TOTAL.ToString();
+            tbImporteItem.ReadOnly = true;
+        }
+
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             if (tbCantidad.Text == "")
@@ -316,18 +332,7 @@ namespace Confiteria
             }
             else
             {
-                int CANTIDAD = int.Parse(tbCantidad.Text.Trim());
-                string TIPO = cbSectAct.Text.Trim();
-                int SEC_ACT = int.Parse(cbSectAct.SelectedValue.ToString());
-                int PROF = int.Parse(cbProf.SelectedValue.ToString());
-                string ITEM = cbProf.Text.Trim();
-                decimal VALOR = decimal.Parse(tbImporteItem.Text.Trim());
-                decimal SUBTOTAL = VALOR * CANTIDAD;
-                string OBSERVACION = tbItemObservacion.Text.Trim();
-                dgItems.Rows.Add(CANTIDAD, TIPO, ITEM, VALOR, SUBTOTAL, PROF, SEC_ACT, "X", "NO", "NO", OBSERVACION);
-                decimal TOTAL = sumarTotal();
-                tbTotal.Text = TOTAL.ToString();
-                tbImporteItem.ReadOnly = true;
+                agregarItem();
             }
         }
 
@@ -980,18 +985,22 @@ namespace Confiteria
             buscarItems(CONDICION);
         }
 
-        private void dgResultados_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void checkStock(int STOCK)
         {
-            string SEL_TIPO = dgResultados[1, dgResultados.CurrentCell.RowIndex].Value.ToString();
-            string SEL_ITEM = dgResultados[0, dgResultados.CurrentCell.RowIndex].Value.ToString();
-            int STOCK = utils.getItemStock(Convert.ToInt32(SEL_ITEM));
             tbStock.Text = STOCK.ToString();
 
             if (STOCK < 10 && STOCK > 0)
                 lbStockMenor10.Visible = true;
             else
                 lbStockMenor10.Visible = false;
+        }
 
+        private void dgResultados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string SEL_TIPO = dgResultados[1, dgResultados.CurrentCell.RowIndex].Value.ToString();
+            string SEL_ITEM = dgResultados[0, dgResultados.CurrentCell.RowIndex].Value.ToString();
+            int STOCK = utils.getItemStock(Convert.ToInt32(SEL_ITEM));
+            checkStock(STOCK);
             cargarItemEnCombos(SEL_TIPO, SEL_ITEM);
             mostrarArancel();
         }
@@ -1022,6 +1031,40 @@ namespace Confiteria
             resetNroContralor();
             decimal TOTAL = sumarTotal();
             tbTotal.Text = TOTAL.ToString();
-        }        
+        }
+
+        private void tbBarCodeSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void tbBarCodeSearch_Leave(object sender, EventArgs e)
+        {
+            tbBarCodeSearch.Focus();
+            DataSet ITEM = utils.barCodeSearch(tbBarCodeSearch.Text.Trim());
+            string SEL_TIPO = String.Empty;
+            string SEL_ITEM = String.Empty;
+
+            if (ITEM.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow ROW in ITEM.Tables[0].Rows)
+                {
+                    SEL_TIPO = Convert.ToString(ROW["ESPECIALIDAD"]);
+                    SEL_ITEM = Convert.ToString(ROW["ID"]);
+                }
+
+                cargarItemEnCombos(SEL_TIPO, SEL_ITEM);
+                mostrarArancel();
+                agregarItem();
+            }
+            else
+            {
+                MessageBox.Show("NO SE ENCONTRO NINGÚN RESULTADO");
+            }           
+        }
     }
 }
