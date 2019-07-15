@@ -1199,6 +1199,8 @@ namespace SOCIOS
 
             string DNI = "";
             string FECHA_RECIBO = DateTime.Today.ToShortDateString();
+            string[] FR = FECHA_RECIBO.Split('/');
+            string FR_FINAL = FR[1] + "/" + FR[0] + "/" + FR[2];
             decimal Valor = 0;
             decimal Valor_Control = 0;
 
@@ -1208,9 +1210,7 @@ namespace SOCIOS
                 Valor_Control = Decimal.Parse(lbArancel.Text);
 
 
-
-
-            string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO=' " + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
+            string QUERY = "Select SUM(VALOR) from RECIBOS_CAJA  WHERE DNI = '" + DENI + "' AND FECHA_RECIBO='" + FECHA_RECIBO + "' AND FORMA_PAGO='1' ";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
