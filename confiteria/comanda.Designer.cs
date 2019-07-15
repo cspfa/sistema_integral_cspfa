@@ -237,6 +237,7 @@
             // cbSectAct
             // 
             this.cbSectAct.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbSectAct.Enabled = false;
             this.cbSectAct.FormattingEnabled = true;
             this.cbSectAct.Location = new System.Drawing.Point(190, 260);
             this.cbSectAct.Name = "cbSectAct";

@@ -27,6 +27,26 @@ namespace Confiteria
         private DataSet ITEMS { get; set; }
         private string TIPO_COMANDA { get; set; }
         private string ORIGINAL_DUPLICADO { get; set; }
+        private string BARCODE { get; set; }
+        private string NOMBRE { get; set; }
+
+        public void printBardCodeConfiteria(string N, string BC)
+        {
+            NOMBRE = N;
+            BARCODE = BC;
+            PrintDialog pd = new PrintDialog();
+            PrintDocument pbar = new PrintDocument();
+            PaperSize psize = new PaperSize();
+            pd.Document = pbar;
+            pd.Document.DefaultPageSettings.PaperSize = psize;
+            pbar.PrintPage += new PrintPageEventHandler(pbar_Print);
+            DialogResult result = pd.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                pbar.Print();
+            }
+        }
 
         public void imprimirComanda(DataSet I, DataSet C, string T)
         {
@@ -392,6 +412,32 @@ namespace Confiteria
 
             graphics.DrawString("...", courier_med, black, startX, startY + Offset);
             Offset = Offset + 20;
+        }
+
+        public void pbar_Print(object sender, PrintPageEventArgs e)
+        {
+            Barcode39 code39 = new Barcode39();
+            code39.CodeType = Barcode.CODE128;
+            code39.ChecksumText = false;
+            code39.GenerateChecksum = false;
+            code39.X = 20;
+            Graphics graphics = e.Graphics;
+            Font courier_big = new Font("FontA1x1", 9);
+            Font courier_med = new Font("FontA1x1", 9);
+            Font courier_sma = new Font("FontA1x1", 7);
+            SolidBrush black = new SolidBrush(Color.Black);
+            int startX = 10;
+            int startY = 0;
+            int Offset = 0;
+            code39.Code = BARCODE;
+            Bitmap bm = new Bitmap(code39.CreateDrawingImage(Color.Black, Color.White));
+
+            Offset = Offset + 10;
+            graphics.DrawString(NOMBRE, courier_sma, black, startX, startY + Offset);
+            Offset = Offset + 15;
+            graphics.DrawImage(bm, startX, startY + Offset);
+            Offset = Offset + 30;
+            graphics.DrawString(BARCODE, courier_sma, black, startX, startY + Offset);
         }
     }
 }

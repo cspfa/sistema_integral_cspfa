@@ -330,6 +330,11 @@ namespace Confiteria
                 MessageBox.Show("SELECCIONAR UN ITEM", "ERROR");
                 cbProf.Focus();
             }
+            else if (tbImporteItem.Text == "")
+            {
+                MessageBox.Show("EL IMPORTE NO PUEDE ESTAR VACIO \n\r VERIFICAR QUE ARANCEL ESTE CARGADO", "ERROR");
+                cbProf.Focus();
+            }
             else
             {
                 agregarItem();
@@ -589,8 +594,8 @@ namespace Confiteria
                     int SECUENCIA = int.Parse(dgSocio[4, dgSocio.CurrentCell.RowIndex].Value.ToString());
                     guardarMesa(0, MSG);
                     maxid mid = new maxid();
-                    string ID_COMANDA = mid.m("ID", "CONFITERIA_COMANDAS");
-                    string NRO_COMANDA = mid.m("NRO_COMANDA", "CONFITERIA_COMANDAS");
+                    string ID_COMANDA = mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role);
+                    string NRO_COMANDA = mid.role("NRO_COMANDA", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role);
                     tbNroComanda.Text = NRO_COMANDA;
                     tbIdComanda.Text = ID_COMANDA;
                     ID_COM = int.Parse(ID_COMANDA);
@@ -1045,26 +1050,31 @@ namespace Confiteria
         private void tbBarCodeSearch_Leave(object sender, EventArgs e)
         {
             tbBarCodeSearch.Focus();
-            DataSet ITEM = utils.barCodeSearch(tbBarCodeSearch.Text.Trim());
-            string SEL_TIPO = String.Empty;
-            string SEL_ITEM = String.Empty;
 
-            if (ITEM.Tables[0].Rows.Count > 0)
+            if (tbBarCodeSearch.Focused && tbBarCodeSearch.Text.Trim() !="")
             {
-                foreach (DataRow ROW in ITEM.Tables[0].Rows)
+                DataSet ITEM = utils.barCodeSearch(tbBarCodeSearch.Text.Trim());
+                tbBarCodeSearch.Text = "";
+                string SEL_TIPO = String.Empty;
+                string SEL_ITEM = String.Empty;
+
+                if (ITEM.Tables[0].Rows.Count > 0)
                 {
-                    SEL_TIPO = Convert.ToString(ROW["ESPECIALIDAD"]);
-                    SEL_ITEM = Convert.ToString(ROW["ID"]);
-                }
+                    foreach (DataRow ROW in ITEM.Tables[0].Rows)
+                    {
+                        SEL_TIPO = Convert.ToString(ROW["ESPECIALIDAD"]);
+                        SEL_ITEM = Convert.ToString(ROW["ID"]);
+                    }
 
-                cargarItemEnCombos(SEL_TIPO, SEL_ITEM);
-                mostrarArancel();
-                agregarItem();
+                    cargarItemEnCombos(SEL_TIPO, SEL_ITEM);
+                    mostrarArancel();
+                    agregarItem();
+                }
+                else
+                {
+                    MessageBox.Show("NO SE ENCONTRO NINGÚN RESULTADO");
+                }
             }
-            else
-            {
-                MessageBox.Show("NO SE ENCONTRO NINGÚN RESULTADO");
-            }           
         }
     }
 }

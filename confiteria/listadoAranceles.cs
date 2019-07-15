@@ -16,6 +16,7 @@ namespace Confiteria
     {
         bo dlog = new bo();
         Utils utils = new Utils();
+        imprimir print = new imprimir();
 
         public listadoAranceles()
         {
@@ -495,6 +496,31 @@ namespace Confiteria
             {
                 e.Handled = true;
                 SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void btnImprimirBarcode_Click(object sender, EventArgs e)
+        {
+            if (dgListadoAranceles.SelectedRows.Count > 0)
+            {
+                string BARCODE = String.Empty;
+                string NOMBRE = String.Empty;
+
+                foreach (DataGridViewRow ROW in dgListadoAranceles.SelectedRows)
+                {
+                    int ITEM = Convert.ToInt32(ROW.Cells[0].Value);
+                    BARCODE = utils.getItemBarCode(ITEM);
+                    NOMBRE = utils.getItemName(ITEM);
+
+                    if (BARCODE == "")
+                    {
+                        string START_BARCODE = "1000001";
+                        string END_BARCODE = Convert.ToString(ITEM).PadLeft(6, '0');
+                        BARCODE = START_BARCODE + "" + END_BARCODE;
+                    }
+                }
+
+                print.printBardCodeConfiteria(NOMBRE, BARCODE);
             }
         }
     }

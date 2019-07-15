@@ -50,6 +50,40 @@ namespace Confiteria
             }
         }
 
+        public string getItemName(int ITEM)
+        {
+            string QUERY = "SELECT NOMBRE FROM PROFESIONALES WHERE ID = " + ITEM;
+            DataSet GET = getDataFromQuery(QUERY);
+            string RETURN = "";
+
+            if (GET.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                    RETURN = Convert.ToString(ROW[0]);
+                }
+            }
+
+            return RETURN;
+        }
+
+        public string getItemBarCode(int ITEM)
+        {
+            string QUERY = "SELECT BARCODE FROM PROFESIONALES WHERE ID = " + ITEM + ";";
+            DataSet GET = getDataFromQuery(QUERY);
+            string RETURN = String.Empty;
+            
+            if (GET.Tables[0].Rows.Count > 0)
+            {
+                foreach(DataRow ROW in GET.Tables[0].Rows)
+                {
+                    RETURN = Convert.ToString(ROW[0]);
+                }
+            }
+
+            return RETURN;
+        }
+
         public DataSet barCodeSearch(string BARCODE)
         {
             string QUERY = "SELECT P.ID, PE.ESPECIALIDAD, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND P.ROL = 'MENU " + VGlobales.vp_role + "' AND P.BARCODE = '" + BARCODE + "';";

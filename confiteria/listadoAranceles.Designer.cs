@@ -50,6 +50,7 @@
             this.btnAsignarBarras = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tbBarCodeSearch = new System.Windows.Forms.TextBox();
+            this.btnImprimirBarcode = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoAranceles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,11 +254,22 @@
             this.tbBarCodeSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBarCodeSearch_KeyPress);
             this.tbBarCodeSearch.Leave += new System.EventHandler(this.tbBarCodeSearch_Leave);
             // 
+            // btnImprimirBarcode
+            // 
+            this.btnImprimirBarcode.Location = new System.Drawing.Point(783, 213);
+            this.btnImprimirBarcode.Name = "btnImprimirBarcode";
+            this.btnImprimirBarcode.Size = new System.Drawing.Size(127, 23);
+            this.btnImprimirBarcode.TabIndex = 95;
+            this.btnImprimirBarcode.Text = "IMPRIMIR CODIGO";
+            this.btnImprimirBarcode.UseVisualStyleBackColor = true;
+            this.btnImprimirBarcode.Click += new System.EventHandler(this.btnImprimirBarcode_Click);
+            // 
             // listadoAranceles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 512);
+            this.Controls.Add(this.btnImprimirBarcode);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbBarCodeSearch);
             this.Controls.Add(this.btnAsignarBarras);
@@ -309,5 +321,6 @@
         private System.Windows.Forms.Button btnAsignarBarras;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbBarCodeSearch;
+        private System.Windows.Forms.Button btnImprimirBarcode;
     }
 }
