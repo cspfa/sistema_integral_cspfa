@@ -500,7 +500,7 @@ namespace Confiteria
                 int NRO_COMANDA = 0;
                 string NCOM = "";
                 bool TIENE_DESCUENTO = utils.getTieneDescuento(TIPO_COMANDA);
-                string ENTREGA = dpEntrega.Text;
+                string ENTREGA = dpEntrega.Text.Substring(0, 7);
                 
                 if (TIENE_DESCUENTO == true)
                 {
