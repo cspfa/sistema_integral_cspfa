@@ -520,7 +520,7 @@ namespace Confiteria
                     }
                 }
 
-                print.printBardCodeConfiteria(NOMBRE, BARCODE);
+                print.printBarCodeConfiteria(NOMBRE, BARCODE);
             }
         }
     }

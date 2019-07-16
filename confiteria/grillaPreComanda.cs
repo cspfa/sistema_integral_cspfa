@@ -1729,7 +1729,7 @@ namespace Confiteria
 
             #region TABLA COMANDAS FILTRADAS
 
-            if (COMANDAS.Tables.Count > 0)
+            if (COMANDAS != null && COMANDAS.Tables.Count > 0)
             {
                 Paragraph sub4 = new Paragraph("COMANDAS FILTRADAS", _standardFontBold);
                 sub4.Alignment = Element.ALIGN_CENTER;
@@ -1811,7 +1811,7 @@ namespace Confiteria
 
             decimal TOTAL_FILTRADAS = 0;
 
-            if (COMANDAS.Tables.Count > 0)
+            if (COMANDAS != null && COMANDAS.Tables.Count > 0)
             {
                 int X = 0;
                 BaseColor colorFondo = new BaseColor(255, 255, 255);

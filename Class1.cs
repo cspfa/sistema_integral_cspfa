@@ -107,6 +107,7 @@ namespace SOCIOS
         public string Servidor_Belgrano;
         public string Ubicacion_Belgrano;
         public string Modo_Facturacion;
+        public string Impresora;
 
         public Datos_ini()
         {
@@ -139,6 +140,7 @@ namespace SOCIOS
             Ubicacion_Belgrano = ini.ReadString("UBICACION_BELGRANO");
             VGlobales.MODO_FACTURACION = ini.ReadString("MODO_FACTURACION");
             VGlobales.PUESTO_ATENCION = ini.ReadString("PUESTO_ATENCION");
+            Impresora = ini.ReadString("IMPRESORA");
         }
     }
 
@@ -424,52 +426,38 @@ namespace SOCIOS
         public static string vp_Nombre = "";
         public static int vp_IdSocio2 = 0;
         public static string vp_TipSoc = "";
-
         public static string vp_NombreTabla = "";
         public static string vp_Numero = "";
         public static string vp_Depuracion = "";
         public static string vp_Barra = "";
         public static string vp_CodDto = "";
-
         public static string vp_idTipo;
         public static string vp_idBusco;
         public static string vp_datasource;
         public static string vp_database = "";
-
         public static string vp_viene_de_barras = "";
         public static int vp_id_adhbarra = 0;
         public static string vp_idadh_barra = "";
-
         public static string vp_NroRecibo = "";
         public static string vp_servyact = "";
         public static string v_fechatope = "";
         //Agregado por Sebastian 20-01-2016
         public static int vp_Grupo = 0;
         public static string vp_CatSoc = "";
-
         public static Image Imagen_Carnet;
         public static bool Imagen_Editada = false;
-
         public static string ID_EMPLEADO = "";
         public static string ROL_NAME = "";
-
         public static string PTO_VTA_N = "";
         public static string PTO_VTA_M = "";
         public static string PTO_VTA_O = "";
         public static string ID_PTO_VTA_N = "";
         public static string ID_PTO_VTA_M = "";
         public static string ID_PTO_VTA_O = "";
-
         public static int ID_CUOTA_PAGO = 0;
         public static string MODO_FACTURACION = "";
-
         public static bool PRODUCCION = true;
-
-        public static string  PUESTO_ATENCION = "";
-
-
-       
-
+        public static string PUESTO_ATENCION = "";
     }
 
 

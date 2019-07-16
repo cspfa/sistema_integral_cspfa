@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Text;
 using System.Windows.Forms;
-using System.IO;
-using FirebirdSql.Data.Client;
-using FirebirdSql.Data.FirebirdClient;
-using FirebirdSql.Data.Isql;
-using FirebirdSql.Data.Services;
-using FirebirdSql.Data.Server;
 using iTextSharp.text.pdf;
 using SOCIOS;
 
@@ -21,6 +11,7 @@ namespace Confiteria
     class imprimir
     {
         bo dlog = new bo();
+        Utils utils = new Utils();
 
         private DataSet COMANDA { get; set; }
         private DataSet SOLICITUD { get; set; }
@@ -30,22 +21,24 @@ namespace Confiteria
         private string BARCODE { get; set; }
         private string NOMBRE { get; set; }
 
-        public void printBardCodeConfiteria(string N, string BC)
+        public void printBarCodeConfiteria(string N, string BC)
         {
             NOMBRE = N;
             BARCODE = BC;
-            PrintDialog pd = new PrintDialog();
+            string IMPRESORA = String.Empty;
+            string IMPRESORA_INI = utils.getIniPrinter();
+
+            foreach (String strPrinter in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                if (strPrinter == IMPRESORA_INI)
+                    IMPRESORA = IMPRESORA_INI;
+            }
+
             PrintDocument pbar = new PrintDocument();
             PaperSize psize = new PaperSize();
-            pd.Document = pbar;
-            pd.Document.DefaultPageSettings.PaperSize = psize;
             pbar.PrintPage += new PrintPageEventHandler(pbar_Print);
-            DialogResult result = pd.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                pbar.Print();
-            }
+            pbar.PrinterSettings.PrinterName = IMPRESORA;
+            pbar.Print();
         }
 
         public void imprimirComanda(DataSet I, DataSet C, string T)
@@ -53,58 +46,64 @@ namespace Confiteria
             COMANDA = C;
             ITEMS = I;
             TIPO_COMANDA = T;
-            PrintDialog pd = new PrintDialog();
+            string IMPRESORA = String.Empty;
+            string IMPRESORA_INI = utils.getIniPrinter();
+
+            foreach (String strPrinter in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                if(strPrinter == IMPRESORA_INI)
+                    IMPRESORA = IMPRESORA_INI;
+            }
+
             PrintDocument pdoc = new PrintDocument();
             PaperSize psize = new PaperSize();
-            pd.Document = pdoc;
-            pd.Document.DefaultPageSettings.PaperSize = psize;
             pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
-            DialogResult result = pd.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                pdoc.Print();
-            }
+            pdoc.PrinterSettings.PrinterName = IMPRESORA;
+            pdoc.Print();
         }
 
         public void imprimirSolicitud(DataSet S)
         {
             SOLICITUD = S;
-            PrintDialog pd = new PrintDialog();
+            string IMPRESORA = String.Empty;
+            string IMPRESORA_INI = utils.getIniPrinter();
+
+            foreach (String strPrinter in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                if (strPrinter == IMPRESORA_INI)
+                    IMPRESORA = IMPRESORA_INI;
+            }
+
             PrintDocument psol = new PrintDocument();
             PaperSize psize = new PaperSize();
-            pd.Document = psol;
-            pd.Document.DefaultPageSettings.PaperSize = psize;
             psol.PrintPage += new PrintPageEventHandler(psol_Print);
-            DialogResult result = pd.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                ORIGINAL_DUPLICADO = "ORIGINAL";
-                psol.Print();
-                ORIGINAL_DUPLICADO = "DUPLICADO";
-                psol.Print();
-            }
+            psol.PrinterSettings.PrinterName = IMPRESORA;
+            ORIGINAL_DUPLICADO = "ORIGINAL";
+            psol.Print();
+            ORIGINAL_DUPLICADO = "DUPLICADO";
+            psol.Print();
         }
 
         public void imprimirSolicitudEspecial(DataSet S)
         {
             SOLICITUD = S;
-            PrintDialog pd = new PrintDialog();
+            string IMPRESORA = String.Empty;
+            string IMPRESORA_INI = utils.getIniPrinter();
+
+            foreach (String strPrinter in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                if (strPrinter == IMPRESORA_INI)
+                    IMPRESORA = IMPRESORA_INI;
+            }
+
             PrintDocument psolesp = new PrintDocument();
             PaperSize psize = new PaperSize();
-            pd.Document = psolesp;
-            pd.Document.DefaultPageSettings.PaperSize = psize;
             psolesp.PrintPage += new PrintPageEventHandler(psolesp_Print);
-            DialogResult result = pd.ShowDialog();
-
-            if (result == DialogResult.OK)
-            {
-                ORIGINAL_DUPLICADO = "ORIGINAL";
-                psolesp.Print();
-                ORIGINAL_DUPLICADO = "DUPLICADO";
-                psolesp.Print();
-            }
+            psolesp.PrinterSettings.PrinterName = IMPRESORA;
+            ORIGINAL_DUPLICADO = "ORIGINAL";
+            psolesp.Print();
+            ORIGINAL_DUPLICADO = "DUPLICADO";
+            psolesp.Print();
         }
 
         public void psolesp_Print(object sender, PrintPageEventArgs e)

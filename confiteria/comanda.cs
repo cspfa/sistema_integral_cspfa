@@ -718,12 +718,28 @@ namespace Confiteria
                             buscarComanda(ID_COM);
                             buscarItems(ID_COM, "NO", "X");
                             imprimir i = new imprimir();
-                            i.imprimirComanda(ITEMS, COMANDA, "SOCIO");
 
-                            /*if (VGlobales.vp_role == "CPOCABA")
+                            i.imprimirComanda(ITEMS, COMANDA, "SOCIO"); //COMANDA COMPLETA PARA EL SOCIO
+
+                            if (VGlobales.vp_role == "CPOCABA")
                             {
-                                i.imprimirComanda(ITEMS, COMANDA, "COCINA");
-                            }*/
+                                DataSet BUFFET = utils.getItemsByCategory(ID_COM, "BUFFET");
+                                DataSet DESPENSA = utils.getItemsByCategory(ID_COM, "DESPENSA");
+                                DataSet CAFETERIA = utils.getItemsByCategory(ID_COM, "CAFETERIA");
+                                DataSet PARRILLA = utils.getItemsByCategory(ID_COM, "PARRILLA");
+
+                                if (BUFFET.Tables[0].Rows.Count > 0)
+                                    i.imprimirComanda(BUFFET, COMANDA, "BUFFET");
+
+                                if (DESPENSA.Tables[0].Rows.Count > 0)
+                                    i.imprimirComanda(DESPENSA, COMANDA, "DESPENSA");
+
+                                if (CAFETERIA.Tables[0].Rows.Count > 0)
+                                    i.imprimirComanda(CAFETERIA, COMANDA, "CAFETERIA");
+
+                                if (PARRILLA.Tables[0].Rows.Count > 0)
+                                    i.imprimirComanda(PARRILLA, COMANDA, "PARRILLA");
+                            }
 
                             if (FORMA_DE_PAGO == "8")
                             {

@@ -50,6 +50,19 @@ namespace Confiteria
             }
         }
 
+        public string getIniPrinter()
+        {
+            Datos_ini ini = new Datos_ini();
+            return ini.Impresora;
+        }
+
+        public DataSet getItemsByCategory(int COMANDA, string GRUPO)
+        {
+            string QUERY = "SELECT C.ITEM, C.CANTIDAD, C.TIPO, C.VALOR, C.SUBTOTAL, C.ITEM_DETALLE, C.TIPO_DETALLE, C.ID, C.IMPRESO, C.OBSERVACIONES FROM CONFITERIA_COMANDA_ITEM C WHERE C.COMANDA = " + COMANDA + " AND TIPO_DETALLE = '" + GRUPO + "' ORDER BY C.ID ASC;";
+            DataSet GET = getDataFromQuery(QUERY);
+            return GET;
+        }
+
         public string getItemName(int ITEM)
         {
             string QUERY = "SELECT NOMBRE FROM PROFESIONALES WHERE ID = " + ITEM;
