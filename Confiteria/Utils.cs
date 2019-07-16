@@ -99,7 +99,9 @@ namespace Confiteria
 
         public DataSet barCodeSearch(string BARCODE)
         {
-            string QUERY = "SELECT P.ID, PE.ESPECIALIDAD, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND P.ROL = 'MENU " + VGlobales.vp_role + "' AND P.BARCODE = '" + BARCODE + "';";
+            string ID = BARCODE.Substring(7, 6);
+            ID = ID.Replace("0", "");
+            string QUERY = "SELECT P.ID, PE.ESPECIALIDAD, P.NOMBRE FROM PROFESIONALES P, PROF_ESP PE WHERE P.ID = PE.PROFESIONAL AND P.ROL = 'MENU " + VGlobales.vp_role + "' AND (P.BARCODE = '" + BARCODE + "' OR P.ID = " + ID + ");";
             DataSet GET = getDataFromQuery(QUERY);
             return GET;
         }
