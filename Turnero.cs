@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FirebirdSql.Data.Firebird;
-using Confiteria;
+//using Confiteria;
 using System.Threading;
 using System.Speech.Synthesis;
 
@@ -33,9 +33,9 @@ namespace SOCIOS
 
         private void buscarLlamadas()
         {
-            Confiteria.Utils cu = new Confiteria.Utils();
-            string QUERY = "SELECT NOMBRE, APELLIDO, PUESTO_ATENCION, SECUENCIA FROM INGRESOS_A_PROCESAR WHERE TILDE = 'L' ORDER BY SECUENCIA DESC;";
-            LLAMADAS = cu.getDataFromQuery(QUERY);
+            //Confiteria.Utils cu = new Confiteria.Utils();
+            //string QUERY = "SELECT NOMBRE, APELLIDO, PUESTO_ATENCION, SECUENCIA FROM INGRESOS_A_PROCESAR WHERE TILDE = 'L' ORDER BY SECUENCIA DESC;";
+            //LLAMADAS = cu.getDataFromQuery(QUERY);
         }
 
         

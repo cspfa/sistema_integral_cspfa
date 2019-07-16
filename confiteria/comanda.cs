@@ -669,7 +669,7 @@ namespace Confiteria
             botonGuardarMesa("SI");
         }
 
-        private void btnImprimirComanda_Click(object sender, EventArgs e)
+        private void cerrarImprimir()
         {
             Cursor = Cursors.WaitCursor;
             int NRO_SOC = int.Parse(dgSocio[0, dgSocio.CurrentCell.RowIndex].Value.ToString());
@@ -781,6 +781,11 @@ namespace Confiteria
             }
 
             Cursor = Cursors.Default;
+        }
+
+        private void btnImprimirComanda_Click(object sender, EventArgs e)
+        {
+            cerrarImprimir();
         }
 
         private void marcarItemImpreso()
@@ -1065,7 +1070,7 @@ namespace Confiteria
 
         private void tbBarCodeSearch_Leave(object sender, EventArgs e)
         {
-            tbBarCodeSearch.Focus();
+            //tbBarCodeSearch.Focus();
 
             if (tbBarCodeSearch.Focused && tbBarCodeSearch.Text.Trim() !="")
             {

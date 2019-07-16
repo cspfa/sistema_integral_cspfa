@@ -446,7 +446,7 @@
             this.btnImprimirComanda.Name = "btnImprimirComanda";
             this.btnImprimirComanda.Size = new System.Drawing.Size(177, 36);
             this.btnImprimirComanda.TabIndex = 60;
-            this.btnImprimirComanda.Text = "CERRAR MESA E IMPRIMIR";
+            this.btnImprimirComanda.Text = "CERRAR E IMPRIMIR";
             this.btnImprimirComanda.UseVisualStyleBackColor = true;
             this.btnImprimirComanda.Click += new System.EventHandler(this.btnImprimirComanda_Click);
             // 

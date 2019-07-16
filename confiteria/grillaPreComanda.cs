@@ -2383,7 +2383,7 @@ namespace Confiteria
             string ANO = DateTime.Today.Year.ToString();
             string FECHA = MES + "/" + DIA + "/" + ANO;
 
-            string query = "SELECT FECHA FROM CONFITERIA_CAJA_DIARIA WHERE FECHA = '" + FECHA + "';";
+            string query = "SELECT FECHA FROM CONFITERIA_CAJA_DIARIA WHERE FECHA = '" + FECHA + "' AND ROL = '" + VGlobales.vp_role + "';";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(query).Select();
 
