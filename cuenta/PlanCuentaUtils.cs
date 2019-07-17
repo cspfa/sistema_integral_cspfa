@@ -42,12 +42,16 @@ namespace SOCIOS.CuentaSocio
         public string Barra              { get; set; }
         public string Nro_Socio_Tit      { get; set; }
         public string Nro_Dep_Tit        { get; set; }
+        public int    Cuenta             { get; set; }
   
         
       
       
 
     }
+
+
+
 
     public class CuotaPlan
     {
@@ -87,6 +91,20 @@ namespace SOCIOS.CuentaSocio
         public decimal Saldo   { get; set; }
         
     }
+
+    public class Reporte_Planes
+    {
+        public string DNI      { get; set; }
+        public string NOMBRE   { get; set; }
+        public string APELLIDO { get; set; }
+        public string NRO_SOC  { get; set; }
+        public string NRO_DEP  { get; set; }
+        public string PLANES   { get; set; }  
+        public string SALDO    { get; set; }
+       
+        
+     
+    }
     public class PlanCuentaUtils
     {
         bo_Bonos dlog = new bo_Bonos();
@@ -100,7 +118,7 @@ namespace SOCIOS.CuentaSocio
             
             //Modo 2 , Turismo Modo 1 , Odonto
   
-                query = "select distinct  P.F_ALTA FECHA, trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO, B.CODINT CODINT,PBT.DES TIPO,P.ID  ID ,B.ID_ROL BONO ,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP ,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, B.NRO_SOCIO_TITULAR NRO_SOCIO_TIT , B.NRO_DEP_TITULAR NRO_DEP_TIT,P.REFERENTE REF, P.REFERENTE_DNI REF_DNI " +
+                query = "select distinct  P.F_ALTA FECHA, trim(B.APELLIDO) || ','|| B.NOMBRE NOMBRE_COMPLETO,P.SALDO_INICIAL INICIAL, P.SALDO, B.CODINT CODINT,PBT.DES TIPO,P.ID  ID ,B.ID_ROL BONO ,B.NRO_SOCIO_TITULAR SOCIO, B.NRO_SOCIO NRO_SOCIO , B.NRO_DEP NRO_DEP ,B.PAGO OBS, P.ROL ROL, B.DNI DNI ,B.NOMBRE NOMBRE,B.APELLIDO APELLIDO, B.BARRA BARRA, P.NRO_SOC_TIT NRO_SOCIO_TIT , P.NRO_DEP_TIT NRO_DEP_TIT,P.REFERENTE REF, P.REFERENTE_DNI REF_DNI,B.CUENTA CUENTA " +
                         "from plan_cuenta P,";
         
             if (Modo == 2)
@@ -181,6 +199,12 @@ namespace SOCIOS.CuentaSocio
                         pc.Referente = pc.NombreCompleto;
                     if (pc.Referente_DNI.Length == 0)
                         pc.Referente_DNI = pc.Dni;
+                   
+                    if (reader3.GetString(reader3.GetOrdinal("CUENTA")).TrimEnd().Length > 0)
+                        pc.Cuenta = Int32.Parse(reader3.GetString(reader3.GetOrdinal("CUENTA")).TrimEnd());
+                    else
+                        pc.Cuenta = 0;
+
                      Planes.Add(pc);
 
                 }
@@ -501,6 +525,67 @@ namespace SOCIOS.CuentaSocio
         
         }
 
+        public  List<Reporte_Planes> getPlanes(string nro_soc,string nro_dep, string dni_tit,string NOMBRE,string APELLIDO,bool SinCeros)
+        {
+            List<Reporte_Planes> lista = new List<Reporte_Planes>();
+            string Query = "select T.NUM_DOC DNI,T.NOM_SOC NOMBRE ,T.APE_SOC APELLIDO,P.nro_soc_TIT NRO_SOC ,nro_DEP_TIT NRO_DEP ,count(P.ID) PLANES, sum(P.saldo) Saldo from plan_cuenta P,Titular T  where P.NRO_SOC_TIT=T.NRO_SOC and P.NRO_DEP_TIT=T.NRO_DEP "; 
+             if (nro_soc.Length>0)
+                 Query = Query + " and P.nro_soc_TIT = " + nro_soc;
+             if (nro_dep.Length > 0)
+                 Query = Query + " and P.nro_dep_TIT = " + nro_soc;
+             if (dni_tit.Length > 0)
+                 Query = Query + " and T.NUM_DOC = " + dni_tit;
+             if (SinCeros)
+                 Query = Query + " and sum(P.saldo) >0 ";
+             if (NOMBRE.Length > 0)
+                 Query = Query + " and T.NOM_SOC LIKE '%" + NOMBRE + "%'";
+             if (APELLIDO.Length > 0)
+                 Query = Query + " and T.APE_SOC LIKE '%" + APELLIDO + "%'";
+            
+            if (SinCeros)
+                 Query = Query + " and sum(p.Saldo) > 0  ";
+
+
+            Query = Query +  " group by   T.NUM_DOC,T.NOM_SOC ,T.APE_SOC,P.nro_soc_TIT ,nro_DEP_TIT  ";
+            
+
+
+
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(Query).Select();
+
+            int Total = foundRows.Length;
+            int I=0;
+            while ( I<Total)
+            {
+                Reporte_Planes rp = new Reporte_Planes();
+
+
+                rp.DNI      = foundRows[I][0].ToString();
+                rp.NOMBRE   = foundRows[I][1].ToString();
+                rp.APELLIDO = foundRows[I][2].ToString();
+                rp.NRO_SOC  = foundRows[I][3].ToString();
+                rp.NRO_DEP  = foundRows[I][4].ToString();
+                rp.PLANES   = foundRows[I][5].ToString();
+                rp.SALDO    = foundRows[I][6].ToString();
+                lista.Add(rp);
+                I=I+1;
+
+            }
+
+            return lista;
+            //else
+            //    return "";
+
+
+          
+            
+
+            return lista;
+        
+        
+        
+        }
 
 
     }

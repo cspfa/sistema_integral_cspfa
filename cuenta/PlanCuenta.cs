@@ -34,13 +34,19 @@ namespace SOCIOS.CuentaSocio
         List<PLanDeCuenta> planes = new List<PLanDeCuenta>();
 
 
-        public PlanCuenta(string ROL)
+        public PlanCuenta(string ROL,string NRO_SOC,string NRO_DEP)
         {
             InitializeComponent();
             utilsCuenta = new PlanCuentaUtils();
             this.ComboTipo();
             comboFormasDePago();
             this.Determinar_Modo(ROL);
+            tbSocio_Tit.Text = NRO_SOC;
+            tbDepuracion_Tit.Text = NRO_DEP;
+
+            this.Filtrar();
+
+
 
             
         }
@@ -48,7 +54,7 @@ namespace SOCIOS.CuentaSocio
         private void Determinar_Modo(string ROL)
 
         {
-            if (ROL == "SISTEMAS")
+            if (ROL == "SISTEMAS" || ROL=="DESCUENTOS" )
             {
                 MODO = 2;
                
@@ -102,7 +108,7 @@ namespace SOCIOS.CuentaSocio
         {
             List<SOCIOS.admDeportes.ItemCombo> lista = new List<SOCIOS.admDeportes.ItemCombo>();
 
-            lista.Add(new SOCIOS.admDeportes.ItemCombo(1, "ODONTOLOGIA"));
+            lista.Add(new SOCIOS.admDeportes.ItemCombo(1, "SERVICIOS MEDICOS"));
             lista.Add(new SOCIOS.admDeportes.ItemCombo(2, "TURISMO"));
          
 
@@ -198,6 +204,8 @@ namespace SOCIOS.CuentaSocio
         private void GetDataPlan(int ID_PLAN)
 
         {
+            this.Filtrar();
+            //this.BindGrillaPLan(MODO);
 
              var item =planes.Where(x => x.Plan == ID_PLAN.ToString()).FirstOrDefault();
 
@@ -205,9 +213,10 @@ namespace SOCIOS.CuentaSocio
              Nombre       = item.Nombre;
              Apellido     = item.Apellido;
              DNI          = item.Dni;
-             NRO_SOCIO    =   Int32.Parse( item.Nro_Socio);
-            NRO_DEP       = Int32.Parse( item.Nro_Dep);
-            BARRA         = Int32.Parse(item.Barra);
+
+             NRO_SOCIO    =    Int32.Parse( item.Nro_Socio);
+             NRO_DEP       =   Int32.Parse( item.Nro_Dep);
+             BARRA         =   Int32.Parse(item.Barra);
 
             NRO_SOCIO_TIT = Int32.Parse(item.Nro_Socio_Tit);
             NRO_DEP_TIT = Int32.Parse(item.Nro_Dep_Tit);
@@ -355,27 +364,55 @@ namespace SOCIOS.CuentaSocio
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            Filtrar();
             
-            var x =  utilsCuenta.GetCuentas(MODO).ToList();
+        }
+
+
+        public void Filtrar()
+
+        {
+
+            var x = utilsCuenta.GetCuentas(MODO).ToList();
             if (x != null)
             {
                 if (tbNombre.Text.Length > 0)
-                    x = x.Where(v=>v.Referente.Contains(tbNombre.Text)).ToList();
+                    x = x.Where(v => v.Referente.Contains(tbNombre.Text)).ToList();
                 if (tbApellido.Text.Length > 0)
                     x = x.Where(v => v.Referente.Contains(tbApellido.Text)).ToList();
                 if (tbSocio.Text.Length > 0)
-                   x = x.Where(v => v.Nro_Socio.Contains(tbSocio.Text)).ToList();
+                    x = x.Where(v => v.Nro_Socio.Contains(tbSocio.Text)).ToList();
                 if (tbDepuracion.Text.Length > 0)
                     x = x.Where(v => v.Nro_Dep.Contains(tbDepuracion.Text)).ToList();
                 if (tbDni.Text.Length > 0)
                     x = x.Where(v => v.Referente_DNI.Contains(tbDni.Text)).ToList();
+                if (tbBono.Text.Length > 0)
+                    x = x.Where(v => v.Bono == tbBono.Text.TrimEnd().TrimStart()).ToList();
+
+                if (tbPLanCuenta.Text.Length > 0)
+                    x = x.Where(v => v.Plan == tbPLanCuenta.Text.TrimEnd().TrimStart()).ToList();
+
+                if (tbCuenta.Text.Length > 0)
+                {
+                    x = x.Where(p => p.Cuenta == Int32.Parse(tbCuenta.Text.Trim())).ToList();
+                }
+
+                if (tbSocio_Tit.Text.Length > 0)
+                    x = x.Where(v => v.Nro_Socio_Tit.Contains(tbSocio_Tit.Text)).ToList();
+
+                if (tbDepuracion_Tit.Text.Length > 0)
+                    x = x.Where(v => v.Nro_Dep_Tit.Contains(tbDepuracion_Tit.Text)).ToList();
+
+        
+
+
 
                 dgvPlanes.DataSource = x;
+                planes = x;
                 this.FormatoGrilla();
 
             }
         }
-
         private void comboFormasDePago()
         {
             string query = "SELECT * FROM FORMAS_DE_PAGO ORDER BY ID ASC;";
@@ -444,6 +481,14 @@ namespace SOCIOS.CuentaSocio
             tbNroPago.Text = "";
             chkRecibo.Checked = false;
             chkBono.Checked = false;
+        }
+
+        private void cbTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           if (cbTipo.Text.Contains("TURISMO"))
+               MODO=2;
+           else
+               MODO=1;
         }
 
       

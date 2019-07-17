@@ -44,6 +44,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.gpPlanCuota = new System.Windows.Forms.GroupBox();
+            this.lbNombreCompleto = new System.Windows.Forms.Label();
             this.LBCUOTA = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -73,7 +74,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.lbNombreCompleto = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbBono = new System.Windows.Forms.TextBox();
+            this.tbPLanCuenta = new System.Windows.Forms.TextBox();
+            this.lbPC = new System.Windows.Forms.Label();
+            this.tbCuenta = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbDepuracion_Tit = new MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox();
+            this.tbSocio_Tit = new MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlanes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCuotas)).BeginInit();
             this.gpDescuento.SuspendLayout();
@@ -87,7 +97,7 @@
             this.dgvPlanes.AllowUserToAddRows = false;
             this.dgvPlanes.AllowUserToDeleteRows = false;
             this.dgvPlanes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlanes.Location = new System.Drawing.Point(12, 147);
+            this.dgvPlanes.Location = new System.Drawing.Point(12, 160);
             this.dgvPlanes.MultiSelect = false;
             this.dgvPlanes.Name = "dgvPlanes";
             this.dgvPlanes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -147,6 +157,7 @@
             this.cbTipo.Name = "cbTipo";
             this.cbTipo.Size = new System.Drawing.Size(157, 21);
             this.cbTipo.TabIndex = 85;
+            this.cbTipo.SelectedIndexChanged += new System.EventHandler(this.cbTipo_SelectedIndexChanged);
             // 
             // lbTipoViaje
             // 
@@ -255,13 +266,22 @@
             this.gpPlanCuota.Controls.Add(this.Genero_Ingreso);
             this.gpPlanCuota.Controls.Add(this.label3);
             this.gpPlanCuota.Controls.Add(this.butonInfoDescuento);
-            this.gpPlanCuota.Location = new System.Drawing.Point(10, 303);
+            this.gpPlanCuota.Location = new System.Drawing.Point(10, 315);
             this.gpPlanCuota.Name = "gpPlanCuota";
             this.gpPlanCuota.Size = new System.Drawing.Size(1043, 345);
             this.gpPlanCuota.TabIndex = 91;
             this.gpPlanCuota.TabStop = false;
             this.gpPlanCuota.Text = "Plan de Cuotas";
             this.gpPlanCuota.Visible = false;
+            // 
+            // lbNombreCompleto
+            // 
+            this.lbNombreCompleto.AutoSize = true;
+            this.lbNombreCompleto.Location = new System.Drawing.Point(245, 42);
+            this.lbNombreCompleto.Name = "lbNombreCompleto";
+            this.lbNombreCompleto.Size = new System.Drawing.Size(10, 13);
+            this.lbNombreCompleto.TabIndex = 97;
+            this.lbNombreCompleto.Text = "-";
             // 
             // LBCUOTA
             // 
@@ -424,7 +444,7 @@
             // Seleccion
             // 
             this.Seleccion.AutoSize = true;
-            this.Seleccion.Location = new System.Drawing.Point(449, 283);
+            this.Seleccion.Location = new System.Drawing.Point(449, 295);
             this.Seleccion.Name = "Seleccion";
             this.Seleccion.Size = new System.Drawing.Size(54, 13);
             this.Seleccion.TabIndex = 92;
@@ -451,7 +471,7 @@
             this.tbDni.DisabledBackColor = System.Drawing.Color.White;
             this.tbDni.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.tbDni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDni.Location = new System.Drawing.Point(397, 53);
+            this.tbDni.Location = new System.Drawing.Point(411, 53);
             this.tbDni.Mask = "99999999";
             this.tbDni.Name = "tbDni";
             this.tbDni.Size = new System.Drawing.Size(92, 20);
@@ -461,7 +481,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(313, 57);
+            this.label11.Location = new System.Drawing.Point(325, 57);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(80, 13);
             this.label11.TabIndex = 103;
@@ -471,7 +491,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(313, 82);
+            this.label10.Location = new System.Drawing.Point(338, 82);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 13);
             this.label10.TabIndex = 102;
@@ -481,7 +501,7 @@
             // 
             this.tbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.tbNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNombre.Location = new System.Drawing.Point(399, 78);
+            this.tbNombre.Location = new System.Drawing.Point(412, 78);
             this.tbNombre.MaxLength = 20;
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(294, 20);
@@ -564,20 +584,128 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // lbNombreCompleto
+            // label15
             // 
-            this.lbNombreCompleto.AutoSize = true;
-            this.lbNombreCompleto.Location = new System.Drawing.Point(245, 42);
-            this.lbNombreCompleto.Name = "lbNombreCompleto";
-            this.lbNombreCompleto.Size = new System.Drawing.Size(10, 13);
-            this.lbNombreCompleto.TabIndex = 97;
-            this.lbNombreCompleto.Text = "-";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(9, 104);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(68, 13);
+            this.label15.TabIndex = 104;
+            this.label15.Text = "NRO BONO:";
+            // 
+            // tbBono
+            // 
+            this.tbBono.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbBono.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbBono.Location = new System.Drawing.Point(77, 101);
+            this.tbBono.MaxLength = 20;
+            this.tbBono.Name = "tbBono";
+            this.tbBono.Size = new System.Drawing.Size(64, 20);
+            this.tbBono.TabIndex = 105;
+            // 
+            // tbPLanCuenta
+            // 
+            this.tbPLanCuenta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbPLanCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPLanCuenta.Location = new System.Drawing.Point(235, 101);
+            this.tbPLanCuenta.MaxLength = 20;
+            this.tbPLanCuenta.Name = "tbPLanCuenta";
+            this.tbPLanCuenta.Size = new System.Drawing.Size(64, 20);
+            this.tbPLanCuenta.TabIndex = 107;
+            // 
+            // lbPC
+            // 
+            this.lbPC.AutoSize = true;
+            this.lbPC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPC.Location = new System.Drawing.Point(161, 105);
+            this.lbPC.Name = "lbPC";
+            this.lbPC.Size = new System.Drawing.Size(49, 13);
+            this.lbPC.TabIndex = 106;
+            this.lbPC.Text = "ID PLAN";
+            // 
+            // tbCuenta
+            // 
+            this.tbCuenta.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbCuenta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCuenta.Location = new System.Drawing.Point(412, 101);
+            this.tbCuenta.MaxLength = 20;
+            this.tbCuenta.Name = "tbCuenta";
+            this.tbCuenta.Size = new System.Drawing.Size(91, 20);
+            this.tbCuenta.TabIndex = 109;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(338, 105);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(51, 13);
+            this.label16.TabIndex = 108;
+            this.label16.Text = "CUENTA";
+            // 
+            // tbDepuracion_Tit
+            // 
+            this.tbDepuracion_Tit.BusinessObjectEvaluated = true;
+            this.tbDepuracion_Tit.DisabledBackColor = System.Drawing.Color.White;
+            this.tbDepuracion_Tit.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tbDepuracion_Tit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDepuracion_Tit.Location = new System.Drawing.Point(272, 127);
+            this.tbDepuracion_Tit.Mask = "999";
+            this.tbDepuracion_Tit.Name = "tbDepuracion_Tit";
+            this.tbDepuracion_Tit.Size = new System.Drawing.Size(27, 20);
+            this.tbDepuracion_Tit.TabIndex = 111;
+            this.tbDepuracion_Tit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbSocio_Tit
+            // 
+            this.tbSocio_Tit.BusinessObjectEvaluated = true;
+            this.tbSocio_Tit.DisabledBackColor = System.Drawing.Color.White;
+            this.tbSocio_Tit.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tbSocio_Tit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbSocio_Tit.Location = new System.Drawing.Point(97, 127);
+            this.tbSocio_Tit.Mask = "99999";
+            this.tbSocio_Tit.Name = "tbSocio_Tit";
+            this.tbSocio_Tit.Size = new System.Drawing.Size(44, 20);
+            this.tbSocio_Tit.TabIndex = 110;
+            this.tbSocio_Tit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSocio_Tit.ValidatingType = typeof(int);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(148, 131);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(99, 13);
+            this.label17.TabIndex = 113;
+            this.label17.Text = "DEPURACIÓN(Tit):";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(14, 131);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(76, 13);
+            this.label18.TabIndex = 112;
+            this.label18.Text = "N° SOCIO(Tit):";
             // 
             // PlanCuenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 652);
+            this.ClientSize = new System.Drawing.Size(1067, 666);
+            this.Controls.Add(this.tbDepuracion_Tit);
+            this.Controls.Add(this.tbSocio_Tit);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.tbCuenta);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.tbPLanCuenta);
+            this.Controls.Add(this.lbPC);
+            this.Controls.Add(this.tbBono);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.tbDni);
             this.Controls.Add(this.label11);
@@ -659,5 +787,15 @@
         private System.Windows.Forms.Label lbMonto;
         private System.Windows.Forms.Label LBCUOTA;
         private System.Windows.Forms.Label lbNombreCompleto;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbBono;
+        private System.Windows.Forms.TextBox tbPLanCuenta;
+        private System.Windows.Forms.Label lbPC;
+        private System.Windows.Forms.TextBox tbCuenta;
+        private System.Windows.Forms.Label label16;
+        private MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox tbDepuracion_Tit;
+        private MicroFour.StrataFrame.UI.Windows.Forms.MaskedTextbox tbSocio_Tit;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
     }
 }
