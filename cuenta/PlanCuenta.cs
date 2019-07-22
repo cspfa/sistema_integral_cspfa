@@ -54,7 +54,7 @@ namespace SOCIOS.CuentaSocio
         private void Determinar_Modo(string ROL)
 
         {
-            if (ROL == "SISTEMAS" || ROL=="DESCUENTOS" )
+            if (ROL == "SISTEMAS" || ROL=="CONTADURIA" )
             {
                 MODO = 2;
                
