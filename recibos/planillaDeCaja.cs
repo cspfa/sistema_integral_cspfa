@@ -290,7 +290,7 @@ namespace SOCIOS
 
             totalEgresos();
 
-            if(VGlobales.vp_role == "CAJA")
+            if (VGlobales.vp_role == "CAJA")
                 dgTotalesDelDia.Rows.Add("SUBTOTAL INGRESOS DEL DIA", string.Format("{0:n}", INGRESOS_EFECTIVO + INGRESOS_OTROS));
 
             if (VGlobales.vp_role == "CPOCABA")
@@ -388,7 +388,7 @@ namespace SOCIOS
         {
             string query = "SELECT ID, DETALLE FROM FORMAS_DE_PAGO WHERE ID <> 10 ORDER BY ID;";
 
-            if(CB == cbPagoFiltro)
+            if (CB == cbPagoFiltro)
                 query = "SELECT ID, DETALLE FROM FORMAS_DE_PAGO ORDER BY ID;";
 
             CB.DataSource = null;
@@ -494,10 +494,10 @@ namespace SOCIOS
                 TOTAL = TOTAL + CAJA;
             }
 
-            if(VGlobales.vp_role == "CAJA")
-                dgTotalesDelDia.Rows.Add("EGRESOS", string.Format("{0:n}", EGRESOS));   
+            if (VGlobales.vp_role == "CAJA")
+                dgTotalesDelDia.Rows.Add("EGRESOS", string.Format("{0:n}", EGRESOS));
 
-            if(VGlobales.vp_role == "CPOCABA")
+            if (VGlobales.vp_role == "CPOCABA")
                 dgTotalesDelDia.Rows.Add("EGRESOS", string.Format("{0:n}", TOTAL));
         }
 
@@ -2979,7 +2979,7 @@ namespace SOCIOS
             object misValue = System.Reflection.Missing.Value;
             xlApp = new Excel.Application();
             xlWorkBook = xlApp.Workbooks.Add();
-            
+
 
             Excel.Worksheet CHEQUES_WS;
             CHEQUES_WS = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
@@ -4000,7 +4000,7 @@ namespace SOCIOS
                     query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
                     query += "B.OBSERVACIONES, 'B' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, 0 AS NRO_E, B.DNI, NULL AS NUMERO_NC_E FROM ";
                     query += "BONOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID";
-                 }
+                }
 
                 if (COMPROBANTE == "RECIBOS")
                 {
@@ -4091,7 +4091,7 @@ namespace SOCIOS
                     dt1.Columns.Add("NE", typeof(string));
                     dt1.Columns.Add("DNI", typeof(string));
                     dt1.Columns.Add("NUMERO_NC_E", typeof(string));
-                    
+
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -4134,7 +4134,7 @@ namespace SOCIOS
                         NRO_E = reader.GetString(reader.GetOrdinal("NRO_E"));
                         DNI = reader.GetString(reader.GetOrdinal("DNI"));
                         NRO_NC = reader.GetString(reader.GetOrdinal("NUMERO_NC_E"));
-                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NRO_E, DNI,NRO_NC);
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NRO_E, DNI, NRO_NC);
                     }
 
                     reader.Close();
@@ -4499,7 +4499,7 @@ namespace SOCIOS
                                             {
                                                 result = fe.Facturo_Recibo(recibo_id, int.Parse(PTO_VTA_O), TC, TD, DENI, decimal.Parse(IMPORTE), DateTime.Now, TF);
                                                 if (result.Result == true)
-                                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae,DateTime.Parse(FECHA_RECIBO).AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
+                                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, decimal.Parse(IMPORTE), result.Cae, DateTime.Parse(FECHA_RECIBO).AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
                                                 PB.PerformStep();
                                             }
                                         }
@@ -4588,7 +4588,7 @@ namespace SOCIOS
                                         //Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                         //Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(Int32.Parse(VGlobales.PTO_VTA_O));
                                         //result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, 1);
-                                        
+
                                         //if (result.Result == true)
                                         //    imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
                                         //        result.Cae, FECHA, "ORIGINAL", CONCEPTO, ID_COMP);
@@ -4642,7 +4642,7 @@ namespace SOCIOS
         private void GenerarNotaCredito(DataGridView GRID)
         {
             Factura_Helper helper_f = new Factura_Helper();
-            
+
 
             try
             {
@@ -4656,10 +4656,10 @@ namespace SOCIOS
                             string NRO = row.Cells[9].Value.ToString();
 
                             string FECHA = DateTime.Now.ToString();
-                            int PTO_VTA =  helper_f.Punto_Venta_Electronico( row.Cells[10].Value.ToString());
-                     
+                            int PTO_VTA = helper_f.Punto_Venta_Electronico(row.Cells[10].Value.ToString());
 
-                            
+
+
                             string DENI = row.Cells[12].Value.ToString();
                             decimal IMPORTE = this.IMPORTE_NC(Int32.Parse(NRO));
                             string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
@@ -4685,7 +4685,7 @@ namespace SOCIOS
                                 Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
                                 Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(PTO_VTA);
                                 fe.Validar_Recibo_NC(Int32.Parse(NRO));
-                                
+
                                 result = fe.Facturo_Recibo(int.Parse(NRO), PTO_VTA, TC, TD, DENI, IMPORTE, DateTime.Now, 1);
 
                                 if (result.Result == true)
@@ -4697,7 +4697,7 @@ namespace SOCIOS
                             }
                             MessageBox.Show("COMPROBANTE ANULADO CORRECTAMENTE", "LISTO");
                         }
-                        
+
                         Cursor = Cursors.Default;
                     }
 
@@ -4708,7 +4708,7 @@ namespace SOCIOS
                 MessageBox.Show("NO SE PUDO INFORMAR LA NC  DEL COMPROBANTE\n" + error.Message, "ERROR");
             }
 
-                }
+        }
 
 
         //private void GenerarNotaCredito(DataGridView GRID)
@@ -4722,14 +4722,14 @@ namespace SOCIOS
         //            {
         //                 Cursor = Cursors.WaitCursor;
         //                            string NRO = row.Cells[0].Value.ToString().Replace("R", "");
-                                    
+
         //                            string FECHA = DateTime.Now.ToString();
         //                            string PTO_VTA = row.Cells[10].Value.ToString();
         //                            string DENI = row.Cells[11].Value.ToString();
         //                            decimal IMPORTE = decimal.Parse(row.Cells[4].Value.ToString());
         //                            string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
         //                            string CONCEPTO = "SERVICIOS PRESTADOS";
-                                  
+
 
         //                            if (VGlobales.vp_role == "CAJA")
         //                            {
@@ -4746,7 +4746,7 @@ namespace SOCIOS
         //                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
         //                                Factura_Electronica.FacturaCSPFA fe = new Factura_Electronica.FacturaCSPFA(Int32.Parse(VGlobales.PTO_VTA_O));
         //                                result = fe.Facturo_Recibo(int.Parse(NRO), int.Parse(VGlobales.PTO_VTA_O), TC, TD, DENI, IMPORTE, DateTime.Now, 1);
-                                        
+
         //                                if (result.Result == true)
         //                                    imp_fact.Genero_PDF(TC, int.Parse(VGlobales.PTO_VTA_O), result.Numero, DateTime.Now, DENI, "Consumidor Final", NOMBRE_SOCIO, IMPORTE,
         //                                        result.Cae, FECHA, "ORIGINAL", CONCEPTO, ID_COMP);
@@ -4786,7 +4786,7 @@ namespace SOCIOS
                             string NRO_E = row.Cells[11].Value.ToString();
                             string FILE = "";
 
-                            if (Modo_Facturacion_Produccion=="TEST")
+                            if (Modo_Facturacion_Produccion == "TEST")
                                 FILE = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\RECIBO C-PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
                             else
                                 FILE = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\RECIBO C-PV " + PTO_VTA_F + "- NRO " + NRO_E + ".pdf";
@@ -4802,7 +4802,7 @@ namespace SOCIOS
                         }
                         catch (Exception error)
                         {
-                            MessageBox.Show("OCURRIO UN ERROR AL ABRIR EL ARCHIVO PDF\n"+error, "ERROR");
+                            MessageBox.Show("OCURRIO UN ERROR AL ABRIR EL ARCHIVO PDF\n" + error, "ERROR");
                         }
                     }
                     else
@@ -4852,42 +4852,42 @@ namespace SOCIOS
 
                                 //if (!File.Exists(FILE))
                                 //{
-                                    string DIR = "";
+                                string DIR = "";
 
-                                    if (Modo_Facturacion_Produccion == "TEST")
-                                        DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
-                                    else
-                                        DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
+                                if (Modo_Facturacion_Produccion == "TEST")
+                                    DIR = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + PTO_VTA_O + "\\FACTURAS\\";
+                                else
+                                    DIR = "\\\\192.168.1.6\\factura_electronica\\" + PTO_VTA_O + "\\FACTURAS\\";
 
-                                    int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
-                                    int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
+                                int TC = (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C;
+                                int TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CONSUMIDOR_FINAL;
 
-                                    string DENI = row.Cells[12].Value.ToString();
-                                    int recibo_id = int.Parse(row.Cells[9].Value.ToString());
-                                    string IMPORTE = row.Cells[4].Value.ToString();
-                                    string FECHA_RECIBO = row.Cells[6].Value.ToString().Substring(0, 10);
-                                    string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
-                                    string CONCEPTO = "SERVICIOS PRESTADOS";
-                                    string CAE = nr.obtenerCaePorRecibo(PTO_VTA_F, int.Parse(NRO_E));
-                                    string COND_IVA = "CONSUMIDOR FINAL";
+                                string DENI = row.Cells[12].Value.ToString();
+                                int recibo_id = int.Parse(row.Cells[9].Value.ToString());
+                                string IMPORTE = row.Cells[4].Value.ToString();
+                                string FECHA_RECIBO = row.Cells[6].Value.ToString().Substring(0, 10);
+                                string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+                                string CONCEPTO = "SERVICIOS PRESTADOS";
+                                string CAE = nr.obtenerCaePorRecibo(PTO_VTA_F, int.Parse(NRO_E));
+                                string COND_IVA = "CONSUMIDOR FINAL";
 
-                                    if (DENI != "0" && DENI != "")
+                                if (DENI != "0" && DENI != "")
+                                {
+                                    TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+
+                                    if (DENI.Length > 8)
                                     {
-                                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
-
-                                        if (DENI.Length > 8)
-                                        {
-                                            TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
-                                            CONCEPTO = nr.obtenerObservacion(recibo_id);
-                                            COND_IVA = nr.obnenerCondicionPorCuit(DENI);
-                                        }
+                                        TD = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                        CONCEPTO = nr.obtenerObservacion(recibo_id);
+                                        COND_IVA = nr.obnenerCondicionPorCuit(DENI);
                                     }
+                                }
 
-                                    Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
-                                    imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE),
-                                        CAE, DateTime.Parse(FECHA_RECIBO).AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
+                                Factura_Electronica.Impresor_Factura imp_fact = new Factura_Electronica.Impresor_Factura(DIR);
+                                imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), int.Parse(NRO_E), DateTime.Parse(FECHA_RECIBO), DENI, COND_IVA, NOMBRE_SOCIO, decimal.Parse(IMPORTE),
+                                    CAE, DateTime.Parse(FECHA_RECIBO).AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
 
-                                    MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
+                                MessageBox.Show("ARCHIVO PDF GENERADO CORRECTAMENTE", "LISTO!");
                                 //}
                                 /*else
                                 {
@@ -4909,7 +4909,7 @@ namespace SOCIOS
                     {
                         MessageBox.Show("SELECCIONAR UN RECIBO PARA GENERAR LOS PDFS", "ERROR");
                     }
-                }                
+                }
             }
             else
             {
@@ -5070,7 +5070,7 @@ namespace SOCIOS
 
                                 string DENI = row.Cells[12].Value.ToString();
                                 int recibo_id = int.Parse(row.Cells[9].Value.ToString());
-                                decimal IMPORTE = IMPORTE_NC(recibo_id); 
+                                decimal IMPORTE = IMPORTE_NC(recibo_id);
                                 string FECHA_RECIBO = row.Cells[6].Value.ToString().Substring(0, 10);
                                 string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
                                 string CONCEPTO = "SERVICIOS PRESTADOS";
@@ -5217,6 +5217,35 @@ namespace SOCIOS
 
         }
 
+        private void Carga_NC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgBuscador.SelectedRows.Count == 1)
+                {
+                    foreach (DataGridViewRow row in dgBuscador.SelectedRows)
+                    {
+                        if (row.Cells[0].Value.ToString().Substring(0, 1) == "R")
+                        {
+                           
+                            string NRO = row.Cells[9].Value.ToString();
+                            SOCIOS.AFIP.Cargar_Info_Facturacion cif = new AFIP.Cargar_Info_Facturacion(Int32.Parse(NRO));
+                            cif.ShowDialog();
 
+                        }
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+
+
+            }
+
+
+        }
     }
 }
