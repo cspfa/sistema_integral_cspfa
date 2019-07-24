@@ -74,6 +74,7 @@
             this.turismoControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tESTINGFCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speechTestingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.turneroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afiliacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirAutorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renunciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -158,7 +159,9 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.turneroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planesDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportePlanesDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -191,7 +194,8 @@
             this.contaduríaToolStripMenuItem,
             this.interiorToolStripMenuItem,
             this.comprasToolStripMenuItem,
-            this.conveniosToolStripMenuItem});
+            this.conveniosToolStripMenuItem,
+            this.descuentosToolStripMenuItem});
             this.MenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip1.Name = "MenuStrip1";
             this.MenuStrip1.Padding = new System.Windows.Forms.Padding(0, 10, 1, 0);
@@ -282,7 +286,7 @@
             this.aBMToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.group;
             this.aBMToolStripMenuItem.Name = "aBMToolStripMenuItem";
             this.aBMToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.aBMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aBMToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.aBMToolStripMenuItem.Text = "ABM";
             this.aBMToolStripMenuItem.Click += new System.EventHandler(this.aBMToolStripMenuItem_Click);
             // 
@@ -290,7 +294,7 @@
             // 
             this.ingresosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresosToolStripMenuItem.Image")));
             this.ingresosToolStripMenuItem.Name = "ingresosToolStripMenuItem";
-            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.ingresosToolStripMenuItem.Text = "Ingresos";
             this.ingresosToolStripMenuItem.Click += new System.EventHandler(this.ingresosToolStripMenuItem_Click_1);
             // 
@@ -298,7 +302,7 @@
             // 
             this.capturarFotoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.webcam;
             this.capturarFotoToolStripMenuItem.Name = "capturarFotoToolStripMenuItem";
-            this.capturarFotoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.capturarFotoToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.capturarFotoToolStripMenuItem.Text = "Capturar Foto";
             this.capturarFotoToolStripMenuItem.Click += new System.EventHandler(this.capturarFotoToolStripMenuItem_Click_1);
             // 
@@ -306,7 +310,7 @@
             // 
             this.calcularCuotasToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("calcularCuotasToolStripMenuItem.Image")));
             this.calcularCuotasToolStripMenuItem.Name = "calcularCuotasToolStripMenuItem";
-            this.calcularCuotasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.calcularCuotasToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.calcularCuotasToolStripMenuItem.Text = "Calcular Cuotas";
             this.calcularCuotasToolStripMenuItem.Click += new System.EventHandler(this.calcularCuotasToolStripMenuItem_Click);
             // 
@@ -587,6 +591,13 @@
             this.speechTestingToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.speechTestingToolStripMenuItem.Text = "Speech Testing";
             this.speechTestingToolStripMenuItem.Click += new System.EventHandler(this.speechTestingToolStripMenuItem_Click);
+            // 
+            // turneroToolStripMenuItem
+            // 
+            this.turneroToolStripMenuItem.Name = "turneroToolStripMenuItem";
+            this.turneroToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.turneroToolStripMenuItem.Text = "Turnero";
+            this.turneroToolStripMenuItem.Click += new System.EventHandler(this.turneroToolStripMenuItem_Click);
             // 
             // afiliacionesToolStripMenuItem
             // 
@@ -1164,7 +1175,7 @@
             // 
             this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuItem1.Text = "Proveedores";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_2);
             // 
@@ -1327,12 +1338,29 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // turneroToolStripMenuItem
+            // descuentosToolStripMenuItem
             // 
-            this.turneroToolStripMenuItem.Name = "turneroToolStripMenuItem";
-            this.turneroToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.turneroToolStripMenuItem.Text = "Turnero";
-            this.turneroToolStripMenuItem.Click += new System.EventHandler(this.turneroToolStripMenuItem_Click);
+            this.descuentosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.planesDeCuentaToolStripMenuItem,
+            this.reportePlanesDeCuentaToolStripMenuItem});
+            this.descuentosToolStripMenuItem.Enabled = false;
+            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
+            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
+            this.descuentosToolStripMenuItem.Text = "Descuentos";
+            // 
+            // planesDeCuentaToolStripMenuItem
+            // 
+            this.planesDeCuentaToolStripMenuItem.Name = "planesDeCuentaToolStripMenuItem";
+            this.planesDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.planesDeCuentaToolStripMenuItem.Text = "Planes De Cuenta";
+            this.planesDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.planesDeCuentaToolStripMenuItem_Click);
+            // 
+            // reportePlanesDeCuentaToolStripMenuItem
+            // 
+            this.reportePlanesDeCuentaToolStripMenuItem.Name = "reportePlanesDeCuentaToolStripMenuItem";
+            this.reportePlanesDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.reportePlanesDeCuentaToolStripMenuItem.Text = "Reporte Planes de Cuenta";
+            this.reportePlanesDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.reportePlanesDeCuentaToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1506,5 +1534,8 @@
         private System.Windows.Forms.ToolStripMenuItem confiteríaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem speechTestingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem turneroToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem descuentosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem planesDeCuentaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportePlanesDeCuentaToolStripMenuItem;
     }
 }
