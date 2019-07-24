@@ -176,6 +176,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Condicion_IVA.Designer.cs" />
+    <Compile Include="cuenta\Reporte_Plan_Cuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cuenta\Reporte_Plan_Cuenta.Designer.cs" />
     <Compile Include="Factura_Electronica\Consulta_Factura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +509,10 @@
     <Compile Include="compras\orden_de_pago.Designer.cs">
       <DependentUpon>orden_de_pago.cs</DependentUpon>
     </Compile>
+    <Compile Include="recibos\Cargar_Info_Facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recibos\Cargar_Info_Facturacion.Designer.cs" />
     <Compile Include="recibos\modificarCajaDiaria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1259,7 +1267,11 @@
       <DependentUpon>abmCargos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bono\BonoOdontologico_Blanco.rdlc" />
-    <EmbeddedResource Include="Condicion_IVA.resx" />
+    <EmbeddedResource Include="Condicion_IVA.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Condicion_IVA1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cuenta\Reporte_Plan_Cuenta.resx" />
     <EmbeddedResource Include="Factura_Electronica\Consulta_Factura.resx" />
     <EmbeddedResource Include="Factura_Electronica\PARCHE_RECIBOS.resx">
       <DependentUpon>PARCHE_RECIBOS.cs</DependentUpon>
@@ -1506,6 +1518,7 @@
     <EmbeddedResource Include="interior\cargarObservacion.resx">
       <DependentUpon>cargarObservacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="recibos\Cargar_Info_Facturacion.resx" />
     <EmbeddedResource Include="recibos\modificarCajaDiaria.resx">
       <DependentUpon>modificarCajaDiaria.cs</DependentUpon>
     </EmbeddedResource>
