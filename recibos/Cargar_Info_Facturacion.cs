@@ -17,6 +17,7 @@ namespace SOCIOS.AFIP
         {
             InitializeComponent();
             ID = pID_RECIBO;
+            this.Info_NOTA(pID_RECIBO);
             this.Cargo_COMBO();
         }
 
@@ -24,7 +25,7 @@ namespace SOCIOS.AFIP
 
         public void Info_NOTA(int ID)
         {
-            string QUERY = "select NUMERO_NC,CAE_NC,CAE_NC_VENC from RECIBOS_CAJA WHERE ID=" + ID;
+            string QUERY = "select NUMERO_NC_E,CAE_NC,CAE_NC_VENC from RECIBOS_CAJA WHERE ID=" + ID;
             DataRow[] foundRows;
 
 
@@ -75,7 +76,7 @@ namespace SOCIOS.AFIP
             {
                 dlog.Marca_Afip_Nota_Credito(ID, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text);
                 MessageBox.Show("Informacion Grabada con Exito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                this.Close();
             }
             catch (Exception ex)
 

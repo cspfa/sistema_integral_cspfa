@@ -50,6 +50,7 @@
             this.lbAerta.Size = new System.Drawing.Size(49, 13);
             this.lbAerta.TabIndex = 0;
             this.lbAerta.Text = "ALERTA";
+            this.lbAerta.Visible = false;
             // 
             // lbInfo
             // 
@@ -59,6 +60,7 @@
             this.lbInfo.Size = new System.Drawing.Size(25, 13);
             this.lbInfo.TabIndex = 1;
             this.lbInfo.Text = "Info";
+            this.lbInfo.Visible = false;
             // 
             // lbVencimiento
             // 
