@@ -46,7 +46,8 @@ namespace Confiteria
                 string ARANCEL = row[2].ToString().Trim();
                 int STOCK = Convert.ToInt32(row[3]);
                 int ID = Convert.ToInt32(row[4]);
-                dgListadoAranceles.Rows.Add(ID, DETALLE, NOMBRE, ARANCEL, STOCK);
+                string BARCODE = row[5].ToString().Trim();
+                dgListadoAranceles.Rows.Add(ID, DETALLE, NOMBRE, ARANCEL, STOCK, BARCODE);
             }
         }
 
@@ -63,18 +64,18 @@ namespace Confiteria
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
                     query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
 
                     if (CATEGORIA !="X")
                     {
-                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
                         query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND S.DETALLE = '" + CATEGORIA + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
                     }
 
                     if (BARCODE != null)
                     {
-                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
                         query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND P.BARCODE = '" + BARCODE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
                     }
 

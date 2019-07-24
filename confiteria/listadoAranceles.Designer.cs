@@ -30,11 +30,6 @@
         {
             this.btnPdf = new System.Windows.Forms.Button();
             this.dgListadoAranceles = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARANCEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnExportarXls = new System.Windows.Forms.Button();
             this.tbStock = new System.Windows.Forms.TextBox();
@@ -51,6 +46,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbBarCodeSearch = new System.Windows.Forms.TextBox();
             this.btnImprimirBarcode = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ARANCEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoAranceles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +80,8 @@
             this.DETALLE,
             this.NOMBRE,
             this.ARANCEL,
-            this.STOCK});
+            this.STOCK,
+            this.BARRAS});
             this.dgListadoAranceles.Location = new System.Drawing.Point(12, 65);
             this.dgListadoAranceles.MultiSelect = false;
             this.dgListadoAranceles.Name = "dgListadoAranceles";
@@ -93,36 +95,6 @@
             this.dgListadoAranceles.Size = new System.Drawing.Size(765, 435);
             this.dgListadoAranceles.TabIndex = 80;
             this.dgListadoAranceles.TabStop = false;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 43;
-            // 
-            // DETALLE
-            // 
-            this.DETALLE.HeaderText = "DETALLE";
-            this.DETALLE.Name = "DETALLE";
-            this.DETALLE.Width = 80;
-            // 
-            // NOMBRE
-            // 
-            this.NOMBRE.HeaderText = "NOMBRE";
-            this.NOMBRE.Name = "NOMBRE";
-            this.NOMBRE.Width = 79;
-            // 
-            // ARANCEL
-            // 
-            this.ARANCEL.HeaderText = "ARANCEL";
-            this.ARANCEL.Name = "ARANCEL";
-            this.ARANCEL.Width = 82;
-            // 
-            // STOCK
-            // 
-            this.STOCK.HeaderText = "STOCK";
-            this.STOCK.Name = "STOCK";
-            this.STOCK.Width = 68;
             // 
             // btnExportarXls
             // 
@@ -264,6 +236,42 @@
             this.btnImprimirBarcode.UseVisualStyleBackColor = true;
             this.btnImprimirBarcode.Click += new System.EventHandler(this.btnImprimirBarcode_Click);
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Width = 43;
+            // 
+            // DETALLE
+            // 
+            this.DETALLE.HeaderText = "DETALLE";
+            this.DETALLE.Name = "DETALLE";
+            this.DETALLE.Width = 80;
+            // 
+            // NOMBRE
+            // 
+            this.NOMBRE.HeaderText = "NOMBRE";
+            this.NOMBRE.Name = "NOMBRE";
+            this.NOMBRE.Width = 79;
+            // 
+            // ARANCEL
+            // 
+            this.ARANCEL.HeaderText = "ARANCEL";
+            this.ARANCEL.Name = "ARANCEL";
+            this.ARANCEL.Width = 82;
+            // 
+            // STOCK
+            // 
+            this.STOCK.HeaderText = "STOCK";
+            this.STOCK.Name = "STOCK";
+            this.STOCK.Width = 68;
+            // 
+            // BARRAS
+            // 
+            this.BARRAS.HeaderText = "BARRAS";
+            this.BARRAS.Name = "BARRAS";
+            this.BARRAS.Width = 76;
+            // 
             // listadoAranceles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,11 +314,6 @@
         private System.Windows.Forms.TextBox tbStock;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DETALLE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NOMBRE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ARANCEL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STOCK;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Button btnFiltrar;
@@ -322,5 +325,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbBarCodeSearch;
         private System.Windows.Forms.Button btnImprimirBarcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DETALLE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NOMBRE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ARANCEL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STOCK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BARRAS;
     }
 }
