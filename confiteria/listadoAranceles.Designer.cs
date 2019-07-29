@@ -35,6 +35,7 @@
             this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ARANCEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnExportarXls = new System.Windows.Forms.Button();
             this.tbStock = new System.Windows.Forms.TextBox();
@@ -56,7 +57,7 @@
             // 
             // btnPdf
             // 
-            this.btnPdf.Location = new System.Drawing.Point(783, 64);
+            this.btnPdf.Location = new System.Drawing.Point(990, 65);
             this.btnPdf.Name = "btnPdf";
             this.btnPdf.Size = new System.Drawing.Size(127, 23);
             this.btnPdf.TabIndex = 79;
@@ -79,7 +80,8 @@
             this.DETALLE,
             this.NOMBRE,
             this.ARANCEL,
-            this.STOCK});
+            this.STOCK,
+            this.BARRAS});
             this.dgListadoAranceles.Location = new System.Drawing.Point(12, 65);
             this.dgListadoAranceles.MultiSelect = false;
             this.dgListadoAranceles.Name = "dgListadoAranceles";
@@ -90,7 +92,7 @@
             this.dgListadoAranceles.ShowCellToolTips = false;
             this.dgListadoAranceles.ShowEditingIcon = false;
             this.dgListadoAranceles.ShowRowErrors = false;
-            this.dgListadoAranceles.Size = new System.Drawing.Size(765, 435);
+            this.dgListadoAranceles.Size = new System.Drawing.Size(972, 435);
             this.dgListadoAranceles.TabIndex = 80;
             this.dgListadoAranceles.TabStop = false;
             // 
@@ -124,9 +126,15 @@
             this.STOCK.Name = "STOCK";
             this.STOCK.Width = 68;
             // 
+            // BARRAS
+            // 
+            this.BARRAS.HeaderText = "BARRAS";
+            this.BARRAS.Name = "BARRAS";
+            this.BARRAS.Width = 76;
+            // 
             // btnExportarXls
             // 
-            this.btnExportarXls.Location = new System.Drawing.Point(783, 93);
+            this.btnExportarXls.Location = new System.Drawing.Point(990, 94);
             this.btnExportarXls.Name = "btnExportarXls";
             this.btnExportarXls.Size = new System.Drawing.Size(127, 54);
             this.btnExportarXls.TabIndex = 81;
@@ -200,7 +208,7 @@
             // 
             // btnImportar
             // 
-            this.btnImportar.Location = new System.Drawing.Point(783, 153);
+            this.btnImportar.Location = new System.Drawing.Point(990, 154);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(127, 54);
             this.btnImportar.TabIndex = 89;
@@ -256,7 +264,7 @@
             // 
             // btnImprimirBarcode
             // 
-            this.btnImprimirBarcode.Location = new System.Drawing.Point(783, 213);
+            this.btnImprimirBarcode.Location = new System.Drawing.Point(990, 214);
             this.btnImprimirBarcode.Name = "btnImprimirBarcode";
             this.btnImprimirBarcode.Size = new System.Drawing.Size(127, 23);
             this.btnImprimirBarcode.TabIndex = 95;
@@ -268,7 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 512);
+            this.ClientSize = new System.Drawing.Size(1129, 512);
             this.Controls.Add(this.btnImprimirBarcode);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbBarCodeSearch);
@@ -306,11 +314,6 @@
         private System.Windows.Forms.TextBox tbStock;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DETALLE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NOMBRE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ARANCEL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STOCK;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.Button btnFiltrar;
@@ -322,5 +325,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbBarCodeSearch;
         private System.Windows.Forms.Button btnImprimirBarcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DETALLE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NOMBRE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ARANCEL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STOCK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BARRAS;
     }
 }

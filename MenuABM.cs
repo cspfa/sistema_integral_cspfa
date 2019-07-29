@@ -190,7 +190,12 @@ namespace SOCIOS
                         conveniosToolStripMenuItem.Enabled = true;
                     }
 
-                    break;
+                    if (VGlobales.vp_role.Trim() == "CONTADURIA")
+                    {
+                        descuentosToolStripMenuItem.Enabled = true;
+                    }
+
+                        break;
                     case DialogResult.Cancel:
                     Application.ExitThread();
                     break;
@@ -2136,19 +2141,19 @@ namespace SOCIOS
 
         private void planDeCuentaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
+            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart(),"","");
             pc.ShowDialog();
         }
 
         private void planDeCuentaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
+            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart(), "", "");
             pc.ShowDialog();
         }
 
         private void planDeCuentaToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart());
+            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role.TrimEnd().TrimStart(), "", "");
             pc.ShowDialog();
         }
 
@@ -2215,6 +2220,18 @@ namespace SOCIOS
         {
             Turnero tu = new Turnero();
             tu.ShowDialog();
+        }
+
+        private void planesDeCuentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.CuentaSocio.PlanCuenta pc = new CuentaSocio.PlanCuenta(VGlobales.vp_role, "", "");
+            pc.ShowDialog();
+        }
+
+        private void reportePlanesDeCuentaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.cuentaSocio.Reporte_Plan_Cuenta rp_pc = new SOCIOS.cuentaSocio.Reporte_Plan_Cuenta();
+            rp_pc.ShowDialog();
         }
     }
 }

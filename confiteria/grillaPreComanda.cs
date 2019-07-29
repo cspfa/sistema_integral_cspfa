@@ -551,7 +551,7 @@ namespace Confiteria
         }
 
         #region LISTADO PDF
-        public void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, DataSet EMPLEADOS, string COMPLETO, DataSet COMANDAS = null)
+        public void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, string COMPLETO, DataSet COMANDAS = null)
         {
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _standardFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
@@ -2091,7 +2091,7 @@ namespace Confiteria
                     case "EFECTIVO":
                         QUERY  = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4) AND C.ROL = '" + VGlobales.vp_role + "'";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4 OR C.TIPO_COMANDA = 5) AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -2316,7 +2316,6 @@ namespace Confiteria
             DataSet TARJETA = new DataSet();
             DataSet DESCUENTO = new DataSet();
             DataSet ESPECIALES = new DataSet();
-            DataSet EMPLEADOS = new DataSet();
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Archivo PDF|*.PDF";
@@ -2325,7 +2324,7 @@ namespace Confiteria
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string RUTA = saveFileDialog1.FileName;
-                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, EMPLEADOS, COMPLETO, COMANDAS);
+                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, COMPLETO, COMANDAS);
 
                 if (CONTROL == "NO")
                 {
@@ -2350,7 +2349,6 @@ namespace Confiteria
             DataSet TARJETA = buscarComandas(FECHA, "TARJETA", ORDEN, RENDIDA);
             DataSet DESCUENTO = buscarComandas(FECHA, "DESCUENTO", ORDEN, RENDIDA);
             DataSet ESPECIALES = buscarComandas(FECHA, "ESPECIALES", ORDEN, RENDIDA);
-            DataSet EMPLEADOS = buscarComandas(FECHA, "EMPLEADOS", ORDEN, RENDIDA);
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Archivo PDF|*.PDF";
@@ -2359,7 +2357,7 @@ namespace Confiteria
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string RUTA = saveFileDialog1.FileName;
-                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, EMPLEADOS, COMPLETO);
+                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, COMPLETO);
 
                 if (CONTROL == "NO")
                 {

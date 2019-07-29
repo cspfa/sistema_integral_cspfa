@@ -11,6 +11,8 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using iTextSharp.text.pdf;
+using Confiteria;
+using System.Linq;
 
 namespace SOCIOS
 {
@@ -22,6 +24,17 @@ namespace SOCIOS
 
         bo dlog = new bo();
         getGrupo gg = new getGrupo();
+        db bd = new db();
+
+        string[,] areas_orden = new string[6,3] 
+        { 
+            { "81", "REGISTRO DE SOCIOS", "RS"}, 
+            { "66", "BONO PELUQUERÍA", "PE"},
+            { "136", "TURISMO", "TU"},
+            { "123", "INGRESO COMEDOR", "CO"},
+            { "7", "INGRESO COMEDOR", "CO"},
+            { "36", "DEPORTES", "DE"}
+        };
 
         EntradaCampoService entradaCampoService = new EntradaCampoService();
 
@@ -1694,25 +1707,65 @@ namespace SOCIOS
             }
         }
 
-        public void imprimirTicket()
+        public void imprimirTicket(int GRUPO, string ID_DESTINO)
         {
-            PrintDialog pd = new PrintDialog();
-            PrintDocument pdoc = new PrintDocument();
-            PaperSize psize = new PaperSize();
-            pd.Document = pdoc;
-            pd.Document.DefaultPageSettings.PaperSize = psize;
-            pd.PrinterSettings.PrinterName = "Aclas Printer";
-            pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
-            DialogResult result = pd.ShowDialog();
-
-            if (result == DialogResult.OK)
+            if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA")
             {
-                pdoc.Print();
+                /*if (GRUPO != 3 && areas_orden.Contains(ID_DESTINO))
+                {
+                    PrintDialog pd = new PrintDialog();
+                    PrintDocument pdoc = new PrintDocument();
+                    PaperSize psize = new PaperSize();
+                    pd.Document = pdoc;
+                    pd.Document.DefaultPageSettings.PaperSize = psize;
+                    pd.PrinterSettings.PrinterName = "Aclas Printer";
+                    pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
+                    DialogResult result = pd.ShowDialog();
+
+                    if (result == DialogResult.OK)
+                    {
+                        pdoc.Print();
+                    }
+                }*/
             }
+        }
+
+        private string getOrdenDeLlegada()
+        {
+            maxid mid = new maxid();
+            string SECUENCIA = mid.m("SECUENCIA", "INGRESOS_A_PROCESAR");
+            string QUERY = "SELECT ORDEN_LLEGADA FROM INGRESOS_A_PROCESAR WHERE SECUENCIA = " + SECUENCIA;
+            conString conString = new conString();
+            string connectionString = conString.get();
+            DataSet GET = new DataSet();
+            string ORDEN = String.Empty;
+
+            using (FbConnection connection = new FbConnection(connectionString))
+            {
+                connection.Open();
+                FbTransaction transaction = connection.BeginTransaction();
+                FbCommand cmd = new FbCommand(QUERY, connection, transaction);
+                cmd.CommandText = QUERY;
+                cmd.Connection = connection;
+                cmd.CommandType = CommandType.Text;
+                FbDataAdapter da = new FbDataAdapter(cmd);
+                da.Fill(GET);
+            }
+
+            if (GET.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                    ORDEN = Convert.ToString(ROW[0]);
+                }
+            }
+
+            return ORDEN;
         }
 
         public void pdoc_Print(object sender, PrintPageEventArgs e)
         {
+            string ORDEN = getOrdenDeLlegada();
             Barcode39 code39 = new Barcode39();
             code39.CodeType = Barcode.CODE128;
             code39.ChecksumText = false;
@@ -1721,6 +1774,7 @@ namespace SOCIOS
             Graphics graphics = e.Graphics;
             Font courier_big = new Font("FontA1x1", 12);
             Font courier_med = new Font("FontA1x1", 10);
+            Font courier_xxl = new Font("FontA1x1", 40);
             SolidBrush black = new SolidBrush(Color.Black);
             int startX = 0;
             int startY = 0;
@@ -1728,20 +1782,17 @@ namespace SOCIOS
             string FECHA = dpFechaIngreso.Text + " " + DateTime.Now.ToString("hh:mm:ss");
             string ID_DESTINO = comboBox2.SelectedValue.ToString();
 
-            if (ID_DESTINO == "66")
+            foreach (string areas in areas_orden)
             {
-                graphics.DrawString("BONO PELUQUERÍA SEDE SOCIAL", courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
-            }
-            else if (ID_DESTINO == "123")
-            {
-                graphics.DrawString("INGRESO COMEDOR SEDE SOCIAL", courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
+                if (ID_DESTINO == Convert.ToString(areas[0]))
+                {
+                    graphics.DrawString(Convert.ToString(areas[1]), courier_med, black, startX, startY + Offset);
+                    Offset = Offset + 20;
+                }
             }
             
-
             graphics.DrawString(FECHA, courier_med, black, startX, startY + Offset);
-            Offset = Offset + 20;
+            Offset = Offset + 30;
 
             if (themedContainer1.IsBodyVisible)
             {
@@ -1750,13 +1801,10 @@ namespace SOCIOS
                 string NRO_SOC = listView1.SelectedItems[0].SubItems[0].Text;
                 string NRO_DEP = listView1.SelectedItems[0].SubItems[1].Text;
 
-                graphics.DrawString("APELLIDO Y NOMBRES", courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
+                graphics.DrawString(ORDEN, courier_xxl, black, startX, startY + Offset);
+                Offset = Offset + 70;
 
                 graphics.DrawString(APE_SOC + ", " + NOM_SOC, courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
-
-                graphics.DrawString("NUMERO DE SOCIO / NO SOCIO", courier_med, black, startX, startY + Offset);
                 Offset = Offset + 20;
 
                 graphics.DrawString(NRO_SOC + " / " + NRO_DEP, courier_med, black, startX, startY + Offset);
@@ -1775,30 +1823,26 @@ namespace SOCIOS
                 string NRO_DEPADH = listView1.SelectedItems[0].SubItems[3].Text.Substring(6, 3);
                 string BARRA = listView1.SelectedItems[0].SubItems[4].Text;
 
-                graphics.DrawString("APELLIDO Y NOMBRES", courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
+                graphics.DrawString("1", courier_xxl, black, startX, startY + Offset);
+                Offset = Offset + 70;
 
                 graphics.DrawString(APE_SOC + ", " + NOM_SOC, courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
-
-                graphics.DrawString("NUMERO DE SOCIO", courier_med, black, startX, startY + Offset);
                 Offset = Offset + 20;
 
                 graphics.DrawString(NRO_SOC + " / " + NRO_DEP, courier_med, black, startX, startY + Offset);
                 Offset = Offset + 20;
 
-                graphics.DrawString("NUMERO DE ADHERENTE", courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
-
                 graphics.DrawString(NRO_ADH + " / " + NRO_DEPADH, courier_med, black, startX, startY + Offset);
-                Offset = Offset + 20;
-
-                graphics.DrawString("BARRA " + BARRA, courier_med, black, startX, startY + Offset);
                 Offset = Offset + 20;
 
                 graphics.DrawString(".", courier_med, black, startX, startY + Offset);
                 Offset = Offset + 20;
             }
+        }
+
+        public void getPrefijoArea(int DESTINO)
+        {
+           
         }
 
         public void darIngresoEgreso(string ACCION)
@@ -1892,16 +1936,12 @@ namespace SOCIOS
                                     }
                                     else
                                     {
+                                        Confiteria.Utils uu = new Confiteria.Utils();
+                                        
                                         dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC, CUIL);
                                     }
 
-                                    if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA")
-                                    {
-                                        if (GRUPO != 3 && ID_DESTINO == "66" || ID_DESTINO == "7")
-                                        {
-                                            imprimirTicket();
-                                        }
-                                    }
+                                    imprimirTicket(GRUPO, ID_DESTINO);
 
                                     MessageBox.Show("INGRESO GUARDADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;
@@ -2009,14 +2049,8 @@ namespace SOCIOS
                                         dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X", CUIL);
                                     }
 
-                                    if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA")
-                                    {
-                                        if (GRUPO != 3 && ID_DESTINO == "66" || ID_DESTINO == "7")
-                                        {
-                                            imprimirTicket();
-                                        }
-                                    }
-                                    
+                                    imprimirTicket(GRUPO, ID_DESTINO);
+
                                     MessageBox.Show("INGRESO GUARDADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;
 

@@ -169,7 +169,7 @@ namespace Confiteria
             // 
             this.lbNotToday.AutoSize = true;
             this.lbNotToday.ForeColor = System.Drawing.Color.Red;
-            this.lbNotToday.Location = new System.Drawing.Point(255, 17);
+            this.lbNotToday.Location = new System.Drawing.Point(261, 17);
             this.lbNotToday.Name = "lbNotToday";
             this.lbNotToday.Size = new System.Drawing.Size(310, 13);
             this.lbNotToday.TabIndex = 21;
