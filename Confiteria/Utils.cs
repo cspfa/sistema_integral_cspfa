@@ -50,6 +50,25 @@ namespace Confiteria
             }
         }
 
+        public string getOrdenDeLlegada()
+        {
+            maxid mid = new maxid();
+            string SECUENCIA = mid.m("SECUENCIA", "INGRESOS_A_PROCESAR");
+            string QUERY = "SELECT ORDEN_LLEGADA FROM INGRESOS_A_PROCESAR WHERE SECUENCIA = " + SECUENCIA;
+            DataSet GET = getDataFromQuery(QUERY);
+            string RETURN = "";
+
+            if (GET.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                    RETURN = Convert.ToString(ROW[0]);
+                }
+            }
+
+            return RETURN;
+        }
+
         public string getIniPrinter()
         {
             Datos_ini ini = new Datos_ini();

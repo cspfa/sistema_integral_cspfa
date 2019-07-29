@@ -30,6 +30,12 @@
         {
             this.btnPdf = new System.Windows.Forms.Button();
             this.dgListadoAranceles = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ARANCEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnExportarXls = new System.Windows.Forms.Button();
             this.tbStock = new System.Windows.Forms.TextBox();
@@ -46,18 +52,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbBarCodeSearch = new System.Windows.Forms.TextBox();
             this.btnImprimirBarcode = new System.Windows.Forms.Button();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARANCEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARRAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoAranceles)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPdf
             // 
-            this.btnPdf.Location = new System.Drawing.Point(783, 64);
+            this.btnPdf.Location = new System.Drawing.Point(990, 65);
             this.btnPdf.Name = "btnPdf";
             this.btnPdf.Size = new System.Drawing.Size(127, 23);
             this.btnPdf.TabIndex = 79;
@@ -92,13 +92,49 @@
             this.dgListadoAranceles.ShowCellToolTips = false;
             this.dgListadoAranceles.ShowEditingIcon = false;
             this.dgListadoAranceles.ShowRowErrors = false;
-            this.dgListadoAranceles.Size = new System.Drawing.Size(765, 435);
+            this.dgListadoAranceles.Size = new System.Drawing.Size(972, 435);
             this.dgListadoAranceles.TabIndex = 80;
             this.dgListadoAranceles.TabStop = false;
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Width = 43;
+            // 
+            // DETALLE
+            // 
+            this.DETALLE.HeaderText = "DETALLE";
+            this.DETALLE.Name = "DETALLE";
+            this.DETALLE.Width = 80;
+            // 
+            // NOMBRE
+            // 
+            this.NOMBRE.HeaderText = "NOMBRE";
+            this.NOMBRE.Name = "NOMBRE";
+            this.NOMBRE.Width = 79;
+            // 
+            // ARANCEL
+            // 
+            this.ARANCEL.HeaderText = "ARANCEL";
+            this.ARANCEL.Name = "ARANCEL";
+            this.ARANCEL.Width = 82;
+            // 
+            // STOCK
+            // 
+            this.STOCK.HeaderText = "STOCK";
+            this.STOCK.Name = "STOCK";
+            this.STOCK.Width = 68;
+            // 
+            // BARRAS
+            // 
+            this.BARRAS.HeaderText = "BARRAS";
+            this.BARRAS.Name = "BARRAS";
+            this.BARRAS.Width = 76;
+            // 
             // btnExportarXls
             // 
-            this.btnExportarXls.Location = new System.Drawing.Point(783, 93);
+            this.btnExportarXls.Location = new System.Drawing.Point(990, 94);
             this.btnExportarXls.Name = "btnExportarXls";
             this.btnExportarXls.Size = new System.Drawing.Size(127, 54);
             this.btnExportarXls.TabIndex = 81;
@@ -172,7 +208,7 @@
             // 
             // btnImportar
             // 
-            this.btnImportar.Location = new System.Drawing.Point(783, 153);
+            this.btnImportar.Location = new System.Drawing.Point(990, 154);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(127, 54);
             this.btnImportar.TabIndex = 89;
@@ -228,7 +264,7 @@
             // 
             // btnImprimirBarcode
             // 
-            this.btnImprimirBarcode.Location = new System.Drawing.Point(783, 213);
+            this.btnImprimirBarcode.Location = new System.Drawing.Point(990, 214);
             this.btnImprimirBarcode.Name = "btnImprimirBarcode";
             this.btnImprimirBarcode.Size = new System.Drawing.Size(127, 23);
             this.btnImprimirBarcode.TabIndex = 95;
@@ -236,47 +272,11 @@
             this.btnImprimirBarcode.UseVisualStyleBackColor = true;
             this.btnImprimirBarcode.Click += new System.EventHandler(this.btnImprimirBarcode_Click);
             // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 43;
-            // 
-            // DETALLE
-            // 
-            this.DETALLE.HeaderText = "DETALLE";
-            this.DETALLE.Name = "DETALLE";
-            this.DETALLE.Width = 80;
-            // 
-            // NOMBRE
-            // 
-            this.NOMBRE.HeaderText = "NOMBRE";
-            this.NOMBRE.Name = "NOMBRE";
-            this.NOMBRE.Width = 79;
-            // 
-            // ARANCEL
-            // 
-            this.ARANCEL.HeaderText = "ARANCEL";
-            this.ARANCEL.Name = "ARANCEL";
-            this.ARANCEL.Width = 82;
-            // 
-            // STOCK
-            // 
-            this.STOCK.HeaderText = "STOCK";
-            this.STOCK.Name = "STOCK";
-            this.STOCK.Width = 68;
-            // 
-            // BARRAS
-            // 
-            this.BARRAS.HeaderText = "BARRAS";
-            this.BARRAS.Name = "BARRAS";
-            this.BARRAS.Width = 76;
-            // 
             // listadoAranceles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 512);
+            this.ClientSize = new System.Drawing.Size(1129, 512);
             this.Controls.Add(this.btnImprimirBarcode);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbBarCodeSearch);
