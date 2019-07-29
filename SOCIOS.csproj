@@ -108,47 +108,82 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\AfipServices.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MediaFire\Programas\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
+    <Reference Include="AForge.Video">
+      <HintPath>C:\CSPFA_SOCIOS\AForge.Video.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video.DirectShow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MediaFire\Programas\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.DirectShow.dll</HintPath>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>C:\CSPFA_SOCIOS\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
     <Reference Include="Confiteria, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Confiteria\bin\Debug\Confiteria.exe</HintPath>
     </Reference>
-    <Reference Include="FirebirdSql.Data.Firebird, Version=1.7.1.0, Culture=neutral, PublicKeyToken=fa843d180294369d">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Turnos\Turnos\bin\Debug\FirebirdSql.Data.Firebird.dll</HintPath>
+    <Reference Include="crdb_adoplus">
+      <HintPath>C:\CSPFA_SOCIOS\crdb_adoplus.dll</HintPath>
     </Reference>
-    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+    <Reference Include="FirebirdSql.Data.Firebird">
+      <HintPath>C:\CSPFA_SOCIOS\FirebirdSql.Data.Firebird.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient">
+      <HintPath>C:\CSPFA_SOCIOS\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>.\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="MicroFour StrataFrame Base, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <EmbedInteropTypes>False</EmbedInteropTypes>
-      <Private>True</Private>
+    <Reference Include="log4net">
+      <HintPath>C:\CSPFA_SOCIOS\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="MicroFour StrataFrame Business, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL" />
-    <Reference Include="MicroFour StrataFrame Security, Culture=neutral, PublicKeyToken=99fe9917f71608a7" />
+    <Reference Include="MicroFour StrataFrame Base">
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Base.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame Business, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Business.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame Inherited UI">
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Inherited UI.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame Security, Culture=neutral, PublicKeyToken=99fe9917f71608a7">
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Security.dll</HintPath>
+    </Reference>
     <Reference Include="MicroFour StrataFrame UI, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame UI.dll</HintPath>
     </Reference>
     <Reference Include="MicroFour.StrataFrame.Lzma.x86.Net4, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files (x86)\MicroFour\StrataFrame\MicroFour.StrataFrame.Lzma.x86.Net4.dll</HintPath>
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour.StrataFrame.Lzma.x86.Net4.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.BatchParser">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.BatchParser.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.RegSvrEnum">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Replication">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.Replication.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Rmo">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.Rmo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ServiceBrokerEnum">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.ServiceBrokerEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SmoEnum">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.SmoEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum">
+      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -2247,7 +2282,7 @@
     <None Include="Resources\WinXPsalir1.ico" />
   </ItemGroup>
   <ItemGroup>
-  	<ProjectReference Include="Confiteria\Confiteria.csproj">
+    <ProjectReference Include="Confiteria\Confiteria.csproj">
       <Project>{663B9133-5EB9-4B52-AECC-1B67E896D3F8}</Project>
       <Name>Confiteria</Name>
     </ProjectReference>
