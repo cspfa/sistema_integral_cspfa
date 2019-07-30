@@ -33,6 +33,7 @@ namespace SOCIOS.Factura_Electronica
         public int    TIPO_COMPROBANTE { get; set; }
         public int    CONCEPTO         { get; set; }
         public DateTime FECHA          { get; set; }
+        
         public decimal  MONTO          { get; set; }
     }
 
