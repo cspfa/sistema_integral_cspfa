@@ -50,6 +50,15 @@ namespace Confiteria
             {
                 dpEntrega.Visible = true;
                 label20.Visible = true;
+                tbBarCodeSearch.Focus();
+
+
+                if (NRO_SOC == "78" && NRO_DEP == "18")
+                {
+                    btnGuardar.Enabled = false;
+                    button1.Enabled = false;
+                    btnCerrarComanda.Enabled = false;
+                }
             }
 
             if (ID_COMANDA != 0)
@@ -80,7 +89,7 @@ namespace Confiteria
                 }
             }
         }
-     
+    
         private string[] obtenerDatosComanda(int ID_COMANDA)
         {
             string QUERY = "SELECT CONTRALOR, MOZO, COM_BORRADOR, TIPO_COMANDA, IMPORTE, ENTREGA FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA;
