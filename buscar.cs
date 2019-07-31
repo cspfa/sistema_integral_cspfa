@@ -1709,24 +1709,30 @@ namespace SOCIOS
 
         public void imprimirTicket(int GRUPO, string ID_DESTINO)
         {
-            if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA")
+            if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA") //stringArray.All(stringToCheck.Contains)
             {
-                /*if (GRUPO != 3 && areas_orden.Contains(ID_DESTINO))
+                if (GRUPO != 3)
                 {
-                    PrintDialog pd = new PrintDialog();
-                    PrintDocument pdoc = new PrintDocument();
-                    PaperSize psize = new PaperSize();
-                    pd.Document = pdoc;
-                    pd.Document.DefaultPageSettings.PaperSize = psize;
-                    pd.PrinterSettings.PrinterName = "Aclas Printer";
-                    pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
-                    DialogResult result = pd.ShowDialog();
-
-                    if (result == DialogResult.OK)
+                    foreach (string areas in areas_orden)
                     {
-                        pdoc.Print();
+                        if (ID_DESTINO == Convert.ToString(areas))
+                        {
+                            PrintDialog pd = new PrintDialog();
+                            PrintDocument pdoc = new PrintDocument();
+                            PaperSize psize = new PaperSize();
+                            pd.Document = pdoc;
+                            pd.Document.DefaultPageSettings.PaperSize = psize;
+                            pd.PrinterSettings.PrinterName = "Aclas Printer";
+                            pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
+                            DialogResult result = pd.ShowDialog();
+
+                            if (result == DialogResult.OK)
+                            {
+                                pdoc.Print();
+                            }
+                        }
                     }
-                }*/
+                }
             }
         }
 

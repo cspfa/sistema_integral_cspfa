@@ -147,6 +147,9 @@
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.conveniosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.planesDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportePlanesDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.themedStatusStrip1 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedStatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -159,9 +162,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.descuentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.planesDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportePlanesDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comandaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -1122,7 +1123,8 @@
             this.listadoDeSociosToolStripMenuItem,
             this.listadoDeComandasToolStripMenuItem,
             this.cajasAnterioresToolStripMenuItem,
-            this.listaDePreciosToolStripMenuItem});
+            this.listaDePreciosToolStripMenuItem,
+            this.comandaToolStripMenuItem});
             this.confiteríaToolStripMenuItem.Enabled = false;
             this.confiteríaToolStripMenuItem.Name = "confiteríaToolStripMenuItem";
             this.confiteríaToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -1175,7 +1177,7 @@
             // 
             this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
             this.toolStripMenuItem1.Text = "Proveedores";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click_2);
             // 
@@ -1232,6 +1234,30 @@
             this.conveniosToolStripMenuItem.Text = "Convenios";
             this.conveniosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.conveniosToolStripMenuItem.Click += new System.EventHandler(this.conveniosToolStripMenuItem_Click);
+            // 
+            // descuentosToolStripMenuItem
+            // 
+            this.descuentosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.planesDeCuentaToolStripMenuItem,
+            this.reportePlanesDeCuentaToolStripMenuItem});
+            this.descuentosToolStripMenuItem.Enabled = false;
+            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
+            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
+            this.descuentosToolStripMenuItem.Text = "Descuentos";
+            // 
+            // planesDeCuentaToolStripMenuItem
+            // 
+            this.planesDeCuentaToolStripMenuItem.Name = "planesDeCuentaToolStripMenuItem";
+            this.planesDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.planesDeCuentaToolStripMenuItem.Text = "Planes De Cuenta";
+            this.planesDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.planesDeCuentaToolStripMenuItem_Click);
+            // 
+            // reportePlanesDeCuentaToolStripMenuItem
+            // 
+            this.reportePlanesDeCuentaToolStripMenuItem.Name = "reportePlanesDeCuentaToolStripMenuItem";
+            this.reportePlanesDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.reportePlanesDeCuentaToolStripMenuItem.Text = "Reporte Planes de Cuenta";
+            this.reportePlanesDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.reportePlanesDeCuentaToolStripMenuItem_Click);
             // 
             // themedStatusStrip1
             // 
@@ -1338,29 +1364,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // descuentosToolStripMenuItem
+            // comandaToolStripMenuItem
             // 
-            this.descuentosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.planesDeCuentaToolStripMenuItem,
-            this.reportePlanesDeCuentaToolStripMenuItem});
-            this.descuentosToolStripMenuItem.Enabled = false;
-            this.descuentosToolStripMenuItem.Name = "descuentosToolStripMenuItem";
-            this.descuentosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
-            this.descuentosToolStripMenuItem.Text = "Descuentos";
-            // 
-            // planesDeCuentaToolStripMenuItem
-            // 
-            this.planesDeCuentaToolStripMenuItem.Name = "planesDeCuentaToolStripMenuItem";
-            this.planesDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.planesDeCuentaToolStripMenuItem.Text = "Planes De Cuenta";
-            this.planesDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.planesDeCuentaToolStripMenuItem_Click);
-            // 
-            // reportePlanesDeCuentaToolStripMenuItem
-            // 
-            this.reportePlanesDeCuentaToolStripMenuItem.Name = "reportePlanesDeCuentaToolStripMenuItem";
-            this.reportePlanesDeCuentaToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.reportePlanesDeCuentaToolStripMenuItem.Text = "Reporte Planes de Cuenta";
-            this.reportePlanesDeCuentaToolStripMenuItem.Click += new System.EventHandler(this.reportePlanesDeCuentaToolStripMenuItem_Click);
+            this.comandaToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_view_columns;
+            this.comandaToolStripMenuItem.Name = "comandaToolStripMenuItem";
+            this.comandaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.comandaToolStripMenuItem.Text = "Comanda";
+            this.comandaToolStripMenuItem.Click += new System.EventHandler(this.ComandaToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1537,5 +1547,6 @@
         private System.Windows.Forms.ToolStripMenuItem descuentosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem planesDeCuentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportePlanesDeCuentaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem comandaToolStripMenuItem;
     }
 }

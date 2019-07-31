@@ -2233,5 +2233,24 @@ namespace SOCIOS
             SOCIOS.cuentaSocio.Reporte_Plan_Cuenta rp_pc = new SOCIOS.cuentaSocio.Reporte_Plan_Cuenta();
             rp_pc.ShowDialog();
         }
+
+        private void ComandaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string NRO_SOC = "78";
+            string NRO_DEP = "18";
+            string BARRA = "0";
+            string SOCIO = "CONCURRENTE DELFO";
+            int SECUENCIA = 0;
+            int GROUP = 1;
+            int MESA = 1;
+            int ID_COMANDA = 0;
+            int PERSONAS = 1;
+            int PAGO = 1;
+            string MOROSO = "";
+            string NRO_MESA = "1";
+            int NRO_COMANDA = 0;
+            comanda comanda = new comanda(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA, GROUP, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO, NRO_MESA, NRO_COMANDA);
+            comanda.ShowDialog();
+        }
     }
 }
