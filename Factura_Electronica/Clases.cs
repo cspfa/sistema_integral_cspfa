@@ -71,8 +71,8 @@ namespace SOCIOS.Factura_Electronica
             
 
 
-                if (Monto > 5000 && Documento.Length < 9)  // 20-05-2019 se agrega control por extension de documento, menos de 9 es dni
-                    throw new Exception("No se puede facturar a consumidor final mas de $5000");
+                //if (Monto > 5000 && Documento.Length < 9)  // 20-05-2019 se agrega control por extension de documento, menos de 9 es dni
+                //    throw new Exception("No se puede facturar a consumidor final mas de $5000");
                 
 
 
