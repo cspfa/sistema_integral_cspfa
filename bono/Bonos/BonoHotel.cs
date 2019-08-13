@@ -48,6 +48,8 @@ namespace SOCIOS.bono
         
         }
 
+        
+
          public BonoHotel(string pSocTitular, string pdepTitular, bool pMuestro)
              : base(pSocTitular, pdepTitular, pMuestro)
          {
