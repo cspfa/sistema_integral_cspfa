@@ -278,7 +278,7 @@ namespace SOCIOS.bono
                     lnkInfoHabitacion.Visible = false;
                 }
 
-                if (Arancel < 9999)
+                if (Arancel < 9999) // si no tiene arancel cargado!
                 {
 
                     gpDatos.Visible = true;
@@ -304,9 +304,21 @@ namespace SOCIOS.bono
                 }
                 else
                 {
-                    gpDatos.Visible = false;
 
-                    throw new Exception("No se Ecuentra Arancel Cargado");
+                    tbSocios.Text = "0";
+                    tbInvitado.Text = "0";
+                    tbInterCirculo.Text = "0";
+
+                    gpDatos.Visible = true;
+                    Deselecionar.Visible = true;
+                    Seleccion.Enabled = false;
+                    this.GrillaPersonas_Habilitados(false);
+                    MessageBox.Show("No se Encuentra el arancel Cargado, proceder a cargarlo de manera manual");
+
+
+                    //gpDatos.Visible = false;
+
+                   // throw new Exception("No se Ecuentra Arancel Cargado");
                 }
                 // Inicializo el punto de venta
                 cbRecibo.Checked = true;
