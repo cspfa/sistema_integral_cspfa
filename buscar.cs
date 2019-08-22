@@ -1711,25 +1711,22 @@ namespace SOCIOS
         {
             if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA") //stringArray.All(stringToCheck.Contains)
             {
-                if (GRUPO != 3)
+                foreach (string areas in areas_orden)
                 {
-                    foreach (string areas in areas_orden)
+                    if (ID_DESTINO == Convert.ToString(areas))
                     {
-                        if (ID_DESTINO == Convert.ToString(areas))
-                        {
-                            PrintDialog pd = new PrintDialog();
-                            PrintDocument pdoc = new PrintDocument();
-                            PaperSize psize = new PaperSize();
-                            pd.Document = pdoc;
-                            pd.Document.DefaultPageSettings.PaperSize = psize;
-                            pd.PrinterSettings.PrinterName = "Aclas Printer";
-                            pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
-                            DialogResult result = pd.ShowDialog();
+                        PrintDialog pd = new PrintDialog();
+                        PrintDocument pdoc = new PrintDocument();
+                        PaperSize psize = new PaperSize();
+                        pd.Document = pdoc;
+                        pd.Document.DefaultPageSettings.PaperSize = psize;
+                        pd.PrinterSettings.PrinterName = "Aclas Printer";
+                        pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
+                        DialogResult result = pd.ShowDialog();
 
-                            if (result == DialogResult.OK)
-                            {
-                                pdoc.Print();
-                            }
+                        if (result == DialogResult.OK)
+                        {
+                            pdoc.Print();
                         }
                     }
                 }

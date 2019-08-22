@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using FirebirdSql.Data.Firebird;
-using System.Data;
 using System.Collections;
 
 namespace Confiteria
@@ -124,13 +119,13 @@ namespace Confiteria
                 resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
         }
 
-        //RENDIDA EN COMANDAS
+        //RENDIDA EN COMANDAS 
         public void rendidaEnComandas(int ID_COMANDA, int CAJA_DIARIA)
         {
             SOCIOS.db resultado = new SOCIOS.db();
@@ -593,7 +588,7 @@ namespace Confiteria
         //STORED GUARDA MESA
         public void guardaMesa(string FECHA, int MESA, int MOZO, decimal IMPORTE, int NRO_SOC, int NRO_DEP, int BARRA, int PERSONAS, string AFILIADO, string BENEFICIO,
                                string NOMBRE_SOCIO, string USUARIO, int FORMA_DE_PAGO, int CONTRALOR, string COM_BORRADOR, string CONSUME, int TIPO_COMANDA, decimal DESCUENTO_APLICADO,
-                               decimal IMPORTE_DESCONTADO, int NRO_COMANDA, string ENTREGA)
+                               decimal IMPORTE_DESCONTADO, int NRO_COMANDA, string ENTREGA, string NRO_ORDEN = "0")
         {
             SOCIOS.db resultado = new SOCIOS.db();
 
@@ -619,6 +614,7 @@ namespace Confiteria
             vector_contenidos.Add(IMPORTE_DESCONTADO);
             vector_contenidos.Add(NRO_COMANDA);
             vector_contenidos.Add(ENTREGA);
+            vector_contenidos.Add(NRO_ORDEN);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Date");
@@ -642,6 +638,7 @@ namespace Confiteria
             vector_tipos.Add("FbDbType.Numeric");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@FECHA");
@@ -664,7 +661,8 @@ namespace Confiteria
             vector_nombres.Add("@DESCUENTO_APLICADO");
             vector_nombres.Add("@IMPORTE_DESCONTADO");
             vector_nombres.Add("@NRO_COMANDA");
-            vector_nombres.Add("@ENTREG");
+            vector_nombres.Add("@ENTREGA");
+            vector_nombres.Add("@NRO_ORDEN");
 
             string vprocedure = "CONFITERIA_COMANDAS_I";
 

@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SOCIOS
+namespace SOCIOS.AFIP
 {
-    public partial class Cargar_Info_Facturacion : Form
+    public partial class Cargar_Info_Facturacion_NC : Form
     {
         int ID;
         BO.BO_Afip dlog = new BO.BO_Afip();
     
-        public Cargar_Info_Facturacion(int pID_RECIBO)
+        public Cargar_Info_Facturacion_NC(int pID_RECIBO)
         {
             InitializeComponent();
             ID = pID_RECIBO;
@@ -26,7 +26,7 @@ namespace SOCIOS
 
         public void Info_NOTA(int ID)
         {
-            string QUERY = "select NUMERO_E,CAE,CAE_VENC from RECIBOS_CAJA WHERE ID=" + ID;
+            string QUERY = "select NUMERO_NC_E,CAE_NC,CAE_NC_VENC from RECIBOS_CAJA WHERE ID=" + ID;
             DataRow[] foundRows;
 
 
@@ -41,7 +41,7 @@ namespace SOCIOS
                     lbAerta.Visible = true;
                     lbInfo.Visible = true;
 
-                    lbInfo.Text = "Ya Existe FE cargada " + foundRows[0][0].ToString().TrimEnd().TrimStart() + " CON CAE " + foundRows[0][1].ToString().TrimEnd().TrimStart();
+                    lbInfo.Text = "Ya Existe NC cargada " + foundRows[0][0].ToString().TrimEnd().TrimStart() + " CON CAE " + foundRows[0][1].ToString().TrimEnd().TrimStart();
                 }
                 else
                 {
@@ -75,7 +75,7 @@ namespace SOCIOS
         {
             try
             {
-                dlog.Marca_Afip_Recibo(ID,Int32.Parse( ComboPtoVenta.SelectedValue.ToString()), Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text,1);
+                dlog.Marca_Afip_Nota_Credito(ID, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text);
                 MessageBox.Show("Informacion Grabada con Exito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
@@ -88,4 +88,3 @@ namespace SOCIOS
         }
     }
 }
-

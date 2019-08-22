@@ -12,7 +12,7 @@ namespace Confiteria
 {
     public partial class comanda : Form
     {
-        bo dlog = new bo();
+        Confiteria.bo dlog = new Confiteria.bo();
         Utils utils = new Utils();
         private string _MOROSO { get; set; }
         private DataSet COMANDA { get; set; }
@@ -48,16 +48,24 @@ namespace Confiteria
 
             if(VGlobales.vp_role == "CPOCABA")
             {
+                label22.Visible = true;
+                lbNroOrden.Visible = true;
+                btnReiniciarContador.Visible = true;
+                string NRO_ORDEN = utils.getNroOrdenComanda();
+
+                if (NRO_ORDEN != "")
+                    lbNroOrden.Text = Convert.ToString(Convert.ToInt32(NRO_ORDEN) + 1);
+                else
+                    lbNroOrden.Text = "0";
+
                 dpEntrega.Visible = true;
                 label20.Visible = true;
                 tbBarCodeSearch.Focus();
-
 
                 if (NRO_SOC == "78" && NRO_DEP == "18")
                 {
                     btnGuardar.Enabled = false;
                     button1.Enabled = false;
-                    btnCerrarComanda.Enabled = false;
                 }
             }
 
@@ -510,9 +518,13 @@ namespace Confiteria
                 string NCOM = "";
                 bool TIENE_DESCUENTO = utils.getTieneDescuento(TIPO_COMANDA);
                 string ENTREGA = String.Empty;
+                string NRO_ORDEN = String.Empty;
 
-                if(VGlobales.vp_role=="CPOCABA")
+                if (VGlobales.vp_role == "CPOCABA")
+                {
                     ENTREGA = dpEntrega.Text.Substring(0, 7);
+                    NRO_ORDEN = lbNroOrden.Text;
+                }
                 
                 if (TIENE_DESCUENTO == true)
                 {
@@ -537,7 +549,7 @@ namespace Confiteria
                     }
                     
                     NRO_COMANDA = NRO_COMANDA + 1;
-                    dlog.guardaMesa(FECHA, NU_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA, ENTREGA);                    
+                    dlog.guardaMesa(FECHA, NRO_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA, ENTREGA, NRO_ORDEN);                    
                     tbNroComanda.Text = NRO_COMANDA.ToString();
                     int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
                     guardarItems(ID_COM);
@@ -844,35 +856,45 @@ namespace Confiteria
 
         private void btnCerrarComanda_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-
-            if (MessageBox.Show("¿GUARDAR LA COMANDA?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (VGlobales.vp_role == "CONFITERIA")
             {
-                if (checkItems() == false)
+                Cursor = Cursors.WaitCursor;
+
+                if (MessageBox.Show("¿GUARDAR LA COMANDA?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    MessageBox.Show("NO SE ENCONTRO NINGUN ITEM EN LA LISTA", "ERROR");
+                    if (checkItems() == false)
+                    {
+                        MessageBox.Show("NO SE ENCONTRO NINGUN ITEM EN LA LISTA", "ERROR");
+                    }
+                    else
+                    {
+                        guardarComanda("NO");
+                        this.Close();
+                    }
                 }
                 else
                 {
-                    guardarComanda("NO");
-                    this.Close();
+                    if (tbNroComanda.Text == "")
+                    {
+                        int MESA = int.Parse(tbMesa.Text);
+                        dlog.cerrarMesa(MESA, "CERRADA");
+                        this.Close();
+                    }
+                    else
+                    {
+                        this.Close();
+                    }
                 }
+
+                Cursor = Cursors.Default;
             }
             else
             {
-                if (tbNroComanda.Text == "")
+                if (MessageBox.Show("¿CERRAR LA VENTANA?\nLOS CAMBIOS NO SE GUARDARAN", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    int MESA = int.Parse(tbMesa.Text);
-                    dlog.cerrarMesa(MESA, "CERRADA");
-                    this.Close();
-                }
-                else
-                {
-                    this.Close();
+                     this.Close();
                 }
             }
-            
-            Cursor = Cursors.Default;
         }
 
         private void mostrarArancel()

@@ -150,6 +150,7 @@
             this.btnAgregarCheque = new System.Windows.Forms.Button();
             this.dgCheques = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.Carga_NC = new System.Windows.Forms.Button();
             this.btn_generar_pdf_nota = new System.Windows.Forms.Button();
             this.btnNotaCredito_Ver = new System.Windows.Forms.Button();
             this.cbPagoFiltro = new System.Windows.Forms.ComboBox();
@@ -192,7 +193,6 @@
             this.tbNroDesde = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.dgBuscador = new System.Windows.Forms.DataGridView();
-            this.Carga_NC = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPlanilla.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -1487,6 +1487,16 @@
             this.tabPage4.Text = "BUSCADOR";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // Carga_NC
+            // 
+            this.Carga_NC.Location = new System.Drawing.Point(735, 113);
+            this.Carga_NC.Name = "Carga_NC";
+            this.Carga_NC.Size = new System.Drawing.Size(179, 20);
+            this.Carga_NC.TabIndex = 182;
+            this.Carga_NC.Text = "CARGAR INFO ELEC AFIP";
+            this.Carga_NC.UseVisualStyleBackColor = true;
+            this.Carga_NC.Click += new System.EventHandler(this.Carga_NC_Click);
+            // 
             // btn_generar_pdf_nota
             // 
             this.btn_generar_pdf_nota.Location = new System.Drawing.Point(933, 110);
@@ -1932,16 +1942,6 @@
             this.dgBuscador.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgBuscador.Size = new System.Drawing.Size(1133, 469);
             this.dgBuscador.TabIndex = 73;
-            // 
-            // Carga_NC
-            // 
-            this.Carga_NC.Location = new System.Drawing.Point(735, 113);
-            this.Carga_NC.Name = "Carga_NC";
-            this.Carga_NC.Size = new System.Drawing.Size(179, 20);
-            this.Carga_NC.TabIndex = 182;
-            this.Carga_NC.Text = "CARGAR INFO NC AFIP";
-            this.Carga_NC.UseVisualStyleBackColor = true;
-            this.Carga_NC.Click += new System.EventHandler(this.Carga_NC_Click);
             // 
             // planillaDeCaja
             // 

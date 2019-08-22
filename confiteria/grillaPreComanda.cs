@@ -2183,13 +2183,12 @@ namespace Confiteria
 
                 using (FbDataReader reader = cmd.ExecuteReader())
                 {
+                    transaction.Commit();
+                    connection.Close();
+                    cmd = null;
+                    transaction = null;
                     return ds;
                 }
-
-                transaction.Commit();
-                connection.Close();
-                cmd = null;
-                transaction = null;
             }
         }
 

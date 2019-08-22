@@ -3967,7 +3967,7 @@ namespace SOCIOS
                 //RECIBOS
                 query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE) || ' - ' || TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, ";
                 query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, B.OBSERVACIONES, 'RB' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE ";
-                query += "AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, 0 AS PTO_E, B.DNI FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
+                query += "AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, B.pto_VTA_E AS PTO_E, B.DNI FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
                 query += "WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID AND B.REINTEGRO_DE IS NOT NULL AND B.PTO_VTA = '0005' ";
 
                 if (HASTA == 0 && cbBuscarNumeros.Checked == true)
@@ -4005,7 +4005,7 @@ namespace SOCIOS
                 if (COMPROBANTE == "RECIBOS")
                 {
                     query += @"SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS VALOR, ";
-                    query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, B.NUMERO_E AS NRO_E, B.DNI,B.NUMERO_NC_E FROM ";
+                    query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID, B.PTO_VTA, B.NUMERO_E AS NRO_E, B.DNI,B.NUMERO_NC_E, B.pto_VTA_E AS PTO_E FROM ";
                     query += "RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F WHERE B.SECTACT = S.ID AND B.ID_PROFESIONAL = P.ID AND B.FORMA_PAGO = F.ID";
                 }
 
@@ -4091,6 +4091,8 @@ namespace SOCIOS
                     dt1.Columns.Add("NE", typeof(string));
                     dt1.Columns.Add("DNI", typeof(string));
                     dt1.Columns.Add("NUMERO_NC_E", typeof(string));
+                     dt1.Columns.Add("PTO_E", typeof(string));
+                 
 
                     ds1.Tables.Add(dt1);
 
@@ -4115,6 +4117,8 @@ namespace SOCIOS
                     string NRO_E = string.Empty;
                     string DNI = string.Empty;
                     string NRO_NC = string.Empty;
+                    string PTO_E = string.Empty;
+
                     while (reader.Read())
                     {
                         TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
@@ -4134,7 +4138,9 @@ namespace SOCIOS
                         NRO_E = reader.GetString(reader.GetOrdinal("NRO_E"));
                         DNI = reader.GetString(reader.GetOrdinal("DNI"));
                         NRO_NC = reader.GetString(reader.GetOrdinal("NUMERO_NC_E"));
-                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NRO_E, DNI, NRO_NC);
+                        PTO_E = reader.GetString(reader.GetOrdinal("PTO_E"));
+
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NRO_E, DNI, NRO_NC,PTO_E);
                     }
 
                     reader.Close();
@@ -5229,7 +5235,9 @@ namespace SOCIOS
                         {
                            
                             string NRO = row.Cells[9].Value.ToString();
-                            SOCIOS.AFIP.Cargar_Info_Facturacion cif = new AFIP.Cargar_Info_Facturacion(Int32.Parse(NRO));
+
+                            SOCIOS.Cargar_INFO_FC_NC cif = new SOCIOS.Cargar_INFO_FC_NC(Int32.Parse(NRO));
+                            
                             cif.ShowDialog();
 
                         }

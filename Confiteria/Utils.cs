@@ -1,7 +1,7 @@
 ﻿using System.Data;
-using SOCIOS;
 using FirebirdSql.Data.FirebirdClient;
 using System;
+using SOCIOS;
 
 namespace Confiteria
 {
@@ -48,6 +48,37 @@ namespace Confiteria
                 da.Fill(ds);
                 return ds;
             }
+        }
+
+        public bool setNroOrdenComanda(string NRO_LLEGADA, string ID)
+        {
+            try
+            {
+                string QUERY = "UPDATE CONFITERIA_COMANDAS SET NRO_LLEGADA = " + NRO_LLEGADA + " WHERE ID = " + ID + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public string getNroOrdenComanda()
+        {
+            string QUERY = "SELECT MAX(NRO_ORDEN) FROM CONFITERIA_COMANDAS";
+            DataSet GET = getDataFromQuery(QUERY);
+            string RETURN = "";
+
+            if (GET.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                    RETURN = Convert.ToString(ROW[0]);
+                }
+            }
+
+            return RETURN;
         }
 
         public string getOrdenDeLlegada()
@@ -133,7 +164,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta(QUERY);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -170,7 +201,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta(QUERY);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -184,7 +215,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta(QUERY);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -237,7 +268,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta(QUERY);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -251,7 +282,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta_Remota(QUERY, ROL);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -265,7 +296,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta_Remota(QUERY, ROL);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -279,7 +310,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta_Remota(QUERY, ROL);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -355,7 +386,7 @@ namespace Confiteria
                 db.Ejecuto_Consulta(QUERY);
                 return true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return false;
             }
@@ -379,7 +410,7 @@ namespace Confiteria
 
                 return STOCK;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return STOCK;
             }
@@ -416,7 +447,7 @@ namespace Confiteria
 
                 return STOCKEABLE;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return STOCKEABLE;
             }

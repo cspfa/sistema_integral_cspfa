@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FirebirdSql.Data.Firebird">
       <HintPath>C:\CSPFA_SOCIOS\FirebirdSql.Data.Firebird.dll</HintPath>
