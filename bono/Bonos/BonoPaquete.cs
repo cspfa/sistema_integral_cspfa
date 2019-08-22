@@ -38,6 +38,16 @@ namespace SOCIOS.bono
             this.Iniciar();
         }
 
+        public BonoPaquete(string pSocTitular, string pdepTitular, bool pMuestro)
+            : base(pSocTitular, pdepTitular, pMuestro)
+        {
+            Inicio = 1;
+            InitializeComponent();
+            utilsTurismo = new SOCIOS.Turismo.TurismoUtils();
+            this.Iniciar();
+        
+        }
+
         private void tbObs_TextChanged(object sender, EventArgs e)
         {
 

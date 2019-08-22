@@ -47,8 +47,18 @@ namespace SOCIOS.bono.Bonos
                 }
                 else if (lb_TIPO.Text == "PAS")
                 {
+                    BonoPasaje bp = new BonoPasaje(tbSoc.Text, tbDep.Text, true);
+                    bp.ID = ID;
+                    bp.BONO_BLANCO = true;
+                    bp.ShowDialog();
                 }
-                else
+                else if  (lb_TIPO.Text == "PAQ")
+                {
+                    BonoPaquete bpe = new BonoPaquete(tbSoc.Text, tbDep.Text, true);
+                    bpe.ID = ID;
+                    bpe.BONO_BLANCO = true;
+                    bpe.ShowDialog();
+                } else
                 { 
                 }
 
