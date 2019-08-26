@@ -52,7 +52,7 @@
             this.dgLlamadas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(177)))), ((int)(((byte)(83)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(5);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(177)))), ((int)(((byte)(83)))));
@@ -66,7 +66,7 @@
             this.PUESTO});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(177)))), ((int)(((byte)(83)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(5);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(177)))), ((int)(((byte)(83)))));
@@ -98,7 +98,7 @@
             this.dgLlamadas.ShowCellToolTips = false;
             this.dgLlamadas.ShowEditingIcon = false;
             this.dgLlamadas.ShowRowErrors = false;
-            this.dgLlamadas.Size = new System.Drawing.Size(1342, 526);
+            this.dgLlamadas.Size = new System.Drawing.Size(1896, 1056);
             this.dgLlamadas.TabIndex = 0;
             this.dgLlamadas.TabStop = false;
             // 
@@ -114,26 +114,27 @@
             this.NOMBRE.HeaderText = "NOMBRE Y APELLIDO";
             this.NOMBRE.Name = "NOMBRE";
             this.NOMBRE.ReadOnly = true;
-            this.NOMBRE.Width = 334;
+            this.NOMBRE.Width = 630;
             // 
             // PUESTO
             // 
             this.PUESTO.HeaderText = "PUESTO";
             this.PUESTO.Name = "PUESTO";
             this.PUESTO.ReadOnly = true;
-            this.PUESTO.Width = 162;
+            this.PUESTO.Width = 290;
             // 
             // Turnero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(177)))), ((int)(((byte)(83)))));
-            this.ClientSize = new System.Drawing.Size(1366, 550);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.dgLlamadas);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Turnero";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Turnero";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.Turnero_Activated);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Turnero_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.dgLlamadas)).EndInit();

@@ -77,17 +77,18 @@ namespace SOCIOS
 
         private void llamarPersonas()
         {
+            int X = 0;
             foreach (DataGridViewRow row in dgLlamadas.Rows)
             {
-                //dgLlamadas.ClearSelection();
-                //dgLlamadas.Rows[row.Index].Selected = true;
+                //dgLlamadas.Rows[X].DefaultCellStyle.BackColor = Color.Salmon;
                 string ORDEN_LLEGADA = row.Cells[0].Value.ToString().Trim();
                 string NOMBRE = row.Cells[1].Value.ToString().Trim();
                 string LETRA_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(0, 1);
                 string NUMERO_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(1, 2);
-                string MENSAJE = ORDEN_LLEGADA + ", " + NOMBRE + ", POR FAVOR DIRIJASE AL PUESTO " + LETRA_PUESTO + ", " + NUMERO_PUESTO;
+                string MENSAJE = ORDEN_LLEGADA + ", " + NOMBRE + ", POR FAVOR DIRÍJASE AL PUESTO " + LETRA_PUESTO + ", " + NUMERO_PUESTO;
                 reproducirVoz(MENSAJE);
                 Thread.Sleep(1000);
+                X++;
             }
         }
 

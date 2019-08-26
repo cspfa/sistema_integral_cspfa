@@ -25,10 +25,12 @@ namespace SOCIOS
         bo dlog = new bo();
         getGrupo gg = new getGrupo();
         db bd = new db();
+        arancel o_arancel = new arancel();
 
-        string[,] areas_orden = new string[6,3] 
-        { 
-            { "81", "REGISTRO DE SOCIOS", "RS"}, 
+
+        string[,] areas_orden = new string[6, 3]
+        {
+            { "81", "REGISTRO DE SOCIOS", "RS"},
             { "66", "BONO PELUQUERÍA", "PE"},
             { "136", "TURISMO", "TU"},
             { "123", "INGRESO COMEDOR", "CO"},
@@ -37,6 +39,7 @@ namespace SOCIOS
         };
 
         EntradaCampoService entradaCampoService = new EntradaCampoService();
+
 
         private string CUIL { get; set; }
 
@@ -1766,6 +1769,16 @@ namespace SOCIOS
             return ORDEN;
         }
 
+        private string getSelectedArea()
+        {
+            string RETURN = comboBox3.SelectedValue.ToString();
+
+            if (RETURN == "PROSECRETARIA")
+                RETURN = "REGISTRO DE SOCIOS";
+
+            return RETURN;
+        }
+
         public void pdoc_Print(object sender, PrintPageEventArgs e)
         {
             string ORDEN = getOrdenDeLlegada();
@@ -1784,7 +1797,8 @@ namespace SOCIOS
             int Offset = 0;
             string FECHA = dpFechaIngreso.Text + " " + DateTime.Now.ToString("hh:mm:ss");
             string ID_DESTINO = comboBox2.SelectedValue.ToString();
-
+            string AREA = getSelectedArea();
+            
             foreach (string areas in areas_orden)
             {
                 if (ID_DESTINO == Convert.ToString(areas[0]))
@@ -1806,6 +1820,9 @@ namespace SOCIOS
 
                 graphics.DrawString(ORDEN, courier_xxl, black, startX, startY + Offset);
                 Offset = Offset + 70;
+
+                graphics.DrawString(AREA, courier_med, black, startX, startY + Offset);
+                Offset = Offset + 20;
 
                 graphics.DrawString(APE_SOC + ", " + NOM_SOC, courier_med, black, startX, startY + Offset);
                 Offset = Offset + 20;
@@ -3228,6 +3245,16 @@ namespace SOCIOS
         private void tsListarElementos_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnRestarCounter_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿REINICIAR EL CONTADOR DE INGRESOS?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                db db = new db();
+                string QUERY = "ALTER SEQUENCE NUMERADOR_INGRESO RESTART WITH 0";
+                db.Ejecuto_Consulta(QUERY);
+            }
         }
     }
 }

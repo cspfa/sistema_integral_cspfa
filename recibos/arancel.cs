@@ -11,6 +11,23 @@ namespace SOCIOS
 {
     public class arancel
     {
+        public bool haveArancel(int ID_PROFESIONAL)
+        {
+            bo dlog = new bo();
+            string query = "SELECT ARANCEL FROM ARANCELES WHERE PROFESIONAL = " + ID_PROFESIONAL + " AND A.FE_BAJA IS NULL;";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(query).Select();
+
+            if (foundRows.Length > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public decimal valorCuotaSocial(int SECTACT, int GRUPO, int PROFESIONAL, string CATSOC)
         {
             bo dlog = new bo();

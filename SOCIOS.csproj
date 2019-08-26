@@ -69,7 +69,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>false</Optimize>
-    <WarningLevel>1</WarningLevel>
+    <WarningLevel>4</WarningLevel>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <CodeAnalysisLogFile>bin\Debug\SOCIOS.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
