@@ -518,7 +518,7 @@ namespace Confiteria
                 string NCOM = "";
                 bool TIENE_DESCUENTO = utils.getTieneDescuento(TIPO_COMANDA);
                 string ENTREGA = String.Empty;
-                string NRO_ORDEN = String.Empty;
+                string NRO_ORDEN = "0";
 
                 if (VGlobales.vp_role == "CPOCABA")
                 {

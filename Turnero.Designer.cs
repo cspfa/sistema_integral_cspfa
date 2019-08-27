@@ -44,7 +44,6 @@
             this.dgLlamadas.AllowUserToDeleteRows = false;
             this.dgLlamadas.AllowUserToResizeColumns = false;
             this.dgLlamadas.AllowUserToResizeRows = false;
-            this.dgLlamadas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgLlamadas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgLlamadas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(177)))), ((int)(((byte)(83)))));
             this.dgLlamadas.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -93,7 +92,7 @@
             this.dgLlamadas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgLlamadas.RowTemplate.Height = 42;
             this.dgLlamadas.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.dgLlamadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgLlamadas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgLlamadas.ShowCellErrors = false;
             this.dgLlamadas.ShowCellToolTips = false;
             this.dgLlamadas.ShowEditingIcon = false;
@@ -104,24 +103,24 @@
             // 
             // NUMERO
             // 
-            this.NUMERO.HeaderText = "";
+            this.NUMERO.HeaderText = "#";
             this.NUMERO.Name = "NUMERO";
             this.NUMERO.ReadOnly = true;
-            this.NUMERO.Width = 27;
+            this.NUMERO.Width = 150;
             // 
             // NOMBRE
             // 
             this.NOMBRE.HeaderText = "NOMBRE Y APELLIDO";
             this.NOMBRE.Name = "NOMBRE";
             this.NOMBRE.ReadOnly = true;
-            this.NOMBRE.Width = 630;
+            this.NOMBRE.Width = 1200;
             // 
             // PUESTO
             // 
             this.PUESTO.HeaderText = "PUESTO";
             this.PUESTO.Name = "PUESTO";
             this.PUESTO.ReadOnly = true;
-            this.PUESTO.Width = 290;
+            this.PUESTO.Width = 550;
             // 
             // Turnero
             // 
@@ -134,7 +133,6 @@
             this.Name = "Turnero";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Turnero";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.Turnero_Activated);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Turnero_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.dgLlamadas)).EndInit();

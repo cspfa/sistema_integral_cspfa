@@ -27,7 +27,6 @@ namespace SOCIOS
         db bd = new db();
         arancel o_arancel = new arancel();
 
-
         string[,] areas_orden = new string[6, 3]
         {
             { "81", "REGISTRO DE SOCIOS", "RS"},
@@ -40,7 +39,6 @@ namespace SOCIOS
 
         EntradaCampoService entradaCampoService = new EntradaCampoService();
 
-
         private string CUIL { get; set; }
 
         public buscar()
@@ -51,6 +49,11 @@ namespace SOCIOS
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "PROSECRETARIA" || VGlobales.vp_role == "CREDITOS")
             {
                 lbDatosBancarios.Enabled = true;
+            }
+
+            if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES")
+            {
+                btnRestarCounter.Visible = true;
             }
 
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INTERIOR")
@@ -113,7 +116,7 @@ namespace SOCIOS
         {
             conString conString = new conString();
             string connectionString = conString.get();
-            
+
             string[] DEVUELVE = { "N", "N" };
 
             using (FbConnection connection = new FbConnection(connectionString))
@@ -205,7 +208,7 @@ namespace SOCIOS
             if (MessageBox.Show("CONFIRMA EL INGRESO DEL SOCIO?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
             {
                 bool ASAMBLEA = ObtenerAsamblea();
-                
+
                 if (ASAMBLEA == true)
                 {
                     int ELECCION = DateTime.Today.Year;
@@ -287,7 +290,7 @@ namespace SOCIOS
             try
             {
                 FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-                cs.DataSource = ini3.Servidor;  cs.Port = int.Parse(ini3.Puerto);
+                cs.DataSource = ini3.Servidor; cs.Port = int.Parse(ini3.Puerto);
                 cs.Database = ini3.Ubicacion;
                 cs.UserID = VGlobales.vp_username;
                 cs.Password = VGlobales.vp_password;
@@ -324,7 +327,7 @@ namespace SOCIOS
                     }
 
                     reader3.Close();
-                    
+
                     dgvTurnos.DataSource = dt1;
                     dgvTurnos.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     dgvTurnos.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -353,7 +356,7 @@ namespace SOCIOS
             try
             {
                 FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-                cs.DataSource = ini3.Servidor;  cs.Port = int.Parse(ini3.Puerto);
+                cs.DataSource = ini3.Servidor; cs.Port = int.Parse(ini3.Puerto);
                 cs.Database = ini3.Ubicacion;
                 cs.UserID = VGlobales.vp_username;
                 cs.Password = VGlobales.vp_password;
@@ -540,7 +543,7 @@ namespace SOCIOS
                     cmd.CommandText = busco;
                     cmd.Connection = connection;
                     cmd.CommandType = CommandType.Text;
-                        
+
                     // DEFINICION DE LOS PARAMETROS PARA EJECUTAR STORE DE BUSQUEDA.-
                     cmd.Parameters.Add(new FbParameter("@P_APE_SOC", FbDbType.Char));
                     cmd.Parameters.Add(new FbParameter("@P_NOM_SOC", FbDbType.Char));
@@ -568,7 +571,7 @@ namespace SOCIOS
                     cmd.Parameters["@VPCRJP1"].Value = ((textBox8.Text == "" ? 0 : (int?)(System.Convert.ToInt32(textBox8.Text))));
                     cmd.Parameters["@VNRODOC"].Value = ((textBox14.Text == "" ? 0 : (int)(System.Convert.ToInt64(textBox14.Text))));
                     cmd.Parameters["@VID_EMPLEADO"].Value = ((mtbIdEmpleado.Text == "" ? 0 : (int?)(System.Convert.ToInt32(mtbIdEmpleado.Text))));
-                        
+
                     // SE EJECUTA EL COMANDO DE LECTURA CON TODOS LOS PARAMETROS.-
                     FbDataReader reader = cmd.ExecuteReader();
 
@@ -623,10 +626,10 @@ namespace SOCIOS
         {
             string dto = string.Empty;
             listView1.BeginUpdate();
-            
+
             int GRUPO = 0;
 
-            if (listView1.Columns.Count == 0) 
+            if (listView1.Columns.Count == 0)
             {
                 listView1.Columns.Add("# SOCIO");
                 listView1.Columns.Add("# DEP");
@@ -660,8 +663,8 @@ namespace SOCIOS
                     string F_CARN = reader.GetString(reader.GetOrdinal("F_CARN"));
 
                     if (F_CARN != "")
-                        F_CARN = F_CARN.Substring(0, 10);                    
-                        
+                        F_CARN = F_CARN.Substring(0, 10);
+
                     if (BAJA != "")
                         BAJA = BAJA.Substring(0, 10);
 
@@ -671,7 +674,7 @@ namespace SOCIOS
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NRO_DEP")).PadLeft(3, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("COD_DTO")).PadLeft(3, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("CAT_SOC")));
-                    listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("APE_SOC")).Trim());                
+                    listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("APE_SOC")).Trim());
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NOM_SOC")).Trim());
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("JERARQ")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("DESTINO")));
@@ -680,7 +683,7 @@ namespace SOCIOS
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_DEPORTES")));
                     listItem.SubItems.Add(NUM_DOC);
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("COD_CAT_SOC")));
-                    listItem.SubItems.Add(BAJA); 
+                    listItem.SubItems.Add(BAJA);
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("MOROSO_NO_DESC")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SOCIO_DEPORTES")));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ID_TITULAR_ANT")));
@@ -695,9 +698,9 @@ namespace SOCIOS
                         listItem.BackColor = Color.LightGreen;
                     }
 
-                    if (reader.GetString(reader.GetOrdinal("MOROSO")) == "S" 
-                        || reader.GetString(reader.GetOrdinal("MOROSO_DEPORTES")) == "S" 
-                        || reader.GetString(reader.GetOrdinal("MOROSO_NO_DESC")) == "S" 
+                    if (reader.GetString(reader.GetOrdinal("MOROSO")) == "S"
+                        || reader.GetString(reader.GetOrdinal("MOROSO_DEPORTES")) == "S"
+                        || reader.GetString(reader.GetOrdinal("MOROSO_NO_DESC")) == "S"
                         || reader.GetString(reader.GetOrdinal("MOROSO_NO_ALCANZA")) == "S")
                     {
                         listItem.BackColor = Color.Red;
@@ -738,21 +741,21 @@ namespace SOCIOS
                     cmd.CommandText = busco;
                     cmd.Connection = connection;
                     cmd.CommandType = CommandType.Text;
-                    
+
                     // DEFINICION DE LOS PARAMETROS PARA EJECUTAR STORE DE BUSQUEDA.-
                     cmd.Parameters.Add(new FbParameter("@P_APE_FAM", FbDbType.Char));
                     cmd.Parameters.Add(new FbParameter("@P_NOM_FAM", FbDbType.Char));
                     cmd.Parameters.Add(new FbParameter("@VNRODOC", FbDbType.Integer));
                     cmd.Parameters.Add(new FbParameter("@VNROADH", FbDbType.Integer));
                     cmd.Parameters.Add(new FbParameter("@VNRODEP", FbDbType.Integer));
-                    
+
                     // SE CARGAN LOS PARAMETROS CON LOS VALORES DEL WINFORM.-
                     cmd.Parameters["@P_APE_FAM"].Value = textBox3.Text;
                     cmd.Parameters["@P_NOM_FAM"].Value = textBox2.Text;
                     cmd.Parameters["@VNRODOC"].Value = ((maskedTextbox1.Text == "" ? 0 : (int?)(System.Convert.ToInt32(maskedTextbox1.Text))));
                     cmd.Parameters["@VNROADH"].Value = ((maskedTextbox3.Text == "" ? 0 : (int?)(System.Convert.ToInt32(maskedTextbox3.Text))));
                     cmd.Parameters["@VNRODEP"].Value = ((maskedTextbox2.Text == "" ? 0 : (int?)(System.Convert.ToInt32(maskedTextbox2.Text))));
-                
+
                     // SE EJECUTA EL COMANDO DE LECTURA CON TODOS LOS PARAMETROS.-
                     FbDataReader reader = cmd.ExecuteReader();
 
@@ -781,7 +784,7 @@ namespace SOCIOS
                         System.Windows.Forms.MessageBox.Show(ex.ToString());
                         textBox7.Focus();
                     }
-                     
+
                     reader.Close();
                     transaction.Commit();
                     connection.Close();
@@ -800,8 +803,8 @@ namespace SOCIOS
         private void Cargar_Resultado_FamAdhe(FbDataReader reader) //CARGAR_FAMADHE
         {
             listView1.BeginUpdate();
-           
-            if (listView1.Columns.Count == 0) 
+
+            if (listView1.Columns.Count == 0)
             {
                 listView1.Columns.Add("NRO_SOC");
                 listView1.Columns.Add("DEP");
@@ -842,7 +845,7 @@ namespace SOCIOS
                     {
                         NACIM = NACIM.Substring(0, 10);
                     }
-                    
+
                     ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("NRO_SOC")).PadLeft(5, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NRO_DEP")).PadLeft(3, '0'));
                     listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("TIPO")));
@@ -884,7 +887,7 @@ namespace SOCIOS
                     int BARRA = int.Parse(reader.GetString(reader.GetOrdinal("BARRA")));
                     int EDAD_FAMILIAR = 0;
 
-                    if (TIPO == "FAM" && NACIM !="" && BARRA >= 4)
+                    if (TIPO == "FAM" && NACIM != "" && BARRA >= 4)
                     {
                         edad EDAD = new edad();
                         EDAD_FAMILIAR = EDAD.CALCULAR(NACIM);
@@ -909,15 +912,15 @@ namespace SOCIOS
             columna = (System.Convert.ToInt32(e.Column));
             string cName = listView1.Columns[columna].Text;
             string tit = string.Empty;
-            
+
             foreach (ColumnHeader ch in this.listView1.Columns)
             {
                 ch.ImageIndex = -1;
-                
+
             }
 
             ListViewItemComparer sorter = listView1.ListViewItemSorter as ListViewItemComparer;
-            
+
             if (sorter == null)
             {
                 sorter = new ListViewItemComparer(e.Column);
@@ -955,14 +958,14 @@ namespace SOCIOS
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             string searchText = textbox15.Text.Trim();
-            
+
             if (searchText != lastSearch)
             {
                 lastSearch = searchText;
                 currentIndex = 0;
                 FillMatchingList(searchText);
             }
-            
+
             HighlightNextMatch();
         }
 
@@ -989,7 +992,7 @@ namespace SOCIOS
             }
         }
 
-        private void HighlightNextMatch() 
+        private void HighlightNextMatch()
         {
             if (listView1.SelectedItems.Count > 0)
             {
@@ -1010,8 +1013,8 @@ namespace SOCIOS
             }
         }
 
-       private ListViewItem FindTextEverywhere(string txt, bool bv, int lastIndex)
-       {
+        private ListViewItem FindTextEverywhere(string txt, bool bv, int lastIndex)
+        {
             int colCount = listView1.Columns.Count;
             int col = 0;
             bool find = false;
@@ -1056,14 +1059,14 @@ namespace SOCIOS
         private void BuscarListView_Click(object sender, EventArgs e)
         {
             string searchText = textbox15.Text.Trim();
-            
+
             if (searchText != lastSearch)
             {
                 lastSearch = searchText;
                 currentIndex = 0;
                 FillMatchingList(searchText);
             }
-            
+
             HighlightNextMatch();
         }
 
@@ -1103,7 +1106,7 @@ namespace SOCIOS
         {
             themedContainer2.HideBody();
         }
-       
+
         private void valido_barras(object sender, EventArgs e)
         {
             vcampo = "";
@@ -1192,12 +1195,12 @@ namespace SOCIOS
                 MessageBox.Show("EL CODIGO INGRESADO ES CORTO", "ERROR");
             }
         }
-       
 
-        private void BuscarFamAdhe_barras(string vp1,string vp2,string vp3,string vtip_bus, int ID)
+
+        private void BuscarFamAdhe_barras(string vp1, string vp2, string vp3, string vtip_bus, int ID)
         {
             string Fcomando = "";
-            
+
             if (vtip_bus == "F")
             {
                 Fcomando = "SELECT A.NRO_SOC, A.NRO_DEP, 0 AS NRO_TAB, A.BARRA, A.APE_FAM, A.NOM_FAM, B.APE_SOC, B.NOM_SOC,";
@@ -1424,7 +1427,7 @@ namespace SOCIOS
                 listItem.BackColor = Color.Red;
                 listItem.ForeColor = Color.White;
             }
-           
+
             listView1.Items.Add(listItem);
             listView1.EndUpdate();
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -1477,12 +1480,12 @@ namespace SOCIOS
             }
         }
 
-         private void toolStripButton3_Click_1(object sender, EventArgs e)
+        private void toolStripButton3_Click_1(object sender, EventArgs e)
         {
             VGlobales.vp_nuevo_socio = "SI";
             Socios frmABM = new Socios();
-            Socios.vp_nro_soc = -1 ;
-            Socios.vp_nro_dep = -1 ;
+            Socios.vp_nro_soc = -1;
+            Socios.vp_nro_dep = -1;
             frmABM.ShowDialog(this);
         }
 
@@ -1501,7 +1504,7 @@ namespace SOCIOS
             {
                 Socios.vp_tabpage = 1;
             }
-            
+
             Socios.vp_nro_soc = (int)(System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[0].Text));
             Socios.vp_nro_dep = (int)(System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[1].Text));
 
@@ -1547,7 +1550,7 @@ namespace SOCIOS
                 else
                 {
                     if (listView1.SelectedItems[0].SubItems[2].Text == "FAM")
-                    {   
+                    {
                         Socios.vp_tabpage += 2;
                         VGlobales.vp_cod_bar = "F";
                         Socios.vp_barra = (int)(System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[4].Text.PadLeft(2, '0')));
@@ -1577,7 +1580,7 @@ namespace SOCIOS
             {
                 dato1 = "SELECT DISTINCT ROL FROM SECTACT ORDER BY ROL";
             }
-            
+
             string connectionString;
             DataSet ds1 = new DataSet();
             Datos_ini ini3 = new Datos_ini();
@@ -1585,7 +1588,7 @@ namespace SOCIOS
             try
             {
                 FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-                cs.DataSource = ini3.Servidor;  
+                cs.DataSource = ini3.Servidor;
                 cs.Port = int.Parse(ini3.Puerto);
                 cs.Database = ini3.Ubicacion;
                 cs.UserID = VGlobales.vp_username;
@@ -1616,7 +1619,7 @@ namespace SOCIOS
                     comboBox3.SelectedIndex = -1;
                     transaction.Commit();
                 }
-            } 
+            }
             catch
             {
                 MessageBox.Show("ERROR AL CARGAR EL COMBO ROL");
@@ -1647,7 +1650,7 @@ namespace SOCIOS
                 try
                 {
                     FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
-                    cs.DataSource = ini4.Servidor;  cs.Port = int.Parse(ini4.Puerto);
+                    cs.DataSource = ini4.Servidor; cs.Port = int.Parse(ini4.Puerto);
                     cs.Database = ini4.Ubicacion;
                     cs.UserID = VGlobales.vp_username;
                     cs.Password = VGlobales.vp_password;
@@ -1710,27 +1713,43 @@ namespace SOCIOS
             }
         }
 
-        public void imprimirTicket(int GRUPO, string ID_DESTINO)
+        private bool AREA_CAJA { get; set; }
+
+        public void imprimirTicket(int GRUPO, string ID_DESTINO, string ID_PROFESIONAL)
         {
-            if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA") //stringArray.All(stringToCheck.Contains)
+            if (VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CONFITERIA")
             {
+                bool IMPRIME = false;
+
                 foreach (string areas in areas_orden)
                 {
                     if (ID_DESTINO == Convert.ToString(areas))
                     {
-                        PrintDialog pd = new PrintDialog();
-                        PrintDocument pdoc = new PrintDocument();
-                        PaperSize psize = new PaperSize();
-                        pd.Document = pdoc;
-                        pd.Document.DefaultPageSettings.PaperSize = psize;
-                        pd.PrinterSettings.PrinterName = "Aclas Printer";
-                        pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
-                        DialogResult result = pd.ShowDialog();
+                        IMPRIME = true;
+                        AREA_CAJA = false;
+                    }
+                }
 
-                        if (result == DialogResult.OK)
-                        {
-                            pdoc.Print();
-                        }
+                if(o_arancel.haveArancel(int.Parse(ID_PROFESIONAL)))
+                {
+                    IMPRIME = true;
+                    AREA_CAJA = true;
+                }
+
+                if (IMPRIME)
+                {
+                    PrintDialog pd = new PrintDialog();
+                    PrintDocument pdoc = new PrintDocument();
+                    PaperSize psize = new PaperSize();
+                    pd.Document = pdoc;
+                    pd.Document.DefaultPageSettings.PaperSize = psize;
+                    pd.PrinterSettings.PrinterName = "Aclas Printer";
+                    pdoc.PrintPage += new PrintPageEventHandler(pdoc_Print);
+                    DialogResult result = pd.ShowDialog();
+
+                    if (result == DialogResult.OK)
+                    {
+                        pdoc.Print();
                     }
                 }
             }
@@ -1797,7 +1816,10 @@ namespace SOCIOS
             int Offset = 0;
             string FECHA = dpFechaIngreso.Text + " " + DateTime.Now.ToString("hh:mm:ss");
             string ID_DESTINO = comboBox2.SelectedValue.ToString();
-            string AREA = getSelectedArea();
+            string AREA = "CAJA";
+
+            if(AREA_CAJA == false)
+                AREA = getSelectedArea();
             
             foreach (string areas in areas_orden)
             {
@@ -1961,7 +1983,7 @@ namespace SOCIOS
                                         dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC, CUIL);
                                     }
 
-                                    imprimirTicket(GRUPO, ID_DESTINO);
+                                    imprimirTicket(GRUPO, ID_DESTINO, ID_PROF);
 
                                     MessageBox.Show("INGRESO GUARDADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;
@@ -2069,7 +2091,7 @@ namespace SOCIOS
                                         dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, NRO_ADH, NRO_DEPADH, BARRA, DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, "X", CUIL);
                                     }
 
-                                    imprimirTicket(GRUPO, ID_DESTINO);
+                                    imprimirTicket(GRUPO, ID_DESTINO, ID_PROF);
 
                                     MessageBox.Show("INGRESO GUARDADO", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,13 +14,18 @@ namespace SOCIOS
         public bool haveArancel(int ID_PROFESIONAL)
         {
             bo dlog = new bo();
-            string query = "SELECT ARANCEL FROM ARANCELES WHERE PROFESIONAL = " + ID_PROFESIONAL + " AND A.FE_BAJA IS NULL;";
+            string query = "SELECT ARANCEL FROM ARANCELES WHERE PROFESIONAL = " + ID_PROFESIONAL + " AND FE_BAJA IS NULL;";
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(query).Select();
 
             if (foundRows.Length > 0)
             {
-                return true;
+                int COUNT = int.Parse(foundRows[0][0].ToString());
+
+                if (COUNT > 0)
+                    return true;
+                else
+                    return false;
             }
             else
             {

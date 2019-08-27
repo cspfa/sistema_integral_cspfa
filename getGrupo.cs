@@ -8,6 +8,11 @@ namespace SOCIOS
 {
    public class getGrupo
     {
+        /*public string getCatSoc(string NRO_SOC, string NRO_DEP)
+        {
+
+        }*/
+
         public int get(string COD_DTO, string CAT_SOC)
         {
             int GRUPO = 0;
