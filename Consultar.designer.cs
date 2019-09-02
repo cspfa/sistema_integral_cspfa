@@ -48,6 +48,11 @@
             this.btnLlamar = new System.Windows.Forms.Button();
             this.btnEnEspera = new System.Windows.Forms.Button();
             this.btnAtendido = new System.Windows.Forms.Button();
+            this.comboRoles = new System.Windows.Forms.ComboBox();
+            this.btnIngreso = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboDestinos = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -256,6 +261,55 @@
             this.btnAtendido.UseVisualStyleBackColor = true;
             this.btnAtendido.Click += new System.EventHandler(this.btnAtendido_Click);
             // 
+            // comboRoles
+            // 
+            this.comboRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboRoles.FormattingEnabled = true;
+            this.comboRoles.Location = new System.Drawing.Point(49, 468);
+            this.comboRoles.Name = "comboRoles";
+            this.comboRoles.Size = new System.Drawing.Size(294, 21);
+            this.comboRoles.TabIndex = 50;
+            this.comboRoles.SelectedIndexChanged += new System.EventHandler(this.ComboRoles_SelectedIndexChanged);
+            // 
+            // btnIngreso
+            // 
+            this.btnIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIngreso.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnIngreso.Location = new System.Drawing.Point(897, 467);
+            this.btnIngreso.Name = "btnIngreso";
+            this.btnIngreso.Size = new System.Drawing.Size(167, 23);
+            this.btnIngreso.TabIndex = 54;
+            this.btnIngreso.Text = "REGISTRAR INGRESO";
+            this.btnIngreso.UseVisualStyleBackColor = true;
+            this.btnIngreso.Click += new System.EventHandler(this.BtnIngreso_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(8, 472);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(32, 13);
+            this.label15.TabIndex = 52;
+            this.label15.Text = "ROL:";
+            // 
+            // comboDestinos
+            // 
+            this.comboDestinos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboDestinos.FormattingEnabled = true;
+            this.comboDestinos.Location = new System.Drawing.Point(419, 468);
+            this.comboDestinos.Name = "comboDestinos";
+            this.comboDestinos.Size = new System.Drawing.Size(469, 21);
+            this.comboDestinos.TabIndex = 51;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(352, 472);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(58, 13);
+            this.label16.TabIndex = 53;
+            this.label16.Text = "DESTINO:";
+            // 
             // Consulta
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -267,7 +321,12 @@
             this.BrokenRulesAlertText = "Business_BrokenRulesAlertText";
             this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
             this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
-            this.ClientSize = new System.Drawing.Size(1074, 461);
+            this.ClientSize = new System.Drawing.Size(1074, 510);
+            this.Controls.Add(this.comboRoles);
+            this.Controls.Add(this.btnIngreso);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.comboDestinos);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.btnAtendido);
             this.Controls.Add(this.btnEnEspera);
             this.Controls.Add(this.btnLlamar);
@@ -322,6 +381,11 @@
         private System.Windows.Forms.Button btnLlamar;
         private System.Windows.Forms.Button btnEnEspera;
         private System.Windows.Forms.Button btnAtendido;
+        private System.Windows.Forms.ComboBox comboRoles;
+        private System.Windows.Forms.Button btnIngreso;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboDestinos;
+        private System.Windows.Forms.Label label16;
     }
 }
 

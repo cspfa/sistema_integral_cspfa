@@ -2252,5 +2252,13 @@ namespace SOCIOS
             comanda comanda = new comanda(NRO_SOC, NRO_DEP, BARRA, SOCIO, SECUENCIA, GROUP, MESA, ID_COMANDA, PERSONAS, PAGO, MOROSO, NRO_MESA, NRO_COMANDA);
             comanda.ShowDialog();
         }
+
+        private void ListadoDeIngresosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            Consulta frm_Consultar = new Consulta();
+            frm_Consultar.ShowDialog(this);
+            Cursor = Cursors.Default;
+        }
     }
 }

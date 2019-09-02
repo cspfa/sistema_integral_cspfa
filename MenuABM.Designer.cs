@@ -139,6 +139,7 @@
             this.listadoDeComandasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cajasAnterioresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listaDePreciosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comandaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contaduríaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.interiorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -162,7 +163,7 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
-            this.comandaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listadoDeIngresosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -276,7 +277,8 @@
             this.aBMToolStripMenuItem,
             this.ingresosToolStripMenuItem,
             this.capturarFotoToolStripMenuItem,
-            this.calcularCuotasToolStripMenuItem});
+            this.calcularCuotasToolStripMenuItem,
+            this.listadoDeIngresosToolStripMenuItem});
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
             this.toolStripMenuItem11.Size = new System.Drawing.Size(118, 18);
             this.toolStripMenuItem11.Text = "Socios";
@@ -287,7 +289,7 @@
             this.aBMToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.group;
             this.aBMToolStripMenuItem.Name = "aBMToolStripMenuItem";
             this.aBMToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.aBMToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.aBMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aBMToolStripMenuItem.Text = "ABM";
             this.aBMToolStripMenuItem.Click += new System.EventHandler(this.aBMToolStripMenuItem_Click);
             // 
@@ -295,7 +297,7 @@
             // 
             this.ingresosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ingresosToolStripMenuItem.Image")));
             this.ingresosToolStripMenuItem.Name = "ingresosToolStripMenuItem";
-            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.ingresosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ingresosToolStripMenuItem.Text = "Ingresos";
             this.ingresosToolStripMenuItem.Click += new System.EventHandler(this.ingresosToolStripMenuItem_Click_1);
             // 
@@ -303,7 +305,7 @@
             // 
             this.capturarFotoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.webcam;
             this.capturarFotoToolStripMenuItem.Name = "capturarFotoToolStripMenuItem";
-            this.capturarFotoToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.capturarFotoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.capturarFotoToolStripMenuItem.Text = "Capturar Foto";
             this.capturarFotoToolStripMenuItem.Click += new System.EventHandler(this.capturarFotoToolStripMenuItem_Click_1);
             // 
@@ -311,7 +313,7 @@
             // 
             this.calcularCuotasToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("calcularCuotasToolStripMenuItem.Image")));
             this.calcularCuotasToolStripMenuItem.Name = "calcularCuotasToolStripMenuItem";
-            this.calcularCuotasToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.calcularCuotasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.calcularCuotasToolStripMenuItem.Text = "Calcular Cuotas";
             this.calcularCuotasToolStripMenuItem.Click += new System.EventHandler(this.calcularCuotasToolStripMenuItem_Click);
             // 
@@ -1163,6 +1165,14 @@
             this.listaDePreciosToolStripMenuItem.Text = "Lista de Precios";
             this.listaDePreciosToolStripMenuItem.Click += new System.EventHandler(this.listaDePreciosToolStripMenuItem_Click);
             // 
+            // comandaToolStripMenuItem
+            // 
+            this.comandaToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_view_columns;
+            this.comandaToolStripMenuItem.Name = "comandaToolStripMenuItem";
+            this.comandaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.comandaToolStripMenuItem.Text = "Comanda";
+            this.comandaToolStripMenuItem.Click += new System.EventHandler(this.ComandaToolStripMenuItem_Click);
+            // 
             // contaduríaToolStripMenuItem
             // 
             this.contaduríaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1364,13 +1374,13 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
-            // comandaToolStripMenuItem
+            // listadoDeIngresosToolStripMenuItem
             // 
-            this.comandaToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_view_columns;
-            this.comandaToolStripMenuItem.Name = "comandaToolStripMenuItem";
-            this.comandaToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
-            this.comandaToolStripMenuItem.Text = "Comanda";
-            this.comandaToolStripMenuItem.Click += new System.EventHandler(this.ComandaToolStripMenuItem_Click);
+            this.listadoDeIngresosToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.user;
+            this.listadoDeIngresosToolStripMenuItem.Name = "listadoDeIngresosToolStripMenuItem";
+            this.listadoDeIngresosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listadoDeIngresosToolStripMenuItem.Text = "Listado de ingresos";
+            this.listadoDeIngresosToolStripMenuItem.Click += new System.EventHandler(this.ListadoDeIngresosToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1548,5 +1558,6 @@
         private System.Windows.Forms.ToolStripMenuItem planesDeCuentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportePlanesDeCuentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comandaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listadoDeIngresosToolStripMenuItem;
     }
 }

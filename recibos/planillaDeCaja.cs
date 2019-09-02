@@ -4649,7 +4649,6 @@ namespace SOCIOS
         {
             Factura_Helper helper_f = new Factura_Helper();
 
-
             try
             {
                 if (GRID.SelectedRows.Count == 1)

@@ -84,7 +84,6 @@ namespace SOCIOS
             FbDataReader reader = cmd.ExecuteReader();
             CommitTransaction();
             return reader;
-            CloseCnn();
         }
 
         public DataSet EjecutoDataSet(string query)
@@ -99,7 +98,6 @@ namespace SOCIOS
             }
             
             return dsRetorno;
-            CloseCnn();
         }
 
         public DataTable EjecutoDataTable(string query)
@@ -114,7 +112,6 @@ namespace SOCIOS
             }
             
             return dsRetorno.Tables[0];
-            CloseCnn();
         }
 
         public DataTable EjecutoDataTable_Remota(string query, string ROL)
@@ -129,7 +126,6 @@ namespace SOCIOS
             }
 
             return dsRetorno.Tables[0];
-            CloseCnn();
         }
 
         public void OpenCnn_Remota(string ROL)
@@ -187,7 +183,6 @@ namespace SOCIOS
 
             FbDataReader reader = comando.ExecuteReader();
             return reader;
-            CloseCnn();
         }
 
         public void Ejecuto_Stored_Insert(string vprocedimiento, ArrayList vcont, ArrayList vtipodato, ArrayList vnombre)

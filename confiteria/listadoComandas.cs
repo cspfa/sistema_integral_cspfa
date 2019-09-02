@@ -529,12 +529,12 @@ namespace Confiteria
                 {
                     M_ADTO = 1;
                 }
-                
-                int Y_ADTO = DateTime.Today.Year;
+
+                int Y_ADTO = 0;
 
                 if (M_ADTO < 12)
                 {
-                    Y_ADTO = Y_ADTO;
+                    Y_ADTO = DateTime.Today.Year;
                 }
                 else if (M_ADTO == 12)
                 {

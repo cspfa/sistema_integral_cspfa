@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +11,28 @@ namespace SOCIOS
 {
     public class arancel
     {
+        public bool haveArancel(int ID_PROFESIONAL)
+        {
+            bo dlog = new bo();
+            string query = "SELECT ARANCEL FROM ARANCELES WHERE PROFESIONAL = " + ID_PROFESIONAL + " AND FE_BAJA IS NULL;";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(query).Select();
+
+            if (foundRows.Length > 0)
+            {
+                int COUNT = int.Parse(foundRows[0][0].ToString());
+
+                if (COUNT > 0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public decimal valorCuotaSocial(int SECTACT, int GRUPO, int PROFESIONAL, string CATSOC)
         {
             bo dlog = new bo();
