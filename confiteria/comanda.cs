@@ -1104,8 +1104,6 @@ namespace Confiteria
 
         private void tbBarCodeSearch_Leave(object sender, EventArgs e)
         {
-            //tbBarCodeSearch.Focus();
-
             if (tbBarCodeSearch.Focused && tbBarCodeSearch.Text.Trim() !="")
             {
                 DataSet ITEM = utils.barCodeSearch(tbBarCodeSearch.Text.Trim());
@@ -1127,7 +1125,8 @@ namespace Confiteria
                 }
                 else
                 {
-                    MessageBox.Show("NO SE ENCONTRO NINGÚN RESULTADO");
+                    agregarItem ai = new agregarItem();
+                    ai.ShowDialog();
                 }
             }
         }

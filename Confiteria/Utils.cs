@@ -50,6 +50,23 @@ namespace Confiteria
             }
         }
 
+        public int putNuevoItem(string NOMBRE, string ROL)
+        {
+            try
+            {
+                string QUERY = "INSERT INTO PROFESIONALES (NOMBRE, MATRICULA, DNI, CORREO, CELULAR, TELEFONO, TIPO_CONTRATO, ROL, BONO_RECIBO, CUENTA, STOCKEABLE) ";
+                QUERY += "VALUES ('" + NOMBRE + "', 0, 0, '', 0, 0, 0, '" + ROL + "', 'R', 0, 0);";
+                db.Ejecuto_Consulta(QUERY);
+                maxid mid = new maxid();
+                int ID = int.Parse(mid.m("ID", "PROFESIONALES"));
+                return ID;
+            }
+            catch(Exception)
+            {
+                return 0;
+            }
+        }
+
         public bool setNroOrdenComanda(string NRO_LLEGADA, string ID)
         {
             try

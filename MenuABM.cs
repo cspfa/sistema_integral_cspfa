@@ -2218,8 +2218,8 @@ namespace SOCIOS
 
         private void turneroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Turnero tu = new Turnero();
-            tu.ShowDialog();
+            //Turnero tu = new Turnero();
+            //tu.ShowDialog();
         }
 
         private void planesDeCuentaToolStripMenuItem_Click(object sender, EventArgs e)
