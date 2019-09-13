@@ -77,7 +77,7 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
@@ -117,9 +117,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="Confiteria, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\x86\Debug\Confiteria.exe</HintPath>
+    <Reference Include="Buffet">
+      <HintPath>Buffet\bin\Debug\Buffet.exe</HintPath>
     </Reference>
     <Reference Include="FirebirdSql.Data.Firebird, Version=1.7.1.0, Culture=neutral, PublicKeyToken=fa843d180294369d">
       <SpecificVersion>False</SpecificVersion>
@@ -163,6 +162,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -206,12 +206,6 @@
       <DependentUpon>PARCHE_RECIBOS.cs</DependentUpon>
     </Compile>
     <Compile Include="Factura_Electronica\PreFacturado.cs" />
-    <Compile Include="Elecciones.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Elecciones.Designer.cs">
-      <DependentUpon>Elecciones.cs</DependentUpon>
-    </Compile>
     <Compile Include="recibos\asignarReciboC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1013,6 +1007,12 @@
     <Compile Include="Turismo\TurismoUtils.cs" />
     <Compile Include="Turismo\Turismo_Stats_Utils.cs" />
     <Compile Include="Turismo\VoucherUtils.cs" />
+    <Compile Include="Turnero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Turnero.Designer.cs">
+      <DependentUpon>Turnero.cs</DependentUpon>
+    </Compile>
     <Compile Include="turnos\abmProfesionales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1308,9 +1308,6 @@
     <EmbeddedResource Include="Factura_Electronica\Factura.rdlc" />
     <EmbeddedResource Include="Factura_Electronica\PARCHE_RECIBOS.resx">
       <DependentUpon>PARCHE_RECIBOS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Elecciones.resx">
-      <DependentUpon>Elecciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="recibos\asignarReciboC.resx">
       <DependentUpon>asignarReciboC.cs</DependentUpon>
@@ -1676,6 +1673,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Turismo\Stats_Hoteles.resx">
       <DependentUpon>Stats_Hoteles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Turnero.resx">
+      <DependentUpon>Turnero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="turnos\abmProfesionales.resx">
       <DependentUpon>abmProfesionales.cs</DependentUpon>

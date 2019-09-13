@@ -1,21 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{663B9133-5EB9-4B52-AECC-1B67E896D3F8}</ProjectGuid>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{49A899F5-382F-47D6-B933-8119CF51A5F2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Confiteria</RootNamespace>
-    <AssemblyName>Confiteria</AssemblyName>
+    <RootNamespace>Buffet</RootNamespace>
+    <AssemblyName>Buffet</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -23,10 +20,11 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>1</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,36 +36,31 @@
     <Reference Include="FirebirdSql.Data.Firebird">
       <HintPath>C:\CSPFA_SOCIOS\FirebirdSql.Data.Firebird.dll</HintPath>
     </Reference>
-    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.0.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="FirebirdSql.Data.FirebirdClient">
       <HintPath>C:\CSPFA_SOCIOS\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>C:\CSPFA_SOCIOS\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="MicroFour StrataFrame Base, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="log4net">
+      <HintPath>C:\CSPFA_SOCIOS\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MicroFour StrataFrame Base">
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Base.dll</HintPath>
     </Reference>
-    <Reference Include="MicroFour StrataFrame Business, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MicroFour StrataFrame Business">
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Business.dll</HintPath>
     </Reference>
-    <Reference Include="MicroFour StrataFrame Inherited UI, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Inherited UI.dll</HintPath>
-    </Reference>
-    <Reference Include="MicroFour StrataFrame Security, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MicroFour StrataFrame Security">
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Security.dll</HintPath>
     </Reference>
-    <Reference Include="MicroFour StrataFrame UI, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="MicroFour StrataFrame UI">
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame UI.dll</HintPath>
     </Reference>
-    <Reference Include="SOCIOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <ExecutableExtension>.exe</ExecutableExtension>
+    <Reference Include="MicroFour.StrataFrame.Lzma.x86.Net4">
+      <HintPath>C:\CSPFA_SOCIOS\MicroFour.StrataFrame.Lzma.x86.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="SOCIOS">
       <HintPath>C:\CSPFA_SOCIOS\SOCIOS.exe</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -82,6 +75,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="agregarItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="agregarItem.designer.cs">
+      <DependentUpon>agregarItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="bo.cs" />
     <Compile Include="cajasAnteriores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +100,12 @@
     <Compile Include="grillaPreComanda.Designer.cs">
       <DependentUpon>grillaPreComanda.cs</DependentUpon>
     </Compile>
+    <Compile Include="importador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="importador.designer.cs">
+      <DependentUpon>importador.cs</DependentUpon>
+    </Compile>
     <Compile Include="imprimir.cs" />
     <Compile Include="listadoAranceles.cs">
       <SubType>Form</SubType>
@@ -115,6 +121,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="agregarItem.resx">
+      <DependentUpon>agregarItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="cajasAnteriores.resx">
       <DependentUpon>cajasAnteriores.cs</DependentUpon>
     </EmbeddedResource>
@@ -123,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="grillaPreComanda.resx">
       <DependentUpon>grillaPreComanda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="importador.resx">
+      <DependentUpon>importador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="listadoAranceles.resx">
       <DependentUpon>listadoAranceles.cs</DependentUpon>
@@ -138,9 +151,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -152,10 +163,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\arrow_switch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printer.png" />
+  </ItemGroup>
+  <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
       <VersionMajor>2</VersionMajor>
-      <VersionMinor>4</VersionMinor>
+      <VersionMinor>8</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -164,7 +181,7 @@
     <COMReference Include="Microsoft.Office.Interop.Excel">
       <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>6</VersionMinor>
+      <VersionMinor>9</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
       <Isolated>False</Isolated>
@@ -180,18 +197,5 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\arrow_switch.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\printer.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

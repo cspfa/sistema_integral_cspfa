@@ -7,11 +7,8 @@ using System.Threading;
 using System.Windows.Forms;
 using FirebirdSql.Data.FirebirdClient;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Collections.Generic;
-using Convenios;
-using Confiteria;
+using Buffet;
 
 namespace SOCIOS
 {
@@ -1647,18 +1644,18 @@ namespace SOCIOS
 
         private void listadoDeSociosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            Confiteria.grillaPreComanda gpc = new Confiteria.grillaPreComanda();
+            /*Cursor = Cursors.WaitCursor;
+            Buffet.grillaPreComanda gpc = new Buffet.grillaPreComanda();
             gpc.ShowDialog();
-            Cursor = Cursors.Default;
+            Cursor = Cursors.Default;*/
         }
 
         private void listadoDeComandasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
-            Confiteria.listadoComandas lc = new Confiteria.listadoComandas();
+            /*Cursor = Cursors.WaitCursor;
+            Buffet.listadoComandas lc = new Buffet.listadoComandas();
             lc.ShowDialog();
-            Cursor = Cursors.Default;
+            Cursor = Cursors.Default;*/
         }
 
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1949,7 +1946,7 @@ namespace SOCIOS
 
         private void listaDePreciosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Confiteria.listadoAranceles la = new Confiteria.listadoAranceles();
+            listadoAranceles la = new listadoAranceles();
             la.ShowDialog();
         }
 
@@ -2207,8 +2204,8 @@ namespace SOCIOS
 
         private void confiteríaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Confiteria.importador imp = new Confiteria.importador("CPOCABA");
-            imp.ShowDialog();
+            //Buffet.importador imp = new Buffet.importador("CPOCABA");
+            //imp.ShowDialog();
         }
 
         private void speechTestingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2218,8 +2215,8 @@ namespace SOCIOS
 
         private void turneroToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Turnero tu = new Turnero();
-            //tu.ShowDialog();
+            Turnero tu = new Turnero();
+            tu.ShowDialog();
         }
 
         private void planesDeCuentaToolStripMenuItem_Click(object sender, EventArgs e)
