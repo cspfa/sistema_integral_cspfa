@@ -344,6 +344,10 @@ namespace Buffet
                     {
                         TOTAL = "TOTAL $ " + row[4].ToString();
                         A_PAGAR = "A PAGAR $ " + row[18].ToString();
+
+                        if(row[14].ToString()=="CTA CORRIENTE")
+                            A_PAGAR = "A PAGAR $ " + row[4].ToString();
+
                         DESC = "DESC % " + row[17].ToString();
                     }
                     else

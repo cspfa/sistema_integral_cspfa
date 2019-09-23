@@ -2594,6 +2594,7 @@ namespace SOCIOS
 
         private string puedeVotar(int ID_TITULAR)
         {
+            
             string PUEDE = "NO";
             DateTime F_ALTCI = Convert.ToDateTime(obtenerFechaAlta(ID_TITULAR).Replace(" 00:00:00", ""));
             DateTime FECHA_TOPE = Convert.ToDateTime(Config.getValor("PROSECRETARIA", "ELECCIONES", 2).Replace(" 00:00:00", ""));
@@ -2630,7 +2631,7 @@ namespace SOCIOS
         {
             string ACTIVA = Config.getValor("PROSECRETARIA", "ELECCIONES", 1);
 
-            if (ACTIVA == "0")
+            if (ACTIVA == "1")
             {
                 string PUEDE_VOTAR = puedeVotar(ID_TITULAR);
                 V_NOMBRE_SOCIO = obtenerNombreSocio(ID_TITULAR);

@@ -551,7 +551,7 @@ namespace Buffet
         }
 
         #region LISTADO PDF
-        public void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, string COMPLETO, DataSet COMANDAS = null)
+        public void listadoPDF(DataSet EFECTIVO, DataSet TARJETA, DataSet DESCUENTO, string RUTA, DataSet ESPECIALES, string CONTROL, string COMPLETO, DataSet CTACORRIENTE, DataSet COMANDAS = null)
         {
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
             iTextSharp.text.Font _standardFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 14, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
@@ -581,6 +581,7 @@ namespace Buffet
             header.SpacingAfter = 5;
             doc.Add(header);
 
+            PdfPTable TABLA_CTACORRIENTE = new PdfPTable(9);
             PdfPTable TABLA_EFECTIVO = new PdfPTable(9);
             PdfPTable TABLA_TARJETAS = new PdfPTable(9);
             PdfPTable TABLA_DESCUENTO = new PdfPTable(10);
@@ -822,6 +823,238 @@ namespace Buffet
                 TABLA_EFECTIVO_TOTAL.AddCell(CELDA_TOTAL_EFECTIVO);
 
                 doc.Add(TABLA_EFECTIVO_TOTAL);
+            }
+
+            #endregion
+
+            #region TABLA CTA CORRIENTE
+
+            if (CTACORRIENTE.Tables.Count > 0)
+            {
+                Paragraph sub = new Paragraph("CUENTA CORRIENTE", _standardFontBold);
+                sub.Alignment = Element.ALIGN_CENTER;
+                sub.SpacingAfter = 5;
+                doc.Add(sub);
+
+                TABLA_CTACORRIENTE.WidthPercentage = 100;
+                TABLA_CTACORRIENTE.SpacingAfter = 5;
+                TABLA_CTACORRIENTE.SpacingBefore = 5;
+                TABLA_CTACORRIENTE.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f });
+
+                PdfPCell CELDA_NRO_COMANDA = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
+                CELDA_NRO_COMANDA.BackgroundColor = topo;
+                CELDA_NRO_COMANDA.BorderColor = blanco;
+                CELDA_NRO_COMANDA.HorizontalAlignment = 1;
+                CELDA_NRO_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_NRO_COMANDA);
+
+                PdfPCell CELDA_NRO_BORRADOR = new PdfPCell(new Phrase("BORRADOR", _mediumFontBoldWhite));
+                CELDA_NRO_BORRADOR.BackgroundColor = topo;
+                CELDA_NRO_BORRADOR.BorderColor = blanco;
+                CELDA_NRO_BORRADOR.HorizontalAlignment = 1;
+                CELDA_NRO_BORRADOR.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_NRO_BORRADOR);
+
+                PdfPCell CELDA_FECHA_COMANDA = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_COMANDA.BackgroundColor = topo;
+                CELDA_FECHA_COMANDA.BorderColor = blanco;
+                CELDA_FECHA_COMANDA.HorizontalAlignment = 1;
+                CELDA_FECHA_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_FECHA_COMANDA);
+
+                PdfPCell CELDA_NRO_SOC_COMANDA = new PdfPCell(new Phrase("NRO SOC", _mediumFontBoldWhite));
+                CELDA_NRO_SOC_COMANDA.BackgroundColor = topo;
+                CELDA_NRO_SOC_COMANDA.BorderColor = blanco;
+                CELDA_NRO_SOC_COMANDA.HorizontalAlignment = 1;
+                CELDA_NRO_SOC_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_NRO_SOC_COMANDA);
+
+                PdfPCell CELDA_AFILIADO_COMANDA = new PdfPCell(new Phrase("AFILIADO", _mediumFontBoldWhite));
+                CELDA_AFILIADO_COMANDA.BackgroundColor = topo;
+                CELDA_AFILIADO_COMANDA.BorderColor = blanco;
+                CELDA_AFILIADO_COMANDA.HorizontalAlignment = 1;
+                CELDA_AFILIADO_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_AFILIADO_COMANDA);
+
+                PdfPCell CELDA_BENEFICIO_COMANDA = new PdfPCell(new Phrase("BENEFICIO", _mediumFontBoldWhite));
+                CELDA_BENEFICIO_COMANDA.BackgroundColor = topo;
+                CELDA_BENEFICIO_COMANDA.BorderColor = blanco;
+                CELDA_BENEFICIO_COMANDA.HorizontalAlignment = 1;
+                CELDA_BENEFICIO_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_BENEFICIO_COMANDA);
+
+                PdfPCell CELDA_NOMAPE_COMANDA = new PdfPCell(new Phrase("NOMBRE Y APELLIDO", _mediumFontBoldWhite));
+                CELDA_NOMAPE_COMANDA.BackgroundColor = topo;
+                CELDA_NOMAPE_COMANDA.BorderColor = blanco;
+                CELDA_NOMAPE_COMANDA.HorizontalAlignment = 1;
+                CELDA_NOMAPE_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_NOMAPE_COMANDA);
+
+                PdfPCell CELDA_IMPORTE_COMANDA = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_COMANDA.BackgroundColor = topo;
+                CELDA_IMPORTE_COMANDA.BorderColor = blanco;
+                CELDA_IMPORTE_COMANDA.HorizontalAlignment = 1;
+                CELDA_IMPORTE_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_IMPORTE_COMANDA);
+
+                PdfPCell CELDA_ANULADA_COMANDA = new PdfPCell(new Phrase("ANULADA", _mediumFontBoldWhite));
+                CELDA_ANULADA_COMANDA.BackgroundColor = topo;
+                CELDA_ANULADA_COMANDA.BorderColor = blanco;
+                CELDA_ANULADA_COMANDA.HorizontalAlignment = 1;
+                CELDA_ANULADA_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_ANULADA_COMANDA);
+            }
+
+            #endregion
+
+            #region DATOS CTA CORRIENTE
+
+            decimal TOTAL_CTACORRIENTE = 0;
+
+            if (CTACORRIENTE.Tables.Count > 0)
+            {
+                int X = 0;
+                BaseColor colorFondo = new BaseColor(255, 255, 255);
+
+                foreach (DataRow row in CTACORRIENTE.Tables[0].Rows)
+                {
+                    string NRO_COMANDA = row[0].ToString();
+                    string FECHA = row[1].ToString();
+                    decimal IMPORTE = Convert.ToDecimal(row[4].ToString());
+                    string IMP_FINAL = string.Format("{0:n}", IMPORTE);
+                    string NRO_SOC = row[5].ToString() + " " + row[6].ToString() + " " + row[7].ToString();
+                    string NOM_APE = row[9].ToString();
+                    string AFILIADO = row[10].ToString();
+                    string BENEFICIO = row[11].ToString();
+                    string ANULADA = row[14].ToString();
+                    string COM_BORRADOR = row[15].ToString();
+                    string ID_COMANDA = row[16].ToString();
+
+                    if (ANULADA == "")
+                        TOTAL_CTACORRIENTE = TOTAL_CTACORRIENTE + IMPORTE;
+                    else
+                        TOTAL_CTACORRIENTE = TOTAL_CTACORRIENTE + 0;
+
+                    if (X == 0)
+                    {
+                        colorFondo = new BaseColor(255, 255, 255);
+                        X++;
+                    }
+                    else
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
+                        X--;
+                    }
+
+                    if (COMPLETO == "SI")
+                    {
+                        colorFondo = new BaseColor(240, 240, 240);
+                    }
+
+                    PdfPCell CELL_NUMERO_COMANDA = new PdfPCell(new Phrase(NRO_COMANDA, _mediumFont));
+                    CELL_NUMERO_COMANDA.HorizontalAlignment = 1;
+                    CELL_NUMERO_COMANDA.BorderWidth = 0;
+                    CELL_NUMERO_COMANDA.BackgroundColor = colorFondo;
+                    CELL_NUMERO_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_NUMERO_COMANDA);
+
+                    PdfPCell CELL_NUMERO_BORRADOR = new PdfPCell(new Phrase(COM_BORRADOR, _mediumFont));
+                    CELL_NUMERO_BORRADOR.HorizontalAlignment = 1;
+                    CELL_NUMERO_BORRADOR.BorderWidth = 0;
+                    CELL_NUMERO_BORRADOR.BackgroundColor = colorFondo;
+                    CELL_NUMERO_BORRADOR.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_NUMERO_BORRADOR);
+
+                    PdfPCell CELL_FECHA_COMANDA = new PdfPCell(new Phrase(FECHA, _mediumFont));
+                    CELL_FECHA_COMANDA.HorizontalAlignment = 1;
+                    CELL_FECHA_COMANDA.BorderWidth = 0;
+                    CELL_FECHA_COMANDA.BackgroundColor = colorFondo;
+                    CELL_FECHA_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_FECHA_COMANDA);
+
+                    PdfPCell CELL_NRO_SOC_COMANDA = new PdfPCell(new Phrase(NRO_SOC, _mediumFont));
+                    CELL_NRO_SOC_COMANDA.HorizontalAlignment = 1;
+                    CELL_NRO_SOC_COMANDA.BorderWidth = 0;
+                    CELL_NRO_SOC_COMANDA.BackgroundColor = colorFondo;
+                    CELL_NRO_SOC_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_NRO_SOC_COMANDA);
+
+                    PdfPCell CELL_AFILIADO_COMANDA = new PdfPCell(new Phrase(AFILIADO, _mediumFont));
+                    CELL_AFILIADO_COMANDA.HorizontalAlignment = 1;
+                    CELL_AFILIADO_COMANDA.BorderWidth = 0;
+                    CELL_AFILIADO_COMANDA.BackgroundColor = colorFondo;
+                    CELL_AFILIADO_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_AFILIADO_COMANDA);
+
+                    PdfPCell CELL_BENEFICIO_COMANDA = new PdfPCell(new Phrase(BENEFICIO, _mediumFont));
+                    CELL_BENEFICIO_COMANDA.HorizontalAlignment = 1;
+                    CELL_BENEFICIO_COMANDA.BorderWidth = 0;
+                    CELL_BENEFICIO_COMANDA.BackgroundColor = colorFondo;
+                    CELL_BENEFICIO_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_BENEFICIO_COMANDA);
+
+                    PdfPCell CELL_NOMAPE_COMANDA = new PdfPCell(new Phrase(NOM_APE, _mediumFont));
+                    CELL_NOMAPE_COMANDA.HorizontalAlignment = 1;
+                    CELL_NOMAPE_COMANDA.BorderWidth = 0;
+                    CELL_NOMAPE_COMANDA.BackgroundColor = colorFondo;
+                    CELL_NOMAPE_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_NOMAPE_COMANDA);
+
+                    PdfPCell CELL_IMPORTE_COMANDA = new PdfPCell(new Phrase(IMP_FINAL, _mediumFont));
+                    CELL_IMPORTE_COMANDA.HorizontalAlignment = 1;
+                    CELL_IMPORTE_COMANDA.BorderWidth = 0;
+                    CELL_IMPORTE_COMANDA.BackgroundColor = colorFondo;
+                    CELL_IMPORTE_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_IMPORTE_COMANDA);
+
+                    PdfPCell CELL_ANULADA_COMANDA = new PdfPCell(new Phrase(ANULADA, _mediumFont));
+                    CELL_ANULADA_COMANDA.HorizontalAlignment = 1;
+                    CELL_ANULADA_COMANDA.BorderWidth = 0;
+                    CELL_ANULADA_COMANDA.BackgroundColor = colorFondo;
+                    CELL_ANULADA_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_ANULADA_COMANDA);
+
+                    if (COMPLETO == "SI")
+                    {
+                        DataSet ITEMS = utils.getItemsByComanda(Convert.ToInt32(ID_COMANDA));
+
+                        foreach (DataRow ROW_ITEM in ITEMS.Tables[0].Rows)
+                        {
+                            string PHRASE = ROW_ITEM[0] + " - " + ROW_ITEM[1] + " - " + ROW_ITEM[2] + " - $ " + ROW_ITEM[3] + " - $ " + ROW_ITEM[4];
+                            PdfPCell CELL_ITEMS = new PdfPCell(new Phrase(PHRASE, _mediumFont));
+                            CELL_ITEMS.HorizontalAlignment = 0;
+                            CELL_ITEMS.BorderWidth = 0;
+                            CELL_ITEMS.BackgroundColor = blancoFondo;
+                            CELL_ITEMS.FixedHeight = 14f;
+                            CELL_ITEMS.Colspan = 9;
+                            TABLA_CTACORRIENTE.AddCell(CELL_ITEMS);
+                        }
+                    }
+                }
+
+                doc.Add(TABLA_CTACORRIENTE);
+            }
+
+            #endregion
+
+            #region TABLA TOTAL CTA CORRIENTE
+
+            if (CTACORRIENTE.Tables.Count > 0)
+            {
+                PdfPTable TABLA_CTACORRIENTE_TOTAL = new PdfPTable(1);
+                TABLA_CTACORRIENTE_TOTAL.WidthPercentage = 100;
+                TABLA_CTACORRIENTE_TOTAL.SpacingAfter = 5;
+                TABLA_CTACORRIENTE_TOTAL.SpacingBefore = 5;
+                TABLA_CTACORRIENTE_TOTAL.SetWidths(new float[] { 1f });
+
+                PdfPCell CELDA_TOTAL_CTACORRIENTE = new PdfPCell(new Phrase("TOTAL CTA CORRIENTE $ " + string.Format("{0:n}", TOTAL_CTACORRIENTE), _mediumFontBoldWhite));
+                CELDA_TOTAL_CTACORRIENTE.BackgroundColor = topo;
+                CELDA_TOTAL_CTACORRIENTE.BorderColor = blanco;
+                CELDA_TOTAL_CTACORRIENTE.HorizontalAlignment = 2;
+                CELDA_TOTAL_CTACORRIENTE.FixedHeight = 16f;
+                TABLA_CTACORRIENTE_TOTAL.AddCell(CELDA_TOTAL_CTACORRIENTE);
+
+                doc.Add(TABLA_CTACORRIENTE_TOTAL);
             }
 
             #endregion
@@ -2088,6 +2321,23 @@ namespace Buffet
 
                 switch (FORMA_DE_PAGO)
                 {
+                    case "CTACORRIENTE":
+                        QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
+                        QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 9 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4 OR C.TIPO_COMANDA = 5) AND C.ROL = '" + VGlobales.vp_role + "'";
+
+                        if (RENDIDA > 0)
+                            QUERY += "AND RENDIDA = " + RENDIDA + " ";
+                        else
+                            QUERY += "AND RENDIDA IS NULL ";
+
+                        if (ORDEN == "COMANDA")
+                            QUERY += "ORDER BY C.NRO_COMANDA ASC;";
+                        else
+                            QUERY += "ORDER BY C.COM_BORRADOR ASC;";
+
+                        break;
+
                     case "EFECTIVO":
                         QUERY  = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
@@ -2343,7 +2593,8 @@ namespace Buffet
         {
             string ORDEN = cbOrdenListado.SelectedItem.ToString();
             string FECHA = dpFechaListado.Text;
-            
+
+            DataSet CTACORRIENTE = buscarComandas(FECHA, "CTACORRIENTE", ORDEN, RENDIDA);
             DataSet EFECTIVO = buscarComandas(FECHA, "EFECTIVO", ORDEN, RENDIDA);
             DataSet TARJETA = buscarComandas(FECHA, "TARJETA", ORDEN, RENDIDA);
             DataSet DESCUENTO = buscarComandas(FECHA, "DESCUENTO", ORDEN, RENDIDA);
@@ -2356,7 +2607,7 @@ namespace Buffet
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string RUTA = saveFileDialog1.FileName;
-                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, COMPLETO);
+                listadoPDF(EFECTIVO, TARJETA, DESCUENTO, RUTA, ESPECIALES, CONTROL, COMPLETO, CTACORRIENTE);
 
                 if (CONTROL == "NO")
                 {

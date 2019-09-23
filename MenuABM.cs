@@ -1644,18 +1644,18 @@ namespace SOCIOS
 
         private void listadoDeSociosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
             Buffet.grillaPreComanda gpc = new Buffet.grillaPreComanda();
             gpc.ShowDialog();
-            Cursor = Cursors.Default;*/
+            Cursor = Cursors.Default;
         }
 
         private void listadoDeComandasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*Cursor = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
             Buffet.listadoComandas lc = new Buffet.listadoComandas();
             lc.ShowDialog();
-            Cursor = Cursors.Default;*/
+            Cursor = Cursors.Default;
         }
 
         private void proveedoresToolStripMenuItem_Click(object sender, EventArgs e)

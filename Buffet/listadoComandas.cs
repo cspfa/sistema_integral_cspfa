@@ -59,7 +59,7 @@ namespace Buffet
             cbFormaDePago.DataSource = dlog.BO_EjecutoDataTable(query);
             cbFormaDePago.DisplayMember = "DETALLE";
             cbFormaDePago.ValueMember = "ID";
-            cbFormaDePago.SelectedIndex = 0;
+            cbFormaDePago.SelectedIndex = 9;
         }
 
         private void llenarGrillaComandas()

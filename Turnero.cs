@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using FirebirdSql.Data.Firebird;
 using System.Threading;
-using Buffet;
+//using Buffet;
 using System.Speech.Synthesis;
 
 namespace SOCIOS
