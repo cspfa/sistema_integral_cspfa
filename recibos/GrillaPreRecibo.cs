@@ -30,7 +30,7 @@ namespace SOCIOS
                 v_consulta = "SELECT CASE TIP_SOCIO WHEN 'ADH' THEN A.NRO_ADH WHEN 'INP' THEN A.NRO_ADH WHEN 'VIS' THEN A.NRO_SOC ELSE A.NRO_SOC END AS NRO_SOC,";
                 v_consulta = v_consulta + " CASE TIP_SOCIO WHEN 'ADH' THEN A.NRO_DEPADH WHEN 'INP' THEN A.NRO_DEPADH WHEN 'VIS' THEN A.NRO_DEP ELSE A.NRO_DEP END AS NRO_DEP,";
                 v_consulta = v_consulta + " A.APELLIDO, A.NOMBRE, A.TIP_SOCIO, A.ROL, A.ID_DESTINO, A.ID_PROFESIONAL, A.SECUENCIA, A.BARRA, A.COD_DTO, SA.DETALLE, P.NOMBRE AS NOMBREPROF,";
-                v_consulta = v_consulta + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.IMPORTE , A.NRO_PAGO NRO_PAGO, A.CUIL,A.DESTINO DESTINO_DETA ";
+                v_consulta = v_consulta + " A.NRO_RECIBO, A.NRO_SOC AS NUMERO_SOCIO, A.NRO_DEP AS NUMERO_DEPURACION, A.NRO_BONO, P.BONO_RECIBO, P.CUENTA, A.DNI, A.GRUPO, A.IMPORTE , A.NRO_PAGO NRO_PAGO, A.CUIL, A.DESTINO DESTINO_DETA, A.ORDEN_LLEGADA, A.TILDE ";
                 v_consulta = v_consulta + " FROM INGRESOS_A_PROCESAR A, SECTACT SA, PROFESIONALES P";
                 v_consulta = v_consulta + " WHERE A.ID_DESTINO IN (SELECT C.SECTACT FROM ARANCELES C WHERE C.FE_BAJA IS NULL GROUP BY C.SECTACT) AND A.ID_DESTINO <> 50 AND A.SECUENCIA > 268461";
 
@@ -126,7 +126,9 @@ namespace SOCIOS
                     dt1.Columns.Add("IMPORTE", typeof(string));
                     dt1.Columns.Add("NRO_PAGO", typeof(string));
                     dt1.Columns.Add("CUIL/CUIT", typeof(string));
-                   
+                    dt1.Columns.Add("LLEGADA", typeof(string));
+                    dt1.Columns.Add("ESTADO", typeof(string));
+
 
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(v_consulta, connection, transaction);
@@ -148,7 +150,7 @@ namespace SOCIOS
                                      reader3.GetString(reader3.GetOrdinal("NRO_RECIBO")).Trim(), //11
                                      reader3.GetString(reader3.GetOrdinal("ID_PROFESIONAL")).Trim(), //12
                                      reader3.GetString(reader3.GetOrdinal("ID_DESTINO")).Trim(), //13
-                                      reader3.GetString(reader3.GetOrdinal("DESTINO_DETA")).TrimEnd().TrimStart(), //14
+                                     reader3.GetString(reader3.GetOrdinal("DESTINO_DETA")).TrimEnd().TrimStart(), //14
                                      reader3.GetString(reader3.GetOrdinal("NUMERO_SOCIO")).Trim(), //15
                                      reader3.GetString(reader3.GetOrdinal("NUMERO_DEPURACION")).Trim(),//16
                                      reader3.GetString(reader3.GetOrdinal("NRO_BONO")).Trim(), //17
@@ -158,15 +160,17 @@ namespace SOCIOS
                                      reader3.GetString(reader3.GetOrdinal("GRUPO")), //21
                                      reader3.GetString(reader3.GetOrdinal("IMPORTE")),//22
                                      reader3.GetString(reader3.GetOrdinal("NRO_PAGO")), //23
-                                     reader3.GetString(reader3.GetOrdinal("CUIL"))//24,
-                                     
+                                     reader3.GetString(reader3.GetOrdinal("CUIL")),//24,
+                                     reader3.GetString(reader3.GetOrdinal("ORDEN_LLEGADA")),//25,
+                                     reader3.GetString(reader3.GetOrdinal("TILDE"))//26,
                                      ); 
                     }
 
                     reader3.Close();
+                    transaction.Commit();
                     dataGridView1.DataSource = dt1;
-                    dataGridView1.Columns[0].Width = 65;
-                    dataGridView1.Columns[1].Width = 65;
+                    dataGridView1.Columns[0].Width = 55;
+                    dataGridView1.Columns[1].Width = 55;
                     dataGridView1.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     dataGridView1.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     dataGridView1.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -177,17 +181,23 @@ namespace SOCIOS
                     dataGridView1.Columns[10].Width = 40;
                     dataGridView1.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                     dataGridView1.Columns[17].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                    transaction.Commit();
                     dataGridView1.Columns[8].Visible = false;
+                    dataGridView1.Columns[9].Visible = false;
+                    dataGridView1.Columns[10].Visible = false;
+                    dataGridView1.Columns[11].Visible = false;
                     dataGridView1.Columns[12].Visible = false;
+                    dataGridView1.Columns[15].Visible = false;
                     dataGridView1.Columns[13].Visible = false;
-                    //dataGridView1.Columns[14].Visible = false;
+                    dataGridView1.Columns[14].Visible = false;
                     dataGridView1.Columns[16].Visible = false;
                     dataGridView1.Columns[17].Visible = false;
                     dataGridView1.Columns[18].Visible = false;
+                    dataGridView1.Columns[19].Visible = false;
                     dataGridView1.Columns[20].Visible = false;
-                   // dataGridView1.Columns[21].Visible = false;
-                    //dataGridView1.Columns[21].Visible = false;
+                    dataGridView1.Columns[21].Visible = false;
+                    dataGridView1.Columns[22].Visible = false;
+                    dataGridView1.Columns[23].Visible = false;
+                    dataGridView1.Columns[24].Visible = false;
                     //pintarAnulados();
                 }
             }
@@ -470,17 +480,56 @@ namespace SOCIOS
 
         private void btnLlamar_Click(object sender, EventArgs e)
         {
+            int SECUENCIA = 0;
 
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            Consulta co = new Consulta();
+            bool ce = co.cambiarEstado("L", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Llenar_grilla("XXX", "X");
+            }
         }
 
         private void btnEnEspera_Click(object sender, EventArgs e)
         {
+            /*int SECUENCIA = 0;
 
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            bool ce = cambiarEstado("E", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Consultar_Visitas(dlog);
+                this.Consulta_Shown(dataGridView1, new EventArgs());
+            }*/
         }
 
         private void btnAtendido_Click(object sender, EventArgs e)
         {
+            /*int SECUENCIA = 0;
 
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            bool ce = cambiarEstado("A", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Consultar_Visitas(dlog);
+                this.Consulta_Shown(dataGridView1, new EventArgs());
+            }*/
         }
     }
 }

@@ -237,7 +237,7 @@
             this.btnLlamar.Name = "btnLlamar";
             this.btnLlamar.Size = new System.Drawing.Size(93, 23);
             this.btnLlamar.TabIndex = 47;
-            this.btnLlamar.Text = "LLAMAR [F1]";
+            this.btnLlamar.Text = "LLAMAR";
             this.btnLlamar.UseVisualStyleBackColor = true;
             this.btnLlamar.Click += new System.EventHandler(this.btnLlamar_Click);
             // 
@@ -247,7 +247,7 @@
             this.btnEnEspera.Name = "btnEnEspera";
             this.btnEnEspera.Size = new System.Drawing.Size(118, 23);
             this.btnEnEspera.TabIndex = 48;
-            this.btnEnEspera.Text = "EN ESPERA [F2]";
+            this.btnEnEspera.Text = "EN ESPERA";
             this.btnEnEspera.UseVisualStyleBackColor = true;
             this.btnEnEspera.Click += new System.EventHandler(this.btnEnEspera_Click);
             // 
@@ -257,7 +257,7 @@
             this.btnAtendido.Name = "btnAtendido";
             this.btnAtendido.Size = new System.Drawing.Size(118, 23);
             this.btnAtendido.TabIndex = 49;
-            this.btnAtendido.Text = "ATENDIDO [F3]";
+            this.btnAtendido.Text = "ATENDIDO";
             this.btnAtendido.UseVisualStyleBackColor = true;
             this.btnAtendido.Click += new System.EventHandler(this.btnAtendido_Click);
             // 

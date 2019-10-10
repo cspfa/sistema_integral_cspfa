@@ -510,7 +510,7 @@ namespace SOCIOS
             }
         }
 
-        private bool cambiarEstado(string ESTADO, int SECUENCIA, string PUESTO_ATENCION)
+        public bool cambiarEstado(string ESTADO, int SECUENCIA, string PUESTO_ATENCION)
         {
             try
             {

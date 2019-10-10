@@ -17,7 +17,7 @@ namespace SOCIOS
     {
         DataSet LLAMADAS = null;
         private System.Windows.Forms.Timer timer1;
-        public static SpeechSynthesizer LaSusy;
+        public static SpeechSynthesizer LaSusy;       
 
         public Turnero()
         {
@@ -66,7 +66,7 @@ namespace SOCIOS
             mostrarLlamadas(LLAMADAS, 0);
         }
 
-        private void reproducirVoz(string MENSAJE)
+        private static void reproducirVoz(string MENSAJE)
         {
             LaSusy = new SpeechSynthesizer();
             LaSusy.SelectVoice("Microsoft Sabina Desktop");
@@ -83,9 +83,10 @@ namespace SOCIOS
                 //dgLlamadas.Rows[row.Index].Selected = true;
                 string ORDEN_LLEGADA = row.Cells[0].Value.ToString().Trim();
                 string NOMBRE = row.Cells[1].Value.ToString().Trim();
-                string LETRA_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(0, 1);
-                string NUMERO_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(1, 2);
-                string MENSAJE = ORDEN_LLEGADA + ", " + NOMBRE + ", POR FAVOR DIRIJASE AL PUESTO " + LETRA_PUESTO + ", " + NUMERO_PUESTO;
+                string PUESTO = row.Cells[2].Value.ToString().Trim();
+                //string LETRA_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(0, 1);
+                //string NUMERO_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(1, 2);
+                string MENSAJE = ORDEN_LLEGADA + ", " + NOMBRE + ", POR FAVOR DIRIJASE AL PUESTO " + PUESTO;
                 reproducirVoz(MENSAJE);
                 Thread.Sleep(1000);
             }
@@ -101,10 +102,11 @@ namespace SOCIOS
                 {
                     string NOMBRE = row[0].ToString().Trim();
                     string APELLIDO = row[1].ToString().Trim();
-                    string LETRA_PUESTO = row[2].ToString().Trim().Substring(0, 1);
-                    string NUMERO_PUESTO = row[2].ToString().Trim().Substring(1, 2);
+                    string PUESTO = row[2].ToString().Trim();
+                    //string LETRA_PUESTO = row[2].ToString().Trim().Substring(0, 1);
+                    //string NUMERO_PUESTO = row[2].ToString().Trim().Substring(1, 2);
                     string ORDEN_LLEGADA = row[4].ToString().Trim();
-                    dgLlamadas.Rows.Add(ORDEN_LLEGADA, NOMBRE + " " + APELLIDO, LETRA_PUESTO + "" + NUMERO_PUESTO);
+                    dgLlamadas.Rows.Add(ORDEN_LLEGADA, NOMBRE + " " + APELLIDO, PUESTO);
                 }
 
                 if(PRIMERA_VEZ==0)
@@ -116,7 +118,17 @@ namespace SOCIOS
 
         private void Turnero_KeyUp(object sender, KeyEventArgs e)
         {
-            e.Handled = true;
+            if (e.KeyCode.ToString() == "F1")
+            {
+                Turnero tu = new Turnero();
+                Thread.ResetAbort();
+                tu.Close();
+            }
+
+            if (e.KeyCode.ToString() == "F2")
+            {
+                MessageBox.Show("F2");
+            }
         }
     }
 }
