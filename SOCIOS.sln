@@ -4,9 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29209.62
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SOCIOS", "SOCIOS.csproj", "{17DACE7F-22A4-4D4C-99C8-10BBE4585836}"
-	ProjectSection(ProjectDependencies) = postProject
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8} = {663B9133-5EB9-4B52-AECC-1B67E896D3F8}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResizer", "ImageResizer\ImageResizer\ImageResizer.csproj", "{E660FA4F-B216-46DE-B387-DDE59BBAAFE6}"
 EndProject
@@ -14,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Convenios", "Convenios\Conv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Importador", "Importador\Importador.csproj", "{16C6E71A-10D7-4995-8F4C-1DB569429D04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confiteria", "Confiteria\Confiteria.csproj", "{663B9133-5EB9-4B52-AECC-1B67E896D3F8}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrientacionSocial", "OrientacionSocial\OrientacionSocial.csproj", "{7087F8D0-45FB-4AE8-A776-C4356C5275E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buffet", "Buffet\Buffet.csproj", "{49A899F5-382F-47D6-B933-8119CF51A5F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,16 +67,6 @@ Global
 		{16C6E71A-10D7-4995-8F4C-1DB569429D04}.Release|Mixed Platforms.Build.0 = Release|x86
 		{16C6E71A-10D7-4995-8F4C-1DB569429D04}.Release|x86.ActiveCfg = Release|x86
 		{16C6E71A-10D7-4995-8F4C-1DB569429D04}.Release|x86.Build.0 = Release|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Debug|x86.ActiveCfg = Debug|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Debug|x86.Build.0 = Debug|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|Any CPU.ActiveCfg = Release|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|Mixed Platforms.Build.0 = Release|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|x86.ActiveCfg = Release|x86
-		{663B9133-5EB9-4B52-AECC-1B67E896D3F8}.Release|x86.Build.0 = Release|x86
 		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -90,6 +77,18 @@ Global
 		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|Mixed Platforms.Build.0 = Release|x86
 		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|x86.ActiveCfg = Release|x86
 		{7087F8D0-45FB-4AE8-A776-C4356C5275E4}.Release|x86.Build.0 = Release|x86
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Debug|x86.Build.0 = Debug|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Release|x86.ActiveCfg = Release|Any CPU
+		{49A899F5-382F-47D6-B933-8119CF51A5F2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

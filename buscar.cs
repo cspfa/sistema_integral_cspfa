@@ -11,7 +11,6 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using iTextSharp.text.pdf;
-using Confiteria;
 using System.Linq;
 
 namespace SOCIOS
@@ -1713,6 +1712,9 @@ namespace SOCIOS
             }
         }
 
+        
+
+
         private bool AREA_CAJA { get; set; }
 
         public void imprimirTicket(int GRUPO, string ID_DESTINO, string ID_PROFESIONAL)
@@ -1978,8 +1980,6 @@ namespace SOCIOS
                                     }
                                     else
                                     {
-                                        Confiteria.Utils uu = new Confiteria.Utils();
-                                        
                                         dlog.Inserto_Ingreso(APELLIDO, NOMBRE, TIPO_SOCIO, ROL, DESTINO, ID_DESTINO, NRO_SOC, NRO_DEP, "0", "0", "0", DNI, COD_DTO, ID_PROF, null, USUARIO, GRUPO, IMPORTE, NRO_PAGO, FECHA_INGRESO, MC, CUIL);
                                     }
 
@@ -2431,6 +2431,266 @@ namespace SOCIOS
             }
         }
 
+        private string tipoCaja(int ID_TITULAR)
+        {
+            string TIPO = "NO SE PUDO OBTENER";
+            string QUERY = "SELECT AAR, PAR, PCRJP1 FROM TITULAR WHERE ID_TITULAR = " + ID_TITULAR;
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            int AAR = int.Parse(foundRows[0][0].ToString());
+            int PAR = int.Parse(foundRows[0][1].ToString());
+            int PCRJP1 = int.Parse(foundRows[0][2].ToString());
+
+            if (AAR == 1 && PAR == 0)
+            {
+                TIPO = "ACTIVIDAD";
+            }
+
+            if (PAR == 2 && PCRJP1 < 52)
+            {
+                TIPO = "PASIVIDAD";
+            }
+
+            if (PAR == 2 && PCRJP1 > 26)
+            {
+                TIPO = "PENSIONADO/A";
+            }
+
+            if ((AAR == 4 || AAR == 5 || AAR == 6 || AAR == 7 || AAR == 8) && PCRJP1 > 26)
+            {
+                TIPO = "FONDOS PROPIOS";
+            }
+
+            return TIPO;
+        }
+
+        private string rangoLetras(int ID_TITULAR)
+        {
+            string RANGO = "NO SE PUDO OBTENER";
+            string MESA_VOTO = obtenerMesaVoto(ID_TITULAR);
+            string TIPO_CAJA = tipoCaja(ID_TITULAR);
+
+            if (TIPO_CAJA == "ACTIVIDAD")
+            {
+                switch (MESA_VOTO)
+                {
+                    case "1":
+                        RANGO = "A - Ñ";
+                        break;
+
+                    case "2":
+                        RANGO = "B";
+                        break;
+
+                    case "3":
+                        RANGO = "C - CH";
+                        break;
+
+                    case "4":
+                        RANGO = "D - E";
+                        break;
+
+                    case "5":
+                        RANGO = "F";
+                        break;
+
+                    case "6":
+                        RANGO = "G";
+                        break;
+
+                    case "7":
+                        RANGO = "H -I -J - K";
+                        break;
+
+                    case "8":
+                        RANGO = "L - LL";
+                        break;
+
+                    case "9":
+                        RANGO = "M";
+                        break;
+
+                    case "10":
+                        RANGO = "N - O";
+                        break;
+
+                    case "11":
+                        RANGO = "P";
+                        break;
+
+                    case "12":
+                        RANGO = "Q - R";
+                        break;
+
+                    case "13":
+                        RANGO = "S";
+                        break;
+
+                    case "14":
+                        RANGO = "T - U";
+                        break;
+
+                    case "15":
+                        RANGO = "V - W - X - Y - Z";
+                        break;
+
+                }
+            }
+
+            if (TIPO_CAJA == "PASIVIDAD")
+            {
+                switch (MESA_VOTO)
+                {
+                    case "1":
+                        RANGO = "A - B";
+                        break;
+
+                    case "2":
+                        RANGO = "C - CH";
+                        break;
+
+                    case "3":
+                        RANGO = "D - E - F";
+                        break;
+
+                    case "4":
+                        RANGO = "G - H";
+                        break;
+
+                    case "5":
+                        RANGO = "I - J - K - L";
+                        break;
+
+                    case "6":
+                        RANGO = "M - N - Ñ";
+                        break;
+
+                    case "7":
+                        RANGO = "O - P - Q";
+                        break;
+
+                    case "8":
+                        RANGO = "R - S";
+                        break;
+
+                    case "9":
+                        RANGO = "T - U - V - W - X - Y - Z";
+                        break;
+                }
+            }
+
+            if (TIPO_CAJA == "PENSIONADO/A")
+            {
+                RANGO = "de la A a la Z";
+            }
+
+            if (TIPO_CAJA == "FONDOS PROPIOS")
+            {
+                RANGO = "de la A a la Z";
+            }
+
+            return RANGO;
+        }
+
+        private string puedeVotar(int ID_TITULAR)
+        {
+            
+            string PUEDE = "NO";
+            DateTime F_ALTCI = Convert.ToDateTime(obtenerFechaAlta(ID_TITULAR).Replace(" 00:00:00", ""));
+            DateTime FECHA_TOPE = Convert.ToDateTime(Config.getValor("PROSECRETARIA", "ELECCIONES", 2).Replace(" 00:00:00", ""));
+            TimeSpan diff = FECHA_TOPE.Subtract(F_ALTCI);
+            // Validar los dias para ver si puede votar
+            return PUEDE;
+        }
+
+        private string obtenerFechaAlta(int ID_TITULAR)
+        {
+            string QUERY = "SELECT F_ALTCI FROM TITULAR WHERE ID_TITULAR = " + ID_TITULAR;
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            return foundRows[0][0].ToString().Trim();
+        }
+
+        private string obtenerNombreSocio(int ID_TITULAR)
+        {
+            string QUERY = "SELECT NOM_SOC, APE_SOC FROM TITULAR WHERE ID_TITULAR = " + ID_TITULAR;
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            return foundRows[0][0].ToString().Trim() + " " + foundRows[0][1].ToString().Trim();
+        }
+
+        private string obtenerMesaVoto(int ID_TITULAR)
+        {
+            string QUERY = "SELECT COD_9 FROM TITULAR WHERE ID_TITULAR = " + ID_TITULAR;
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            return foundRows[0][0].ToString().Trim();
+        }
+
+        private void mostrarMesaVoto(int ID_TITULAR)
+        {
+            string ACTIVA = Config.getValor("PROSECRETARIA", "ELECCIONES", 1);
+
+            if (ACTIVA == "1")
+            {
+                string PUEDE_VOTAR = puedeVotar(ID_TITULAR);
+                V_NOMBRE_SOCIO = obtenerNombreSocio(ID_TITULAR);
+                V_MESA_VOTO = obtenerMesaVoto(ID_TITULAR);
+                V_TIPO_CAJA = tipoCaja(ID_TITULAR);
+                V_RANGO_LETRAS = rangoLetras(ID_TITULAR);
+                MessageBox.Show(V_NOMBRE_SOCIO + "\n\rMESA DE VOTO " + V_TIPO_CAJA + " N°: " + V_MESA_VOTO + "\n\rLETRAS: " + V_RANGO_LETRAS);
+                imprimirMesaVoto();
+            }
+        }
+
+        string V_TIPO_CAJA { get; set; }
+        string V_MESA_VOTO { get; set; }
+        string V_RANGO_LETRAS { get; set; }
+        string V_NOMBRE_SOCIO { get; set; }
+
+        private void imprimirMesaVoto()
+        {
+            PrintDialog pd = new PrintDialog();
+            PrintDocument edoc = new PrintDocument();
+            PaperSize psize = new PaperSize();
+            pd.Document = edoc;
+            pd.Document.DefaultPageSettings.PaperSize = psize;
+            //pd.PrinterSettings.PrinterName = "Aclas Printer";
+            edoc.PrintPage += new PrintPageEventHandler(edoc_Print);
+            DialogResult result = pd.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                edoc.Print();
+            }
+        }
+
+        public void edoc_Print(object sender, PrintPageEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Font courier_big = new Font("FontA1x1", 12);
+            Font courier_med = new Font("FontA1x1", 10);
+            Font courier_xxl = new Font("FontA1x1", 40);
+            SolidBrush black = new SolidBrush(Color.Black);
+            int startX = 0;
+            int startY = 0;
+            int Offset = 0;
+
+            graphics.DrawString(V_NOMBRE_SOCIO, courier_med, black, startX, startY + Offset);
+            Offset = Offset + 20;
+
+            graphics.DrawString(V_TIPO_CAJA, courier_med, black, startX, startY + Offset);
+            Offset = Offset + 20;
+
+            graphics.DrawString(V_RANGO_LETRAS, courier_med, black, startX, startY + Offset);
+            Offset = Offset + 20;
+
+            graphics.DrawString("MESA N°", courier_med, black, startX, startY + Offset);
+            Offset = Offset + 20;
+
+            graphics.DrawString(V_MESA_VOTO, courier_xxl, black, startX, startY + Offset);
+        }
+
         private void listView1_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
@@ -2459,6 +2719,8 @@ namespace SOCIOS
                 ID_TITULAR = (int.Parse(NRO_SOC) * 1000) + int.Parse(NRO_DEP);
                 ID_TITULAR_ANT = listView1.SelectedItems[0].SubItems[16].Text;
                 F_CARN = listView1.SelectedItems[0].SubItems[17].Text;
+
+                mostrarMesaVoto(ID_TITULAR);
 
                 if (VGlobales.vp_role == "SERVICIOS MEDICOS" || VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES" || VGlobales.vp_role == "CAJA")
                 {

@@ -7,11 +7,11 @@ using System.Windows.Forms;
 using FirebirdSql.Data.FirebirdClient;
 using SOCIOS;
 
-namespace Confiteria
+namespace Buffet
 {
     public partial class comanda : Form
     {
-        Confiteria.bo dlog = new Confiteria.bo();
+        Buffet.bo dlog = new Buffet.bo();
         Utils utils = new Utils();
         private string _MOROSO { get; set; }
         private DataSet COMANDA { get; set; }
@@ -969,7 +969,6 @@ namespace Confiteria
             byte[] bytes = System.Text.Encoding.GetEncoding("ISO-8859-8").GetBytes(CONDICION);
             string CONDICION_LIMPIA = System.Text.Encoding.UTF8.GetString(bytes);
             var FILTRO = LISTA_ITEMS.Where(x => x.NOMBRE.Contains(CONDICION_LIMPIA)).ToList();
-
             dgResultados.DataSource = null;
             dgResultados.DataSource = FILTRO;
             dgResultados.Columns[0].Visible = false;
@@ -1107,7 +1106,6 @@ namespace Confiteria
             if (tbBarCodeSearch.Focused && tbBarCodeSearch.Text.Trim() !="")
             {
                 DataSet ITEM = utils.barCodeSearch(tbBarCodeSearch.Text.Trim());
-                tbBarCodeSearch.Text = "";
                 string SEL_TIPO = String.Empty;
                 string SEL_ITEM = String.Empty;
 
@@ -1125,8 +1123,26 @@ namespace Confiteria
                 }
                 else
                 {
-                    agregarItem ai = new agregarItem();
-                    ai.ShowDialog();
+                    if (VGlobales.vp_role == "CPOCABA")
+                    {
+                        agregarItem ai = new agregarItem(tbBarCodeSearch.Text.Trim());
+                        ai.ShowDialog();
+
+                        ITEM = utils.barCodeSearch(tbBarCodeSearch.Text.Trim());
+                        tbBarCodeSearch.Text = "";
+                        SEL_TIPO = String.Empty;
+                        SEL_ITEM = String.Empty;
+
+                        foreach (DataRow ROW in ITEM.Tables[0].Rows)
+                        {
+                            SEL_TIPO = Convert.ToString(ROW["ESPECIALIDAD"]);
+                            SEL_ITEM = Convert.ToString(ROW["ID"]);
+                        }
+
+                        cargarItemEnCombos(SEL_TIPO, SEL_ITEM);
+                        mostrarArancel();
+                        agregarItem();
+                    }
                 }
             }
         }

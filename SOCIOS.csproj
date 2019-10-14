@@ -1,4 +1,5 @@
-﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -52,7 +53,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>
     </DefineConstants>
@@ -66,7 +67,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\x86\Debug\</OutputPath>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Optimize>false</Optimize>
     <WarningLevel>1</WarningLevel>
@@ -76,7 +77,7 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
@@ -103,47 +104,41 @@
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
-  <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AfipServices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\AfipServices.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video">
+    <Reference Include="AForge.Video, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\AForge.Video.dll</HintPath>
     </Reference>
-    <Reference Include="AForge.Video.DirectShow">
+    <Reference Include="AForge.Video.DirectShow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="Confiteria, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Buffet">
+      <HintPath>Buffet\bin\Debug\Buffet.exe</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.Firebird, Version=1.7.1.0, Culture=neutral, PublicKeyToken=fa843d180294369d">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Confiteria.exe</HintPath>
-    </Reference>
-    <Reference Include="crdb_adoplus">
-      <HintPath>C:\CSPFA_SOCIOS\crdb_adoplus.dll</HintPath>
-    </Reference>
-    <Reference Include="FirebirdSql.Data.Firebird">
       <HintPath>C:\CSPFA_SOCIOS\FirebirdSql.Data.Firebird.dll</HintPath>
     </Reference>
-    <Reference Include="FirebirdSql.Data.FirebirdClient">
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\FirebirdSql.Data.FirebirdClient.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp">
       <HintPath>.\itextsharp.dll</HintPath>
     </Reference>
-    <Reference Include="log4net">
-      <HintPath>C:\CSPFA_SOCIOS\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="MicroFour StrataFrame Base">
+    <Reference Include="MicroFour StrataFrame Base, Version=1.7.0.0, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>True</Private>
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Base.dll</HintPath>
     </Reference>
     <Reference Include="MicroFour StrataFrame Business, Culture=neutral, PublicKeyToken=99fe9917f71608a7, processorArchitecture=MSIL">
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Business.dll</HintPath>
-    </Reference>
-    <Reference Include="MicroFour StrataFrame Inherited UI">
-      <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Inherited UI.dll</HintPath>
     </Reference>
     <Reference Include="MicroFour StrataFrame Security, Culture=neutral, PublicKeyToken=99fe9917f71608a7">
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame Security.dll</HintPath>
@@ -160,33 +155,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SqlServer.BatchParser">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.BatchParser.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.ConnectionInfo">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.RegSvrEnum">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.RegSvrEnum.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.Replication">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.Replication.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.Rmo">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.Rmo.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.ServiceBrokerEnum">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.ServiceBrokerEnum.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.Smo">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.Smo.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.SmoEnum">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.SmoEnum.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.SqlEnum">
-      <HintPath>C:\CSPFA_SOCIOS\Microsoft.SqlServer.SqlEnum.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -216,15 +184,21 @@
     <Compile Include="Condicion_IVA.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Condicion_IVA.Designer.cs" />
+    <Compile Include="Condicion_IVA.Designer.cs">
+      <DependentUpon>Condicion_IVA.cs</DependentUpon>
+    </Compile>
     <Compile Include="cuenta\Reporte_Plan_Cuenta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cuenta\Reporte_Plan_Cuenta.Designer.cs" />
+    <Compile Include="cuenta\Reporte_Plan_Cuenta.Designer.cs">
+      <DependentUpon>Reporte_Plan_Cuenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factura_Electronica\Consulta_Factura.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Factura_Electronica\Consulta_Factura.Designer.cs" />
+    <Compile Include="Factura_Electronica\Consulta_Factura.Designer.cs">
+      <DependentUpon>Consulta_Factura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factura_Electronica\PARCHE_RECIBOS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -553,15 +527,21 @@
     <Compile Include="recibos\Cargar_Info_Facturacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="recibos\Cargar_Info_Facturacion.Designer.cs" />
+    <Compile Include="recibos\Cargar_Info_Facturacion.Designer.cs">
+      <DependentUpon>Cargar_Info_Facturacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="recibos\Cargar_Info_Facturacion_NC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="recibos\Cargar_Info_Facturacion_NC.Designer.cs" />
+    <Compile Include="recibos\Cargar_Info_Facturacion_NC.Designer.cs">
+      <DependentUpon>Cargar_Info_Facturacion_NC.cs</DependentUpon>
+    </Compile>
     <Compile Include="recibos\Cargar_INFO_FC_NC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="recibos\Cargar_INFO_FC_NC.Designer.cs" />
+    <Compile Include="recibos\Cargar_INFO_FC_NC.Designer.cs">
+      <DependentUpon>Cargar_INFO_FC_NC.cs</DependentUpon>
+    </Compile>
     <Compile Include="recibos\modificarCajaDiaria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1317,11 +1297,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="bono\BonoOdontologico_Blanco.rdlc" />
     <EmbeddedResource Include="Condicion_IVA.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Condicion_IVA1.Designer.cs</LastGenOutput>
+      <DependentUpon>Condicion_IVA.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="cuenta\Reporte_Plan_Cuenta.resx" />
-    <EmbeddedResource Include="Factura_Electronica\Consulta_Factura.resx" />
+    <EmbeddedResource Include="cuenta\Reporte_Plan_Cuenta.resx">
+      <DependentUpon>Reporte_Plan_Cuenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Factura_Electronica\Consulta_Factura.resx">
+      <DependentUpon>Consulta_Factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Factura_Electronica\Factura.rdlc" />
     <EmbeddedResource Include="Factura_Electronica\PARCHE_RECIBOS.resx">
       <DependentUpon>PARCHE_RECIBOS.cs</DependentUpon>
     </EmbeddedResource>
@@ -1567,9 +1551,15 @@
     <EmbeddedResource Include="interior\cargarObservacion.resx">
       <DependentUpon>cargarObservacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="recibos\Cargar_Info_Facturacion.resx" />
-    <EmbeddedResource Include="recibos\Cargar_Info_Facturacion_NC.resx" />
-    <EmbeddedResource Include="recibos\Cargar_INFO_FC_NC.resx" />
+    <EmbeddedResource Include="recibos\Cargar_Info_Facturacion.resx">
+      <DependentUpon>Cargar_Info_Facturacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="recibos\Cargar_Info_Facturacion_NC.resx">
+      <DependentUpon>Cargar_Info_Facturacion_NC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="recibos\Cargar_INFO_FC_NC.resx">
+      <DependentUpon>Cargar_INFO_FC_NC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="recibos\modificarCajaDiaria.resx">
       <DependentUpon>modificarCajaDiaria.cs</DependentUpon>
     </EmbeddedResource>
@@ -1810,6 +1800,7 @@
     <EmbeddedResource Include="turnos\turnos.resx">
       <DependentUpon>turnos.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="CrystalReport1.mht" />
     <None Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
@@ -2295,10 +2286,6 @@
     <None Include="Resources\WinXPsalir1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Confiteria\Confiteria.csproj">
-      <Project>{663B9133-5EB9-4B52-AECC-1B67E896D3F8}</Project>
-      <Name>Confiteria</Name>
-    </ProjectReference>
     <ProjectReference Include="Convenios\Convenios\Convenios.csproj">
       <Project>{E677B1C5-E733-4A31-89B2-A15D43514971}</Project>
       <Name>Convenios</Name>
@@ -2353,6 +2340,15 @@
       <VersionMinor>6</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="MSDASC">
+      <Guid>{2206CEB0-19C1-11D1-89E0-00C04FD7A829}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>

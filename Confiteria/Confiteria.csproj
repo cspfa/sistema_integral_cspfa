@@ -14,52 +14,25 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>1</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>Confiteria.Program</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FirebirdSql.Data.Firebird">
@@ -92,10 +65,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\MicroFour StrataFrame UI.dll</HintPath>
     </Reference>
-    <Reference Include="SOCIOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\bin\Debug\SOCIOS.exe</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -108,7 +77,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="bo.cs" />
     <Compile Include="cajasAnteriores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,12 +95,6 @@
     <Compile Include="grillaPreComanda.Designer.cs">
       <DependentUpon>grillaPreComanda.cs</DependentUpon>
     </Compile>
-    <Compile Include="importador.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="importador.Designer.cs">
-      <DependentUpon>importador.cs</DependentUpon>
-    </Compile>
     <Compile Include="imprimir.cs" />
     <Compile Include="listadoAranceles.cs">
       <SubType>Form</SubType>
@@ -148,7 +110,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="cajasAnteriores.resx">
       <DependentUpon>cajasAnteriores.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,9 +118,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="grillaPreComanda.resx">
       <DependentUpon>grillaPreComanda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="importador.resx">
-      <DependentUpon>importador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="listadoAranceles.resx">
       <DependentUpon>listadoAranceles.cs</DependentUpon>
@@ -222,13 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\printer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

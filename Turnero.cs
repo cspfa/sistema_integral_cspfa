@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FirebirdSql.Data.Firebird;
-using Confiteria;
 using System.Threading;
+//using Buffet;
 using System.Speech.Synthesis;
 
 namespace SOCIOS
@@ -24,8 +24,21 @@ namespace SOCIOS
             InitializeComponent();
         }
 
+        private void styleDataGrid()
+        {
+            dgLlamadas.EnableHeadersVisualStyles = false;
+            dgLlamadas.ColumnHeadersDefaultCellStyle.BackColor = Color.Transparent;
+            dgLlamadas.RowHeadersDefaultCellStyle.BackColor = Color.Transparent;
+
+            foreach (DataGridViewColumn col in dgLlamadas.Columns)
+            {
+                col.DefaultCellStyle.BackColor = Color.Red;
+            }
+        }
+
         private void Turnero_Activated(object sender, EventArgs e)
         {
+            //styleDataGrid();
             buscarLlamadas();
             mostrarLlamadas(LLAMADAS, 1);
             InitTimer();
@@ -33,11 +46,12 @@ namespace SOCIOS
 
         private void buscarLlamadas()
         {
-            Confiteria.Utils cu = new Confiteria.Utils();
-            string QUERY = "SELECT NOMBRE, APELLIDO, PUESTO_ATENCION, SECUENCIA, ORDEN_LLEGADA FROM INGRESOS_A_PROCESAR WHERE TILDE = 'L' ORDER BY ORDEN_LLEGADA DESC;";
+            Buffet.Utils cu = new Buffet.Utils();
+            string QUERY = "SELECT NOMBRE, APELLIDO, PUESTO_ATENCION, SECUENCIA, ORDEN_LLEGADA FROM INGRESOS_A_PROCESAR WHERE TILDE = 'L' ORDER BY SECUENCIA DESC;";
             LLAMADAS = cu.getDataFromQuery(QUERY);
         }
 
+        
         public void InitTimer()
         {
             System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
@@ -52,25 +66,28 @@ namespace SOCIOS
             mostrarLlamadas(LLAMADAS, 0);
         }
 
-        private void llamarPersonas()
+        private void reproducirVoz(string MENSAJE)
         {
-            int X = 0;
             LaSusy = new SpeechSynthesizer();
             LaSusy.SelectVoice("Microsoft Sabina Desktop");
             LaSusy.Volume = 100;
             LaSusy.Rate = 0;
-            dgLlamadas.ClearSelection();
+            LaSusy.Speak(MENSAJE);
+        }
 
+        private void llamarPersonas()
+        {
             foreach (DataGridViewRow row in dgLlamadas.Rows)
             {
+                //dgLlamadas.ClearSelection();
+                //dgLlamadas.Rows[row.Index].Selected = true;
                 string ORDEN_LLEGADA = row.Cells[0].Value.ToString().Trim();
                 string NOMBRE = row.Cells[1].Value.ToString().Trim();
-                string PUESTO_ATENCION = row.Cells[2].Value.ToString().Trim();
-                string MENSAJE = ORDEN_LLEGADA + ", " + NOMBRE + ", POR FAVOR DIRÍJASE AL PUESTO " + PUESTO_ATENCION + ".";
-                dgLlamadas.Rows[X].DefaultCellStyle.BackColor = Color.FromArgb(229, 94, 64);
-                LaSusy.Speak(MENSAJE);
-                dgLlamadas.Rows[X].DefaultCellStyle.BackColor = Color.FromArgb(148, 177, 83);
-                X++;
+                string LETRA_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(0, 1);
+                string NUMERO_PUESTO = row.Cells[2].Value.ToString().Trim().Substring(1, 2);
+                string MENSAJE = ORDEN_LLEGADA + ", " + NOMBRE + ", POR FAVOR DIRIJASE AL PUESTO " + LETRA_PUESTO + ", " + NUMERO_PUESTO;
+                reproducirVoz(MENSAJE);
+                Thread.Sleep(1000);
             }
         }
 
@@ -83,17 +100,11 @@ namespace SOCIOS
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     string NOMBRE = row[0].ToString().Trim();
-                    string[] NOMBRE_SPLIT = NOMBRE.Split(' ');
-                    NOMBRE = NOMBRE_SPLIT[0];
-
-                    string APELLIDO = row[1].ToString().Trim().Replace(" DE ", "*");
-                    string[] APELLIDO_SPLIT = APELLIDO.Split('*');
-                    APELLIDO = APELLIDO_SPLIT[0];
-
-                    string PUESTO_ATENCION = row[2].ToString().Trim();
+                    string APELLIDO = row[1].ToString().Trim();
+                    string LETRA_PUESTO = row[2].ToString().Trim().Substring(0, 1);
+                    string NUMERO_PUESTO = row[2].ToString().Trim().Substring(1, 2);
                     string ORDEN_LLEGADA = row[4].ToString().Trim();
-
-                    dgLlamadas.Rows.Add(ORDEN_LLEGADA, NOMBRE + " " + APELLIDO, PUESTO_ATENCION);
+                    dgLlamadas.Rows.Add(ORDEN_LLEGADA, NOMBRE + " " + APELLIDO, LETRA_PUESTO + "" + NUMERO_PUESTO);
                 }
 
                 if(PRIMERA_VEZ==0)
@@ -105,10 +116,7 @@ namespace SOCIOS
 
         private void Turnero_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode.ToString() == "F1")
-            {
-                this.Close();
-            }
+            e.Handled = true;
         }
     }
 }

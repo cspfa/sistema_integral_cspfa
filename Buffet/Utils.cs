@@ -3,7 +3,7 @@ using FirebirdSql.Data.FirebirdClient;
 using System;
 using SOCIOS;
 
-namespace Confiteria
+namespace Buffet
 {
     public class Utils
     {
@@ -50,20 +50,69 @@ namespace Confiteria
             }
         }
 
-        public int putNuevoItem(string NOMBRE, string ROL)
+        public DataSet getCategoriasPorRole(string ROLE)
+        {
+            string QUERY = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + ROLE + "' ORDER BY DETALLE ASC;";
+            DataSet GET = getDataFromQuery(QUERY);
+            return GET;
+        }
+
+        public bool setProfEsp(int PROF, int ESP)
         {
             try
             {
-                string QUERY = "INSERT INTO PROFESIONALES (NOMBRE, MATRICULA, DNI, CORREO, CELULAR, TELEFONO, TIPO_CONTRATO, ROL, BONO_RECIBO, CUENTA, STOCKEABLE) ";
-                QUERY += "VALUES ('" + NOMBRE + "', 0, 0, '', 0, 0, 0, '" + ROL + "', 'R', 0, 0);";
+                string QUERY = "INSERT INTO PROF_ESP (PROFESIONAL, ESPECIALIDAD, PROF) VALUES (" + PROF + ", " + ESP + ", " + PROF + ");";
                 db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
+        public int putNuevoItem(string NOMBRE, string BARCODE)
+        {
+            try
+            {
                 maxid mid = new maxid();
-                int ID = int.Parse(mid.m("ID", "PROFESIONALES"));
+                int ID = int.Parse(mid.m("ID", "PROFESIONALES")) + 1;
+                string QUERY = "INSERT INTO PROFESIONALES (ID, NOMBRE, MATRICULA, DNI, CORREO, CELULAR, TELEFONO, TIPO_CONTRATO, ROL, BONO_RECIBO, CUENTA, STOCKEABLE, BARCODE) ";
+                QUERY += "VALUES (" + ID + ", '" + NOMBRE + "', 0, 0, '', 0, 0, 0, 'MENU " + VGlobales.vp_role + "', 'R', 0, 0, '" + BARCODE + "');";
+                db.Ejecuto_Consulta(QUERY);
                 return ID;
             }
             catch(Exception)
             {
                 return 0;
+            }
+        }
+
+        public DataSet getCatSocs()
+        {
+            string QUERY = "SELECT SUBSTRING(CODIGO FROM 4 FOR 3) AS CODE FROM CODIGOS WHERE SUBSTRING(CODIGO FROM 1 FOR 2) = 'CA' ORDER BY CODE ASC;";
+            DataSet GET = getDataFromQuery(QUERY);
+            return GET;
+        }
+
+        public bool setItemPrice(int ID, string PRECIO, int SECACT)
+        {
+            try
+            {
+                DataSet CAT_SOCS = getCatSocs();
+
+                foreach(DataRow ROW in CAT_SOCS.Tables[0].Rows)
+                {
+                    string QUERY = "INSERT INTO ARANCELES (SECTACT, CATSOC, PROFESIONAL, ARANCEL, US_ALTA) VALUES ";
+                    QUERY += "(" + SECACT + ", '" + ROW[0].ToString() + "', " + ID + ", " + PRECIO + ", '" + VGlobales.vp_username + "');";
+                    db.Ejecuto_Consulta(QUERY);
+                }
+
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
             }
         }
 
