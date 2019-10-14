@@ -19,7 +19,9 @@ namespace SOCIOS
             InitializeComponent();
             ID = ID_Titular;
             this.Carga_Combo();
+
             this.Cargo_Datos();
+
         }
 
         private void Cargo_Datos()
@@ -35,13 +37,17 @@ namespace SOCIOS
             if (foundRows.Length > 0)
             {
                  lbInfo.Text ="Modificar Condicion IVA ";
+              if  (foundRows[0][0].ToString().Length>0)
                 cbTipo.SelectedValue = foundRows[0][0].ToString();
+
+
 
             }
             else
             { 
             lbInfo.Text ="Cargar Condicion IVA ";
             
+
             }
 
         }
@@ -49,7 +55,10 @@ namespace SOCIOS
         private void Grabo_Datos()
 
         {
+
+
             dlog.Condicion_IVA(ID, cbTipo.SelectedValue.ToString());
+
 
  
         }
