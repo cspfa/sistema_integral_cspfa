@@ -504,7 +504,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.3386in</Top>
+        <Top>3.8386in</Top>
         <Left>0.02083in</Left>
         <Height>0.31251in</Height>
         <Width>6.53994in</Width>
@@ -775,6 +775,7 @@
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
+                  <FontSize>14pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -784,7 +785,7 @@
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>2.17885in</Top>
         <Left>0.01735in</Left>
-        <Height>0.21181in</Height>
+        <Height>0.39934in</Height>
         <Width>6.9182in</Width>
         <ZIndex>13</ZIndex>
         <Style>
@@ -807,7 +808,7 @@
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>12pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -820,7 +821,7 @@
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>12pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -840,9 +841,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.915in</Top>
+        <Top>3.165in</Top>
         <Left>0.03124in</Left>
-        <Height>0.38541in</Height>
+        <Height>0.62499in</Height>
         <Width>6.87005in</Width>
         <ZIndex>14</ZIndex>
         <Style>
@@ -912,7 +913,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.39763in</Top>
+        <Top>2.66151in</Top>
         <Left>0.02083in</Left>
         <Height>0.44793in</Height>
         <Width>6.93555in</Width>
@@ -1021,9 +1022,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>0.46181in</Top>
-        <Left>4.05359in</Left>
+        <Left>4.75151in</Left>
         <Height>0.25in</Height>
-        <Width>2.77952in</Width>
+        <Width>2.0816in</Width>
         <ZIndex>18</ZIndex>
         <Style>
           <Border>
@@ -1046,7 +1047,7 @@
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Courier New</FontFamily>
-                  <FontSize>14pt</FontSize>
+                  <FontSize>16pt</FontSize>
                   <FontWeight>Heavy</FontWeight>
                 </Style>
               </TextRun>
@@ -1057,10 +1058,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>0.44765in</Top>
+        <Top>0.50621in</Top>
         <Left>2.02928in</Left>
-        <Height>0.19371in</Height>
-        <Width>1.96875in</Width>
+        <Height>0.2056in</Height>
+        <Width>2.56445in</Width>
         <ZIndex>19</ZIndex>
         <Style>
           <Border>
@@ -1112,10 +1113,10 @@
         <Source>Embedded</Source>
         <Value>Odonto</Value>
         <Sizing>FitProportional</Sizing>
-        <Top>3.72055in</Top>
+        <Top>4.49138in</Top>
         <Left>0.15775in</Left>
-        <Height>4.0625in</Height>
-        <Width>6.8373in</Width>
+        <Height>3.32292in</Height>
+        <Width>5.8998in</Width>
         <ZIndex>21</ZIndex>
         <Style>
           <Border>
@@ -1310,16 +1311,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.56988in</Width>
+              <Width>1.0249in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.56988in</Width>
+              <Width>1.11898in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.56988in</Width>
+              <Width>0.93945in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.56988in</Width>
+              <Width>1.04167in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1470,12 +1474,47 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox11">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>TOTAL</Value>
+                              <Style>
+                                <FontFamily>Courier New</FontFamily>
+                                <FontWeight>Heavy</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox11</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -1490,7 +1529,7 @@
         <Top>7.83861in</Top>
         <Left>0.28427in</Left>
         <Height>0.25in</Height>
-        <Width>6.27952in</Width>
+        <Width>5.125in</Width>
         <ZIndex>25</ZIndex>
         <Style>
           <Border>
@@ -1544,7 +1583,7 @@
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
         <Top>8.08861in</Top>
-        <Left>4.99391in</Left>
+        <Left>3.40927in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>27</ZIndex>
@@ -1574,7 +1613,7 @@
         </Paragraphs>
         <rd:DefaultName>DEBITO</rd:DefaultName>
         <Top>8.08861in</Top>
-        <Left>1.85415in</Left>
+        <Left>1.35371in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>28</ZIndex>
@@ -1603,11 +1642,71 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CREDITO</rd:DefaultName>
-        <Top>8.08861in</Top>
-        <Left>3.42403in</Left>
+        <Top>8.1025in</Top>
+        <Left>2.3676in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>29</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Leyenda">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!Leyenda.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Leyenda</rd:DefaultName>
+        <Top>8.40805in</Top>
+        <Left>0.30917in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>30</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PLANILLA2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!Total.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PLANILLA</rd:DefaultName>
+        <Top>8.08861in</Top>
+        <Left>4.40927in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>31</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1746,6 +1845,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="CREDITO">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Leyenda">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

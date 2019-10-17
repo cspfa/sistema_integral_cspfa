@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using FirebirdSql.Data.FirebirdClient;
 using System.Data;
+using SOCIOS.bono;
 
 
 namespace SOCIOS.Turismo
@@ -732,7 +733,45 @@ namespace SOCIOS.Turismo
                 return 0;
 
         }
-        
+
+
+        public  Montos_Bono Montos_Bono(int pBono)
+        {
+            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS from  BONO_TURISMO WHERE   ID= " + pBono.ToString();
+            DataRow[] foundRows;
+            Montos_Bono mb = new bono.Montos_Bono();
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+
+            if (foundRows.Length > 0)
+            {
+                mb.Efectivo = Decimal.Round(Decimal.Parse(foundRows[0][0].ToString()), 2).ToString();
+
+                if (foundRows[0][2].ToString() != "0")
+                {
+                    mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + foundRows[0][2].ToString() + " Cuotas";
+
+                }
+                else
+                    mb.Credito = "0";
+
+                mb.Debito = Decimal.Round(Decimal.Parse(foundRows[0][3].ToString()), 2).ToString();
+
+                if (foundRows[0][5].ToString() != "0")
+                {
+                    mb.Planilla = Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2).ToString() + " - " + foundRows[0][5].ToString() + " Cuotas";
+
+                }
+                else
+                    mb.Planilla = "0";
+
+
+
+            }
+            return mb;
+
+        }
 
     }
 }
