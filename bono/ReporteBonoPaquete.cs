@@ -86,7 +86,8 @@ namespace SOCIOS.bono
             FechaS = Fecha.Day.ToString("00") + "-" + Fecha.Month.ToString("00") + "-" + Fecha.Year.ToString();
             FechaPaquete = objSalida.Fecha.Day.ToString("00") + objSalida.Fecha.Month.ToString("00") + "-" + objSalida.Fecha.Year.ToString();
             DataTable personas = ut.DatosPersonas(ID.ToString());
-
+            Montos_Bono mb = new bono.Montos_Bono();
+            mb = ut.Montos_Bono(ID);
             
             //determinar si el bono es Anulado o No
 
@@ -98,7 +99,7 @@ namespace SOCIOS.bono
             //Codigo Barra
             string Barra = "TU" + ID_ROL.ToString();
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[29];
+            ReportParameter[] parameters = new ReportParameter[33];
             //Establecemos el valor de los parámetros
 
             parameters[0] = new ReportParameter("Fecha", FechaS);
@@ -133,6 +134,10 @@ namespace SOCIOS.bono
             parameters[26] = new ReportParameter("Estadia", objSalida.Estadia.TrimEnd());
             parameters[27] = new ReportParameter("Directivo", "");
             parameters[28] = new ReportParameter("Cargo", "");
+            parameters[29] = new ReportParameter("EFECTIVO", mb.Efectivo);
+            parameters[30] = new ReportParameter("DEBITO", mb.Debito);
+            parameters[31] = new ReportParameter("CREDITO", mb.Credito);
+            parameters[32] = new ReportParameter("PLANILLA", mb.Planilla);
 
 
 

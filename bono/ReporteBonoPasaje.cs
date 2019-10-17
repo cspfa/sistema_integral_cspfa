@@ -32,7 +32,8 @@ namespace SOCIOS.bono
         string Clase;
         int ID_ROL ;
         string ROL;
-        
+        SOCIOS.Turismo.TurismoUtils ut = new SOCIOS.Turismo.TurismoUtils();
+
         public ReporteBonoPasaje(CabeceraTitular pCAB,DateTime pfecha, int pBono,string pFormaPago,string pObs,decimal pTotal)
         {
             CAB = new CabeceraTitular();
@@ -66,7 +67,10 @@ namespace SOCIOS.bono
             FechaS = Fecha.Day.ToString("00") + "-" + Fecha.Month.ToString("00") + "-" + Fecha.Year.ToString();
             DataTable personas = this.DatosPersonas(ID.ToString());
             DataTable pasajes = this.DatosPasaje(ID.ToString());
-          //determinar si el bono es Anulado o No
+            Montos_Bono mb = new bono.Montos_Bono();
+            mb = ut.Montos_Bono(ID);
+            
+            //determinar si el bono es Anulado o No
 
             BonoAnulado = this.Anulado(ID);
             this.DatosPasaje(ID);
@@ -74,7 +78,7 @@ namespace SOCIOS.bono
             //Codigo Barra
             string Barra = "TU" + ID_ROL.ToString("0000000000");
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[22];
+            ReportParameter[] parameters = new ReportParameter[26];
             //Establecemos el valor de los parámetros
                       
             parameters[0] = new ReportParameter("Fecha", FechaS);
@@ -99,6 +103,12 @@ namespace SOCIOS.bono
             parameters[19] = new ReportParameter("Barra", Barra);
             parameters[20] = new ReportParameter("Directivo", "");
             parameters[21] = new ReportParameter("Cargo", "");
+            parameters[22] = new ReportParameter("EFECTIVO", mb.Efectivo);
+            parameters[23] = new ReportParameter("DEBITO", mb.Debito);
+            parameters[24] = new ReportParameter("CREDITO", mb.Credito);
+            parameters[25] = new ReportParameter("PLANILLA", mb.Planilla);
+
+
             this.reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Clear();
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSetPasaje", pasajes));
