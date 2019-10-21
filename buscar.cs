@@ -53,6 +53,7 @@ namespace SOCIOS
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INFORMES")
             {
                 btnRestarCounter.Visible = true;
+                btnBlankTurnero.Visible = true;
             }
 
             if (VGlobales.vp_role == "SISTEMAS" || VGlobales.vp_role == "INTERIOR")
@@ -3537,6 +3538,16 @@ namespace SOCIOS
             {
                 db db = new db();
                 string QUERY = "ALTER SEQUENCE NUMERADOR_INGRESO RESTART WITH 0";
+                db.Ejecuto_Consulta(QUERY);
+            }
+        }
+
+        private void btnBlankTurnero_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿REINICIAR EL TURNERO?", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+            {
+                db db = new db();
+                string QUERY = "update  ingresos_a_procesar set TILDE=null where tilde='L' ";
                 db.Ejecuto_Consulta(QUERY);
             }
         }
