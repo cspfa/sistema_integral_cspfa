@@ -138,8 +138,7 @@ namespace SOCIOS.bono
        public string Leyenda_Bono_Profesional(int ID_Profesional)
 
        {
-
-
+           
            string Query = @"select Leyenda,Nombre   from PROFESIONALES  WHERE ID= " + ID_Profesional.ToString();
            Comision_Directiva item = new Comision_Directiva();
 

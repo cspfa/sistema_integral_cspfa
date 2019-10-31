@@ -2306,7 +2306,18 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>EFECTIVO</Value>
+                <Value>PLANILLA</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>

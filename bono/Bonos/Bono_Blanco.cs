@@ -76,7 +76,7 @@ namespace SOCIOS.bono.Bonos
                 TIPO = "HOT";
             if (YaGrabado == false)
             {
-                dlog.InsertBonoTurismo(Nro_Socio_titular, Nro_Socio, Nro_Dep, Nro_Dep_Titular, 0, System.DateTime.Now, 0, 0, 0, 0, 0, 0, Nombre, Apellido, Dni, fechaNacimiento, "", Telefono, "", this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, "", "", 0, "", "", VGlobales.vp_username, TIPO, 0, 0, "", 0, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, 0,"SI",0,0,"","","",0,0);
+                dlog.InsertBonoTurismo(Nro_Socio_titular, Nro_Socio, Nro_Dep, Nro_Dep_Titular, 0, System.DateTime.Now, 0, 0, 0, 0, 0, 0, Nombre, Apellido, Dni, fechaNacimiento, "", Telefono, "", this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, "", "", 0, "", "", VGlobales.vp_username, TIPO, 0, 0, "", 0, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, 0,"SI",0,0,"","","",0,0,0,0,0,0,0,0);
                 YaGrabado = true;
             }
             int ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), TIPO);
