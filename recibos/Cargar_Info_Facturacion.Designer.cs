@@ -36,9 +36,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ComboPtoVenta = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.lbInfo = new System.Windows.Forms.Label();
             this.lbAerta = new System.Windows.Forms.Label();
+            this.cbElectronico = new System.Windows.Forms.CheckBox();
+            this.tbPuntoVenta = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnGrabarInfo
@@ -111,15 +112,6 @@
             this.ComboPtoVenta.Size = new System.Drawing.Size(115, 21);
             this.ComboPtoVenta.TabIndex = 121;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 13);
-            this.label3.TabIndex = 120;
-            this.label3.Text = "P.Venta:(ELEC)";
-            // 
             // lbInfo
             // 
             this.lbInfo.AutoSize = true;
@@ -141,11 +133,34 @@
             this.lbAerta.Text = "ALERTA";
             this.lbAerta.Visible = false;
             // 
+            // cbElectronico
+            // 
+            this.cbElectronico.AutoSize = true;
+            this.cbElectronico.Checked = true;
+            this.cbElectronico.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbElectronico.Location = new System.Drawing.Point(31, 60);
+            this.cbElectronico.Name = "cbElectronico";
+            this.cbElectronico.Size = new System.Drawing.Size(100, 17);
+            this.cbElectronico.TabIndex = 129;
+            this.cbElectronico.Text = "P.Venta (ELEC)";
+            this.cbElectronico.UseVisualStyleBackColor = true;
+            this.cbElectronico.CheckedChanged += new System.EventHandler(this.cbElectronico_CheckedChanged);
+            // 
+            // tbPuntoVenta
+            // 
+            this.tbPuntoVenta.Location = new System.Drawing.Point(263, 60);
+            this.tbPuntoVenta.Name = "tbPuntoVenta";
+            this.tbPuntoVenta.Size = new System.Drawing.Size(79, 20);
+            this.tbPuntoVenta.TabIndex = 130;
+            this.tbPuntoVenta.Visible = false;
+            // 
             // Cargar_Info_Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 185);
+            this.Controls.Add(this.tbPuntoVenta);
+            this.Controls.Add(this.cbElectronico);
             this.Controls.Add(this.btnGrabarInfo);
             this.Controls.Add(this.lbVencimiento);
             this.Controls.Add(this.lbCAE);
@@ -154,7 +169,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.ComboPtoVenta);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.lbInfo);
             this.Controls.Add(this.lbAerta);
             this.Name = "Cargar_Info_Facturacion";
@@ -174,8 +188,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox ComboPtoVenta;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbInfo;
         private System.Windows.Forms.Label lbAerta;
+        private System.Windows.Forms.CheckBox cbElectronico;
+        private System.Windows.Forms.TextBox tbPuntoVenta;
     }
 }

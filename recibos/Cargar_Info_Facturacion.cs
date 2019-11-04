@@ -75,7 +75,14 @@ namespace SOCIOS
         {
             try
             {
-                dlog.Marca_Afip_Recibo(ID,Int32.Parse( ComboPtoVenta.SelectedValue.ToString()), Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text,1);
+                int punto_venta = 0;
+
+                if (cbElectronico.Checked)
+                    punto_venta = Int32.Parse( ComboPtoVenta.SelectedValue.ToString());
+                else
+                    punto_venta = Int32.Parse(tbPuntoVenta.Text);
+
+                dlog.Marca_Afip_Recibo(ID,punto_venta, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text,1);
                 MessageBox.Show("Informacion Grabada con Exito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
@@ -85,6 +92,13 @@ namespace SOCIOS
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
             }
+        }
+
+        private void cbElectronico_CheckedChanged(object sender, EventArgs e)
+        {
+            ComboPtoVenta.Visible = cbElectronico.Checked;
+            tbPuntoVenta.Visible = !cbElectronico.Checked;
+               
         }
     }
 }
