@@ -54,6 +54,7 @@ namespace SOCIOS.Factura_Electronica
 
          //   Leyenda_Direccion = this.Direccion_Pto_Vta(pPunto_De_Venta);
             this.Get_Datos_Bono(ID_BONO);
+            this.get_Leyenda_Profesional(ID_BONO);
             string fileName =leyenda_TC+"-PV " + pPunto_De_Venta.ToString() + "- NRO " + pNumero.ToString() + ".pdf";
           //  fileName = "testing.pdf";
 
@@ -248,15 +249,17 @@ namespace SOCIOS.Factura_Electronica
                 Leyenda_Domicilio =foundRows[0][1].ToString();
                 this.Get_Forma_Pago(Forma_Pago);
 
-                if (foundRows[0][2].ToString().Length > 0)
-                    Leyenda_Profesional = foundRows[0][2].ToString() + " " + foundRows[0][3].ToString();
-                else
-                    Leyenda_Profesional = "";
+                //if (foundRows[0][2].ToString().Length > 0)
+                //    Leyenda_Profesional = foundRows[0][2].ToString() + " " + foundRows[0][3].ToString();
+                //else
+                //    Leyenda_Profesional = "";
 
             }
             
         
         }
+
+
 
         public void Get_Forma_Pago(int ID)
         {
@@ -281,9 +284,34 @@ namespace SOCIOS.Factura_Electronica
 
 
         }
+        public void get_Leyenda_Profesional(int ID)
+
+        {
+            string QUERY = @"select P.LEYENDA, P.NOMBRE   from recibos_caja B,Profesionales P  where   B.ID_PROFESIONAL=P.ID  and B.ID=" + ID.ToString();
+
+
+
+
+            DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                  if (foundRows[0][0].ToString().Length > 0)
+                      Leyenda_Profesional = foundRows[0][0].ToString() + " " + foundRows[0][1].ToString();
+                else
+                    Leyenda_Profesional = "";
+
+
+            }
         
+        
+        }
+    }
 
     }
 
 
-}
+
+
