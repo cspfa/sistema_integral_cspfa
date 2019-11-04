@@ -77,10 +77,8 @@ namespace SOCIOS
             {
                 int punto_venta = 0;
 
-                if (cbElectronico.Checked)
                     punto_venta = Int32.Parse( ComboPtoVenta.SelectedValue.ToString());
-                else
-                    punto_venta = Int32.Parse(tbPuntoVenta.Text);
+             
 
                 dlog.Marca_Afip_Recibo(ID,punto_venta, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text,1);
                 MessageBox.Show("Informacion Grabada con Exito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
