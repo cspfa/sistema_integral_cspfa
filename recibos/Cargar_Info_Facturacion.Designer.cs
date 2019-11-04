@@ -38,8 +38,7 @@
             this.ComboPtoVenta = new System.Windows.Forms.ComboBox();
             this.lbInfo = new System.Windows.Forms.Label();
             this.lbAerta = new System.Windows.Forms.Label();
-            this.cbElectronico = new System.Windows.Forms.CheckBox();
-            this.tbPuntoVenta = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnGrabarInfo
@@ -133,34 +132,21 @@
             this.lbAerta.Text = "ALERTA";
             this.lbAerta.Visible = false;
             // 
-            // cbElectronico
+            // label1
             // 
-            this.cbElectronico.AutoSize = true;
-            this.cbElectronico.Checked = true;
-            this.cbElectronico.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbElectronico.Location = new System.Drawing.Point(31, 60);
-            this.cbElectronico.Name = "cbElectronico";
-            this.cbElectronico.Size = new System.Drawing.Size(100, 17);
-            this.cbElectronico.TabIndex = 129;
-            this.cbElectronico.Text = "P.Venta (ELEC)";
-            this.cbElectronico.UseVisualStyleBackColor = true;
-            this.cbElectronico.CheckedChanged += new System.EventHandler(this.cbElectronico_CheckedChanged);
-            // 
-            // tbPuntoVenta
-            // 
-            this.tbPuntoVenta.Location = new System.Drawing.Point(263, 60);
-            this.tbPuntoVenta.Name = "tbPuntoVenta";
-            this.tbPuntoVenta.Size = new System.Drawing.Size(79, 20);
-            this.tbPuntoVenta.TabIndex = 130;
-            this.tbPuntoVenta.Visible = false;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(50, 60);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.TabIndex = 129;
+            this.label1.Text = "PTO VTA(ELEC)";
             // 
             // Cargar_Info_Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(372, 185);
-            this.Controls.Add(this.tbPuntoVenta);
-            this.Controls.Add(this.cbElectronico);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGrabarInfo);
             this.Controls.Add(this.lbVencimiento);
             this.Controls.Add(this.lbCAE);
@@ -190,7 +176,6 @@
         private System.Windows.Forms.ComboBox ComboPtoVenta;
         private System.Windows.Forms.Label lbInfo;
         private System.Windows.Forms.Label lbAerta;
-        private System.Windows.Forms.CheckBox cbElectronico;
-        private System.Windows.Forms.TextBox tbPuntoVenta;
+        private System.Windows.Forms.Label label1;
     }
 }
