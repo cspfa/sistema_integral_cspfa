@@ -79,6 +79,7 @@ namespace SOCIOS.Turismo
                voucher.Hasta                = DateTime.Parse(foundRows[0][14].ToString()).ToShortDateString();
                voucher.ObsHotel             = foundRows[0][15].ToString();
                voucher.Nro_Habitacion       = foundRows[0][16].ToString();
+        
                voucher.Nro_Habitacion.Split();
 
 
@@ -89,8 +90,11 @@ namespace SOCIOS.Turismo
 
                voucher.Motivo = foundRows[0][18].ToString();
                voucher.ID_ROL_BONO = Int32.Parse(foundRows[0][19].ToString());
-               
-               voucher.ROL = foundRows[0][20].ToString().Substring(0,3);
+               if (foundRows[0][20].ToString().Length > 0)
+                   voucher.ROL = foundRows[0][20].ToString().Substring(0, 3);
+               else
+                   voucher.ROL = "";
+
                if (foundRows[0][21].ToString().Length > 0)
                    voucher.BONO_FILIAL = foundRows[0][21].ToString();
                else

@@ -60,8 +60,8 @@ namespace SOCIOS.bono
 
             if (!chkBlanco.Checked)
             {
-                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO, B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA, B.BONO_BLANCO BONO_BLANCO, B.ID ID   from Bono_Turismo B, Proveedores P
-            where    B.Operador = P.ID";
+                query = @"select B.ID_ROL ID_ROL,B.CODINT CODINT , B.TIPO TIPO, B.ROL ROL, B.FE_BONO FECHA,B.Nro_socio NRO_SOCIO, B.NRO_DEP NRO_DEP,B.NOMBRE NOMBRE,B.APELLIDO,B.SALDO SALDO,P.RAZON_SOCIAL OPERADOR,coalesce(B.FE_BAJA,'0') BAJA, B.BONO_BLANCO BONO_BLANCO, B.ID ID   from Bono_Turismo B left join Proveedores P
+            on    B.Operador = P.ID WHERE 1=1 ";
             }
             else
             {
@@ -193,7 +193,7 @@ namespace SOCIOS.bono
         {
             foreach (DataGridViewRow dr in dgBonos.Rows)
             {
-                if (dr.Cells[11].Value.ToString().Trim() != "0")
+                if (dr.Cells[9].Value.ToString().Trim() != "0")
                     dr.DefaultCellStyle.BackColor = System.Drawing.Color.Red;
 
 
@@ -211,7 +211,7 @@ namespace SOCIOS.bono
 
         private void dgBonos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ID = Int32.Parse(dgBonos.SelectedRows[0].Cells[0].Value.ToString());
+            ID = Int32.Parse(dgBonos.SelectedRows[0].Cells[11].Value.ToString());
         }
 
         private void Anular_Click(object sender, EventArgs e)

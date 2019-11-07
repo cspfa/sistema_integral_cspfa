@@ -1682,7 +1682,7 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>7.31958in</Top>
+        <Top>7.69458in</Top>
         <Left>4.96542in</Left>
         <Height>0in</Height>
         <Width>1.86458in</Width>
@@ -1739,7 +1739,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>7.31958in</Top>
+        <Top>7.69458in</Top>
         <Left>4.94458in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -1800,7 +1800,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>7.31958in</Top>
+        <Top>7.69458in</Top>
         <Left>0.16333in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -1816,7 +1816,7 @@
         </Style>
       </Textbox>
       <Line Name="Line3">
-        <Top>7.31958in</Top>
+        <Top>7.69458in</Top>
         <Left>2.10402in</Left>
         <Height>0in</Height>
         <Width>-1.94069in</Width>
@@ -1922,7 +1922,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Directivo</rd:DefaultName>
-        <Top>7.31958in</Top>
+        <Top>7.69458in</Top>
         <Left>2.69307in</Left>
         <Height>0.25in</Height>
         <Width>2.05208in</Width>
@@ -1954,7 +1954,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Cargo</rd:DefaultName>
-        <Top>7.59736in</Top>
+        <Top>7.97236in</Top>
         <Left>2.69307in</Left>
         <Height>0.25in</Height>
         <Width>2.05208in</Width>
@@ -2003,19 +2003,19 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.0249in</Width>
+              <Width>1.71875in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.11898in</Width>
+              <Width>1.06944in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.93945in</Width>
+              <Width>1.0832in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.04167in</Width>
+              <Width>1.42236in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.14375in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -2219,9 +2219,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <Top>6.79004in</Top>
-        <Left>1.11125in</Left>
+        <Left>0.3925in</Left>
         <Height>0.25in</Height>
-        <Width>5.125in</Width>
+        <Width>6.4375in</Width>
         <ZIndex>38</ZIndex>
         <Style>
           <Border>
@@ -2245,9 +2245,9 @@
         </Paragraphs>
         <rd:DefaultName>EFECTIVO</rd:DefaultName>
         <Top>7.04004in</Top>
-        <Left>1.11125in</Left>
+        <Left>0.3925in</Left>
         <Height>0.25in</Height>
-        <Width>1in</Width>
+        <Width>1.71875in</Width>
         <ZIndex>39</ZIndex>
         <Style>
           <Border>
@@ -2275,9 +2275,9 @@
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
         <Top>7.04004in</Top>
-        <Left>4.23625in</Left>
+        <Left>4.26402in</Left>
         <Height>0.25in</Height>
-        <Width>1in</Width>
+        <Width>1.42223in</Width>
         <ZIndex>40</ZIndex>
         <Style>
           <Border>
@@ -2365,7 +2365,7 @@
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
         <Top>7.04004in</Top>
-        <Left>5.23625in</Left>
+        <Left>5.83in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>43</ZIndex>
