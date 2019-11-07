@@ -737,7 +737,7 @@ namespace SOCIOS.Turismo
 
         public  Montos_Bono Montos_Bono(int pBono)
         {
-            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS from  BONO_TURISMO WHERE   ID= " + pBono.ToString();
+            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
             DataRow[] foundRows;
             Montos_Bono mb = new bono.Montos_Bono();
 
