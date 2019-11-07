@@ -94,8 +94,7 @@ namespace SOCIOS
 
         private void cbElectronico_CheckedChanged(object sender, EventArgs e)
         {
-            ComboPtoVenta.Visible = cbElectronico.Checked;
-            tbPuntoVenta.Visible = !cbElectronico.Checked;
+            
                
         }
     }
