@@ -27,6 +27,7 @@ namespace SOCIOS.bono.Pagos
                 {
                     dlog.BajaTurismo(ID, VGlobales.vp_username, System.DateTime.Now);
                     DialogResult = DialogResult.OK;
+
                     this.Close();
                 }
                 catch (Exception ex)

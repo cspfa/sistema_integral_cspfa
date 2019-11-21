@@ -157,7 +157,7 @@ namespace SOCIOS.bono
             cbSocial.DataSource = null;
 
             cbSocial.Items.Clear();
-
+            cbSocial.Items.Insert(0, "-");
             cbSocial.Items.Insert((int)Hotel_Social_Enum.TRAMITE   , "Tramite");
             cbSocial.Items.Insert((int)Hotel_Social_Enum.ENFERMEDAD , "Enfermedad");
             cbSocial.Items.Insert((int)Hotel_Social_Enum.CIRUGIA   , "Cirugia");
