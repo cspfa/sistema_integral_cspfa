@@ -90,6 +90,7 @@ namespace SOCIOS.bono
 
 
 
+
             //MessageBox.Show(query);
 
             string connectionString;

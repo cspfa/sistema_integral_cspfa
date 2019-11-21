@@ -99,14 +99,14 @@ namespace SOCIOS.Turismo
                    voucher.BONO_FILIAL = foundRows[0][21].ToString();
                else
                    voucher.BONO_FILIAL = "";
-               if (foundRows[0][22].ToString().Length > 0)
-               {
-                   voucher.CheckOut = foundRows[0][22].ToString();
-               }
-               if (foundRows[0][23].ToString().Length > 0)
-               {
-                   voucher.CheckIn = foundRows[0][23].ToString();
-               }
+               //if (foundRows[0][22].ToString().Length > 0)
+               //{
+               //    voucher.CheckOut = foundRows[0][22].ToString();
+               //}
+               //if (foundRows[0][23].ToString().Length > 0)
+               //{
+               //    voucher.CheckIn = foundRows[0][23].ToString();
+               //}
 
 
            }
