@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-//using Reportes;
+using System.Threading;
 using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
 using FirebirdSql.Data.Isql;
@@ -14,13 +14,12 @@ using FirebirdSql.Data.Services;
 using FirebirdSql.Data.Server;
 using SOCIOS.bono;
 
-
-
 namespace SOCIOS
 {
     public partial class Consulta : MicroFour.StrataFrame.UI.Windows.Forms.StandardForm
     {
         //private DataTable dtingresos;
+        private System.Windows.Forms.Timer timer1;
         string NRO_SOC_TIT;
         string NRO_DEP_TIT;
 
@@ -44,10 +43,25 @@ namespace SOCIOS
         public Consulta()
         {
             InitializeComponent();
+            //InitTimer();
         }
 
         BO_Datos dlog = new BO_Datos();
         bo BO_dlog = new bo();
+
+        public void InitTimer()
+        {
+            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Interval = 5000;
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Consultar_Visitas(dlog);
+            this.Consulta_Shown(dataGridView1, new EventArgs());
+        }
 
         private void Consultar_Load(object sender, EventArgs e)
         {
@@ -141,7 +155,7 @@ namespace SOCIOS
             
             sectores = sectores + "NRO_ADH, NRO_DEPADH, DNI,BONO_ROL,ID_DESTINO,ID_PROFESIONAL, CUIL ";
             
-            sectores = sectores + " FROM INGRESOS_A_PROCESAR WHERE CAST(FECHA AS DATE) BETWEEN '" + dtpFdesde.Text + "' AND '" + dtpFhasta.Text + "'";
+            sectores = sectores + " FROM INGRESOS_A_PROCESAR WHERE TILDE != 'X' AND CAST(FECHA AS DATE) BETWEEN '" + dtpFdesde.Text + "' AND '" + dtpFhasta.Text + "'";
 
             if (comboBox1.SelectedIndex != -1)
             {
@@ -727,6 +741,24 @@ namespace SOCIOS
                         MessageBox.Show("NO SE PUDO GUARDAR EL INGRESO", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private void BtnAusente_Click(object sender, EventArgs e)
+        {
+            int SECUENCIA = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            bool ce = cambiarEstado("X", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Consultar_Visitas(dlog);
+                this.Consulta_Shown(dataGridView1, new EventArgs());
             }
         }
     }

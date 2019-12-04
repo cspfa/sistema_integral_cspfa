@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.IO;
 using FirebirdSql.Data.Client;
 using FirebirdSql.Data.FirebirdClient;
+using System.Threading;
 
 namespace SOCIOS
 {
@@ -19,6 +20,21 @@ namespace SOCIOS
         public GrillaPreRecibo()
         {
             InitializeComponent();
+            //InitTimer();
+        }
+
+        public void InitTimer()
+        {
+            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Interval = 5000;
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Llenar_grilla("XXX", "X");
+            subitemsFormasDePago();
         }
 
         private void Llenar_grilla(string FECHA, string IMPRESO)
@@ -498,38 +514,56 @@ namespace SOCIOS
 
         private void btnEnEspera_Click(object sender, EventArgs e)
         {
-            /*int SECUENCIA = 0;
+            int SECUENCIA = 0;
 
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
                 SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
             }
 
-            bool ce = cambiarEstado("E", SECUENCIA, VGlobales.PUESTO_ATENCION);
+            Consulta co = new Consulta();
+            bool ce = co.cambiarEstado("E", SECUENCIA, VGlobales.PUESTO_ATENCION);
 
             if (ce == true)
             {
-                Consultar_Visitas(dlog);
-                this.Consulta_Shown(dataGridView1, new EventArgs());
-            }*/
+                Llenar_grilla("XXX", "X");
+            }
         }
 
         private void btnAtendido_Click(object sender, EventArgs e)
         {
-            /*int SECUENCIA = 0;
+            int SECUENCIA = 0;
 
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
             {
                 SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
             }
 
-            bool ce = cambiarEstado("A", SECUENCIA, VGlobales.PUESTO_ATENCION);
+            Consulta co = new Consulta();
+            bool ce = co.cambiarEstado("A", SECUENCIA, VGlobales.PUESTO_ATENCION);
 
             if (ce == true)
             {
-                Consultar_Visitas(dlog);
-                this.Consulta_Shown(dataGridView1, new EventArgs());
-            }*/
+                Llenar_grilla("XXX", "X");
+            }
+        }
+
+        private void BtnAusente_Click(object sender, EventArgs e)
+        {
+            int SECUENCIA = 0;
+
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                SECUENCIA = Convert.ToInt32(row.Cells[8].Value);
+            }
+
+            Consulta co = new Consulta();
+            bool ce = co.cambiarEstado("X", SECUENCIA, VGlobales.PUESTO_ATENCION);
+
+            if (ce == true)
+            {
+                Llenar_grilla("XXX", "X");
+            }
         }
     }
 }

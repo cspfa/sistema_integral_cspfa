@@ -743,9 +743,11 @@ namespace Buffet
                             imprimir i = new imprimir();
 
                             i.imprimirComanda(ITEMS, COMANDA, "SOCIO"); //COMANDA COMPLETA PARA EL SOCIO
+                            
 
                             if (VGlobales.vp_role == "CPOCABA")
                             {
+                                i.imprimirComanda(ITEMS, COMANDA, "SOCIO2"); //COMANDA COMPLETA PARA EL SOCIO
                                 DataSet BUFFET = utils.getItemsByCategory(ID_COM, "BUFFET");
                                 DataSet DESPENSA = utils.getItemsByCategory(ID_COM, "DESPENSA");
                                 DataSet CAFETERIA = utils.getItemsByCategory(ID_COM, "CAFETERIA");
@@ -789,7 +791,14 @@ namespace Buffet
                                 i.imprimirSolicitudEspecial(SOLICITUD);
                             }
 
-                            this.Close();
+                            if (VGlobales.vp_role == "CPOCABA")
+                            {
+                                resetForm();
+                            }
+                            else
+                            {
+                                this.Close();
+                            }
                         }
                         catch (Exception error)
                         {
@@ -804,6 +813,36 @@ namespace Buffet
             }
 
             Cursor = Cursors.Default;
+        }
+
+        private void resetForm()
+        {
+            comboMozos();
+            comboFormasDePago();
+            mostrarArancel();
+            generarListaItems();
+            comboTipoDeComanda();
+            textBox1.Text = "";
+            tbCantidad.Text = "1";
+            tbItemObservacion.Text = string.Empty;
+            dgItems.Rows.Clear();
+            tbTotal.Text = string.Empty;
+            dpFechaComanda.Text = DateTime.Now.ToShortDateString();
+            tbDescuento.Text = string.Empty;
+            tbComandaBorrador.Text = "0";
+            tbConsume.Text = string.Empty;
+            tbPersonas.Text = "1";
+            tbBarCodeSearch.Text = "";
+            tbIdComanda.Text = "";
+            tbNroComanda.Text = "";
+            lbNroOrden.Text = (int.Parse(lbNroOrden.Text) + 1).ToString();
+
+            string NRO_ORDEN = utils.getNroOrdenComanda();
+
+            if (NRO_ORDEN != "")
+                lbNroOrden.Text = Convert.ToString(Convert.ToInt32(NRO_ORDEN) + 1);
+            else
+                lbNroOrden.Text = "0";
         }
 
         private void btnImprimirComanda_Click(object sender, EventArgs e)
@@ -1127,7 +1166,7 @@ namespace Buffet
                     {
                         agregarItem ai = new agregarItem(tbBarCodeSearch.Text.Trim());
                         ai.ShowDialog();
-
+                        generarListaItems();
                         ITEM = utils.barCodeSearch(tbBarCodeSearch.Text.Trim());
                         tbBarCodeSearch.Text = "";
                         SEL_TIPO = String.Empty;
@@ -1145,6 +1184,11 @@ namespace Buffet
                     }
                 }
             }
+        }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

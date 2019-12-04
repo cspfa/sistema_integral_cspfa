@@ -53,6 +53,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.comboDestinos = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnAusente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -310,6 +311,16 @@
             this.label16.TabIndex = 53;
             this.label16.Text = "DESTINO:";
             // 
+            // btnAusente
+            // 
+            this.btnAusente.Location = new System.Drawing.Point(355, 70);
+            this.btnAusente.Name = "btnAusente";
+            this.btnAusente.Size = new System.Drawing.Size(118, 23);
+            this.btnAusente.TabIndex = 55;
+            this.btnAusente.Text = "AUSENTE";
+            this.btnAusente.UseVisualStyleBackColor = true;
+            this.btnAusente.Click += new System.EventHandler(this.BtnAusente_Click);
+            // 
             // Consulta
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -322,6 +333,7 @@
             this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
             this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
             this.ClientSize = new System.Drawing.Size(1074, 510);
+            this.Controls.Add(this.btnAusente);
             this.Controls.Add(this.comboRoles);
             this.Controls.Add(this.btnIngreso);
             this.Controls.Add(this.label15);
@@ -386,6 +398,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox comboDestinos;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Button btnAusente;
     }
 }
 

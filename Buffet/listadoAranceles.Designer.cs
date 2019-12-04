@@ -30,12 +30,6 @@
         {
             this.btnPdf = new System.Windows.Forms.Button();
             this.dgListadoAranceles = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ARANCEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARRAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.btnExportarXls = new System.Windows.Forms.Button();
             this.tbStock = new System.Windows.Forms.TextBox();
@@ -52,6 +46,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbBarCodeSearch = new System.Windows.Forms.TextBox();
             this.btnImprimirBarcode = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DETALLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOMBRE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ARANCEL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BAJA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_SA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgListadoAranceles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,7 +84,9 @@
             this.NOMBRE,
             this.ARANCEL,
             this.STOCK,
-            this.BARRAS});
+            this.BARRAS,
+            this.BAJA,
+            this.ID_SA});
             this.dgListadoAranceles.Location = new System.Drawing.Point(12, 65);
             this.dgListadoAranceles.MultiSelect = false;
             this.dgListadoAranceles.Name = "dgListadoAranceles";
@@ -95,42 +100,6 @@
             this.dgListadoAranceles.Size = new System.Drawing.Size(972, 435);
             this.dgListadoAranceles.TabIndex = 80;
             this.dgListadoAranceles.TabStop = false;
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Width = 43;
-            // 
-            // DETALLE
-            // 
-            this.DETALLE.HeaderText = "DETALLE";
-            this.DETALLE.Name = "DETALLE";
-            this.DETALLE.Width = 80;
-            // 
-            // NOMBRE
-            // 
-            this.NOMBRE.HeaderText = "NOMBRE";
-            this.NOMBRE.Name = "NOMBRE";
-            this.NOMBRE.Width = 79;
-            // 
-            // ARANCEL
-            // 
-            this.ARANCEL.HeaderText = "ARANCEL";
-            this.ARANCEL.Name = "ARANCEL";
-            this.ARANCEL.Width = 82;
-            // 
-            // STOCK
-            // 
-            this.STOCK.HeaderText = "STOCK";
-            this.STOCK.Name = "STOCK";
-            this.STOCK.Width = 68;
-            // 
-            // BARRAS
-            // 
-            this.BARRAS.HeaderText = "BARRAS";
-            this.BARRAS.Name = "BARRAS";
-            this.BARRAS.Width = 76;
             // 
             // btnExportarXls
             // 
@@ -272,11 +241,68 @@
             this.btnImprimirBarcode.UseVisualStyleBackColor = true;
             this.btnImprimirBarcode.Click += new System.EventHandler(this.btnImprimirBarcode_Click);
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Width = 43;
+            // 
+            // DETALLE
+            // 
+            this.DETALLE.HeaderText = "DETALLE";
+            this.DETALLE.Name = "DETALLE";
+            this.DETALLE.Width = 80;
+            // 
+            // NOMBRE
+            // 
+            this.NOMBRE.HeaderText = "NOMBRE";
+            this.NOMBRE.Name = "NOMBRE";
+            this.NOMBRE.Width = 79;
+            // 
+            // ARANCEL
+            // 
+            this.ARANCEL.HeaderText = "ARANCEL";
+            this.ARANCEL.Name = "ARANCEL";
+            this.ARANCEL.Width = 82;
+            // 
+            // STOCK
+            // 
+            this.STOCK.HeaderText = "STOCK";
+            this.STOCK.Name = "STOCK";
+            this.STOCK.Width = 68;
+            // 
+            // BARRAS
+            // 
+            this.BARRAS.HeaderText = "BARRAS";
+            this.BARRAS.Name = "BARRAS";
+            this.BARRAS.Width = 76;
+            // 
+            // BAJA
+            // 
+            this.BAJA.HeaderText = "BAJA";
+            this.BAJA.Name = "BAJA";
+            this.BAJA.Width = 58;
+            // 
+            // ID_SA
+            // 
+            this.ID_SA.HeaderText = "ID_SA";
+            this.ID_SA.Name = "ID_SA";
+            this.ID_SA.Width = 63;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(806, 7);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(311, 23);
+            this.progressBar1.TabIndex = 96;
+            this.progressBar1.Visible = false;
+            // 
             // listadoAranceles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 512);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnImprimirBarcode);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbBarCodeSearch);
@@ -331,5 +357,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ARANCEL;
         private System.Windows.Forms.DataGridViewTextBoxColumn STOCK;
         private System.Windows.Forms.DataGridViewTextBoxColumn BARRAS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BAJA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_SA;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
