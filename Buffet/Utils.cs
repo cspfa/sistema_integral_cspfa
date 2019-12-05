@@ -50,6 +50,54 @@ namespace Buffet
             }
         }
 
+        public bool updateProfEsp(int PROFESIONAL, int ESPECIALIDAD)
+        {
+            try
+            {
+                string QUERY = "UPDATE PROF_ESP SET ESPECIALIDAD = " + ESPECIALIDAD + " WHERE PROFESIONAL = " + PROFESIONAL + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
+        public bool setProfBaja(int PROFESIONAL, string BAJA)
+        {
+            try
+            {
+                string QUERY = "";
+
+                if (BAJA == null)
+                    QUERY = "UPDATE PROFESIONALES SET BAJA = NULL WHERE ID = " + PROFESIONAL + ";";
+                else
+                    QUERY = "UPDATE PROFESIONALES SET BAJA = '" + BAJA + "' WHERE ID = " + PROFESIONAL + ";";
+
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
+        public bool setProfesionalName(int ID, string NOMBRE)
+        {
+            try
+            {
+                string QUERY = "UPDATE PROFESIONALES SET NOMBRE = '" + NOMBRE + "' WHERE ID = " + ID + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
         public DataSet getCategoriasPorRole(string ROLE)
         {
             string QUERY = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + ROLE + "' ORDER BY DETALLE ASC;";

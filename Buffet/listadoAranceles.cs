@@ -47,7 +47,9 @@ namespace Buffet
                 int STOCK = Convert.ToInt32(row[3]);
                 int ID = Convert.ToInt32(row[4]);
                 string BARCODE = row[5].ToString().Trim();
-                dgListadoAranceles.Rows.Add(ID, DETALLE, NOMBRE, ARANCEL, STOCK, BARCODE);
+                string BAJA = row[6].ToString().Trim();
+                string ID_SA = row[7].ToString().Trim();
+                dgListadoAranceles.Rows.Add(ID, DETALLE, NOMBRE, ARANCEL, STOCK, BARCODE, BAJA, ID_SA);
             }
         }
 
@@ -64,19 +66,28 @@ namespace Buffet
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
-                    query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+
+                    string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE, P.BAJA, S.ID ";
+                    query += "FROM SECTACT S, PROFESIONALES P, PROF_ESP PE, ARANCELES A ";
+                    query += "WHERE P.ID = PE.PROFESIONAL AND S.ID = PE.ESPECIALIDAD AND A.PROFESIONAL = PE.PROFESIONAL AND P.ROL = '" + ROLE + "' ";
+                    query += "AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC";
 
                     if (CATEGORIA !="X")
                     {
-                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
-                        query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND S.DETALLE = '" + CATEGORIA + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE, P.BAJA, S.ID ";
+                        query += "FROM SECTACT S, PROFESIONALES P, PROF_ESP PE, ARANCELES A ";
+                        query += "WHERE PE.ESPECIALIDAD = " + CATEGORIA;
+                        query += "AND P.ID = PE.PROFESIONAL AND S.ID = PE.ESPECIALIDAD AND A.PROFESIONAL = PE.PROFESIONAL AND P.ROL = '" + ROLE + "' ";
+                        query += "AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC";
                     }
 
                     if (BARCODE != null)
                     {
-                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE FROM ARANCELES A, SECTACT S, PROFESIONALES P WHERE A.PROFESIONAL = P.ID ";
-                        query += "AND A.SECTACT = S.ID AND S.ROL = '" + ROLE + "' AND P.BARCODE = '" + BARCODE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC;";
+                        query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE, P.BAJA, S.ID ";
+                        query += "FROM SECTACT S, PROFESIONALES P, PROF_ESP PE, ARANCELES A ";
+                        query += "WHERE PE.ESPECIALIDAD = " + CATEGORIA;
+                        query += "AND P.ID = PE.PROFESIONAL AND S.ID = PE.ESPECIALIDAD AND A.PROFESIONAL = PE.PROFESIONAL AND P.ROL = '" + ROLE + "' ";
+                        query += "AND A.FE_BAJA IS NULL AND A.CATSOC = '001' AND P.BARCODE = '" + BARCODE + "' ORDER BY S.DETALLE ASC, P.NOMBRE ASC";
                     }
 
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -280,7 +291,6 @@ namespace Buffet
 
         private void btnExportarXls_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Archivo XLS|*.xls";
             saveFileDialog1.Title = "Guardar Listado";
@@ -292,9 +302,6 @@ namespace Buffet
             }
 
             listadoExcel(RUTA);
-            MessageBox.Show("LISTADO GENERADO CORRECTAMENTE", "LISTO!");
-
-            Cursor = Cursors.Default;
         }
 
         private void releaseObject(object obj)
@@ -319,25 +326,54 @@ namespace Buffet
         {
             if (dgListadoAranceles.Rows.Count > 0)
             {
+                Cursor = Cursors.WaitCursor;
+
+                DataSet CATEGORIAS_ROLE = utils.getCategoriasPorRole("MENU " + VGlobales.vp_role);
+
                 Excel.Application xlApp;
                 Excel.Workbook xlWorkBook;
+
                 Excel.Worksheet ARANCELES;
+                Excel.Worksheet CODIGOS;
+
                 object misValue = System.Reflection.Missing.Value;
                 xlApp = new Excel.Application();
                 xlWorkBook = xlApp.Workbooks.Add();
+
+                Excel.Worksheet CODIGOS_WS;
+                CODIGOS_WS = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+
                 ARANCELES = xlWorkBook.Worksheets[1];
-                ARANCELES.Name = "ARANCELES";
+                ARANCELES.Name = "ARTICULOS";
                 ARANCELES.Cells[1, 1] = "ID";
                 ARANCELES.Cells[1, 2] = "CATEGORIA";
                 ARANCELES.Cells[1, 3] = "NOMBRE";
                 ARANCELES.Cells[1, 4] = "PRECIO";
                 ARANCELES.Cells[1, 5] = "STOCK";
+                ARANCELES.Cells[1, 6] = "BARRAS";
+                ARANCELES.Cells[1, 7] = "BAJA";
+                ARANCELES.Cells[1, 8] = "ID_SA";
+
+                CODIGOS = xlWorkBook.Worksheets[2];
+                CODIGOS.Name = "CODIGOS";
+                CODIGOS.Cells[1, 1] = "ID";
+                CODIGOS.Cells[1, 2] = "CATEGORIA";
+
                 string ID = "";
                 string CATEGORIA = "";
                 string NOMBRE = "";
                 string PRECIO = "";
                 string STOCK = "";
+                string BARRAS = "";
+                string BAJA = "";
+                string ID_SA = "";
+
                 int X = 2;
+                int MAX = dgListadoAranceles.Rows.Count;
+
+                progressBar1.Visible = true;
+                progressBar1.Maximum = MAX;
+                progressBar1.Step = 1;
 
                 foreach (DataGridViewRow row in dgListadoAranceles.Rows)
                 {
@@ -346,26 +382,72 @@ namespace Buffet
                     NOMBRE = row.Cells[2].Value.ToString();
                     PRECIO = row.Cells[3].Value.ToString();
                     STOCK = row.Cells[4].Value.ToString();
+                    BARRAS = row.Cells[5].Value.ToString();
+                    BAJA = row.Cells[6].Value.ToString();
+                    ID_SA = row.Cells[7].Value.ToString();
+
+                    ARANCELES.Columns[1].AutoFit();
+                    ARANCELES.Columns[2].AutoFit();
+                    ARANCELES.Columns[3].AutoFit();
+                    ARANCELES.Columns[4].AutoFit();
+                    ARANCELES.Columns[5].AutoFit();
+                    ARANCELES.Columns[6].AutoFit();
+                    ARANCELES.Columns[7].AutoFit();
+                    ARANCELES.Columns[8].AutoFit();
+                    ARANCELES.Columns[6].NumberFormat = "@";
 
                     ARANCELES.Cells[X, 1] = ID;
-                    ARANCELES.Columns[1].AutoFit();
                     ARANCELES.Cells[X, 2] = CATEGORIA;
-                    ARANCELES.Columns[2].AutoFit();
                     ARANCELES.Cells[X, 3] = NOMBRE;
-                    ARANCELES.Columns[3].AutoFit();
                     ARANCELES.Cells[X, 4] = PRECIO;
-                    ARANCELES.Columns[4].AutoFit();
                     ARANCELES.Cells[X, 5] = STOCK;
-                    ARANCELES.Columns[5].AutoFit();
+                    ARANCELES.Cells[X, 6] = BARRAS;
+                    ARANCELES.Cells[X, 7] = BAJA;
+                    ARANCELES.Cells[X, 8] = ID_SA;
+                    
                     X++;
+                    progressBar1.PerformStep();
                 }
 
-                xlWorkBook.SaveAs(RUTA, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                xlWorkBook.Close(true, misValue, misValue);
-                xlApp.Quit();
-                releaseObject(ARANCELES);
-                releaseObject(xlWorkBook);
-                releaseObject(xlApp);
+                X = 2;
+                MAX = CATEGORIAS_ROLE.Tables[0].Rows.Count;
+                progressBar1.Value = 0;
+                progressBar1.Maximum = MAX;
+
+                foreach (DataRow row in CATEGORIAS_ROLE.Tables[0].Rows)
+                {
+                    string ID_CODIGO = row[0].ToString().Trim();
+                    string DETALLE_CODIGO = row[1].ToString().Trim();
+
+                    CODIGOS.Columns[1].AutoFit();
+                    CODIGOS.Columns[2].AutoFit();
+
+                    CODIGOS.Cells[X, 1] = ID_CODIGO;
+                    CODIGOS.Cells[X, 2] = DETALLE_CODIGO;
+
+                    X++;
+                    progressBar1.PerformStep();
+                }
+
+                try
+                {
+                    xlWorkBook.SaveAs(RUTA, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                    xlWorkBook.Close(true, misValue, misValue);
+                    xlApp.Quit();
+                    releaseObject(ARANCELES);
+                    releaseObject(CODIGOS);
+                    releaseObject(xlWorkBook);
+                    releaseObject(xlApp);
+                    MessageBox.Show("LISTADO GENERADO CORRECTAMENTE", "LISTO!");
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("OCURRION UN ERROR AL ESCRIBIR EL ARCHIVO\n\rFIJATE SI ESTA ABIERTO ;)", "OUCH!");
+                }
+
+                progressBar1.Value = 0;
+                progressBar1.Visible = false;
+                Cursor = Cursors.Default;
             }  
         }
 
@@ -389,7 +471,7 @@ namespace Buffet
                         else
                             MessageBox.Show("NO SE PUDO ACTUALIZAR EL STOCK");
 
-                        string CATEGORIA = cbCategoria.Text.Trim();
+                        string CATEGORIA = cbCategoria.SelectedValue.ToString();
                         buscarAranceles(CATEGORIA);
                     }
                 }
@@ -402,7 +484,7 @@ namespace Buffet
 
         private void btnFiltrar_Click(object sender, EventArgs e)
         {
-            string CATEGORIA = cbCategoria.Text.Trim();
+            string CATEGORIA = cbCategoria.SelectedValue.ToString();
             buscarAranceles(CATEGORIA);
         }
 
@@ -422,7 +504,6 @@ namespace Buffet
             {
                 if (MessageBox.Show("¿CONFIRMA IMPORTAR LOS DATOS DEL ARCHIVO " + ARCHIVO + " ?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    Cursor = Cursors.WaitCursor;
                     OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ARCHIVO + ";Mode=ReadWrite;Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\"");
                     con.Open();
                     DataSet dset = new DataSet();
@@ -431,22 +512,46 @@ namespace Buffet
                     dadp.Fill(dset);
                     DataTable table = dset.Tables[0];
 
+                    progressBar1.Visible = true;
+                    progressBar1.Maximum = table.Rows.Count;
+                    progressBar1.Step = 1;
+                    Cursor = Cursors.WaitCursor;
+
                     for (int i = 0; i < table.Rows.Count; i++)
                     {
                         try
                         {
                             int ID = Convert.ToInt32(table.Rows[i][0]);
+                            string NOMBRE = table.Rows[i][2].ToString();
                             decimal PRECIO = Convert.ToDecimal(table.Rows[i][3]);
                             int STOCK = Convert.ToInt32(table.Rows[i][4]);
+                            string BARRAS = table.Rows[i][5].ToString();
+                            int ID_SA = Convert.ToInt32(table.Rows[i][7]);
+                            string BAJA_FINAL = null;
+
+                            if (table.Rows[i][6].ToString() != "")
+                            {
+                                string BAJA = table.Rows[i][6].ToString().Replace(" 00:00:00", "");
+                                string[] BAJA_AUX = BAJA.Split('/');
+                                BAJA_FINAL = BAJA_AUX[2] + "/" + BAJA_AUX[1] + "/" + BAJA_AUX[0];
+                            }
+
+                            utils.updateProfEsp(ID, ID_SA);
+                            utils.setProfBaja(ID, BAJA_FINAL);
                             utils.setArancel(PRECIO, ID);
                             utils.setStock(STOCK, ID);
+                            utils.setProfesionalName(ID, NOMBRE);
+                            utils.setBarcode(ID, BARRAS);
+                            progressBar1.PerformStep();
                         }
                         catch (Exception) { }
                     }
 
                     MessageBox.Show("ARANCELES Y STOCK IMPORTADOS CORRECTAMENTE");
-                    string CATEGORIA = cbCategoria.Text.Trim();
+                    string CATEGORIA = cbCategoria.SelectedValue.ToString();
                     buscarAranceles(CATEGORIA);
+                    progressBar1.Value = 0;
+                    progressBar1.Visible = false;
                     Cursor = Cursors.Default;
                 }
             }
@@ -459,9 +564,9 @@ namespace Buffet
                 e.Handled = true;
                 SendKeys.Send("{TAB}");
             }*/
-        }
+                }
 
-        private void tbBarCode_Leave(object sender, EventArgs e)
+                private void tbBarCode_Leave(object sender, EventArgs e)
         {
             //MessageBox.Show(sender.ToString());
         }

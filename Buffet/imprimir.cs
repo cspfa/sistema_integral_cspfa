@@ -79,8 +79,8 @@ namespace Buffet
             psol.PrinterSettings.PrinterName = IMPRESORA;
             ORIGINAL_DUPLICADO = "ORIGINAL";
             psol.Print();
-            ORIGINAL_DUPLICADO = "DUPLICADO";
-            psol.Print();
+            //ORIGINAL_DUPLICADO = "DUPLICADO";
+            //psol.Print();
         }
 
         public void imprimirSolicitudEspecial(DataSet S)
@@ -315,6 +315,21 @@ namespace Buffet
                 code39.Code = "CO" + row[19].ToString().Trim();
                 Bitmap bm = new Bitmap(code39.CreateDrawingImage(Color.Black, Color.White));
 
+                if (VGlobales.vp_role == "CPOCABA")
+                {
+                    if (TIPO_COMANDA == "SOCIO")
+                    {
+                        graphics.DrawString("ORIGINAL", courier_big, black, startX, startY + Offset);
+                        Offset = Offset + 20;
+                    }
+
+                    if (TIPO_COMANDA == "SOCIO2")
+                    {
+                        graphics.DrawString("DUPLICADO", courier_big, black, startX, startY + Offset);
+                        Offset = Offset + 20;
+                    }
+                }
+
                 graphics.DrawString("HORA DEL PEDIDO ", courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
                 graphics.DrawString(row[1].ToString(), courier_big, black, startX, startY + Offset);
@@ -326,17 +341,21 @@ namespace Buffet
                     Offset = Offset + 20;
                     graphics.DrawString(row[20].ToString(), courier_big, black, startX, startY + Offset);
                 }
-                
+
                 Offset = Offset + 20;
                 graphics.DrawString("COMANDA " + row[19].ToString(), courier_big, black, startX, startY + Offset);
-                Offset = Offset + 20;
-                graphics.DrawString("BORRADOR " + row[16].ToString(), courier_big, black, startX, startY + Offset);
-                Offset = Offset + 20;
-                graphics.DrawString("MESA " + row[2].ToString(), courier_big, black, startX, startY + Offset);
-                Offset = Offset + 20;
 
-                if (TIPO_COMANDA == "SOCIO")
+                if (VGlobales.vp_role == "CONFITERIA")
+                { 
+                    Offset = Offset + 20;
+                    graphics.DrawString("BORRADOR " + row[16].ToString(), courier_big, black, startX, startY + Offset);
+                    Offset = Offset + 20;
+                    graphics.DrawString("MESA " + row[2].ToString(), courier_big, black, startX, startY + Offset);
+                }
+
+                if (TIPO_COMANDA == "SOCIO" || TIPO_COMANDA == "SOCIO2")
                 {
+                    Offset = Offset + 20;
                     graphics.DrawString("SOCIO " + row[5].ToString() + " " + row[6].ToString() + " " + row[7].ToString(), courier_big, black, startX, startY + Offset);
                     Offset = Offset + 20;
 
@@ -346,7 +365,7 @@ namespace Buffet
                         A_PAGAR = "A PAGAR $ " + row[18].ToString();
 
                         if(row[14].ToString()=="CTA CORRIENTE")
-                            A_PAGAR = "A PAGAR $ " + row[4].ToString();
+                            A_PAGAR = "A PAGAR (C.R.) $ " + row[4].ToString();
 
                         DESC = "DESC % " + row[17].ToString();
                     }
@@ -359,7 +378,9 @@ namespace Buffet
                     Offset = Offset + 20;
                 }
             }
-            
+
+            Offset = Offset + 20;
+
             foreach (DataRow row in ITEMS.Tables[0].Rows)
             {
                 string CANTIDAD = row[1].ToString();
@@ -382,7 +403,8 @@ namespace Buffet
                 }
                 else
                 {
-                    ITEM_FINAL = CANTIDAD + " " + ITEM;
+                    SUBTOTAL = "$ " + row[4].ToString();
+                    ITEM_FINAL = CANTIDAD + " - $ " + VALOR + " - " + ITEM;
                 }
 
                 graphics.DrawString(ITEM_FINAL, courier_med, black, startX, startY + Offset);
@@ -398,7 +420,7 @@ namespace Buffet
                 }
             }
             
-            if (TIPO_COMANDA == "SOCIO")
+            if (TIPO_COMANDA == "SOCIO" || TIPO_COMANDA == "SOCIO2")
             {
                 graphics.DrawString(TOTAL, courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;

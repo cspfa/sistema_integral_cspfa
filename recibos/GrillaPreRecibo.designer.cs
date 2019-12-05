@@ -43,6 +43,7 @@
             this.btnLlamar = new System.Windows.Forms.Button();
             this.btnEnEspera = new System.Windows.Forms.Button();
             this.btnAtendido = new System.Windows.Forms.Button();
+            this.btnAusente = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -179,11 +180,22 @@
             this.btnAtendido.UseVisualStyleBackColor = true;
             this.btnAtendido.Click += new System.EventHandler(this.btnAtendido_Click);
             // 
+            // btnAusente
+            // 
+            this.btnAusente.Location = new System.Drawing.Point(357, 10);
+            this.btnAusente.Name = "btnAusente";
+            this.btnAusente.Size = new System.Drawing.Size(109, 23);
+            this.btnAusente.TabIndex = 13;
+            this.btnAusente.Text = "AUSENTE";
+            this.btnAusente.UseVisualStyleBackColor = true;
+            this.btnAusente.Click += new System.EventHandler(this.BtnAusente_Click);
+            // 
             // GrillaPreRecibo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1263, 562);
+            this.Controls.Add(this.btnAusente);
             this.Controls.Add(this.btnAtendido);
             this.Controls.Add(this.btnEnEspera);
             this.Controls.Add(this.btnLlamar);
@@ -224,5 +236,6 @@
         private System.Windows.Forms.Button btnLlamar;
         private System.Windows.Forms.Button btnEnEspera;
         private System.Windows.Forms.Button btnAtendido;
+        private System.Windows.Forms.Button btnAusente;
     }
 }

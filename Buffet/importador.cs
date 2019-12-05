@@ -335,5 +335,10 @@ namespace Buffet
             if (CAJA_DIARIA > 0)
                 comandas(G_ROL, CAJA_DIARIA);
         }
+
+        private void BtnImportarArticulos_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

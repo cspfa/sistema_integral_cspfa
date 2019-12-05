@@ -52,6 +52,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnImportar = new System.Windows.Forms.Button();
             this.pbImportar = new System.Windows.Forms.ProgressBar();
+            this.btnImportarArticulos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCajasAnteriores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgComandas)).BeginInit();
             this.SuspendLayout();
@@ -250,9 +251,9 @@
             // 
             // btnImportar
             // 
-            this.btnImportar.Location = new System.Drawing.Point(692, 464);
+            this.btnImportar.Location = new System.Drawing.Point(382, 462);
             this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(105, 23);
+            this.btnImportar.Size = new System.Drawing.Size(186, 23);
             this.btnImportar.TabIndex = 62;
             this.btnImportar.Text = "IMPORTAR";
             this.btnImportar.UseVisualStyleBackColor = true;
@@ -262,15 +263,26 @@
             // 
             this.pbImportar.Location = new System.Drawing.Point(12, 465);
             this.pbImportar.Name = "pbImportar";
-            this.pbImportar.Size = new System.Drawing.Size(676, 20);
+            this.pbImportar.Size = new System.Drawing.Size(364, 20);
             this.pbImportar.TabIndex = 87;
             this.pbImportar.Visible = false;
+            // 
+            // btnImportarArticulos
+            // 
+            this.btnImportarArticulos.Location = new System.Drawing.Point(574, 462);
+            this.btnImportarArticulos.Name = "btnImportarArticulos";
+            this.btnImportarArticulos.Size = new System.Drawing.Size(186, 23);
+            this.btnImportarArticulos.TabIndex = 88;
+            this.btnImportarArticulos.Text = "IMPORTAR ARTICULOS";
+            this.btnImportarArticulos.UseVisualStyleBackColor = true;
+            this.btnImportarArticulos.Click += new System.EventHandler(this.BtnImportarArticulos_Click);
             // 
             // importador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 500);
+            this.Controls.Add(this.btnImportarArticulos);
             this.Controls.Add(this.pbImportar);
             this.Controls.Add(this.btnImportar);
             this.Controls.Add(this.label2);
@@ -310,5 +322,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NRO_SOC;
         private System.Windows.Forms.DataGridViewTextBoxColumn NRO_DEP;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_COMANDA;
+        private System.Windows.Forms.Button btnImportarArticulos;
     }
 }
