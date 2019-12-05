@@ -270,7 +270,7 @@ namespace SOCIOS.Factura_Electronica
                
                    
                    bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE, Modo_Facturacion);
-                 
+                   this.Grabo_Fecha_Pto_Vta(PTO_VENTA.ToString("0000"), fecha); 
                   
                    //  bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO,fecha, CAE, VENC_CAE, PTO_VENTA, NUMERO,Monto,tipo_Documento,Documento,Concepto,Tipo_Comprobante);
                
@@ -285,7 +285,7 @@ namespace SOCIOS.Factura_Electronica
        {
 
            bo_Afip.Marca_Afip_Nota_Credito(ID_REGISTRO_RECIBO, NUMERO, CAE, VENC_CAE);
-
+           
 
        }
       
@@ -380,6 +380,25 @@ namespace SOCIOS.Factura_Electronica
         return CUIT_ENTIDAD +TipoFactura + Utils.CompletarCeros(Pto.ToString(), false, 4) + Utils.CompletarCeros(CAE, false, 13) + VencimientoCAE + "9";
        }
 
+       //public DateTime ProximaFechaFacturar(DateTime fecha, int PuntoVta)
+       //{ 
+       //}
+       public void Grabo_Fecha_Pto_Vta(string PtoVta,DateTime Fecha)
+       {
+           try
+           {
+               SOCIOS.db db = new SOCIOS.db();
+               string QUERY = "UPDATE PUNTOS_DE_VENTA SET FECHA_WS='"+ Fecha.ToShortDateString() + "' where PTO_VTA ='" +PtoVta+"'";
+               
+               
+               db.Ejecuto_Consulta(QUERY);
+               
+           }
+           catch
+           {
+               
+           }
+       }
 
-    }
+    } 
 }
