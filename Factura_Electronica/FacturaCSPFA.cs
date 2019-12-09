@@ -388,7 +388,7 @@ namespace SOCIOS.Factura_Electronica
            try
            {
                SOCIOS.db db = new SOCIOS.db();
-               string QUERY = "UPDATE PUNTOS_DE_VENTA SET FECHA_WS='"+ Fecha.ToShortDateString() + "' where PTO_VTA ='" +PtoVta+"'";
+               string QUERY = "UPDATE PUNTOS_DE_VENTA SET FECHA_WS='" + String.Format("{0:mm/dd/yyyy}",Fecha) + "' where PTO_VTA ='" + PtoVta + "'";
                
                
                db.Ejecuto_Consulta(QUERY);
