@@ -694,7 +694,7 @@ namespace SOCIOS
                                     if (result.Result == true)
                                     {
                                         imp_fact.Genero_PDF(TC, int.Parse(PTO_VTA_O), result.Numero, DateTime.Now, DENI, COND_IVA, NOMBRE_SOCIO, IMPORTE,
-                                            result.Cae, FECHA_RECIBO, "ORIGINAL", CONCEPTO, recibo_id);
+                                            result.Cae, DateTime.Now.AddDays(10).ToShortDateString(), "ORIGINAL", CONCEPTO, recibo_id);
                                         NRO_FACT_ELECT = result.Numero.ToString();
                                     }
                                     //else

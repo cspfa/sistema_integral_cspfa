@@ -246,7 +246,7 @@ namespace SOCIOS.Factura_Electronica
             if (foundRows.Length > 0)
             {
                 Forma_Pago = Int32.Parse(foundRows[0][0].ToString());
-                Leyenda_Domicilio =foundRows[0][1].ToString();
+                Leyenda_Domicilio = foundRows[0][1].ToString();
                 this.Get_Forma_Pago(Forma_Pago);
 
                 //if (foundRows[0][2].ToString().Length > 0)
@@ -254,6 +254,10 @@ namespace SOCIOS.Factura_Electronica
                 //else
                 //    Leyenda_Profesional = "";
 
+            }
+            else
+            {
+                this.Get_Forma_Pago_X_Recibo(ID);
             }
             
         
@@ -279,6 +283,29 @@ namespace SOCIOS.Factura_Electronica
             {
                 Leyenda_Forma_Pago = foundRows[0][0].ToString();
             
+
+            }
+
+
+        }
+        public void Get_Forma_Pago_X_Recibo(int ID)
+        {
+
+
+
+            string QUERY = @"select F.detalle From recibos_caja R, Formas_De_Pago F where  R.ID=" + ID.ToString() + " and R.Forma_Pago=F.ID";
+
+
+
+
+            DataRow[] foundRows;
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                Leyenda_Forma_Pago = foundRows[0][0].ToString();
+
 
             }
 
