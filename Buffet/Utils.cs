@@ -50,6 +50,48 @@ namespace Buffet
             }
         }
 
+        public bool addNroOrden(string ROLE, int VALOR)
+        {
+            try
+            {
+                string QUERY = "UPDATE CONFIG SET VALOR = " + VALOR + " WHERE PARAM = 'NRO_ORDEN' AND ROL = '" + ROLE + "';";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
+        public bool resetNroOrden(string ROLE)
+        {
+            try
+            {
+                string QUERY = "UPDATE CONFIG SET VALOR = 0 WHERE PARAM = 'NRO_ORDEN' AND ROL = '" + ROLE + "';";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception error)
+            {
+                return false;
+            }
+        }
+
+        public int getNroOrden(string ROLE)
+        {
+            int NRO_ORDEN = 0;
+            string QUERY = "SELECT VALOR FROM CONFIG WHERE PARAM = 'NRO_ORDEN' AND ROL = '" + ROLE + "';";
+            DataSet GET = getDataFromQuery(QUERY);
+
+            foreach(DataRow row in GET.Tables[0].Rows)
+            {
+                NRO_ORDEN = Convert.ToInt16(row[0]);
+            }
+
+            return NRO_ORDEN;
+        }
+
         public bool updateProfEsp(int PROFESIONAL, int ESPECIALIDAD)
         {
             try
@@ -96,6 +138,13 @@ namespace Buffet
             {
                 return false;
             }
+        }
+
+        public DataSet getReservadosPorRole(string ROLE)
+        {
+            string QUERY = "SELECT COUNT(ID) FROM PROFESIONALES WHERE NOMBRE = 'RESERVADO' AND ROL = '" + ROLE + "';";
+            DataSet GET = getDataFromQuery(QUERY);
+            return GET;
         }
 
         public DataSet getCategoriasPorRole(string ROLE)
@@ -178,9 +227,9 @@ namespace Buffet
             }
         }
 
-        public string getNroOrdenComanda()
+        public string getNroOrdenComanda(string ROL)
         {
-            string QUERY = "SELECT MAX(NRO_ORDEN) FROM CONFITERIA_COMANDAS";
+            string QUERY = "SELECT MAX(NRO_ORDEN) FROM CONFITERIA_COMANDAS WHERE ROL = '" + ROL + "';";
             DataSet GET = getDataFromQuery(QUERY);
             string RETURN = "";
 
@@ -300,6 +349,20 @@ namespace Buffet
             return GET;
         }
 
+        public int getNextItemId(string ROL)
+        {
+            string QUERY = "SELECT FIRST(1) ID FROM PROFESIONALES WHERE NOMBRE = 'RESERVADO'  AND ROL = '" + ROL + "' ORDER BY ID";
+            DataSet GET = getDataFromQuery(QUERY);
+            int ID = 0;
+
+            foreach (DataRow row in GET.Tables[0].Rows)
+            {
+                ID = int.Parse(row[0].ToString());
+            }
+
+            return ID;
+        }
+
         public DataSet getItemsByComanda(int ID_COMANDA)
         {
             string QUERY = "SELECT CANTIDAD, TIPO_DETALLE, ITEM_DETALLE, VALOR, SUBTOTAL FROM CONFITERIA_COMANDA_ITEM WHERE COMANDA = " + ID_COMANDA + " ORDER BY ID DESC;";
@@ -321,6 +384,20 @@ namespace Buffet
             }
         }
 
+        public bool setNewItem(int ID, string NOMBRE, string CODEBAR)
+        {
+            try
+            {
+                string QUERY = "UPDATE PROFESIONALES SET NOMBRE = '" + NOMBRE + "', BARCODE = '" + CODEBAR + "'  WHERE ID = " + ID + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool setArancel(decimal ARANCEL, int ID_PROF)
         {
             try
@@ -333,6 +410,70 @@ namespace Buffet
             {
                 return false;
             }
+        }
+
+        public bool setCcPaga(int ID_COMANDA, string FECHA)
+        {
+            try
+            {
+                string QUERY = "UPDATE CONFITERIA_COMANDAS SET CC_PAGA = '" + FECHA + "' WHERE ID = " + ID_COMANDA + ";";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool setArancel(decimal ARANCEL, int ID_PROF, int SECTACT)
+        {
+            try
+            {
+                string QUERY = "UPDATE ARANCELES SET ARANCEL = " + ARANCEL + ", SECTACT = " + SECTACT + ", CATSOC = '001' WHERE PROFESIONAL = " + ID_PROF + " AND FE_BAJA IS NULL;";
+                db.Ejecuto_Consulta(QUERY);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public int getTipoComanda(int ID_COMANDA)
+        {
+            int TIPO = 0;
+
+            string QUERY = "SELECT TIPO_COMANDA FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA + ";";
+            DataSet GET = getDataFromQuery(QUERY);
+
+            if (GET.Tables.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                     TIPO = Convert.ToInt32(ROW[0]);
+                }
+            }
+
+            return TIPO;
+        }
+
+        public int getFormaDePago(int ID_COMANDA)
+        {
+            int FP = 0;
+
+            string QUERY = "SELECT FORMA_DE_PAGO FROM CONFITERIA_COMANDAS WHERE ID = " + ID_COMANDA + ";";
+            DataSet GET = getDataFromQuery(QUERY);
+
+            if (GET.Tables.Count > 0)
+            {
+                foreach (DataRow ROW in GET.Tables[0].Rows)
+                {
+                    FP = Convert.ToInt32(ROW[0]);
+                }
+            }
+
+            return FP;
         }
 
         public bool getTieneDescuento(int TIPO_COMANDA)

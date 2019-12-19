@@ -507,7 +507,7 @@ namespace Buffet
                     OleDbConnection con = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ARCHIVO + ";Mode=ReadWrite;Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\"");
                     con.Open();
                     DataSet dset = new DataSet();
-                    OleDbDataAdapter dadp = new OleDbDataAdapter("SELECT * FROM [ARANCELES$] WHERE ID IS NOT NULL;", con);
+                    OleDbDataAdapter dadp = new OleDbDataAdapter("SELECT * FROM [ARTICULOS$] WHERE ID IS NOT NULL;", con);
                     dadp.TableMappings.Add("ID", "CATEGORIA");
                     dadp.Fill(dset);
                     DataTable table = dset.Tables[0];
@@ -538,7 +538,7 @@ namespace Buffet
 
                             utils.updateProfEsp(ID, ID_SA);
                             utils.setProfBaja(ID, BAJA_FINAL);
-                            utils.setArancel(PRECIO, ID);
+                            utils.setArancel(PRECIO, ID, ID_SA);
                             utils.setStock(STOCK, ID);
                             utils.setProfesionalName(ID, NOMBRE);
                             utils.setBarcode(ID, BARRAS);

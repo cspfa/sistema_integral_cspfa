@@ -285,8 +285,8 @@ namespace SOCIOS
             {
                 DataRow[] CAJAS = cajas();
                 DataRow[] RECIBOS = recibos();
-                DataRow[] BONOS = bonos();
-                int MAX = CAJAS.Length + RECIBOS.Length + BONOS.Length;
+                //DataRow[] BONOS = bonos();
+                int MAX = CAJAS.Length + RECIBOS.Length;
                 pbImportar.Visible = true;
                 pbImportar.Maximum = MAX;
                 pbImportar.Step = 1;
@@ -363,7 +363,7 @@ namespace SOCIOS
                     }
                 }
 
-                if (BONOS.Length > 0)
+                /*if (BONOS.Length > 0)
                 {
                     int ID; int CUENTA_DEBE; int CUENTA_HABER; int SECTACT; int ID_SOCIO; decimal VALOR; string FECHA_ALTA; string FORMA_PAGO; string USUARIO; int DESTINO;
                     string USUARIO_MOD; string FECHA_RECIBO; int ID_PROFESIONAL; string ANULADO; string NOMBRE_SOCIO_TITULAR; string TIPO_SOCIO_TITULAR; string OBSERVACIONES;
@@ -388,7 +388,7 @@ namespace SOCIOS
 
                         pbImportar.PerformStep();
                     }
-                }
+                }*/
 
                 MessageBox.Show("CAJAS Y COMPROBANTES IMPORTADOS CORRECTAMENTE", "LISTO");
                 pbImportar.Visible = false;

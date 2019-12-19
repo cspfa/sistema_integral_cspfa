@@ -138,6 +138,8 @@ namespace SOCIOS
             Ubicacion_Delfo = ini.ReadString("UBICACION_DELFO");
             Servidor_Belgrano = ini.ReadString("BELGRANO_TEST");
             Ubicacion_Belgrano = ini.ReadString("UBICACION_BELGRANO");
+            Servidor_Belgrano = ini.ReadString("BELGRANO_TEST");
+            Ubicacion_Belgrano = ini.ReadString("UBICACION_BELGRANO");
             VGlobales.MODO_FACTURACION = ini.ReadString("MODO_FACTURACION");
             VGlobales.PUESTO_ATENCION = ini.ReadString("PUESTO_ATENCION");
             Impresora = ini.ReadString("IMPRESORA");

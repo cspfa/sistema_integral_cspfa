@@ -44,24 +44,6 @@
             this.dpHasta = new System.Windows.Forms.DateTimePicker();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.dgComandas = new System.Windows.Forms.DataGridView();
-            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ANULADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IMPORTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NOM_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AFILIADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BENEFICIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CONTRALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FORMA_DE_PAGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BORRADOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CONSUME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PERSONAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID_COMANDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MESA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgItems = new System.Windows.Forms.DataGridView();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.COM = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,6 +66,7 @@
             this.desanularComandaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarFormaDePagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarTipoDeComandaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cuentaCorrientePagadaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbTipoComprobante = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmSolicitudes = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -102,6 +85,26 @@
             this.tbHoraHasta = new System.Windows.Forms.MaskedTextBox();
             this.btnListadoCompleto = new System.Windows.Forms.Button();
             this.btnListado = new System.Windows.Forms.Button();
+            this.cbPagadas = new System.Windows.Forms.CheckBox();
+            this.CANTIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ANULADA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IMPORTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NOM_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_SOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NRO_DEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BARRA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AFILIADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BENEFICIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DESCUENTO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONTRALOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FORMA_DE_PAGO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BORRADOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CONSUME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PERSONAS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID_COMANDA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MESA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CC_PAGA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgComandas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgItems)).BeginInit();
             this.cmComandas.SuspendLayout();
@@ -111,7 +114,7 @@
             // dpDesde
             // 
             this.dpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpDesde.Location = new System.Drawing.Point(620, 9);
+            this.dpDesde.Location = new System.Drawing.Point(599, 9);
             this.dpDesde.Name = "dpDesde";
             this.dpDesde.Size = new System.Drawing.Size(86, 20);
             this.dpDesde.TabIndex = 0;
@@ -119,7 +122,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(572, 13);
+            this.label1.Location = new System.Drawing.Point(549, 13);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 1;
@@ -128,7 +131,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(768, 13);
+            this.label2.Location = new System.Drawing.Point(737, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 3;
@@ -137,14 +140,14 @@
             // dpHasta
             // 
             this.dpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpHasta.Location = new System.Drawing.Point(815, 9);
+            this.dpHasta.Location = new System.Drawing.Point(785, 9);
             this.dpHasta.Name = "dpHasta";
             this.dpHasta.Size = new System.Drawing.Size(86, 20);
             this.dpHasta.TabIndex = 2;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(1236, 5);
+            this.btnBuscar.Location = new System.Drawing.Point(1252, 5);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(70, 28);
             this.btnBuscar.TabIndex = 4;
@@ -190,7 +193,8 @@
             this.CONSUME,
             this.PERSONAS,
             this.ID_COMANDA,
-            this.MESA});
+            this.MESA,
+            this.CC_PAGA});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -221,126 +225,6 @@
             this.dgComandas.TabIndex = 59;
             this.dgComandas.Click += new System.EventHandler(this.dgComandas_Click);
             this.dgComandas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dgComandas_MouseDown);
-            // 
-            // CANTIDAD
-            // 
-            this.CANTIDAD.HeaderText = "#";
-            this.CANTIDAD.Name = "CANTIDAD";
-            this.CANTIDAD.ReadOnly = true;
-            this.CANTIDAD.Width = 60;
-            // 
-            // ANULADA
-            // 
-            this.ANULADA.HeaderText = "ANULADA";
-            this.ANULADA.Name = "ANULADA";
-            this.ANULADA.ReadOnly = true;
-            this.ANULADA.Width = 70;
-            // 
-            // FECHA
-            // 
-            this.FECHA.HeaderText = "FECHA";
-            this.FECHA.Name = "FECHA";
-            this.FECHA.ReadOnly = true;
-            this.FECHA.Width = 140;
-            // 
-            // IMPORTE
-            // 
-            this.IMPORTE.HeaderText = "IMPORTE";
-            this.IMPORTE.Name = "IMPORTE";
-            this.IMPORTE.ReadOnly = true;
-            this.IMPORTE.Width = 75;
-            // 
-            // NOM_SOC
-            // 
-            this.NOM_SOC.HeaderText = "NOMBRE Y APELLIDO";
-            this.NOM_SOC.Name = "NOM_SOC";
-            this.NOM_SOC.ReadOnly = true;
-            this.NOM_SOC.Width = 220;
-            // 
-            // NRO_SOC
-            // 
-            this.NRO_SOC.HeaderText = "SOC";
-            this.NRO_SOC.Name = "NRO_SOC";
-            this.NRO_SOC.ReadOnly = true;
-            this.NRO_SOC.Width = 55;
-            // 
-            // NRO_DEP
-            // 
-            this.NRO_DEP.HeaderText = "DEP";
-            this.NRO_DEP.Name = "NRO_DEP";
-            this.NRO_DEP.ReadOnly = true;
-            this.NRO_DEP.Width = 55;
-            // 
-            // BARRA
-            // 
-            this.BARRA.HeaderText = "/";
-            this.BARRA.Name = "BARRA";
-            this.BARRA.ReadOnly = true;
-            this.BARRA.Width = 30;
-            // 
-            // AFILIADO
-            // 
-            this.AFILIADO.HeaderText = "AFILIADO";
-            this.AFILIADO.Name = "AFILIADO";
-            this.AFILIADO.ReadOnly = true;
-            // 
-            // BENEFICIO
-            // 
-            this.BENEFICIO.HeaderText = "BENEFICIO";
-            this.BENEFICIO.Name = "BENEFICIO";
-            this.BENEFICIO.ReadOnly = true;
-            // 
-            // DESCUENTO
-            // 
-            this.DESCUENTO.HeaderText = "DESC";
-            this.DESCUENTO.Name = "DESCUENTO";
-            this.DESCUENTO.ReadOnly = true;
-            this.DESCUENTO.Width = 60;
-            // 
-            // CONTRALOR
-            // 
-            this.CONTRALOR.HeaderText = "CONTRA";
-            this.CONTRALOR.Name = "CONTRALOR";
-            this.CONTRALOR.ReadOnly = true;
-            this.CONTRALOR.Width = 60;
-            // 
-            // FORMA_DE_PAGO
-            // 
-            this.FORMA_DE_PAGO.HeaderText = "F PAGO";
-            this.FORMA_DE_PAGO.Name = "FORMA_DE_PAGO";
-            this.FORMA_DE_PAGO.ReadOnly = true;
-            // 
-            // BORRADOR
-            // 
-            this.BORRADOR.HeaderText = "CB";
-            this.BORRADOR.Name = "BORRADOR";
-            this.BORRADOR.ReadOnly = true;
-            this.BORRADOR.Width = 75;
-            // 
-            // CONSUME
-            // 
-            this.CONSUME.HeaderText = "CONSUME";
-            this.CONSUME.Name = "CONSUME";
-            this.CONSUME.ReadOnly = true;
-            // 
-            // PERSONAS
-            // 
-            this.PERSONAS.HeaderText = "PERSONAS";
-            this.PERSONAS.Name = "PERSONAS";
-            this.PERSONAS.ReadOnly = true;
-            this.PERSONAS.Visible = false;
-            // 
-            // ID_COMANDA
-            // 
-            this.ID_COMANDA.HeaderText = "ID_COMANDA";
-            this.ID_COMANDA.Name = "ID_COMANDA";
-            this.ID_COMANDA.ReadOnly = true;
-            // 
-            // MESA
-            // 
-            this.MESA.HeaderText = "MESA";
-            this.MESA.Name = "MESA";
-            this.MESA.ReadOnly = true;
             // 
             // dgItems
             // 
@@ -484,7 +368,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(984, 13);
+            this.label4.Location = new System.Drawing.Point(926, 13);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(96, 13);
             this.label4.TabIndex = 64;
@@ -494,10 +378,12 @@
             // 
             this.cbFormaDePago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFormaDePago.FormattingEnabled = true;
-            this.cbFormaDePago.Location = new System.Drawing.Point(1084, 9);
+            this.cbFormaDePago.Location = new System.Drawing.Point(1026, 9);
             this.cbFormaDePago.Name = "cbFormaDePago";
             this.cbFormaDePago.Size = new System.Drawing.Size(135, 21);
             this.cbFormaDePago.TabIndex = 65;
+            this.cbFormaDePago.SelectedIndexChanged += new System.EventHandler(this.CbFormaDePago_SelectedIndexChanged);
+            this.cbFormaDePago.SelectionChangeCommitted += new System.EventHandler(this.CbFormaDePago_SelectionChangeCommitted);
             // 
             // cmComandas
             // 
@@ -508,9 +394,10 @@
             this.modificarItemsToolStripMenuItem,
             this.desanularComandaToolStripMenuItem,
             this.cambiarFormaDePagoToolStripMenuItem,
-            this.cambiarTipoDeComandaToolStripMenuItem});
+            this.cambiarTipoDeComandaToolStripMenuItem,
+            this.cuentaCorrientePagadaToolStripMenuItem});
             this.cmComandas.Name = "cmComandas";
-            this.cmComandas.Size = new System.Drawing.Size(245, 158);
+            this.cmComandas.Size = new System.Drawing.Size(245, 180);
             // 
             // imprimirComandaToolStripMenuItem
             // 
@@ -566,6 +453,13 @@
             this.cambiarTipoDeComandaToolStripMenuItem.Name = "cambiarTipoDeComandaToolStripMenuItem";
             this.cambiarTipoDeComandaToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
             this.cambiarTipoDeComandaToolStripMenuItem.Text = "Cambiar Tipo de Comanda";
+            // 
+            // cuentaCorrientePagadaToolStripMenuItem
+            // 
+            this.cuentaCorrientePagadaToolStripMenuItem.Name = "cuentaCorrientePagadaToolStripMenuItem";
+            this.cuentaCorrientePagadaToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.cuentaCorrientePagadaToolStripMenuItem.Text = "Cuenta Corriente Pagada";
+            this.cuentaCorrientePagadaToolStripMenuItem.Click += new System.EventHandler(this.CuentaCorrientePagadaToolStripMenuItem_Click);
             // 
             // cbTipoComprobante
             // 
@@ -623,7 +517,7 @@
             // cbSoloAnuladas
             // 
             this.cbSoloAnuladas.AutoSize = true;
-            this.cbSoloAnuladas.Location = new System.Drawing.Point(463, 11);
+            this.cbSoloAnuladas.Location = new System.Drawing.Point(456, 11);
             this.cbSoloAnuladas.Name = "cbSoloAnuladas";
             this.cbSoloAnuladas.Size = new System.Drawing.Size(84, 17);
             this.cbSoloAnuladas.TabIndex = 71;
@@ -697,7 +591,7 @@
             // 
             // tbHoraDesde
             // 
-            this.tbHoraDesde.Location = new System.Drawing.Point(710, 9);
+            this.tbHoraDesde.Location = new System.Drawing.Point(690, 9);
             this.tbHoraDesde.Mask = "00";
             this.tbHoraDesde.Name = "tbHoraDesde";
             this.tbHoraDesde.Size = new System.Drawing.Size(42, 20);
@@ -706,7 +600,7 @@
             // 
             // tbHoraHasta
             // 
-            this.tbHoraHasta.Location = new System.Drawing.Point(905, 9);
+            this.tbHoraHasta.Location = new System.Drawing.Point(875, 9);
             this.tbHoraHasta.Mask = "00";
             this.tbHoraHasta.Name = "tbHoraHasta";
             this.tbHoraHasta.Size = new System.Drawing.Size(42, 20);
@@ -733,11 +627,149 @@
             this.btnListado.UseVisualStyleBackColor = true;
             this.btnListado.Click += new System.EventHandler(this.btnListado_Click);
             // 
+            // cbPagadas
+            // 
+            this.cbPagadas.AutoSize = true;
+            this.cbPagadas.Enabled = false;
+            this.cbPagadas.Location = new System.Drawing.Point(1169, 11);
+            this.cbPagadas.Name = "cbPagadas";
+            this.cbPagadas.Size = new System.Drawing.Size(77, 17);
+            this.cbPagadas.TabIndex = 89;
+            this.cbPagadas.Text = "PAGADAS";
+            this.cbPagadas.UseVisualStyleBackColor = true;
+            // 
+            // CANTIDAD
+            // 
+            this.CANTIDAD.HeaderText = "#";
+            this.CANTIDAD.Name = "CANTIDAD";
+            this.CANTIDAD.ReadOnly = true;
+            this.CANTIDAD.Width = 60;
+            // 
+            // ANULADA
+            // 
+            this.ANULADA.HeaderText = "ANULADA";
+            this.ANULADA.Name = "ANULADA";
+            this.ANULADA.ReadOnly = true;
+            this.ANULADA.Width = 70;
+            // 
+            // FECHA
+            // 
+            this.FECHA.HeaderText = "FECHA";
+            this.FECHA.Name = "FECHA";
+            this.FECHA.ReadOnly = true;
+            this.FECHA.Width = 140;
+            // 
+            // IMPORTE
+            // 
+            this.IMPORTE.HeaderText = "IMPORTE";
+            this.IMPORTE.Name = "IMPORTE";
+            this.IMPORTE.ReadOnly = true;
+            this.IMPORTE.Width = 75;
+            // 
+            // NOM_SOC
+            // 
+            this.NOM_SOC.HeaderText = "NOMBRE Y APELLIDO";
+            this.NOM_SOC.Name = "NOM_SOC";
+            this.NOM_SOC.ReadOnly = true;
+            this.NOM_SOC.Width = 220;
+            // 
+            // NRO_SOC
+            // 
+            this.NRO_SOC.HeaderText = "SOC";
+            this.NRO_SOC.Name = "NRO_SOC";
+            this.NRO_SOC.ReadOnly = true;
+            this.NRO_SOC.Width = 55;
+            // 
+            // NRO_DEP
+            // 
+            this.NRO_DEP.HeaderText = "DEP";
+            this.NRO_DEP.Name = "NRO_DEP";
+            this.NRO_DEP.ReadOnly = true;
+            this.NRO_DEP.Width = 55;
+            // 
+            // BARRA
+            // 
+            this.BARRA.HeaderText = "/";
+            this.BARRA.Name = "BARRA";
+            this.BARRA.ReadOnly = true;
+            this.BARRA.Width = 30;
+            // 
+            // AFILIADO
+            // 
+            this.AFILIADO.HeaderText = "AFILIADO";
+            this.AFILIADO.Name = "AFILIADO";
+            this.AFILIADO.ReadOnly = true;
+            // 
+            // BENEFICIO
+            // 
+            this.BENEFICIO.HeaderText = "BENEFICIO";
+            this.BENEFICIO.Name = "BENEFICIO";
+            this.BENEFICIO.ReadOnly = true;
+            // 
+            // DESCUENTO
+            // 
+            this.DESCUENTO.HeaderText = "DESC";
+            this.DESCUENTO.Name = "DESCUENTO";
+            this.DESCUENTO.ReadOnly = true;
+            this.DESCUENTO.Width = 60;
+            // 
+            // CONTRALOR
+            // 
+            this.CONTRALOR.HeaderText = "CONTRA";
+            this.CONTRALOR.Name = "CONTRALOR";
+            this.CONTRALOR.ReadOnly = true;
+            this.CONTRALOR.Width = 60;
+            // 
+            // FORMA_DE_PAGO
+            // 
+            this.FORMA_DE_PAGO.HeaderText = "F PAGO";
+            this.FORMA_DE_PAGO.Name = "FORMA_DE_PAGO";
+            this.FORMA_DE_PAGO.ReadOnly = true;
+            // 
+            // BORRADOR
+            // 
+            this.BORRADOR.HeaderText = "CB";
+            this.BORRADOR.Name = "BORRADOR";
+            this.BORRADOR.ReadOnly = true;
+            this.BORRADOR.Width = 75;
+            // 
+            // CONSUME
+            // 
+            this.CONSUME.HeaderText = "CONSUME";
+            this.CONSUME.Name = "CONSUME";
+            this.CONSUME.ReadOnly = true;
+            // 
+            // PERSONAS
+            // 
+            this.PERSONAS.HeaderText = "PERSONAS";
+            this.PERSONAS.Name = "PERSONAS";
+            this.PERSONAS.ReadOnly = true;
+            this.PERSONAS.Visible = false;
+            // 
+            // ID_COMANDA
+            // 
+            this.ID_COMANDA.HeaderText = "ID_COMANDA";
+            this.ID_COMANDA.Name = "ID_COMANDA";
+            this.ID_COMANDA.ReadOnly = true;
+            // 
+            // MESA
+            // 
+            this.MESA.HeaderText = "MESA";
+            this.MESA.Name = "MESA";
+            this.MESA.ReadOnly = true;
+            // 
+            // CC_PAGA
+            // 
+            this.CC_PAGA.HeaderText = "CC_PAGA";
+            this.CC_PAGA.Name = "CC_PAGA";
+            this.CC_PAGA.ReadOnly = true;
+            // 
             // listadoComandas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1334, 669);
+            this.Controls.Add(this.cbPagadas);
             this.Controls.Add(this.btnListado);
             this.Controls.Add(this.btnListadoCompleto);
             this.Controls.Add(this.tbHoraHasta);
@@ -813,6 +845,20 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.MaskedTextBox tbHoraDesde;
         private System.Windows.Forms.MaskedTextBox tbHoraHasta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn COM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CANT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VALOR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SUBTOTAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_DETALLE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM_DETALLE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IMPRESO;
+        private System.Windows.Forms.Button btnListadoCompleto;
+        private System.Windows.Forms.Button btnListado;
+        private System.Windows.Forms.ToolStripMenuItem cuentaCorrientePagadaToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbPagadas;
         private System.Windows.Forms.DataGridViewTextBoxColumn CANTIDAD;
         private System.Windows.Forms.DataGridViewTextBoxColumn ANULADA;
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
@@ -831,17 +877,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PERSONAS;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_COMANDA;
         private System.Windows.Forms.DataGridViewTextBoxColumn MESA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn COM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CANT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VALOR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SUBTOTAL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TIPO_DETALLE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ITEM_DETALLE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IMPRESO;
-        private System.Windows.Forms.Button btnListadoCompleto;
-        private System.Windows.Forms.Button btnListado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CC_PAGA;
     }
 }

@@ -2106,7 +2106,7 @@ namespace SOCIOS
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO GENERAL BELGRANO", "CPORANELAGH");
+            importarComprobantes ic = new importarComprobantes("IMPORTAR COMPROBANTES CAMPO GENERAL BELGRANO", "CPOPOLVORINES");
             ic.ShowDialog();
         }
 

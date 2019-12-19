@@ -100,39 +100,63 @@ namespace Buffet
                         {
                             if (cbSoloAnuladas.Checked == false)
                             {
-                                if (FORMA_DE_PAGO == "10")
+                                if (FORMA_DE_PAGO == "10") //TODAS
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA ";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA, C.CC_PAGA ";
                                     QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+
+                                    if(cbPagadas.Checked == true)
+                                    {
+                                        QUERY += "AND CC_PAGA IS NOT NULL ";
+                                    }
+
                                     QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
                                 else
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA ";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA, C.CC_PAGA ";
                                     QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+
+                                    if (cbPagadas.Checked == true)
+                                    {
+                                        QUERY += "AND CC_PAGA IS NOT NULL ";
+                                    }
+
                                     QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = " + FORMA_DE_PAGO + " AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
 
                             }
                             else
                             {
-                                if (FORMA_DE_PAGO == "10")
+                                if (FORMA_DE_PAGO == "10") //TODAS
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA ";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA, C.CC_PAGA ";
                                     QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+
+                                    if (cbPagadas.Checked == true)
+                                    {
+                                        QUERY += "AND CC_PAGA IS NOT NULL ";
+                                    }
+
                                     QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.FORMA_DE_PAGO = " + FORMA_DE_PAGO + " AND C.FORMA_DE_PAGO = F.ID AND C.ANULADA IS NOT NULL AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
                                 else
                                 {
-                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA ";
+                                    QUERY = "SELECT C.ID, C.FECHA, C.IMPORTE, C.NOMBRE_SOCIO, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, C.CONTRALOR, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.CONSUME, C.PERSONAS, C.NRO_COMANDA, C.MESA, C.CC_PAGA ";
                                     QUERY += "FROM CONFITERIA_COMANDAS C, FORMAS_DE_PAGO F WHERE CAST(C.FECHA AS DATE) >= '" + DESDE + "' AND CAST(C.FECHA AS DATE) <= '" + HASTA + "' AND EXTRACT(HOUR FROM FECHA) >= " + HORA_DESDE;
+
+                                    if (cbPagadas.Checked == true)
+                                    {
+                                        QUERY += "AND CC_PAGA IS NOT NULL ";
+                                    }
+
                                     QUERY += " AND EXTRACT(HOUR FROM FECHA) <= " + HORA_HASTA + " AND C.ANULADA IS NOT NULL AND C.FORMA_DE_PAGO = F.ID AND C.TIPO_COMANDA = " + TIPO_DE_COMANDA + " AND C.ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC";
                                 }
                             }
                         }
                         else
                         {
-                            QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.NRO_COMANDA ";
+                            QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.NRO_COMANDA, C.MESA, C.CC_PAGA  ";
                             QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                             QUERY += "WHERE C.ID = " + ID_COMANDA + " AND C.MOZO = M.ID AND C.FORMA_DE_PAGO = F.ID;";
                         }
@@ -215,6 +239,7 @@ namespace Buffet
                     string PERSONAS = "";
                     string NRO_COMANDA = row[16].ToString().Trim();
                     string MESA = row[17].ToString().Trim();
+                    string CC_PAGA = row[18].ToString().Trim().Replace(" 00:00:00", "");
 
                     if (cbTipoComprobante.SelectedItem.ToString() != "SOLICITUD DE DESCUENTO")
                     {
@@ -223,7 +248,7 @@ namespace Buffet
 
                     if (cbTipoComprobante.SelectedItem.ToString() == "COMANDA")
                     {
-                        dgComandas.Rows.Add(NRO_COMANDA, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS, ID, MESA);
+                        dgComandas.Rows.Add(NRO_COMANDA, ANULADA, FECHA, IMPORTE, NOM_SOC, NRO_SOC, NRO_DEP, BARRA, AFILIADO, BENEFICIO, DESCUENTO, CONTRALOR, FORMA_DE_PAGO, BORRADOR, CONSUME, PERSONAS, ID, MESA, CC_PAGA);
                     }
 
                     if (cbTipoComprobante.SelectedItem.ToString() == "SOLICITUD DE DESCUENTO")
@@ -926,6 +951,54 @@ namespace Buffet
             grillaPreComanda gpc = new grillaPreComanda();
             gpc.imprimirListado(COMANDAS_LISTADO, "SI", "SI");
             Cursor = Cursors.Default;
+        }
+
+        private void CuentaCorrientePagadaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgComandas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("SELECCIONAR POR LO MENOS UNA COMANDA", "ERROR");
+            }
+            else
+            {
+                Utils utils = new Utils();
+                bool RESULT = false;
+                
+                foreach (DataGridViewRow row in dgComandas.SelectedRows)
+                {
+                    int ID_COMANDA = int.Parse(row.Cells[16].Value.ToString());
+                    string FECHA = DateTime.Today.ToShortDateString();
+                    string[] FECHA_AUX = FECHA.Split('/');
+                    string FECHA_OK = FECHA_AUX[1] + "/" + FECHA_AUX[0] + "/" + FECHA_AUX[2];
+                    int FORMA_DE_PAGO = utils.getFormaDePago(ID_COMANDA);
+
+                    if(FORMA_DE_PAGO == 9)
+                        RESULT = utils.setCcPaga(ID_COMANDA, FECHA_OK);
+                }
+
+                if(RESULT)
+                    MessageBox.Show("TODO SALIO INCREIBLE!!!", ":D");
+                else
+                    MessageBox.Show("ALGO SALIO MAL\n\rUNA O VARIAS COMANDAS NO FUERON MODIFICADAS", ":(");
+            }
+        }
+
+        private void CbFormaDePago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void CbFormaDePago_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(cbFormaDePago.SelectedValue) == 9)
+            {
+                cbPagadas.Enabled = true;
+            }
+            else
+            {
+                cbPagadas.Checked = false;
+                cbPagadas.Enabled = false;
+            }
         }
     }
 }

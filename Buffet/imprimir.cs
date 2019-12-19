@@ -292,6 +292,7 @@ namespace Buffet
             code39.GenerateChecksum = false;
             code39.X = 40;
             Graphics graphics = e.Graphics;
+            Font courier_xxl = new Font("FontA1x1", 12);
             Font courier_big = new Font("FontA1x1", 9);
             Font courier_med = new Font("FontA1x1", 9);
             Font courier_sma = new Font("FontA1x1", 8);
@@ -321,13 +322,24 @@ namespace Buffet
                     {
                         graphics.DrawString("ORIGINAL", courier_big, black, startX, startY + Offset);
                         Offset = Offset + 20;
+                        graphics.DrawString("No válido como ticket fiscal", courier_big, black, startX, startY + Offset);
+                        Offset = Offset + 20;
+                        graphics.DrawString("ORDEN " + row[21].ToString(), courier_big, black, startX, startY + Offset);
+                        Offset = Offset + 20;
                     }
 
                     if (TIPO_COMANDA == "SOCIO2")
                     {
                         graphics.DrawString("DUPLICADO", courier_big, black, startX, startY + Offset);
                         Offset = Offset + 20;
+                        graphics.DrawString("No válido como ticket fiscal", courier_big, black, startX, startY + Offset);
+                        Offset = Offset + 20;
+                        graphics.DrawString("Usted será llamado con el número", courier_big, black, startX, startY + Offset);
+                        Offset = Offset + 20;
+                        graphics.DrawString(row[21].ToString(), courier_xxl, black, startX, startY + Offset);
+                        Offset = Offset + 20;
                     }
+                   
                 }
 
                 graphics.DrawString("HORA DEL PEDIDO ", courier_big, black, startX, startY + Offset);

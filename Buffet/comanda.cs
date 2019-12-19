@@ -50,13 +50,8 @@ namespace Buffet
                 label22.Visible = true;
                 lbNroOrden.Visible = true;
                 btnReiniciarContador.Visible = true;
-                string NRO_ORDEN = utils.getNroOrdenComanda();
-
-                if (NRO_ORDEN != "")
-                    lbNroOrden.Text = Convert.ToString(Convert.ToInt32(NRO_ORDEN) + 1);
-                else
-                    lbNroOrden.Text = "0";
-
+                string NRO_ORDEN = utils.getNroOrden("MENU " +  VGlobales.vp_role).ToString();
+                lbNroOrden.Text = NRO_ORDEN;
                 dpEntrega.Visible = true;
                 label20.Visible = true;
                 tbBarCodeSearch.Focus();
@@ -177,7 +172,7 @@ namespace Buffet
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.NRO_COMANDA, C.ENTREGA ";
+                    string QUERY = "SELECT C.ID, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.USUARIO, C.DESCUENTO, F.DETALLE, C.CONTRALOR, C.COM_BORRADOR, C.DESCUENTO_APLICADO, C.IMPORTE_DESCONTADO, C.NRO_COMANDA, C.ENTREGA, C.NRO_ORDEN ";
                     QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
                     QUERY += "WHERE C.ID = " + ID_COMANDA + " AND C.MOZO = M.ID AND C.FORMA_DE_PAGO = F.ID; ";
                     FbCommand cmd = new FbCommand(QUERY, connection, transaction);
@@ -548,7 +543,8 @@ namespace Buffet
                     }
                     
                     NRO_COMANDA = NRO_COMANDA + 1;
-                    dlog.guardaMesa(FECHA, NRO_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA, ENTREGA, NRO_ORDEN);                    
+                    dlog.guardaMesa(FECHA, NRO_MESA, MOZO, IMPORTE, NRO_SOC, NRO_DEP, BARRA, PERSONAS, AFILIADO, BENEFICIO, NOMBRE_SOCIO, USUARIO, FORMA_DE_PAGO, CONTRALOR, COM_BORRADOR, CONSUME, TIPO_COMANDA, DESCUENTO_APLICADO, IMPORTE_DESCONTADO, NRO_COMANDA, ENTREGA, NRO_ORDEN);
+                    utils.addNroOrden("MENU " + VGlobales.vp_role, int.Parse(NRO_ORDEN) + 1);
                     tbNroComanda.Text = NRO_COMANDA.ToString();
                     int ID_COM = int.Parse(mid.role("ID", "CONFITERIA_COMANDAS", "ROL", VGlobales.vp_role));
                     guardarItems(ID_COM);
@@ -741,7 +737,6 @@ namespace Buffet
                             buscarComanda(ID_COM);
                             buscarItems(ID_COM, "NO", "X");
                             imprimir i = new imprimir();
-
                             i.imprimirComanda(ITEMS, COMANDA, "SOCIO"); //COMANDA COMPLETA PARA EL SOCIO
                             
 
@@ -749,18 +744,11 @@ namespace Buffet
                             {
                                 i.imprimirComanda(ITEMS, COMANDA, "SOCIO2"); //COMANDA COMPLETA PARA EL SOCIO
                                 DataSet BUFFET = utils.getItemsByCategory(ID_COM, "BUFFET");
-                                DataSet DESPENSA = utils.getItemsByCategory(ID_COM, "DESPENSA");
-                                DataSet CAFETERIA = utils.getItemsByCategory(ID_COM, "CAFETERIA");
                                 DataSet PARRILLA = utils.getItemsByCategory(ID_COM, "PARRILLA");
 
                                 if (BUFFET.Tables[0].Rows.Count > 0)
                                     i.imprimirComanda(BUFFET, COMANDA, "BUFFET");
 
-                                if (DESPENSA.Tables[0].Rows.Count > 0)
-                                    i.imprimirComanda(DESPENSA, COMANDA, "DESPENSA");
-
-                                if (CAFETERIA.Tables[0].Rows.Count > 0)
-                                    i.imprimirComanda(CAFETERIA, COMANDA, "CAFETERIA");
 
                                 if (PARRILLA.Tables[0].Rows.Count > 0)
                                     i.imprimirComanda(PARRILLA, COMANDA, "PARRILLA");
@@ -835,14 +823,14 @@ namespace Buffet
             tbBarCodeSearch.Text = "";
             tbIdComanda.Text = "";
             tbNroComanda.Text = "";
-            lbNroOrden.Text = (int.Parse(lbNroOrden.Text) + 1).ToString();
+            int NRO_ORDEN = utils.getNroOrden("MENU " + VGlobales.vp_role);
+            lbNroOrden.Text = NRO_ORDEN.ToString();
 
-            string NRO_ORDEN = utils.getNroOrdenComanda();
 
-            if (NRO_ORDEN != "")
+            /*if (NRO_ORDEN != "")
                 lbNroOrden.Text = Convert.ToString(Convert.ToInt32(NRO_ORDEN) + 1);
             else
-                lbNroOrden.Text = "0";
+                lbNroOrden.Text = "0";*/
         }
 
         private void btnImprimirComanda_Click(object sender, EventArgs e)
@@ -1189,6 +1177,18 @@ namespace Buffet
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnReiniciarContador_Click(object sender, EventArgs e)
+        {
+            if(utils.resetNroOrden("MENU " + VGlobales.vp_role))
+            {
+                lbNroOrden.Text = "0";
+            }
+            else
+            {
+                MessageBox.Show("OCURRIO UN ERROR");
+            }
         }
     }
 }

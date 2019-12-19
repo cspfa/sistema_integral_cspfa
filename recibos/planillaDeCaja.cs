@@ -538,11 +538,48 @@ namespace SOCIOS
             {
                 DataSet ds1 = new DataSet();
                 string query = "";
+                query = "SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, ";
+                query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS IMPORTE, ";
+                query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID AS ID_COMP, B.PTO_VTA ";
+                query += ", B.NUMERO_E, B.DNI ";
+                query += "FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
+                query += "WHERE B.SECTACT = S.ID ";
+                query += "AND B.ID_PROFESIONAL = P.ID ";
+
+                if (PAGO == "1")
+                {
+                    query += "AND B.FORMA_PAGO = '1' ";
+                }
+
+                if (PAGO != "1" && PAGO != "2" && PAGO != "E")
+                {
+                    query += "AND B.FORMA_PAGO != '1' ";
+                }
+
+                if (PAGO == "2")
+                {
+                    query += "AND B.FORMA_PAGO = '2' ";
+                }
+
+                if (PAGO == "E")
+                {
+                    query += "AND (B.FORMA_PAGO != '1' OR B.REINTEGRO_DE > 0) AND (B.FORMA_PAGO != '2' OR B.REINTEGRO_DE > 0) ";
+                }
+
+                if (CAJA == 0)
+                    query += "AND B.CAJA_DIARIA IS NULL ";
+                else
+                    query += "AND B.CAJA_DIARIA = " + CAJA + " ";
+
+                query += "AND B.DEPOSITADO = 0 ";
+                query += "AND B.FORMA_PAGO = F.ID ";
+                query += "AND B.ROL = '" + VGlobales.vp_role + "' ";
+                query += "AND B.REINTEGRO_DE = 0 ";
 
                 if (VGlobales.vp_role == "CAJA")
-                    query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "') WHERE DESTINO IS NULL OR (DESTINO <> 10 AND DESTINO <> 4 AND DESTINO <> 1  AND DESTINO <> 2  AND DESTINO <> 3 AND DESTINO <> 16);";
-                else
-                    query = "SELECT * FROM PLANILLA_CAJA ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
+                    query += "AND(B.DESTINO IS NULL OR B.DESTINO NOT IN(10, 4, 1, 3, 16, 2)) ";
+
+                query += "ORDER BY B.NRO_COMP ASC";
 
                 conString cs = new conString();
                 string connectionString = cs.get();
@@ -704,11 +741,22 @@ namespace SOCIOS
             decimal INGRESOS_EFECTIVO = Convert.ToDecimal(dgTotalesDelDia.Rows[0].Cells[1].Value.ToString());
             decimal INGRESOS_OTROS = Convert.ToDecimal(dgTotalesDelDia.Rows[1].Cells[1].Value.ToString());
             decimal EGRESOS = Convert.ToDecimal(dgTotalesDelDia.Rows[2].Cells[1].Value.ToString());
-            decimal SUBTOTAL_INGRESOS = Convert.ToDecimal(dgTotalesDelDia.Rows[3].Cells[1].Value.ToString());
-            decimal SALDO_CAJA = Convert.ToDecimal(dgTotalesDelDia.Rows[4].Cells[1].Value.ToString());
+            decimal SUBTOTAL_INGRESOS = 0;
+            decimal SALDO_CAJA = 0;
+
+            if (VGlobales.vp_role == "CAJA")
+                SUBTOTAL_INGRESOS = Convert.ToDecimal(dgTotalesDelDia.Rows[3].Cells[1].Value.ToString());
+
+            if (VGlobales.vp_role == "CAJA")
+                SALDO_CAJA = Convert.ToDecimal(dgTotalesDelDia.Rows[4].Cells[1].Value.ToString());
+
             decimal TOTAL = Convert.ToDecimal(tbTotal.Text);
             string ROL = VGlobales.vp_role;
-            int ID_ROL = int.Parse(MAX_ID.role("ID_ROL", "CAJA_DIARIA", "ROL", VGlobales.vp_role)) + 1;
+            int ID_ROL = 1;
+
+            if(MAX_ID.role("ID_ROL", "CAJA_DIARIA", "ROL", VGlobales.vp_role)!="")
+                ID_ROL = int.Parse(MAX_ID.role("ID_ROL", "CAJA_DIARIA", "ROL", VGlobales.vp_role)) + 1;
+
             pbProcesando.Visible = true;
             pbProcesando.Minimum = 0;
             pbProcesando.Step = 1;
@@ -777,134 +825,146 @@ namespace SOCIOS
                 pbProcesando.PerformStep();
             }
 
-            pbProcesando.Maximum = dgEfectivo.Rows.Count;
-            pbProcesando.Value = 0;
-
-            foreach (DataGridViewRow row in dgEfectivo.Rows)
+            if (dgEfectivo.Rows.Count > 0)
             {
-                string NRO = row.Cells[0].Value.ToString();
-                int ID = int.Parse(row.Cells[9].Value.ToString());
+                pbProcesando.Maximum = dgEfectivo.Rows.Count;
+                pbProcesando.Value = 0;
 
-                if (NRO.Contains("R"))
+                foreach (DataGridViewRow row in dgEfectivo.Rows)
                 {
-                    try
-                    {
-                        BO_CAJA.cajaEnRecibos(ID, CAJA_DIARIA);
-                    }
-                    catch (Exception error)
-                    {
-                        BO_CAJA.borrarCajaDeComprobante("RECIBOS_CAJA", CAJA_DIARIA);
-                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
-                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL RECIBO " + NRO + "\n" + error);
-                    }
-                }
-                else if (NRO.Contains("B"))
-                {
-                    try
-                    {
-                        BO_CAJA.cajaEnBonos(ID, CAJA_DIARIA);
-                    }
-                    catch (Exception error)
-                    {
-                        BO_CAJA.borrarCajaDeComprobante("BONOS_CAJA", CAJA_DIARIA);
-                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
-                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL BONO " + NRO + "\n" + error);
-                    }
-                }
+                    string NRO = row.Cells[0].Value.ToString();
+                    int ID = int.Parse(row.Cells[9].Value.ToString());
 
-                pbProcesando.PerformStep();
+                    if (NRO.Contains("R"))
+                    {
+                        try
+                        {
+                            BO_CAJA.cajaEnRecibos(ID, CAJA_DIARIA);
+                        }
+                        catch (Exception error)
+                        {
+                            BO_CAJA.borrarCajaDeComprobante("RECIBOS_CAJA", CAJA_DIARIA);
+                            BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                            MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL RECIBO " + NRO + "\n" + error);
+                        }
+                    }
+                    else if (NRO.Contains("B"))
+                    {
+                        try
+                        {
+                            BO_CAJA.cajaEnBonos(ID, CAJA_DIARIA);
+                        }
+                        catch (Exception error)
+                        {
+                            BO_CAJA.borrarCajaDeComprobante("BONOS_CAJA", CAJA_DIARIA);
+                            BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                            MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL BONO " + NRO + "\n" + error);
+                        }
+                    }
+
+                    pbProcesando.PerformStep();
+                }
             }
 
-            pbProcesando.Maximum = dgOtros.Rows.Count;
-            pbProcesando.Value = 0;
-
-            foreach (DataGridViewRow row in dgOtros.Rows)
+            if (dgOtros.Rows.Count > 0)
             {
-                string NRO = row.Cells[0].Value.ToString();
-                int ID = int.Parse(row.Cells[9].Value.ToString());
+                pbProcesando.Maximum = dgOtros.Rows.Count;
+                pbProcesando.Value = 0;
 
-                if (NRO.Contains("R"))
+                foreach (DataGridViewRow row in dgOtros.Rows)
                 {
-                    try
-                    {
-                        BO_CAJA.cajaEnRecibos(ID, CAJA_DIARIA);
-                    }
-                    catch (Exception error)
-                    {
-                        BO_CAJA.borrarCajaDeComprobante("RECIBOS_CAJA", CAJA_DIARIA);
-                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
-                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL RECIBO " + NRO + "\n" + error);
-                    }
-                }
-                else if (NRO.Contains("B"))
-                {
-                    try
-                    {
-                        BO_CAJA.cajaEnBonos(ID, CAJA_DIARIA);
-                    }
-                    catch (Exception error)
-                    {
-                        BO_CAJA.borrarCajaDeComprobante("BONOS_CAJA", CAJA_DIARIA);
-                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
-                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL BONO " + NRO + "\n" + error);
-                    }
-                }
+                    string NRO = row.Cells[0].Value.ToString();
+                    int ID = int.Parse(row.Cells[9].Value.ToString());
 
-                pbProcesando.PerformStep();
+                    if (NRO.Contains("R"))
+                    {
+                        try
+                        {
+                            BO_CAJA.cajaEnRecibos(ID, CAJA_DIARIA);
+                        }
+                        catch (Exception error)
+                        {
+                            BO_CAJA.borrarCajaDeComprobante("RECIBOS_CAJA", CAJA_DIARIA);
+                            BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                            MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL RECIBO " + NRO + "\n" + error);
+                        }
+                    }
+                    else if (NRO.Contains("B"))
+                    {
+                        try
+                        {
+                            BO_CAJA.cajaEnBonos(ID, CAJA_DIARIA);
+                        }
+                        catch (Exception error)
+                        {
+                            BO_CAJA.borrarCajaDeComprobante("BONOS_CAJA", CAJA_DIARIA);
+                            BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                            MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL BONO " + NRO + "\n" + error);
+                        }
+                    }
+
+                    pbProcesando.PerformStep();
+                }
             }
 
-            pbProcesando.Maximum = dgOtros.Rows.Count;
-            pbProcesando.Value = 0;
-
-            foreach (DataGridViewRow row in dgEgresos.Rows)
+            if (dgEgresos.Rows.Count > 0)
             {
-                int ID = int.Parse(row.Cells[9].Value.ToString());
-                string F_PAGO = row.Cells[8].Value.ToString();
-                string NRO = row.Cells[0].Value.ToString();
+                pbProcesando.Maximum = dgEgresos.Rows.Count;
+                pbProcesando.Value = 0;
 
-                if (NRO.Contains("R"))
+                foreach (DataGridViewRow row in dgEgresos.Rows)
                 {
-                    try
-                    {
-                        BO_CAJA.cajaEnRecibos(ID, CAJA_DIARIA);
-                    }
-                    catch (Exception error)
-                    {
-                        BO_CAJA.borrarCajaDeComprobante("RECIBOS_CAJA", CAJA_DIARIA);
-                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
-                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL RECIBO " + NRO + "\n" + error);
-                    }
-                }
-                else if (NRO.Contains("B"))
-                {
-                    try
-                    {
-                        BO_CAJA.cajaEnBonos(ID, CAJA_DIARIA);
-                    }
-                    catch (Exception error)
-                    {
-                        BO_CAJA.borrarCajaDeComprobante("BONOS_CAJA", CAJA_DIARIA);
-                        BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
-                        MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL BONO " + NRO + "\n" + error);
-                    }
-                }
+                    int ID = int.Parse(row.Cells[9].Value.ToString());
+                    string F_PAGO = row.Cells[8].Value.ToString();
+                    string NRO = row.Cells[0].Value.ToString();
 
-                if (F_PAGO == "CHEQUE")
-                {
-                    BO_CAJA.depositarChequeAlCierre(ID, 2, CAJA_DIARIA);
-                }
+                    if (NRO.Contains("R"))
+                    {
+                        try
+                        {
+                            BO_CAJA.cajaEnRecibos(ID, CAJA_DIARIA);
+                        }
+                        catch (Exception error)
+                        {
+                            BO_CAJA.borrarCajaDeComprobante("RECIBOS_CAJA", CAJA_DIARIA);
+                            BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                            MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL RECIBO " + NRO + "\n" + error);
+                        }
+                    }
+                    else if (NRO.Contains("B"))
+                    {
+                        try
+                        {
+                            BO_CAJA.cajaEnBonos(ID, CAJA_DIARIA);
+                        }
+                        catch (Exception error)
+                        {
+                            BO_CAJA.borrarCajaDeComprobante("BONOS_CAJA", CAJA_DIARIA);
+                            BO_CAJA.borrarCajaDeComprobante("CAJA_DIARIA", CAJA_DIARIA);
+                            MessageBox.Show("NO SE PUDO GUARDAR LA CAJA EN EL BONO " + NRO + "\n" + error);
+                        }
+                    }
 
-                pbProcesando.PerformStep();
+                    if (F_PAGO == "CHEQUE")
+                    {
+                        BO_CAJA.depositarChequeAlCierre(ID, 2, CAJA_DIARIA);
+                    }
+
+                    pbProcesando.PerformStep();
+                }
             }
 
-            pbProcesando.Maximum = dgOtros.Rows.Count;
-            pbProcesando.Value = 0;
-
-            foreach (DataGridViewRow row in dgCajasDepositadas.Rows)
+            if (dgCajasDepositadas.Rows.Count > 0)
             {
-                int ID = int.Parse(row.Cells[0].Value.ToString());
-                BO_CAJA.depositarCajaAlCierre(ID, 2, CAJA_DIARIA);
-                pbProcesando.PerformStep();
+                pbProcesando.Maximum = dgCajasDepositadas.Rows.Count;
+                pbProcesando.Value = 0;
+
+                foreach (DataGridViewRow row in dgCajasDepositadas.Rows)
+                {
+                    int ID = int.Parse(row.Cells[0].Value.ToString());
+                    BO_CAJA.depositarCajaAlCierre(ID, 2, CAJA_DIARIA);
+                    pbProcesando.PerformStep();
+                }
             }
 
             cargaInicial(0);
@@ -1373,6 +1433,43 @@ namespace SOCIOS
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
                 string query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
+
+                /*string query = "SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, ";
+                query += "CASE WHEN B.ANULADO IS NULL THEN CAST(B.VALOR AS DECIMAL) ELSE '0' END, ";
+                query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, B.DESTINO, B.ANULADO, ";
+                query += "F.DETALLE, B.PTO_VTA, B.BANCO_DEPO, B.PTO_VTA_E, B.NUMERO_E ";
+                query += "FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
+                query += "WHERE B.SECTACT = S.ID ";
+                query += "AND B.ID_PROFESIONAL = P.ID ";
+
+                if (PAGO == "1")
+                {
+                    query += "AND B.FORMA_PAGO = '1' ";
+                }
+
+                if (PAGO != "1" && PAGO != "2" && PAGO != "E")
+                {
+                    query += "AND B.FORMA_PAGO != '1' ";
+                }
+
+                if (PAGO == "2")
+                {
+                    query += "AND B.FORMA_PAGO = '2' ";
+                }
+
+                if (PAGO == "E")
+                {
+                    query += "AND (B.FORMA_PAGO != '1' OR B.REINTEGRO_DE > 0) AND (B.FORMA_PAGO != '2' OR B.REINTEGRO_DE > 0) ";
+                }
+
+
+                query += "AND B.CAJA_DIARIA = " + CAJA;
+                query += " AND B.DEPOSITADO = 0 ";
+                query += "AND B.FORMA_PAGO = F.ID ";
+                query += "AND B.ROL = '" + VGlobales.vp_role + "' ";
+                query += " AND B.REINTEGRO_DE = 0 ";
+                query += "ORDER BY B.NRO_COMP ASC ";*/
+
                 FbCommand cmd = new FbCommand(query, connection, transaction);
                 cmd.CommandText = query;
                 cmd.Connection = connection;
@@ -3786,7 +3883,7 @@ namespace SOCIOS
 
         private void btnMostrarCaja_Click(object sender, EventArgs e)
         {
-            CAJA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
+            CAJA = int.Parse(dgCajasAnteriores[11, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
             FECHA = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString();
             INDEX = dgCajasAnteriores.CurrentCell.RowIndex;
             cargaInicial(CAJA);

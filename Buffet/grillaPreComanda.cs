@@ -581,7 +581,7 @@ namespace Buffet
             header.SpacingAfter = 5;
             doc.Add(header);
 
-            PdfPTable TABLA_CTACORRIENTE = new PdfPTable(9);
+            PdfPTable TABLA_CTACORRIENTE = new PdfPTable(10);
             PdfPTable TABLA_EFECTIVO = new PdfPTable(9);
             PdfPTable TABLA_TARJETAS = new PdfPTable(9);
             PdfPTable TABLA_DESCUENTO = new PdfPTable(10);
@@ -839,7 +839,7 @@ namespace Buffet
                 TABLA_CTACORRIENTE.WidthPercentage = 100;
                 TABLA_CTACORRIENTE.SpacingAfter = 5;
                 TABLA_CTACORRIENTE.SpacingBefore = 5;
-                TABLA_CTACORRIENTE.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f });
+                TABLA_CTACORRIENTE.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 3f, 1f, 1f, 1f });
 
                 PdfPCell CELDA_NRO_COMANDA = new PdfPCell(new Phrase("COMANDA", _mediumFontBoldWhite));
                 CELDA_NRO_COMANDA.BackgroundColor = topo;
@@ -903,6 +903,13 @@ namespace Buffet
                 CELDA_ANULADA_COMANDA.HorizontalAlignment = 1;
                 CELDA_ANULADA_COMANDA.FixedHeight = 16f;
                 TABLA_CTACORRIENTE.AddCell(CELDA_ANULADA_COMANDA);
+
+                PdfPCell CELDA_CC_COMANDA = new PdfPCell(new Phrase("PAGADA", _mediumFontBoldWhite));
+                CELDA_CC_COMANDA.BackgroundColor = topo;
+                CELDA_CC_COMANDA.BorderColor = blanco;
+                CELDA_CC_COMANDA.HorizontalAlignment = 1;
+                CELDA_CC_COMANDA.FixedHeight = 16f;
+                TABLA_CTACORRIENTE.AddCell(CELDA_CC_COMANDA);
             }
 
             #endregion
@@ -923,12 +930,16 @@ namespace Buffet
                     decimal IMPORTE = Convert.ToDecimal(row[4].ToString());
                     string IMP_FINAL = string.Format("{0:n}", IMPORTE);
                     string NRO_SOC = row[5].ToString() + " " + row[6].ToString() + " " + row[7].ToString();
-                    string NOM_APE = row[9].ToString();
+                    string NOM_APE = row[3].ToString();
                     string AFILIADO = row[10].ToString();
                     string BENEFICIO = row[11].ToString();
                     string ANULADA = row[14].ToString();
                     string COM_BORRADOR = row[15].ToString();
                     string ID_COMANDA = row[16].ToString();
+                    string PAGA = "";
+
+                    if(CTACORRIENTE.Tables[0].Columns.Contains("CC_PAGA"))
+                         PAGA = row[18].ToString();
 
                     if (ANULADA == "")
                         TOTAL_CTACORRIENTE = TOTAL_CTACORRIENTE + IMPORTE;
@@ -1013,6 +1024,13 @@ namespace Buffet
                     CELL_ANULADA_COMANDA.BackgroundColor = colorFondo;
                     CELL_ANULADA_COMANDA.FixedHeight = 14f;
                     TABLA_CTACORRIENTE.AddCell(CELL_ANULADA_COMANDA);
+
+                    PdfPCell CELL_PAGA_COMANDA = new PdfPCell(new Phrase(PAGA, _mediumFont));
+                    CELL_PAGA_COMANDA.HorizontalAlignment = 1;
+                    CELL_PAGA_COMANDA.BorderWidth = 0;
+                    CELL_PAGA_COMANDA.BackgroundColor = colorFondo;
+                    CELL_PAGA_COMANDA.FixedHeight = 14f;
+                    TABLA_CTACORRIENTE.AddCell(CELL_PAGA_COMANDA);
 
                     if (COMPLETO == "SI")
                     {

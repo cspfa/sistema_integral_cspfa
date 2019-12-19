@@ -867,6 +867,7 @@
             this.btnReiniciarContador.Text = "REINICIAR CONTADOR";
             this.btnReiniciarContador.UseVisualStyleBackColor = true;
             this.btnReiniciarContador.Visible = false;
+            this.btnReiniciarContador.Click += new System.EventHandler(this.BtnReiniciarContador_Click);
             // 
             // comanda
             // 
