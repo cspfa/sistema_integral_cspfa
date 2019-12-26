@@ -14,7 +14,7 @@ namespace SOCIOS.BO
 {
    public  class BO_Afip:bo
     {
-       public void Marca_Afip_Recibo(int ID,int PTO_VTA,int NUMERO, string CAE, string VencimientoCAE,int Tipo_Facturacion)
+       public void Marca_Afip_Recibo(int ID,int PTO_VTA,int NUMERO, string CAE, string VencimientoCAE,int Tipo_Facturacion,decimal Monto_Afip)
 
        {
 
@@ -46,6 +46,10 @@ namespace SOCIOS.BO
            vector_contenidos.Add(Tipo_Facturacion);
            vector_tipos.Add("FbDbType.Integer");
            vector_nombres.Add("@PIN_MODO_FACTURA");
+
+           vector_contenidos.Add(Monto_Afip);
+           vector_tipos.Add("FbDbType.Decimal");
+           vector_nombres.Add("@PIN_MONTO_AFIP");
                    
 
            string vprocedure = "P_RECIBOS_MARCA_AFIP";
@@ -198,7 +202,7 @@ namespace SOCIOS.BO
        }
 
        
-       public void Marca_Afip_Nota_Credito(int ID, int NUMERO, string CAE, string VencimientoCAE)
+       public void Marca_Afip_Nota_Credito(int ID, int NUMERO, string CAE, string VencimientoCAE,decimal Monto_Afip)
        {
 
            db resultado = new db();
@@ -226,6 +230,10 @@ namespace SOCIOS.BO
            vector_contenidos.Add(VencimientoCAE);
            vector_tipos.Add("FbDbType.VarChar");
            vector_nombres.Add("@PIN_USR_FACT_NC");
+
+           vector_contenidos.Add(Monto_Afip);
+           vector_tipos.Add("FbDbType.Decimal");
+           vector_nombres.Add("@PIN_MONTO_AFIP");
 
            string vprocedure = "P_MARCO_RECIBO_NC";
 

@@ -75,7 +75,7 @@ namespace SOCIOS.AFIP
         {
             try
             {
-                dlog.Marca_Afip_Nota_Credito(ID, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text);
+                dlog.Marca_Afip_Nota_Credito(ID, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text,0);
                 MessageBox.Show("Informacion Grabada con Exito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }

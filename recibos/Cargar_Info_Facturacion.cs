@@ -80,7 +80,7 @@ namespace SOCIOS
                     punto_venta = Int32.Parse( ComboPtoVenta.SelectedValue.ToString());
              
 
-                dlog.Marca_Afip_Recibo(ID,punto_venta, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text,1);
+                dlog.Marca_Afip_Recibo(ID,punto_venta, Int32.Parse(lbNumero.Text), lbCAE.Text, lbVencimiento.Text,1,Decimal.Parse(tbMonto.Text));
                 MessageBox.Show("Informacion Grabada con Exito!", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }

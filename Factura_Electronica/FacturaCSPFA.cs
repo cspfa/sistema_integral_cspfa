@@ -162,13 +162,15 @@ namespace SOCIOS.Factura_Electronica
                {
                    // Facturacion Unitaria , factura como siempre
                    Afip.AfipFactResults result_request = this.Facturar(PTO_VENTA, Fecha, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Monto);
+                   decimal VALOR_AFIP = Valor_Facturado(Tipo_COMPROBANTE, PTO_VENTA, result_request.Numero);
+                   
                    if (Tipo_COMPROBANTE == (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.NOTA_VENTA_C)
                    {
-                       this.Marcar_NC(ID_REGISTRO_RECIBO, result_request.Numero, result_request.Cae, result_request.Vencimiento);
+                       this.Marcar_NC(ID_REGISTRO_RECIBO, result_request.Numero, result_request.Cae, result_request.Vencimiento,VALOR_AFIP);
                    }
                    else
                    {
-                       this.Marcar_Factura(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento, true, Modo_Facturacion, Monto, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Fecha);
+                       this.Marcar_Factura(ID_REGISTRO_RECIBO, PTO_VENTA, result_request.Numero, result_request.Cae, result_request.Vencimiento, true, Modo_Facturacion, Monto, Tipo_COMPROBANTE, TipoDocumento, Documento, 2, Fecha,VALOR_AFIP);
                    }
                    return Exito_Request(result_request);
                }
@@ -191,6 +193,20 @@ namespace SOCIOS.Factura_Electronica
 
 
        
+       }
+
+       private decimal Valor_Facturado(int Tipo_Comprobante, int PtoVta, int Numero)
+       {
+
+           Afip.ComprobanteAfip comp = sf.Consulta(Tipo_Comprobante, PtoVta, Numero);
+           if (comp != null)
+           {
+               return (decimal)comp.TOTAL;
+
+
+           }
+           else
+               return 0;
        }
 
        private void Facturacion_Multiple(int ID_REGISTRO_RECIBO, int PTO_VENTA, int Tipo_COMPROBANTE, int TipoDocumento, string Documento, decimal Monto, DateTime Fecha)
@@ -239,7 +255,26 @@ namespace SOCIOS.Factura_Electronica
        
        }
 
-       
+       public bool Valido_Ya_Facturado(int ID_REGISTRO_RECIBO)
+       {
+
+           string QUERY = "SELECT CAE from Recibos_caja where ID= " + ID_REGISTRO_RECIBO.ToString();
+
+           DataRow[] foundRows;
+           foundRows = bo_Afip.BO_EjecutoDataTable(QUERY).Select();
+
+           if (foundRows.Length > 0)
+           {
+               if (foundRows[0][0].ToString().Trim().Length > 0)
+                   return true;
+               
+
+               return false;
+           }
+           else
+               return false;
+
+       }
 
        
 
@@ -262,14 +297,14 @@ namespace SOCIOS.Factura_Electronica
 
        
        
-       public void Marcar_Factura(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE,bool Recibo, int Modo_Facturacion,decimal Monto,int Tipo_Comprobante,int tipo_Documento,string Documento,int Concepto,DateTime fecha)
+       public void Marcar_Factura(int ID_REGISTRO_RECIBO,int PTO_VENTA,int NUMERO, string CAE, string VENC_CAE,bool Recibo, int Modo_Facturacion,decimal Monto,int Tipo_Comprobante,int tipo_Documento,string Documento,int Concepto,DateTime fecha,Decimal Monto_AFIP)
 
        {
            if (Recibo)
            {
                
                    
-                   bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE, Modo_Facturacion);
+                   bo_Afip.Marca_Afip_Recibo(ID_REGISTRO_RECIBO, PTO_VENTA, NUMERO, CAE, VENC_CAE, Modo_Facturacion,Monto_AFIP);
                    this.Grabo_Fecha_Pto_Vta(PTO_VENTA.ToString("0000"), fecha); 
                   
                    //  bo_Afip.Marca_Afip_Recibo_Factura_I(ID_REGISTRO_RECIBO,fecha, CAE, VENC_CAE, PTO_VENTA, NUMERO,Monto,tipo_Documento,Documento,Concepto,Tipo_Comprobante);
@@ -281,10 +316,10 @@ namespace SOCIOS.Factura_Electronica
 
        
        }
-       public void Marcar_NC(int ID_REGISTRO_RECIBO, int NUMERO, string CAE, string VENC_CAE)
+       public void Marcar_NC(int ID_REGISTRO_RECIBO, int NUMERO, string CAE, string VENC_CAE,decimal MONTO_AFIP)
        {
 
-           bo_Afip.Marca_Afip_Nota_Credito(ID_REGISTRO_RECIBO, NUMERO, CAE, VENC_CAE);
+           bo_Afip.Marca_Afip_Nota_Credito(ID_REGISTRO_RECIBO, NUMERO, CAE, VENC_CAE,MONTO_AFIP);
            
 
        }

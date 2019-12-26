@@ -14,7 +14,8 @@ namespace SOCIOS.Factura_Electronica
         FacturaCSPFA serviceFactura;
         Afip.ComprobanteAfip comp;
         BO.BO_Afip dlog = new BO.BO_Afip();
-        public Consulta_Factura()
+        public 
+            Consulta_Factura()
         {
             InitializeComponent();
             this.Cargo_COMBO();
@@ -93,6 +94,13 @@ namespace SOCIOS.Factura_Electronica
         {
             if (cbNotaCreditoC.Checked)
                 cbFacturaC.Checked = false;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PARCHE_RECIBOS pr = new PARCHE_RECIBOS();
+            pr.ShowDialog();
 
         }
     }

@@ -4579,7 +4579,8 @@ namespace SOCIOS
 
                             if (row.Cells[0].Value.ToString().Substring(0, 1) == "R") //VALIDO TIPO DE COMPROBANTE
                             {
-                                if (row.Cells[11].Value.ToString() == "" || row.Cells[11].Value.ToString() == "0") //VALIDO NUMERO ELECTRONICO
+                               // if (row.Cells[11].Value.ToString() == "" || row.Cells[11].Value.ToString() == "0") //VALIDO NUMERO ELECTRONICO
+                                if ( !fe.Valido_Ya_Facturado(recibo_id)) // 26-12-2019 - Valida en la base por registro
                                 {
                                     if (row.Cells[4].Value.ToString() != "0,00") //VALIDO IMPORTE DIFERENTE A 0
                                     {

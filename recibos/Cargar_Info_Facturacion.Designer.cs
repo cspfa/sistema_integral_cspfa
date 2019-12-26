@@ -39,11 +39,13 @@
             this.lbInfo = new System.Windows.Forms.Label();
             this.lbAerta = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbMonto = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnGrabarInfo
             // 
-            this.btnGrabarInfo.Location = new System.Drawing.Point(209, 153);
+            this.btnGrabarInfo.Location = new System.Drawing.Point(209, 176);
             this.btnGrabarInfo.Name = "btnGrabarInfo";
             this.btnGrabarInfo.Size = new System.Drawing.Size(75, 23);
             this.btnGrabarInfo.TabIndex = 128;
@@ -141,11 +143,30 @@
             this.label1.TabIndex = 129;
             this.label1.Text = "PTO VTA(ELEC)";
             // 
+            // tbMonto
+            // 
+            this.tbMonto.Location = new System.Drawing.Point(212, 150);
+            this.tbMonto.Name = "tbMonto";
+            this.tbMonto.Size = new System.Drawing.Size(79, 20);
+            this.tbMonto.TabIndex = 130;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Maroon;
+            this.label2.Location = new System.Drawing.Point(103, 157);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 13);
+            this.label2.TabIndex = 131;
+            this.label2.Text = "Monto";
+            // 
             // Cargar_Info_Facturacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(372, 185);
+            this.ClientSize = new System.Drawing.Size(372, 240);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbMonto);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGrabarInfo);
             this.Controls.Add(this.lbVencimiento);
@@ -177,5 +198,7 @@
         private System.Windows.Forms.Label lbInfo;
         private System.Windows.Forms.Label lbAerta;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbMonto;
+        private System.Windows.Forms.Label label2;
     }
 }
