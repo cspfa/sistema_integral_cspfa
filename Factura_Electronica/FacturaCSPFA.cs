@@ -255,6 +255,7 @@ namespace SOCIOS.Factura_Electronica
        
        }
 
+
        public bool Valido_Ya_Facturado(int ID_REGISTRO_RECIBO)
        {
 
