@@ -37,6 +37,31 @@ namespace SOCIOS.Factura_Electronica
         public decimal  MONTO          { get; set; }
     }
 
+    public class InfoFacturaTotal : Afip.ComprobanteAfip
+    {
+      public  string CAE_INTERNO    { get; set; }
+      public string  VENC_INTERNO   { get; set; }
+      
+      public decimal VALOR_INTERNO  { get; set; }
+      public  string DNI_INTERNO    { get; set; }
+        
+    }
+
+    public class ReporteFacturaTotal
+    {
+        public string RECEPTOR   { get; set; }
+        public string NUMERO     { get; set; }
+        public string CAE_AFIP   { get; set; }
+        public string VENC_AFIP  { get; set; }
+        public string MONTO_AFIP { get; set; }
+        public string CAE_INT    { get; set; }
+        public string VENC_INT   { get; set; }
+        public string MONTO_INT  { get; set; }
+        public bool   ALERT      { get; set; }
+   
+    
+    }
+
     public class AfipFactErrores
     {
         public int Numero { get; set; }
