@@ -64,6 +64,7 @@ namespace SOCIOS.Factura_Electronica
 
     public class AfipFactErrores
     {
+
         public int Numero { get; set; }
         public string Error { get; set; }
 
