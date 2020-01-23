@@ -138,7 +138,7 @@ namespace SOCIOS.Factura_Electronica
                  Lista_Internos = new List<InfoFacturaTotal>();
            InfoFacturaTotal item = new InfoFacturaTotal();
 
-           string QUERY = @"select VALOR,DNI,CAE,CAE_VENC,pto_vta_e,numero_e from recibos_caja where pto_vta_e="+Pto_Vta.ToString()+"  and NUMERO_E>="+Desde.ToString()+" and numero_e<=  "+ Hasta.ToString();
+           string QUERY = @"select VALOR,DNI,CAE,CAE_VENC,pto_vta_e,numero_e from recibos_caja where (USR_FACT is not null) and pto_vta_e="+Pto_Vta.ToString()+"  and NUMERO_E>="+Desde.ToString()+" and numero_e<=  "+ Hasta.ToString();
 
             
 
