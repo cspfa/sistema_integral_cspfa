@@ -1497,7 +1497,7 @@ namespace SOCIOS
         #region Turismo
 
 
-        public void InsertBonoTurismo(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR, string ROL, int CODINT, int SUBCOD,string BONO_BLANCO,int DIRECTIVO,int BONO_FILIAL,string NRO_BONO_FILIAL,string NRO_FACTURA_FILIAL,string PUNTO_VENTA,int TIPO_HABITACION,int CANTIDAD_HABITACION,decimal EFECTIVO,decimal TARJETA_CREDITO,int CUOTAS_TARJETA,decimal TARJETA_DEBITO,decimal PLANILLA,int PLANILLA_CUOTAS)
+        public void InsertBonoTurismo(int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR, string ROL, int CODINT, int SUBCOD,string BONO_BLANCO,int DIRECTIVO,int BONO_FILIAL,string NRO_BONO_FILIAL,string NRO_FACTURA_FILIAL,string PUNTO_VENTA,int TIPO_HABITACION,int CANTIDAD_HABITACION,decimal EFECTIVO,decimal TARJETA_CREDITO,int CUOTAS_TARJETA,decimal TARJETA_DEBITO,decimal PLANILLA,int PLANILLA_CUOTAS,decimal TRANSFER)
         {
             db resultado = new db();
 
@@ -1560,6 +1560,7 @@ namespace SOCIOS
             vector_contenidos.Add(CUOTAS_TARJETA);
             vector_contenidos.Add(PLANILLA);
             vector_contenidos.Add(PLANILLA_CUOTAS);
+            vector_contenidos.Add(TRANSFER);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Integer");
@@ -1621,6 +1622,7 @@ namespace SOCIOS
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Float");
             vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Float");
             ArrayList vector_nombres = new ArrayList();
 
             vector_nombres.Add("@ID");
@@ -1683,7 +1685,7 @@ namespace SOCIOS
             vector_nombres.Add("@TARJETA_CUOTAS");
             vector_nombres.Add("@PLANILLA");
             vector_nombres.Add("@PLANILLA_CUOTAS");
-
+            vector_nombres.Add("@TRANSFER");
 
             string vprocedure = "P_BONO_TURISMO_I";
             resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
@@ -1749,6 +1751,7 @@ namespace SOCIOS
             vector_contenidos.Add(EFECTIVO);
             vector_contenidos.Add(TARJETA_DEBITO);
             vector_contenidos.Add(TARJETA_CREDITO);
+            vector_contenidos.Add(CUOTAS_TARJETA);
             vector_contenidos.Add(PLANILLA);
             vector_contenidos.Add(PLANILLA_CUOTAS);
 
