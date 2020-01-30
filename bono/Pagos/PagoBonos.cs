@@ -59,6 +59,8 @@ namespace SOCIOS.bono
         public decimal Planilla           = 0;
         public int     Planilla_Cuotas    = 0;
 
+        public decimal Transfrencia = 0;
+
 
         
 
@@ -291,7 +293,7 @@ namespace SOCIOS.bono
 
         {
           if (Efectivo > 9900)
-                    throw new Exception("No se puede abonar mas de 9600 en efectivo!");
+                    throw new Exception("No se puede abonar mas de 9900 en efectivo!");
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
@@ -441,6 +443,21 @@ namespace SOCIOS.bono
                        
                         break;
 
+                    case 11:
+                    //Transferencia bancaria 
+                        this.ValidarBancario();
+                        string Banco_ref = " ";
+                        if (rbTBPatagonia.Checked)
+                            Banco_ref = " Banco Patagonia ";
+                        else
+                            Banco_ref = " Banco Ciudad ";
+                        Banco_ref = Banco_ref + " , Referencia" + tbTBreferencia.Text;
+
+                        formaPago             = formaPago + ", Se va a a Abonar el Bono en 1 solo pago  en  Transferencia Bancaria de :$" + Saldo.ToString() + "  " + Banco_ref;
+                        SaldoIngreso          = Saldo;
+                        Transfrencia          = Saldo;
+                    break;
+
 
                        
 
@@ -525,6 +542,16 @@ namespace SOCIOS.bono
         {
             if (Monto == 0)
                 throw new Exception("Montos No Pueden Ser cero.!");
+        }
+
+        private void ValidarBancario()
+        {
+            if (rbTBCiudad.Checked==false && rbTBPatagonia.Checked==false )
+                throw new Exception("Seleccione un banco Destino!");
+            if (tbTBreferencia.Text.Length == 0)
+            {
+                throw new Exception("Ingrese Referencia Transferencia Bancaria!");
+            }
         }
 
         private void cbTipoPago_SelectedIndexChanged(object sender, EventArgs e)
@@ -620,6 +647,15 @@ namespace SOCIOS.bono
             {
                 btnTarjeta.Visible = false;
                 lbMontoTarjeta.Visible = false;
+            }
+
+            if (idTipoPago == 11)
+            {
+                gpBancaria.Visible = true;
+                gpPlanilla.Visible = false;
+                gpSenia.Visible = false;
+                gpPago.Visible = false;
+               
             }
             
 
@@ -778,6 +814,11 @@ namespace SOCIOS.bono
             {
                 this.GraboPago(1, Decimal.Parse(lbSeniaMonto.Text),0, System.DateTime.Now, "Seña ", "C", true);
                 this.GenerarPLanDePago(tipoPago,tbSeniaCantidadCuotas,lbMontoCuotaSenia,dpSeniaFecha);
+            }
+
+            else if (tipoPago == 11)
+            {
+                this.GraboPago(tipoPago, Saldo, 0, System.DateTime.Now, "UNICO PAGO - TRANSFERENCIA", "C", true);
             }
             else
             {
