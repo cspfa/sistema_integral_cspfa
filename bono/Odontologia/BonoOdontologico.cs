@@ -47,6 +47,7 @@ namespace SOCIOS.bono
         public decimal Tarjeta_Debito = 0;
         public decimal Planilla = 0;
         public int Planilla_Cuotas = 0;
+        public decimal Transferencia = 0;
 
         
         public BonoOdontologico(DataGridViewSelectedRowCollection Personas,string pSocTitular,string pdepTitular,bool pMuestro):base(Personas,pSocTitular,pdepTitular,pMuestro)
@@ -189,13 +190,13 @@ namespace SOCIOS.bono
 
                     if (BONO_BLANCO) //27-08-2018 si el bono es blanco, hay que hacerle un update
                     {
-                        dlog.UpdateOdontologico(ID_REGISTRO, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Cuenta_Contable);
+                        dlog.UpdateOdontologico(ID_REGISTRO, Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Cuenta_Contable,Transferencia);
                         idBono = ID_REGISTRO;
 
                     }
                     else
                     {
-                        dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Cuenta_Contable);
+                        dlog.InsertOdontologico(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), persona.NUM_DOC, Nro_Dep_Titular, Int32.Parse(persona.BARRA), dpFecha.Value, PROFESIONAL, SecAct, 0, Decimal.Round(Recargo + Saldo, 2), Saldo, Recargo, srvDatosSocio.CAB.NOMBRE, srvDatosSocio.CAB.APELLIDO, persona.NACIMIENTO, persona.EDAD, persona.TELEFONO, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, nombreProfesional, lbFormaPago.Text, Turno, VGlobales.vp_username, Contralor, VGlobales.vp_role, CodInt, SUBCODIGO, "NO",Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Cuenta_Contable,Transferencia);
                         idBono = odontoService.GetMaxID(persona.NRO_SOCIO, persona.NRO_DEP, persona.BARRA);
                      }
 
@@ -336,6 +337,7 @@ namespace SOCIOS.bono
                     InfoTarjeta = pb.InfoTarjeta;
                     Recargo = pb.Recargo;
                     Efectivo = pb.Efectivo;
+                    Transferencia = pb.Transfrencia;
                       
 
                     Tarjeta_credito        = pb.Tarjeta_credito;

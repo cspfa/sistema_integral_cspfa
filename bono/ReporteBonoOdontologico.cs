@@ -23,6 +23,7 @@ namespace SOCIOS.bono
         public string Debito   { get; set; }
         public string Credito  { get; set; }
         public string Planilla { get; set; }
+        public string Transfer { get; set; }
     
     }
     public partial class ReporteBonoOdontologico : Form
@@ -37,10 +38,10 @@ namespace SOCIOS.bono
         int ID_ROL;
         string Prof;
         int BonoAnulado;
+        SOCIOS.bono.BonoUtils bonoUtils = new bono.BonoUtils();
         
         public ReporteBonoOdontologico(CabeceraTitular pCAB,DatoSocio pSOC,DateTime pfecha, int pBono,string pProf,string pFormaPago,string pObs,decimal pTotal,int pID_ROL)
         {
-
             CAB = new CabeceraTitular();
             SOC = new DatoSocio();
             ID = pBono;
@@ -88,11 +89,13 @@ namespace SOCIOS.bono
 
             // Traigo Montos
             mb = this.Montos_Bono(ID);
+            string Leyenda = "";
+            Leyenda = bonoUtils.LEYENDA_BONO_PROFESIONAL_DESDE_BONO(ID);
             bo dlog = new bo();
             //Codigo de Barra
             string Barra = "OD" + ID_ROL.ToString("0000000000");
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[26];
+            ReportParameter[] parameters = new ReportParameter[28];
             //Establecemos el valor de los parámetros
             int nroContraLor = this.Contralor(ID);
             string Contralor = nroContraLor.ToString();
@@ -131,7 +134,8 @@ namespace SOCIOS.bono
             parameters[23] = new ReportParameter("PLANILLA", mb.Planilla);
             parameters[24] = new ReportParameter("DEBITO", mb.Debito);
             parameters[25] = new ReportParameter("CREDITO", mb.Credito);
-
+            parameters[26] = new ReportParameter("Leyenda", mb.Credito);
+            parameters[27] = new ReportParameter("TRANSFER", mb.Transfer);
 
             this.reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Clear();
@@ -250,7 +254,7 @@ namespace SOCIOS.bono
 
         private Montos_Bono Montos_Bono (int pBono)
         {
-            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS from  BONO_ODONTOLOGICO WHERE   ID= " + pBono.ToString();
+            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS,TRANSFER from  BONO_ODONTOLOGICO WHERE   ID= " + pBono.ToString();
             DataRow[] foundRows;
             Montos_Bono mb = new bono.Montos_Bono();
 
@@ -278,6 +282,14 @@ namespace SOCIOS.bono
                 }
                 else
                     mb.Planilla = "0";
+
+                if (foundRows[0][6].ToString().Length>0 )
+                {
+                    if (foundRows[0][6].ToString() != "0")
+                    {
+                        mb.Transfer = Decimal.Round(Decimal.Parse(foundRows[0][6].ToString()), 2).ToString();
+                    }
+                }
               
 
                 
@@ -286,6 +298,8 @@ namespace SOCIOS.bono
 
         }
 
+
+       
 
         private void Print_Click(object sender, EventArgs e)
         {

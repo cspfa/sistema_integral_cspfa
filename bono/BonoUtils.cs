@@ -165,7 +165,7 @@ namespace SOCIOS.bono
 
        public string LEYENDA_BONO_PROFESIONAL_DESDE_BONO(int pBono)
        {
-           string QUERY = "select P.LEYENDA FROM  BONO_ODONTOLOGICO B, PROFESIONAL P  WHERE P.ID=B.PROFESIONAL  and B.ID= " + pBono.ToString();
+           string QUERY = "select P.LEYENDA FROM  BONO_ODONTOLOGICO B, PROFESIONALES P  WHERE P.ID=B.PROFESIONAL  and B.ID= " + pBono.ToString();
            DataRow[] foundRows;
 
 
