@@ -33,6 +33,7 @@ namespace SOCIOS.bono
         public decimal Tarjeta_Debito = 0;
         public decimal Planilla = 0;
         public int Planilla_Cuotas = 0;
+        public decimal Transferencia = 0;
 
 
         public BonoPasaje(DataGridViewSelectedRowCollection Personas, string pSocTitular, string pdepTitular,bool pMuestro): base(Personas, pSocTitular, pdepTitular,pMuestro)
@@ -460,7 +461,7 @@ namespace SOCIOS.bono
                         }
                         else
                         {
-                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFecha.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, TipoPasaje, ClasePasaje, VGlobales.vp_username, "PAS", 0, 0, "", Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL,NRO_FACTURA_FILIAL,PUNTO_VENTA,0,0,Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas);
+                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFecha.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, fpago.Text, Operador, TipoPasaje, ClasePasaje, VGlobales.vp_username, "PAS", 0, 0, "", Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL,NRO_FACTURA_FILIAL,PUNTO_VENTA,0,0,Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Transferencia);
                             ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "PAS");
                             //Obtener Proximo ID_ROL
                             int ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CODINT) + 1;
@@ -581,6 +582,7 @@ namespace SOCIOS.bono
                         Tarjeta_Debito = pb.Tarjeta_Debito;
                         Planilla = pb.Planilla;
                         Planilla_Cuotas = pb.Planilla_Cuotas;
+                        Transferencia = pb.Transfrencia;
                         
                     }
                 }

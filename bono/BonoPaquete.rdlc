@@ -1713,7 +1713,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.86292in</Top>
+        <Top>6.23792in</Top>
         <Left>0.36896in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -1774,7 +1774,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.86292in</Top>
+        <Top>6.23792in</Top>
         <Left>5.15021in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -1790,7 +1790,7 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>5.86292in</Top>
+        <Top>6.23792in</Top>
         <Left>5.17105in</Left>
         <Height>0in</Height>
         <Width>1.86458in</Width>
@@ -1802,7 +1802,7 @@
         </Style>
       </Line>
       <Line Name="Line3">
-        <Top>5.86292in</Top>
+        <Top>6.23792in</Top>
         <Left>2.27521in</Left>
         <Height>0in</Height>
         <Width>-1.94069in</Width>
@@ -1830,7 +1830,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Directivo</rd:DefaultName>
-        <Top>5.86292in</Top>
+        <Top>6.23792in</Top>
         <Left>2.4808in</Left>
         <Height>0.25in</Height>
         <Width>2.05208in</Width>
@@ -1862,7 +1862,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Cargo</rd:DefaultName>
-        <Top>6.1407in</Top>
+        <Top>6.5157in</Top>
         <Left>2.4808in</Left>
         <Height>0.25in</Height>
         <Width>2.05208in</Width>
@@ -1891,6 +1891,9 @@
             </TablixColumn>
             <TablixColumn>
               <Width>1.04167in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>1in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1in</Width>
@@ -2046,6 +2049,40 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Textbox29">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value />
+                              <Style>
+                                <FontFamily>Courier New</FontFamily>
+                                <FontWeight>Heavy</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox29</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Textbox28">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -2089,6 +2126,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -2097,9 +2135,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <Top>5.31084in</Top>
-        <Left>0.95938in</Left>
+        <Left>0.58438in</Left>
         <Height>0.25in</Height>
-        <Width>5.125in</Width>
+        <Width>6.125in</Width>
         <ZIndex>34</ZIndex>
         <Style>
           <Border>
@@ -2123,7 +2161,7 @@
         </Paragraphs>
         <rd:DefaultName>EFECTIVO</rd:DefaultName>
         <Top>5.56084in</Top>
-        <Left>0.95938in</Left>
+        <Left>0.58438in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>35</ZIndex>
@@ -2153,7 +2191,7 @@
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
         <Top>5.56084in</Top>
-        <Left>4.08438in</Left>
+        <Left>3.70938in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>36</ZIndex>
@@ -2183,7 +2221,7 @@
         </Paragraphs>
         <rd:DefaultName>DEBITO</rd:DefaultName>
         <Top>5.56084in</Top>
-        <Left>2.02882in</Left>
+        <Left>1.65382in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>37</ZIndex>
@@ -2213,7 +2251,7 @@
         </Paragraphs>
         <rd:DefaultName>CREDITO</rd:DefaultName>
         <Top>5.57473in</Top>
-        <Left>3.04271in</Left>
+        <Left>2.66771in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>38</ZIndex>
@@ -2242,11 +2280,41 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>5.56084in</Top>
-        <Left>5.08438in</Left>
+        <Top>5.57473in</Top>
+        <Left>5.69549in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>39</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="TRANSFER">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!TRANSFER.Value</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>TRANSFER</rd:DefaultName>
+        <Top>5.57473in</Top>
+        <Left>4.69549in</Left>
+        <Height>0.25in</Height>
+        <Width>1in</Width>
+        <ZIndex>40</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2422,6 +2490,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="CREDITO">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="TRANSFER">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

@@ -99,7 +99,7 @@ namespace SOCIOS.bono
             //Codigo Barra
             string Barra = "TU" + ID_ROL.ToString();
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[33];
+            ReportParameter[] parameters = new ReportParameter[34];
             //Establecemos el valor de los parámetros
 
             parameters[0] = new ReportParameter("Fecha", FechaS);
@@ -138,7 +138,7 @@ namespace SOCIOS.bono
             parameters[30] = new ReportParameter("DEBITO", mb.Debito);
             parameters[31] = new ReportParameter("CREDITO", mb.Credito);
             parameters[32] = new ReportParameter("PLANILLA", mb.Planilla);
-
+            parameters[33] = new ReportParameter("TRANSFER", mb.Transfer);
 
 
             try

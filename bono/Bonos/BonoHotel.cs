@@ -41,6 +41,7 @@ namespace SOCIOS.bono
         public decimal Tarjeta_Debito = 0;
         public decimal Planilla = 0;
         public int Planilla_Cuotas = 0;
+        public decimal Transferencia = 0;
 
         public BonoHotel()
         {
@@ -549,6 +550,7 @@ namespace SOCIOS.bono
                     Tarjeta_Debito = pb.Tarjeta_Debito;
                     Planilla = pb.Planilla;
                     Planilla_Cuotas = pb.Planilla_Cuotas;
+                    Transferencia = pb.Transfrencia;
 
 
                   //  lblSaldoTotal.Text = Decimal.Round(Decimal.Parse(lblSaldoTotal.Text) + pb.Recargo,2).ToString();
@@ -689,7 +691,7 @@ namespace SOCIOS.bono
                         }
                         else // si no es bono blanco, previo, no existe en la base, es INSERT
                         {
-                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL,NRO_FACTURA_FILIAL,PUNTO_VENTA,tipo_habitacion_stat,nro_habitacion_stat,Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas);
+                            dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Decimal.Round(Saldo + Recargo, 2), Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, OBS, fpago.Text, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "HOT", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", Comision_Directiva,FILIAL,NRO_RECIBO_FILIAL,NRO_FACTURA_FILIAL,PUNTO_VENTA,tipo_habitacion_stat,nro_habitacion_stat,Efectivo,Tarjeta_credito,Tarjeta_credito_cuotas,Tarjeta_Debito,Planilla,Planilla_Cuotas,Transferencia);
 
                             ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "HOT");
 
@@ -794,7 +796,7 @@ namespace SOCIOS.bono
 
 
 
-                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", 0, 0, "", "", "", 0, 0, Efectivo, Tarjeta_credito, Tarjeta_credito_cuotas, Tarjeta_Debito, Planilla, Planilla_Cuotas);
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", 0, 0, "", "", "", 0, 0, Efectivo, Tarjeta_credito, Tarjeta_credito_cuotas, Tarjeta_Debito, Planilla, Planilla_Cuotas,Transferencia);
 
                         ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "SOC");
                         //VER CODINT
@@ -1175,6 +1177,11 @@ namespace SOCIOS.bono
                 lbPtoVta.Text = utilsTurismo.Punto_Venta_Filial(Filial, Afip).ToString();
            
         
+        }
+
+        private void lnkDisponibilidad_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
             
             
