@@ -39,11 +39,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnBono = new System.Windows.Forms.Button();
             this.gpOtras = new System.Windows.Forms.GroupBox();
+            this.cbProfesionalesOdontologia = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnBonoEspecialidad = new System.Windows.Forms.Button();
             this.cbOdontologia = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbProfesionalesOdontologia = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoTurnos)).BeginInit();
             this.gpOtras.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +63,7 @@
             this.cbEspecialidades.FormattingEnabled = true;
             this.cbEspecialidades.Location = new System.Drawing.Point(92, 18);
             this.cbEspecialidades.Name = "cbEspecialidades";
-            this.cbEspecialidades.Size = new System.Drawing.Size(203, 21);
+            this.cbEspecialidades.Size = new System.Drawing.Size(323, 21);
             this.cbEspecialidades.TabIndex = 1;
             this.cbEspecialidades.SelectedIndexChanged += new System.EventHandler(this.cbEspecialidades_SelectedIndexChanged);
             this.cbEspecialidades.SelectionChangeCommitted += new System.EventHandler(this.cbEspecialidades_SelectionChangeCommitted);
@@ -72,7 +72,7 @@
             // 
             this.cbProfesionales.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProfesionales.FormattingEnabled = true;
-            this.cbProfesionales.Location = new System.Drawing.Point(388, 18);
+            this.cbProfesionales.Location = new System.Drawing.Point(500, 18);
             this.cbProfesionales.Name = "cbProfesionales";
             this.cbProfesionales.Size = new System.Drawing.Size(224, 21);
             this.cbProfesionales.TabIndex = 3;
@@ -80,7 +80,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(305, 22);
+            this.label2.Location = new System.Drawing.Point(421, 22);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 2;
@@ -163,6 +163,24 @@
             this.gpOtras.Text = "OTRAS ESPECIALIDADES ODONTOLOGICAS";
             this.gpOtras.Visible = false;
             // 
+            // cbProfesionalesOdontologia
+            // 
+            this.cbProfesionalesOdontologia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProfesionalesOdontologia.FormattingEnabled = true;
+            this.cbProfesionalesOdontologia.Location = new System.Drawing.Point(176, 57);
+            this.cbProfesionalesOdontologia.Name = "cbProfesionalesOdontologia";
+            this.cbProfesionalesOdontologia.Size = new System.Drawing.Size(224, 21);
+            this.cbProfesionalesOdontologia.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(73, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Profesionales:";
+            // 
             // btnBonoEspecialidad
             // 
             this.btnBonoEspecialidad.Location = new System.Drawing.Point(406, 19);
@@ -191,24 +209,6 @@
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Especialidad:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 60);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(73, 13);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Profesionales:";
-            // 
-            // cbProfesionalesOdontologia
-            // 
-            this.cbProfesionalesOdontologia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbProfesionalesOdontologia.FormattingEnabled = true;
-            this.cbProfesionalesOdontologia.Location = new System.Drawing.Point(176, 57);
-            this.cbProfesionalesOdontologia.Name = "cbProfesionalesOdontologia";
-            this.cbProfesionalesOdontologia.Size = new System.Drawing.Size(224, 21);
-            this.cbProfesionalesOdontologia.TabIndex = 11;
             // 
             // listadoTurnos
             // 

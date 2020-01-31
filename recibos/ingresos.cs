@@ -179,8 +179,8 @@ namespace SOCIOS
             dt1.Columns.Add("FECHA CAJA", typeof(string));
             dt1.Columns.Add("FECHA ALTA", typeof(string));
             dt1.Columns.Add("FECHA ANULADO", typeof(string));
-            dt1.Columns.Add("CUENTA DEBE", typeof(int));
-            dt1.Columns.Add("CUENTA HABER", typeof(int));
+            dt1.Columns.Add("CUENTA DEBE", typeof(string));
+            dt1.Columns.Add("CUENTA HABER", typeof(string));
             dt1.Columns.Add("VALOR", typeof(decimal));
             dt1.Columns.Add("PAGO", typeof(string));
             dt1.Columns.Add("OBSERVACIONES", typeof(string));

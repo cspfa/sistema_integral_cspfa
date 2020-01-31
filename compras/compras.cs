@@ -940,7 +940,7 @@ namespace SOCIOS
                         break;
 
                         case "EXCEL":
-                        QUERY += "SELECT P.RAZON_SOCIAL, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, ";
+                        QUERY += "SELECT F.FE_ALTA, P.RAZON_SOCIAL, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, ";
                         QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO, F.ANULADO, F.OP_ANULADA ";
                         break;
                     }
@@ -958,7 +958,7 @@ namespace SOCIOS
                         QUERY += "AND F.TIPO = '" + TIPO_DE_BUSQUEDA + "' ";
 
                     if (cbFecha.Checked == true)
-                        QUERY += "AND F.FECHA = '" + FECHA + "' ";
+                        QUERY += "AND F.FE_ALTA = '" + FECHA + "' ";
 
                     if (chSectores.Checked == true)
                         QUERY += "AND F.SECTOR = '" + SECTOR + "' ";
@@ -5291,18 +5291,19 @@ namespace SOCIOS
             xlWorkBook = xlApp.Workbooks.Add();
             xlWorkSheet = xlWorkBook.Worksheets[1];
             xlWorkSheet.Range["A1:Z1"].Font.Bold = true;
-            xlWorkSheet.Cells[1, 1] = "NOMBRE";
-            xlWorkSheet.Cells[1, 2] = "NUMERO";
-            xlWorkSheet.Cells[1, 3] = "FECHA";
-            xlWorkSheet.Cells[1, 4] = "IMPORTE";
-            xlWorkSheet.Cells[1, 5] = "OBSERVACIONES";
-            xlWorkSheet.Cells[1, 6] = "SECTOR";
-            xlWorkSheet.Cells[1, 7] = "OP";
-            xlWorkSheet.Cells[1, 8] = "REMITO";
-            xlWorkSheet.Cells[1, 9] = "RETENCION";
-            xlWorkSheet.Cells[1, 10] = "TIPO";
-            xlWorkSheet.Cells[1, 11] = "CUIT";
-            xlWorkSheet.Cells[1, 12] = "DES%";
+            xlWorkSheet.Cells[1, 1] = "FECHA CARGA";
+            xlWorkSheet.Cells[1, 2] = "CUENTA CONTABLE";
+            xlWorkSheet.Cells[1, 3] = "NUMERO";
+            xlWorkSheet.Cells[1, 4] = "FECHA FACTURA";
+            xlWorkSheet.Cells[1, 5] = "IMPORTE";
+            xlWorkSheet.Cells[1, 6] = "OBSERVACIONES";
+            xlWorkSheet.Cells[1, 7] = "SECTOR";
+            xlWorkSheet.Cells[1, 8] = "OP";
+            xlWorkSheet.Cells[1, 9] = "REMITO";
+            xlWorkSheet.Cells[1, 10] = "RETENCION";
+            xlWorkSheet.Cells[1, 11] = "TIPO";
+            xlWorkSheet.Cells[1, 12] = "CUIT";
+            xlWorkSheet.Cells[1, 13] = "DES%";
 
             Cursor = Cursors.WaitCursor;
 
@@ -5313,8 +5314,9 @@ namespace SOCIOS
                     data = ds.Tables[0].Rows[i].ItemArray[j].ToString().Trim();
                     xlWorkSheet.Cells[i + 2, j + 1] = data;
                     xlWorkSheet.Columns[j + 1].AutoFit();
-                    xlWorkSheet.Columns[3].EntireColumn.NumberFormat = "DD/MM/AAAA";
-                    xlWorkSheet.Columns[4].EntireColumn.NumberFormat = "#,##0,00";
+                    xlWorkSheet.Columns[1].EntireColumn.NumberFormat = "DD/MM/AAAA";
+                    xlWorkSheet.Columns[4].EntireColumn.NumberFormat = "DD/MM/AAAA";
+                    //xlWorkSheet.Columns[5].EntireColumn.NumberFormat = "#,##0,00";
                 }
             }
 
@@ -6264,6 +6266,153 @@ namespace SOCIOS
                     op.ShowDialog();
                 }
             }
+        }
+
+        private void TabLibroBanco_Enter(object sender, EventArgs e)
+        {
+            comboBancos(cbBancosEnLibro);
+        }
+
+        private void BtnAceptarLibroBanco_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buscarRecibos()
+        {
+            /*try
+            {
+                DataSet ds1 = new DataSet();
+                string query = "";
+                query = "SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, ";
+                query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS IMPORTE, ";
+                query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID AS ID_COMP, B.PTO_VTA ";
+                query += ", B.NUMERO_E, B.DNI ";
+                query += "FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
+                query += "WHERE B.SECTACT = S.ID ";
+                query += "AND B.ID_PROFESIONAL = P.ID ";
+                query += "AND B.FORMA_PAGO = '1' ";
+                query += "AND B.DEPOSITADO = 0 ";
+                query += "AND B.FORMA_PAGO = F.ID ";
+                query += "AND B.REINTEGRO_DE = 0 ";
+                query += "AND(B.DESTINO IS NULL OR B.DESTINO NOT IN(10, 4, 1, 3, 16, 2)) ";
+                query += "ORDER BY B.NRO_COMP ASC";
+
+                conString cs = new conString();
+                string connectionString = cs.get();
+
+                using (FbConnection connection = new FbConnection(connectionString))
+                {
+                    connection.Open();
+                    FbTransaction transaction = connection.BeginTransaction();
+                    DataTable dt1 = new DataTable("RESULTADOS");
+                    dt1.Columns.Add("#", typeof(string));
+                    dt1.Columns.Add("DETALLE", typeof(string));
+                    dt1.Columns.Add("CONCEPTO", typeof(string));
+                    dt1.Columns.Add("IMP", typeof(int));
+                    dt1.Columns.Add("IMPORTE", typeof(string));
+                    dt1.Columns.Add("OBSERVACIONES", typeof(string));
+                    dt1.Columns.Add("FECHA", typeof(string));
+                    dt1.Columns.Add("ANULADO", typeof(string));
+                    dt1.Columns.Add("F_PAGO", typeof(string));
+                    dt1.Columns.Add("ID", typeof(string));
+                    dt1.Columns.Add("PV", typeof(string));
+                    dt1.Columns.Add("NE", typeof(string));
+                    dt1.Columns.Add("DNI", typeof(string));
+                    ds1.Tables.Add(dt1);
+                    FbCommand cmd = new FbCommand(query, connection, transaction);
+                    FbDataReader reader = cmd.ExecuteReader();
+                    string NRO_COMP = string.Empty;
+                    string DETALLE = string.Empty;
+                    string CONCEPTO = string.Empty;
+                    string IMPUTACION = string.Empty;
+                    decimal IMPORTE;
+                    string OBSERVACIONES = string.Empty;
+                    string FECHA = string.Empty;
+                    string VALOR;
+                    decimal TOTAL = 0;
+                    string TIPO = string.Empty;
+                    string ANULADO = string.Empty;
+                    string F_PAGO = string.Empty;
+                    decimal CAJAS_DEPOSITADAS = 0;
+                    string ID_COMP = string.Empty;
+                    string PTO_VTA = string.Empty;
+                    string NUMERO_E = string.Empty;
+                    string DNI = string.Empty;
+
+                    while (reader.Read())
+                    {
+                        TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
+                        NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
+
+                        if (TIPO == "B")
+                            NRO_COMP = "B" + NRO_COMP;
+                        else
+                            NRO_COMP = "R" + NRO_COMP;
+
+                        DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
+                        CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
+                        IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));
+                        IMPORTE = reader.GetDecimal(reader.GetOrdinal("IMPORTE"));
+                        VALOR = string.Format("{0:n}", IMPORTE);
+                        OBSERVACIONES = reader.GetString(reader.GetOrdinal("OBSERVACIONES")).Trim();
+                        FECHA = reader.GetString(reader.GetOrdinal("FECHA_RECIBO")).Trim().Replace(" 0:00:00", "");
+                        TOTAL = TOTAL + IMPORTE;
+                        ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
+                        F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
+                        ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
+                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
+                        NUMERO_E = reader.GetString(reader.GetOrdinal("NUMERO_E"));
+                        DNI = reader.GetString(reader.GetOrdinal("DNI")).Trim();
+                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NUMERO_E, DNI);
+
+                        if (PAGO == "2")
+                        {
+                            dgComposicion.Rows.Add(NRO_COMP.Replace("R", ""), "CHEQUE " + CONCEPTO + " " + FECHA, string.Format("{0:n}", (IMPORTE)));
+                        }
+                    }
+
+                    reader.Close();
+                    GRID.DataSource = dt1;
+                    GRID.Columns[0].Width = 60;
+                    GRID.Columns[1].Width = 170;
+                    GRID.Columns[2].Width = 170;
+                    GRID.Columns[3].Width = 50;
+                    GRID.Columns[3].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[4].Width = 80;
+                    GRID.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    GRID.Columns[5].Width = 195;
+                    GRID.Columns[6].Visible = true;
+                    GRID.Columns[6].Width = 70;
+                    GRID.Columns[7].Width = 70;
+                    GRID.Columns[8].Width = 110;
+                    GRID.Columns[9].Width = 50;
+                    GRID.Columns[10].Width = 40;
+                    GRID.Columns[11].Width = 40;
+                    transaction.Commit();
+
+                    if (PAGO == "1") //EFECTIVO
+                    {
+                        decimal REINTEGROS = sumarReintegros();
+                        dgTotalesDelDia.Rows.Add("INGRESOS EFECTIVO", string.Format("{0:n}", TOTAL - REINTEGROS));
+                        INGRESOS_EFECTIVO = TOTAL;
+                    }
+                    else if (PAGO != "1" && GRID.Name.ToString() == "dgOtros")
+                    {
+                        dgTotalesDelDia.Rows.Add("INGRESOS CHEQUES Y OTROS", string.Format("{0:n}", TOTAL));
+                        INGRESOS_OTROS = TOTAL;
+                    }
+                    else if (PAGO != "1" && PAGO != "2" && GRID.Name.ToString() == "dgEgresos")
+                    {
+                        CAJAS_DEPOSITADAS = totalCajasDepositadas();
+                        EGRESOS = TOTAL + CAJAS_DEPOSITADAS;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }*/
         }
     }
 }

@@ -97,7 +97,7 @@ namespace SOCIOS
 
         {
             cbOdontologia.DataSource = null;
-            string query = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + VGlobales.vp_role + "' AND DETALLE LIKE '%ODONTO%'  ORDER BY DETALLE;";
+            string query = "SELECT ID, DETALLE FROM SECTACT WHERE ROL = '" + VGlobales.vp_role + "' AND DETALLE LIKE '%ODONTO%' ORDER BY DETALLE;";
             cbOdontologia.Items.Clear();
             cbOdontologia.DataSource = dlog.BO_EjecutoDataTable(query);
             cbOdontologia.DisplayMember = "DETALLE";

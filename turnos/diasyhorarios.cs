@@ -56,6 +56,7 @@ namespace SOCIOS
             cbTurno.Items.Add("15");
             cbTurno.Items.Add("20");
             cbTurno.Items.Add("30");
+            cbTurno.Items.Add("60");
         }
 
         public void llenarListadoDelMes(int PROFESIONAL, int MES, int ANIO, int ULTIMODIA)

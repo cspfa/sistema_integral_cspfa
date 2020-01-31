@@ -101,6 +101,7 @@
             this.cerrarCajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arancelesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.puntosDeVentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.controlFacturacionAFIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deportesToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.actualizarMorososToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteAsistenciaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -162,11 +163,15 @@
             this.newDataSet1 = new SOCIOS.NewDataSet();
             this.newDataSet2 = new SOCIOS.NewDataSet();
             this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.pnl_Interior = new System.Windows.Forms.Panel();
+            this.LINK_INTERIOR = new System.Windows.Forms.LinkLabel();
+            this.lbInterior = new System.Windows.Forms.Label();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
+            this.pnl_Interior.SuspendLayout();
             this.SuspendLayout();
             // 
             // MenuStrip1
@@ -426,7 +431,7 @@
             this.confiteríaToolStripMenuItem1});
             this.delfoCabreraToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("delfoCabreraToolStripMenuItem.Image")));
             this.delfoCabreraToolStripMenuItem.Name = "delfoCabreraToolStripMenuItem";
-            this.delfoCabreraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.delfoCabreraToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.delfoCabreraToolStripMenuItem.Text = "Delfo Cabrera";
             // 
             // comprobantesToolStripMenuItem
@@ -469,7 +474,7 @@
             this.toolStripMenuItem12});
             this.generalBelgranoToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.bullet_green;
             this.generalBelgranoToolStripMenuItem.Name = "generalBelgranoToolStripMenuItem";
-            this.generalBelgranoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.generalBelgranoToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.generalBelgranoToolStripMenuItem.Text = "General Belgrano";
             this.generalBelgranoToolStripMenuItem.Click += new System.EventHandler(this.generalBelgranoToolStripMenuItem_Click);
             // 
@@ -787,7 +792,8 @@
             this.imprimirRecibosEnBlancoToolStripMenuItem,
             this.cerrarCajaToolStripMenuItem,
             this.arancelesToolStripMenuItem,
-            this.puntosDeVentaToolStripMenuItem});
+            this.puntosDeVentaToolStripMenuItem,
+            this.controlFacturacionAFIPToolStripMenuItem});
             this.cajaToolStripMenuItem.Enabled = false;
             this.cajaToolStripMenuItem.Name = "cajaToolStripMenuItem";
             this.cajaToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
@@ -833,6 +839,14 @@
             this.puntosDeVentaToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
             this.puntosDeVentaToolStripMenuItem.Text = "Puntos de Venta";
             this.puntosDeVentaToolStripMenuItem.Click += new System.EventHandler(this.puntosDeVentaToolStripMenuItem_Click);
+            // 
+            // controlFacturacionAFIPToolStripMenuItem
+            // 
+            this.controlFacturacionAFIPToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.building;
+            this.controlFacturacionAFIPToolStripMenuItem.Name = "controlFacturacionAFIPToolStripMenuItem";
+            this.controlFacturacionAFIPToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.controlFacturacionAFIPToolStripMenuItem.Text = "Control Facturacion AFIP";
+            this.controlFacturacionAFIPToolStripMenuItem.Click += new System.EventHandler(this.ControlFacturacionAFIPToolStripMenuItem_Click);
             // 
             // deportesToolStrip
             // 
@@ -1364,6 +1378,37 @@
             this.pbFoto.TabStop = false;
             this.pbFoto.Visible = false;
             // 
+            // pnl_Interior
+            // 
+            this.pnl_Interior.Controls.Add(this.LINK_INTERIOR);
+            this.pnl_Interior.Controls.Add(this.lbInterior);
+            this.pnl_Interior.Location = new System.Drawing.Point(585, 91);
+            this.pnl_Interior.Name = "pnl_Interior";
+            this.pnl_Interior.Size = new System.Drawing.Size(200, 100);
+            this.pnl_Interior.TabIndex = 11;
+            this.pnl_Interior.Visible = false;
+            // 
+            // LINK_INTERIOR
+            // 
+            this.LINK_INTERIOR.AutoSize = true;
+            this.LINK_INTERIOR.Location = new System.Drawing.Point(84, 44);
+            this.LINK_INTERIOR.Name = "LINK_INTERIOR";
+            this.LINK_INTERIOR.Size = new System.Drawing.Size(10, 13);
+            this.LINK_INTERIOR.TabIndex = 1;
+            this.LINK_INTERIOR.TabStop = true;
+            this.LINK_INTERIOR.Text = "-";
+            this.LINK_INTERIOR.Click += new System.EventHandler(this.LINK_INTERIOR_Click);
+            // 
+            // lbInterior
+            // 
+            this.lbInterior.AutoSize = true;
+            this.lbInterior.ForeColor = System.Drawing.Color.Red;
+            this.lbInterior.Location = new System.Drawing.Point(33, 13);
+            this.lbInterior.Name = "lbInterior";
+            this.lbInterior.Size = new System.Drawing.Size(128, 13);
+            this.lbInterior.TabIndex = 0;
+            this.lbInterior.Text = "CONTACTOS SIN LEER!";
+            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1377,6 +1422,7 @@
             this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
             this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
             this.ClientSize = new System.Drawing.Size(1362, 614);
+            this.Controls.Add(this.pnl_Interior);
             this.Controls.Add(this.pbFoto);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.themedStatusStrip1);
@@ -1400,6 +1446,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
+            this.pnl_Interior.ResumeLayout(false);
+            this.pnl_Interior.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1539,5 +1587,9 @@
         private System.Windows.Forms.ToolStripMenuItem reportePlanesDeCuentaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comandaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listadoDeIngresosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem controlFacturacionAFIPToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Interior;
+        private System.Windows.Forms.LinkLabel LINK_INTERIOR;
+        private System.Windows.Forms.Label lbInterior;
     }
 }

@@ -9,6 +9,7 @@ using FirebirdSql.Data.FirebirdClient;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
 using Buffet;
+using System.Timers;
 
 namespace SOCIOS
 {
@@ -16,7 +17,7 @@ namespace SOCIOS
     {
 
         BindingSource BindingSourceFamiliar = new BindingSource();
-
+        System.Timers.Timer TimerInterior = new System.Timers.Timer();
         public MenuABM()
         {
             InitializeComponent();
@@ -138,6 +139,21 @@ namespace SOCIOS
                         servToolStrip.Enabled = true;
                     }
 
+                    if (VGlobales.vp_role.Trim() == "INTERIOR")
+                    {
+                        Notifico_Contactos();
+                        interiorToolStripMenuItem.Enabled = true;
+                        TimerInterior.Elapsed += new ElapsedEventHandler(Notifico_Contactos_Interior);
+                        TimerInterior.Interval = 100000;
+                        TimerInterior.Enabled = true;
+
+                        pnl_Interior.Visible = true;
+                        Notifico_Contactos();
+
+
+
+                    }
+
                     if (VGlobales.vp_role.Trim() == "CAJA" || VGlobales.vp_role.Trim() == "INFORMES" || VGlobales.vp_role.Trim() == "CONTADURIA" || VGlobales.vp_role.Trim() == "CAJA2")
                     {
                         cajaToolStripMenuItem.Enabled = true;
@@ -201,7 +217,26 @@ namespace SOCIOS
             timer1.Enabled = true;
         }
 
-       private void checkForUpdates()
+        private void Notifico_Contactos_Interior(object source, ElapsedEventArgs e)
+        {
+            Notifico_Contactos();
+        }
+
+        private void Notifico_Contactos()
+
+        {
+            SOCIOS.interior.serviceInterior interiorService = new interior.serviceInterior();
+            int noLeidos = interiorService.Calculo_NoLeidos();
+
+            if (noLeidos > 0)
+            {
+              LINK_INTERIOR.Text = noLeidos.ToString();
+
+            }
+        }
+
+
+        private void checkForUpdates()
        {
            /*Ping Pings = new Ping();
            int timeout = 100;
@@ -2256,6 +2291,18 @@ namespace SOCIOS
             Consulta frm_Consultar = new Consulta();
             frm_Consultar.ShowDialog(this);
             Cursor = Cursors.Default;
+        }
+
+        private void ControlFacturacionAFIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Factura_Electronica.Control_Facturacion cf = new Factura_Electronica.Control_Facturacion();
+            cf.ShowDialog();
+        }
+
+        private void LINK_INTERIOR_Click(object sender, EventArgs e)
+        {
+            SOCIOS.interior.Contactos cont = new interior.Contactos();
+            cont.ShowDialog();
         }
     }
 }
