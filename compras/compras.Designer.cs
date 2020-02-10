@@ -46,6 +46,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.lbIdArticulo = new System.Windows.Forms.Label();
@@ -453,6 +457,11 @@
             this.aNULADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMPLETADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eNTREGADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabLibroBanco = new System.Windows.Forms.TabPage();
+            this.cbBancosEnLibro = new System.Windows.Forms.ComboBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.dgEfectivo = new System.Windows.Forms.DataGridView();
+            this.btnAceptarLibroBanco = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -526,6 +535,8 @@
             this.cmCheques.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmEstadoCompra.SuspendLayout();
+            this.tabLibroBanco.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEfectivo)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -536,6 +547,7 @@
             this.tabControl1.Controls.Add(this.tpProveedores);
             this.tabControl1.Controls.Add(this.tpBancosCuentasCheques);
             this.tabControl1.Controls.Add(this.tpSolicitud);
+            this.tabControl1.Controls.Add(this.tabLibroBanco);
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -5095,6 +5107,98 @@
             this.eNTREGADAToolStripMenuItem.Text = "Entregada";
             this.eNTREGADAToolStripMenuItem.Click += new System.EventHandler(this.eNTREGADAToolStripMenuItem_Click);
             // 
+            // tabLibroBanco
+            // 
+            this.tabLibroBanco.Controls.Add(this.btnAceptarLibroBanco);
+            this.tabLibroBanco.Controls.Add(this.dgEfectivo);
+            this.tabLibroBanco.Controls.Add(this.cbBancosEnLibro);
+            this.tabLibroBanco.Controls.Add(this.label40);
+            this.tabLibroBanco.Location = new System.Drawing.Point(4, 22);
+            this.tabLibroBanco.Name = "tabLibroBanco";
+            this.tabLibroBanco.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLibroBanco.Size = new System.Drawing.Size(1043, 659);
+            this.tabLibroBanco.TabIndex = 11;
+            this.tabLibroBanco.Text = "LIBRO BANCO";
+            this.tabLibroBanco.UseVisualStyleBackColor = true;
+            this.tabLibroBanco.Enter += new System.EventHandler(this.TabLibroBanco_Enter);
+            // 
+            // cbBancosEnLibro
+            // 
+            this.cbBancosEnLibro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBancosEnLibro.FormattingEnabled = true;
+            this.cbBancosEnLibro.Location = new System.Drawing.Point(66, 18);
+            this.cbBancosEnLibro.Name = "cbBancosEnLibro";
+            this.cbBancosEnLibro.Size = new System.Drawing.Size(199, 21);
+            this.cbBancosEnLibro.TabIndex = 31;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(15, 22);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(44, 13);
+            this.label40.TabIndex = 32;
+            this.label40.Text = "BANCO";
+            // 
+            // dgEfectivo
+            // 
+            this.dgEfectivo.AllowUserToAddRows = false;
+            this.dgEfectivo.AllowUserToDeleteRows = false;
+            this.dgEfectivo.AllowUserToResizeColumns = false;
+            this.dgEfectivo.AllowUserToResizeRows = false;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgEfectivo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            this.dgEfectivo.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgEfectivo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgEfectivo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgEfectivo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.dgEfectivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgEfectivo.DefaultCellStyle = dataGridViewCellStyle19;
+            this.dgEfectivo.Location = new System.Drawing.Point(8, 47);
+            this.dgEfectivo.Margin = new System.Windows.Forms.Padding(5);
+            this.dgEfectivo.Name = "dgEfectivo";
+            this.dgEfectivo.ReadOnly = true;
+            this.dgEfectivo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgEfectivo.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgEfectivo.RowHeadersVisible = false;
+            this.dgEfectivo.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(1);
+            this.dgEfectivo.RowTemplate.ReadOnly = true;
+            this.dgEfectivo.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgEfectivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgEfectivo.Size = new System.Drawing.Size(1027, 604);
+            this.dgEfectivo.TabIndex = 72;
+            // 
+            // btnAceptarLibroBanco
+            // 
+            this.btnAceptarLibroBanco.Location = new System.Drawing.Point(278, 18);
+            this.btnAceptarLibroBanco.Name = "btnAceptarLibroBanco";
+            this.btnAceptarLibroBanco.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarLibroBanco.TabIndex = 73;
+            this.btnAceptarLibroBanco.Text = "ACEPTAR";
+            this.btnAceptarLibroBanco.UseVisualStyleBackColor = true;
+            this.btnAceptarLibroBanco.Click += new System.EventHandler(this.BtnAceptarLibroBanco_Click);
+            // 
             // compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5206,6 +5310,9 @@
             this.cmCheques.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmEstadoCompra.ResumeLayout(false);
+            this.tabLibroBanco.ResumeLayout(false);
+            this.tabLibroBanco.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEfectivo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5619,5 +5726,10 @@
         private System.Windows.Forms.Label label118;
         private System.Windows.Forms.ToolStripMenuItem cANCELARANULACIONToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vERDETALLEOPToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabLibroBanco;
+        private System.Windows.Forms.ComboBox cbBancosEnLibro;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Button btnAceptarLibroBanco;
+        private System.Windows.Forms.DataGridView dgEfectivo;
     }
 }

@@ -199,6 +199,10 @@
     <Compile Include="Factura_Electronica\Consulta_Factura.Designer.cs">
       <DependentUpon>Consulta_Factura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Factura_Electronica\Control_Facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Factura_Electronica\Control_Facturacion.Designer.cs" />
     <Compile Include="Factura_Electronica\PARCHE_RECIBOS.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +210,21 @@
       <DependentUpon>PARCHE_RECIBOS.cs</DependentUpon>
     </Compile>
     <Compile Include="Factura_Electronica\PreFacturado.cs" />
+    <Compile Include="interior\Clases.cs" />
+    <Compile Include="interior\Contactos .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="interior\Contactos .Designer.cs" />
+    <Compile Include="interior\Contacto_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="interior\Contacto_Form.Designer.cs" />
+    <Compile Include="interior\serviceInterior.cs" />
+    <Compile Include="Notificacion\Notificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Notificacion\Notificacion.Designer.cs" />
+    <Compile Include="Notificacion\Notificaciones.cs" />
     <Compile Include="recibos\asignarReciboC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1305,10 +1324,14 @@
     <EmbeddedResource Include="Factura_Electronica\Consulta_Factura.resx">
       <DependentUpon>Consulta_Factura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Factura_Electronica\Control_Facturacion.resx" />
     <EmbeddedResource Include="Factura_Electronica\Factura.rdlc" />
     <EmbeddedResource Include="Factura_Electronica\PARCHE_RECIBOS.resx">
       <DependentUpon>PARCHE_RECIBOS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="interior\Contactos .resx" />
+    <EmbeddedResource Include="interior\Contacto_Form.resx" />
+    <EmbeddedResource Include="Notificacion\Notificacion.resx" />
     <EmbeddedResource Include="recibos\asignarReciboC.resx">
       <DependentUpon>asignarReciboC.cs</DependentUpon>
     </EmbeddedResource>

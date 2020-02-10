@@ -287,8 +287,8 @@ namespace SOCIOS
             DataSet ds1 = new DataSet();
             Datos_ini ini3 = new Datos_ini();
 
-            try
-            {
+            //try
+            //{
                 FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
                 cs.DataSource = ini3.Servidor; cs.Port = int.Parse(ini3.Puerto);
                 cs.Database = ini3.Ubicacion;
@@ -339,11 +339,11 @@ namespace SOCIOS
                     transaction.Commit();
                     dgvTurnos.ClearSelection();
                 }
-            }
+            /*}
             catch (Exception error)
             {
                 MessageBox.Show("ERROR: " + error);
-            }
+            }*/
         }
 
         public void mostrarObservaciones(string DNI)

@@ -1425,6 +1425,7 @@ namespace SOCIOS
             cs.Password = VGlobales.vp_password;
             cs.Role = VGlobales.vp_role;
             cs.Dialect = 3;
+            cs.Charset = FbCharset.None.ToString();
             connectionString = cs.ToString();
 
             using (FbConnection connection = new FbConnection(connectionString))
@@ -4730,6 +4731,54 @@ namespace SOCIOS
             }
         }
 
+        private void desanularComprobante(DataGridView GRID)
+        {
+            if (GRID.SelectedRows.Count == 1)
+            {
+                if (MessageBox.Show("¿CONFIRMA DESANULAR EL COMPROBANTE SELECCIONADO?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    foreach (DataGridViewRow row in GRID.SelectedRows)
+                    {
+                        if (row.Cells[7].Value.ToString() != "")
+                        {
+                            if (row.Cells[0].Value.ToString().Substring(0, 1) == "R")
+                            {
+                                try
+                                {
+                                    Cursor = Cursors.WaitCursor;
+                                    string NRO = row.Cells[0].Value.ToString().Replace("R", "");
+                                    string COMPROBANTE = "RECIBO";
+                                    string TABLA = "RECIBOS_CAJA";
+                                    string FECHA = null;
+                                    string PTO_VTA = row.Cells[10].Value.ToString();
+                                    string DENI = row.Cells[11].Value.ToString();
+                                    decimal IMPORTE = decimal.Parse(row.Cells[4].Value.ToString());
+                                    string NOMBRE_SOCIO = row.Cells[1].Value.ToString();
+                                    string CONCEPTO = "SERVICIOS PRESTADOS";
+                                    int ID_COMP = nr.obtenerIdComprobante("RECIBO", PTO_VTA, int.Parse(NRO));
+                                    anular(NRO, COMPROBANTE, TABLA, FECHA, PTO_VTA);
+                                    MessageBox.Show("COMPROBANTE DESANULADO CORRECTAMENTE", "LISTO");
+                                }
+                                catch (Exception error)
+                                {
+                                    MessageBox.Show("NO SE PUDO DESANULAR EL COMPROBANTE\n" + error, "ERROR");
+                                }
+                                Cursor = Cursors.Default;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("EL COMPROBANTE SELECCIONADO NO SE ECUENTRA ANULADO", "ERROR");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("SELECCIONAR SOLAMENTE UN COMPROBANTE PARA DESANULAR", "ERROR");
+            }
+        }
+
         private void btnAnularOtros_Click(object sender, EventArgs e)
         {
             anularComprobante(dgOtros);
@@ -5324,12 +5373,14 @@ namespace SOCIOS
 
         private void btnDesanularOtros_Click(object sender, EventArgs e)
         {
-
+            desanularComprobante(dgOtros);
+            buscar("0", dgOtros, CAJA);
         }
 
         private void btnDesanularEfectivo_Click(object sender, EventArgs e)
         {
-
+            desanularComprobante(dgEfectivo);
+            buscar("1", dgEfectivo, CAJA);
         }
 
         private void Carga_NC_Click(object sender, EventArgs e)
