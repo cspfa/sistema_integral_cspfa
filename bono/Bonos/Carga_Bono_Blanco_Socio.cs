@@ -386,7 +386,7 @@ namespace SOCIOS.bono.Bonos
             {
                 dgvDatos.Columns[3].Visible = false;
                 dgvDatos.Columns[4].Visible = false;
-            } catch ()
+            } catch (Exception ex)
             {
             }
         }
