@@ -382,9 +382,13 @@ namespace SOCIOS.bono.Bonos
 
         private void dgvDatos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dgvDatos.Columns[3].Visible = false;
-            dgvDatos.Columns[4].Visible = false;
-            
+            try
+            {
+                dgvDatos.Columns[3].Visible = false;
+                dgvDatos.Columns[4].Visible = false;
+            } catch ()
+            {
+            }
         }
     }
 }

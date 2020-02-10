@@ -1880,6 +1880,100 @@ namespace SOCIOS
 
         }
 
+        public void UpdateBonoTurismo2(int ID, int NRO_SOCIO_TITULAR, int NRO_SOCIO, int NRO_DEP, int NRO_DEP_TITULAR, int BARRA, DateTime FE_BONO, int PROFESIONAL, int SEC_ACT, int TRAT, decimal SALDO_INICIAL, decimal SALDO_NETO, decimal INTERES, string NOMBRE, string APELLIDO, string DNI, string F_NACIM, string EDAD, string TELEFONO, string EMAIL, int AAR, int ACRJP1, int ACRJP2, int ACRJP3, int PAR, int PCRJP1, int PCRJP2, int PCRJP3, string OBS, string PAGO, int OPERADOR, string TIPO_PASAJE, string CLASE_PASAJE, string USR, string TIPO, int SALIDA, int DIAS, string HABITACION, int CONTRALOR, string ROL, int CODINT, int SUBCOD, string BONO_BLANCO, int DIRECTIVO, int BONO_FILIAL, string NRO_BONO_FILIAL, string NRO_FACTURA_FILIAL, string PUNTO_VENTA, decimal EFECTIVO, decimal TARJETA_CREDITO, int CUOTAS_TARJETA, decimal TARJETA_DEBITO, decimal PLANILLA, int PLANILLA_CUOTAS)
+        {
+
+            
+
+            string Query = @"UPDATE BONO_TURISMO SET
+    NRO_SOCIO_TITULAR = {0},NRO_SOCIO = {1},NRO_DEP = {2}, BARRA = {3},FE_BONO= '{4}', PROFESIONAL = {5},SEC_ACT= {5},TRAT= {6},SALDO_INICIAL= {7},
+    SALDO             = {8},NOMBRE = '{9}', APELLIDO  = '{10}',F_NACIM   = '{11}', EDAD   = '{12}',TELEFONO   = '{13}',
+    EMAIL             = '{14}', AAR  = {15},ACRJP1    = {16},ACRJP2    = {17}, ACRJP3  = {18},
+    PAR               = {19}, PCRJP1  = {20}, PCRJP2     = {21},  PCRJP3  = {22}, NRO_DEP_TITULAR   = {23},
+    OBS               = '{24}', PAGO    = '{25}', OPERADOR   = {26},  TIPO_PASAJE  = '{27}',CLASE_PASAJE  = '{28}',
+    USR_MODIFICACION  = '{29}',   FE_MODIFICACION   ='{30}',  TIPO   = '{31}', SALIDA   = {32}, DIAS     = {33},
+    HABITACION        = '{34}',   DNI               = '{35}',  CONTRALOR         = {36}, SALDO_NETO        = {37},
+    SALDO_INTERES     = {38},   ROL               = '{39}',  CODINT            = {40}, BONO_BLANCO       = '{41}',
+    COMISION_DIRECTIVA= {42},   BONO_FILIAL       = {43},  NRO_BONO_FILIAL   = {44}, PUNTO_VENTA       = '{45}',
+    NRO_FACTURA_FILIAL= '{46}',   EFECTIVO          = {47},  TARJETA_DEBITO    = {48}, TARJETA_CREDITO   = {49},
+    TARJETA_CREDITO_CUOTAS ={51},   PLANILLA      ={51},   PLANILLA_CUOTAS        ={52}    
+  WHERE    ID = {53}";
+
+           Query= Query.Replace("{0}", NRO_SOCIO_TITULAR.ToString());
+           Query = Query.Replace("{1}", NRO_SOCIO.ToString());
+           Query = Query.Replace("{2}", NRO_DEP.ToString());
+           Query = Query.Replace("{3}", BARRA.ToString());
+           
+         //  
+
+           // Query.Replace("{4}", BARRA.ToString());
+           Query = Query.Replace("{4}", FE_BONO.ToShortDateString());
+
+           Query = Query.Replace("{5}", PROFESIONAL.ToString());
+           Query = Query.Replace("{6}", SEC_ACT.ToString());
+           Query = Query.Replace("{7}", TRAT.ToString());
+           Query = Query.Replace("{8}", SALDO_INICIAL.ToString());
+
+
+           Query = Query.Replace("{9}", NOMBRE.ToString());
+           Query = Query.Replace("{10}", APELLIDO.ToString());
+           Query = Query.Replace("{11}", F_NACIM.ToString());
+           Query = Query.Replace("{12}", EDAD.ToString());
+           Query = Query.Replace("{13}", TELEFONO.ToString());
+           Query = Query.Replace("{14}", EMAIL.ToString());
+           Query = Query.Replace("{15}", AAR.ToString());
+           Query = Query.Replace("{16}", ACRJP1.ToString());
+           Query = Query.Replace("{17}", ACRJP2.ToString());
+           Query = Query.Replace("{18}", ACRJP3.ToString());
+           Query = Query.Replace("{19}", PAR.ToString());
+           Query = Query.Replace("{20}", PCRJP1.ToString());
+           Query = Query.Replace("{21}", PCRJP2.ToString());
+           Query = Query.Replace("{22}", PCRJP3.ToString());
+           Query = Query.Replace("{23}", NRO_DEP_TITULAR.ToString());
+           Query = Query.Replace("{24}", OBS.ToString());
+
+           Query = Query.Replace("{25}", PAGO.ToString());
+           Query = Query.Replace("{26}", OPERADOR.ToString());
+           Query = Query.Replace("{27}", TIPO_PASAJE.ToString());
+
+           Query = Query.Replace("{28}", CLASE_PASAJE.ToString());
+           Query = Query.Replace("{29}", USR.ToString());
+           Query = Query.Replace("{30}", System.DateTime.Now.ToShortDateString());
+           Query = Query.Replace("{31}", TIPO.ToString());
+           Query = Query.Replace("{32}", SALIDA.ToString());
+           Query = Query.Replace("{33}", DIAS.ToString());
+           Query = Query.Replace("{34}", HABITACION.ToString());
+           Query = Query.Replace("{35}", DNI.ToString());
+           Query = Query.Replace("{36}", CONTRALOR.ToString());
+           Query = Query.Replace("{37}", SALDO_NETO.ToString());
+
+           Query = Query.Replace("{38}", INTERES.ToString());
+           Query = Query.Replace("{39}", ROL.ToString());
+           Query = Query.Replace("{40}", CODINT.ToString());
+           Query = Query.Replace("{41}", BONO_BLANCO.ToString());
+           Query = Query.Replace("{42}", DIRECTIVO.ToString());
+           Query = Query.Replace("{43}", BONO_FILIAL.ToString());
+           if (NRO_BONO_FILIAL.Length>0)
+               Query = Query.Replace("{44}", NRO_BONO_FILIAL.ToString());
+           else
+               Query = Query.Replace("{44}", "0" );
+
+           Query = Query.Replace("{45}", PUNTO_VENTA.ToString());
+           Query = Query.Replace("{46}", NRO_FACTURA_FILIAL.ToString());
+
+           Query = Query.Replace("{47}", EFECTIVO.ToString());
+           Query = Query.Replace("{48}", TARJETA_DEBITO.ToString());
+           Query = Query.Replace("{49}", TARJETA_CREDITO.ToString());
+           Query = Query.Replace("{50}", CUOTAS_TARJETA.ToString());
+
+           Query = Query.Replace("{51}", PLANILLA.ToString());
+           Query = Query.Replace("{52}", PLANILLA_CUOTAS.ToString());
+
+
+           Query = Query.Replace("{53}", ID.ToString());
+            BO_EjecutoDataTable(Query);
+        }
+
 
         public void Voucher_HOTEL_Insert(int BONO, DateTime Desde, DateTime Hasta, int Hotel, int Noches, int Pasajeros, int Regimen, int Habitacion, string Nro_Habitacion, string Tipo, string Motivo, string Late,string IN)
         {
