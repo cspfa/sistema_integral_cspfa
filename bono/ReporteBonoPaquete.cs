@@ -101,7 +101,7 @@ namespace SOCIOS.bono
             //Array que contendrá los parámetros
             ReportParameter[] parameters = new ReportParameter[34];
             //Establecemos el valor de los parámetros
-
+            
             parameters[0] = new ReportParameter("Fecha", FechaS);
             parameters[1] = new ReportParameter("Bono", ID_ROL.INFO);
             parameters[2] = new ReportParameter("Socio", CAB.NroSocioTitular);
@@ -114,7 +114,7 @@ namespace SOCIOS.bono
             parameters[9] = new ReportParameter("Telefono", CAB.Telefonos);
             parameters[10] = new ReportParameter("Edad", "0");
             parameters[11] = new ReportParameter("FormaPago", FormaPago);
-            parameters[12] = new ReportParameter("Obs", Obs);
+            parameters[12] = new ReportParameter("Obs", Obs +"Salida:" + objSalida.Observaciones);
             parameters[13] = new ReportParameter("Total", Total.ToString("0.##"));
             parameters[14] = new ReportParameter("Anulado", BonoAnulado.ToString());
             parameters[15] = new ReportParameter("Autorizacion", "");
