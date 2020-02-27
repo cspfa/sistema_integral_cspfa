@@ -1436,7 +1436,7 @@ namespace SOCIOS
                 //string query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
                 string query = "SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, ";
-                query += "CASE WHEN B.ANULADO IS NULL THEN CAST(B.VALOR AS DECIMAL) ELSE '0' END, ";
+                query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END, ";
                 query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, B.DESTINO, B.ANULADO, ";
                 query += "F.DETALLE, B.PTO_VTA, B.BANCO_DEPO, B.PTO_VTA_E, B.NUMERO_E ";
                 query += "FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
@@ -2013,7 +2013,7 @@ namespace SOCIOS
                     NOMBRE = row[1].ToString();
                     CONCEPTO = row[2].ToString();
                     DEBE = row[3].ToString();
-                    IMPORTE = Convert.ToDecimal(row[4]);
+                    IMPORTE = Convert.ToDecimal(row[4].ToString().Replace('.', ','));
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString().Replace("12:00:00 a.m.", "");
@@ -2079,14 +2079,14 @@ namespace SOCIOS
                     CELL_DEBE.FixedHeight = 14f;
                     TABLA_INGRESOS.AddCell(CELL_DEBE);
 
-                    PdfPCell CELL_IMPORTE = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
+                    PdfPCell CELL_IMPORTE = new PdfPCell(new Phrase("$ " + IMPORTE, _mediumFont));
                     CELL_IMPORTE.HorizontalAlignment = 2;
                     CELL_IMPORTE.BorderWidth = 0;
                     CELL_IMPORTE.BackgroundColor = colorFondo;
                     CELL_IMPORTE.FixedHeight = 14f;
                     TABLA_INGRESOS.AddCell(CELL_IMPORTE);
 
-                    PdfPCell CELL_IMPORTE_E = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE_E), _mediumFont));
+                    PdfPCell CELL_IMPORTE_E = new PdfPCell(new Phrase("$ " + IMPORTE_E, _mediumFont));
                     CELL_IMPORTE_E.HorizontalAlignment = 2;
                     CELL_IMPORTE_E.BorderWidth = 0;
                     CELL_IMPORTE_E.BackgroundColor = colorFondo;
@@ -2151,7 +2151,7 @@ namespace SOCIOS
                     NOMBRE = row[1].ToString();
                     CONCEPTO = row[2].ToString();
                     DEBE = row[3].ToString();
-                    IMPORTE = Convert.ToDecimal(row[4]);
+                    IMPORTE = Convert.ToDecimal(row[4].ToString().Replace('.', ','));
                     OBSERVACIONES = row[5].ToString();
                     TIPO = row[6].ToString();
                     ANULADO = row[10].ToString();
@@ -2218,14 +2218,14 @@ namespace SOCIOS
                     CELL_DEBE_OTROS.FixedHeight = 14f;
                     TABLA_INGRESOS_OTROS.AddCell(CELL_DEBE_OTROS);
 
-                    PdfPCell CELL_IMPORTE_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
+                    PdfPCell CELL_IMPORTE_OTROS = new PdfPCell(new Phrase("$ " + IMPORTE, _mediumFont));
                     CELL_IMPORTE_OTROS.HorizontalAlignment = 2;
                     CELL_IMPORTE_OTROS.BorderWidth = 0;
                     CELL_IMPORTE_OTROS.BackgroundColor = colorFondo;
                     CELL_IMPORTE_OTROS.FixedHeight = 14f;
                     TABLA_INGRESOS_OTROS.AddCell(CELL_IMPORTE_OTROS);
 
-                    PdfPCell CELL_IMPORTE_OTROS_E = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
+                    PdfPCell CELL_IMPORTE_OTROS_E = new PdfPCell(new Phrase("$ " + IMPORTE, _mediumFont));
                     CELL_IMPORTE_OTROS_E.HorizontalAlignment = 2;
                     CELL_IMPORTE_OTROS_E.BorderWidth = 0;
                     CELL_IMPORTE_OTROS_E.BackgroundColor = colorFondo;
@@ -2307,7 +2307,7 @@ namespace SOCIOS
                         NOMBRE = row[1].ToString();
                         CONCEPTO = row[2].ToString();
                         DEBE = row[3].ToString();
-                        IMPORTE = Convert.ToDecimal(row[4]);
+                        IMPORTE = Convert.ToDecimal(row[4].ToString().Replace('.', ','));
                         OBSERVACIONES = row[5].ToString();
                         TIPO = row[6].ToString();
                         ANULADO = row[10].ToString();
@@ -2356,7 +2356,7 @@ namespace SOCIOS
                         CELL_DEBE_EGRESOS.FixedHeight = 14f;
                         TABLA_EGRESOS.AddCell(CELL_DEBE_EGRESOS);
 
-                        PdfPCell CELL_IMPORTE_EGRESOS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", IMPORTE), _mediumFont));
+                        PdfPCell CELL_IMPORTE_EGRESOS = new PdfPCell(new Phrase("$ " + IMPORTE, _mediumFont));
                         CELL_IMPORTE_EGRESOS.HorizontalAlignment = 2;
                         CELL_IMPORTE_EGRESOS.BorderWidth = 0;
                         CELL_IMPORTE_EGRESOS.BackgroundColor = colorFondo;
