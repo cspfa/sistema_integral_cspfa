@@ -1202,7 +1202,7 @@ namespace SOCIOS
             else
             {
                 Cursor = Cursors.WaitCursor;
-                int CAJA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
+                int CAJA = int.Parse(dgCajasAnteriores[11, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
                 string DIA = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(0, 2);
                 string MES = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(3, 2);
                 string ANIO = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(6, 4);
@@ -1433,9 +1433,9 @@ namespace SOCIOS
                 connection.Open();
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
-                string query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
+                //string query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
-                /*string query = "SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, ";
+                string query = "SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, ";
                 query += "CASE WHEN B.ANULADO IS NULL THEN CAST(B.VALOR AS DECIMAL) ELSE '0' END, ";
                 query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, B.DESTINO, B.ANULADO, ";
                 query += "F.DETALLE, B.PTO_VTA, B.BANCO_DEPO, B.PTO_VTA_E, B.NUMERO_E ";
@@ -1469,7 +1469,7 @@ namespace SOCIOS
                 query += "AND B.FORMA_PAGO = F.ID ";
                 query += "AND B.ROL = '" + VGlobales.vp_role + "' ";
                 query += " AND B.REINTEGRO_DE = 0 ";
-                query += "ORDER BY B.NRO_COMP ASC ";*/
+                query += "ORDER BY B.NRO_COMP ASC ";
 
                 FbCommand cmd = new FbCommand(query, connection, transaction);
                 cmd.CommandText = query;
@@ -3049,8 +3049,15 @@ namespace SOCIOS
             decimal INGRESOS_EFECTIVO = Convert.ToDecimal(dgTotalesDelDia.Rows[0].Cells[1].Value.ToString());
             decimal INGRESOS_OTROS = Convert.ToDecimal(dgTotalesDelDia.Rows[1].Cells[1].Value.ToString());
             decimal EGRESOS_TOTAL = Convert.ToDecimal(dgTotalesDelDia.Rows[2].Cells[1].Value.ToString());
-            decimal SUBTOTAL_INGRESOS = Convert.ToDecimal(dgTotalesDelDia.Rows[3].Cells[1].Value.ToString());
-            decimal SALDO_CAJA = Convert.ToDecimal(dgTotalesDelDia.Rows[4].Cells[1].Value.ToString());
+            decimal SUBTOTAL_INGRESOS = 0;
+            decimal SALDO_CAJA = 0;
+
+            if (VGlobales.vp_role == "CAJA")
+            {
+                SUBTOTAL_INGRESOS = Convert.ToDecimal(dgTotalesDelDia.Rows[3].Cells[1].Value.ToString());
+                SALDO_CAJA = Convert.ToDecimal(dgTotalesDelDia.Rows[4].Cells[1].Value.ToString());
+            }
+            
             decimal TOTAL = Convert.ToDecimal(tbTotal.Text);
 
             string ARCHIVO = "";
