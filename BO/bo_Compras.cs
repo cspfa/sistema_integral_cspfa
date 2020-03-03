@@ -829,7 +829,7 @@ namespace SOCIOS.BO
         }
 
         //STORED MODIFICA ARTICULOS DE UNA FACTURA
-        public void modificarArticulos(int ID, string DETALLE, decimal VALOR, int CANTIDAD, string NSERIE, int TIPO, string DESCUENTO)
+        public void modificarArticulos(int ID, string DETALLE, decimal VALOR, decimal CANTIDAD, string NSERIE, int TIPO, string DESCUENTO)
         {
             
 
@@ -846,7 +846,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Decimal");
-            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Decimal");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
@@ -866,7 +866,7 @@ namespace SOCIOS.BO
         }
 
         //STORED AGREGAR ARTICULOS A FACTURA
-        public void nuevoArticulo(int ID_FACTURA, string DETALLE, decimal VALOR, int CANTIDAD, string NSERIE, int TIPO, string DESCUENTO)
+        public void nuevoArticulo(int ID_FACTURA, string DETALLE, decimal VALOR, decimal CANTIDAD, string NSERIE, int TIPO, string DESCUENTO)
         {
             
 
@@ -883,7 +883,7 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Decimal");
-            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Decimal");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Integer");
             vector_tipos.Add("FbDbType.Char");

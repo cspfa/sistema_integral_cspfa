@@ -646,7 +646,7 @@ namespace SOCIOS
             decimal TOTAL_FACTURA = Convert.ToDecimal(tbImporte.Text);
             decimal TOTAL_ROWS = 0;
             decimal VALOR_AGREGAR = Convert.ToDecimal(tbValor.Text);
-            int CANTIDAD_AGREGAR = int.Parse(tbCantidad.Text);
+            decimal CANTIDAD_AGREGAR = Convert.ToDecimal(tbCantidad.Text);
             string descuento;
             decimal importe = 0;
 
@@ -1176,10 +1176,10 @@ namespace SOCIOS
                 Cursor = Cursors.WaitCursor;
                 btAgregarArticulo.Enabled = false;
                 btnModArt.Enabled = false;
-                decimal importe = Convert.ToInt32(tbCantidad.Text) * Convert.ToDecimal(tbValor.Text);
+                decimal importe = Convert.ToDecimal(tbCantidad.Text) * Convert.ToDecimal(tbValor.Text);
                 decimal valor = Convert.ToDecimal(tbValor.Text);
                 string descuento = "";
-                int CANTIDAD = int.Parse(tbCantidad.Text.Trim());
+                decimal CANTIDAD = Convert.ToDecimal(tbCantidad.Text.Trim());
                 string DETALLE = tbDetalle.Text.Trim();
                 string NSERIE = tbSerie.Text.Trim();
                 int TIPO = int.Parse(cbTipoArticulo.SelectedValue.ToString());
