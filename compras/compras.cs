@@ -2559,12 +2559,12 @@ namespace SOCIOS
             TABLA_FIRMAS.SpacingBefore = 65;
             TABLA_FIRMAS.SetWidths(new float[] { 1f, 1f, 1f });
 
-            PdfPCell CELDA_LINEA_VISCONTI = new PdfPCell(new Phrase("_______________________________", _mediumFont));
-            CELDA_LINEA_VISCONTI.BackgroundColor = blanco;
-            CELDA_LINEA_VISCONTI.BorderColor = blanco;
-            CELDA_LINEA_VISCONTI.HorizontalAlignment = 1;
-            CELDA_LINEA_VISCONTI.FixedHeight = 16f;
-            TABLA_FIRMAS.AddCell(CELDA_LINEA_VISCONTI);
+            PdfPCell CELDA_LINEA_TAVARES = new PdfPCell(new Phrase("_______________________________", _mediumFont));
+            CELDA_LINEA_TAVARES.BackgroundColor = blanco;
+            CELDA_LINEA_TAVARES.BorderColor = blanco;
+            CELDA_LINEA_TAVARES.HorizontalAlignment = 1;
+            CELDA_LINEA_TAVARES.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_LINEA_TAVARES);
 
             PdfPCell CELDA_LINEA_HERNANDEZ = new PdfPCell(new Phrase("_______________________________", _mediumFont));
             CELDA_LINEA_HERNANDEZ.BackgroundColor = blanco;
@@ -2573,19 +2573,19 @@ namespace SOCIOS
             CELDA_LINEA_HERNANDEZ.FixedHeight = 16f;
             TABLA_FIRMAS.AddCell(CELDA_LINEA_HERNANDEZ);
 
-            PdfPCell CELDA_LINEA_TAVARES = new PdfPCell(new Phrase("_______________________________", _mediumFont));
-            CELDA_LINEA_TAVARES.BackgroundColor = blanco;
-            CELDA_LINEA_TAVARES.BorderColor = blanco;
-            CELDA_LINEA_TAVARES.HorizontalAlignment = 1;
-            CELDA_LINEA_TAVARES.FixedHeight = 16f;
-            TABLA_FIRMAS.AddCell(CELDA_LINEA_TAVARES);
+            PdfPCell CELDA_LINEA_VISCONTI = new PdfPCell(new Phrase("_______________________________", _mediumFont));
+            CELDA_LINEA_VISCONTI.BackgroundColor = blanco;
+            CELDA_LINEA_VISCONTI.BorderColor = blanco;
+            CELDA_LINEA_VISCONTI.HorizontalAlignment = 1;
+            CELDA_LINEA_VISCONTI.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_LINEA_VISCONTI);
 
-            PdfPCell CELDA_VISCONTI = new PdfPCell(new Phrase("Eliseo Aníbal VISCONTI", _mediumFont));
-            CELDA_VISCONTI.BackgroundColor = blanco;
-            CELDA_VISCONTI.BorderColor = blanco;
-            CELDA_VISCONTI.HorizontalAlignment = 1;
-            CELDA_VISCONTI.FixedHeight = 16f;
-            TABLA_FIRMAS.AddCell(CELDA_VISCONTI);
+            PdfPCell CELDA_TAVARES = new PdfPCell(new Phrase("Miguel Ángel TAVARES", _mediumFont));
+            CELDA_TAVARES.BackgroundColor = blanco;
+            CELDA_TAVARES.BorderColor = blanco;
+            CELDA_TAVARES.HorizontalAlignment = 1;
+            CELDA_TAVARES.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_TAVARES);
 
             PdfPCell CELDA_HERNANDEZ = new PdfPCell(new Phrase("Carlos Aníbal HERNANDEZ", _mediumFont));
             CELDA_HERNANDEZ.BackgroundColor = blanco;
@@ -2594,12 +2594,13 @@ namespace SOCIOS
             CELDA_HERNANDEZ.FixedHeight = 16f;
             TABLA_FIRMAS.AddCell(CELDA_HERNANDEZ);
 
-            PdfPCell CELDA_TAVARES = new PdfPCell(new Phrase("Miguel Ángel TAVARES", _mediumFont));
-            CELDA_TAVARES.BackgroundColor = blanco;
-            CELDA_TAVARES.BorderColor = blanco;
-            CELDA_TAVARES.HorizontalAlignment = 1;
-            CELDA_TAVARES.FixedHeight = 16f;
-            TABLA_FIRMAS.AddCell(CELDA_TAVARES);
+            PdfPCell CELDA_VISCONTI = new PdfPCell(new Phrase("Eliseo Aníbal VISCONTI", _mediumFont));
+            CELDA_VISCONTI.BackgroundColor = blanco;
+            CELDA_VISCONTI.BorderColor = blanco;
+            CELDA_VISCONTI.HorizontalAlignment = 1;
+            CELDA_VISCONTI.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_VISCONTI);
+
 
             PdfPCell CELDA_SECRETARIO = new PdfPCell(new Phrase("SECRETARIO GENERAL", _mediumFont));
             CELDA_SECRETARIO.BackgroundColor = blanco;
@@ -2621,6 +2622,7 @@ namespace SOCIOS
             CELDA_PRESIDENTE.HorizontalAlignment = 1;
             CELDA_PRESIDENTE.FixedHeight = 16f;
             TABLA_FIRMAS.AddCell(CELDA_PRESIDENTE);
+
 
             doc.Add(TABLA_FIRMAS);
 
