@@ -333,6 +333,7 @@ namespace SOCIOS
             cbTipoComprobante.SelectedIndex = 0;
             tbNumSolicitud.Text = "";
             tbNumSecGral.Text = "";
+            tbAcreedor.Text = "";
         }
 
         private void limpiarBusquedaFactura()
@@ -846,6 +847,16 @@ namespace SOCIOS
                 string VALOR = string.Format("{0:n}", IMPORTE);
                 DateTime FECHA = reader.GetDateTime(reader.GetOrdinal("FECHA"));
                 DateTime OP_ANULADA;
+                string RAZON_SOCIAL = "";
+
+                if(reader.GetString(reader.GetOrdinal("ACREEDOR_DIVERSO")).Trim() != "")
+                {
+                    RAZON_SOCIAL = reader.GetString(reader.GetOrdinal("RAZON_SOCIAL")).Trim() + " (" + reader.GetString(reader.GetOrdinal("ACREEDOR_DIVERSO")).Trim() + ")";
+                }
+                else
+                {
+                    RAZON_SOCIAL = reader.GetString(reader.GetOrdinal("RAZON_SOCIAL")).Trim();
+                }
 
                 if (reader.GetString(reader.GetOrdinal("OP_ANULADA")) != "")
                 { 
@@ -853,7 +864,7 @@ namespace SOCIOS
                 }
 
                 ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("ID")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("RAZON_SOCIAL")).Trim());
+                listItem.SubItems.Add(RAZON_SOCIAL);
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NUM_FACTURA")).Trim());
                 listItem.SubItems.Add(FECHA.ToShortDateString());
                 listItem.SubItems.Add(VALOR);
@@ -936,12 +947,12 @@ namespace SOCIOS
                     {
                         case "BUSCAR":
                         QUERY += "SELECT F.ID, F.PROVEEDOR, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.FE_ALTA, F.US_ALTA, F.FE_MOD, ";
-                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC, F.DESCUENTO, F.ANULADO, F.OP_ANULADA ";
+                        QUERY += "F.US_MOD, P.RAZON_SOCIAL, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, F.RETENCION, T.TIPO, P.CUIT, F.TIPO AS TC, F.DESCUENTO, F.ANULADO, F.OP_ANULADA, F.ACREEDOR_DIVERSO ";
                         break;
 
                         case "EXCEL":
                         QUERY += "SELECT F.FE_ALTA, P.RAZON_SOCIAL, F.NUM_FACTURA, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.SECTOR, F.ORDEN_DE_PAGO, F.NRO_REMITO, ";
-                        QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO, F.ANULADO, F.OP_ANULADA ";
+                        QUERY += "F.RETENCION, T.TIPO, P.CUIT, F.DESCUENTO, F.ANULADO, F.OP_ANULADA, F.ACREEDOR_DIVERSO ";
                         break;
                     }
 
@@ -1107,39 +1118,58 @@ namespace SOCIOS
                 string SECTOR_FACTURA_HIJA = cbSectores.SelectedValue.ToString();
                 int ORDEN_DE_PAGO_FACTURA_HIJA = 0;
                 string SEC_GRAL_FACTURA_HIJA = tbNumSecGral.Text.Trim();
-                int ID_FACTURA_MADRE = int.Parse(lbID.Text);
-                int DESCUENTO_FACTURA_HIJA = 0;
-                string TIPO_DESC_FACTURA_HIJA = "";
-              
 
-                try
+                if (lbID.Text == "ID_FACTURA")
                 {
-                    if (lbID.Text != "ID_FACTURA") //GRABA EN BASE DE DATOS
+                    MessageBox.Show("GUARDAR LA RENDICION ANTES DE AGREGAR UNA FACTURA", "ERROR");
+                    btAgregarArticulo.Enabled = true;
+                    btnModArt.Enabled = true;
+                }
+                else
+                {
+                    int ID_FACTURA_MADRE = int.Parse(lbID.Text);
+                    int DESCUENTO_FACTURA_HIJA = 0;
+                    string TIPO_DESC_FACTURA_HIJA = "";
+                    string ACREEDOR_DIVERSO = tbAcreedorFactura.Text.Trim();
+
+                    try
                     {
-                        if (ACCION == "AGREGAR")
+                        if (lbID.Text != "ID_FACTURA") //GRABA EN BASE DE DATOS
                         {
-                            if (sumaFacturaHija(sender, ID_ARTICULO) == false)
+                            if (ACCION == "AGREGAR")
                             {
-                                MessageBox.Show("LA SUMA DE LAS FACTURAS NO COINCIDE CON EL TOTAL DE LA RENDICION", "ERROR");
-                                btAgregarArticulo.Enabled = true;
-                                btnModArt.Enabled = true;
-                            }
-                            else
-                            {
-                                Cursor = Cursors.WaitCursor;
-                                BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
-                                OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
-                                ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA, "0", S_AJUSTE);
-                                Cursor = Cursors.Default;
+                                if (sumaFacturaHija(sender, ID_ARTICULO) == false)
+                                {
+                                    MessageBox.Show("LA SUMA DE LAS FACTURAS NO COINCIDE CON EL TOTAL DE LA RENDICION", "ERROR");
+                                    btAgregarArticulo.Enabled = true;
+                                    btnModArt.Enabled = true;
+                                }
+                                else if (check_ad_factura(NRO_FACTURA_HIJA, ACREEDOR_DIVERSO))
+                                {
+                                    MessageBox.Show("EL NRO DE FACTURA INGRESADO YA EXISTE PARA ESTE PROVEEDOR", "ERROR");
+                                    btAgregarArticulo.Enabled = true;
+                                    btnModArt.Enabled = true;
+                                }
+                                else
+                                {
+                                    Cursor = Cursors.WaitCursor;
+                                    BO_COMPRAS.nuevaFactura(ID_PROVEEDOR_FACTURA_HIJA, NUM_FACTURA_HIJA, FECHA_FACTURA_HIJA, IMPORTE_FACTURA_HIJA,
+                                    OBS_FACTURA_HIJA, FE_ALTA_FACTURA_HIJA, US_ALTA_FACTURA_HIJA, SECTOR_FACTURA_HIJA, SEC_GRAL_FACTURA_HIJA,
+                                    ID_TIPO_FACTURA_HIJA, ORDEN_DE_PAGO_FACTURA_HIJA, 0, 0, ID_FACTURA_MADRE, DESCUENTO_FACTURA_HIJA, TIPO_DESC_FACTURA_HIJA, "0", 
+                                    S_AJUSTE, ACREEDOR_DIVERSO);
+                                    Cursor = Cursors.Default;
+
+                                    BuscarFacturasHijas(ID_FACTURA_MADRE);
+                                }
                             }
                         }
                     }
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show("NO SE PUDO " + ACCION + " LA FACTURA HIJA\n" + error, "ERROR");
-                    btAgregarArticulo.Enabled = true;
-                    btnModArt.Enabled = true;
+                    catch (Exception error)
+                    {
+                        MessageBox.Show("NO SE PUDO " + ACCION + " LA FACTURA HIJA\n" + error, "ERROR");
+                        btAgregarArticulo.Enabled = true;
+                        btnModArt.Enabled = true;
+                    }
                 }
             }
         }
@@ -1610,6 +1640,7 @@ namespace SOCIOS
                 cbSectores.SelectedValue = row[10].ToString().Trim();
                 tbNumSecGral.Text = row[13].ToString().Trim();
                 cbTipoComprobante.SelectedValue = row[14];
+                tbAcreedor.Text = row[25].ToString().Trim();
 
                 if (row[18].ToString() == "")
                     tbDescuentoTotal.Text = "0";
@@ -3694,6 +3725,23 @@ namespace SOCIOS
             Cursor = Cursors.Default;
         }
 
+        private bool check_ad_factura(string FACTURA, string AD)
+        {
+            bool RES = false;
+            string QUERY = "SELECT COUNT(ID) FROM FACTURAS WHERE NUM_FACTURA = '" + FACTURA + "' AND ACREEDOR_DIVERSO = '" + AD + "';";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+
+            if (Convert.ToInt32(foundRows[0][0]) > 0)
+            {
+                RES = true;
+            }
+
+            return RES;
+
+        }
+
         private void btnGuardarFactura_Click_1(object sender, EventArgs e)
         {
             btnGuardarFactura.Enabled = false;
@@ -3761,6 +3809,12 @@ namespace SOCIOS
                 SUMA_ART = 0;
                 btnGuardarFactura.Enabled = true;
             }
+            else if(check_ad_factura(tbAcreedor.Text.Trim(), tbNumFactura.Text))
+            {
+                MessageBox.Show("LA FACTURA " + tbNumFactura.Text.Trim() + " YA EXISTE PARA ESTE ACREEDOR DIVERSO", "ERROR");
+                SUMA_ART = 0;
+                btnGuardarFactura.Enabled = true;
+            }
             else
             {
                 try
@@ -3794,11 +3848,12 @@ namespace SOCIOS
                     int DESCUENTO_TOTAL = int.Parse(tbDescuentoTotal.Text);
                     string TIPO_DESCUENTO = cbDescGlobal.SelectedItem.ToString();
                     string SOL_COMP = tbSolComp.Text.Trim();
+                    string ACREEDOR_DIVERSO = tbAcreedor.Text.Trim();
 
                     Cursor = Cursors.WaitCursor;
 
                     BO_COMPRAS.nuevaFactura(PROVEEDOR, NUM_FACTURA, FECHA, IMPORTE, OBSERVACIONES, FE_ALTA, US_ALTA, SECTOR, SEC_GRAL,
-                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO, SOL_COMP, S_AJUSTE);
+                        TIPO, ORDEN_DE_PAGO, REGIMEN, RETENCION, 0, DESCUENTO_TOTAL, TIPO_DESCUENTO, SOL_COMP, S_AJUSTE, ACREEDOR_DIVERSO);
 
                     int ID_FACTURA = int.Parse(mid.m("ID", "FACTURAS"));
 
@@ -3867,11 +3922,20 @@ namespace SOCIOS
                         }
                     }
 
-                    limpiarFactura();
+                    if (TIPO_COMPROBANTE != "2" && TIPO_COMPROBANTE != "9" && TIPO_COMPROBANTE != "12")
+                    {
+                        limpiarFactura();
+                        comboProveedores(cbProveedores);
+                    }
+                    else
+                    {
+                        lbID.Text = ID_FACTURA.ToString();
+                    }
+
+                    
                     SUMA_ART = 0;
                     dgArticulos.Rows.Clear();
                     btnGuardarFactura.Enabled = true;
-                    comboProveedores(cbProveedores);
                     Cursor = Cursors.Default;
                     MessageBox.Show("DEUDA GUARDADA", "LISTO!");
                 }
@@ -5491,16 +5555,18 @@ namespace SOCIOS
                 VALOR = cbProveedores.SelectedValue.ToString();
             }
 
-            if (VALOR == "RENDICION" || VALOR == "9")
+            if (VALOR == "RENDICION" || VALOR == "2" || VALOR == "9" || VALOR == "12")
             {
                 comboProveedores(cbProveedorFactura);
                 comboTipoComprobante(cbTipoFactura);
                 gbFacturas.Visible = true;
-                //BuscarFacturasHijas(int.Parse(lvFacturas.SelectedItems[0].SubItems[0].Text));
+                grupoArticulos.Visible = false;
+                BuscarFacturasHijas(int.Parse(lvFacturas.SelectedItems[0].SubItems[0].Text));
             }
             else
             {
                 gbFacturas.Visible = false;
+                grupoArticulos.Visible = true;
             }
         }
         
@@ -6415,6 +6481,11 @@ namespace SOCIOS
             {
                 MessageBox.Show(ex.ToString());
             }*/
+        }
+
+        private void DgArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

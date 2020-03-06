@@ -130,6 +130,20 @@
         kXSZUGI2UWB8OLENSJIJYoxo2zCqk8M12SWKIZtmp7n4G9RN6UD2CVVc9yZM1spMAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="btnAdjuntarFactura.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHjSURBVDhPhZNLaxNhFIaryy6iLVoULPgHXEWKK5eu
+        ChUky4ibipW2i1bjBSUEhK6FBAkRFYS6EHcu7MqC3fRGhbYiaTUoyUwnySSZW2YmF1/P+doM02RCBx74
+        Zua8D+cc+AYACOi5RISJsRO4TJz2cj5B2HGcWrPZbLdaLQRB/5FMJl/6JX7BGIdNTYP24jGMr0uwLAsa
+        vVerVSiKIiSyLCOVSnmSTvgUC7jANnRo8XlY3zdg2zYMw0CtVkOxWBSCer0O0zSRTqcPJd0C13VRiU1B
+        X3wjBBzQdR2lUunYOAxnegQ0BirxBzA+LYozz90ZpVwui04kSeovYIr3oijHpsXZL+FOeB+qqvYXOL/3
+        Id2+hYP7d2D/2Dkm4XF4JyzqK5AfzkB9/Qr2rz0UpkiynxXFjUZD7IclTKDAVWTkIuNwCnnUsz+Rn72L
+        7LUryN28gb+TURSezEH9+EF0EyjIP3+EQuIpql8+o/T+LbRvyzB3tyEtJPBnehL5ZzEo7zK9gpWLw0Pp
+        c6H4XmQCbuVwQQzPznD7jK0cwKUd8NkTbF4Yuk4sLI+c3dLXV71wt6QbT7B2PpQhlpJnBuP08Z8/fAJt
+        b4SjPVylLVv8o6swiDbVGpQJ+wWjLCGCrnAQdPUHRv8DJDmz4DqPjM0AAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="btnListado.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
@@ -147,20 +161,6 @@
         Fk1ewf+wkhYCU+RewanMXpt+zbaz3+b9IL/SdUzYafEIgu51zxq2HGa9kXLNrtkxa7BDt8uaheZgk7dQ
         5HQH43Lt7Gwe4Xf89AhOpMrTAkRd3YFiuSlA3EV5EHVRxwn+ok43Qo6No4KOHn9BRzIAnz/8M/0zf/tL
         eAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnAdjuntarFactura.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAHjSURBVDhPhZNLaxNhFIaryy6iLVoULPgHXEWKK5eu
-        ChUky4ibipW2i1bjBSUEhK6FBAkRFYS6EHcu7MqC3fRGhbYiaTUoyUwnySSZW2YmF1/P+doM02RCBx74
-        Zua8D+cc+AYACOi5RISJsRO4TJz2cj5B2HGcWrPZbLdaLQRB/5FMJl/6JX7BGIdNTYP24jGMr0uwLAsa
-        vVerVSiKIiSyLCOVSnmSTvgUC7jANnRo8XlY3zdg2zYMw0CtVkOxWBSCer0O0zSRTqcPJd0C13VRiU1B
-        X3wjBBzQdR2lUunYOAxnegQ0BirxBzA+LYozz90ZpVwui04kSeovYIr3oijHpsXZL+FOeB+qqvYXOL/3
-        Id2+hYP7d2D/2Dkm4XF4JyzqK5AfzkB9/Qr2rz0UpkiynxXFjUZD7IclTKDAVWTkIuNwCnnUsz+Rn72L
-        7LUryN28gb+TURSezEH9+EF0EyjIP3+EQuIpql8+o/T+LbRvyzB3tyEtJPBnehL5ZzEo7zK9gpWLw0Pp
-        c6H4XmQCbuVwQQzPznD7jK0cwKUd8NkTbF4Yuk4sLI+c3dLXV71wt6QbT7B2PpQhlpJnBuP08Z8/fAJt
-        b4SjPVylLVv8o6swiDbVGpQJ+wWjLCGCrnAQdPUHRv8DJDmz4DqPjM0AAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="CANTIDAD.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -285,7 +285,7 @@
     <value>True</value>
   </metadata>
   <metadata name="cmEstadoOP.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>361, 134</value>
+    <value>835, 134</value>
   </metadata>
   <data name="vERPDFToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -320,7 +320,7 @@
 </value>
   </data>
   <metadata name="cmFactura.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>482, 134</value>
+    <value>956, 134</value>
   </metadata>
   <data name="aNULARToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -340,7 +340,7 @@
 </value>
   </data>
   <metadata name="cmAdjuntos.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>590, 134</value>
+    <value>1064, 134</value>
   </metadata>
   <data name="toolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -377,7 +377,7 @@
 </value>
   </data>
   <metadata name="cmCheques.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>707, 134</value>
+    <value>17, 173</value>
   </metadata>
   <data name="toolStripMenuItem4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -413,7 +413,7 @@
 </value>
   </data>
   <metadata name="cmEstadoCompra.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>822, 134</value>
+    <value>132, 173</value>
   </metadata>
   <data name="pENDIENTEToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
