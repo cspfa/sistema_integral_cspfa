@@ -86,6 +86,8 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lbReintegro = new System.Windows.Forms.Label();
             this.lbDisponibles = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cbPtoVta_E = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -98,6 +100,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbPtoVta_E);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.tbNumeroElectronico);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.pbMultiples);
@@ -680,6 +684,25 @@
             this.lbDisponibles.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lbDisponibles.Visible = false;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(257, 267);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(132, 13);
+            this.label13.TabIndex = 91;
+            this.label13.Text = "PTO VTA ELECTRONICO";
+            // 
+            // cbPtoVta_E
+            // 
+            this.cbPtoVta_E.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPtoVta_E.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPtoVta_E.FormattingEnabled = true;
+            this.cbPtoVta_E.Location = new System.Drawing.Point(395, 261);
+            this.cbPtoVta_E.Name = "cbPtoVta_E";
+            this.cbPtoVta_E.Size = new System.Drawing.Size(158, 26);
+            this.cbPtoVta_E.TabIndex = 85;
+            // 
             // recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -769,5 +792,7 @@
         private System.Windows.Forms.ProgressBar pbMultiples;
         private System.Windows.Forms.TextBox tbNumeroElectronico;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cbPtoVta_E;
+        private System.Windows.Forms.Label label13;
     }
 }

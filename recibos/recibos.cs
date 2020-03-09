@@ -450,6 +450,8 @@ namespace SOCIOS
             cbPtoVta.DisplayMember = "NOMBRE";
             cbPtoVta.ValueMember = "PTO_VTA";
             cbPtoVta.SelectedItem = 0;
+            this.Cargo_Combo_Pto_Vta_E(cbPtoVta.SelectedValue.ToString());
+
         }
 
         private void comboCuentasDebe()
@@ -867,7 +869,7 @@ namespace SOCIOS
                                     {
                                         CAE = tbCAE.Text.Trim();
                                         VENCE_CAE = dpVenceCAE.Text.Substring(6, 4) + "" + dpVenceCAE.Text.Substring(3, 2) + "" + dpVenceCAE.Text.Substring(0, 2);
-                                        PTO_VTA_E = int.Parse(PTO_VTA);
+                                        PTO_VTA_E = Int32.Parse(cbPtoVta_E.SelectedValue.ToString());  // int.Parse(PTO_VTA);
                                         NUMERO_E = NRO_COMP;
                                     }
 
@@ -1192,6 +1194,22 @@ namespace SOCIOS
             int CUENTA = nr.obtenerCuenta(PTO_VTA);
             cbCuentasDebe.SelectedValue = CUENTA;
             lbNombreCuentaDebe.Text = nc.nombre(cbCuentasDebe.SelectedValue.ToString());
+            Cargo_Combo_Pto_Vta_E(PTO_VTA);
+
+        }
+
+        private void Cargo_Combo_Pto_Vta_E(string PTO)
+        {
+            string query = "select distinct PR.PTO_VTA PTO_VTA from puntos_de_Venta  P , puntos_de_venta PR where PR.ROL=P.ROL and P.PTO_VTA='"+PTO+"' order by P.rol ";
+
+
+            cbPtoVta_E.DataSource = null;
+            cbPtoVta_E.Items.Clear();
+            cbPtoVta_E.DataSource = dlog.BO_EjecutoDataTable(query);
+            cbPtoVta_E.DisplayMember = "PTO_VTA";
+            cbPtoVta_E.ValueMember = "PTO_VTA";
+            cbPtoVta_E.SelectedItem = 1;
+        
         }
 
         public bool Control_Efectivo()
