@@ -84,7 +84,9 @@
             this.lbArchivoAdjunto = new System.Windows.Forms.Label();
             this.btnAdjuntarFactura = new System.Windows.Forms.Button();
             this.tbObservaciones = new System.Windows.Forms.TextBox();
+            this.tbAcreedor = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.labelAcreedor = new System.Windows.Forms.Label();
             this.tbImporte = new System.Windows.Forms.TextBox();
             this.dpFechaFactura = new System.Windows.Forms.DateTimePicker();
             this.cbProveedores = new System.Windows.Forms.ComboBox();
@@ -148,7 +150,6 @@
             this.ID_PROVEEDOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_FACTURA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dpDiaFactura = new System.Windows.Forms.DateTimePicker();
-            this.label104 = new System.Windows.Forms.Label();
             this.label102 = new System.Windows.Forms.Label();
             this.mbNumeroFactura = new System.Windows.Forms.MaskedTextBox();
             this.cbTipoFactura = new System.Windows.Forms.ComboBox();
@@ -156,6 +157,7 @@
             this.label101 = new System.Windows.Forms.Label();
             this.label103 = new System.Windows.Forms.Label();
             this.cbProveedorFactura = new System.Windows.Forms.ComboBox();
+            this.tbAcreedorFactura = new System.Windows.Forms.TextBox();
             this.label99 = new System.Windows.Forms.Label();
             this.label100 = new System.Windows.Forms.Label();
             this.tabOrdenesDePago = new System.Windows.Forms.TabPage();
@@ -433,6 +435,11 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AID_SOL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabLibroBanco = new System.Windows.Forms.TabPage();
+            this.btnAceptarLibroBanco = new System.Windows.Forms.Button();
+            this.dgEfectivo = new System.Windows.Forms.DataGridView();
+            this.cbBancosEnLibro = new System.Windows.Forms.ComboBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.cmEstadoOP = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.vERDETALLEOPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vERPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -457,11 +464,6 @@
             this.aNULADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMPLETADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eNTREGADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabLibroBanco = new System.Windows.Forms.TabPage();
-            this.cbBancosEnLibro = new System.Windows.Forms.ComboBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.dgEfectivo = new System.Windows.Forms.DataGridView();
-            this.btnAceptarLibroBanco = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -529,14 +531,14 @@
             this.themedGroupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResArtSol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtSol)).BeginInit();
+            this.tabLibroBanco.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEfectivo)).BeginInit();
             this.cmEstadoOP.SuspendLayout();
             this.cmFactura.SuspendLayout();
             this.cmAdjuntos.SuspendLayout();
             this.cmCheques.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmEstadoCompra.SuspendLayout();
-            this.tabLibroBanco.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgEfectivo)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -551,7 +553,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 7);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1051, 685);
+            this.tabControl1.Size = new System.Drawing.Size(1051, 710);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -575,7 +577,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1043, 659);
+            this.tabPage1.Size = new System.Drawing.Size(1043, 684);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DEUDAS";
             this.tabPage1.Enter += new System.EventHandler(this.tabPage1_Enter);
@@ -583,7 +585,7 @@
             // lbIdArticulo
             // 
             this.lbIdArticulo.AutoSize = true;
-            this.lbIdArticulo.Location = new System.Drawing.Point(215, 631);
+            this.lbIdArticulo.Location = new System.Drawing.Point(215, 658);
             this.lbIdArticulo.Name = "lbIdArticulo";
             this.lbIdArticulo.Size = new System.Drawing.Size(78, 13);
             this.lbIdArticulo.TabIndex = 59;
@@ -592,7 +594,7 @@
             // btnCancelarEdicion
             // 
             this.btnCancelarEdicion.Image = global::SOCIOS.Properties.Resources.arrow_undo;
-            this.btnCancelarEdicion.Location = new System.Drawing.Point(7, 624);
+            this.btnCancelarEdicion.Location = new System.Drawing.Point(7, 651);
             this.btnCancelarEdicion.Name = "btnCancelarEdicion";
             this.btnCancelarEdicion.Size = new System.Drawing.Size(26, 26);
             this.btnCancelarEdicion.TabIndex = 58;
@@ -603,7 +605,7 @@
             // btnContabilizar
             // 
             this.btnContabilizar.Image = global::SOCIOS.Properties.Resources.calculator_add;
-            this.btnContabilizar.Location = new System.Drawing.Point(131, 624);
+            this.btnContabilizar.Location = new System.Drawing.Point(131, 651);
             this.btnContabilizar.Name = "btnContabilizar";
             this.btnContabilizar.Size = new System.Drawing.Size(26, 26);
             this.btnContabilizar.TabIndex = 57;
@@ -614,7 +616,7 @@
             // btnEliminarArticulo
             // 
             this.btnEliminarArticulo.Image = global::SOCIOS.Properties.Resources.delete;
-            this.btnEliminarArticulo.Location = new System.Drawing.Point(100, 624);
+            this.btnEliminarArticulo.Location = new System.Drawing.Point(100, 651);
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
             this.btnEliminarArticulo.Size = new System.Drawing.Size(26, 26);
             this.btnEliminarArticulo.TabIndex = 56;
@@ -625,7 +627,7 @@
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Location = new System.Drawing.Point(296, 631);
+            this.lbID.Location = new System.Drawing.Point(296, 658);
             this.lbID.Name = "lbID";
             this.lbID.Size = new System.Drawing.Size(74, 13);
             this.lbID.TabIndex = 54;
@@ -634,7 +636,7 @@
             // btnModFactura
             // 
             this.btnModFactura.Enabled = false;
-            this.btnModFactura.Location = new System.Drawing.Point(714, 625);
+            this.btnModFactura.Location = new System.Drawing.Point(714, 652);
             this.btnModFactura.Name = "btnModFactura";
             this.btnModFactura.Size = new System.Drawing.Size(210, 25);
             this.btnModFactura.TabIndex = 55;
@@ -644,7 +646,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(930, 625);
+            this.button4.Location = new System.Drawing.Point(930, 652);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(104, 25);
             this.button4.TabIndex = 51;
@@ -655,7 +657,7 @@
             // btnModArt
             // 
             this.btnModArt.Image = ((System.Drawing.Image)(resources.GetObject("btnModArt.Image")));
-            this.btnModArt.Location = new System.Drawing.Point(69, 624);
+            this.btnModArt.Location = new System.Drawing.Point(69, 651);
             this.btnModArt.Name = "btnModArt";
             this.btnModArt.Size = new System.Drawing.Size(26, 26);
             this.btnModArt.TabIndex = 48;
@@ -665,7 +667,7 @@
             // 
             // btnGuardarFactura
             // 
-            this.btnGuardarFactura.Location = new System.Drawing.Point(539, 625);
+            this.btnGuardarFactura.Location = new System.Drawing.Point(539, 652);
             this.btnGuardarFactura.Name = "btnGuardarFactura";
             this.btnGuardarFactura.Size = new System.Drawing.Size(169, 25);
             this.btnGuardarFactura.TabIndex = 52;
@@ -683,7 +685,7 @@
             this.themedGroupBox2.GradientEnd = System.Drawing.Color.White;
             this.themedGroupBox2.Location = new System.Drawing.Point(749, 269);
             this.themedGroupBox2.Name = "themedGroupBox2";
-            this.themedGroupBox2.Size = new System.Drawing.Size(292, 122);
+            this.themedGroupBox2.Size = new System.Drawing.Size(292, 152);
             this.themedGroupBox2.TabIndex = 46;
             this.themedGroupBox2.Title = "ARCHIVOS ADJUNTOS";
             this.themedGroupBox2.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -736,7 +738,9 @@
             this.grupoAltaFactura.Controls.Add(this.lbArchivoAdjunto);
             this.grupoAltaFactura.Controls.Add(this.btnAdjuntarFactura);
             this.grupoAltaFactura.Controls.Add(this.tbObservaciones);
+            this.grupoAltaFactura.Controls.Add(this.tbAcreedor);
             this.grupoAltaFactura.Controls.Add(this.label14);
+            this.grupoAltaFactura.Controls.Add(this.labelAcreedor);
             this.grupoAltaFactura.Controls.Add(this.tbImporte);
             this.grupoAltaFactura.Controls.Add(this.dpFechaFactura);
             this.grupoAltaFactura.Controls.Add(this.cbProveedores);
@@ -748,7 +752,7 @@
             this.grupoAltaFactura.GradientEnd = System.Drawing.Color.White;
             this.grupoAltaFactura.Location = new System.Drawing.Point(2, 269);
             this.grupoAltaFactura.Name = "grupoAltaFactura";
-            this.grupoAltaFactura.Size = new System.Drawing.Size(748, 122);
+            this.grupoAltaFactura.Size = new System.Drawing.Size(748, 152);
             this.grupoAltaFactura.TabIndex = 44;
             this.grupoAltaFactura.Title = "ALTA / MODIFICACION";
             this.grupoAltaFactura.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
@@ -841,7 +845,7 @@
             // tbNumSolicitud
             // 
             this.tbNumSolicitud.Enabled = false;
-            this.tbNumSolicitud.Location = new System.Drawing.Point(551, 26);
+            this.tbNumSolicitud.Location = new System.Drawing.Point(559, 26);
             this.tbNumSolicitud.Name = "tbNumSolicitud";
             this.tbNumSolicitud.Size = new System.Drawing.Size(84, 20);
             this.tbNumSolicitud.TabIndex = 4;
@@ -850,7 +854,7 @@
             // 
             this.lbNumSolicitud.AutoSize = true;
             this.lbNumSolicitud.Enabled = false;
-            this.lbNumSolicitud.Location = new System.Drawing.Point(519, 30);
+            this.lbNumSolicitud.Location = new System.Drawing.Point(531, 30);
             this.lbNumSolicitud.Name = "lbNumSolicitud";
             this.lbNumSolicitud.Size = new System.Drawing.Size(28, 13);
             this.lbNumSolicitud.TabIndex = 28;
@@ -887,9 +891,9 @@
             // tbNumFactura
             // 
             this.tbNumFactura.Location = new System.Drawing.Point(429, 26);
-            this.tbNumFactura.Mask = "0000-00000000";
+            this.tbNumFactura.Mask = "00000-00000000";
             this.tbNumFactura.Name = "tbNumFactura";
-            this.tbNumFactura.Size = new System.Drawing.Size(86, 20);
+            this.tbNumFactura.Size = new System.Drawing.Size(100, 20);
             this.tbNumFactura.TabIndex = 2;
             // 
             // cbSectores
@@ -912,7 +916,7 @@
             // lbArchivoAdjunto
             // 
             this.lbArchivoAdjunto.AutoSize = true;
-            this.lbArchivoAdjunto.Location = new System.Drawing.Point(47, 102);
+            this.lbArchivoAdjunto.Location = new System.Drawing.Point(47, 129);
             this.lbArchivoAdjunto.Name = "lbArchivoAdjunto";
             this.lbArchivoAdjunto.Size = new System.Drawing.Size(154, 13);
             this.lbArchivoAdjunto.TabIndex = 20;
@@ -939,6 +943,16 @@
             this.tbObservaciones.Size = new System.Drawing.Size(360, 20);
             this.tbObservaciones.TabIndex = 10;
             // 
+            // tbAcreedor
+            // 
+            this.tbAcreedor.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbAcreedor.Location = new System.Drawing.Point(49, 103);
+            this.tbAcreedor.MaxLength = 600;
+            this.tbAcreedor.Multiline = true;
+            this.tbAcreedor.Name = "tbAcreedor";
+            this.tbAcreedor.Size = new System.Drawing.Size(360, 20);
+            this.tbAcreedor.TabIndex = 10;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -947,6 +961,15 @@
             this.label14.Size = new System.Drawing.Size(29, 13);
             this.label14.TabIndex = 16;
             this.label14.Text = "OBS";
+            // 
+            // labelAcreedor
+            // 
+            this.labelAcreedor.AutoSize = true;
+            this.labelAcreedor.Location = new System.Drawing.Point(19, 107);
+            this.labelAcreedor.Name = "labelAcreedor";
+            this.labelAcreedor.Size = new System.Drawing.Size(22, 13);
+            this.labelAcreedor.TabIndex = 16;
+            this.labelAcreedor.Text = "AD";
             // 
             // tbImporte
             // 
@@ -977,7 +1000,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(641, 30);
+            this.label13.Location = new System.Drawing.Point(645, 30);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(13, 13);
             this.label13.TabIndex = 3;
@@ -1004,7 +1027,7 @@
             // btAgregarArticulo
             // 
             this.btAgregarArticulo.Image = global::SOCIOS.Properties.Resources.add;
-            this.btAgregarArticulo.Location = new System.Drawing.Point(38, 624);
+            this.btAgregarArticulo.Location = new System.Drawing.Point(38, 651);
             this.btAgregarArticulo.Name = "btAgregarArticulo";
             this.btAgregarArticulo.Size = new System.Drawing.Size(26, 26);
             this.btAgregarArticulo.TabIndex = 6;
@@ -1052,7 +1075,7 @@
             // chSectores
             // 
             this.chSectores.AutoSize = true;
-            this.chSectores.Location = new System.Drawing.Point(548, 28);
+            this.chSectores.Location = new System.Drawing.Point(559, 28);
             this.chSectores.Name = "chSectores";
             this.chSectores.Size = new System.Drawing.Size(15, 14);
             this.chSectores.TabIndex = 44;
@@ -1062,7 +1085,7 @@
             // cbFecha
             // 
             this.cbFecha.AutoSize = true;
-            this.cbFecha.Location = new System.Drawing.Point(442, 28);
+            this.cbFecha.Location = new System.Drawing.Point(453, 28);
             this.cbFecha.Name = "cbFecha";
             this.cbFecha.Size = new System.Drawing.Size(15, 14);
             this.cbFecha.TabIndex = 43;
@@ -1072,7 +1095,7 @@
             // label111
             // 
             this.label111.AutoSize = true;
-            this.label111.Location = new System.Drawing.Point(766, 29);
+            this.label111.Location = new System.Drawing.Point(776, 29);
             this.label111.Name = "label111";
             this.label111.Size = new System.Drawing.Size(32, 13);
             this.label111.TabIndex = 42;
@@ -1081,7 +1104,7 @@
             // tbCuitBusqueda
             // 
             this.tbCuitBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbCuitBusqueda.Location = new System.Drawing.Point(800, 25);
+            this.tbCuitBusqueda.Location = new System.Drawing.Point(811, 25);
             this.tbCuitBusqueda.Name = "tbCuitBusqueda";
             this.tbCuitBusqueda.Size = new System.Drawing.Size(77, 20);
             this.tbCuitBusqueda.TabIndex = 41;
@@ -1090,7 +1113,7 @@
             // label110
             // 
             this.label110.AutoSize = true;
-            this.label110.Location = new System.Drawing.Point(879, 29);
+            this.label110.Location = new System.Drawing.Point(892, 29);
             this.label110.Name = "label110";
             this.label110.Size = new System.Drawing.Size(22, 13);
             this.label110.TabIndex = 40;
@@ -1099,7 +1122,7 @@
             // tbOpBusqueda
             // 
             this.tbOpBusqueda.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbOpBusqueda.Location = new System.Drawing.Point(905, 25);
+            this.tbOpBusqueda.Location = new System.Drawing.Point(915, 25);
             this.tbOpBusqueda.Name = "tbOpBusqueda";
             this.tbOpBusqueda.Size = new System.Drawing.Size(52, 20);
             this.tbOpBusqueda.TabIndex = 39;
@@ -1110,7 +1133,7 @@
             this.cbSectorBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSectorBusqueda.Enabled = false;
             this.cbSectorBusqueda.FormattingEnabled = true;
-            this.cbSectorBusqueda.Location = new System.Drawing.Point(569, 25);
+            this.cbSectorBusqueda.Location = new System.Drawing.Point(579, 25);
             this.cbSectorBusqueda.Name = "cbSectorBusqueda";
             this.cbSectorBusqueda.Size = new System.Drawing.Size(193, 21);
             this.cbSectorBusqueda.TabIndex = 37;
@@ -1120,7 +1143,7 @@
             // 
             this.dpFechaListado.Enabled = false;
             this.dpFechaListado.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpFechaListado.Location = new System.Drawing.Point(459, 25);
+            this.dpFechaListado.Location = new System.Drawing.Point(471, 25);
             this.dpFechaListado.Name = "dpFechaListado";
             this.dpFechaListado.Size = new System.Drawing.Size(83, 20);
             this.dpFechaListado.TabIndex = 35;
@@ -1130,7 +1153,7 @@
             // 
             this.btnListado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnListado.Image = ((System.Drawing.Image)(resources.GetObject("btnListado.Image")));
-            this.btnListado.Location = new System.Drawing.Point(997, 25);
+            this.btnListado.Location = new System.Drawing.Point(1004, 25);
             this.btnListado.Name = "btnListado";
             this.btnListado.Size = new System.Drawing.Size(30, 20);
             this.btnListado.TabIndex = 34;
@@ -1149,9 +1172,9 @@
             // tbBuscarNumeroFactura
             // 
             this.tbBuscarNumeroFactura.Location = new System.Drawing.Point(352, 25);
-            this.tbBuscarNumeroFactura.Mask = "0000-00000000";
+            this.tbBuscarNumeroFactura.Mask = "00000-00000000";
             this.tbBuscarNumeroFactura.Name = "tbBuscarNumeroFactura";
-            this.tbBuscarNumeroFactura.Size = new System.Drawing.Size(87, 20);
+            this.tbBuscarNumeroFactura.Size = new System.Drawing.Size(95, 20);
             this.tbBuscarNumeroFactura.TabIndex = 2;
             this.tbBuscarNumeroFactura.Visible = false;
             this.tbBuscarNumeroFactura.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBuscarNumeroFactura_KeyUp);
@@ -1219,7 +1242,7 @@
             // 
             this.btnBuscarFactura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscarFactura.Image = global::SOCIOS.Properties.Resources.magnifier;
-            this.btnBuscarFactura.Location = new System.Drawing.Point(963, 25);
+            this.btnBuscarFactura.Location = new System.Drawing.Point(971, 25);
             this.btnBuscarFactura.Name = "btnBuscarFactura";
             this.btnBuscarFactura.Size = new System.Drawing.Size(30, 20);
             this.btnBuscarFactura.TabIndex = 4;
@@ -1268,7 +1291,7 @@
             this.grupoArticulos.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
             this.grupoArticulos.GradientBegin = System.Drawing.Color.White;
             this.grupoArticulos.GradientEnd = System.Drawing.Color.White;
-            this.grupoArticulos.Location = new System.Drawing.Point(2, 391);
+            this.grupoArticulos.Location = new System.Drawing.Point(2, 420);
             this.grupoArticulos.Name = "grupoArticulos";
             this.grupoArticulos.Size = new System.Drawing.Size(1039, 223);
             this.grupoArticulos.TabIndex = 45;
@@ -1371,6 +1394,7 @@
             this.dgArticulos.Size = new System.Drawing.Size(1023, 156);
             this.dgArticulos.TabIndex = 46;
             this.dgArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgArticulos_CellClick);
+            this.dgArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgArticulos_CellContentClick);
             // 
             // CANTIDAD
             // 
@@ -1522,7 +1546,6 @@
             this.gbFacturas.BorderColor = System.Drawing.Color.SteelBlue;
             this.gbFacturas.Controls.Add(this.dgFacturasHijas);
             this.gbFacturas.Controls.Add(this.dpDiaFactura);
-            this.gbFacturas.Controls.Add(this.label104);
             this.gbFacturas.Controls.Add(this.label102);
             this.gbFacturas.Controls.Add(this.mbNumeroFactura);
             this.gbFacturas.Controls.Add(this.cbTipoFactura);
@@ -1530,12 +1553,13 @@
             this.gbFacturas.Controls.Add(this.label101);
             this.gbFacturas.Controls.Add(this.label103);
             this.gbFacturas.Controls.Add(this.cbProveedorFactura);
+            this.gbFacturas.Controls.Add(this.tbAcreedorFactura);
             this.gbFacturas.Controls.Add(this.label99);
             this.gbFacturas.Controls.Add(this.label100);
             this.gbFacturas.CornerStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxCornerType.Squared;
             this.gbFacturas.GradientBegin = System.Drawing.Color.White;
             this.gbFacturas.GradientEnd = System.Drawing.Color.White;
-            this.gbFacturas.Location = new System.Drawing.Point(2, 391);
+            this.gbFacturas.Location = new System.Drawing.Point(2, 420);
             this.gbFacturas.Name = "gbFacturas";
             this.gbFacturas.Size = new System.Drawing.Size(1039, 223);
             this.gbFacturas.TabIndex = 55;
@@ -1545,7 +1569,6 @@
             this.gbFacturas.TitleShadow = false;
             this.gbFacturas.TitleStyle = MicroFour.StrataFrame.UI.ThemedGroupBoxTitleType.HeadingInGroupBox;
             this.gbFacturas.TitleTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gbFacturas.Visible = false;
             // 
             // dgFacturasHijas
             // 
@@ -1656,24 +1679,15 @@
             // dpDiaFactura
             // 
             this.dpDiaFactura.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpDiaFactura.Location = new System.Drawing.Point(802, 32);
+            this.dpDiaFactura.Location = new System.Drawing.Point(936, 32);
             this.dpDiaFactura.Name = "dpDiaFactura";
-            this.dpDiaFactura.Size = new System.Drawing.Size(103, 20);
+            this.dpDiaFactura.Size = new System.Drawing.Size(95, 20);
             this.dpDiaFactura.TabIndex = 30;
-            // 
-            // label104
-            // 
-            this.label104.AutoSize = true;
-            this.label104.Location = new System.Drawing.Point(753, 36);
-            this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(42, 13);
-            this.label104.TabIndex = 29;
-            this.label104.Text = "FECHA";
             // 
             // label102
             // 
             this.label102.AutoSize = true;
-            this.label102.Location = new System.Drawing.Point(460, 36);
+            this.label102.Location = new System.Drawing.Point(656, 36);
             this.label102.Name = "label102";
             this.label102.Size = new System.Drawing.Size(32, 13);
             this.label102.TabIndex = 32;
@@ -1681,8 +1695,8 @@
             // 
             // mbNumeroFactura
             // 
-            this.mbNumeroFactura.Location = new System.Drawing.Point(350, 32);
-            this.mbNumeroFactura.Mask = "0000-00000000";
+            this.mbNumeroFactura.Location = new System.Drawing.Point(550, 32);
+            this.mbNumeroFactura.Mask = "00000-00000000";
             this.mbNumeroFactura.Name = "mbNumeroFactura";
             this.mbNumeroFactura.Size = new System.Drawing.Size(103, 20);
             this.mbNumeroFactura.TabIndex = 30;
@@ -1691,7 +1705,7 @@
             // 
             this.cbTipoFactura.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoFactura.FormattingEnabled = true;
-            this.cbTipoFactura.Location = new System.Drawing.Point(499, 32);
+            this.cbTipoFactura.Location = new System.Drawing.Point(691, 32);
             this.cbTipoFactura.Name = "cbTipoFactura";
             this.cbTipoFactura.Size = new System.Drawing.Size(137, 21);
             this.cbTipoFactura.TabIndex = 30;
@@ -1699,15 +1713,15 @@
             // tbImporteFactura
             // 
             this.tbImporteFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbImporteFactura.Location = new System.Drawing.Point(663, 32);
+            this.tbImporteFactura.Location = new System.Drawing.Point(847, 32);
             this.tbImporteFactura.Name = "tbImporteFactura";
-            this.tbImporteFactura.Size = new System.Drawing.Size(83, 20);
+            this.tbImporteFactura.Size = new System.Drawing.Size(82, 20);
             this.tbImporteFactura.TabIndex = 31;
             // 
             // label101
             // 
             this.label101.AutoSize = true;
-            this.label101.Location = new System.Drawing.Point(324, 36);
+            this.label101.Location = new System.Drawing.Point(524, 36);
             this.label101.Name = "label101";
             this.label101.Size = new System.Drawing.Size(19, 13);
             this.label101.TabIndex = 29;
@@ -1716,7 +1730,7 @@
             // label103
             // 
             this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(643, 36);
+            this.label103.Location = new System.Drawing.Point(832, 36);
             this.label103.Name = "label103";
             this.label103.Size = new System.Drawing.Size(13, 13);
             this.label103.TabIndex = 29;
@@ -1725,15 +1739,23 @@
             // cbProveedorFactura
             // 
             this.cbProveedorFactura.FormattingEnabled = true;
-            this.cbProveedorFactura.Location = new System.Drawing.Point(95, 32);
+            this.cbProveedorFactura.Location = new System.Drawing.Point(84, 32);
             this.cbProveedorFactura.Name = "cbProveedorFactura";
             this.cbProveedorFactura.Size = new System.Drawing.Size(222, 21);
             this.cbProveedorFactura.TabIndex = 30;
             // 
+            // tbAcreedorFactura
+            // 
+            this.tbAcreedorFactura.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.tbAcreedorFactura.Location = new System.Drawing.Point(312, 32);
+            this.tbAcreedorFactura.Name = "tbAcreedorFactura";
+            this.tbAcreedorFactura.Size = new System.Drawing.Size(206, 20);
+            this.tbAcreedorFactura.TabIndex = 31;
+            // 
             // label99
             // 
             this.label99.AutoSize = true;
-            this.label99.Location = new System.Drawing.Point(13, 36);
+            this.label99.Location = new System.Drawing.Point(6, 36);
             this.label99.Name = "label99";
             this.label99.Size = new System.Drawing.Size(75, 13);
             this.label99.TabIndex = 29;
@@ -1768,7 +1790,7 @@
             this.tabOrdenesDePago.Location = new System.Drawing.Point(4, 22);
             this.tabOrdenesDePago.Name = "tabOrdenesDePago";
             this.tabOrdenesDePago.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOrdenesDePago.Size = new System.Drawing.Size(1043, 659);
+            this.tabOrdenesDePago.Size = new System.Drawing.Size(1043, 684);
             this.tabOrdenesDePago.TabIndex = 3;
             this.tabOrdenesDePago.Text = "ORDENES DE PAGO";
             this.tabOrdenesDePago.Enter += new System.EventHandler(this.tabOrdenesDePago_Enter);
@@ -2454,7 +2476,7 @@
             this.tabAdjuntos.Location = new System.Drawing.Point(4, 22);
             this.tabAdjuntos.Name = "tabAdjuntos";
             this.tabAdjuntos.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAdjuntos.Size = new System.Drawing.Size(1043, 659);
+            this.tabAdjuntos.Size = new System.Drawing.Size(1043, 684);
             this.tabAdjuntos.TabIndex = 6;
             this.tabAdjuntos.Text = "CARGAR ADJUNTOS";
             this.tabAdjuntos.UseVisualStyleBackColor = true;
@@ -3404,7 +3426,7 @@
             this.tpProveedores.Location = new System.Drawing.Point(4, 22);
             this.tpProveedores.Name = "tpProveedores";
             this.tpProveedores.Padding = new System.Windows.Forms.Padding(3);
-            this.tpProveedores.Size = new System.Drawing.Size(1043, 659);
+            this.tpProveedores.Size = new System.Drawing.Size(1043, 684);
             this.tpProveedores.TabIndex = 7;
             this.tpProveedores.Text = "PROVEEDORES";
             this.tpProveedores.UseVisualStyleBackColor = true;
@@ -3978,7 +4000,7 @@
             this.tpBancosCuentasCheques.Location = new System.Drawing.Point(4, 22);
             this.tpBancosCuentasCheques.Name = "tpBancosCuentasCheques";
             this.tpBancosCuentasCheques.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBancosCuentasCheques.Size = new System.Drawing.Size(1043, 659);
+            this.tpBancosCuentasCheques.Size = new System.Drawing.Size(1043, 684);
             this.tpBancosCuentasCheques.TabIndex = 9;
             this.tpBancosCuentasCheques.Text = "BANCOS, CUENTAS Y CHEQUES";
             this.tpBancosCuentasCheques.UseVisualStyleBackColor = true;
@@ -4470,7 +4492,7 @@
             this.tpSolicitud.Location = new System.Drawing.Point(4, 22);
             this.tpSolicitud.Name = "tpSolicitud";
             this.tpSolicitud.Padding = new System.Windows.Forms.Padding(3);
-            this.tpSolicitud.Size = new System.Drawing.Size(1043, 659);
+            this.tpSolicitud.Size = new System.Drawing.Size(1043, 684);
             this.tpSolicitud.TabIndex = 10;
             this.tpSolicitud.Text = "SOLICITUD DE COMPRA";
             this.tpSolicitud.UseVisualStyleBackColor = true;
@@ -4903,6 +4925,98 @@
             this.AID_SOL.Name = "AID_SOL";
             this.AID_SOL.ReadOnly = true;
             // 
+            // tabLibroBanco
+            // 
+            this.tabLibroBanco.Controls.Add(this.btnAceptarLibroBanco);
+            this.tabLibroBanco.Controls.Add(this.dgEfectivo);
+            this.tabLibroBanco.Controls.Add(this.cbBancosEnLibro);
+            this.tabLibroBanco.Controls.Add(this.label40);
+            this.tabLibroBanco.Location = new System.Drawing.Point(4, 22);
+            this.tabLibroBanco.Name = "tabLibroBanco";
+            this.tabLibroBanco.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLibroBanco.Size = new System.Drawing.Size(1043, 684);
+            this.tabLibroBanco.TabIndex = 11;
+            this.tabLibroBanco.Text = "LIBRO BANCO";
+            this.tabLibroBanco.UseVisualStyleBackColor = true;
+            this.tabLibroBanco.Enter += new System.EventHandler(this.TabLibroBanco_Enter);
+            // 
+            // btnAceptarLibroBanco
+            // 
+            this.btnAceptarLibroBanco.Location = new System.Drawing.Point(278, 18);
+            this.btnAceptarLibroBanco.Name = "btnAceptarLibroBanco";
+            this.btnAceptarLibroBanco.Size = new System.Drawing.Size(75, 23);
+            this.btnAceptarLibroBanco.TabIndex = 73;
+            this.btnAceptarLibroBanco.Text = "ACEPTAR";
+            this.btnAceptarLibroBanco.UseVisualStyleBackColor = true;
+            this.btnAceptarLibroBanco.Click += new System.EventHandler(this.BtnAceptarLibroBanco_Click);
+            // 
+            // dgEfectivo
+            // 
+            this.dgEfectivo.AllowUserToAddRows = false;
+            this.dgEfectivo.AllowUserToDeleteRows = false;
+            this.dgEfectivo.AllowUserToResizeColumns = false;
+            this.dgEfectivo.AllowUserToResizeRows = false;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dgEfectivo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            this.dgEfectivo.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dgEfectivo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgEfectivo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgEfectivo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            this.dgEfectivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgEfectivo.DefaultCellStyle = dataGridViewCellStyle19;
+            this.dgEfectivo.Location = new System.Drawing.Point(8, 47);
+            this.dgEfectivo.Margin = new System.Windows.Forms.Padding(5);
+            this.dgEfectivo.Name = "dgEfectivo";
+            this.dgEfectivo.ReadOnly = true;
+            this.dgEfectivo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgEfectivo.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            this.dgEfectivo.RowHeadersVisible = false;
+            this.dgEfectivo.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(1);
+            this.dgEfectivo.RowTemplate.ReadOnly = true;
+            this.dgEfectivo.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgEfectivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgEfectivo.Size = new System.Drawing.Size(1027, 604);
+            this.dgEfectivo.TabIndex = 72;
+            // 
+            // cbBancosEnLibro
+            // 
+            this.cbBancosEnLibro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbBancosEnLibro.FormattingEnabled = true;
+            this.cbBancosEnLibro.Location = new System.Drawing.Point(66, 18);
+            this.cbBancosEnLibro.Name = "cbBancosEnLibro";
+            this.cbBancosEnLibro.Size = new System.Drawing.Size(199, 21);
+            this.cbBancosEnLibro.TabIndex = 31;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(15, 22);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(44, 13);
+            this.label40.TabIndex = 32;
+            this.label40.Text = "BANCO";
+            // 
             // cmEstadoOP
             // 
             this.cmEstadoOP.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -4912,13 +5026,13 @@
             this.cONFIRMARANULACIÓNToolStripMenuItem,
             this.cANCELARANULACIONToolStripMenuItem});
             this.cmEstadoOP.Name = "cmEstadoOP";
-            this.cmEstadoOP.Size = new System.Drawing.Size(237, 114);
+            this.cmEstadoOP.Size = new System.Drawing.Size(236, 114);
             // 
             // vERDETALLEOPToolStripMenuItem
             // 
             this.vERDETALLEOPToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.application_view_columns;
             this.vERDETALLEOPToolStripMenuItem.Name = "vERDETALLEOPToolStripMenuItem";
-            this.vERDETALLEOPToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.vERDETALLEOPToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.vERDETALLEOPToolStripMenuItem.Text = "VER DETALLE ORDEN DE PAGO";
             this.vERDETALLEOPToolStripMenuItem.Click += new System.EventHandler(this.vERDETALLEOPToolStripMenuItem_Click);
             // 
@@ -4926,7 +5040,7 @@
             // 
             this.vERPDFToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("vERPDFToolStripMenuItem.Image")));
             this.vERPDFToolStripMenuItem.Name = "vERPDFToolStripMenuItem";
-            this.vERPDFToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.vERPDFToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.vERPDFToolStripMenuItem.Text = "VER PDF ORDEN DE PAGO";
             this.vERPDFToolStripMenuItem.Click += new System.EventHandler(this.vERPDFToolStripMenuItem_Click);
             // 
@@ -4934,7 +5048,7 @@
             // 
             this.aNULARORDENDEPAGOToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aNULARORDENDEPAGOToolStripMenuItem.Image")));
             this.aNULARORDENDEPAGOToolStripMenuItem.Name = "aNULARORDENDEPAGOToolStripMenuItem";
-            this.aNULARORDENDEPAGOToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.aNULARORDENDEPAGOToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.aNULARORDENDEPAGOToolStripMenuItem.Text = "ANULAR ORDEN DE PAGO";
             this.aNULARORDENDEPAGOToolStripMenuItem.Click += new System.EventHandler(this.aNULARORDENDEPAGOToolStripMenuItem_Click);
             // 
@@ -4942,7 +5056,7 @@
             // 
             this.cONFIRMARANULACIÓNToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.accept;
             this.cONFIRMARANULACIÓNToolStripMenuItem.Name = "cONFIRMARANULACIÓNToolStripMenuItem";
-            this.cONFIRMARANULACIÓNToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.cONFIRMARANULACIÓNToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.cONFIRMARANULACIÓNToolStripMenuItem.Text = "CONFIRMAR ANULACIÓN";
             this.cONFIRMARANULACIÓNToolStripMenuItem.Visible = false;
             this.cONFIRMARANULACIÓNToolStripMenuItem.Click += new System.EventHandler(this.cONFIRMARANULACIÓNToolStripMenuItem_Click);
@@ -4951,7 +5065,7 @@
             // 
             this.cANCELARANULACIONToolStripMenuItem.Image = global::SOCIOS.Properties.Resources.cross;
             this.cANCELARANULACIONToolStripMenuItem.Name = "cANCELARANULACIONToolStripMenuItem";
-            this.cANCELARANULACIONToolStripMenuItem.Size = new System.Drawing.Size(236, 22);
+            this.cANCELARANULACIONToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.cANCELARANULACIONToolStripMenuItem.Text = "CANCELAR ANULACION";
             this.cANCELARANULACIONToolStripMenuItem.Click += new System.EventHandler(this.cANCELARANULACIONToolStripMenuItem_Click);
             // 
@@ -5107,103 +5221,11 @@
             this.eNTREGADAToolStripMenuItem.Text = "Entregada";
             this.eNTREGADAToolStripMenuItem.Click += new System.EventHandler(this.eNTREGADAToolStripMenuItem_Click);
             // 
-            // tabLibroBanco
-            // 
-            this.tabLibroBanco.Controls.Add(this.btnAceptarLibroBanco);
-            this.tabLibroBanco.Controls.Add(this.dgEfectivo);
-            this.tabLibroBanco.Controls.Add(this.cbBancosEnLibro);
-            this.tabLibroBanco.Controls.Add(this.label40);
-            this.tabLibroBanco.Location = new System.Drawing.Point(4, 22);
-            this.tabLibroBanco.Name = "tabLibroBanco";
-            this.tabLibroBanco.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLibroBanco.Size = new System.Drawing.Size(1043, 659);
-            this.tabLibroBanco.TabIndex = 11;
-            this.tabLibroBanco.Text = "LIBRO BANCO";
-            this.tabLibroBanco.UseVisualStyleBackColor = true;
-            this.tabLibroBanco.Enter += new System.EventHandler(this.TabLibroBanco_Enter);
-            // 
-            // cbBancosEnLibro
-            // 
-            this.cbBancosEnLibro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbBancosEnLibro.FormattingEnabled = true;
-            this.cbBancosEnLibro.Location = new System.Drawing.Point(66, 18);
-            this.cbBancosEnLibro.Name = "cbBancosEnLibro";
-            this.cbBancosEnLibro.Size = new System.Drawing.Size(199, 21);
-            this.cbBancosEnLibro.TabIndex = 31;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(15, 22);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(44, 13);
-            this.label40.TabIndex = 32;
-            this.label40.Text = "BANCO";
-            // 
-            // dgEfectivo
-            // 
-            this.dgEfectivo.AllowUserToAddRows = false;
-            this.dgEfectivo.AllowUserToDeleteRows = false;
-            this.dgEfectivo.AllowUserToResizeColumns = false;
-            this.dgEfectivo.AllowUserToResizeRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dgEfectivo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
-            this.dgEfectivo.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.dgEfectivo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgEfectivo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgEfectivo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
-            this.dgEfectivo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgEfectivo.DefaultCellStyle = dataGridViewCellStyle19;
-            this.dgEfectivo.Location = new System.Drawing.Point(8, 47);
-            this.dgEfectivo.Margin = new System.Windows.Forms.Padding(5);
-            this.dgEfectivo.Name = "dgEfectivo";
-            this.dgEfectivo.ReadOnly = true;
-            this.dgEfectivo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgEfectivo.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
-            this.dgEfectivo.RowHeadersVisible = false;
-            this.dgEfectivo.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(1);
-            this.dgEfectivo.RowTemplate.ReadOnly = true;
-            this.dgEfectivo.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgEfectivo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgEfectivo.Size = new System.Drawing.Size(1027, 604);
-            this.dgEfectivo.TabIndex = 72;
-            // 
-            // btnAceptarLibroBanco
-            // 
-            this.btnAceptarLibroBanco.Location = new System.Drawing.Point(278, 18);
-            this.btnAceptarLibroBanco.Name = "btnAceptarLibroBanco";
-            this.btnAceptarLibroBanco.Size = new System.Drawing.Size(75, 23);
-            this.btnAceptarLibroBanco.TabIndex = 73;
-            this.btnAceptarLibroBanco.Text = "ACEPTAR";
-            this.btnAceptarLibroBanco.UseVisualStyleBackColor = true;
-            this.btnAceptarLibroBanco.Click += new System.EventHandler(this.BtnAceptarLibroBanco_Click);
-            // 
             // compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1064, 700);
+            this.ClientSize = new System.Drawing.Size(1064, 725);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -5304,15 +5326,15 @@
             this.themedGroupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResArtSol)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArtSol)).EndInit();
+            this.tabLibroBanco.ResumeLayout(false);
+            this.tabLibroBanco.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgEfectivo)).EndInit();
             this.cmEstadoOP.ResumeLayout(false);
             this.cmFactura.ResumeLayout(false);
             this.cmAdjuntos.ResumeLayout(false);
             this.cmCheques.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmEstadoCompra.ResumeLayout(false);
-            this.tabLibroBanco.ResumeLayout(false);
-            this.tabLibroBanco.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgEfectivo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -5334,7 +5356,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lbNumFactura;
         private System.Windows.Forms.TextBox tbObservaciones;
+        private System.Windows.Forms.TextBox tbAcreedor;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelAcreedor;
         private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox grupoArticulos;
         private System.Windows.Forms.TextBox tbValor;
         private System.Windows.Forms.Button btAgregarArticulo;
@@ -5637,7 +5661,6 @@
         private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox gbFacturas;
         private System.Windows.Forms.Label label100;
         private System.Windows.Forms.DateTimePicker dpDiaFactura;
-        private System.Windows.Forms.Label label104;
         private System.Windows.Forms.Label label102;
         private System.Windows.Forms.MaskedTextBox mbNumeroFactura;
         private System.Windows.Forms.ComboBox cbTipoFactura;
@@ -5645,6 +5668,7 @@
         private System.Windows.Forms.Label label101;
         private System.Windows.Forms.Label label103;
         private System.Windows.Forms.ComboBox cbProveedorFactura;
+        private System.Windows.Forms.TextBox tbAcreedorFactura;
         private System.Windows.Forms.Label label99;
         private System.Windows.Forms.DataGridView dgFacturasHijas;
         private MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox themedGroupBox5;
