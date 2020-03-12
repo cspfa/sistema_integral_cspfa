@@ -537,7 +537,7 @@ namespace SOCIOS
                 dadp.TableMappings.Add("DNI", "NOMBRE");
                 dadp.Fill(dset);
                 DataTable table = dset.Tables[0];
-                int DNI = 0;
+                string DNI = "";
                 string NOMBRE = "";
 
                 try
@@ -555,11 +555,11 @@ namespace SOCIOS
                     for (int i = 0; i < table.Rows.Count; i++)
                     {
                         if (table.Rows[i][0].ToString().Length > 0)
-                            DNI = int.Parse(table.Rows[i][0].ToString().Replace(",", ""));
+                            DNI =table.Rows[i][0].ToString();
                         else
                             throw new Exception("Existen filas DNI sin cargar, deben respetarse datos en todas las filas  ");
 
-                        NOMBRE = table.Rows[i][1].ToString();
+                        NOMBRE = "NOMBRE";
                         dlog.cargarMorososDeportes(NOMBRE, DNI);
                         progressBar1.PerformStep();
                     }
