@@ -5543,30 +5543,32 @@ namespace SOCIOS
             if (sender == lvFacturas)
             {
                 VALOR = lvFacturas.SelectedItems[0].SubItems[8].Text;
+
+                if (VALOR == "RENDICION" || VALOR == "2" || VALOR == "9" || VALOR == "12")
+                    BuscarFacturasHijas(int.Parse(VALOR));
             }
 
             if (sender == cbTipoComprobante)
             {
                 VALOR = cbTipoComprobante.SelectedValue.ToString();
+
+                if (VALOR == "RENDICION" || VALOR == "2" || VALOR == "9" || VALOR == "12")
+                {
+                    comboProveedores(cbProveedorFactura);
+                    comboTipoComprobante(cbTipoFactura);
+                    gbFacturas.Visible = true;
+                    grupoArticulos.Visible = false;                        
+                }
+                else
+                {
+                    gbFacturas.Visible = false;
+                    grupoArticulos.Visible = true;
+                }
             }
 
             if (sender == cbProveedores)
             {
                 VALOR = cbProveedores.SelectedValue.ToString();
-            }
-
-            if (VALOR == "RENDICION" || VALOR == "2" || VALOR == "9" || VALOR == "12")
-            {
-                comboProveedores(cbProveedorFactura);
-                comboTipoComprobante(cbTipoFactura);
-                gbFacturas.Visible = true;
-                grupoArticulos.Visible = false;
-                BuscarFacturasHijas(int.Parse(lvFacturas.SelectedItems[0].SubItems[0].Text));
-            }
-            else
-            {
-                gbFacturas.Visible = false;
-                grupoArticulos.Visible = true;
             }
         }
         
@@ -6484,6 +6486,11 @@ namespace SOCIOS
         }
 
         private void DgArticulos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void CbProveedores_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

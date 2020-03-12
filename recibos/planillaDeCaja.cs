@@ -3057,7 +3057,7 @@ namespace SOCIOS
                 SUBTOTAL_INGRESOS = Convert.ToDecimal(dgTotalesDelDia.Rows[3].Cells[1].Value.ToString());
                 SALDO_CAJA = Convert.ToDecimal(dgTotalesDelDia.Rows[4].Cells[1].Value.ToString());
             }
-            
+
             decimal TOTAL = Convert.ToDecimal(tbTotal.Text);
 
             string ARCHIVO = "";
@@ -3101,11 +3101,16 @@ namespace SOCIOS
             EGRESOS = xlWorkBook.Worksheets[3];
             EGRESOS.Name = "EGRESOS";
 
-            CHEQUES = xlWorkBook.Worksheets[4];
-            CHEQUES.Name = "CHEQUES";
+            CHEQUES = null;
+            TOTALES = null;
 
-            TOTALES = xlWorkBook.Worksheets[5];
-            TOTALES.Name = "TOTALES";
+            if (VGlobales.vp_role == "CAJA")
+            {
+                CHEQUES = xlWorkBook.Worksheets[4];
+                CHEQUES.Name = "CHEQUES";
+                TOTALES = xlWorkBook.Worksheets[5];
+                TOTALES.Name = "TOTALES";
+            }
 
             EFECTIVO.Cells[1, 1] = "TOTAL";
 
@@ -3348,113 +3353,121 @@ namespace SOCIOS
                 }
             }
 
-            if (CAJA > 0)
+            if (VGlobales.vp_role == "CAJA")
             {
-                CHEQUES.Cells[1, 1] = "#";
-                CHEQUES.Cells[1, 2] = "DETALLE";
-                CHEQUES.Cells[1, 3] = "FECHA";
-                CHEQUES.Cells[1, 4] = "IMPORTE";
-                CHEQUES.Cells[1, 5] = "IMPUTACION";
-            }
-            else
-            {
-                CHEQUES.Cells[1, 1] = "#";
-                CHEQUES.Cells[1, 2] = "DETALLE";
-                CHEQUES.Cells[1, 3] = "CONCEPTO";
-                CHEQUES.Cells[1, 4] = "IMPUTACION";
-                CHEQUES.Cells[1, 5] = "IMPORTE";
-                CHEQUES.Cells[1, 6] = "OBSERVACIONES";
-                CHEQUES.Cells[1, 7] = "FECHA";
-                CHEQUES.Cells[1, 8] = "ANULADO";
-            }
 
-            X = 2;
-
-            if (CAJA > 0)
-            {
-                foreach (DataRow row in CHEQUES_DS.Tables[0].Rows)
+                if (CAJA > 0)
                 {
-                    NRO = row[0].ToString();
-                    DETALLE = row[1].ToString();
-                    FECHA = row[2].ToString();
-                    IMPORTE = row[3].ToString();
-                    IMPUTACION = row[4].ToString();
+                    CHEQUES.Cells[1, 1] = "#";
+                    CHEQUES.Cells[1, 2] = "DETALLE";
+                    CHEQUES.Cells[1, 3] = "FECHA";
+                    CHEQUES.Cells[1, 4] = "IMPORTE";
+                    CHEQUES.Cells[1, 5] = "IMPUTACION";
+                }
+                else
+                {
+                    CHEQUES.Cells[1, 1] = "#";
+                    CHEQUES.Cells[1, 2] = "DETALLE";
+                    CHEQUES.Cells[1, 3] = "CONCEPTO";
+                    CHEQUES.Cells[1, 4] = "IMPUTACION";
+                    CHEQUES.Cells[1, 5] = "IMPORTE";
+                    CHEQUES.Cells[1, 6] = "OBSERVACIONES";
+                    CHEQUES.Cells[1, 7] = "FECHA";
+                    CHEQUES.Cells[1, 8] = "ANULADO";
+                }
 
-                    CHEQUES.Cells[X, 1] = NRO;
-                    CHEQUES.Columns[1].AutoFit();
-                    CHEQUES.Cells[X, 2] = DETALLE;
-                    CHEQUES.Columns[2].AutoFit();
-                    CHEQUES.Cells[X, 3] = FECHA;
-                    CHEQUES.Columns[3].AutoFit();
-                    CHEQUES.Cells[X, 4] = IMPORTE;
-                    CHEQUES.Columns[4].AutoFit();
-                    CHEQUES.Cells[X, 5] = IMPUTACION;
-                    CHEQUES.Columns[5].AutoFit();
-                    X++;
+                X = 2;
+
+                if (CAJA > 0)
+                {
+                    foreach (DataRow row in CHEQUES_DS.Tables[0].Rows)
+                    {
+                        NRO = row[0].ToString();
+                        DETALLE = row[1].ToString();
+                        FECHA = row[2].ToString();
+                        IMPORTE = row[3].ToString();
+                        IMPUTACION = row[4].ToString();
+
+                        CHEQUES.Cells[X, 1] = NRO;
+                        CHEQUES.Columns[1].AutoFit();
+                        CHEQUES.Cells[X, 2] = DETALLE;
+                        CHEQUES.Columns[2].AutoFit();
+                        CHEQUES.Cells[X, 3] = FECHA;
+                        CHEQUES.Columns[3].AutoFit();
+                        CHEQUES.Cells[X, 4] = IMPORTE;
+                        CHEQUES.Columns[4].AutoFit();
+                        CHEQUES.Cells[X, 5] = IMPUTACION;
+                        CHEQUES.Columns[5].AutoFit();
+                        X++;
+                    }
+                }
+                else
+                {
+                    foreach (DataGridViewRow row in dgCheques.Rows)
+                    {
+                        NRO = row.Cells[0].Value.ToString();
+                        DETALLE = row.Cells[1].Value.ToString();
+                        CONCEPTO = row.Cells[2].Value.ToString();
+                        IMPUTACION = row.Cells[3].Value.ToString();
+                        IMPORTE = row.Cells[4].Value.ToString();
+                        OBSERVACIONES = row.Cells[5].Value.ToString();
+                        FECHA = row.Cells[6].Value.ToString();
+                        ANULADO = row.Cells[7].Value.ToString();
+
+                        CHEQUES.Cells[X, 1] = NRO;
+                        CHEQUES.Columns[1].AutoFit();
+                        CHEQUES.Cells[X, 2] = DETALLE;
+                        CHEQUES.Columns[2].AutoFit();
+                        CHEQUES.Cells[X, 3] = CONCEPTO;
+                        CHEQUES.Columns[3].AutoFit();
+                        CHEQUES.Cells[X, 4] = IMPUTACION;
+                        CHEQUES.Columns[4].AutoFit();
+                        CHEQUES.Cells[X, 5] = IMPORTE;
+                        CHEQUES.Columns[5].AutoFit();
+                        CHEQUES.Cells[X, 6] = OBSERVACIONES;
+                        CHEQUES.Columns[6].AutoFit();
+                        CHEQUES.Cells[X, 7] = FECHA;
+                        CHEQUES.Columns[7].AutoFit();
+                        CHEQUES.Cells[X, 8] = ANULADO;
+                        CHEQUES.Columns[8].AutoFit();
+                        X++;
+                    }
                 }
             }
-            else
+
+            if (VGlobales.vp_role == "CAJA")
             {
-                foreach (DataGridViewRow row in dgCheques.Rows)
+
+                if (CAJA > 0)
                 {
-                    NRO = row.Cells[0].Value.ToString();
-                    DETALLE = row.Cells[1].Value.ToString();
-                    CONCEPTO = row.Cells[2].Value.ToString();
-                    IMPUTACION = row.Cells[3].Value.ToString();
-                    IMPORTE = row.Cells[4].Value.ToString();
-                    OBSERVACIONES = row.Cells[5].Value.ToString();
-                    FECHA = row.Cells[6].Value.ToString();
-                    ANULADO = row.Cells[7].Value.ToString();
-
-                    CHEQUES.Cells[X, 1] = NRO;
-                    CHEQUES.Columns[1].AutoFit();
-                    CHEQUES.Cells[X, 2] = DETALLE;
-                    CHEQUES.Columns[2].AutoFit();
-                    CHEQUES.Cells[X, 3] = CONCEPTO;
-                    CHEQUES.Columns[3].AutoFit();
-                    CHEQUES.Cells[X, 4] = IMPUTACION;
-                    CHEQUES.Columns[4].AutoFit();
-                    CHEQUES.Cells[X, 5] = IMPORTE;
-                    CHEQUES.Columns[5].AutoFit();
-                    CHEQUES.Cells[X, 6] = OBSERVACIONES;
-                    CHEQUES.Columns[6].AutoFit();
-                    CHEQUES.Cells[X, 7] = FECHA;
-                    CHEQUES.Columns[7].AutoFit();
-                    CHEQUES.Cells[X, 8] = ANULADO;
-                    CHEQUES.Columns[8].AutoFit();
-                    X++;
+                    TOTALES.Cells[1, 1] = "INGRESOS EFECTIVO";
+                    TOTALES.Cells[1, 2] = INGRESOS_EFECTIVO_DS.ToString();
+                    TOTALES.Cells[2, 1] = "INGRESOS CHEQUES Y OTROS";
+                    TOTALES.Cells[2, 2] = INGRESOS_OTROS_DS.ToString();
+                    TOTALES.Cells[3, 1] = "EGRESOS";
+                    TOTALES.Cells[3, 2] = EGRESOS_DIA_DS.ToString();
+                    TOTALES.Cells[4, 1] = "SUBTOTAL INGRESOS";
+                    TOTALES.Cells[4, 2] = SUBTOTAL_INGRESOS_DS.ToString();
+                    TOTALES.Cells[5, 1] = "SALDO CAJA";
+                    TOTALES.Cells[5, 2] = SALDO_CAJA_DIA_DS.ToString();
+                    TOTALES.Columns[1].AutoFit();
+                    TOTALES.Columns[2].AutoFit();
                 }
-            }
-
-            if (CAJA > 0)
-            {
-                TOTALES.Cells[1, 1] = "INGRESOS EFECTIVO";
-                TOTALES.Cells[1, 2] = INGRESOS_EFECTIVO_DS.ToString();
-                TOTALES.Cells[2, 1] = "INGRESOS CHEQUES Y OTROS";
-                TOTALES.Cells[2, 2] = INGRESOS_OTROS_DS.ToString();
-                TOTALES.Cells[3, 1] = "EGRESOS";
-                TOTALES.Cells[3, 2] = EGRESOS_DIA_DS.ToString();
-                TOTALES.Cells[4, 1] = "SUBTOTAL INGRESOS";
-                TOTALES.Cells[4, 2] = SUBTOTAL_INGRESOS_DS.ToString();
-                TOTALES.Cells[5, 1] = "SALDO CAJA";
-                TOTALES.Cells[5, 2] = SALDO_CAJA_DIA_DS.ToString();
-                TOTALES.Columns[1].AutoFit();
-                TOTALES.Columns[2].AutoFit();
-            }
-            else
-            {
-                TOTALES.Cells[1, 1] = "INGRESOS EFECTIVO";
-                TOTALES.Cells[1, 2] = INGRESOS_EFECTIVO.ToString();
-                TOTALES.Cells[2, 1] = "INGRESOS CHEQUES Y OTROS";
-                TOTALES.Cells[2, 2] = INGRESOS_OTROS.ToString();
-                TOTALES.Cells[3, 1] = "EGRESOS";
-                TOTALES.Cells[3, 2] = EGRESOS_TOTAL.ToString();
-                TOTALES.Cells[4, 1] = "SUBTOTAL INGRESOS";
-                TOTALES.Cells[4, 2] = SUBTOTAL_INGRESOS.ToString();
-                TOTALES.Cells[5, 1] = "SALDO CAJA";
-                TOTALES.Cells[5, 2] = SALDO_CAJA.ToString();
-                TOTALES.Columns[1].AutoFit();
-                TOTALES.Columns[2].AutoFit();
+                else
+                {
+                    TOTALES.Cells[1, 1] = "INGRESOS EFECTIVO";
+                    TOTALES.Cells[1, 2] = INGRESOS_EFECTIVO.ToString();
+                    TOTALES.Cells[2, 1] = "INGRESOS CHEQUES Y OTROS";
+                    TOTALES.Cells[2, 2] = INGRESOS_OTROS.ToString();
+                    TOTALES.Cells[3, 1] = "EGRESOS";
+                    TOTALES.Cells[3, 2] = EGRESOS_TOTAL.ToString();
+                    TOTALES.Cells[4, 1] = "SUBTOTAL INGRESOS";
+                    TOTALES.Cells[4, 2] = SUBTOTAL_INGRESOS.ToString();
+                    TOTALES.Cells[5, 1] = "SALDO CAJA";
+                    TOTALES.Cells[5, 2] = SALDO_CAJA.ToString();
+                    TOTALES.Columns[1].AutoFit();
+                    TOTALES.Columns[2].AutoFit();
+                }
             }
 
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -3485,7 +3498,7 @@ namespace SOCIOS
             }
             else
             {
-                int CAJA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
+                int CAJA = int.Parse(dgCajasAnteriores[11, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
                 excelCaja(CAJA);
             }
         }

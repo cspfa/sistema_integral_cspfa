@@ -995,6 +995,7 @@
             this.cbProveedores.Name = "cbProveedores";
             this.cbProveedores.Size = new System.Drawing.Size(225, 21);
             this.cbProveedores.TabIndex = 3;
+            this.cbProveedores.SelectedIndexChanged += new System.EventHandler(this.CbProveedores_SelectedIndexChanged);
             this.cbProveedores.SelectionChangeCommitted += new System.EventHandler(this.cbProveedores_SelectionChangeCommitted);
             // 
             // label13

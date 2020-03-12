@@ -1841,7 +1841,7 @@ namespace SOCIOS
         }
 
         //STORED CARGAR MOROSOS_DEPORTES
-        public void cargarMorososDeportes(string APELLIDO_NOMBRE, int DNI)
+        public void cargarMorososDeportes(string APELLIDO_NOMBRE, string DNI)
         {
             db resultado = new db();
 
@@ -1851,7 +1851,7 @@ namespace SOCIOS
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.VarChar");
-            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("@APELLIDO_NOMBRE");
