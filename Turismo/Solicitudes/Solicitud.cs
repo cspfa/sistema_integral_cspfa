@@ -72,6 +72,7 @@ namespace SOCIOS.Turismo.Solicitudes
 
             int NroAdh=0;
             int NroDepAdh=0;
+            int ID_ROL = 0;
             try
             {
                 DateTime Desde = new DateTime(dpDesde.Value.Year, dpDesde.Value.Month, dpDesde.Value.Day, 0, 0, 0);
@@ -87,7 +88,10 @@ namespace SOCIOS.Turismo.Solicitudes
                 
 
 
-                dlog.SOLICITUD_ALOJAMIENTO_I(dpDesde.Value, dpHasta.Value, persona.TIPO, persona.NUM_DOC, persona.NOMBRE, persona.APELLIDO,Nro_Socio_titular,Nro_Dep_Titular , Int32.Parse(persona.BARRA),NroAdh,NroDepAdh, Int32.Parse(lbCantidad.Text), Int32.Parse(cbTipo.SelectedValue.ToString()));
+
+
+  
+                dlog.SOLICITUD_ALOJAMIENTO_I(dpDesde.Value, dpHasta.Value, persona.TIPO, persona.NUM_DOC, persona.NOMBRE, persona.APELLIDO,Nro_Socio_titular,Nro_Dep_Titular , Int32.Parse(persona.BARRA),NroAdh,NroDepAdh, Int32.Parse(lbCantidad.Text), Int32.Parse(cbTipo.SelectedValue.ToString()),ID_ROL);
                 gpSolicitud.Visible = false;
 
                int ID = su.GetMaxID(persona.NRO_SOCIO, persona.NRO_DEP, dpDesde.Value, dpHasta.Value, persona.TIPO);

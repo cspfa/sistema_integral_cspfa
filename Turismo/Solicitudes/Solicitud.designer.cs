@@ -30,6 +30,7 @@
         {
             this.nvSolicitud = new System.Windows.Forms.Button();
             this.gpSolicitud = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.lbDias = new System.Windows.Forms.Label();
             this.btnGrabar = new System.Windows.Forms.Button();
             this.cbTipo = new System.Windows.Forms.ComboBox();
@@ -56,6 +57,7 @@
             // 
             // gpSolicitud
             // 
+            this.gpSolicitud.Controls.Add(this.label5);
             this.gpSolicitud.Controls.Add(this.lbDias);
             this.gpSolicitud.Controls.Add(this.btnGrabar);
             this.gpSolicitud.Controls.Add(this.cbTipo);
@@ -73,6 +75,15 @@
             this.gpSolicitud.TabStop = false;
             this.gpSolicitud.Text = "Nueva Solicitud";
             this.gpSolicitud.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(258, 134);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.TabIndex = 126;
+            this.label5.Text = "NOCHES";
             // 
             // lbDias
             // 
@@ -167,7 +178,7 @@
             // btnAnular
             // 
             this.btnAnular.Enabled = false;
-            this.btnAnular.Location = new System.Drawing.Point(286, 380);
+            this.btnAnular.Location = new System.Drawing.Point(287, 380);
             this.btnAnular.Name = "btnAnular";
             this.btnAnular.Size = new System.Drawing.Size(211, 23);
             this.btnAnular.TabIndex = 2;
@@ -203,5 +214,6 @@
         private System.Windows.Forms.Button btnGrabar;
         private System.Windows.Forms.Label lbDias;
         private System.Windows.Forms.Button btnAnular;
+        private System.Windows.Forms.Label label5;
     }
 }
