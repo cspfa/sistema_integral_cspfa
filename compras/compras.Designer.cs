@@ -1794,6 +1794,7 @@
             this.tabOrdenesDePago.Size = new System.Drawing.Size(1043, 684);
             this.tabOrdenesDePago.TabIndex = 3;
             this.tabOrdenesDePago.Text = "ORDENES DE PAGO";
+            this.tabOrdenesDePago.Click += new System.EventHandler(this.TabOrdenesDePago_Click);
             this.tabOrdenesDePago.Enter += new System.EventHandler(this.tabOrdenesDePago_Enter);
             // 
             // tbTotalBusqueda

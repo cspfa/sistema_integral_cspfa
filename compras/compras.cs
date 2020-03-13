@@ -4323,10 +4323,10 @@ namespace SOCIOS
             {
                 MessageBox.Show("NO SE ENCONTRÓ NINGUNA CUENTA BANCARIA ASIGNADA AL PROVEEDOR SELECCIONADO", "ERROR");
             }
-            else if (lbPdfTrans.Text == "ARCHIVO PDF NO CARGADO")
+            /*else if (lbPdfTrans.Text == "ARCHIVO PDF NO CARGADO")
             {
                 MessageBox.Show("NO SE CARGO NINGUN COMPROBANTE DE TRANSFERENCIA", "ERROR");
-            }
+            }*/
             else
             {
                 string BANCO_ORIGEN_ID = cbBancoOrigenTrans.SelectedValue.ToString();
@@ -6491,6 +6491,11 @@ namespace SOCIOS
         }
 
         private void CbProveedores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TabOrdenesDePago_Click(object sender, EventArgs e)
         {
 
         }
