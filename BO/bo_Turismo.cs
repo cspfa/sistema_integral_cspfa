@@ -1971,8 +1971,12 @@ namespace SOCIOS
 
 
            Query = Query.Replace("{53}", ID.ToString());
-            BO_EjecutoDataTable(Query);
+          
+           
+            BO_EjecutoConsulta(Query);
         }
+
+
 
 
         public void Voucher_HOTEL_Insert(int BONO, DateTime Desde, DateTime Hasta, int Hotel, int Noches, int Pasajeros, int Regimen, int Habitacion, string Nro_Habitacion, string Tipo, string Motivo, string Late,string IN)
@@ -2048,6 +2052,10 @@ namespace SOCIOS
 
             }
         }
+        
+
+
+        
         #endregion
 
 

@@ -1441,7 +1441,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;Voucher :&lt;/B&gt;" &amp; Parameters!ID.Value</Value>
+                <Value>="Voucher :" &amp; Parameters!ID.Value</Value>
                 <Style>
                   <FontFamily>Free 3 of 9</FontFamily>
                   <FontSize>22pt</FontSize>
@@ -1459,9 +1459,6 @@
         <Height>0.35562in</Height>
         <Width>3.06819in</Width>
         <ZIndex>23</ZIndex>
-        <Visibility>
-          <Hidden>true</Hidden>
-        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1518,7 +1515,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.57125in</Top>
+        <Top>7.19625in</Top>
         <Left>0.26438in</Left>
         <Height>0.375in</Height>
         <Width>1.88542in</Width>
@@ -1579,7 +1576,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.57125in</Top>
+        <Top>7.19625in</Top>
         <Left>5.04563in</Left>
         <Height>0.14583in</Height>
         <Width>1.88542in</Width>
@@ -1595,7 +1592,7 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>5.57125in</Top>
+        <Top>7.19625in</Top>
         <Left>5.06647in</Left>
         <Height>0in</Height>
         <Width>1.86458in</Width>
@@ -1607,7 +1604,7 @@
         </Style>
       </Line>
       <Line Name="Line3">
-        <Top>5.57125in</Top>
+        <Top>7.19625in</Top>
         <Left>2.17063in</Left>
         <Height>0in</Height>
         <Width>-1.94069in</Width>
