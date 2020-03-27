@@ -557,13 +557,14 @@
             // lnkDisponibilidad
             // 
             this.lnkDisponibilidad.AutoSize = true;
-            this.lnkDisponibilidad.Location = new System.Drawing.Point(100, 80);
+            this.lnkDisponibilidad.Location = new System.Drawing.Point(9, 80);
             this.lnkDisponibilidad.Name = "lnkDisponibilidad";
             this.lnkDisponibilidad.Size = new System.Drawing.Size(91, 13);
             this.lnkDisponibilidad.TabIndex = 150;
             this.lnkDisponibilidad.TabStop = true;
             this.lnkDisponibilidad.Text = "Ver Disponibilidad";
             this.lnkDisponibilidad.Visible = false;
+            this.lnkDisponibilidad.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkDisponibilidad_LinkClicked);
             // 
             // cbSocial
             // 
@@ -584,7 +585,6 @@
             this.chkBonoSocial.TabIndex = 148;
             this.chkBonoSocial.Text = "Bono Social";
             this.chkBonoSocial.UseVisualStyleBackColor = true;
-            this.chkBonoSocial.Visible = false;
             this.chkBonoSocial.CheckedChanged += new System.EventHandler(this.chkBonoSocial_CheckedChanged);
             // 
             // lblSaldoTotal

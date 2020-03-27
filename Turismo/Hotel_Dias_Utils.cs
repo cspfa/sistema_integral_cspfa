@@ -10,9 +10,9 @@ namespace SOCIOS.Turismo
 
     public enum Hotel_Social_Enum
     {
-        TRAMITE    = 0,
-        ENFERMEDAD = 1,
-        CIRUGIA    = 2 
+        TRAMITE    = 1,
+        ENFERMEDAD = 2,
+        CIRUGIA    = 3 
        
     }
 
@@ -78,7 +78,7 @@ namespace SOCIOS.Turismo
                     
                 {
 
-                    dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad,Cirugia);
+                    dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, System.DateTime.Now.Year);
                     Registro_Cargado(Socio, Dep);
 
                 }
@@ -94,7 +94,7 @@ namespace SOCIOS.Turismo
          if (!Registro_Cargado(Socio, Dep))
          {
 
-             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia);
+             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, System.DateTime.Now.Year);
              Registro_Cargado(Socio, Dep);
 
          }
@@ -109,7 +109,7 @@ namespace SOCIOS.Turismo
          if (!Registro_Cargado(Socio, Dep))
          {
 
-             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia);
+             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, System.DateTime.Now.Year);
              Registro_Cargado(Socio, Dep);
 
          }
