@@ -2069,6 +2069,60 @@ namespace SOCIOS
         #endregion
 
 
+    
+
+
+
+     
+
+        public void HOTEL_DIAS_INSERT(int NRO_SOCIO, int NRO_DEP, int TRAMITE, int ENFERMEDAD, int CIRUGIA, int ANIO)
+        {
+
+            db resultado = new db();
+
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(NRO_SOCIO);
+            vector_contenidos.Add(NRO_DEP);
+            vector_contenidos.Add(TRAMITE);
+            vector_contenidos.Add(ENFERMEDAD);
+            vector_contenidos.Add(CIRUGIA);
+
+
+            vector_contenidos.Add(VGlobales.vp_username);
+            vector_contenidos.Add(System.DateTime.Now);
+            vector_contenidos.Add(ANIO);
+
+            ArrayList vector_tipos = new ArrayList();
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_tipos.Add("FbDbType.Integer");
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@PIN_NRO_SOCIO");
+            vector_nombres.Add("@PIN_NRO_DEP");
+            vector_nombres.Add("@PIN_TRAMITE");
+            vector_nombres.Add("@PIN_ENFERMEDAD");
+            vector_nombres.Add("@PIN_CIRUGIA");
+            vector_nombres.Add("@PIN_U_ALTA");
+            vector_nombres.Add("@PIN_F_ALTA");
+            vector_nombres.Add("@PIN_ANIO");
+            string vprocedure = "P_HOTEL_DIAS_ALOJAMIENTO_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+
 
     }
 }

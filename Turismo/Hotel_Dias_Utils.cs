@@ -27,7 +27,7 @@ namespace SOCIOS.Turismo
        int Cirugia_Disponibles    = 0;
 
        int ID=0;
-       bo dlog = new bo();
+       bo_Turismo dlog = new bo_Turismo();
      public  Hotel_Dias_Utils()
 
        {
