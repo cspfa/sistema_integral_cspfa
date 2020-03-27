@@ -10,13 +10,13 @@ namespace SOCIOS.Turismo
    public class VoucherUtils
    {
        bo_Turismo dlog = new bo_Turismo();
-       public void GenerarVoucher(int Bono,int Hotel, DateTime Desde, DateTime Hasta,int Regimen,int Habitacion,string NumeroHabitacion,string TipoBono,string Motivo, string Late,string IN)
+       public void GenerarVoucher(int Bono,int Hotel, DateTime Desde, DateTime Hasta,int Regimen,int Habitacion,string NumeroHabitacion,string TipoBono,string Motivo, string Late,string IN,int Codint)
 
        {
         
            try
            {
-               dlog.Voucher_HOTEL_Insert(Bono, Desde, Hasta, Hotel, this.Diferencia_Dias(Desde, Hasta), this.Cantidadpersonas(Bono), Regimen, Habitacion, NumeroHabitacion, TipoBono, Motivo,Late,IN);
+               dlog.Voucher_HOTEL_Insert(Bono, Desde, Hasta, Hotel, this.Diferencia_Dias(Desde, Hasta), this.Cantidadpersonas(Bono), Regimen, Habitacion, NumeroHabitacion, TipoBono, Motivo,Late,IN,Codint);
            }
            catch (Exception ex)
 
