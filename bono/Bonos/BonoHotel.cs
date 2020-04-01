@@ -796,7 +796,7 @@ namespace SOCIOS.bono
 
                         decimal Pago = decimal.Parse(lblSaldoTotal.Text);
 
-                        hotel_Dias_Utils.ProcesarDias(Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), cbSocial.SelectedIndex,Int32.Parse(lbInfoDias.Text));
+                        hotel_Dias_Utils.ProcesarDias(Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), cbSocial.SelectedIndex,System.DateTime.Now.Year,Int32.Parse(lbInfoDias.Text));
 
                       
 
@@ -897,7 +897,7 @@ namespace SOCIOS.bono
                 bntImprimir.Visible       = false;
                 AnularBono.Visible        = false;
 
-                lnkDisponibilidad.Text    = hotel_Dias_Utils.ConsultarDias(Int32.Parse(this.srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(this.srvDatosSocio.CAB.NroDepTitular));
+                lnkDisponibilidad.Text = hotel_Dias_Utils.ConsultarDias(Int32.Parse(this.srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(this.srvDatosSocio.CAB.NroDepTitular), System.DateTime.Now.Year);
 
 
             }
