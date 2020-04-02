@@ -16,6 +16,84 @@ namespace SOCIOS.Turismo
        
     }
 
+
+
+    public class Datos_Vouchers
+    {
+        public string  FECHA { get; set; }
+        public int     BONO  { get; set; }
+        public string  ROL   { get; set; }
+        public string  MOTIVO { get; set; }
+        public int     DIAS { get; set; }
+
+    
+    }
+
+    public class Datos_Dias
+    {
+        public int TRAMITE                  { get; set; }
+        public int ENFERMEDAD               { get; set; }
+        public int CIRUGIA                  { get; set; }
+        public List<Datos_Vouchers> DETALLE { get; set; }
+        bo_Turismo dlog = new bo_Turismo();
+        public Datos_Dias(int NroSocio, int NroDep)
+        {
+
+            this.Cargar_Lista(NroSocio, NroDep);
+
+            TRAMITE    = DETALLE.Where(x => x.MOTIVO.ToLower().Contains("T")).Count();
+            ENFERMEDAD = DETALLE.Where(x => x.MOTIVO.ToLower().Contains("E")).Count();
+            CIRUGIA    = DETALLE.Where(x => x.MOTIVO.ToLower().Contains("C")).Count();
+
+
+        }
+
+        private void  Cargar_Lista(int NroSocio, int NroDep)
+        {
+
+            string QUERY = @"select BT.FE_BONO, BT.ID_ROL, BT.ROL, V.MOTIVO,V.NOCHES
+                                    from bono_turismo BT, voucher_Bono_hotel V 
+                            where BT.ID=V.BONO  and BT.NRO_SOCIO="+ NroSocio.ToString() +" and BT.NRO_DEP=" + NroDep.ToString();                      
+
+            
+
+
+
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                int I = 0;
+                while (I <= (foundRows.Length - 1))
+                {
+                  
+
+
+
+                    Datos_Vouchers item = new Datos_Vouchers();
+
+                    item.FECHA = foundRows[I][0].ToString().Trim();
+                    item.BONO = Int32.Parse(foundRows[I][1].ToString());
+                    item.ROL = foundRows[I][3].ToString().Trim();
+                    item.MOTIVO = foundRows[I][4].ToString().Trim();
+                    item.DIAS = Int32.Parse(foundRows[I][5].ToString().Trim());
+
+                    I = I + 1;
+
+
+
+                    DETALLE.Add(item);
+                }
+            }
+
+        
+        }
+
+
+
+    }
+
    public class Hotel_Dias_Utils
     {
        int Tramite    =0;
@@ -46,11 +124,11 @@ namespace SOCIOS.Turismo
         
        }
 
-     private bool Registro_Cargado(int Socio, int Dep)
+     private bool Registro_Cargado(int Socio, int Dep,int Anio)
 
      {
 
-         string QUERY = "SELECT  TRAMITE,ENFERMEDAD,CIRUGIA ,ID FROM HOTEL_DIAS_ALOJAMIENTO WHERE NRO_SOCIO=" + Socio.ToString() + " AND NRO_DEP= " + Dep.ToString() + " AND extract(year from F_ALTA)=" + System.DateTime.Now.Year.ToString();
+         string QUERY = "SELECT  TRAMITE,ENFERMEDAD,CIRUGIA ,ID FROM HOTEL_DIAS_ALOJAMIENTO WHERE NRO_SOCIO=" + Socio.ToString() + " AND NRO_DEP= " + Dep.ToString() + " AND  ANIO=" + Anio.ToString() ;
          DataRow[] foundRows;
          foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
@@ -69,17 +147,17 @@ namespace SOCIOS.Turismo
      
      }
 
-     public void ProcesarDias(int Socio, int Dep, int Tipo, int Dias)
+     public void ProcesarDias(int Socio, int Dep, int Tipo,int Anio, int Dias)
 
      {    //si no esta cargado el registro, cargar
 
    
-                if (!Registro_Cargado(Socio,Dep))
+                if (!Registro_Cargado(Socio,Dep,Anio))
                     
                 {
 
-                    dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, System.DateTime.Now.Year);
-                    Registro_Cargado(Socio, Dep);
+                    dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, Anio);
+                    Registro_Cargado(Socio, Dep,Anio);
 
                 }
 
@@ -89,13 +167,13 @@ namespace SOCIOS.Turismo
 
      
      }
-     public string ConsultarDias(int Socio, int Dep)
+     public string ConsultarDias(int Socio, int Dep,int Anio)
      {
-         if (!Registro_Cargado(Socio, Dep))
+         if (!Registro_Cargado(Socio, Dep,Anio))
          {
 
-             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, System.DateTime.Now.Year);
-             Registro_Cargado(Socio, Dep);
+             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, Anio);
+             Registro_Cargado(Socio, Dep,Anio);
 
          }
 
@@ -104,13 +182,13 @@ namespace SOCIOS.Turismo
      
      
      }
-     public string ConsultarDiasAbreviado(int Socio, int Dep)
+     public string ConsultarDiasAbreviado(int Socio, int Dep,int Anio)
      {
-         if (!Registro_Cargado(Socio, Dep))
+         if (!Registro_Cargado(Socio, Dep,Anio))
          {
 
-             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, System.DateTime.Now.Year);
-             Registro_Cargado(Socio, Dep);
+             dlog.HOTEL_DIAS_INSERT(Socio, Dep, Tramite, Enfermedad, Cirugia, Anio);
+             Registro_Cargado(Socio, Dep,Anio);
 
          }
 
