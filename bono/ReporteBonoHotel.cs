@@ -96,7 +96,7 @@ namespace SOCIOS.bono
             string infoDias="";
            
             if (objVoucher.BonoSocial)
-                infoDias = dias.ConsultarDiasAbreviado(Int32.Parse(CAB.NroSocioTitular),Int32.Parse(CAB.NroDepTitular));
+                infoDias = dias.ConsultarDiasAbreviado(Int32.Parse(CAB.NroSocioTitular),Int32.Parse(CAB.NroDepTitular),System.DateTime.Now.Year);
             
             //Array que contendrá los parámetros
             ReportParameter[] parameters = new ReportParameter[40];
