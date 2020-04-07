@@ -132,6 +132,23 @@ namespace SOCIOS.Turismo
        }
 
 
+       public int GetMaxID(int BONO)
+       {
+           string QUERY = "SELECT coalesce (MAX(ID),0) FROM voucher_bono_Hotel WHERE BONO=" + BONO.ToString();
+           DataRow[] foundRows;
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+           if (foundRows.Length > 0)
+           {
+               return Int32.Parse(foundRows[0][0].ToString().Trim());
+           }
+           else
+               return 0;
+
+
+       }
+
+
        public int GetMax_ID_ROL(string ROL, int CODINT)
        {
            string QUERY = "SELECT coalesce (MAX(ID_ROL),0) FROM voucher_bono_Hotel WHERE ROL='" + ROL + "' and CODINT=" + CODINT.ToString();
