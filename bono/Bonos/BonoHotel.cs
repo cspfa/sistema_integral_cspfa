@@ -10,7 +10,8 @@ using FirebirdSql.Data.FirebirdClient;
 using FirebirdSql.Data.Isql;
 using FirebirdSql.Data.Services;
 using FirebirdSql.Data.Server;
-using SOCIOS.Turismo; 
+using SOCIOS.Turismo;
+using SOCIOS.interior;
 
 
 namespace SOCIOS.bono
@@ -797,14 +798,6 @@ namespace SOCIOS.bono
                         decimal Pago = decimal.Parse(lblSaldoTotal.Text);
 
                         hotel_Dias_Utils.ProcesarDias(Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), cbSocial.SelectedIndex,System.DateTime.Now.Year,Int32.Parse(lbInfoDias.Text));
-
-                      
-
-                       dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CODINT, SUBCODIGO, "NO", 0, 0, "", "", "", 0, 0, Efectivo, Tarjeta_credito, Tarjeta_credito_cuotas, Tarjeta_Debito, Planilla, Planilla_Cuotas,Transferencia);
-
-                        ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "SOC");
-                        //VER CODINT
-
                         int CodInt = 0;
                         if (VGlobales.vp_role.Contains("TURISMO"))
                             CodInt = 1001;
@@ -812,26 +805,47 @@ namespace SOCIOS.bono
                             CodInt = 1008; //Codint De Interior
 
 
+                        dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CodInt, SUBCODIGO, "NO", 0, 0, "", "", "", 0, 0, Efectivo, Tarjeta_credito, Tarjeta_credito_cuotas, Tarjeta_Debito, Planilla, Planilla_Cuotas, Transferencia);
+
+                        ID = utilsTurismo.GetMaxID(Nro_Socio_titular.ToString(), "SOC");
+
+                                            
+
+                        //Obtener Proximo ID_ROL
+                       int  ID_ROL = utilsTurismo.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CODINT) + 1;
+
+                        dlog.Seteo_Id_ROL(ID, ID_ROL);
+
+
+                        
+                        
+                        //VER CODINT
+
+                                        
                         vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text, "SOC", MotivoViaje, LATE_CHECKOUT, CHECKIN,CodInt);
 
-                  
 
-                        int ID_ROL = vu.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CodInt);
 
-                        dlogI.Seteo_Id_ROL(ID, ID_ROL);
+
+
+                        int ID_V = vu.GetMaxID(ID);
+                        ID_ROL = vu.GetMax_ID_ROL(VGlobales.vp_role.TrimEnd().TrimStart(), CodInt);
+
+                        dlogI.Seteo_Id_ROL(ID_V, ID_ROL);
                         
                         // Grabar Pagos 
                         // HAsta no saber como lo manejamos, todavia no
 
-                       // utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB, Saldo);
+                        utilsTurismo.GrabarPagos(ID, PagosBono, dpFechaBono.Value, CodInt, srvDatosSocio.CAB, Saldo + Recargo, TipoPago, SUBCODIGO, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP));
 
                         //Grabar Personas 
                         utilsTurismo.GrabarPersonas(ID, Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), listaPersonas,VGlobales.vp_role.TrimEnd().TrimStart());
 
                         //Grabar Voucher si es propio
                         
-                        vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text, "SOC", MotivoViaje,LATE_CHECKOUT,CHECKIN,CodInt);
-                        
+                       // vu.GenerarVoucher(ID, Hotel, dpDesde.Value, dpHasta.Value, Regimen, Habit, tbNroHabitacion.Text, "SOC", MotivoViaje,LATE_CHECKOUT,CHECKIN,CodInt);
+                        this.IngresoCaja(ID, Dni, Nombre, Apellido, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Int32.Parse(persona.BARRA), InfoTarjeta);
+                       
                         gpDatos.Visible = false;
                         bntImprimir.Visible = true;
 
@@ -1189,7 +1203,8 @@ namespace SOCIOS.bono
 
         private void lnkDisponibilidad_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            Disponibilidad_Dias dd = new Disponibilidad_Dias(Nro_Socio_titular, Nro_Dep_Titular,System.DateTime.Now.Year);
+            dd.ShowDialog();
         }
             
             

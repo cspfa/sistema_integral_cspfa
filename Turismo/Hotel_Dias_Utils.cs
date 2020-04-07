@@ -36,14 +36,15 @@ namespace SOCIOS.Turismo
         public int CIRUGIA                  { get; set; }
         public List<Datos_Vouchers> DETALLE { get; set; }
         bo_Turismo dlog = new bo_Turismo();
+     
         public Datos_Dias(int NroSocio, int NroDep)
         {
-
+            DETALLE = new List<Datos_Vouchers>();
             this.Cargar_Lista(NroSocio, NroDep);
 
-            TRAMITE    = DETALLE.Where(x => x.MOTIVO.ToLower().Contains("T")).Count();
-            ENFERMEDAD = DETALLE.Where(x => x.MOTIVO.ToLower().Contains("E")).Count();
-            CIRUGIA    = DETALLE.Where(x => x.MOTIVO.ToLower().Contains("C")).Count();
+            TRAMITE    = DETALLE.Where(x => x.MOTIVO.ToLower().StartsWith("t")).Count();
+            ENFERMEDAD = DETALLE.Where(x => x.MOTIVO.ToLower().StartsWith("e")).Count();
+            CIRUGIA    = DETALLE.Where(x => x.MOTIVO.ToLower().StartsWith("c")).Count();
 
 
         }
@@ -53,7 +54,7 @@ namespace SOCIOS.Turismo
 
             string QUERY = @"select BT.FE_BONO, BT.ID_ROL, BT.ROL, V.MOTIVO,V.NOCHES
                                     from bono_turismo BT, voucher_Bono_hotel V 
-                            where BT.ID=V.BONO  and BT.NRO_SOCIO="+ NroSocio.ToString() +" and BT.NRO_DEP=" + NroDep.ToString();                      
+                            where BT.ID=V.BONO  and BT.NRO_SOCIO="+ NroSocio.ToString() +" and BT.NRO_DEP=" + NroDep.ToString() +"  order by BT.ID_ROL desc";                      
 
             
 
@@ -75,9 +76,9 @@ namespace SOCIOS.Turismo
 
                     item.FECHA = foundRows[I][0].ToString().Trim();
                     item.BONO = Int32.Parse(foundRows[I][1].ToString());
-                    item.ROL = foundRows[I][3].ToString().Trim();
-                    item.MOTIVO = foundRows[I][4].ToString().Trim();
-                    item.DIAS = Int32.Parse(foundRows[I][5].ToString().Trim());
+                    item.ROL = foundRows[I][2].ToString().Trim();
+                    item.MOTIVO = foundRows[I][3].ToString().Trim();
+                    item.DIAS = Int32.Parse(foundRows[I][4].ToString().Trim());
 
                     I = I + 1;
 
