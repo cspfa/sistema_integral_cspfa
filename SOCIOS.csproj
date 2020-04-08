@@ -193,6 +193,12 @@
     <Compile Include="cuenta\Reporte_Plan_Cuenta.Designer.cs">
       <DependentUpon>Reporte_Plan_Cuenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="compras\detalle_solicitud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="compras\detalle_solicitud.Designer.cs">
+      <DependentUpon>detalle_solicitud.cs</DependentUpon>
+    </Compile>
     <Compile Include="Factura_Electronica\Consulta_Factura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +225,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="interior\Contacto_Form.Designer.cs" />
+    <Compile Include="interior\Disponibilidad_Dias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="interior\Disponibilidad_Dias.Designer.cs" />
     <Compile Include="interior\serviceInterior.cs" />
     <Compile Include="Notificacion\Notificacion.cs">
       <SubType>Form</SubType>
@@ -1315,6 +1325,9 @@
       <DependentUpon>abmCargos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="bono\BonoOdontologico_Blanco.rdlc" />
+    <EmbeddedResource Include="compras\detalle_solicitud.resx">
+      <DependentUpon>detalle_solicitud.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Condicion_IVA.resx">
       <DependentUpon>Condicion_IVA.cs</DependentUpon>
     </EmbeddedResource>
@@ -1331,6 +1344,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="interior\Contactos .resx" />
     <EmbeddedResource Include="interior\Contacto_Form.resx" />
+    <EmbeddedResource Include="interior\Disponibilidad_Dias.resx" />
     <EmbeddedResource Include="Notificacion\Notificacion.resx" />
     <EmbeddedResource Include="recibos\asignarReciboC.resx">
       <DependentUpon>asignarReciboC.cs</DependentUpon>

@@ -97,12 +97,14 @@
             this.themedGroupBox3 = new MicroFour.StrataFrame.UI.Windows.Forms.ThemedGroupBox();
             this.chSectores = new System.Windows.Forms.CheckBox();
             this.cbFecha = new System.Windows.Forms.CheckBox();
+            this.cbFechaHasta = new System.Windows.Forms.CheckBox();
             this.label111 = new System.Windows.Forms.Label();
             this.tbCuitBusqueda = new System.Windows.Forms.TextBox();
             this.label110 = new System.Windows.Forms.Label();
             this.tbOpBusqueda = new System.Windows.Forms.TextBox();
             this.cbSectorBusqueda = new System.Windows.Forms.ComboBox();
             this.dpFechaListado = new System.Windows.Forms.DateTimePicker();
+            this.dpFechaListadoHasta = new System.Windows.Forms.DateTimePicker();
             this.btnListado = new System.Windows.Forms.Button();
             this.lbTipoBusqueda = new System.Windows.Forms.Label();
             this.tbBuscarNumeroFactura = new System.Windows.Forms.MaskedTextBox();
@@ -464,6 +466,10 @@
             this.aNULADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOMPLETADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eNTREGADAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cmEnviadas = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.verDetalleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.darDeBajaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -539,6 +545,7 @@
             this.cmCheques.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmEstadoCompra.SuspendLayout();
+            this.cmEnviadas.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1042,12 +1049,14 @@
             this.themedGroupBox3.BorderColor = System.Drawing.Color.SteelBlue;
             this.themedGroupBox3.Controls.Add(this.chSectores);
             this.themedGroupBox3.Controls.Add(this.cbFecha);
+            this.themedGroupBox3.Controls.Add(this.cbFechaHasta);
             this.themedGroupBox3.Controls.Add(this.label111);
             this.themedGroupBox3.Controls.Add(this.tbCuitBusqueda);
             this.themedGroupBox3.Controls.Add(this.label110);
             this.themedGroupBox3.Controls.Add(this.tbOpBusqueda);
             this.themedGroupBox3.Controls.Add(this.cbSectorBusqueda);
             this.themedGroupBox3.Controls.Add(this.dpFechaListado);
+            this.themedGroupBox3.Controls.Add(this.dpFechaListadoHasta);
             this.themedGroupBox3.Controls.Add(this.btnListado);
             this.themedGroupBox3.Controls.Add(this.lbTipoBusqueda);
             this.themedGroupBox3.Controls.Add(this.tbBuscarNumeroFactura);
@@ -1092,6 +1101,17 @@
             this.cbFecha.TabIndex = 43;
             this.cbFecha.UseVisualStyleBackColor = true;
             this.cbFecha.CheckedChanged += new System.EventHandler(this.cbFecha_CheckedChanged);
+            // 
+            // cbFechaHasta
+            // 
+            this.cbFechaHasta.AutoSize = true;
+            this.cbFechaHasta.Enabled = false;
+            this.cbFechaHasta.Location = new System.Drawing.Point(453, 53);
+            this.cbFechaHasta.Name = "cbFechaHasta";
+            this.cbFechaHasta.Size = new System.Drawing.Size(15, 14);
+            this.cbFechaHasta.TabIndex = 43;
+            this.cbFechaHasta.UseVisualStyleBackColor = true;
+            this.cbFechaHasta.CheckedChanged += new System.EventHandler(this.CbFechaHasta_CheckedChanged);
             // 
             // label111
             // 
@@ -1149,6 +1169,16 @@
             this.dpFechaListado.Size = new System.Drawing.Size(83, 20);
             this.dpFechaListado.TabIndex = 35;
             this.dpFechaListado.TabStop = false;
+            // 
+            // dpFechaListadoHasta
+            // 
+            this.dpFechaListadoHasta.Enabled = false;
+            this.dpFechaListadoHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dpFechaListadoHasta.Location = new System.Drawing.Point(471, 50);
+            this.dpFechaListadoHasta.Name = "dpFechaListadoHasta";
+            this.dpFechaListadoHasta.Size = new System.Drawing.Size(83, 20);
+            this.dpFechaListadoHasta.TabIndex = 35;
+            this.dpFechaListadoHasta.TabStop = false;
             // 
             // btnListado
             // 
@@ -1227,13 +1257,13 @@
             this.lvFacturas.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvFacturas.FullRowSelect = true;
             this.lvFacturas.HideSelection = false;
-            this.lvFacturas.Location = new System.Drawing.Point(1, 48);
+            this.lvFacturas.Location = new System.Drawing.Point(1, 80);
             this.lvFacturas.Margin = new System.Windows.Forms.Padding(0);
             this.lvFacturas.MultiSelect = false;
             this.lvFacturas.Name = "lvFacturas";
             this.lvFacturas.ParentContainer = null;
             this.lvFacturas.ShowItemToolTips = true;
-            this.lvFacturas.Size = new System.Drawing.Size(1035, 215);
+            this.lvFacturas.Size = new System.Drawing.Size(1035, 183);
             this.lvFacturas.TabIndex = 3;
             this.lvFacturas.UseCompatibleStateImageBehavior = false;
             this.lvFacturas.View = System.Windows.Forms.View.Details;
@@ -4577,6 +4607,7 @@
             this.lvSolicitudesEnviadas.UseCompatibleStateImageBehavior = false;
             this.lvSolicitudesEnviadas.View = System.Windows.Forms.View.Details;
             this.lvSolicitudesEnviadas.Click += new System.EventHandler(this.dgResArtSol_Click);
+            this.lvSolicitudesEnviadas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LvSolicitudesEnviadas_MouseUp);
             // 
             // themedGroupBox6
             // 
@@ -4702,6 +4733,7 @@
             // 
             // cbTipoArtSol
             // 
+            this.cbTipoArtSol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTipoArtSol.FormattingEnabled = true;
             this.cbTipoArtSol.Location = new System.Drawing.Point(197, 158);
             this.cbTipoArtSol.Name = "cbTipoArtSol";
@@ -4772,6 +4804,7 @@
             // 
             // cbPrioridadSolicitud
             // 
+            this.cbPrioridadSolicitud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPrioridadSolicitud.FormattingEnabled = true;
             this.cbPrioridadSolicitud.Location = new System.Drawing.Point(289, 29);
             this.cbPrioridadSolicitud.Name = "cbPrioridadSolicitud";
@@ -4789,6 +4822,7 @@
             // 
             // cbSectDestSolicitudes
             // 
+            this.cbSectDestSolicitudes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSectDestSolicitudes.FormattingEnabled = true;
             this.cbSectDestSolicitudes.Location = new System.Drawing.Point(115, 82);
             this.cbSectDestSolicitudes.Name = "cbSectDestSolicitudes";
@@ -4806,6 +4840,7 @@
             // 
             // cbSectOrigenSolicitud
             // 
+            this.cbSectOrigenSolicitud.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSectOrigenSolicitud.FormattingEnabled = true;
             this.cbSectOrigenSolicitud.Location = new System.Drawing.Point(115, 55);
             this.cbSectOrigenSolicitud.Name = "cbSectOrigenSolicitud";
@@ -5223,6 +5258,38 @@
             this.eNTREGADAToolStripMenuItem.Text = "Entregada";
             this.eNTREGADAToolStripMenuItem.Click += new System.EventHandler(this.eNTREGADAToolStripMenuItem_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Enabled = false;
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(471, 25);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(83, 20);
+            this.dateTimePicker1.TabIndex = 35;
+            this.dateTimePicker1.TabStop = false;
+            // 
+            // cmEnviadas
+            // 
+            this.cmEnviadas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.verDetalleToolStripMenuItem,
+            this.darDeBajaToolStripMenuItem});
+            this.cmEnviadas.Name = "cmEnviadas";
+            this.cmEnviadas.Size = new System.Drawing.Size(134, 48);
+            // 
+            // verDetalleToolStripMenuItem
+            // 
+            this.verDetalleToolStripMenuItem.Name = "verDetalleToolStripMenuItem";
+            this.verDetalleToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.verDetalleToolStripMenuItem.Text = "Ver detalle";
+            this.verDetalleToolStripMenuItem.Click += new System.EventHandler(this.VerDetalleToolStripMenuItem_Click);
+            // 
+            // darDeBajaToolStripMenuItem
+            // 
+            this.darDeBajaToolStripMenuItem.Name = "darDeBajaToolStripMenuItem";
+            this.darDeBajaToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.darDeBajaToolStripMenuItem.Text = "Dar de baja";
+            this.darDeBajaToolStripMenuItem.Click += new System.EventHandler(this.DarDeBajaToolStripMenuItem_Click);
+            // 
             // compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5337,6 +5404,7 @@
             this.cmCheques.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmEstadoCompra.ResumeLayout(false);
+            this.cmEnviadas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -5654,6 +5722,7 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btnEliminarProveedor;
         private System.Windows.Forms.DateTimePicker dpFechaListado;
+        private System.Windows.Forms.DateTimePicker dpFechaListadoHasta;
         private System.Windows.Forms.Button btnListado;
         private System.Windows.Forms.Label tbTotalBusqueda;
         private System.Windows.Forms.Button btnEliminarArticulo;
@@ -5689,6 +5758,7 @@
         private System.Windows.Forms.Label label110;
         private System.Windows.Forms.TextBox tbOpBusqueda;
         private System.Windows.Forms.CheckBox cbFecha;
+        private System.Windows.Forms.CheckBox cbFechaHasta;
         private System.Windows.Forms.CheckBox chSectores;
         private System.Windows.Forms.Label label108;
         private System.Windows.Forms.TextBox tbDescuentoTotal;
@@ -5757,5 +5827,9 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Button btnAceptarLibroBanco;
         private System.Windows.Forms.DataGridView dgEfectivo;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ContextMenuStrip cmEnviadas;
+        private System.Windows.Forms.ToolStripMenuItem verDetalleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem darDeBajaToolStripMenuItem;
     }
 }

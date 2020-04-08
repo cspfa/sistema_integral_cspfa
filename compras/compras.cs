@@ -49,18 +49,24 @@ namespace SOCIOS
             comboSectores(cbSectorBusqueda);
             comboSectores(cbSectores);            
             lvFacturas.MultiSelect = true;
-            comboBeneficiarios();
             comboTipoCheques();
             ACCION = "NUEVA";
 
-            if (VGlobales.vp_role == "COMPRAS")
+            if (VGlobales.vp_role != "TESORERIA" || VGlobales.vp_role != "CONTADURIA")
             {
+                tabControl1.TabPages.Remove(tabPage1);
                 tabControl1.TabPages.Remove(tabAdjuntos);
                 tabControl1.TabPages.Remove(tpProveedores);
                 tabControl1.TabPages.Remove(tabAdjuntos);
                 tabControl1.TabPages.Remove(tabOrdenesDePago);
-                tabControl1.TabPages.Remove(tpBancosCuentasCheques);
+                tabControl1.TabPages.Remove(tpBancosCuentasCheques); 
+                tabControl1.TabPages.Remove(tabLibroBanco);
             }
+            else
+            {
+                comboBeneficiarios();
+            }
+
 
             string TIPO_COMPROBANTE = cbTipoComprobante.SelectedValue.ToString();
 
@@ -156,9 +162,9 @@ namespace SOCIOS
                     }
                 }
             }
-            catch
+            catch(Exception e)
             {
-                MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS");
+                MessageBox.Show("ERROR AL CARGAR LOS RESULTADOS " + e);
             }
         }
 
@@ -432,29 +438,32 @@ namespace SOCIOS
 
         private void tabOrdenesDePago_Enter(object sender, EventArgs e)
         {
-            totalImporteFacturasOP();
-            tbImporteOP.Text = lbTotalFacturasOP.Text;
-            tbImporteTrans.Text = lbTotalFacturasOP.Text;
-            comboProveedores(cbProvTrans);
-            desbloquearFormsOP();
-            comboBancos(cbBancos);
-            comboBancos(cbBancoOrigenTrans);
-            int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
-            comboCuentasBancariasCargadas(BANCO, cbCtaOrigenTrans);
-            int PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
-            traeCuentaBancariaProveedor(PROVEEDOR);
-            comboCheques(BANCO, cbCheques); 
-            int CHEQUE = 0;
-
-            if (cbCheques.Items.Count > 0)
+            if (VGlobales.vp_role == "TESORERIA")
             {
-                CHEQUE = int.Parse(cbCheques.Text);
-                tipoCheque(BANCO, CHEQUE);
-            }
+                totalImporteFacturasOP();
+                tbImporteOP.Text = lbTotalFacturasOP.Text;
+                tbImporteTrans.Text = lbTotalFacturasOP.Text;
+                comboProveedores(cbProvTrans);
+                desbloquearFormsOP();
+                comboBancos(cbBancos);
+                comboBancos(cbBancoOrigenTrans);
+                int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
+                comboCuentasBancariasCargadas(BANCO, cbCtaOrigenTrans);
+                int PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
+                traeCuentaBancariaProveedor(PROVEEDOR);
+                comboCheques(BANCO, cbCheques);
+                int CHEQUE = 0;
 
-            comboBeneficiarios();
-            toggleBotones("OCULTAR");
-            comboCheques(int.Parse(cbBancoOrigenTrans.SelectedValue.ToString()), cbChequeAcompTrans); 
+                if (cbCheques.Items.Count > 0)
+                {
+                    CHEQUE = int.Parse(cbCheques.Text);
+                    tipoCheque(BANCO, CHEQUE);
+                }
+
+                comboBeneficiarios();
+                toggleBotones("OCULTAR");
+                comboCheques(int.Parse(cbBancoOrigenTrans.SelectedValue.ToString()), cbChequeAcompTrans);
+            }
         }
 
         private void tpProveedores_Enter(object sender, EventArgs e)
@@ -785,6 +794,9 @@ namespace SOCIOS
             string FECHA = dpFechaListado.Text;
             string[] FECHA_SPLIT = FECHA.Split('/');
             FECHA = FECHA_SPLIT[1] + "/" + FECHA_SPLIT[0] + "/" + FECHA_SPLIT[2];
+            string FECHA_HASTA = dpFechaListadoHasta.Text;
+            string[] FECHA_SPLIT_HASTA = FECHA_HASTA.Split('/');
+            FECHA_HASTA = FECHA_SPLIT_HASTA[1] + "/" + FECHA_SPLIT_HASTA[0] + "/" + FECHA_SPLIT_HASTA[2];
             string SECTOR = cbSectorBusqueda.SelectedValue.ToString();
             string CUIT = tbCuitBusqueda.Text.Trim();
             string OP = tbOpBusqueda.Text.Trim();
@@ -798,7 +810,7 @@ namespace SOCIOS
             if (NUMERO == "-")
                 NUMERO = "";
             
-            buscar(PROVEEDOR, NUMERO, TIPO_DE_BUSQUEDA, FECHA, SECTOR, CUIT, OP, ACCION);
+            buscar(PROVEEDOR, NUMERO, TIPO_DE_BUSQUEDA, FECHA, SECTOR, CUIT, OP, ACCION, FECHA_HASTA);
         }
 
         private void btnBuscarFactura_Click(object sender, EventArgs e)
@@ -927,7 +939,7 @@ namespace SOCIOS
             }
         }
 
-        private void buscar(string PROVEEDOR, string NUMERO, string TIPO_DE_BUSQUEDA, string FECHA, string SECTOR, string CUIT, string OP, string ACCION)
+        private void buscar(string PROVEEDOR, string NUMERO, string TIPO_DE_BUSQUEDA, string FECHA, string SECTOR, string CUIT, string OP, string ACCION, string FECHA_HASTA)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -968,8 +980,11 @@ namespace SOCIOS
                     if (TIPO_DE_BUSQUEDA != "13")
                         QUERY += "AND F.TIPO = '" + TIPO_DE_BUSQUEDA + "' ";
 
-                    if (cbFecha.Checked == true)
+                    if (cbFecha.Checked == true && cbFechaHasta.Checked == false)
                         QUERY += "AND F.FE_ALTA = '" + FECHA + "' ";
+
+                    if (cbFecha.Checked == true && cbFechaHasta.Checked == true)
+                        QUERY += "AND F.FE_ALTA BETWEEN '" + FECHA + "' AND '" + FECHA_HASTA + "' ";
 
                     if (chSectores.Checked == true)
                         QUERY += "AND F.SECTOR = '" + SECTOR + "' ";
@@ -980,7 +995,7 @@ namespace SOCIOS
                     if (OP != "")
                         QUERY += "AND F.ORDEN_DE_PAGO = '" + OP + "' ";
 
-                    QUERY += "AND P.ID = F.PROVEEDOR AND F.TIPO = T.ID ORDER BY F.FECHA DESC";
+                    QUERY += "AND P.ID = F.PROVEEDOR AND F.TIPO = T.ID ORDER BY F.FE_ALTA DESC";
 
                     FbCommand cmd = new FbCommand(QUERY, connection, transaction);
                     cmd.CommandText = QUERY;
@@ -5796,9 +5811,15 @@ namespace SOCIOS
         private void cbFecha_CheckedChanged(object sender, EventArgs e)
         {
             if (cbFecha.Checked == true)
+            {
                 dpFechaListado.Enabled = true;
+                cbFechaHasta.Enabled = true;
+            }
             else
+            {
                 dpFechaListado.Enabled = false;
+                cbFechaHasta.Enabled = false;
+            }
         }
 
         private void chSectores_CheckedChanged(object sender, EventArgs e)
@@ -5976,7 +5997,8 @@ namespace SOCIOS
                         BO_COMPRAS.altaSolicitudArticulos(int.Parse(ID_SOL), ID_NUEVO_ART_SOL, CANTIDAD_ART_SOL);
                     }
                     
-                    MessageBox.Show("SOLICITUD DE COMPRA ENVIAD", "LISTO!");
+                    MessageBox.Show("SOLICITUD DE COMPRA ENVIADA", "LISTO!");
+                    carga_inicial_solicitudes();
                 }
                 catch (Exception error)
                 {
@@ -5985,13 +6007,14 @@ namespace SOCIOS
             }
         }
 
-        private void tpSolicitud_Enter(object sender, EventArgs e)
+        private void carga_inicial_solicitudes()
         {
             generarListaArtSol();
             comboSectores(cbSectOrigenSolicitud);
             comboSectores(cbSectDestSolicitudes);
             comboPrioridadesSolicitudes();
             comboTipoArticulo(cbTipoArtSol);
+            cbSectOrigenSolicitud.SelectedValue = VGlobales.vp_role;
 
             if (recibeCompras() == true)
             {
@@ -6005,6 +6028,11 @@ namespace SOCIOS
                 lvSolicitudesEnviadas.Height = 360;
                 buscarSolicitudesEnviadas();
             }
+        }
+
+        private void tpSolicitud_Enter(object sender, EventArgs e)
+        {
+            carga_inicial_solicitudes();
         }
 
         private void tbDetArtSol_KeyUp(object sender, KeyEventArgs e)
@@ -6167,12 +6195,12 @@ namespace SOCIOS
             do
             {
                 ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("ID")).Trim().ToUpper());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_ALTA")).Trim().ToLower());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_ALTA")).Trim().ToLower().Replace(" 00:00:00", ""));
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_ALTA")).Trim().ToUpper());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_ORIGEN")).Trim());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_DESTINO")).Trim().ToLower());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ESTADO")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_DESTINO")).Trim().ToUpper());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("PRIORIDAD")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ESTADO")).Trim().ToUpper());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_BAJA")));
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_BAJA")).Trim());
                 LV.Items.Add(listItem);
@@ -6496,6 +6524,47 @@ namespace SOCIOS
         }
 
         private void TabOrdenesDePago_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CbFechaHasta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbFechaHasta.Checked == true)
+            {
+                dpFechaListadoHasta.Enabled = true;
+            }
+            else
+            {
+                dpFechaListadoHasta.Enabled = false;
+            }
+        }
+
+        private void LvSolicitudesEnviadas_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lvSolicitudesEnviadas.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    cmEnviadas.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void VerDetalleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lvSolicitudesEnviadas.SelectedItems.Count == 1)
+            {
+                foreach (ListViewItem itemRow in lvSolicitudesEnviadas.SelectedItems)
+                {
+                    int ID_SOLICITUD = int.Parse(itemRow.SubItems[0].Text);
+                    detalle_solicitud ds = new detalle_solicitud(ID_SOLICITUD);
+                    ds.ShowDialog();
+                }
+            }
+        }
+
+        private void DarDeBajaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
