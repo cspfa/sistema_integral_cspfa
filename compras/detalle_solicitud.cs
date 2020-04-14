@@ -23,7 +23,6 @@ namespace SOCIOS
         {
             InitializeComponent();
             ID_SOL = ID_SOLICITUD;
-            lbTitle.Text = "SOLICITUD DE COMPRA #" + ID_SOLICITUD.ToString();
             llenar_detalle(ID_SOLICITUD);
             llenar_articulos(ID_SOLICITUD);
         }
@@ -58,11 +57,18 @@ namespace SOCIOS
 
         private void llenar_detalle(int ID_SOLICITUD)
         {
-            DataSet DETALLE = utils.getDataFromQuery("SELECT * FROM SOLICITUDES_COMPRAS WHERE ID = " + ID_SOLICITUD + ";");            
+            string busco = "SELECT S.*, C.VALOR1 ";           
+            busco += "FROM SOLICITUDES_COMPRAS S, CONFIG C ";
+            busco += "WHERE S.ID = " + ID_SOLICITUD;
+            busco += " AND S.TIPO_SOLICITUD = C.VALOR ";
+            busco += "AND C.PARAM = 'TIPO_SOLICITUD'; ";
+
+            DataSet DETALLE = utils.getDataFromQuery(busco);            
+
 
             if (DETALLE.Tables.Count > 0)
             {
-                DataTable dt1 = new DataTable("RESULTADOS");
+                DataTable dt1 = new DataTable("DETALLE_SOLICITUD");
                 dt1.Columns.Add("ID", typeof(string));
                 dt1.Columns.Add("ALTA", typeof(string));
                 dt1.Columns.Add("USUARIO", typeof(string));
@@ -72,9 +78,21 @@ namespace SOCIOS
                 dt1.Columns.Add("PRIORIDAD", typeof(string));
                 dt1.Columns.Add("BAJA", typeof(string));
                 dt1.Columns.Add("USR BAJA", typeof(string));
-                
+                dt1.Columns.Add("RECIBO", typeof(string));
+
+                DataTable dt2 = new DataTable("DETALLE_PROVEEDOR");
+                dt2.Columns.Add("PROVEEDOR", typeof(string));
+                dt2.Columns.Add("EMAIL", typeof(string));
+                dt2.Columns.Add("TELEFONO", typeof(string));
+                dt2.Columns.Add("NOMBRE", typeof(string));
+                dt2.Columns.Add("PTE_RTA", typeof(string));
+                dt2.Columns.Add("NRO SOL", typeof(string));
+
                 foreach (DataRow row in DETALLE.Tables[0].Rows)
                 {
+                    this.Text = row[18].ToString().Trim() + " #" + ID_SOL;
+                    tbObsSolicitud.Text = row[11].ToString();
+
                     dt1.Rows.Add(row[0].ToString().Trim(),
                                  row[1].ToString().Trim().Replace(" 00:00:00", ""),
                                  row[2].ToString().Trim(),
@@ -83,10 +101,19 @@ namespace SOCIOS
                                  row[5].ToString().Trim(),
                                  row[6].ToString().Trim(),
                                  row[7].ToString().Trim(),
-                                 row[8].ToString().Trim());            
+                                 row[8].ToString().Trim(),
+                                 row[9].ToString().Trim());
+
+                    dt2.Rows.Add(row[12].ToString().Trim(),
+                                 row[13].ToString().Trim(),
+                                 row[14].ToString().Trim(),
+                                 row[15].ToString().Trim(),
+                                 row[16].ToString().Trim(),
+                                 row[17].ToString().Trim());
                 }
 
                 dgDetalle.DataSource = dt1;
+                dgProveedor.DataSource = dt2;
             }
         }
 

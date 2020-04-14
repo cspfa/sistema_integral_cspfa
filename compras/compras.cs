@@ -46,8 +46,8 @@ namespace SOCIOS
             comboTipoProveedor();
             comboTipoComprobante(cbTipoBusqueda);
             comboTipoComprobante(cbTipoComprobante);
-            comboSectores(cbSectorBusqueda);
-            comboSectores(cbSectores);            
+            comboSectores(cbSectorBusqueda, 0);
+            comboSectores(cbSectores, 0);            
             lvFacturas.MultiSelect = true;
             comboTipoCheques();
             ACCION = "NUEVA";
@@ -588,15 +588,37 @@ namespace SOCIOS
             COMBO.SelectedIndex = 0;
         }
 
-        private void comboPrioridadesSolicitudes()
+        private void comboPrioridadesSolicitudes(ComboBox COMBO, string SELECTED)
         {
-            cbPrioridadSolicitud.Items.Add("MEDIA");
-            cbPrioridadSolicitud.Items.Add("ALTA");
-            cbPrioridadSolicitud.Items.Add("BAJA");
-            cbPrioridadSolicitud.SelectedItem = "MEDIA";
+            COMBO.Items.Add("MEDIA");
+            COMBO.Items.Add("ALTA");
+            COMBO.Items.Add("BAJA");
+
+            if (SELECTED != "X")
+                COMBO.SelectedItem = SELECTED;
         }
 
-        private void comboSectores(ComboBox SECTORES)
+        private void comboPendienteRespuesta(ComboBox COMBO, string SELECTED)
+        {
+            COMBO.Items.Add("SI");
+            COMBO.Items.Add("NO");
+
+            if(SELECTED != "X")
+                COMBO.SelectedItem = SELECTED;
+        }
+
+        private void comboTipoSolicitud(ComboBox COMBO, int SELECTED)
+        {
+            string query = "SELECT VALOR, VALOR1 FROM CONFIG WHERE PARAM = 'TIPO_SOLICITUD';";
+            COMBO.DataSource = null;
+            COMBO.Items.Clear();
+            COMBO.DataSource = dlog.BO_EjecutoDataTable(query);
+            COMBO.DisplayMember = "VALOR1";
+            COMBO.ValueMember = "VALOR";
+            COMBO.SelectedIndex = SELECTED;
+        }
+
+        private void comboSectores(ComboBox SECTORES, int SELECTED)
         {
             string query = "SELECT DISTINCT TRIM(ROL) AS ROL FROM SECTACT WHERE ESTADO = 1 ORDER BY ROL;";
 
@@ -608,6 +630,7 @@ namespace SOCIOS
             SECTORES.DataSource = dlog.BO_EjecutoDataTable(query);
             SECTORES.DisplayMember = "ROL";
             SECTORES.ValueMember = "ROL";
+            SECTORES.SelectedIndex = SELECTED;
         }
 
         private bool sumaFacturaHija(object SENDER, int ID_FACTURA)
@@ -3736,7 +3759,7 @@ namespace SOCIOS
             Cursor = Cursors.WaitCursor;
             sect_act_abm sa = new sect_act_abm();
             sa.ShowDialog();
-            comboSectores(cbSectores);
+            comboSectores(cbSectores, 0);
             Cursor = Cursors.Default;
         }
 
@@ -5912,31 +5935,6 @@ namespace SOCIOS
             }
         }
 
-        private void btnAddArtSol_Click(object sender, EventArgs e)
-        {
-            if (tbCantArtSol.Text == "")
-            {
-                MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD", "ERROR");
-                tbCantArtSol.Focus();
-            }
-            else if (tbDetArtSol.Text == "")
-            {
-                MessageBox.Show("COMPLETAR EL CAMPO DETALLE", "ERROR");
-                tbDetArtSol.Focus();
-            }
-            else
-            {
-                dgResArtSol.Visible = false;
-                string CANTIDAD_SOL = tbCantArtSol.Text.Trim();
-                string DETALLE_SOL = tbDetArtSol.Text.Trim();
-                string TIPO_SOL = cbTipoArtSol.Text;
-                string ID_TIPO_SOL = cbTipoArtSol.SelectedValue.ToString();
-                string ID_ART = lbIdArtSol.Text;
-                dgvArtSol.Rows.Add(CANTIDAD_SOL, DETALLE_SOL, TIPO_SOL, ID_TIPO_SOL, ID_ART);
-                limpiarArtSol();
-            }
-        }
-
         private void limpiarArtSol()
         {
             tbCantArtSol.Text = "";
@@ -5945,100 +5943,33 @@ namespace SOCIOS
             lbIdArtSol.Text = "ID_ART";
         }
 
-        private void btnDelArtSol_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dgvArtSol.SelectedRows)
-            {
-                int ID = int.Parse(row.Index.ToString());
-                dgvArtSol.Rows.RemoveAt(ID);
-            }
-
-            btnDelArtSol.Enabled = false;
-        }
-
-        private void btnAltaSolicitud_Click(object sender, EventArgs e)
-        {
-            if (dgvArtSol.Rows.Count == 0)
-            {
-                MessageBox.Show("AGREGAR POR LO MENOS UN ARTÍCULO", "ERROR!");
-            }
-            else
-            {
-                string FECHA_SOL = dpFechaSolicitud.Text;
-                string PRIORIDAD_SOL = cbPrioridadSolicitud.Text;
-                string SECTOR_ORIGEN = cbSectOrigenSolicitud.SelectedValue.ToString();
-                string SECTOR_DESTINO = cbSectDestSolicitudes.SelectedValue.ToString();
-                string DETALLE_ART_SOL = "";
-                int ID_TIPO_ART_SOL = 1;
-                int ID_NUEVO_ART_SOL = 0;
-                int CANTIDAD_ART_SOL = 0;
-
-                try
-                {
-                    BO_COMPRAS.nuevaSolicitudCompra(FECHA_SOL, PRIORIDAD_SOL, SECTOR_ORIGEN, SECTOR_DESTINO);
-                    string ID_SOL = mid.m("ID", "SOLICITUDES_COMPRAS");
-
-                    foreach (DataGridViewRow row in dgvArtSol.Rows)
-                    {
-                        if (row.Cells[4].Value.ToString() == "ID_ART")
-                        {
-                            DETALLE_ART_SOL = row.Cells[1].Value.ToString();
-                            ID_TIPO_ART_SOL = int.Parse(row.Cells[3].Value.ToString());
-                            BO_COMPRAS.nuevoArticulo(0, DETALLE_ART_SOL, 0, 0, "0", ID_TIPO_ART_SOL, "0");
-                            ID_NUEVO_ART_SOL = int.Parse(mid.m("ID", "ARTICULOS"));
-                            row.Cells[4].Value = ID_NUEVO_ART_SOL.ToString();
-                        }
-                    }
-
-                    foreach (DataGridViewRow row in dgvArtSol.Rows)
-                    {
-                        ID_NUEVO_ART_SOL = int.Parse(row.Cells[4].Value.ToString());
-                        CANTIDAD_ART_SOL = int.Parse(row.Cells[0].Value.ToString());
-                        BO_COMPRAS.altaSolicitudArticulos(int.Parse(ID_SOL), ID_NUEVO_ART_SOL, CANTIDAD_ART_SOL);
-                    }
-                    
-                    MessageBox.Show("SOLICITUD DE COMPRA ENVIADA", "LISTO!");
-                    carga_inicial_solicitudes();
-                }
-                catch (Exception error)
-                {
-                    MessageBox.Show("NO SE PUDO ENVIAR LA SOLICITUD\n" + error, "ERROR!");
-                }
-            }
-        }
-
         private void carga_inicial_solicitudes()
         {
             generarListaArtSol();
-            comboSectores(cbSectOrigenSolicitud);
-            comboSectores(cbSectDestSolicitudes);
-            comboPrioridadesSolicitudes();
+            comboSectores(cbSectOrigenSolicitud, 0);
+            comboSectores(cbSectorFiltro, -1);
+            comboSectores(cbSectDestSolicitudes, 0);
+            comboPrioridadesSolicitudes(cbPrioridadSolicitud, "MEDIA");
+            comboPrioridadesSolicitudes(cbPrioridadFiltro, "X");
+            comboTipoSolicitud(cbTipoSolicitud, 0);
+            comboTipoSolicitud(cbTipoSolicitudFiltro, -1);
             comboTipoArticulo(cbTipoArtSol);
+            comboPendienteRespuesta(cbPteRta, "X");
+            comboPendienteRespuesta(cbPteRtaFiltro, "X");
             cbSectOrigenSolicitud.SelectedValue = VGlobales.vp_role;
 
             if (recibeCompras() == true)
             {
-                buscarSolicitudesEnviadas();
-                buscarSolicitudesRecibidas();
+                gbSolicitudesCompras.Text = "SOLICITUDES RECIBIDAS";
+                buscarSolicitudes("RECIBIDAS", "X");
             }
             else
             {
-                gbSolicitudesRecibidas.Visible = false;
-                gbSolicitudesEnviadas.Height = 390;
-                lvSolicitudesEnviadas.Height = 360;
-                buscarSolicitudesEnviadas();
+                gbSolicitudesCompras.Text = "SOLICITUDES ENVIADAS";
+                cbSectorFiltro.SelectedValue = VGlobales.vp_role;
+                cbSectorFiltro.Enabled = false;
+                buscarSolicitudes("ENVIADAS", "X");
             }
-        }
-
-        private void tpSolicitud_Enter(object sender, EventArgs e)
-        {
-            carga_inicial_solicitudes();
-        }
-
-        private void tbDetArtSol_KeyUp(object sender, KeyEventArgs e)
-        {
-            string CONDICION = tbDetArtSol.Text.Trim();
-            buscarArticulos(CONDICION);
         }
 
         public void buscarArticulos(string CONDICION)
@@ -6064,33 +5995,7 @@ namespace SOCIOS
             }
         }
 
-        private void dgResArtSol_Click(object sender, EventArgs e)
-        {
-            foreach (DataGridViewRow row in dgResArtSol.SelectedRows)
-            {
-                string ID_ART_SOL = row.Cells["ID"].Value.ToString();
-                string DETALLE = row.Cells["DETALLE"].Value.ToString();
-                string TIPO = row.Cells["TIPO"].Value.ToString();
-                string ID_TIPO = row.Cells["ID_TIPO"].Value.ToString();
-                tbDetArtSol.Text = DETALLE;
-                cbTipoArtSol.SelectedValue = ID_TIPO;
-                lbIdArtSol.Text = ID_ART_SOL;
-                dgResArtSol.Visible = false;
-                btnAddArtSol.Enabled = true;
-            }
-        }
-
-        private void dgvArtSol_Click(object sender, EventArgs e)
-        {
-            if (dgvArtSol.SelectedRows.Count > 0)
-            {
-                btnDelArtSol.Enabled = true;
-            }
-            else
-            {
-                btnDelArtSol.Enabled = false;
-            }
-        }
+     
 
         private void buscarSolicitudesEnviadas()
         {
@@ -6116,7 +6021,7 @@ namespace SOCIOS
                     {
                         if (reader.Read())
                         {
-                            mostrarSolicitudes(reader, lvSolicitudesEnviadas);
+                            mostrarSolicitudes(reader, lvSolicitudesDeCompra);
                         }
                        
                         reader.Close();
@@ -6133,7 +6038,7 @@ namespace SOCIOS
             }
         }
 
-        private void buscarSolicitudesRecibidas()
+        private void buscarSolicitudes(string RE, string TIPO)
         {
             conString cs = new conString();
             string connectionString = cs.get();
@@ -6145,7 +6050,30 @@ namespace SOCIOS
                     connection.Open();
                     FbTransaction transaction = connection.BeginTransaction();
                     DataSet ds = new DataSet();
-                    string busco = "SELECT * FROM SOLICITUDES_COMPRAS WHERE SECTOR_DESTINO = '" + VGlobales.vp_role + "' ORDER BY ID DESC;";
+                    string busco = "";
+
+                    if (RE == "ENVIADAS")
+                    {
+                        busco = "SELECT S.ID, S.FECHA_ALTA, S.SECTOR_ORIGEN, S.SECTOR_DESTINO, ";
+                        busco += "S.ESTADO, S.PRIORIDAD, S.NRO_RECIBO, C.VALOR1, S.PROVEEDOR ";
+                        busco += "FROM SOLICITUDES_COMPRAS S, CONFIG C ";
+                        busco += "WHERE SECTOR_ORIGEN = '" + VGlobales.vp_role + "' ";
+                        busco += "AND S.TIPO_SOLICITUD = C.VALOR ";
+                        busco += "AND C.PARAM = 'TIPO_SOLICITUD' ";
+                        busco += "ORDER BY ID DESC;";
+                    }
+
+                    if (RE == "RECIBIDAS")
+                    {
+                        busco = "SELECT S.ID, S.FECHA_ALTA, S.SECTOR_ORIGEN, S.SECTOR_DESTINO, ";
+                        busco += "S.ESTADO, S.PRIORIDAD, S.NRO_RECIBO, C.VALOR1, S.PROVEEDOR ";
+                        busco += "FROM SOLICITUDES_COMPRAS S, CONFIG C ";
+                        busco += "WHERE SECTOR_DESTINO = '" + VGlobales.vp_role + "' ";
+                        busco += "AND S.TIPO_SOLICITUD = C.VALOR ";
+                        busco += "AND C.PARAM = 'TIPO_SOLICITUD' ";
+                        busco += "ORDER BY ID DESC;";
+                    }
+
                     FbCommand cmd = new FbCommand(busco, connection, transaction);
                     cmd.CommandText = busco;
                     cmd.Connection = connection;
@@ -6157,7 +6085,7 @@ namespace SOCIOS
                     {
                         if (reader.Read())
                         {
-                            mostrarSolicitudes(reader, lvSolicitudesRecibidas);
+                            mostrarSolicitudes(reader, lvSolicitudesDeCompra);
                         }
 
                         reader.Close();
@@ -6180,29 +6108,32 @@ namespace SOCIOS
             LV.Columns.Clear();
             LV.BeginUpdate();
 
+            //busco = "SELECT S.ID, S.FECHA_ALTA, S.SECTOR_ORIGEN, S.SECTOR_DESTINO, ";
+            //busco += "S.ESTADO, S.PRIORIDAD, S.NRO_RECIBO, C.VALOR1, S.PROVEEDOR ";
+
             if (LV.Columns.Count == 0)
             {
                 LV.Columns.Add("ID");
+                LV.Columns.Add("TIPO");
                 LV.Columns.Add("ALTA");
-                LV.Columns.Add("USUARIO");
                 LV.Columns.Add("SECTOR ORIGEN");
                 LV.Columns.Add("SECTOR DESTINO");
                 LV.Columns.Add("PRIORIDAD");
+                LV.Columns.Add("RECIBO");
                 LV.Columns.Add("ESTADO");
-                LV.Columns.Add("BAJA");
-                LV.Columns.Add("USUARIO");
+                LV.Columns.Add("PROVEEDOR");
             }
             do
             {
                 ListViewItem listItem = new ListViewItem(reader.GetString(reader.GetOrdinal("ID")).Trim().ToUpper());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("VALOR1")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_ALTA")).Trim().ToLower().Replace(" 00:00:00", ""));
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_ALTA")).Trim().ToUpper());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_ORIGEN")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("SECTOR_DESTINO")).Trim().ToUpper());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("PRIORIDAD")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("NRO_RECIBO")).Trim());
                 listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("ESTADO")).Trim().ToUpper());
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("FECHA_BAJA")));
-                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("USR_BAJA")).Trim());
+                listItem.SubItems.Add(reader.GetString(reader.GetOrdinal("PROVEEDOR")));
                 LV.Items.Add(listItem);
             }
 
@@ -6218,11 +6149,11 @@ namespace SOCIOS
             tbImporte.Text = IMPORTE_TOTAL.ToString();
         }
 
-        private void lvSolicitudesRecibidas_MouseUp(object sender, MouseEventArgs e)
+        private void lvSolicitudesDeCompra_MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (lvSolicitudesRecibidas.FocusedItem.Bounds.Contains(e.Location) == true)
+                if (lvSolicitudesDeCompra.FocusedItem.Bounds.Contains(e.Location) == true)
                 {
                     cmEstadoCompra.Show(Cursor.Position);
                 }
@@ -6231,50 +6162,50 @@ namespace SOCIOS
 
         private void pENDIENTEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            int ID = int.Parse(lvSolicitudesDeCompra.SelectedItems[0].SubItems[0].Text);
             string ESTADO = "PENDIENTE";
             BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
-            buscarSolicitudesRecibidas();
+            buscarSolicitudes("RECIBIDAS", "X");
         }
 
         private void aCTIVAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            int ID = int.Parse(lvSolicitudesDeCompra.SelectedItems[0].SubItems[0].Text);
             string ESTADO = "ACTIVA";
             BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
-            buscarSolicitudesRecibidas();
+            buscarSolicitudes("RECIBIDAS", "X");
         }
 
         private void rECHAZADAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            int ID = int.Parse(lvSolicitudesDeCompra.SelectedItems[0].SubItems[0].Text);
             string ESTADO = "RECHAZADA";
             BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
-            buscarSolicitudesRecibidas();
+            buscarSolicitudes("RECIBIDAS", "X");
         }
 
         private void aNULADAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            int ID = int.Parse(lvSolicitudesDeCompra.SelectedItems[0].SubItems[0].Text);
             string ESTADO = "ANULADA";
             BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
-            buscarSolicitudesRecibidas();
+            buscarSolicitudes("RECIBIDAS", "X");
         }
 
         private void cOMPLETADAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            int ID = int.Parse(lvSolicitudesDeCompra.SelectedItems[0].SubItems[0].Text);
             string ESTADO = "COMPLETA";
             BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
-            buscarSolicitudesRecibidas();
+            buscarSolicitudes("RECIBIDAS", "X");
         }
 
         private void eNTREGADAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int ID = int.Parse(lvSolicitudesRecibidas.SelectedItems[0].SubItems[0].Text);
+            int ID = int.Parse(lvSolicitudesDeCompra.SelectedItems[0].SubItems[0].Text);
             string ESTADO = "ENTREGADA";
             BO_COMPRAS.modificarEstadoSolicitud(ID, ESTADO);
-            buscarSolicitudesRecibidas();
+            buscarSolicitudes("RECIBIDAS", "X");
         }
 
         private void aNULARORDENDEPAGOToolStripMenuItem_Click(object sender, EventArgs e)
@@ -6540,22 +6471,11 @@ namespace SOCIOS
             }
         }
 
-        private void LvSolicitudesEnviadas_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                if (lvSolicitudesEnviadas.FocusedItem.Bounds.Contains(e.Location) == true)
-                {
-                    cmEnviadas.Show(Cursor.Position);
-                }
-            }
-        }
-
         private void VerDetalleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (lvSolicitudesEnviadas.SelectedItems.Count == 1)
+            if (lvSolicitudesDeCompra.SelectedItems.Count == 1)
             {
-                foreach (ListViewItem itemRow in lvSolicitudesEnviadas.SelectedItems)
+                foreach (ListViewItem itemRow in lvSolicitudesDeCompra.SelectedItems)
                 {
                     int ID_SOLICITUD = int.Parse(itemRow.SubItems[0].Text);
                     detalle_solicitud ds = new detalle_solicitud(ID_SOLICITUD);
@@ -6564,7 +6484,198 @@ namespace SOCIOS
             }
         }
 
-        private void DarDeBajaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void VerDetalleToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (lvSolicitudesDeCompra.SelectedItems.Count == 1)
+            {
+                foreach (ListViewItem itemRow in lvSolicitudesDeCompra.SelectedItems)
+                {
+                    int ID_SOLICITUD = int.Parse(itemRow.SubItems[0].Text);
+                    detalle_solicitud ds = new detalle_solicitud(ID_SOLICITUD);
+                    ds.ShowDialog();
+                }
+            }
+        }
+
+        private void TpSolicitud_Enter_1(object sender, EventArgs e)
+        {
+            carga_inicial_solicitudes();
+        }
+
+        private void TbDetArtSol_KeyUp_1(object sender, KeyEventArgs e)
+        {
+            string CONDICION = tbDetArtSol.Text.Trim();
+            buscarArticulos(CONDICION);
+        }
+
+        private void BtnAddArtSol_Click_1(object sender, EventArgs e)
+        {
+            if (tbCantArtSol.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD", "ERROR");
+                tbCantArtSol.Focus();
+            }
+            else if (tbDetArtSol.Text == "")
+            {
+                MessageBox.Show("COMPLETAR EL CAMPO DETALLE", "ERROR");
+                tbDetArtSol.Focus();
+            }
+            else
+            {
+                dgResArtSol.Visible = false;
+                string CANTIDAD_SOL = tbCantArtSol.Text.Trim();
+                string DETALLE_SOL = tbDetArtSol.Text.Trim();
+                string TIPO_SOL = cbTipoArtSol.Text;
+                string ID_TIPO_SOL = cbTipoArtSol.SelectedValue.ToString();
+                string ID_ART = lbIdArtSol.Text;
+                dgvArtSol.Rows.Add(CANTIDAD_SOL, DETALLE_SOL, TIPO_SOL, ID_TIPO_SOL, ID_ART);
+                limpiarArtSol();
+            }
+        }
+
+        private void BtnDelArtSol_Click_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvArtSol.SelectedRows)
+            {
+                int ID = int.Parse(row.Index.ToString());
+                dgvArtSol.Rows.RemoveAt(ID);
+            }
+
+            btnDelArtSol.Enabled = false;
+        }
+
+        private void BtnAltaSolicitud_Click(object sender, EventArgs e)
+        {
+            if (dgvArtSol.Rows.Count == 0)
+            {
+                MessageBox.Show("AGREGAR POR LO MENOS UN ARTÍCULO", "ERROR!");
+            }
+            else
+            {
+                string FECHA_SOL = dpFechaSolicitud.Text;
+                string PRIORIDAD_SOL = cbPrioridadSolicitud.Text;
+                string SECTOR_ORIGEN = cbSectOrigenSolicitud.SelectedValue.ToString();
+                string SECTOR_DESTINO = cbSectDestSolicitudes.SelectedValue.ToString();
+                int TIPO_SOLICITUD = Convert.ToInt32(cbTipoSolicitud.SelectedValue);
+                string OBSERVACIONES = tbObsSolicitud.Text.Trim();
+                string PROVEEDOR = tbProveedorSolicitud.Text.Trim();
+                string EMAIL = tbEmailSolicitud.Text.Trim();
+                string TELEFONO = tbTelefonoContacto.Text.Trim();
+                string NOMBRE = tbNombreContacto.Text.Trim();
+                string PTE_RTA = cbPteRta.Text;
+                int REF_NRO_SOL = 0;
+
+                if (tbRefSolCompra.Text != "")
+                    REF_NRO_SOL = Convert.ToInt32(tbRefSolCompra);
+
+                string DETALLE_ART_SOL = "";
+                int ID_TIPO_ART_SOL = 1;
+                int ID_NUEVO_ART_SOL = 0;
+                int CANTIDAD_ART_SOL = 0;
+                string NRO_RECIBO = tbNroRecibo.Text;
+
+                try
+                {
+                    BO_COMPRAS.nuevaSolicitudCompra(FECHA_SOL, PRIORIDAD_SOL, SECTOR_ORIGEN, SECTOR_DESTINO, NRO_RECIBO, TIPO_SOLICITUD, OBSERVACIONES, PROVEEDOR, EMAIL, TELEFONO, NOMBRE, PTE_RTA, REF_NRO_SOL);
+                    string ID_SOL = mid.m("ID", "SOLICITUDES_COMPRAS");
+
+                    foreach (DataGridViewRow row in dgvArtSol.Rows)
+                    {
+                        if (row.Cells[4].Value.ToString() == "ID_ART")
+                        {
+                            DETALLE_ART_SOL = row.Cells[1].Value.ToString();
+                            ID_TIPO_ART_SOL = int.Parse(row.Cells[3].Value.ToString());
+                            BO_COMPRAS.nuevoArticulo(0, DETALLE_ART_SOL, 0, 0, "0", ID_TIPO_ART_SOL, "0");
+                            ID_NUEVO_ART_SOL = int.Parse(mid.m("ID", "ARTICULOS"));
+                            row.Cells[4].Value = ID_NUEVO_ART_SOL.ToString();
+                        }
+                    }
+
+                    foreach (DataGridViewRow row in dgvArtSol.Rows)
+                    {
+                        ID_NUEVO_ART_SOL = int.Parse(row.Cells[4].Value.ToString());
+                        CANTIDAD_ART_SOL = int.Parse(row.Cells[0].Value.ToString());
+                        BO_COMPRAS.altaSolicitudArticulos(int.Parse(ID_SOL), ID_NUEVO_ART_SOL, CANTIDAD_ART_SOL);
+                    }
+
+                    MessageBox.Show("SOLICITUD DE COMPRA ENVIADA", "LISTO!");
+                    carga_inicial_solicitudes();
+                }
+                catch (Exception error)
+                {
+                    MessageBox.Show("NO SE PUDO ENVIAR LA SOLICITUD\n" + error, "ERROR!");
+                }
+            }
+        }
+
+        private void DgResArtSol_Click_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgResArtSol.SelectedRows)
+            {
+                string ID_ART_SOL = row.Cells["ID"].Value.ToString();
+                string DETALLE = row.Cells["DETALLE"].Value.ToString();
+                string TIPO = row.Cells["TIPO"].Value.ToString();
+                string ID_TIPO = row.Cells["ID_TIPO"].Value.ToString();
+                tbDetArtSol.Text = DETALLE;
+                cbTipoArtSol.SelectedValue = ID_TIPO;
+                lbIdArtSol.Text = ID_ART_SOL;
+                dgResArtSol.Visible = false;
+                btnAddArtSol.Enabled = true;
+            }
+        }
+
+        private void DgvArtSol_Click_1(object sender, EventArgs e)
+        {
+            if (dgvArtSol.SelectedRows.Count > 0)
+            {
+                btnDelArtSol.Enabled = true;
+            }
+            else
+            {
+                btnDelArtSol.Enabled = false;
+            }
+        }
+
+        private void LvSolicitudesDeCompra_MouseUp_1(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lvSolicitudesDeCompra.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    if(recibeCompras() == true)
+                        cmEstadoCompra.Show(Cursor.Position);
+                    else
+                        cmEnviadas.Show(Cursor.Position);
+                }
+            }
+        }
+
+        private void CbTipoSolicitud_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if(Convert.ToInt32(cbTipoSolicitud.SelectedValue) == 1)
+            {
+                tbProveedorSolicitud.Enabled = false;
+                tbEmailSolicitud.Enabled = false;
+                tbTelefonoContacto.Enabled = false;
+                tbNombreContacto.Enabled = false;
+                cbPteRta.SelectedIndex = -1;
+                cbPteRta.Enabled = false;
+                tbRefSolCompra.Enabled = false;
+            }
+
+            if (Convert.ToInt32(cbTipoSolicitud.SelectedValue) == 2)
+            {
+                tbProveedorSolicitud.Enabled = true;
+                tbEmailSolicitud.Enabled = true;
+                tbTelefonoContacto.Enabled = true;
+                tbNombreContacto.Enabled = true;
+                cbPteRta.SelectedIndex = 0;
+                cbPteRta.Enabled = true;
+                tbRefSolCompra.Enabled = true;
+            }
+        }
+
+        private void BtnAceptarFiltro_Click(object sender, EventArgs e)
         {
 
         }
