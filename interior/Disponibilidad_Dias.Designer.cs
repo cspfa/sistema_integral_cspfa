@@ -78,7 +78,7 @@
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Location = new System.Drawing.Point(12, 105);
             this.dgvData.Name = "dgvData";
-            this.dgvData.Size = new System.Drawing.Size(392, 150);
+            this.dgvData.Size = new System.Drawing.Size(579, 150);
             this.dgvData.TabIndex = 3;
             // 
             // label1
@@ -86,7 +86,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label1.Location = new System.Drawing.Point(420, 105);
+            this.label1.Location = new System.Drawing.Point(630, 105);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 18);
             this.label1.TabIndex = 4;
@@ -97,7 +97,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label3.Location = new System.Drawing.Point(420, 134);
+            this.label3.Location = new System.Drawing.Point(630, 134);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 18);
             this.label3.TabIndex = 5;
@@ -108,7 +108,7 @@
             this.lbTramite.AutoSize = true;
             this.lbTramite.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTramite.ForeColor = System.Drawing.Color.Blue;
-            this.lbTramite.Location = new System.Drawing.Point(469, 161);
+            this.lbTramite.Location = new System.Drawing.Point(679, 161);
             this.lbTramite.Name = "lbTramite";
             this.lbTramite.Size = new System.Drawing.Size(13, 18);
             this.lbTramite.TabIndex = 6;
@@ -119,7 +119,7 @@
             this.lbCirugia.AutoSize = true;
             this.lbCirugia.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCirugia.ForeColor = System.Drawing.Color.Brown;
-            this.lbCirugia.Location = new System.Drawing.Point(469, 206);
+            this.lbCirugia.Location = new System.Drawing.Point(679, 206);
             this.lbCirugia.Name = "lbCirugia";
             this.lbCirugia.Size = new System.Drawing.Size(13, 18);
             this.lbCirugia.TabIndex = 8;
@@ -130,7 +130,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label6.Location = new System.Drawing.Point(420, 179);
+            this.label6.Location = new System.Drawing.Point(630, 179);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(68, 18);
             this.label6.TabIndex = 7;
@@ -152,7 +152,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.label8.Location = new System.Drawing.Point(420, 224);
+            this.label8.Location = new System.Drawing.Point(630, 224);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(113, 18);
             this.label8.TabIndex = 9;
@@ -162,7 +162,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(562, 319);
+            this.ClientSize = new System.Drawing.Size(764, 319);
             this.Controls.Add(this.lbEnfermedad);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.lbCirugia);

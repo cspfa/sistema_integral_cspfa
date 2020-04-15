@@ -74,7 +74,7 @@ namespace SOCIOS.Turismo
 
                     Datos_Vouchers item = new Datos_Vouchers();
 
-                    item.FECHA = foundRows[I][0].ToString().Trim();
+                    item.FECHA = DateTime.Parse( foundRows[I][0].ToString().Trim()).ToShortDateString();
                     item.BONO = Int32.Parse(foundRows[I][1].ToString());
                     item.ROL = foundRows[I][2].ToString().Trim();
                     item.MOTIVO = foundRows[I][3].ToString().Trim();

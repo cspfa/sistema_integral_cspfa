@@ -16,7 +16,8 @@ namespace SOCIOS.interior
         public Disponibilidad_Dias(int Socio,int Dep,int Anio)
         {
             InitializeComponent();
-
+            Text=  Socio.ToString() + "-" + Dep.ToString() + VGlobales.vp_Apellido + "," + VGlobales.vp_Nombre;
+            lbAnio.Text = Anio.ToString();
             lbDias.Text = hotel_Dias_Utils.ConsultarDias(Socio, Dep, Anio);
             service_Datos_Dias = new Datos_Dias(Socio, Dep);
             dgvData.DataSource = service_Datos_Dias.DETALLE;
