@@ -144,7 +144,8 @@ namespace SOCIOS.BO
         }
 
         //ALTA SOLICITUD DE COMPRA
-        public void nuevaSolicitudCompra(string FECHA, string PRIORIDAD, string SECTOR_ORIGEN, string SECTOR_DESTINO)
+        public void nuevaSolicitudCompra(string FECHA, string PRIORIDAD, string SECTOR_ORIGEN, string SECTOR_DESTINO, string RECIBO, int TIPO_SOLICITUD, string OBSERVACIONES,
+            string PROVEEDOR, string EMAIL, string TELEFONO, string NOMBRE, string PTE_RTA, int REF_NRO_SOL)
         {
             ArrayList vector_contenidos = new ArrayList();
             vector_contenidos.Add(FECHA);
@@ -153,6 +154,15 @@ namespace SOCIOS.BO
             vector_contenidos.Add(SECTOR_DESTINO);
             vector_contenidos.Add("PENDIENTE");
             vector_contenidos.Add(PRIORIDAD);
+            vector_contenidos.Add(RECIBO);
+            vector_contenidos.Add(TIPO_SOLICITUD);
+            vector_contenidos.Add(OBSERVACIONES);
+            vector_contenidos.Add(PROVEEDOR);
+            vector_contenidos.Add(EMAIL);
+            vector_contenidos.Add(TELEFONO);
+            vector_contenidos.Add(NOMBRE);
+            vector_contenidos.Add(PTE_RTA);
+            vector_contenidos.Add(REF_NRO_SOL);
 
             ArrayList vector_tipos = new ArrayList();
             vector_tipos.Add("FbDbType.Date");
@@ -161,6 +171,15 @@ namespace SOCIOS.BO
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Char");
             vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Char");
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.VarChar");
+            vector_tipos.Add("FbDbType.Integer");
 
             ArrayList vector_nombres = new ArrayList();
             vector_nombres.Add("PIN_FECHA_ALTA");
@@ -169,6 +188,15 @@ namespace SOCIOS.BO
             vector_nombres.Add("PIN_SECTOR_DESTINO");
             vector_nombres.Add("PIN_ESTADO");
             vector_nombres.Add("PIN_PRIORIDAD");
+            vector_nombres.Add("PIN_NRO_RECIBO");
+            vector_nombres.Add("PIN_TIPO_SOLICITUD");
+            vector_nombres.Add("PIN_OBS");
+            vector_nombres.Add("PIN_PROVEEDOR");
+            vector_nombres.Add("PIN_TELEFONO");
+            vector_nombres.Add("PIN_EMAIL");
+            vector_nombres.Add("PIN_NOMBRE");
+            vector_nombres.Add("PIN_PTE_RTA");
+            vector_nombres.Add("PIN_REF_NRO_SOL");
 
             string vprocedure = "SOLICITUDES_COMPRAS_I";
 
