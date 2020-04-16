@@ -4197,6 +4197,15 @@ namespace SOCIOS
                        break;
                    }
 
+               case "DiasInterior":
+               {
+                   SOCIOS.interior.Disponibilidad_Dias dd = new interior.Disponibilidad_Dias(Int32.Parse(VGlobales.vp_Titular_Soc),Int32.Parse( VGlobales.vp_Titular_Dep),System.DateTime.Now.Year);
+                   dd.ShowDialog();
+
+
+                   break;
+               }
+
 
 
                default:
