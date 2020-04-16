@@ -164,7 +164,77 @@ namespace SOCIOS.Turismo
 
 
        }
-      
+
+
+       public List<Datos_Vouchers_Lista> getVouchers_Social(DateTime pDesde, DateTime pHasta)
+       {
+
+
+           string Desde = this.fechaUSA(pDesde.AddDays(-1));
+           string Hasta = this.fechaUSA(pHasta.AddDays(1));
+
+
+
+           List<Datos_Vouchers_Lista> DETALLE = new List<Datos_Vouchers_Lista>();
+
+           string QUERY = @"select V.ID,BT.NRO_SOCIO,BT.NRO_DEP,BT.APELLIDO,BT.NOMBRE, BT.FE_BONO, BT.ID_ROL, BT.ROL, V.MOTIVO,V.NOCHES,BT.F_BAJA
+                                    from bono_turismo BT, voucher_Bono_hotel V 
+                            where BT.ID=V.BONO  and V.FECHA>'" + Desde + "' and BT.FECHA < '" + Hasta + "' and TIPO='SOC'  order by BT.ID_ROL desc";
+
+           DataRow[] foundRows;
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+           if (foundRows.Length > 0)
+           {
+               int I = 0;
+               while (I <= (foundRows.Length - 1))
+               {
+
+
+
+
+                   Datos_Vouchers_Lista item = new Datos_Vouchers_Lista();
+
+
+
+                   item.ID = foundRows[I][0].ToString();
+                   item.NRO_SOC = foundRows[I][1].ToString();
+                   item.NRO_DEP = foundRows[I][2].ToString();
+                   item.APELLIDO = foundRows[I][3].ToString();
+                   item.NOMBRE = foundRows[I][4].ToString();
+
+                   item.FECHA = DateTime.Parse(foundRows[I][5].ToString().Trim()).ToShortDateString();
+                   item.BONO = Int32.Parse(foundRows[I][6].ToString());
+                   item.ROL = foundRows[I][7].ToString().Trim();
+                   item.MOTIVO = foundRows[I][8].ToString().Trim();
+                   item.DIAS = Int32.Parse(foundRows[I][9].ToString().Trim());
+
+                   if (foundRows[I][10].ToString().Trim().Length > 0)
+                   {
+                       item.ANULADO = DateTime.Parse(foundRows[I][10].ToString().Trim()).ToShortDateString();
+                   }
+
+
+                   I = I + 1;
+
+
+
+                   DETALLE.Add(item);
+               }
+           }
+
+           return DETALLE;
+
+       }
+
+       private string fechaUSA(DateTime fecha)
+       {
+           string Fecha = fecha.Month.ToString("00") + "/" + fecha.Day.ToString("00") + "/" + fecha.Year.ToString("0000");
+
+           return Fecha;
+
+
+       }
     
 
     }

@@ -20,13 +20,35 @@ namespace SOCIOS.Turismo
 
     public class Datos_Vouchers
     {
-        public string  FECHA { get; set; }
-        public int     BONO  { get; set; }
-        public string  ROL   { get; set; }
-        public string  MOTIVO { get; set; }
-        public int     DIAS { get; set; }
+
+        public string ANULADO   { get; set; }
+        public string  FECHA    { get; set; }
+        public int     BONO     { get; set; }
+        public string  ROL      { get; set; }
+        public string  MOTIVO   { get; set; }
+        public int     DIAS     { get; set; }
 
     
+    }
+
+    public class Datos_Vouchers_Lista 
+    {
+        public string ID       { get; set; }
+        public string FECHA    { get; set; }
+        public string NRO_SOC  { get; set; }
+        public string NRO_DEP  { get; set; }
+
+        public string APELLIDO { get; set; }
+        public string NOMBRE   { get; set; }
+        public string DNI      { get; set; }
+
+        public string ANULADO  { get; set; }
+     
+        public int BONO        { get; set; }
+        public string ROL      { get; set; }
+        public string MOTIVO   { get; set; }
+        public int DIAS        { get; set; }
+
     }
 
     public class Datos_Dias
@@ -52,7 +74,7 @@ namespace SOCIOS.Turismo
         private void  Cargar_Lista(int NroSocio, int NroDep)
         {
 
-            string QUERY = @"select BT.FE_BONO, BT.ID_ROL, BT.ROL, V.MOTIVO,V.NOCHES
+            string QUERY = @"select BT.FE_BONO, BT.ID_ROL, BT.ROL, V.MOTIVO,V.NOCHES,BT.F_BAJA
                                     from bono_turismo BT, voucher_Bono_hotel V 
                             where BT.ID=V.BONO  and BT.NRO_SOCIO="+ NroSocio.ToString() +" and BT.NRO_DEP=" + NroDep.ToString() +"  order by BT.ID_ROL desc";                      
 
@@ -79,6 +101,12 @@ namespace SOCIOS.Turismo
                     item.ROL = foundRows[I][2].ToString().Trim();
                     item.MOTIVO = foundRows[I][3].ToString().Trim();
                     item.DIAS = Int32.Parse(foundRows[I][4].ToString().Trim());
+
+                    if (foundRows[I][5].ToString().Trim().Length > 0)
+                    {
+                        item.ANULADO = DateTime.Parse(foundRows[I][5].ToString().Trim()).ToShortDateString();
+                    }
+
 
                     I = I + 1;
 
