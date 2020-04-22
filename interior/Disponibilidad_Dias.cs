@@ -30,5 +30,10 @@ namespace SOCIOS.interior
 
 
         }
+
+        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //ID = Int32.Parse(dgvData.SelectedRows[0].Cells[8].Value.ToString());
+        }
     }
 }

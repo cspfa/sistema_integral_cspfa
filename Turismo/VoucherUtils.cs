@@ -177,9 +177,9 @@ namespace SOCIOS.Turismo
 
            List<Datos_Vouchers_Lista> DETALLE = new List<Datos_Vouchers_Lista>();
 
-           string QUERY = @"select V.ID,BT.NRO_SOCIO,BT.NRO_DEP,BT.APELLIDO,BT.NOMBRE, BT.FE_BONO, BT.ID_ROL, BT.ROL, V.MOTIVO,V.NOCHES,BT.F_BAJA
+           string QUERY = @"select V.ID,BT.NRO_SOCIO,BT.NRO_DEP,BT.APELLIDO,BT.NOMBRE, BT.FE_BONO, BT.ID_ROL, BT.ROL, V.MOTIVO,V.NOCHES,BT.FE_BAJA
                                     from bono_turismo BT, voucher_Bono_hotel V 
-                            where BT.ID=V.BONO  and V.FECHA>'" + Desde + "' and BT.FECHA < '" + Hasta + "' and TIPO='SOC'  order by BT.ID_ROL desc";
+                            where BT.ID=V.BONO  and V.F_ALTA>'" + Desde + "' and V.F_ALTA < '" + Hasta + "' and BT.TIPO='SOC'  order by BT.ID_ROL desc";
 
            DataRow[] foundRows;
            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
@@ -232,6 +232,68 @@ namespace SOCIOS.Turismo
            string Fecha = fecha.Month.ToString("00") + "/" + fecha.Day.ToString("00") + "/" + fecha.Year.ToString("0000");
 
            return Fecha;
+
+
+       }
+       public void Baja_Voucher_Bono(int ID_VOUCHER)
+       { 
+         int ID_BONO = this.BONO_VOUCHER(ID_VOUCHER);
+         this.BAJA_VOUCHER(ID_VOUCHER);
+         dlog.BajaTurismo(ID_BONO, VGlobales.vp_username, System.DateTime.Now);
+
+       }
+
+
+       private void BAJA_VOUCHER (int ID)
+       {
+           int Total = 0;
+           string SQL = "";
+
+           SQL = "UPDATE  VOUCHER_BONO_HOTEL set F_BAJA=(select cast('Now' as date) from rdb$database) WHERE ID=" + ID.ToString();
+
+
+          
+           Datos_ini ini2 = new Datos_ini();
+           FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
+           cs.DataSource = ini2.Servidor; cs.Port = int.Parse(ini2.Puerto);
+           cs.Database = ini2.Ubicacion;
+           cs.UserID = VGlobales.vp_username;
+           cs.Password = VGlobales.vp_password;
+           cs.Role = VGlobales.vp_role;
+           cs.Dialect = 3;
+           string connectionString = cs.ToString();
+
+           using (FbConnection connection = new FbConnection(connectionString))
+           {
+
+               connection.Open();
+               FbTransaction transaction = connection.BeginTransaction();
+               FbCommand cmd = new FbCommand(SQL, connection, transaction);
+               cmd.CommandText = SQL;
+               cmd.Connection = connection;
+               cmd.CommandType = CommandType.Text;
+
+               cmd.ExecuteNonQuery();
+               transaction.Commit();
+               connection.Dispose();
+
+           }
+       }
+
+       private int BONO_VOUCHER(int ID)
+       {
+
+           string QUERY = "SELECT  BONO from voucher_bono_hotel where ID=" + ID;
+           DataRow[] foundRows;
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+           if (foundRows.Length > 0)
+           {
+               return Int32.Parse(foundRows[0][0].ToString().Trim());
+           }
+           else
+               return 0;
+
 
 
        }

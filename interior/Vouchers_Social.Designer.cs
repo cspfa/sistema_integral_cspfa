@@ -89,6 +89,7 @@
             this.dgcDatos.Name = "dgcDatos";
             this.dgcDatos.Size = new System.Drawing.Size(642, 256);
             this.dgcDatos.TabIndex = 90;
+            this.dgcDatos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgcDatos_CellClick);
             // 
             // Anular
             // 
@@ -98,6 +99,7 @@
             this.Anular.TabIndex = 91;
             this.Anular.Text = "Anular";
             this.Anular.UseVisualStyleBackColor = true;
+            this.Anular.Click += new System.EventHandler(this.Anular_Click);
             // 
             // Vouchers_Social
             // 
