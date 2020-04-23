@@ -590,6 +590,9 @@ namespace SOCIOS
 
         private void comboPrioridadesSolicitudes(ComboBox COMBO, string SELECTED)
         {
+            if(COMBO == cbPrioridadFiltro)
+                COMBO.Items.Add("TODAS");
+
             COMBO.Items.Add("MEDIA");
             COMBO.Items.Add("ALTA");
             COMBO.Items.Add("BAJA");
@@ -600,6 +603,9 @@ namespace SOCIOS
 
         private void comboPendienteRespuesta(ComboBox COMBO, string SELECTED)
         {
+            if(COMBO == cbPteRtaFiltro)
+                COMBO.Items.Add("TODAS");
+
             COMBO.Items.Add("SI");
             COMBO.Items.Add("NO");
 
@@ -5950,12 +5956,12 @@ namespace SOCIOS
             comboSectores(cbSectorFiltro, -1);
             comboSectores(cbSectDestSolicitudes, 0);
             comboPrioridadesSolicitudes(cbPrioridadSolicitud, "MEDIA");
-            comboPrioridadesSolicitudes(cbPrioridadFiltro, "X");
+            comboPrioridadesSolicitudes(cbPrioridadFiltro, "TODAS");
             comboTipoSolicitud(cbTipoSolicitud, 0);
             comboTipoSolicitud(cbTipoSolicitudFiltro, -1);
             comboTipoArticulo(cbTipoArtSol);
             comboPendienteRespuesta(cbPteRta, "X");
-            comboPendienteRespuesta(cbPteRtaFiltro, "X");
+            comboPendienteRespuesta(cbPteRtaFiltro, "TODAS");
             cbSectOrigenSolicitud.SelectedValue = VGlobales.vp_role;
 
             if (recibeCompras() == true)
@@ -5968,6 +5974,7 @@ namespace SOCIOS
                 gbSolicitudesCompras.Text = "SOLICITUDES ENVIADAS";
                 cbSectorFiltro.SelectedValue = VGlobales.vp_role;
                 cbSectorFiltro.Enabled = false;
+                cbSectOrigenSolicitud.Enabled = false;
                 buscarSolicitudes("ENVIADAS", "X");
             }
         }
@@ -6052,27 +6059,49 @@ namespace SOCIOS
                     DataSet ds = new DataSet();
                     string busco = "";
 
+                    busco = "SELECT S.ID, S.FECHA_ALTA, S.SECTOR_ORIGEN, S.SECTOR_DESTINO, ";
+                    busco += "S.ESTADO, S.PRIORIDAD, S.NRO_RECIBO, C.VALOR1, S.PROVEEDOR ";
+                    busco += "FROM SOLICITUDES_COMPRAS S, CONFIG C ";
+
                     if (RE == "ENVIADAS")
                     {
-                        busco = "SELECT S.ID, S.FECHA_ALTA, S.SECTOR_ORIGEN, S.SECTOR_DESTINO, ";
-                        busco += "S.ESTADO, S.PRIORIDAD, S.NRO_RECIBO, C.VALOR1, S.PROVEEDOR ";
-                        busco += "FROM SOLICITUDES_COMPRAS S, CONFIG C ";
                         busco += "WHERE SECTOR_ORIGEN = '" + VGlobales.vp_role + "' ";
-                        busco += "AND S.TIPO_SOLICITUD = C.VALOR ";
-                        busco += "AND C.PARAM = 'TIPO_SOLICITUD' ";
-                        busco += "ORDER BY ID DESC;";
                     }
 
                     if (RE == "RECIBIDAS")
                     {
-                        busco = "SELECT S.ID, S.FECHA_ALTA, S.SECTOR_ORIGEN, S.SECTOR_DESTINO, ";
-                        busco += "S.ESTADO, S.PRIORIDAD, S.NRO_RECIBO, C.VALOR1, S.PROVEEDOR ";
-                        busco += "FROM SOLICITUDES_COMPRAS S, CONFIG C ";
                         busco += "WHERE SECTOR_DESTINO = '" + VGlobales.vp_role + "' ";
-                        busco += "AND S.TIPO_SOLICITUD = C.VALOR ";
-                        busco += "AND C.PARAM = 'TIPO_SOLICITUD' ";
-                        busco += "ORDER BY ID DESC;";
                     }
+
+                    if(cbFiltroFecha.Checked == true)
+                    {
+                        string[] FECHA_SPLIT = dpFechaFiltro.Text.Split('/');
+                        busco += "AND S.FECHA_ALTA = '" + FECHA_SPLIT[1] + "/" + FECHA_SPLIT[0] + "/" + FECHA_SPLIT[2] + "' ";
+                    }
+
+                    if(cbPrioridadFiltro.Text != "TODAS")
+                    {
+                        busco += "AND S.PRIORIDAD = '" + cbPrioridadFiltro.Text + "' ";
+                    }
+
+                    if (cbPteRtaFiltro.Text != "TODAS")
+                    {
+                        busco += "AND S.PTE_RTA = '" + cbPteRtaFiltro.Text + "' ";
+                    }
+
+                    if (cBoxSectorFiltro.Checked == true)
+                    {
+                        busco += "AND S.SECTOR_ORIGEN = '" + cbSectorFiltro.Text + "' ";
+                    }
+
+                    if (cBoxTipoFiltro.Checked == true)
+                    {
+                        busco += "AND S.TIPO_SOLICITUD = " + cbTipoSolicitudFiltro.SelectedValue + " ";
+                    }
+
+                    busco += "AND S.TIPO_SOLICITUD = C.VALOR ";
+                    busco += "AND C.PARAM = 'TIPO_SOLICITUD' ";
+                    busco += "ORDER BY ID DESC;";
 
                     FbCommand cmd = new FbCommand(busco, connection, transaction);
                     cmd.CommandText = busco;
@@ -6085,7 +6114,13 @@ namespace SOCIOS
                     {
                         if (reader.Read())
                         {
+                            lvSolicitudesDeCompra.Clear();
                             mostrarSolicitudes(reader, lvSolicitudesDeCompra);
+                        }
+                        else
+                        {
+                            lvSolicitudesDeCompra.Clear();
+                            MessageBox.Show("NO SE ENCONTRARON RESULTADOS");
                         }
 
                         reader.Close();
@@ -6677,7 +6712,14 @@ namespace SOCIOS
 
         private void BtnAceptarFiltro_Click(object sender, EventArgs e)
         {
-
+            if (recibeCompras() == true)
+            {
+                buscarSolicitudes("RECIBIDAS", "X");
+            }
+            else
+            {
+                buscarSolicitudes("ENVIADAS", "X");
+            }
         }
     }
 }
