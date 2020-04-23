@@ -10,6 +10,13 @@ namespace SOCIOS.Turismo
    public class VoucherUtils
    {
        bo_Turismo dlog = new bo_Turismo();
+       Hotel_Dias_Utils hdu =  new Hotel_Dias_Utils();
+       int nroSocio=0;
+       int nroDep=0;
+       int Tipo;
+       int Dias;
+       int ID_BONO;
+
        public void GenerarVoucher(int Bono,int Hotel, DateTime Desde, DateTime Hasta,int Regimen,int Habitacion,string NumeroHabitacion,string TipoBono,string Motivo, string Late,string IN,int Codint)
 
        {
@@ -237,9 +244,11 @@ namespace SOCIOS.Turismo
        }
        public void Baja_Voucher_Bono(int ID_VOUCHER)
        { 
-         int ID_BONO = this.BONO_VOUCHER(ID_VOUCHER);
+         this.DATOS_VOUCHER(ID_VOUCHER);
          this.BAJA_VOUCHER(ID_VOUCHER);
          dlog.BajaTurismo(ID_BONO, VGlobales.vp_username, System.DateTime.Now);
+         // se agregan dias a la cuenta con la cancelacion
+           hdu.ProcesarDias(nroSocio, nroDep, Tipo,System.DateTime.Now.Year, Dias * (-1));
 
        }
 
@@ -280,19 +289,31 @@ namespace SOCIOS.Turismo
            }
        }
 
-       private int BONO_VOUCHER(int ID)
+       private void DATOS_VOUCHER(int ID)
        {
 
-           string QUERY = "SELECT  BONO from voucher_bono_hotel where ID=" + ID;
+           string QUERY = "SELECT  BT.ID,BT.NRO_SOCIO,BT.NRO_DEP,V.MOTIVO,V.DIAS from voucher_bono_hotel VT,Bono_turismo BT   where BT.ID= VT.BONO and VT.ID=" + ID;
            DataRow[] foundRows;
            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
            if (foundRows.Length > 0)
            {
-               return Int32.Parse(foundRows[0][0].ToString().Trim());
+
+
+               ID_BONO = Int32.Parse(foundRows[0][0].ToString().Trim());
+               nroSocio= Int32.Parse(foundRows[0][1].ToString().Trim());
+               nroDep = Int32.Parse(foundRows[0][2].ToString().Trim());
+               if (foundRows[0][3].ToString().Trim().ToUpper().StartsWith("T"))
+                   Tipo = (int) SOCIOS.Turismo.Hotel_Social_Enum.TRAMITE; 
+               else if (foundRows[0][3].ToString().Trim().ToUpper().StartsWith("C"))
+                    Tipo = (int)SOCIOS.Turismo.Hotel_Social_Enum.CIRUGIA;
+               else
+                   Tipo = (int)SOCIOS.Turismo.Hotel_Social_Enum.ENFERMEDAD;
+               Dias = Int32.Parse(foundRows[0][3].ToString().Trim());
+                   
+
            }
-           else
-               return 0;
+          
 
 
 
