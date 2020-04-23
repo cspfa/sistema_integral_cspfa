@@ -230,6 +230,10 @@
     </Compile>
     <Compile Include="interior\Disponibilidad_Dias.Designer.cs" />
     <Compile Include="interior\serviceInterior.cs" />
+    <Compile Include="interior\Vouchers_Social.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="interior\Vouchers_Social.Designer.cs" />
     <Compile Include="Notificacion\Notificacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1345,6 +1349,7 @@
     <EmbeddedResource Include="interior\Contactos .resx" />
     <EmbeddedResource Include="interior\Contacto_Form.resx" />
     <EmbeddedResource Include="interior\Disponibilidad_Dias.resx" />
+    <EmbeddedResource Include="interior\Vouchers_Social.resx" />
     <EmbeddedResource Include="Notificacion\Notificacion.resx" />
     <EmbeddedResource Include="recibos\asignarReciboC.resx">
       <DependentUpon>asignarReciboC.cs</DependentUpon>
