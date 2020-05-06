@@ -163,7 +163,7 @@ namespace SOCIOS.bono
             cbSocial.Items.Insert((int)Hotel_Social_Enum.TRAMITE   , "Tramite");
             cbSocial.Items.Insert((int)Hotel_Social_Enum.ENFERMEDAD , "Enfermedad");
             cbSocial.Items.Insert((int)Hotel_Social_Enum.CIRUGIA   , "Cirugia");
-            cbSocial.SelectedValue = "1";
+            cbSocial.SelectedValue = "0";
          
         
         
@@ -755,16 +755,18 @@ namespace SOCIOS.bono
             int Habit = Int32.Parse(cbHabitacion.SelectedValue.ToString());
             string LATE_CHECKOUT = "";
             string CHECKIN = "";
+            int Dias = 0;
 
             LATE_CHECKOUT = tbCheckOut.Text;
             CHECKIN       = tbCheckIn.Text;
            
-            if (cbSocial.SelectedItem.ToString().Length ==0)
+            if (cbSocial.Text.ToString().Length== 0)
                 MessageBox.Show("Ingrese Motivo de Bono Social", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
 
             string MotivoViaje =  cbSocial.SelectedItem.ToString();
-
+            if (Dias == 0)
+                throw new Exception("Debe Alojarse al Menos 1 noche !");
 
             if (MessageBox.Show("Generar Bono de Estadia en  Hotel: " + cbHotel.Text + "  , Motivo de Viaje : " + MotivoViaje, "Confirmacion ", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -796,8 +798,10 @@ namespace SOCIOS.bono
                         string Telefono = this.srvDatosSocio.CAB.Telefonos;
 
                         decimal Pago = decimal.Parse(lblSaldoTotal.Text);
+                        Dias = Int32.Parse(lbInfoDias.Text);
+                   
 
-                        hotel_Dias_Utils.ProcesarDias(Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), cbSocial.SelectedIndex,System.DateTime.Now.Year,Int32.Parse(lbInfoDias.Text));
+                        hotel_Dias_Utils.ProcesarDias(Int32.Parse(srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(srvDatosSocio.CAB.NroDepTitular), cbSocial.SelectedIndex,System.DateTime.Now.Year,Dias);
                         int CodInt = 0;
                         if (VGlobales.vp_role.Contains("TURISMO"))
                             CodInt = 1001;
@@ -912,7 +916,9 @@ namespace SOCIOS.bono
                 AnularBono.Visible        = false;
 
                 lnkDisponibilidad.Text = hotel_Dias_Utils.ConsultarDias(Int32.Parse(this.srvDatosSocio.CAB.NroSocioTitular), Int32.Parse(this.srvDatosSocio.CAB.NroDepTitular), System.DateTime.Now.Year);
-
+                tbInvitado.Enabled     = false;
+                tbSocios.Enabled       = false;
+                tbInterCirculo.Enabled = false;
 
             }
             else
@@ -922,6 +928,9 @@ namespace SOCIOS.bono
                 cbSocial.Visible = false;
                 lnkDisponibilidad.Visible = false;
                 lnkDisponibilidad.Text = "";
+                tbInvitado.Enabled = true;
+                tbSocios.Enabled = true;
+                tbInterCirculo.Enabled = true;
             }
         }
 
