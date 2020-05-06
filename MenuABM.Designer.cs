@@ -166,6 +166,7 @@
             this.pnl_Interior = new System.Windows.Forms.Panel();
             this.LINK_INTERIOR = new System.Windows.Forms.LinkLabel();
             this.lbInterior = new System.Windows.Forms.Label();
+            this.vouchersSocialesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -1199,7 +1200,8 @@
             // 
             this.interiorToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.solicitudAlojamientoToolStripMenuItem,
-            this.hotelXHabitaciónToolStripMenuItem});
+            this.hotelXHabitaciónToolStripMenuItem,
+            this.vouchersSocialesToolStripMenuItem});
             this.interiorToolStripMenuItem.Enabled = false;
             this.interiorToolStripMenuItem.Name = "interiorToolStripMenuItem";
             this.interiorToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -1235,7 +1237,7 @@
             // 
             this.toolStripMenuItem4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem4.Image")));
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(131, 22);
             this.toolStripMenuItem4.Text = "Solicitudes";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click_1);
             // 
@@ -1407,6 +1409,13 @@
             this.lbInterior.Size = new System.Drawing.Size(128, 13);
             this.lbInterior.TabIndex = 0;
             this.lbInterior.Text = "CONTACTOS SIN LEER!";
+            // 
+            // vouchersSocialesToolStripMenuItem
+            // 
+            this.vouchersSocialesToolStripMenuItem.Name = "vouchersSocialesToolStripMenuItem";
+            this.vouchersSocialesToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.vouchersSocialesToolStripMenuItem.Text = "Vouchers Sociales";
+            this.vouchersSocialesToolStripMenuItem.Click += new System.EventHandler(this.VouchersSocialesToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1590,5 +1599,6 @@
         private System.Windows.Forms.Panel pnl_Interior;
         private System.Windows.Forms.LinkLabel LINK_INTERIOR;
         private System.Windows.Forms.Label lbInterior;
+        private System.Windows.Forms.ToolStripMenuItem vouchersSocialesToolStripMenuItem;
     }
 }

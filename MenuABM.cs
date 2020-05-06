@@ -2304,5 +2304,11 @@ namespace SOCIOS
             SOCIOS.interior.Contactos cont = new interior.Contactos();
             cont.ShowDialog();
         }
+
+        private void VouchersSocialesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.interior.Vouchers_Social vs = new interior.Vouchers_Social();
+            vs.ShowDialog();
+        }
     }
 }
