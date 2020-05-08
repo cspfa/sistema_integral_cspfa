@@ -963,7 +963,7 @@ namespace SOCIOS.bono
                // this.Seteo_aranceles();
                 decimal Total = Total_MontosSinArancel();
 
-                lblSaldoTotal.Text = Decimal.Parse((Total * Dias).ToString("0.##")).ToString();
+                lblSaldoTotal.Text =  Decimal.Round ( Total *(decimal) Dias,2).ToString();
             }
         
         }
@@ -997,7 +997,7 @@ namespace SOCIOS.bono
                 totalInter = MONTO_InterCirculo * Intercirculo + (Decimal.Round(MONTO_InterCirculo / 2, 2) * MenorInter);
                  totalInvi = MONTO_Invitado * Invitado + (Decimal.Round(MONTO_Invitado / 2, 2) * MenorInvitado);
             }
-            return totalSocio + totalInter + totalInvi;
+            return Decimal.Round( totalSocio + totalInter + totalInvi,2);
             
 
         }
