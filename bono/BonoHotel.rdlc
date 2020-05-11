@@ -727,7 +727,7 @@
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>2.6962in</Top>
         <Left>0.12558in</Left>
-        <Height>0.50696in</Height>
+        <Height>0.7674in</Height>
         <Width>6.91005in</Width>
         <ZIndex>15</ZIndex>
         <Style>
@@ -797,7 +797,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>4.26917in</Top>
+        <Top>4.51917in</Top>
         <Left>0.17917in</Left>
         <Height>0.84723in</Height>
         <Width>6.80353in</Width>
@@ -983,7 +983,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.28304in</Top>
+        <Top>3.53304in</Top>
         <Left>1.11125in</Left>
         <Height>0.21181in</Height>
         <Width>4.99815in</Width>
@@ -1028,7 +1028,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.50526in</Top>
+        <Top>3.75526in</Top>
         <Left>3.80417in</Left>
         <Height>0.21181in</Height>
         <Width>3.21148in</Width>
@@ -1061,7 +1061,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.75874in</Top>
+        <Top>4.00874in</Top>
         <Left>3.79376in</Left>
         <Height>0.21181in</Height>
         <Width>3.24187in</Width>
@@ -1094,7 +1094,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.99832in</Top>
+        <Top>4.24832in</Top>
         <Left>0.16333in</Left>
         <Height>0.21181in</Height>
         <Width>3.54334in</Width>
@@ -1139,7 +1139,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.49832in</Top>
+        <Top>3.74832in</Top>
         <Left>0.16333in</Left>
         <Height>0.21181in</Height>
         <Width>3.58333in</Width>
@@ -1543,7 +1543,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetPersonaPasaje</DataSetName>
-        <Top>5.18584in</Top>
+        <Top>5.43584in</Top>
         <Left>1.39793in</Left>
         <Height>0.5in</Height>
         <Width>4.50516in</Width>
@@ -1572,7 +1572,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.76569in</Top>
+        <Top>4.01569in</Top>
         <Left>0.16333in</Left>
         <Height>0.21181in</Height>
         <Width>3.5714in</Width>
@@ -1605,7 +1605,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>4.01222in</Top>
+        <Top>4.26222in</Top>
         <Left>3.76251in</Left>
         <Height>0.21181in</Height>
         <Width>3.25314in</Width>
@@ -1663,7 +1663,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>5.92197in</Top>
+        <Top>6.17197in</Top>
         <Left>0.27293in</Left>
         <Height>0.3264in</Height>
         <Width>6.80353in</Width>
@@ -1887,7 +1887,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>5.71363in</Top>
+        <Top>5.96363in</Top>
         <Left>3.38468in</Left>
         <Height>0.19371in</Height>
         <Width>3.63097in</Width>
@@ -1984,7 +1984,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>BONO_FILIAL</rd:DefaultName>
-        <Top>5.71363in</Top>
+        <Top>5.96363in</Top>
         <Left>0.27293in</Left>
         <Height>0.19371in</Height>
         <Width>3.04231in</Width>
@@ -2256,7 +2256,7 @@
             <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
-        <Top>6.29004in</Top>
+        <Top>6.54004in</Top>
         <Left>0.1425in</Left>
         <Height>0.25in</Height>
         <Width>7.4375in</Width>
@@ -2282,7 +2282,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>EFECTIVO</rd:DefaultName>
-        <Top>6.54004in</Top>
+        <Top>6.79004in</Top>
         <Left>0.1425in</Left>
         <Height>0.25in</Height>
         <Width>1.71875in</Width>
@@ -2312,7 +2312,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>6.54004in</Top>
+        <Top>6.79004in</Top>
         <Left>4.01402in</Left>
         <Height>0.25in</Height>
         <Width>1.42223in</Width>
@@ -2342,7 +2342,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DEBITO</rd:DefaultName>
-        <Top>6.54004in</Top>
+        <Top>6.79004in</Top>
         <Left>1.93069in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2372,7 +2372,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CREDITO</rd:DefaultName>
-        <Top>6.55393in</Top>
+        <Top>6.80393in</Top>
         <Left>2.94458in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2402,7 +2402,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>6.54004in</Top>
+        <Top>6.79004in</Top>
         <Left>6.47792in</Left>
         <Height>0.25in</Height>
         <Width>1.10208in</Width>
@@ -2432,7 +2432,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>TRANSFER</rd:DefaultName>
-        <Top>6.54004in</Top>
+        <Top>6.79004in</Top>
         <Left>5.43625in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
