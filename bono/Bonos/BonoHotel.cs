@@ -945,6 +945,13 @@ namespace SOCIOS.bono
             gpDatos.Visible = false;
             Deselecionar.Visible = false;
             Seleccion.Enabled = true;
+
+            dpDesde.Value = System.DateTime.Now;
+            dpHasta.Value = System.DateTime.Now.AddDays(1);
+            lbInfoDias.Text = "1";
+            tbSocios.Text = "";
+            tbInvitado.Text = "";
+            tbInterCirculo.Text = "";
         }
 
         private void Dias()
@@ -984,7 +991,7 @@ namespace SOCIOS.bono
                 MONTO_Invitado = decimal.Parse(tbInvitado.Text);
 
 
-            if (cbHabitacion.Text.ToUpper().Contains("PERSONA"))
+            if (!cbHabitacion.Text.ToUpper().Contains("PERSONA"))
             {
                 return Decimal.Round(MONTO_Socio + MONTO_InterCirculo + MONTO_Invitado, 2);
             }
