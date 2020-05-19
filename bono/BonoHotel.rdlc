@@ -32,6 +32,10 @@
           <DataField>Dni</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Edad">
+          <DataField>Edad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>SOCIOSbono</DataSourceName>
@@ -1158,19 +1162,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.48004in</Width>
+              <Width>1.94416in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1in</Width>
+              <Width>1.37082in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.55518in</Width>
+              <Width>0.92146in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.56629in</Width>
+              <Width>0.75379in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.90365in</Width>
+              <Width>0.84624in</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>0.46875in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1335,6 +1342,39 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox45</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox34">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Edad</Value>
+                              <Style>
+                                <FontFamily>Courier New</FontFamily>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox34</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1519,12 +1559,46 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Edad">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Edad.Value</Value>
+                              <Style>
+                                <FontFamily>Courier New</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Edad</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -1544,9 +1618,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetPersonaPasaje</DataSetName>
         <Top>5.43584in</Top>
-        <Left>1.39793in</Left>
+        <Left>0.27293in</Left>
         <Height>0.5in</Height>
-        <Width>4.50516in</Width>
+        <Width>6.30522in</Width>
         <ZIndex>25</ZIndex>
         <Style>
           <Border>

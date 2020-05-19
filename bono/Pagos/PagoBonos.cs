@@ -404,7 +404,8 @@ namespace SOCIOS.bono
 
                         Tarjeta_credito        = SaldoIngreso;
                         Tarjeta_credito_cuotas = Int32.Parse(tbCantidadCuotas.Text);
-                       
+                         Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
+                         Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
 
                         break;
 
