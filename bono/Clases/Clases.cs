@@ -61,6 +61,7 @@ namespace SOCIOS.bono
         public string COD_DTO             { get; set; }
         public string NOMBRE              { get; set; }
         public string APELLIDO            { get; set; }
+        public string EMAIL               { get; set; }
 
     }
 
@@ -232,6 +233,7 @@ namespace SOCIOS.bono
                 CAB.Localidad = "";
                 CAB.Procedencia = "";
                 CAB.Telefonos = "";
+                CAB.EMAIL = "";
                 
             
             }
@@ -282,6 +284,8 @@ namespace SOCIOS.bono
                 CAB.Localidad    = foundRows[0][26].ToString().Trim() + "-" + foundRows[0][27].ToString().Trim();
                 CAB.Procedencia  = foundRows[0][26].ToString().Trim() + "-" + foundRows[0][27].ToString().Trim();
                 CAB.Telefonos = foundRows[0][29].ToString().Trim() + foundRows[0][30].ToString().Trim() + "  " + foundRows[0][31].ToString().Trim() + foundRows[0][32].ToString().Trim();
+                CAB.EMAIL = foundRows[0][78].ToString();
+
 
             }
 

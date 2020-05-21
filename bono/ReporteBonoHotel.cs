@@ -99,7 +99,7 @@ namespace SOCIOS.bono
                 infoDias = dias.ConsultarDiasAbreviado(Int32.Parse(CAB.NroSocioTitular),Int32.Parse(CAB.NroDepTitular),System.DateTime.Now.Year);
             
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[40];
+            ReportParameter[] parameters = new ReportParameter[41];
             
             
             //Establecemos el valor de los parámetros
@@ -113,7 +113,7 @@ namespace SOCIOS.bono
             parameters[6] = new ReportParameter("NombreTit", CAB.NombreTitular.TrimEnd());
             parameters[7] = new ReportParameter("Domicilio", CAB.Domicilio.TrimEnd());
             parameters[8] = new ReportParameter("Localidad", CAB.Localidad.TrimEnd());
-            parameters[9] = new ReportParameter("Telefono", CAB.Telefonos.TrimEnd());
+            parameters[9] = new ReportParameter("Telefono", objVoucher.TEL);
             parameters[10] = new ReportParameter("Edad", "0");
             parameters[11] = new ReportParameter("FormaPago", FormaPago.TrimEnd());
             parameters[12] = new ReportParameter("Obs", Obs);
@@ -149,6 +149,7 @@ namespace SOCIOS.bono
             parameters[37] = new ReportParameter("CREDITO", mb.Credito);
             parameters[38] = new ReportParameter("PLANILLA", mb.Planilla);
             parameters[39] = new ReportParameter("TRANSFER", mb.Transfer);
+            parameters[40] = new ReportParameter("Mail",objVoucher.EMAIL);
 
           
             try

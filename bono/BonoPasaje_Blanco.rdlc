@@ -709,7 +709,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.41495in</Top>
+        <Top>2.66495in</Top>
         <Left>4.94273in</Left>
         <Height>0.21181in</Height>
         <Width>2.08333in</Width>
@@ -767,7 +767,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.70664in</Top>
+        <Top>2.95664in</Top>
         <Left>0.12558in</Left>
         <Height>0.50696in</Height>
         <Width>6.81894in</Width>
@@ -839,7 +839,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.25527in</Top>
+        <Top>3.50527in</Top>
         <Left>0.13751in</Left>
         <Height>0.22223in</Height>
         <Width>6.80353in</Width>
@@ -904,7 +904,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.41843in</Top>
+        <Top>2.66843in</Top>
         <Left>0.13751in</Left>
         <Height>0.20833in</Height>
         <Width>1.52432in</Width>
@@ -1499,7 +1499,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetPersonaPasaje</DataSetName>
-        <Top>3.54694in</Top>
+        <Top>3.79694in</Top>
         <Left>0.161in</Left>
         <Height>0.25in</Height>
         <Width>6.87875in</Width>
@@ -1511,7 +1511,7 @@
         </Style>
       </Tablix>
       <Line Name="Line1">
-        <Top>3.98277in</Top>
+        <Top>4.23277in</Top>
         <Left>0.1514in</Left>
         <Height>0in</Height>
         <Width>6.89795in</Width>
@@ -1523,7 +1523,7 @@
         </Style>
       </Line>
       <Line Name="Line4">
-        <Top>4.16152in</Top>
+        <Top>4.41152in</Top>
         <Left>0.161in</Left>
         <Height>0in</Height>
         <Width>6.89795in</Width>
@@ -1535,7 +1535,7 @@
         </Style>
       </Line>
       <Line Name="Line5">
-        <Top>4.3386in</Top>
+        <Top>4.5886in</Top>
         <Left>0.161in</Left>
         <Height>0in</Height>
         <Width>6.89795in</Width>
@@ -1547,7 +1547,7 @@
         </Style>
       </Line>
       <Line Name="Line6">
-        <Top>4.51568in</Top>
+        <Top>4.76568in</Top>
         <Left>0.161in</Left>
         <Height>0in</Height>
         <Width>6.88835in</Width>
@@ -1559,7 +1559,7 @@
         </Style>
       </Line>
       <Line Name="Line8">
-        <Top>3.54694in</Top>
+        <Top>3.79694in</Top>
         <Left>1.29099in</Left>
         <Height>1.14235in</Height>
         <Width>0in</Width>
@@ -1571,7 +1571,7 @@
         </Style>
       </Line>
       <Line Name="Line9">
-        <Top>3.54694in</Top>
+        <Top>3.79694in</Top>
         <Left>0.161in</Left>
         <Height>1.15624in</Height>
         <Width>0in</Width>
@@ -1583,7 +1583,7 @@
         </Style>
       </Line>
       <Line Name="Line10">
-        <Top>3.53305in</Top>
+        <Top>3.78305in</Top>
         <Left>2.09307in</Left>
         <Height>1.14235in</Height>
         <Width>0in</Width>
@@ -1595,7 +1595,7 @@
         </Style>
       </Line>
       <Line Name="Line11">
-        <Top>3.54694in</Top>
+        <Top>3.79694in</Top>
         <Left>2.64825in</Left>
         <Height>1.12846in</Height>
         <Width>0in</Width>
@@ -1607,7 +1607,7 @@
         </Style>
       </Line>
       <Line Name="Line12">
-        <Top>3.54694in</Top>
+        <Top>3.79694in</Top>
         <Left>3.06871in</Left>
         <Height>1.14235in</Height>
         <Width>0in</Width>
@@ -1619,7 +1619,7 @@
         </Style>
       </Line>
       <Line Name="Line13">
-        <Top>3.56083in</Top>
+        <Top>3.81083in</Top>
         <Left>3.90205in</Left>
         <Height>1.10068in</Height>
         <Width>0in</Width>
@@ -1631,7 +1631,7 @@
         </Style>
       </Line>
       <Line Name="Line7">
-        <Top>4.6754in</Top>
+        <Top>4.9254in</Top>
         <Left>0.1514in</Left>
         <Height>0in</Height>
         <Width>6.88835in</Width>
@@ -1643,7 +1643,7 @@
         </Style>
       </Line>
       <Line Name="Line14">
-        <Top>3.54694in</Top>
+        <Top>3.79694in</Top>
         <Left>5.1088in</Left>
         <Height>1.12846in</Height>
         <Width>0in</Width>
@@ -1655,7 +1655,7 @@
         </Style>
       </Line>
       <Line Name="Line15">
-        <Top>3.54694in</Top>
+        <Top>3.79694in</Top>
         <Left>4.51296in</Left>
         <Height>1.12846in</Height>
         <Width>0in</Width>
@@ -1667,7 +1667,7 @@
         </Style>
       </Line>
       <Line Name="Line16">
-        <Top>3.58861in</Top>
+        <Top>3.83861in</Top>
         <Left>5.77162in</Left>
         <Height>1.10068in</Height>
         <Width>0in</Width>
@@ -1728,7 +1728,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.41843in</Top>
+        <Top>2.66843in</Top>
         <Left>1.77988in</Left>
         <Height>0.20833in</Height>
         <Width>1.33647in</Width>
@@ -1793,7 +1793,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.41495in</Top>
+        <Top>2.66495in</Top>
         <Left>3.1858in</Left>
         <Height>0.20833in</Height>
         <Width>1.6837in</Width>
@@ -1809,7 +1809,7 @@
         </Style>
       </Textbox>
       <Line Name="Line17">
-        <Top>3.56083in</Top>
+        <Top>3.81083in</Top>
         <Left>6.39392in</Left>
         <Height>1.11457in</Height>
         <Width>0in</Width>
@@ -1821,7 +1821,7 @@
         </Style>
       </Line>
       <Line Name="Line18">
-        <Top>3.56083in</Top>
+        <Top>3.81083in</Top>
         <Left>7.03975in</Left>
         <Height>1.12846in</Height>
         <Width>0in</Width>
@@ -1924,7 +1924,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.80041in</Top>
+        <Top>5.05041in</Top>
         <Left>1.14842in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -1967,7 +1967,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.80042in</Top>
+        <Top>5.05042in</Top>
         <Left>2.15802in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -2010,7 +2010,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.80041in</Top>
+        <Top>5.05041in</Top>
         <Left>3.16762in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -2064,7 +2064,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.80041in</Top>
+        <Top>5.05041in</Top>
         <Left>4.205in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -2107,7 +2107,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.80041in</Top>
+        <Top>5.05041in</Top>
         <Left>6.21459in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -2161,11 +2161,44 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.80042in</Top>
+        <Top>5.05042in</Top>
         <Left>5.2146in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
         <ZIndex>49</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox34">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="&lt;B&gt;MAIL:&lt;/B&gt;"&amp;Parameters!Mail.Value</Value>
+                <MarkupType>HTML</MarkupType>
+                <Style>
+                  <FontFamily>Courier New</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>2.41147in</Top>
+        <Left>3.80417in</Left>
+        <Height>0.21181in</Height>
+        <Width>3.22189in</Width>
+        <ZIndex>50</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2260,6 +2293,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Cargo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Mail">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

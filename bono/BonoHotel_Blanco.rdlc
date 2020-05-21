@@ -664,7 +664,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.28995in</Top>
+        <Top>2.53995in</Top>
         <Left>4.94273in</Left>
         <Height>0.21181in</Height>
         <Width>2.08333in</Width>
@@ -722,7 +722,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.5712in</Top>
+        <Top>2.8212in</Top>
         <Left>0.13751in</Left>
         <Height>0.50696in</Height>
         <Width>6.91005in</Width>
@@ -794,7 +794,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>4.14417in</Top>
+        <Top>4.39417in</Top>
         <Left>0.17917in</Left>
         <Height>0.84723in</Height>
         <Width>6.80353in</Width>
@@ -859,7 +859,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.29343in</Top>
+        <Top>2.54343in</Top>
         <Left>0.13751in</Left>
         <Height>0.20833in</Height>
         <Width>4.76355in</Width>
@@ -939,7 +939,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.16845in</Top>
+        <Top>3.41845in</Top>
         <Left>1.11125in</Left>
         <Height>0.21181in</Height>
         <Width>4.99815in</Width>
@@ -984,7 +984,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.38026in</Top>
+        <Top>3.63026in</Top>
         <Left>3.80417in</Left>
         <Height>0.21181in</Height>
         <Width>3.21148in</Width>
@@ -1017,7 +1017,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.63374in</Top>
+        <Top>3.88374in</Top>
         <Left>3.79376in</Left>
         <Height>0.21181in</Height>
         <Width>3.24187in</Width>
@@ -1050,7 +1050,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.87332in</Top>
+        <Top>4.12332in</Top>
         <Left>0.16333in</Left>
         <Height>0.21181in</Height>
         <Width>3.54334in</Width>
@@ -1095,7 +1095,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.37332in</Top>
+        <Top>3.62332in</Top>
         <Left>0.16333in</Left>
         <Height>0.21181in</Height>
         <Width>3.58333in</Width>
@@ -1361,7 +1361,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetPersonaPasaje</DataSetName>
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>1.39793in</Left>
         <Height>0.25in</Height>
         <Width>5.50516in</Width>
@@ -1390,7 +1390,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.64762in</Top>
+        <Top>3.89762in</Top>
         <Left>0.16333in</Left>
         <Height>0.21181in</Height>
         <Width>3.5714in</Width>
@@ -1423,8 +1423,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.90111in</Top>
-        <Left>3.76251in</Left>
+        <Top>4.15111in</Top>
+        <Left>3.74834in</Left>
         <Height>0.21181in</Height>
         <Width>3.25314in</Width>
         <ZIndex>26</ZIndex>
@@ -1481,7 +1481,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>6.29697in</Top>
+        <Top>6.54697in</Top>
         <Left>0.27293in</Left>
         <Height>0.3264in</Height>
         <Width>6.80353in</Width>
@@ -1679,7 +1679,7 @@
         </Style>
       </Textbox>
       <Line Name="Line1">
-        <Top>5.49667in</Top>
+        <Top>5.74667in</Top>
         <Left>1.39793in</Left>
         <Height>0in</Height>
         <Width>5.48391in</Width>
@@ -1691,7 +1691,7 @@
         </Style>
       </Line>
       <Line Name="Line4">
-        <Top>5.67542in</Top>
+        <Top>5.92542in</Top>
         <Left>1.39793in</Left>
         <Height>0in</Height>
         <Width>5.4978in</Width>
@@ -1703,7 +1703,7 @@
         </Style>
       </Line>
       <Line Name="Line5">
-        <Top>5.8525in</Top>
+        <Top>6.1025in</Top>
         <Left>1.39793in</Left>
         <Height>0in</Height>
         <Width>5.48391in</Width>
@@ -1715,7 +1715,7 @@
         </Style>
       </Line>
       <Line Name="Line6">
-        <Top>6.02958in</Top>
+        <Top>6.27958in</Top>
         <Left>1.39793in</Left>
         <Height>0in</Height>
         <Width>5.48391in</Width>
@@ -1727,7 +1727,7 @@
         </Style>
       </Line>
       <Line Name="Line7">
-        <Top>6.21708in</Top>
+        <Top>6.46708in</Top>
         <Left>1.39793in</Left>
         <Height>0in</Height>
         <Width>5.48391in</Width>
@@ -1739,7 +1739,7 @@
         </Style>
       </Line>
       <Line Name="Line8">
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>2.90292in</Left>
         <Height>1.14235in</Height>
         <Width>0in</Width>
@@ -1751,7 +1751,7 @@
         </Style>
       </Line>
       <Line Name="Line9">
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>1.39793in</Left>
         <Height>1.15624in</Height>
         <Width>0in</Width>
@@ -1763,7 +1763,7 @@
         </Style>
       </Line>
       <Line Name="Line10">
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>3.87797in</Left>
         <Height>1.14235in</Height>
         <Width>0in</Width>
@@ -1775,7 +1775,7 @@
         </Style>
       </Line>
       <Line Name="Line11">
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>4.43315in</Left>
         <Height>1.15624in</Height>
         <Width>0in</Width>
@@ -1787,7 +1787,7 @@
         </Style>
       </Line>
       <Line Name="Line12">
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>4.99944in</Left>
         <Height>1.14235in</Height>
         <Width>0in</Width>
@@ -1799,7 +1799,7 @@
         </Style>
       </Line>
       <Line Name="Line13">
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>5.90309in</Left>
         <Height>1.14235in</Height>
         <Width>0in</Width>
@@ -2131,7 +2131,7 @@
             <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
-        <Top>6.66504in</Top>
+        <Top>6.91504in</Top>
         <Left>0.75684in</Left>
         <Height>0.25in</Height>
         <Width>6.125in</Width>
@@ -2157,7 +2157,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>EFECTIVO</rd:DefaultName>
-        <Top>6.91504in</Top>
+        <Top>7.16504in</Top>
         <Left>0.75684in</Left>
         <Height>0.25in</Height>
         <Width>1.0249in</Width>
@@ -2187,7 +2187,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>6.91504in</Top>
+        <Top>7.16504in</Top>
         <Left>3.88184in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2217,7 +2217,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DEBITO</rd:DefaultName>
-        <Top>6.91504in</Top>
+        <Top>7.16504in</Top>
         <Left>1.70128in</Left>
         <Height>0.25in</Height>
         <Width>1.1322in</Width>
@@ -2247,7 +2247,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CREDITO</rd:DefaultName>
-        <Top>6.92893in</Top>
+        <Top>7.17893in</Top>
         <Left>2.90292in</Left>
         <Height>0.25in</Height>
         <Width>0.93725in</Width>
@@ -2277,7 +2277,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>6.91504in</Top>
+        <Top>7.16504in</Top>
         <Left>4.88184in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2307,7 +2307,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>6.92893in</Top>
+        <Top>7.17893in</Top>
         <Left>5.89573in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2323,7 +2323,7 @@
         </Style>
       </Textbox>
       <Line Name="Line14">
-        <Top>5.06084in</Top>
+        <Top>5.31084in</Top>
         <Left>6.90309in</Left>
         <Height>1.15624in</Height>
         <Width>0in</Width>
@@ -2334,6 +2334,39 @@
           </Border>
         </Style>
       </Line>
+      <Textbox Name="Textbox34">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="&lt;B&gt;TELEFONO:&lt;/B&gt;"&amp;Parameters!Mail.Value</Value>
+                <MarkupType>HTML</MarkupType>
+                <Style>
+                  <FontFamily>Courier New</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>2.2587in</Top>
+        <Left>3.79376in</Left>
+        <Height>0.21181in</Height>
+        <Width>3.22189in</Width>
+        <ZIndex>54</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>10.2675in</Height>
     <Style />
@@ -2418,6 +2451,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Cargo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Mail">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

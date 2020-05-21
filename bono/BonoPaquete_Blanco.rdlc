@@ -664,7 +664,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.41495in</Top>
+        <Top>2.66495in</Top>
         <Left>4.94273in</Left>
         <Height>0.21181in</Height>
         <Width>2.08333in</Width>
@@ -722,7 +722,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>2.70664in</Top>
+        <Top>2.95664in</Top>
         <Left>0.12558in</Left>
         <Height>0.68751in</Height>
         <Width>6.89007in</Width>
@@ -795,7 +795,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>4.51917in</Top>
+        <Top>4.76917in</Top>
         <Left>0.16333in</Left>
         <Height>0.3559in</Height>
         <Width>6.80353in</Width>
@@ -860,7 +860,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox19</rd:DefaultName>
-        <Top>2.41843in</Top>
+        <Top>2.66843in</Top>
         <Left>0.13751in</Left>
         <Height>0.20833in</Height>
         <Width>4.76355in</Width>
@@ -940,7 +940,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.50526in</Top>
+        <Top>3.75526in</Top>
         <Left>0.14793in</Left>
         <Height>0.21181in</Height>
         <Width>2.12728in</Width>
@@ -985,7 +985,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.50526in</Top>
+        <Top>3.75526in</Top>
         <Left>3.80417in</Left>
         <Height>0.21181in</Height>
         <Width>3.21148in</Width>
@@ -1018,7 +1018,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.77262in</Top>
+        <Top>4.02262in</Top>
         <Left>3.79376in</Left>
         <Height>0.21181in</Height>
         <Width>3.24187in</Width>
@@ -1063,7 +1063,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.77263in</Top>
+        <Top>4.02263in</Top>
         <Left>0.16333in</Left>
         <Height>0.21181in</Height>
         <Width>3.58333in</Width>
@@ -1096,7 +1096,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.99832in</Top>
+        <Top>4.24832in</Top>
         <Left>3.80417in</Left>
         <Height>0.21181in</Height>
         <Width>3.22189in</Width>
@@ -1141,7 +1141,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.99832in</Top>
+        <Top>4.24832in</Top>
         <Left>0.17917in</Left>
         <Height>0.21181in</Height>
         <Width>3.58333in</Width>
@@ -1212,7 +1212,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>4.2275in</Top>
+        <Top>4.4775in</Top>
         <Left>0.16333in</Left>
         <Height>0.29167in</Height>
         <Width>6.80353in</Width>
@@ -1587,7 +1587,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetPersonaPasaje</DataSetName>
-        <Top>4.93063in</Top>
+        <Top>5.18063in</Top>
         <Left>1.56676in</Left>
         <Height>0.25in</Height>
         <Width>4.50516in</Width>
@@ -1599,7 +1599,7 @@
         </Style>
       </Tablix>
       <Line Name="Line4">
-        <Top>5.39938in</Top>
+        <Top>5.64938in</Top>
         <Left>1.56676in</Left>
         <Height>0in</Height>
         <Width>4.50516in</Width>
@@ -1611,7 +1611,7 @@
         </Style>
       </Line>
       <Line Name="Line5">
-        <Top>5.59729in</Top>
+        <Top>5.84729in</Top>
         <Left>1.56676in</Left>
         <Height>0in</Height>
         <Width>4.50516in</Width>
@@ -1623,7 +1623,7 @@
         </Style>
       </Line>
       <Line Name="Line6">
-        <Top>5.77437in</Top>
+        <Top>6.02437in</Top>
         <Left>1.56676in</Left>
         <Height>0in</Height>
         <Width>4.50516in</Width>
@@ -1635,7 +1635,7 @@
         </Style>
       </Line>
       <Line Name="Line7">
-        <Top>5.96187in</Top>
+        <Top>6.21187in</Top>
         <Left>1.56676in</Left>
         <Height>0in</Height>
         <Width>4.50516in</Width>
@@ -1647,7 +1647,7 @@
         </Style>
       </Line>
       <Line Name="Line8">
-        <Top>4.93063in</Top>
+        <Top>5.18063in</Top>
         <Left>3.05092in</Left>
         <Height>1.18923in</Height>
         <Width>0in</Width>
@@ -1659,7 +1659,7 @@
         </Style>
       </Line>
       <Line Name="Line9">
-        <Top>4.93063in</Top>
+        <Top>5.18063in</Top>
         <Left>1.54593in</Left>
         <Height>1.20312in</Height>
         <Width>0in</Width>
@@ -1671,7 +1671,7 @@
         </Style>
       </Line>
       <Line Name="Line10">
-        <Top>4.93063in</Top>
+        <Top>5.18063in</Top>
         <Left>4.02597in</Left>
         <Height>1.18923in</Height>
         <Width>0in</Width>
@@ -1683,7 +1683,7 @@
         </Style>
       </Line>
       <Line Name="Line11">
-        <Top>4.93063in</Top>
+        <Top>5.18063in</Top>
         <Left>4.58115in</Left>
         <Height>1.20312in</Height>
         <Width>0in</Width>
@@ -1695,7 +1695,7 @@
         </Style>
       </Line>
       <Line Name="Line12">
-        <Top>4.93063in</Top>
+        <Top>5.18063in</Top>
         <Left>5.16827in</Left>
         <Height>1.18923in</Height>
         <Width>0in</Width>
@@ -1707,7 +1707,7 @@
         </Style>
       </Line>
       <Line Name="Line13">
-        <Top>4.93063in</Top>
+        <Top>5.18063in</Top>
         <Left>6.07192in</Left>
         <Height>1.20312in</Height>
         <Width>0in</Width>
@@ -1719,7 +1719,7 @@
         </Style>
       </Line>
       <Line Name="Line14">
-        <Top>6.13375in</Top>
+        <Top>6.38375in</Top>
         <Left>1.56676in</Left>
         <Height>0in</Height>
         <Width>4.50516in</Width>
@@ -1760,7 +1760,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.50526in</Top>
+        <Top>3.75526in</Top>
         <Left>2.4175in</Left>
         <Height>0.21181in</Height>
         <Width>1.40846in</Width>
@@ -2096,7 +2096,7 @@
             <TablixMember />
           </TablixMembers>
         </TablixRowHierarchy>
-        <Top>6.20319in</Top>
+        <Top>6.45319in</Top>
         <Left>0.47948in</Left>
         <Height>0.25in</Height>
         <Width>6.125in</Width>
@@ -2107,6 +2107,39 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox34">
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="&lt;B&gt;MAIL:&lt;/B&gt;"&amp;Parameters!Mail.Value</Value>
+                <MarkupType>HTML</MarkupType>
+                <Style>
+                  <FontFamily>Courier New</FontFamily>
+                  <FontSize>12pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>2.40454in</Top>
+        <Left>3.81374in</Left>
+        <Height>0.21181in</Height>
+        <Width>3.22189in</Width>
+        <ZIndex>46</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>10.2675in</Height>
     <Style />
@@ -2188,6 +2221,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Cargo">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Mail">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
