@@ -68,8 +68,12 @@
             this.rbMicro = new System.Windows.Forms.RadioButton();
             this.lbTipoViaje = new System.Windows.Forms.Label();
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.titPtoVenta = new System.Windows.Forms.Label();
+            this.lbPtoVta = new System.Windows.Forms.Label();
+            this.cbAfip = new System.Windows.Forms.CheckBox();
             this.tbReciboFilial = new System.Windows.Forms.TextBox();
             this.lbFilial = new System.Windows.Forms.Label();
+            this.cbRecibo = new System.Windows.Forms.CheckBox();
             this.comboFilial = new System.Windows.Forms.ComboBox();
             this.cbFilial = new System.Windows.Forms.CheckBox();
             this.lbComisionDirectiva = new System.Windows.Forms.Label();
@@ -80,10 +84,10 @@
             this.lbSaldoTotal = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.fpago = new System.Windows.Forms.Label();
-            this.cbAfip = new System.Windows.Forms.CheckBox();
-            this.cbRecibo = new System.Windows.Forms.CheckBox();
-            this.titPtoVenta = new System.Windows.Forms.Label();
-            this.lbPtoVta = new System.Windows.Forms.Label();
+            this.tbMail = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.tbContacto = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.gpPasaje.SuspendLayout();
             this.AccionesGrilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvPasajes)).BeginInit();
@@ -92,7 +96,7 @@
             // 
             // pagBono
             // 
-            this.pagBono.Location = new System.Drawing.Point(10, 494);
+            this.pagBono.Location = new System.Drawing.Point(9, 489);
             this.pagBono.Name = "pagBono";
             this.pagBono.Size = new System.Drawing.Size(75, 23);
             this.pagBono.TabIndex = 114;
@@ -379,7 +383,7 @@
             this.NuevoBank,
             this.toolStripSeparator13,
             this.CancelarBank});
-            this.AccionesGrilla.Location = new System.Drawing.Point(97, 493);
+            this.AccionesGrilla.Location = new System.Drawing.Point(98, 490);
             this.AccionesGrilla.Name = "AccionesGrilla";
             this.AccionesGrilla.Size = new System.Drawing.Size(140, 25);
             this.AccionesGrilla.TabIndex = 111;
@@ -413,7 +417,7 @@
             this.gvPasajes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvPasajes.Location = new System.Drawing.Point(9, 356);
             this.gvPasajes.Name = "gvPasajes";
-            this.gvPasajes.Size = new System.Drawing.Size(532, 132);
+            this.gvPasajes.Size = new System.Drawing.Size(532, 99);
             this.gvPasajes.TabIndex = 110;
             this.gvPasajes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvPasajes_CellContentClick);
             // 
@@ -502,6 +506,40 @@
             this.gpDatos.TabIndex = 122;
             this.gpDatos.TabStop = false;
             // 
+            // titPtoVenta
+            // 
+            this.titPtoVenta.AutoSize = true;
+            this.titPtoVenta.ForeColor = System.Drawing.Color.Chocolate;
+            this.titPtoVenta.Location = new System.Drawing.Point(241, 177);
+            this.titPtoVenta.Name = "titPtoVenta";
+            this.titPtoVenta.Size = new System.Drawing.Size(53, 13);
+            this.titPtoVenta.TabIndex = 179;
+            this.titPtoVenta.Text = "PTO VTA";
+            this.titPtoVenta.Visible = false;
+            // 
+            // lbPtoVta
+            // 
+            this.lbPtoVta.AutoSize = true;
+            this.lbPtoVta.ForeColor = System.Drawing.Color.Chocolate;
+            this.lbPtoVta.Location = new System.Drawing.Point(300, 176);
+            this.lbPtoVta.Name = "lbPtoVta";
+            this.lbPtoVta.Size = new System.Drawing.Size(10, 13);
+            this.lbPtoVta.TabIndex = 178;
+            this.lbPtoVta.Text = "-";
+            this.lbPtoVta.Visible = false;
+            // 
+            // cbAfip
+            // 
+            this.cbAfip.AutoSize = true;
+            this.cbAfip.Location = new System.Drawing.Point(65, 173);
+            this.cbAfip.Name = "cbAfip";
+            this.cbAfip.Size = new System.Drawing.Size(110, 17);
+            this.cbAfip.TabIndex = 177;
+            this.cbAfip.Text = "Comprobante Afip";
+            this.cbAfip.UseVisualStyleBackColor = true;
+            this.cbAfip.Visible = false;
+            this.cbAfip.CheckedChanged += new System.EventHandler(this.cbAfip_CheckedChanged);
+            // 
             // tbReciboFilial
             // 
             this.tbReciboFilial.Location = new System.Drawing.Point(364, 170);
@@ -519,6 +557,18 @@
             this.lbFilial.TabIndex = 173;
             this.lbFilial.Text = "RECIBO";
             this.lbFilial.Visible = false;
+            // 
+            // cbRecibo
+            // 
+            this.cbRecibo.AutoSize = true;
+            this.cbRecibo.Location = new System.Drawing.Point(6, 173);
+            this.cbRecibo.Name = "cbRecibo";
+            this.cbRecibo.Size = new System.Drawing.Size(60, 17);
+            this.cbRecibo.TabIndex = 176;
+            this.cbRecibo.Text = "Recibo";
+            this.cbRecibo.UseVisualStyleBackColor = true;
+            this.cbRecibo.Visible = false;
+            this.cbRecibo.CheckedChanged += new System.EventHandler(this.cbRecibo_CheckedChanged);
             // 
             // comboFilial
             // 
@@ -613,56 +663,46 @@
             this.fpago.TabIndex = 120;
             this.fpago.Text = "[FormaPago]";
             // 
-            // cbAfip
+            // tbMail
             // 
-            this.cbAfip.AutoSize = true;
-            this.cbAfip.Location = new System.Drawing.Point(65, 173);
-            this.cbAfip.Name = "cbAfip";
-            this.cbAfip.Size = new System.Drawing.Size(110, 17);
-            this.cbAfip.TabIndex = 177;
-            this.cbAfip.Text = "Comprobante Afip";
-            this.cbAfip.UseVisualStyleBackColor = true;
-            this.cbAfip.Visible = false;
-            this.cbAfip.CheckedChanged += new System.EventHandler(this.cbAfip_CheckedChanged);
+            this.tbMail.Location = new System.Drawing.Point(333, 459);
+            this.tbMail.Name = "tbMail";
+            this.tbMail.Size = new System.Drawing.Size(206, 20);
+            this.tbMail.TabIndex = 188;
             // 
-            // cbRecibo
+            // label15
             // 
-            this.cbRecibo.AutoSize = true;
-            this.cbRecibo.Location = new System.Drawing.Point(6, 173);
-            this.cbRecibo.Name = "cbRecibo";
-            this.cbRecibo.Size = new System.Drawing.Size(60, 17);
-            this.cbRecibo.TabIndex = 176;
-            this.cbRecibo.Text = "Recibo";
-            this.cbRecibo.UseVisualStyleBackColor = true;
-            this.cbRecibo.Visible = false;
-            this.cbRecibo.CheckedChanged += new System.EventHandler(this.cbRecibo_CheckedChanged);
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(263, 461);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(42, 13);
+            this.label15.TabIndex = 187;
+            this.label15.Text = "E-MAIL";
             // 
-            // titPtoVenta
+            // tbContacto
             // 
-            this.titPtoVenta.AutoSize = true;
-            this.titPtoVenta.ForeColor = System.Drawing.Color.Chocolate;
-            this.titPtoVenta.Location = new System.Drawing.Point(241, 177);
-            this.titPtoVenta.Name = "titPtoVenta";
-            this.titPtoVenta.Size = new System.Drawing.Size(53, 13);
-            this.titPtoVenta.TabIndex = 179;
-            this.titPtoVenta.Text = "PTO VTA";
-            this.titPtoVenta.Visible = false;
+            this.tbContacto.Location = new System.Drawing.Point(102, 461);
+            this.tbContacto.Name = "tbContacto";
+            this.tbContacto.Size = new System.Drawing.Size(136, 20);
+            this.tbContacto.TabIndex = 186;
             // 
-            // lbPtoVta
+            // label12
             // 
-            this.lbPtoVta.AutoSize = true;
-            this.lbPtoVta.ForeColor = System.Drawing.Color.Chocolate;
-            this.lbPtoVta.Location = new System.Drawing.Point(300, 176);
-            this.lbPtoVta.Name = "lbPtoVta";
-            this.lbPtoVta.Size = new System.Drawing.Size(10, 13);
-            this.lbPtoVta.TabIndex = 178;
-            this.lbPtoVta.Text = "-";
-            this.lbPtoVta.Visible = false;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(12, 466);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(64, 13);
+            this.label12.TabIndex = 185;
+            this.label12.Text = "TELEFONO";
             // 
             // BonoPasaje
             // 
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1094, 715);
+            this.Controls.Add(this.tbMail);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.tbContacto);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.pagBono);
             this.Controls.Add(this.gpPasaje);
             this.Controls.Add(this.AnularBono);
@@ -750,5 +790,9 @@
         private System.Windows.Forms.CheckBox cbRecibo;
         private System.Windows.Forms.Label titPtoVenta;
         private System.Windows.Forms.Label lbPtoVta;
+        private System.Windows.Forms.TextBox tbMail;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox tbContacto;
+        private System.Windows.Forms.Label label12;
     }
 }

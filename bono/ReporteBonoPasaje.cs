@@ -69,6 +69,9 @@ namespace SOCIOS.bono
             DataTable pasajes = this.DatosPasaje(ID.ToString());
             Montos_Bono mb = new bono.Montos_Bono();
             mb = ut.Montos_Bono(ID);
+
+            Datos_Personales_Bono dp = new Datos_Personales_Bono();
+            dp = ut.Datos_Personales_Bono(ID);
             
             //determinar si el bono es Anulado o No
 
@@ -78,7 +81,7 @@ namespace SOCIOS.bono
             //Codigo Barra
             string Barra = "TU" + ID_ROL.ToString("0000000000");
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[27];
+            ReportParameter[] parameters = new ReportParameter[28];
             //Establecemos el valor de los parámetros
                       
             parameters[0] = new ReportParameter("Fecha", FechaS);
@@ -90,7 +93,7 @@ namespace SOCIOS.bono
             parameters[6] = new ReportParameter("NombreTit", CAB.NombreTitular);
             parameters[7] = new ReportParameter("Domicilio", CAB.Domicilio);
             parameters[8] = new ReportParameter("Localidad",CAB.Localidad);
-            parameters[9] = new ReportParameter("Telefono", CAB.Telefonos);
+            parameters[9] = new ReportParameter("Telefono", dp.Telefono);
             parameters[10] = new ReportParameter("Edad", "0");
             parameters[11] = new ReportParameter("FormaPago", FormaPago);
             parameters[12] = new ReportParameter("Obs", Obs);
@@ -108,7 +111,7 @@ namespace SOCIOS.bono
             parameters[24] = new ReportParameter("CREDITO", mb.Credito);
             parameters[25] = new ReportParameter("PLANILLA", mb.Planilla);
             parameters[26] = new ReportParameter("TRANSFER", mb.Transfer);
-
+            parameters[27] = new ReportParameter("Mail", dp.Mail);
             this.reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Clear();
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSetPasaje", pasajes));

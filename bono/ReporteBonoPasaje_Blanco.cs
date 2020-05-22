@@ -66,7 +66,7 @@ namespace SOCIOS.bono
          
 
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[14];
+            ReportParameter[] parameters = new ReportParameter[15];
             
             //Establecemos el valor de los parámetros
 
@@ -85,7 +85,7 @@ namespace SOCIOS.bono
             parameters[11] = new ReportParameter("Barra", Barra);
             parameters[12] = new ReportParameter("Directivo", "");
             parameters[13] = new ReportParameter("Cargo", "");
-          
+            parameters[14] = new ReportParameter("Mail", "");
 
             try
             {
