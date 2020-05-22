@@ -79,7 +79,10 @@ namespace SOCIOS.Turismo
         public string OBS                { get; set; }
         public int ID_ROL_BONO           { get; set; }
         public string ROL                { get; set; }
-        public string BONO_FILIAL         { get; set; }
+        public string BONO_FILIAL        { get; set; }
+        public string TEL                { get; set; }
+        public string EMAIL              { get; set; }
+
 
     }
 
@@ -103,6 +106,9 @@ namespace SOCIOS.Turismo
         public int Origen                   { get; set; }
          
     }
+
+
+
 
     public class ID_ROL
     {
@@ -597,7 +603,7 @@ namespace SOCIOS.Turismo
 
             string connectionString;
             DataTable dt1 = new DataTable("RESULTADOS");
-            string Query = @" select Nombre,Apellido,'ARG' Nacionalidad, 'Dni' TipoDni, Dni from bono_Personas
+            string Query = @" select Nombre,Apellido,'ARG' Nacionalidad, 'Dni' TipoDni, Dni,Edad from bono_Personas
             where  ROL ='TURISMO' and BONO=" + ID;
             DataSet ds1 = new DataSet();
 
@@ -627,7 +633,7 @@ namespace SOCIOS.Turismo
                     dt1.Columns.Add("Nacionalidad", typeof(string));
                     dt1.Columns.Add("TipoDni", typeof(string));
                     dt1.Columns.Add("Dni", typeof(string));
-
+                    dt1.Columns.Add("Edad", typeof(string));
 
                     ds1.Tables.Add(dt1);
 
@@ -641,7 +647,8 @@ namespace SOCIOS.Turismo
                                      reader3.GetString(reader3.GetOrdinal("Apellido")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("Nacionalidad")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("TipoDni")).Trim(),
-                                     reader3.GetString(reader3.GetOrdinal("Dni")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("Dni")).Trim(),
+                                      reader3.GetString(reader3.GetOrdinal("Edad")));
 
 
                     }
@@ -738,6 +745,7 @@ namespace SOCIOS.Turismo
         public  Montos_Bono Montos_Bono(int pBono)
         {
             string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
+           
             DataRow[] foundRows;
             Montos_Bono mb = new bono.Montos_Bono();
 
@@ -772,6 +780,31 @@ namespace SOCIOS.Turismo
             return mb;
 
         }
+
+        public Datos_Personales_Bono Datos_Personales_Bono(int pBono)
+        {
+            string QUERY = "select Telefono,Email from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
+
+            DataRow[] foundRows;
+            Datos_Personales_Bono dpb = new bono.Datos_Personales_Bono();
+
+
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+
+            if (foundRows.Length > 0)
+            {
+                dpb.Telefono = foundRows[0][0].ToString();
+                dpb.Mail     = foundRows[0][1].ToString();
+              
+
+
+
+            }
+            return dpb;
+
+        }
+
 
     }
 }

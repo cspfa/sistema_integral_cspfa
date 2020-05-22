@@ -26,6 +26,17 @@ namespace SOCIOS.bono
         public string Transfer { get; set; }
     
     }
+
+    public class Datos_Personales_Bono
+    {
+        public string Mail      { get; set; }
+        public string Telefono  { get; set; }
+        public Datos_Personales_Bono()
+        {
+            Mail     = "";
+            Telefono = "";
+        }
+    }
     public partial class ReporteBonoOdontologico : Form
     {   CabeceraTitular CAB;
         DatoSocio SOC;
