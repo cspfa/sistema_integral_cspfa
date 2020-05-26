@@ -1177,7 +1177,7 @@
               <Width>0.84624in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.46875in</Width>
+              <Width>1.19623in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1365,7 +1365,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Edad</Value>
+                              <Value>F.Nacim</Value>
                               <Style>
                                 <FontFamily>Courier New</FontFamily>
                               </Style>
@@ -1614,7 +1614,7 @@
         <Top>5.68584in</Top>
         <Left>0.27293in</Left>
         <Height>0.5in</Height>
-        <Width>6.30522in</Width>
+        <Width>7.0327in</Width>
         <ZIndex>25</ZIndex>
         <Style>
           <Border>

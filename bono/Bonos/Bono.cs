@@ -624,7 +624,7 @@ namespace SOCIOS.bono
                 ds.NUM_DOC = r.Cells[7].Value.ToString().Trim();
                 ds.ACRJP2 = r.Cells[8].Value.ToString().Trim();
                 ds.SOCIO = r.Cells[9].Value.ToString().Trim();
-                
+                ds.NACIMIENTO = r.Cells[10].Value.ToString().Trim();
                // ds.EDAD = r.Cells[12].Value.ToString().Trim();
 
                 ds = srvDatosSocio.ContactoPersona(ds);
@@ -635,7 +635,7 @@ namespace SOCIOS.bono
                item.Dni             =  ds.NUM_DOC;
                item.Mail            =  ds.MAIL;
                item.Telefono        =  ds.TELEFONO;
-               item.Nacimiento      =  ds.EDAD;
+               item.Nacimiento      = ds.NACIMIENTO;
                item.NroSocioTitular = Int32.Parse(ds.ID_TITULAR);
                item.NroSocio        = Int32.Parse(ds.NRO_SOCIO);
                item.NroDep          = Int32.Parse(ds.NRO_DEP);

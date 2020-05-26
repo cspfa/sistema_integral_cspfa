@@ -1317,7 +1317,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Edad</Value>
+                              <Value>F.Nacim</Value>
                               <Style>
                                 <FontFamily>Courier New</FontFamily>
                               </Style>
