@@ -512,7 +512,7 @@ namespace SOCIOS
                     dt1.Columns.Add("ACRJP2", typeof(string));
                     dt1.Columns.Add("SOCIO", typeof(string));
                     dt1.Columns.Add("EDAD", typeof(string));
-                    //dt1.Columns.Add("BAJA", typeof(string));
+                    dt1.Columns.Add("F_NACIM", typeof(string));
                     DataSet ds1 = new DataSet();
                     ds1.Tables.Add(dt1);
                     FbCommand cmd = new FbCommand(query, connection, transaction);
@@ -531,7 +531,7 @@ namespace SOCIOS
                                      reader3.GetString(reader3.GetOrdinal("ACRJP2")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("SOCIO")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("EDAD")).Trim());
-                                     //reader3.GetString(reader3.GetOrdinal("BAJA")).Trim());
+                                     reader3.GetString(reader3.GetOrdinal("F_NACIM")).Trim();
                     }
 
                     reader3.Close();
@@ -3971,7 +3971,7 @@ namespace SOCIOS
            if (dgvGrupo.SelectedRows[0].Cells[10].Value.ToString().Length == 0)
            {
                button1.Visible = true;
-
+               
            }
            else
            {
