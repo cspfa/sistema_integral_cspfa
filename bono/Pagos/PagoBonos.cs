@@ -403,7 +403,7 @@ namespace SOCIOS.bono
                         this.ValidarTarjeta();
 
                         Tarjeta_credito        = SaldoIngreso;
-                        Tarjeta_credito_cuotas = Int32.Parse(tbCantidadCuotas.Text);
+                        Tarjeta_credito_cuotas = Tarjeta_credito_cuotas;
                          Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
                          Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
 
