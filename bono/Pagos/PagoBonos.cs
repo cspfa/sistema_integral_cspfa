@@ -459,6 +459,45 @@ namespace SOCIOS.bono
                         Transfrencia          = Saldo;
                     break;
 
+                    case 12:
+                        this.ValidoCuotas(tbSeniaCantidadCuotas);
+                        this.ValidarMonto(Decimal.Parse(lbSeniaMonto.Text));
+                        this.ValidarMonto(Decimal.Parse(lbSaldoSenia.Text));
+                        this.ValidarMonto(Decimal.Parse(lbMontoCuotaSenia.Text));
+                        this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
+
+                        formaPago = formaPago + ", Se va a Abonar el Bono en  Debito $" + lbMonto1.Text + " ,  " + lbMonto2.Text;
+
+                        formaPago = formaPago + ", Financiacion Efectivo, Seña $ " + lbSeniaMonto.Text +
+                        ",Saldo de $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
+                        Tarjeta_Debito = Decimal.Parse(lbMonto1.Text);
+                        SaldoIngreso = Decimal.Round( Decimal.Parse(lbSeniaMonto.Text),2);
+                        Efectivo = SaldoIngreso;
+
+
+                    break;
+                    case 13 :
+
+                        this.ValidoCuotas(tbSeniaCantidadCuotas);
+                        this.ValidarMonto(Decimal.Parse(lbSeniaMonto.Text));
+                        this.ValidarMonto(Decimal.Parse(lbSaldoSenia.Text));
+                        this.ValidarMonto(Decimal.Parse(lbMontoCuotaSenia.Text));
+                        this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
+                        formaPago = formaPago + ", Se va a Abonar el Bono en  Tarjeta de Credito $" + lbMonto1.Text + "a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
+                        formaPago = formaPago + ", "+lbMonto2.Text+ ", Financiacion Efectivo, Seña $ " + lbSeniaMonto.Text +
+                        ",Saldo de $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
+
+                        SaldoIngreso = Decimal.Round(Decimal.Parse(lbMonto1.Text),2);
+                        this.ValidarTarjeta();
+
+                        Tarjeta_credito        = SaldoIngreso;
+                        Tarjeta_credito_cuotas = Tarjeta_credito_cuotas;
+                        Efectivo               = Decimal.Parse(lbMonto2.Text);
+
+                    break;
+                 
+
+
 
                        
 
@@ -658,6 +697,25 @@ namespace SOCIOS.bono
                 gpPago.Visible = false;
                
             }
+
+            if (idTipoPago == 12)
+            {
+                gpPago.Visible = true;
+                gpSenia.Visible = true;
+                gpPlanilla.Visible = false;
+                gpBancaria.Visible = false;
+                
+            }
+            if (idTipoPago == 13)
+            {
+                gpSenia.Visible = true ;
+                gpPago.Visible = true;
+                gpPlanilla.Visible = false;
+                gpBancaria.Visible = false;
+                btnTarjeta.Visible = true;
+                lbMontoTarjeta.Visible = true;
+            
+            }
             
 
         }
@@ -726,17 +784,29 @@ namespace SOCIOS.bono
                 TipoPago = "Debito   :";
             else if (Tipo == 3)
                 TipoPago = "Credito  :";
-            else if (Tipo == 4 || Tipo ==7 || Tipo ==8)
+            else if (Tipo == 4 || Tipo ==7 || Tipo ==8  || Tipo ==12 || Tipo ==13)
             {
                 //if (Tipo == 4)
                     TipoPago = "Planilla :";
-                 if (Tipo == 7)
+                 if (Tipo == 7 || Tipo ==12)
                 {
                     lbFp1.Text =  "Debito :";
+                    if (Tipo == 12)
+                    {
+                        lbSeniaMonto.Text = lbMonto2.Text;
+                        lbSaldoSenia.Text = lbMonto2.Text;
+                        
+                    }
                 }
-                else if (Tipo ==8)
+                else if (Tipo ==8 || Tipo ==13)
                 {
                     lbFp1.Text =  "Credito :";
+                    if (Tipo == 13)
+                    {
+                        
+                        lbSeniaMonto.Text = lbMonto2.Text;
+                        lbSaldoSenia.Text = lbMonto2.Text;
+                    }
                 }
 
 
@@ -820,6 +890,18 @@ namespace SOCIOS.bono
             else if (tipoPago == 11)
             {
                 this.GraboPago(tipoPago, Saldo, 0, System.DateTime.Now, "UNICO PAGO - TRANSFERENCIA", "C", true);
+            } else if (tipoPago ==12)
+            {
+                this.GraboPago(9, decimal.Parse(lbMonto1.Text), 0, System.DateTime.Now, "1ER PAGO EN DEBITO", "C", true);
+                this.GraboPago(1, Decimal.Parse(lbSeniaMonto.Text), 0, System.DateTime.Now, "Seña ", "C", true);
+                this.GenerarPLanDePago(6, tbSeniaCantidadCuotas, lbMontoCuotaSenia, dpSeniaFecha);
+            }
+            else if (tipoPago == 13)
+            {
+                this.GraboPago(10, decimal.Parse(lbMonto1.Text), 0, System.DateTime.Now, "1ER PAGO EN CREDITO", "C", true);
+                this.GraboPago(1, Decimal.Parse(lbSeniaMonto.Text), 0, System.DateTime.Now, "Seña ", "C", true);
+                this.GenerarPLanDePago(6, tbSeniaCantidadCuotas, lbMontoCuotaSenia, dpSeniaFecha);
+            
             }
             else
             {
