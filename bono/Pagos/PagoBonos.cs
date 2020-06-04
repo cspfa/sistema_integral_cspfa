@@ -466,13 +466,12 @@ namespace SOCIOS.bono
                         this.ValidarMonto(Decimal.Parse(lbMontoCuotaSenia.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
 
-                        formaPago = formaPago + ", Se va a Abonar el Bono en  Debito $" + lbMonto1.Text + " ,  " + lbMonto2.Text;
+                        formaPago = formaPago + ", Se va a Abonar el Bono en  Debito $" + lbMonto1.Text;
 
-                        formaPago = formaPago + ", Financiacion Efectivo, Seña $ " + lbSeniaMonto.Text +
-                        ",Saldo de $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
+                        formaPago = formaPago + ", Financiacion Efectivo $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
                         Tarjeta_Debito = Decimal.Parse(lbMonto1.Text);
-                        SaldoIngreso = Decimal.Round( Decimal.Parse(lbSeniaMonto.Text),2);
-                        Efectivo = SaldoIngreso;
+                        SaldoIngreso = Tarjeta_Debito;
+                        //Efectivo = SaldoIngreso;
 
 
                     break;
@@ -484,15 +483,14 @@ namespace SOCIOS.bono
                         this.ValidarMonto(Decimal.Parse(lbMontoCuotaSenia.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Tarjeta de Credito $" + lbMonto1.Text + "a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
-                        formaPago = formaPago + ", "+lbMonto2.Text+ ", Financiacion Efectivo, Seña $ " + lbSeniaMonto.Text +
-                        ",Saldo de $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
+                        formaPago = formaPago + ", Financiacion Efectivo $ "+ lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
 
                         SaldoIngreso = Decimal.Round(Decimal.Parse(lbMonto1.Text),2);
                         this.ValidarTarjeta();
 
                         Tarjeta_credito        = SaldoIngreso;
                         Tarjeta_credito_cuotas = Tarjeta_credito_cuotas;
-                        Efectivo               = Decimal.Parse(lbMonto2.Text);
+                       // Efectivo               = Decimal.Parse(lbMonto2.Text);
 
                     break;
                  
@@ -594,6 +592,11 @@ namespace SOCIOS.bono
             }
         }
 
+        private void Mostrar_Seña(bool Mostrar)
+        {
+            lbSeniaMonto.Visible = Mostrar;
+            lbSenia.Visible = Mostrar;
+        }
         private void cbTipoPago_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -602,7 +605,7 @@ namespace SOCIOS.bono
                     return;
                 string st = cbTipoPago.SelectedValue.ToString();
                 int tipo = Int32.Parse(st);
-
+           
                 this.SeteoPago(tipo);
                 OK.Visible = true;
             }
@@ -623,6 +626,9 @@ namespace SOCIOS.bono
             Recargo = 0;
             Tarjeta = false;
             lbMontoTarjeta.Text = "0";
+            lbSeniaMonto.Enabled = true;
+
+            this.Mostrar_Seña(true);
 
             //si es tipo de pago efectivo solo hace esto
             if (idTipoPago == 6)
@@ -695,6 +701,7 @@ namespace SOCIOS.bono
                 gpPlanilla.Visible = false;
                 gpSenia.Visible = false;
                 gpPago.Visible = false;
+                lbSeniaMonto.Enabled = false;
                
             }
 
@@ -704,6 +711,7 @@ namespace SOCIOS.bono
                 gpSenia.Visible = true;
                 gpPlanilla.Visible = false;
                 gpBancaria.Visible = false;
+                this.Mostrar_Seña(false);
                 
             }
             if (idTipoPago == 13)
@@ -714,6 +722,7 @@ namespace SOCIOS.bono
                 gpBancaria.Visible = false;
                 btnTarjeta.Visible = true;
                 lbMontoTarjeta.Visible = true;
+                this.Mostrar_Seña(false);
             
             }
             

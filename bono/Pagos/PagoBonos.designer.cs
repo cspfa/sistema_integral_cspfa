@@ -406,6 +406,7 @@
             this.lbSeniaMonto.Name = "lbSeniaMonto";
             this.lbSeniaMonto.Size = new System.Drawing.Size(57, 20);
             this.lbSeniaMonto.TabIndex = 87;
+            this.lbSeniaMonto.Text = "0";
             this.lbSeniaMonto.TextChanged += new System.EventHandler(this.lbSeniaMonto_TextChanged);
             // 
             // lbMontoCuotaSenia
