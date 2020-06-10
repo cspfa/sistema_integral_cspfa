@@ -603,7 +603,7 @@ namespace SOCIOS.Turismo
 
             string connectionString;
             DataTable dt1 = new DataTable("RESULTADOS");
-            string Query = @" select Nombre,Apellido,'ARG' Nacionalidad, 'Dni' TipoDni, Dni,F_NACIM Edad from bono_Personas
+            string Query = @" select Nombre,Apellido,'ARG' Nacionalidad, 'Dni' TipoDni, Dni, substring(F_NACIM from 1 for 10 ) as  Edad from bono_Personas
             where  ROL ='TURISMO' and BONO=" + ID;
             DataSet ds1 = new DataSet();
 
