@@ -1063,6 +1063,7 @@ namespace SOCIOS.bono
                 {
                     item.Tipo = "NO SOCIO";
                     item.Origen = 3;
+                   // Invitado = this.StatsTipoMayor(Invitado, item.Edad, TopeEdad);
                 }
 
                 if ( item.Origen ==1) //Origen 1, familiares, Socios

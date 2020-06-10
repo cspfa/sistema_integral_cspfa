@@ -452,13 +452,14 @@ namespace SOCIOS.bono
            
 
             }
-            else if (Intercirculo > 0)
+           
+            if (Intercirculo > 0)
             {
          
                 totalInter          =   arancelService.valorGrupoHotel(hotel, 2, regimen, habitacion);
                 tbInterCirculo.Text =   totalInter.ToString("0.##");
             }
-            else
+            if (Invitado >0)
             {
 
                totalInvi       =  arancelService.valorGrupoHotel(hotel, 3, regimen, habitacion);
