@@ -1907,7 +1907,7 @@ namespace SOCIOS
          //  
 
            // Query.Replace("{4}", BARRA.ToString());
-           Query = Query.Replace("{4}", FE_BONO.ToShortDateString());
+           Query = Query.Replace("{4}", this.fechaUSA(FE_BONO));
 
            Query = Query.Replace("{5}", PROFESIONAL.ToString());
            Query = Query.Replace("{6}", SEC_ACT.ToString());
@@ -1938,7 +1938,7 @@ namespace SOCIOS
 
            Query = Query.Replace("{28}", CLASE_PASAJE.ToString());
            Query = Query.Replace("{29}", USR.ToString());
-           Query = Query.Replace("{30}", System.DateTime.Now.ToShortDateString());
+           Query = Query.Replace("{30}",this.fechaUSA(System.DateTime.Now));
            Query = Query.Replace("{31}", TIPO.ToString());
            Query = Query.Replace("{32}", SALIDA.ToString());
            Query = Query.Replace("{33}", DIAS.ToString());
@@ -1976,6 +1976,14 @@ namespace SOCIOS
             BO_EjecutoConsulta(Query);
         }
 
+        private string fechaUSA(DateTime fecha)
+        {
+            string Fecha = fecha.Month.ToString("00") + "/" + fecha.Day.ToString("00") + "/" + fecha.Year.ToString("0000");
+
+            return Fecha;
+
+
+        }
 
 
 
@@ -2124,5 +2132,9 @@ namespace SOCIOS
         }
 
 
+
+
     }
+
+
 }
