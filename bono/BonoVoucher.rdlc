@@ -190,7 +190,7 @@
               <Width>0.90365in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.56391in</Width>
+              <Width>2.53749in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -389,7 +389,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Edad</Value>
+                              <Value>Fecha Nacimiento</Value>
                               <Style>
                                 <FontFamily>Courier New</FontFamily>
                               </Style>
@@ -642,9 +642,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSetPersonaPasaje</DataSetName>
         <Top>4.56084in</Top>
-        <Left>0.52704in</Left>
+        <Left>0.15204in</Left>
         <Height>0.5in</Height>
-        <Width>5.34292in</Width>
+        <Width>7.3165in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>

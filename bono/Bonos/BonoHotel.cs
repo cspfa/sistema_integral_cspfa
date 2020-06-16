@@ -998,20 +998,20 @@ namespace SOCIOS.bono
                 MONTO_Invitado = decimal.Parse(tbInvitado.Text);
 
 
-            if (!cbHabitacion.Text.ToUpper().Contains("PERSONA"))
-            {
+            //if (!cbHabitacion.Text.ToUpper().Contains("PERSONA"))
+            //{
                 return Decimal.Round(MONTO_Socio + MONTO_InterCirculo + MONTO_Invitado, 2);
-            }
-            else
-            {
-                this.CalcularCantidadSociosGrupo("HOTEL");
+            //}
+            //else
+            //{
+            //    this.CalcularCantidadSociosGrupo("HOTEL");
 
 
-                 totalSocio = (MONTO_Socio * Socios) + (Decimal.Round(MONTO_Socio / 2, 2) * MenorSocio);
-                totalInter = MONTO_InterCirculo * Intercirculo + (Decimal.Round(MONTO_InterCirculo / 2, 2) * MenorInter);
-                 totalInvi = MONTO_Invitado * Invitado + (Decimal.Round(MONTO_Invitado / 2, 2) * MenorInvitado);
-            }
-            return Decimal.Round( totalSocio + totalInter + totalInvi,2);
+            //     totalSocio = (MONTO_Socio * Socios) + (Decimal.Round(MONTO_Socio / 2, 2) * MenorSocio);
+            //    totalInter = MONTO_InterCirculo * Intercirculo + (Decimal.Round(MONTO_InterCirculo / 2, 2) * MenorInter);
+            //     totalInvi = MONTO_Invitado * Invitado + (Decimal.Round(MONTO_Invitado / 2, 2) * MenorInvitado);
+            //}
+            //return Decimal.Round( totalSocio + totalInter + totalInvi,2);
             
 
         }
