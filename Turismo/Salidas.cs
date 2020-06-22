@@ -169,6 +169,7 @@ namespace SOCIOS.Turismo
                 int      Tipo         = Int32.Parse(cbTipo.SelectedValue.ToString());
                 int Hotel             =0;
                 int Web = 1;
+                int Bono = 1;
                 
 
 
@@ -187,10 +188,14 @@ namespace SOCIOS.Turismo
                     Web = 1;
                 else
                     Web = 0;
-                if (Modo =="INS")
-                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked,CocheCama,Web);
+                if (cbBono.Checked)
+                    Bono = 1;
                 else
-                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked,CocheCama,Web);
+                    Bono = 0;
+                if (Modo =="INS")
+                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked,CocheCama,Web,Bono);
+                else
+                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked,CocheCama,Web,Bono);
                     
 
                 this.UpdateGrilla();
@@ -258,7 +263,7 @@ namespace SOCIOS.Turismo
             this.Blanquear_Campos();
             gpDatos.Visible = false;
 
-            string Query = @"select  S.ID ID,S.Nombre NOMBRE,replace(cast(cast(S.FECHA as date) as varchar(10)), '-', '') FECHA  ,LO.DESCRIPCION ORIGEN, L.DESCRIPCION DESTINO, S.SOCIO SOCIO, S.INVITADO INVITADO,S.INTERCIRCULO INTERCIRCULO,O.RAZON_SOCIAL OPERADOR
+            string Query = @"select  S.ID ID,S.Nombre NOMBRE,replace(cast(cast(S.FECHA as date) as varchar(10)), '-', '') FECHA  ,LO.DESCRIPCION ORIGEN, L.DESCRIPCION DESTINO, S.SOCIO SOCIO, S.INVITADO INVITADO,S.INTERCIRCULO INTERCIRCULO,O.RAZON_SOCIAL OPERADOR, S.MOSTRAR_BONO BONO, S.MOSTRAR_WEB WEB
                              from TURISMO_SALIDA  S , Localidad L,  PROVEEDORES O  ,Localidad LO
                              WHERE S.LOC_HASTA =L.LOCALIDADID AND S.LOC_DESDE = LO.LOCALIDADID AND  S.OPERADOR = O.ID AND  coalesce(S.F_BAJA,'1')='1'   ";
 
@@ -278,6 +283,8 @@ namespace SOCIOS.Turismo
                 cs.Role = VGlobales.vp_role;
                 cs.Dialect = 3;
                 connectionString = cs.ToString();
+                string BONO = "NO";
+                string WEB =  "NO";
 
                 using (FbConnection connection = new FbConnection(connectionString))
                 {
@@ -287,6 +294,8 @@ namespace SOCIOS.Turismo
 
                     DataTable dt1 = new DataTable("RESULTADOS");
 
+                    dt1.Columns.Add("BONO", typeof(string));
+                    dt1.Columns.Add("WEB", typeof(string));
                     dt1.Columns.Add("ID", typeof(string));
                     dt1.Columns.Add("NOMBRE", typeof(string));
                     dt1.Columns.Add("FECHA", typeof(string));
@@ -296,6 +305,7 @@ namespace SOCIOS.Turismo
                     dt1.Columns.Add("INVITADO", typeof(float));
                     dt1.Columns.Add("INTERCIRCULO", typeof(float));
                     dt1.Columns.Add("OPERADOR", typeof(string));
+             
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(Query, connection, transaction);
@@ -304,7 +314,13 @@ namespace SOCIOS.Turismo
 
                     while (reader3.Read())
                     {
-                        dt1.Rows.Add(reader3.GetString(reader3.GetOrdinal("ID")).Trim(),
+                        if (reader3.GetString(reader3.GetOrdinal("BONO")).Trim() == "1")
+                            BONO = "SI";
+                        if (reader3.GetString(reader3.GetOrdinal("WEB")).Trim() == "1")
+                            WEB = "SI";
+                        dt1.Rows.Add(BONO,
+                                      WEB,
+                                     reader3.GetString(reader3.GetOrdinal("ID")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("NOMBRE")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("FECHA")).Trim(),
                                      reader3.GetString(reader3.GetOrdinal("ORIGEN")).Trim(),
@@ -319,7 +335,7 @@ namespace SOCIOS.Turismo
 
                 
                         dgvSalidas.DataSource = dt1;
-                        dgvSalidas.Columns[0].Visible = false;
+                        dgvSalidas.Columns[2].Visible = false;
                         dgvSalidas.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                         dgvSalidas.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                         dgvSalidas.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -343,7 +359,7 @@ namespace SOCIOS.Turismo
 
         private void dgvSalidas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[0].Value.ToString());
+            ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[3].Value.ToString());
 
             this.ObtenerDatos(ID);
             gpDatos.Visible = true;
@@ -358,7 +374,7 @@ namespace SOCIOS.Turismo
                 {
                     try
                     {
-                        ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[0].Value.ToString());
+                        ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[2].Value.ToString());
                     }
                     catch 
                     {

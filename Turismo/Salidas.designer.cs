@@ -79,6 +79,7 @@
             this.NuevoBank = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
+            this.cbBono = new System.Windows.Forms.CheckBox();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.cbBono);
             this.gpDatos.Controls.Add(this.cbWeb);
             this.gpDatos.Controls.Add(this.tbCocheCama);
             this.gpDatos.Controls.Add(this.label17);
@@ -142,7 +144,7 @@
             this.cbWeb.AutoSize = true;
             this.cbWeb.Checked = true;
             this.cbWeb.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbWeb.Location = new System.Drawing.Point(671, 178);
+            this.cbWeb.Location = new System.Drawing.Point(565, 179);
             this.cbWeb.Name = "cbWeb";
             this.cbWeb.Size = new System.Drawing.Size(102, 17);
             this.cbWeb.TabIndex = 172;
@@ -596,6 +598,18 @@
             this.CancelarBank.Text = "Borrar";
             this.CancelarBank.Click += new System.EventHandler(this.CancelarBank_Click);
             // 
+            // cbBono
+            // 
+            this.cbBono.AutoSize = true;
+            this.cbBono.Checked = true;
+            this.cbBono.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBono.Location = new System.Drawing.Point(671, 179);
+            this.cbBono.Name = "cbBono";
+            this.cbBono.Size = new System.Drawing.Size(104, 17);
+            this.cbBono.TabIndex = 173;
+            this.cbBono.Text = "Mostrar en Bono";
+            this.cbBono.UseVisualStyleBackColor = true;
+            // 
             // Salidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,5 +685,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox tbCocheCama;
         private System.Windows.Forms.CheckBox cbWeb;
+        private System.Windows.Forms.CheckBox cbBono;
     }
 }
