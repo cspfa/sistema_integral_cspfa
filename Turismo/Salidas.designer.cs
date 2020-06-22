@@ -80,6 +80,7 @@
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
             this.cbBono = new System.Windows.Forms.CheckBox();
+            this.btnVista = new System.Windows.Forms.Button();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -610,12 +611,24 @@
             this.cbBono.Text = "Mostrar en Bono";
             this.cbBono.UseVisualStyleBackColor = true;
             // 
+            // btnVista
+            // 
+            this.btnVista.Location = new System.Drawing.Point(683, 208);
+            this.btnVista.Name = "btnVista";
+            this.btnVista.Size = new System.Drawing.Size(169, 23);
+            this.btnVista.TabIndex = 113;
+            this.btnVista.Text = "Cambiar Vista Salida";
+            this.btnVista.UseVisualStyleBackColor = true;
+            this.btnVista.Visible = false;
+            this.btnVista.Click += new System.EventHandler(this.btnVista_Click);
+            // 
             // Salidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(874, 593);
+            this.Controls.Add(this.btnVista);
             this.Controls.Add(this.AccionesGrilla);
             this.Controls.Add(this.dgvSalidas);
             this.Controls.Add(this.gpDatos);
@@ -686,5 +699,6 @@
         private System.Windows.Forms.TextBox tbCocheCama;
         private System.Windows.Forms.CheckBox cbWeb;
         private System.Windows.Forms.CheckBox cbBono;
+        private System.Windows.Forms.Button btnVista;
     }
 }

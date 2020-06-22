@@ -1231,6 +1231,42 @@ namespace SOCIOS
 
         }
 
+
+        public void Salida_UPD_VISTAS(int ID, int BONO,int WEB)
+        {
+            db resultado = new db();
+
+            ArrayList vector_contenidos = new ArrayList();
+            vector_contenidos.Add(ID);
+            vector_contenidos.Add(WEB);
+            vector_contenidos.Add(BONO);
+
+
+
+
+
+            ArrayList vector_tipos = new ArrayList();
+            vector_tipos.Add("FbDbType.Integer");
+
+            vector_tipos.Add("FbDbType.Integer");
+            vector_tipos.Add("FbDbType.Integer");
+
+
+
+            ArrayList vector_nombres = new ArrayList();
+
+            vector_nombres.Add("@ID");
+            vector_nombres.Add("@MOSTRAR_WEB");
+            vector_nombres.Add("@MOSTRAR_BONO");
+
+
+            string vprocedure = "P_TURISMO_SALIDA_MOSTRAR_UPD";
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+
+
+        }
+
         #region Hoteles
         // Insert Hoteles- Con Modificacion 25/01/2016
         public void InsertHotel(string Nombre, int Provincia, int Localidad, string Domicilio, string Telefono, int Estrellas, string Obs, string Cuit, string Responsable, string Email_ope, string Email_Reservas, string Email_adm, string Email_Info, string CheckIn, string CheckOut, DateTime Fecha, string User, int Propio, int Social, decimal Late, int NroCuenta)

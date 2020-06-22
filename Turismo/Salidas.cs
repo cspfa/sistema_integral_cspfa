@@ -18,7 +18,7 @@ namespace SOCIOS.Turismo
     {
         bo_Turismo dlog = new bo_Turismo();
         SOCIOS.Turismo.TurismoUtils utilsTurismo = new TurismoUtils();
-     
+
         int Inicio;
         string Nombre;
         int ID;
@@ -37,20 +37,19 @@ namespace SOCIOS.Turismo
         #region Combos
 
         private void InicializarCombos()
-
         {
-          utilsTurismo.UpdateComboProvincia(0,cbProvinciaDesde);
-          utilsTurismo.UpdateComboProvincia(0, cbProvinciaHasta);
-        //   utilsTurismo.UpdateComboLocalidad(6500, cbLocalidadDesde);
-        //  utilsTurismo.UpdateComboLocalidad(6500, cbLocalidadHasta);
-          utilsTurismo.UpdateComboTabla("TURISMO_TIPO", cbTipo);
-          utilsTurismo.UpdateComboTabla("TURISMO_REGIMEN", cbRegimen);
-          utilsTurismo.UpdateComboTabla("TURISMO_TRASLADO",cbTraslado);
-         
-          utilsTurismo.ComboMoneda(cbMoneda);
-          utilsTurismo.ComboOperador(cbOperador,false);
-          
-        
+            utilsTurismo.UpdateComboProvincia(0, cbProvinciaDesde);
+            utilsTurismo.UpdateComboProvincia(0, cbProvinciaHasta);
+            //   utilsTurismo.UpdateComboLocalidad(6500, cbLocalidadDesde);
+            //  utilsTurismo.UpdateComboLocalidad(6500, cbLocalidadHasta);
+            utilsTurismo.UpdateComboTabla("TURISMO_TIPO", cbTipo);
+            utilsTurismo.UpdateComboTabla("TURISMO_REGIMEN", cbRegimen);
+            utilsTurismo.UpdateComboTabla("TURISMO_TRASLADO", cbTraslado);
+
+            utilsTurismo.ComboMoneda(cbMoneda);
+            utilsTurismo.ComboOperador(cbOperador, false);
+
+
         }
 
         private void cbProvinciaDesde_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,7 +77,7 @@ namespace SOCIOS.Turismo
 
         private void cbLocalidadHasta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         #endregion
@@ -87,7 +86,7 @@ namespace SOCIOS.Turismo
         {
             SOCIOS.Turismo.AgregarLocalidad al = new SOCIOS.Turismo.AgregarLocalidad(Int32.Parse(cbProvinciaDesde.SelectedValue.ToString()));
             DialogResult dr = al.ShowDialog();
-            
+
             if (dr == DialogResult.OK)
             {
                 cbLocalidadDesde.DataSource = null;
@@ -104,17 +103,16 @@ namespace SOCIOS.Turismo
             this.Blanquear_Campos();
             Modo = "INS";
             utilsTurismo.UpdateComboLocalidad(6500, cbLocalidadDesde);
-      
-               utilsTurismo.UpdateComboLocalidad(6500, cbLocalidadHasta);
+
+            utilsTurismo.UpdateComboLocalidad(6500, cbLocalidadHasta);
             gpDatos.Visible = true;
 
         }
 
         private void Blanquear_Campos()
-
         {
 
-            
+
             tbNombre.Text = "";
 
             tbEstadia.Text = "";
@@ -131,16 +129,15 @@ namespace SOCIOS.Turismo
             cbAgotado.Checked = false;
             cbDestacado.Checked = false;
             dtSalida.Value = System.DateTime.Now;
-        
+
         }
 
 
         private void Validar()
-
         {
             if (tbHotel.Text.Length == 0)
                 throw new Exception("Debe Ingresar Hotel");
-            if (tbNombre.Text.Length ==0 )
+            if (tbNombre.Text.Length == 0)
                 throw new Exception("Debe Ingresar Nombre");
             if (tbPrecioSocio.Text.Length == 0)
                 throw new Exception("Debe Ingresar Precio Socio");
@@ -154,27 +151,28 @@ namespace SOCIOS.Turismo
         private void btnSave_Click(object sender, EventArgs e)
         {
             try
-            {   int      ProvDesde    =Int32.Parse(cbProvinciaDesde.SelectedValue.ToString());
-                int      ProvHasta    = Int32.Parse(cbProvinciaHasta.SelectedValue.ToString());
-                int      LocDesde     = Int32.Parse(cbLocalidadDesde.SelectedValue.ToString());
-                int      LocHasta     = Int32.Parse(cbLocalidadHasta.SelectedValue.ToString());
-                int      Operador     = Int32.Parse(cbOperador.SelectedValue.ToString());
-                decimal  Socio        = decimal.Parse(tbPrecioSocio.Text);
-                decimal  Invitado     = decimal.Parse(tbPrecioInvitado.Text);
-                decimal  InterCirculo = decimal.Parse(tbPrecioInterCirculo.Text);
-                decimal Menor         = decimal.Parse(tbMenor.Text);
-                decimal CocheCama     = decimal.Parse(tbCocheCama.Text);
-                int      Regimen      = Int32.Parse  ( cbRegimen.SelectedValue.ToString()  );
-                int      Traslado     = Int32.Parse(cbTraslado.SelectedValue.ToString());
-                int      Tipo         = Int32.Parse(cbTipo.SelectedValue.ToString());
-                int Hotel             =0;
+            {
+                int ProvDesde = Int32.Parse(cbProvinciaDesde.SelectedValue.ToString());
+                int ProvHasta = Int32.Parse(cbProvinciaHasta.SelectedValue.ToString());
+                int LocDesde = Int32.Parse(cbLocalidadDesde.SelectedValue.ToString());
+                int LocHasta = Int32.Parse(cbLocalidadHasta.SelectedValue.ToString());
+                int Operador = Int32.Parse(cbOperador.SelectedValue.ToString());
+                decimal Socio = decimal.Parse(tbPrecioSocio.Text);
+                decimal Invitado = decimal.Parse(tbPrecioInvitado.Text);
+                decimal InterCirculo = decimal.Parse(tbPrecioInterCirculo.Text);
+                decimal Menor = decimal.Parse(tbMenor.Text);
+                decimal CocheCama = decimal.Parse(tbCocheCama.Text);
+                int Regimen = Int32.Parse(cbRegimen.SelectedValue.ToString());
+                int Traslado = Int32.Parse(cbTraslado.SelectedValue.ToString());
+                int Tipo = Int32.Parse(cbTipo.SelectedValue.ToString());
+                int Hotel = 0;
                 int Web = 1;
                 int Bono = 1;
-                
 
 
-                utilsTurismo.checkDestinosRepetidos( LocDesde, LocHasta);
-         
+
+                utilsTurismo.checkDestinosRepetidos(LocDesde, LocHasta);
+
                 if (Socio == 0)
                     throw new Exception("El Valor Socio No Puede ser 0");
                 if (Invitado == 0)
@@ -192,11 +190,11 @@ namespace SOCIOS.Turismo
                     Bono = 1;
                 else
                     Bono = 0;
-                if (Modo =="INS")
-                   dlog.Salida_Ins(tbNombre.Text,dtSalida.Value,cbAgotado.Checked,ProvDesde,ProvHasta,Operador,LocDesde,LocHasta,Socio,Invitado,InterCirculo,Menor,tbEstadia.Text,Regimen,Traslado,Tipo,Hotel,tbHotel.Text,cbDestacado.Checked,cbMoneda.SelectedText,tbObs.Text,cbDiaria.Checked,CocheCama,Web,Bono);
+                if (Modo == "INS")
+                    dlog.Salida_Ins(tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, cbDiaria.Checked, CocheCama, Web, Bono);
                 else
-                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo,Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text,cbDiaria.Checked,CocheCama,Web,Bono);
-                    
+                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, cbDiaria.Checked, CocheCama, Web, Bono);
+
 
                 this.UpdateGrilla();
                 MessageBox.Show("Datos Guardados con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -217,47 +215,47 @@ namespace SOCIOS.Turismo
             tbEstadia.Text = salida.Estadia;
             cbRegimen.SelectedValue = salida.Regimen;
             tbHotel.Text = salida.Hotel_Nombre;
-            cbMoneda.SelectedText =salida.Moneda ;
+            cbMoneda.SelectedText = salida.Moneda;
             tbPrecioSocio.Text = salida.Socio.ToString("0.##");
             tbPrecioInvitado.Text = salida.Invitado.ToString("0.##");
             tbPrecioInterCirculo.Text = salida.InterCirculo.ToString("0.##");
             cbOperador.SelectedValue = salida.Operador.ToString();
             tbObs.Text = salida.Observaciones;
-            cbProvinciaDesde.SelectedValue  = salida.Prov_Desde.ToString();
-            cbProvinciaHasta.SelectedValue  =salida.Prov_Hasta.ToString();
+            cbProvinciaDesde.SelectedValue = salida.Prov_Desde.ToString();
+            cbProvinciaHasta.SelectedValue = salida.Prov_Hasta.ToString();
             cbLocalidadDesde.DataSource = null;
             cbLocalidadHasta.DataSource = null;
-            utilsTurismo.UpdateComboLocalidad(Int32.Parse( salida.Prov_Desde.ToString()), cbLocalidadDesde);
-             utilsTurismo.UpdateComboLocalidad(Int32.Parse(salida.Prov_Hasta.ToString()), cbLocalidadHasta);
-             cbLocalidadDesde.SelectedValue = salida.Loc_Desde.ToString();
-             cbLocalidadHasta.SelectedValue = salida.Loc_Hasta.ToString();
-             cbAgotado.Checked =Convert.ToBoolean(salida.Agotado);
-             cbDestacado.Checked = Convert.ToBoolean(salida.Destacado);
-             dtSalida.Value = salida.Fecha;
-             tbCocheCama.Text = salida.Coche_Cama.ToString();
-             if (salida.Diaria == 1)
-             {
-                 cbDiaria.Checked = true;
-                 this.Seteo_diaria(true);
-             }
-             else
-             {
-                 cbDiaria.Checked = false;
-                 this.Seteo_diaria(false);
-             }
+            utilsTurismo.UpdateComboLocalidad(Int32.Parse(salida.Prov_Desde.ToString()), cbLocalidadDesde);
+            utilsTurismo.UpdateComboLocalidad(Int32.Parse(salida.Prov_Hasta.ToString()), cbLocalidadHasta);
+            cbLocalidadDesde.SelectedValue = salida.Loc_Desde.ToString();
+            cbLocalidadHasta.SelectedValue = salida.Loc_Hasta.ToString();
+            cbAgotado.Checked = Convert.ToBoolean(salida.Agotado);
+            cbDestacado.Checked = Convert.ToBoolean(salida.Destacado);
+            dtSalida.Value = salida.Fecha;
+            tbCocheCama.Text = salida.Coche_Cama.ToString();
+            if (salida.Diaria == 1)
+            {
+                cbDiaria.Checked = true;
+                this.Seteo_diaria(true);
+            }
+            else
+            {
+                cbDiaria.Checked = false;
+                this.Seteo_diaria(false);
+            }
 
-             tbMenor.Text = salida.Menor.ToString("0.##");
-             cbWeb.Checked = salida.Web;
+            tbMenor.Text = salida.Menor.ToString("0.##");
+            cbWeb.Checked = salida.Web;
+            cbBono.Checked = salida.Bono;
 
-            
 
- 
-             
+
+
+
 
         }
 
         private void UpdateGrilla()
-
         {
 
             this.Blanquear_Campos();
@@ -284,7 +282,7 @@ namespace SOCIOS.Turismo
                 cs.Dialect = 3;
                 connectionString = cs.ToString();
                 string BONO = "NO";
-                string WEB =  "NO";
+                string WEB = "NO";
 
                 using (FbConnection connection = new FbConnection(connectionString))
                 {
@@ -305,7 +303,7 @@ namespace SOCIOS.Turismo
                     dt1.Columns.Add("INVITADO", typeof(float));
                     dt1.Columns.Add("INTERCIRCULO", typeof(float));
                     dt1.Columns.Add("OPERADOR", typeof(string));
-             
+
                     ds1.Tables.Add(dt1);
 
                     FbCommand cmd = new FbCommand(Query, connection, transaction);
@@ -333,17 +331,17 @@ namespace SOCIOS.Turismo
 
                     reader3.Close();
 
-                
-                        dgvSalidas.DataSource = dt1;
-                        dgvSalidas.Columns[2].Visible = false;
-                        dgvSalidas.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        dgvSalidas.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        dgvSalidas.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        dgvSalidas.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        dgvSalidas.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        dgvSalidas.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        dgvSalidas.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-                        dgvSalidas.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+                    dgvSalidas.DataSource = dt1;
+                    dgvSalidas.Columns[2].Visible = false;
+                    dgvSalidas.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSalidas.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSalidas.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSalidas.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSalidas.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSalidas.Columns[5].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSalidas.Columns[6].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvSalidas.Columns[7].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     transaction.Commit();
                 }
             }
@@ -351,15 +349,15 @@ namespace SOCIOS.Turismo
             {
                 MessageBox.Show(ex.ToString());
             }
-        
-        
+
+
         }
 
-       
+
 
         private void dgvSalidas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[3].Value.ToString());
+            ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[2].Value.ToString());
 
             this.ObtenerDatos(ID);
             gpDatos.Visible = true;
@@ -376,7 +374,7 @@ namespace SOCIOS.Turismo
                     {
                         ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[2].Value.ToString());
                     }
-                    catch 
+                    catch
                     {
 
                         throw new Exception("Debe Seleccionar el Registro");
@@ -426,7 +424,6 @@ namespace SOCIOS.Turismo
 
 
         private void Seteo_diaria(bool Diaria)
-
         {
             dtSalida.Visible = !Diaria;
         }
@@ -436,6 +433,40 @@ namespace SOCIOS.Turismo
 
         }
 
+        private void btnVista_Click(object sender, EventArgs e)
+        {
+            //{
+            //    bool Bono = false;
+            //    bool Web = false;
+            //    try
+            //    {
 
+            //        ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[2].Value.ToString());
+            //        if (dgvSalidas.SelectedRows[0].Cells[0].Value.ToString() == "SI")
+            //            Bono = true;
+            //        if (dgvSalidas.SelectedRows[0].Cells[1].Value.ToString() == "SI")
+            //            Web = true;
+
+            //        string Titulo = dgvSalidas.SelectedRows[0].Cells[2].Value.ToString();
+            //        Cambiar_Vistas_Salidas cvs = new Cambiar_Vistas_Salidas(ID, Bono, Web, Titulo);
+            //        DialogResult res = cvs.ShowDialog();
+            //        if (res == DialogResult.OK)
+            //        {
+
+            //            MessageBox.Show("DATOS ACTUALIZADOS CON EXITO");
+            //            this.UpdateGrilla();
+            //        }
+
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //    }
+            //}
+
+
+        }
     }
 }
+

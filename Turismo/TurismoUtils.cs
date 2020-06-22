@@ -45,7 +45,7 @@ namespace SOCIOS.Turismo
         public decimal  Menor            { get; set; }
         public decimal  Coche_Cama       { get; set; }
         public bool      Web              { get; set; }
-
+        public bool      Bono            { get; set; }
     
     }
 
@@ -311,7 +311,7 @@ namespace SOCIOS.Turismo
 
         public void ComboSalida(ComboBox combo)
         {
-            string query = "SELECT ID ,( NOMBRE || '- ' ||  extract(day from  FECHA)  || '/' || extract(month from Fecha) || '/' ||  extract(year from Fecha)    ) as NOMBRE   FROM TURISMO_SALIDA where  (U_BAJA is null)  order by NOMBRE,FECHA ";
+            string query = "SELECT ID ,( NOMBRE || '- ' ||  extract(day from  FECHA)  || '/' || extract(month from Fecha) || '/' ||  extract(year from Fecha)    ) as NOMBRE   FROM TURISMO_SALIDA where  (U_BAJA is null) and Mostrar_Bono=1  order by NOMBRE,FECHA ";
 
 
             combo.DataSource = null;
@@ -508,7 +508,7 @@ namespace SOCIOS.Turismo
             string Query = @"SELECT   TS.ID,TS.NOMBRE,TS.FECHA,TS.AGOTADO,TS.PROV_DESDE,TS.PROV_HASTA,TS.OPERADOR,TS.LOC_DESDE,
                              TS.LOC_HASTA,TS.SOCIO,TS.INVITADO,TS.INTERCIRCULO,TS.ESTADIA,TS.REGIMEN,TS.TRASLADO,TS.TIPO,
                              TS.HOTEL,TS.HOTEL_NOMBRE,TS.DESTACADO,TS.MONEDA,TS.U_BAJA,TS.F_BAJA,TS.OBSERVACIONES,PD.NOMBRE,
-                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA,TS.MENOR,TS.COCHE_CAMA,TS.MOSTRAR_WEB
+                             PH.NOMBRE,LD.DESCRIPCION,LH.DESCRIPCION,P.RAZON_SOCIAL,TR.NOMBRE,TT.NOMBRE,TTP.NOMBRE,TS.DIARIA,TS.MENOR,TS.COCHE_CAMA,TS.MOSTRAR_WEB, TS.MOSTRAR_BONO
                              FROM  TURISMO_SALIDA TS ,
                              PROVINCIA PD,
                              PROVINCIA PH, 
@@ -573,6 +573,12 @@ namespace SOCIOS.Turismo
                    salida.Web = true;
                else
                    salida.Web = false;
+               int bono = Int32.Parse(foundRows[0][35].ToString());
+
+               if (bono == 1)
+                   salida.Bono = true;
+               else
+                   salida.Bono = false;
 
             }
 
