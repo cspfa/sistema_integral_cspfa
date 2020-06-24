@@ -309,13 +309,20 @@ namespace SOCIOS.Turismo
                     FbCommand cmd = new FbCommand(Query, connection, transaction);
 
                     FbDataReader reader3 = cmd.ExecuteReader();
-
+                    //if (reader3.GetString(reader3.GetOrdinal("ID")).Trim() == "688")
+                    //{ 
+                    //}
                     while (reader3.Read())
                     {
                         if (reader3.GetString(reader3.GetOrdinal("BONO")).Trim() == "1")
                             BONO = "SI";
+                        else
+                            BONO = "NO";
                         if (reader3.GetString(reader3.GetOrdinal("WEB")).Trim() == "1")
                             WEB = "SI";
+                        else
+                            WEB = "NO";
+
                         dt1.Rows.Add(BONO,
                                       WEB,
                                      reader3.GetString(reader3.GetOrdinal("ID")).Trim(),
