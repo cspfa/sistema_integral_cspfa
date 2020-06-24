@@ -234,7 +234,7 @@ namespace SOCIOS.Turismo
 
                 if (cbCabecera.Checked)
                 {
-                    Mensaje = " , Tambien se genera una salida con todas las fechas para mostrar solo en WEB";
+                    Mensaje =  Mensaje + " , Tambien se genera una salida con todas las fechas para mostrar solo en WEB";
                 
                 }
 
