@@ -273,6 +273,24 @@ namespace SOCIOS.Turismo
             return Concat;
         }
 
+        private void cbProvinciaDesde_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (cbProvinciaDesde.SelectedItem != null)
+            {
+                cbLocalidadDesde.DataSource = null;
+                utilsTurismo.UpdateComboLocalidad(Int32.Parse(cbProvinciaDesde.SelectedValue.ToString()), cbLocalidadDesde);
+            }
+        }
+
+        private void cbProvinciaHasta_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (Inicio == 0 && cbProvinciaHasta.SelectedItem != null)
+            {
+                cbLocalidadHasta.DataSource = null;
+                utilsTurismo.UpdateComboLocalidad(Int32.Parse(cbProvinciaHasta.SelectedValue.ToString()), cbLocalidadHasta);
+            }
+        }
+
         
     }
 

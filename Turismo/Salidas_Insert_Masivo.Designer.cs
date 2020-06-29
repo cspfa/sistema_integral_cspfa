@@ -483,6 +483,7 @@
             this.cbProvinciaHasta.Name = "cbProvinciaHasta";
             this.cbProvinciaHasta.Size = new System.Drawing.Size(201, 21);
             this.cbProvinciaHasta.TabIndex = 15;
+            this.cbProvinciaHasta.SelectedIndexChanged += new System.EventHandler(this.cbProvinciaHasta_SelectedIndexChanged_1);
             // 
             // label1
             // 
@@ -520,6 +521,7 @@
             this.cbProvinciaDesde.Name = "cbProvinciaDesde";
             this.cbProvinciaDesde.Size = new System.Drawing.Size(201, 21);
             this.cbProvinciaDesde.TabIndex = 13;
+            this.cbProvinciaDesde.SelectedIndexChanged += new System.EventHandler(this.cbProvinciaDesde_SelectedIndexChanged_1);
             // 
             // Salidas_Insert_Masivo
             // 
