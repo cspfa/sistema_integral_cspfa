@@ -154,6 +154,11 @@ namespace SOCIOS.Turismo
             {
                 int ProvDesde = Int32.Parse(cbProvinciaDesde.SelectedValue.ToString());
                 int ProvHasta = Int32.Parse(cbProvinciaHasta.SelectedValue.ToString());
+                if (cbLocalidadDesde.Text.Trim().Count() == 0)
+                    throw new Exception("Ingrese Localidad Desde");
+                if (cbLocalidadHasta.Text.Trim().Count() == 0)
+                    throw new Exception("Ingrese Localidad Hasta");
+
                 int LocDesde = Int32.Parse(cbLocalidadDesde.SelectedValue.ToString());
                 int LocHasta = Int32.Parse(cbLocalidadHasta.SelectedValue.ToString());
                 int Operador = Int32.Parse(cbOperador.SelectedValue.ToString());
