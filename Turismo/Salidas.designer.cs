@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Salidas));
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.cbBono = new System.Windows.Forms.CheckBox();
             this.cbWeb = new System.Windows.Forms.CheckBox();
             this.tbCocheCama = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -79,8 +80,8 @@
             this.NuevoBank = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
-            this.cbBono = new System.Windows.Forms.CheckBox();
             this.btnVista = new System.Windows.Forms.Button();
+            this.Procesar = new System.Windows.Forms.ToolStripButton();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -139,6 +140,18 @@
             this.gpDatos.TabIndex = 0;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // cbBono
+            // 
+            this.cbBono.AutoSize = true;
+            this.cbBono.Checked = true;
+            this.cbBono.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBono.Location = new System.Drawing.Point(671, 179);
+            this.cbBono.Name = "cbBono";
+            this.cbBono.Size = new System.Drawing.Size(104, 17);
+            this.cbBono.TabIndex = 173;
+            this.cbBono.Text = "Mostrar en Bono";
+            this.cbBono.UseVisualStyleBackColor = true;
             // 
             // cbWeb
             // 
@@ -557,6 +570,7 @@
             this.dgvSalidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSalidas.Location = new System.Drawing.Point(20, 12);
             this.dgvSalidas.Name = "dgvSalidas";
+            this.dgvSalidas.ReadOnly = true;
             this.dgvSalidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSalidas.Size = new System.Drawing.Size(836, 192);
             this.dgvSalidas.TabIndex = 2;
@@ -567,12 +581,13 @@
             this.AccionesGrilla.Dock = System.Windows.Forms.DockStyle.None;
             this.AccionesGrilla.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.AccionesGrilla.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Procesar,
             this.NuevoBank,
             this.toolStripSeparator13,
             this.CancelarBank});
             this.AccionesGrilla.Location = new System.Drawing.Point(345, 208);
             this.AccionesGrilla.Name = "AccionesGrilla";
-            this.AccionesGrilla.Size = new System.Drawing.Size(137, 25);
+            this.AccionesGrilla.Size = new System.Drawing.Size(224, 25);
             this.AccionesGrilla.TabIndex = 112;
             this.AccionesGrilla.Text = "toolStrip4";
             // 
@@ -599,18 +614,6 @@
             this.CancelarBank.Text = "Borrar";
             this.CancelarBank.Click += new System.EventHandler(this.CancelarBank_Click);
             // 
-            // cbBono
-            // 
-            this.cbBono.AutoSize = true;
-            this.cbBono.Checked = true;
-            this.cbBono.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBono.Location = new System.Drawing.Point(671, 179);
-            this.cbBono.Name = "cbBono";
-            this.cbBono.Size = new System.Drawing.Size(104, 17);
-            this.cbBono.TabIndex = 173;
-            this.cbBono.Text = "Mostrar en Bono";
-            this.cbBono.UseVisualStyleBackColor = true;
-            // 
             // btnVista
             // 
             this.btnVista.Location = new System.Drawing.Point(683, 208);
@@ -621,6 +624,15 @@
             this.btnVista.UseVisualStyleBackColor = true;
             this.btnVista.Visible = false;
             this.btnVista.Click += new System.EventHandler(this.btnVista_Click);
+            // 
+            // Procesar
+            // 
+            this.Procesar.Image = global::SOCIOS.Properties.Resources.bullet_green;
+            this.Procesar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Procesar.Name = "Procesar";
+            this.Procesar.Size = new System.Drawing.Size(87, 22);
+            this.Procesar.Text = "Seleccionar";
+            this.Procesar.Click += new System.EventHandler(this.Procesar_Click);
             // 
             // Salidas
             // 
@@ -700,5 +712,6 @@
         private System.Windows.Forms.CheckBox cbWeb;
         private System.Windows.Forms.CheckBox cbBono;
         private System.Windows.Forms.Button btnVista;
+        private System.Windows.Forms.ToolStripButton Procesar;
     }
 }

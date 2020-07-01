@@ -369,11 +369,11 @@ namespace SOCIOS.Turismo
 
         private void dgvSalidas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[2].Value.ToString());
+            //ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[2].Value.ToString());
 
-            this.ObtenerDatos(ID);
-            gpDatos.Visible = true;
-            Modo = "UPD";
+            //this.ObtenerDatos(ID);
+            //gpDatos.Visible = true;
+            //Modo = "UPD";
         }
 
         private void CancelarBank_Click(object sender, EventArgs e)
@@ -478,6 +478,15 @@ namespace SOCIOS.Turismo
             //}
 
 
+        }
+
+        private void Procesar_Click(object sender, EventArgs e)
+        {
+            ID = Int32.Parse(dgvSalidas.SelectedRows[0].Cells[2].Value.ToString());
+
+            this.ObtenerDatos(ID);
+            gpDatos.Visible = true;
+            Modo = "UPD";
         }
     }
 }
