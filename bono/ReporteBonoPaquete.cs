@@ -117,7 +117,7 @@ namespace SOCIOS.bono
             parameters[9] = new ReportParameter("Telefono", dp.Telefono);
             parameters[10] = new ReportParameter("Edad", "0");
             parameters[11] = new ReportParameter("FormaPago", FormaPago);
-            parameters[12] = new ReportParameter("Obs", Obs +"Salida:" + objSalida.Observaciones);
+            parameters[12] = new ReportParameter("Obs", Obs);
             parameters[13] = new ReportParameter("Total", Total.ToString("0.##"));
             parameters[14] = new ReportParameter("Anulado", BonoAnulado.ToString());
             parameters[15] = new ReportParameter("Autorizacion", "");
