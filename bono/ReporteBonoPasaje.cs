@@ -32,6 +32,7 @@ namespace SOCIOS.bono
         string Clase;
         int ID_ROL ;
         string ROL;
+        string CODINT = "";
         SOCIOS.Turismo.TurismoUtils ut = new SOCIOS.Turismo.TurismoUtils();
 
         public ReporteBonoPasaje(CabeceraTitular pCAB,DateTime pfecha, int pBono,string pFormaPago,string pObs,decimal pTotal)
@@ -81,7 +82,7 @@ namespace SOCIOS.bono
             //Codigo Barra
             string Barra = "TU" + ID_ROL.ToString("0000000000");
             //Array que contendrá los parámetros
-            ReportParameter[] parameters = new ReportParameter[28];
+            ReportParameter[] parameters = new ReportParameter[30];
             //Establecemos el valor de los parámetros
                       
             parameters[0] = new ReportParameter("Fecha", FechaS);
@@ -99,7 +100,7 @@ namespace SOCIOS.bono
             parameters[12] = new ReportParameter("Obs", Obs);
             parameters[13] = new ReportParameter("Total", Total.ToString("0.##"));
             parameters[14] = new ReportParameter("Anulado", BonoAnulado.ToString());
-            parameters[15] = new ReportParameter("Autorizacion","");
+            parameters[15] = new ReportParameter("Autorizacion",mb.CONTRALOR);
             parameters[16] = new ReportParameter("Empresa", Empresa);
             parameters[17] = new ReportParameter("Tipo", Tipo);
             parameters[18] = new ReportParameter("Clase", Clase);
@@ -112,6 +113,8 @@ namespace SOCIOS.bono
             parameters[25] = new ReportParameter("PLANILLA", mb.Planilla);
             parameters[26] = new ReportParameter("TRANSFER", mb.Transfer);
             parameters[27] = new ReportParameter("Mail", dp.Mail);
+            parameters[28] = new ReportParameter("CODINT","");
+            parameters[29] = new ReportParameter("PLAN_CUENTA", "");
             this.reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Clear();
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSetPasaje", pasajes));
@@ -297,7 +300,7 @@ namespace SOCIOS.bono
 
         private void DatosPasaje (int ID)
         {
-            string QUERY = " select B.Tipo_pasaje, B.Clase_Pasaje,T.Razon_Social,B.ID_ROL, B.ROL from bono_turismo  B, Proveedores T where T.ID = B.OPERADOR and B.ID= " + ID.ToString();
+            string QUERY = " select B.Tipo_pasaje, B.Clase_Pasaje,T.Razon_Social,B.ID_ROL, B.ROL,B.CODINT from bono_turismo  B, Proveedores T where T.ID = B.OPERADOR and B.ID= " + ID.ToString();
             DataRow[] foundRows;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
@@ -308,6 +311,8 @@ namespace SOCIOS.bono
                Empresa = foundRows[0][2].ToString().Trim();
                ID_ROL = Int32.Parse(foundRows[0][3].ToString().Trim());
                ROL = foundRows[0][4].ToString();
+               if (foundRows[0][5].ToString().Length>0)
+                 CODINT = "CODINT:" +  foundRows[0][5].ToString();
             }
            
                

@@ -24,6 +24,7 @@ namespace SOCIOS.bono
         public string Credito  { get; set; }
         public string Planilla { get; set; }
         public string Transfer { get; set; }
+        public string CONTRALOR   { get; set; }
     
     }
 

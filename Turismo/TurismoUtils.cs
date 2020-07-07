@@ -46,7 +46,8 @@ namespace SOCIOS.Turismo
         public decimal  Coche_Cama       { get; set; }
         public bool      Web              { get; set; }
         public bool      Bono            { get; set; }
-    
+        public string   CODINT { get; set; }
+     
     }
 
     public class voucherHotel
@@ -750,7 +751,7 @@ namespace SOCIOS.Turismo
 
         public  Montos_Bono Montos_Bono(int pBono)
         {
-            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
+            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS,CONTRALOR from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
            
             DataRow[] foundRows;
             Montos_Bono mb = new bono.Montos_Bono();
@@ -779,6 +780,14 @@ namespace SOCIOS.Turismo
                 }
                 else
                     mb.Planilla = "0";
+
+                if (foundRows[0][6].ToString().Length > 0)
+                {
+                    mb.CONTRALOR =  foundRows[0][6].ToString();
+
+                }
+                else
+                    mb.CONTRALOR = "";
 
 
 

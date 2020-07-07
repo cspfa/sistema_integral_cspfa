@@ -2521,7 +2521,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="&lt;B&gt;TELEFONO:&lt;/B&gt;"&amp;Parameters!Mail.Value</Value>
+                <Value>="&lt;B&gt;MAIL:&lt;/B&gt;"&amp;Parameters!Mail.Value</Value>
                 <MarkupType>HTML</MarkupType>
                 <Style>
                   <FontFamily>Courier New</FontFamily>
@@ -2538,6 +2538,39 @@
         <Height>0.21181in</Height>
         <Width>3.22189in</Width>
         <ZIndex>45</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="PLAN_CUENTA">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Parameters!PLAN_CUENTA.Value</Value>
+                <Style>
+                  <FontFamily>Courier New</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>PLAN_CUENTA</rd:DefaultName>
+        <Top>7.38208in</Top>
+        <Left>0.27293in</Left>
+        <Height>0.25in</Height>
+        <Width>6.80353in</Width>
+        <ZIndex>46</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2793,6 +2826,18 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="Mail">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CODINT">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="PLAN_CUENTA">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

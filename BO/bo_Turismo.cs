@@ -1023,12 +1023,13 @@ namespace SOCIOS
             vector_contenidos.Add(HotelNombre);
             vector_contenidos.Add(Destacado);
             vector_contenidos.Add(Moneda);
-            vector_contenidos.Add(Destacado);
+        
 
             vector_contenidos.Add(VGlobales.vp_username);
             vector_contenidos.Add(System.DateTime.Now.ToShortDateString());
             vector_contenidos.Add(Observaciones);
             vector_contenidos.Add(Menor);
+            vector_contenidos.Add(Destacado);
             vector_contenidos.Add(Coche_Cama);
             vector_contenidos.Add(Mostrar_Web);
             vector_contenidos.Add(Mostrar_Bono);
