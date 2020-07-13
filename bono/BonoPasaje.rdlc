@@ -769,8 +769,8 @@
         <rd:DefaultName>Textbox4</rd:DefaultName>
         <Top>2.95664in</Top>
         <Left>0.12558in</Left>
-        <Height>0.50696in</Height>
-        <Width>6.81894in</Width>
+        <Height>0.60419in</Height>
+        <Width>7.32294in</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -839,7 +839,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.50527in</Top>
+        <Top>3.63027in</Top>
         <Left>0.13751in</Left>
         <Height>0.22223in</Height>
         <Width>6.80353in</Width>
@@ -1288,7 +1288,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetPasaje</DataSetName>
-        <Top>3.79694in</Top>
+        <Top>3.92194in</Top>
         <Left>3.97054in</Left>
         <Height>0.5in</Height>
         <Width>3.47798in</Width>
@@ -1699,7 +1699,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetPersonaPasaje</DataSetName>
-        <Top>3.79694in</Top>
+        <Top>3.92194in</Top>
         <Left>0.0254in</Left>
         <Height>0.5in</Height>
         <Width>3.95587in</Width>
@@ -2035,7 +2035,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>EFECTIVO</rd:DefaultName>
-        <Top>4.56082in</Top>
+        <Top>4.68582in</Top>
         <Left>0.76598in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2065,8 +2065,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>4.56082in</Top>
-        <Left>3.89098in</Left>
+        <Top>4.73097in</Top>
+        <Left>3.90106in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>29</ZIndex>
@@ -2095,7 +2095,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>DEBITO</rd:DefaultName>
-        <Top>4.56082in</Top>
+        <Top>4.68582in</Top>
         <Left>1.83542in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2125,7 +2125,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CREDITO</rd:DefaultName>
-        <Top>4.56082in</Top>
+        <Top>4.68582in</Top>
         <Left>2.83542in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
@@ -2155,8 +2155,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLANILLA</rd:DefaultName>
-        <Top>4.56082in</Top>
-        <Left>6.01598in</Left>
+        <Top>4.73097in</Top>
+        <Left>6.02606in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>32</ZIndex>
@@ -2198,7 +2198,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.3386in</Top>
+        <Top>4.4636in</Top>
         <Left>0.79804in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -2241,7 +2241,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.33861in</Top>
+        <Top>4.46361in</Top>
         <Left>1.80764in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -2284,7 +2284,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.3386in</Top>
+        <Top>4.4636in</Top>
         <Left>2.81724in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
@@ -2338,8 +2338,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.3386in</Top>
-        <Left>3.85462in</Left>
+        <Top>4.50875in</Top>
+        <Left>3.8647in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
         <ZIndex>36</ZIndex>
@@ -2381,8 +2381,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.3386in</Top>
-        <Left>5.98921in</Left>
+        <Top>4.50875in</Top>
+        <Left>5.99929in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
         <ZIndex>37</ZIndex>
@@ -2424,8 +2424,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox51</rd:DefaultName>
-        <Top>4.33861in</Top>
-        <Left>4.93795in</Left>
+        <Top>4.50876in</Top>
+        <Left>4.94803in</Left>
         <Height>0.19444in</Height>
         <Width>0.98182in</Width>
         <ZIndex>38</ZIndex>
@@ -2454,8 +2454,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>TRANSFER</rd:DefaultName>
-        <Top>4.56082in</Top>
-        <Left>4.94273in</Left>
+        <Top>4.73097in</Top>
+        <Left>4.95281in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
         <ZIndex>39</ZIndex>
@@ -2520,7 +2520,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>PLAN_CUENTA</rd:DefaultName>
-        <Top>4.86986in</Top>
+        <Top>4.99486in</Top>
         <Left>0.14793in</Left>
         <Height>0.25in</Height>
         <Width>6.80353in</Width>
@@ -2553,7 +2553,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CODINT</rd:DefaultName>
-        <Top>5.14764in</Top>
+        <Top>5.27264in</Top>
         <Left>0.14793in</Left>
         <Height>0.25in</Height>
         <Width>6.80353in</Width>
