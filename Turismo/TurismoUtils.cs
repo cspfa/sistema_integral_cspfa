@@ -751,7 +751,7 @@ namespace SOCIOS.Turismo
 
         public  Montos_Bono Montos_Bono(int pBono)
         {
-            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS,CONTRALOR from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
+            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS,CONTRALOR,TRANSFER from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
            
             DataRow[] foundRows;
             Montos_Bono mb = new bono.Montos_Bono();
@@ -788,6 +788,14 @@ namespace SOCIOS.Turismo
                 }
                 else
                     mb.CONTRALOR = "";
+
+                if (foundRows[0][7].ToString().Length > 0)
+                {
+                    mb.Transfer = foundRows[0][7].ToString();
+
+                }
+                else
+                    mb.Transfer = "";
 
 
 
