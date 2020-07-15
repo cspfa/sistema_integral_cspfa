@@ -25,6 +25,7 @@ namespace SOCIOS.bono
         public string Planilla { get; set; }
         public string Transfer { get; set; }
         public string CONTRALOR   { get; set; }
+        public string TOTAL { get; set; }
     
     }
 
@@ -131,7 +132,7 @@ namespace SOCIOS.bono
             parameters[12] = new ReportParameter("FormaPago", FormaPago);
             parameters[13] = new ReportParameter("Obs", Obs);
             parameters[14] = new ReportParameter("Prof",Prof );
-            parameters[15] = new ReportParameter("Total", Total.ToString("0.##"));
+            parameters[15] = new ReportParameter("Total", mb.TOTAL);
             parameters[16] = new ReportParameter("Anulado", BonoAnulado.ToString());
             parameters[17] = new ReportParameter("Barra", Barra);
             if (Contralor != "0")

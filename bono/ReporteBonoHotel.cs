@@ -117,7 +117,7 @@ namespace SOCIOS.bono
             parameters[10] = new ReportParameter("Edad", "0");
             parameters[11] = new ReportParameter("FormaPago", FormaPago.TrimEnd());
             parameters[12] = new ReportParameter("Obs", Obs);
-            parameters[13] = new ReportParameter("Total", Total.ToString("0.##"));
+            parameters[13] = new ReportParameter("Total", mb.TOTAL);
             parameters[14] = new ReportParameter("Anulado", BonoAnulado.ToString());
             parameters[15] = new ReportParameter("Autorizacion", "");
             parameters[16] = new ReportParameter("Empresa", "CSPFA");
