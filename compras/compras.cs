@@ -52,7 +52,7 @@ namespace SOCIOS
             comboTipoCheques();
             ACCION = "NUEVA";
 
-            if (VGlobales.vp_role != "TESORERIA" || VGlobales.vp_role != "CONTADURIA")
+            if (VGlobales.vp_role != "TESORERIA" && VGlobales.vp_role != "CONTADURIA")
             {
                 tabControl1.TabPages.Remove(tabPage1);
                 tabControl1.TabPages.Remove(tabAdjuntos);
