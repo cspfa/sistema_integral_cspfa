@@ -120,6 +120,7 @@ namespace SOCIOS.bono
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSetPasaje", pasajes));
             reportViewer.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSetPersonaPasaje", personas));
            
+
             this.reportViewer.RefreshReport();
             reportViewer.Visible = true;
         
