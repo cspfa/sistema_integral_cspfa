@@ -140,6 +140,7 @@ namespace SOCIOS.bono
             parameters[33] = new ReportParameter("Cargo", "");
           
            
+
             if (objVoucher.BONO_FILIAL.Length > 0)
                 parameters[34] = new ReportParameter("BONO_FILIAL", "RECIBO DE FILIAL NRO :" + objVoucher.BONO_FILIAL);
             else

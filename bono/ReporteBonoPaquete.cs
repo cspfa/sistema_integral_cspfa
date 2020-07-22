@@ -79,6 +79,8 @@ namespace SOCIOS.bono
             string FechaPaquete;
             string Actividad;
 
+
+
             SOCIOS.Turismo.Salida  objSalida = ut.GetSalida(Salida);
             
             if (objSalida == null)
