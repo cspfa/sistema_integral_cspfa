@@ -1634,6 +1634,7 @@
             this.gbFacturas.Size = new System.Drawing.Size(1039, 223);
             this.gbFacturas.TabIndex = 55;
             this.gbFacturas.Title = "FACTURAS";
+            this.gbFacturas.Visible = false;
             this.gbFacturas.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
             this.gbFacturas.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
             this.gbFacturas.TitleShadow = false;

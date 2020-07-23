@@ -1225,12 +1225,12 @@ namespace SOCIOS
 
         private void agregarModificarArticulo(string ACCION, int ID_ARTICULO, object sender)
         {
-            if (tbImporte.Text == "")
+            /*if (tbImporte.Text == "")
             {
                 MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
                 tbImporte.Focus();
             }
-            else if (tbCantidad.Text == "")
+            else*/ if (tbCantidad.Text == "")
             {
                 MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD", "ERROR");
                 tbCantidad.Focus();
