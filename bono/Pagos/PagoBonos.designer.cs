@@ -75,6 +75,7 @@
             this.tbTBreferencia = new System.Windows.Forms.TextBox();
             this.rbTBCiudad = new System.Windows.Forms.RadioButton();
             this.rbTBPatagonia = new System.Windows.Forms.RadioButton();
+            this.lbGestionLeyenda = new System.Windows.Forms.Label();
             this.gpPago.SuspendLayout();
             this.gpPlanilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -203,6 +204,7 @@
             // 
             // gpPlanilla
             // 
+            this.gpPlanilla.Controls.Add(this.lbGestionLeyenda);
             this.gpPlanilla.Controls.Add(this.lbCantidadMaximaCuotas);
             this.gpPlanilla.Controls.Add(this.lbGestion);
             this.gpPlanilla.Controls.Add(this.tbContralor);
@@ -236,7 +238,7 @@
             // 
             this.lbGestion.AutoSize = true;
             this.lbGestion.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbGestion.Location = new System.Drawing.Point(359, 20);
+            this.lbGestion.Location = new System.Drawing.Point(445, 50);
             this.lbGestion.Name = "lbGestion";
             this.lbGestion.Size = new System.Drawing.Size(55, 13);
             this.lbGestion.TabIndex = 88;
@@ -555,6 +557,17 @@
             this.rbTBPatagonia.Text = "PATAGONIA";
             this.rbTBPatagonia.UseVisualStyleBackColor = true;
             // 
+            // lbGestionLeyenda
+            // 
+            this.lbGestionLeyenda.AutoSize = true;
+            this.lbGestionLeyenda.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbGestionLeyenda.Location = new System.Drawing.Point(394, 20);
+            this.lbGestionLeyenda.Name = "lbGestionLeyenda";
+            this.lbGestionLeyenda.Size = new System.Drawing.Size(55, 13);
+            this.lbGestionLeyenda.TabIndex = 90;
+            this.lbGestionLeyenda.Text = "GESTION";
+            this.lbGestionLeyenda.Visible = false;
+            // 
             // PagoBonos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,5 +650,6 @@
         private System.Windows.Forms.TextBox tbTBreferencia;
         private System.Windows.Forms.RadioButton rbTBCiudad;
         private System.Windows.Forms.RadioButton rbTBPatagonia;
+        private System.Windows.Forms.Label lbGestionLeyenda;
     }
 }
