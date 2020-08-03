@@ -126,6 +126,7 @@ namespace SOCIOS.bono
                     Planilla_Cuotas = pb.Planilla_Cuotas;
                     Transferencia = pb.Transfrencia;
                     Grabar.Visible = true;
+                    lbSaldoTotal.Text = pb.Total_Actualizado().ToString();
                 }
             }
 

@@ -555,7 +555,7 @@ namespace SOCIOS.bono
                     Planilla = pb.Planilla;
                     Planilla_Cuotas = pb.Planilla_Cuotas;
                     Transferencia = pb.Transfrencia;
-
+                    lblSaldoTotal.Text = pb.Total_Actualizado().ToString();
 
                   //  lblSaldoTotal.Text = Decimal.Round(Decimal.Parse(lblSaldoTotal.Text) + pb.Recargo,2).ToString();
                     Grabar.Visible = true;
