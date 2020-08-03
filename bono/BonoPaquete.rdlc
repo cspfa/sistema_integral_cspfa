@@ -32,6 +32,10 @@
           <DataField>Dni</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Edad">
+          <DataField>Edad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <Query>
         <DataSourceName>SOCIOSbono</DataSourceName>
@@ -983,7 +987,7 @@
         <Top>3.75526in</Top>
         <Left>0.14793in</Left>
         <Height>0.21181in</Height>
-        <Width>3.58333in</Width>
+        <Width>4.93645in</Width>
         <ZIndex>20</ZIndex>
         <Style>
           <Border>
@@ -1025,8 +1029,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>3.75526in</Top>
-        <Left>3.80417in</Left>
+        <Top>4.00874in</Top>
+        <Left>0.17917in</Left>
         <Height>0.21181in</Height>
         <Width>3.21148in</Width>
         <ZIndex>21</ZIndex>
@@ -1058,8 +1062,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>4.00874in</Top>
-        <Left>3.79376in</Left>
+        <Top>4.00873in</Top>
+        <Left>3.43232in</Left>
         <Height>0.21181in</Height>
         <Width>3.24187in</Width>
         <ZIndex>22</ZIndex>
@@ -1103,10 +1107,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>4.02263in</Top>
-        <Left>0.16333in</Left>
+        <Top>3.75526in</Top>
+        <Left>5.15021in</Left>
         <Height>0.21181in</Height>
-        <Width>3.58333in</Width>
+        <Width>2.38541in</Width>
         <ZIndex>23</ZIndex>
         <Style>
           <Border>
@@ -1670,14 +1674,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox40">
+                    <Textbox Name="Edad">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!Edad.Value</Value>
                               <Style>
                                 <FontFamily>Courier New</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -1687,7 +1691,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox40</rd:DefaultName>
+                      <rd:DefaultName>Edad</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2126,7 +2130,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>TRANSFER</Value>
                               <Style>
                                 <FontFamily>Courier New</FontFamily>
                                 <FontWeight>Heavy</FontWeight>
@@ -2416,7 +2420,7 @@
         <Top>2.39065in</Top>
         <Left>3.81374in</Left>
         <Height>0.21181in</Height>
-        <Width>3.22189in</Width>
+        <Width>3.40736in</Width>
         <ZIndex>41</ZIndex>
         <Style>
           <Border>

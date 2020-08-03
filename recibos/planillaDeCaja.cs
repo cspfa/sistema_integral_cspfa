@@ -1394,7 +1394,7 @@ namespace SOCIOS
                 connection.Open();
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
-                string query = "SELECT CAMBIO FROM CAJA_CAMBIO WHERE CAJA_DIARIA = " + CAJA;
+                string query = "SELECT FIRST 1 CC.CAMBIO FROM CAJA_CAMBIO CC, CAJA_DIARIA CD WHERE CD.ID_ROL = " + CAJA + " AND CC.CAJA_DIARIA = CD.ID;";
                 FbCommand cmd = new FbCommand(query, connection, transaction);
                 cmd.CommandText = query;
                 cmd.Connection = connection;

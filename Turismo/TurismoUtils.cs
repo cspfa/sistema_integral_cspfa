@@ -751,32 +751,43 @@ namespace SOCIOS.Turismo
 
         public  Montos_Bono Montos_Bono(int pBono)
         {
-            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS,CONTRALOR from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
-           
+            string QUERY = "select EFECTIVO,TARJETA_CREDITO,TARJETA_CREDITO_CUOTAS,TARJETA_DEBITO,PLANILLA,PLANILLA_CUOTAS,CONTRALOR,TRANSFER from  BONO_TURISMO WHERE   ID= " + pBono.ToString();// +" and ROL='" + VGlobales.vp_role + "' ";
+            
             DataRow[] foundRows;
             Montos_Bono mb = new bono.Montos_Bono();
-
+            decimal Total = 0;
             foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
 
 
             if (foundRows.Length > 0)
             {
-                mb.Efectivo = Decimal.Round(Decimal.Parse(foundRows[0][0].ToString()), 2).ToString();
+                if (foundRows[0][0].ToString().Length > 0)
+                {
+                    mb.Efectivo = Decimal.Round(Decimal.Parse(foundRows[0][0].ToString()), 2).ToString();
+                    Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][0].ToString()), 2);
+                }
+                else
+                    mb.Efectivo = "0";
 
                 if (foundRows[0][2].ToString() != "0")
                 {
                     mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + foundRows[0][2].ToString() + " Cuotas";
-
+                    Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2);
                 }
                 else
                     mb.Credito = "0";
-
-                mb.Debito = Decimal.Round(Decimal.Parse(foundRows[0][3].ToString()), 2).ToString();
+                
+                if (foundRows[0][3].ToString().Length > 0)
+                {    mb.Debito = Decimal.Round(Decimal.Parse(foundRows[0][3].ToString()), 2).ToString();
+                    Total = Total  +  Decimal.Round(Decimal.Parse(foundRows[0][3].ToString()), 2);
+                }
+                else
+                    mb.Debito = "0";
 
                 if (foundRows[0][5].ToString() != "0")
                 {
                     mb.Planilla = Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2).ToString() + " - " + foundRows[0][5].ToString() + " Cuotas";
-
+                    Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2);
                 }
                 else
                     mb.Planilla = "0";
@@ -789,7 +800,16 @@ namespace SOCIOS.Turismo
                 else
                     mb.CONTRALOR = "";
 
+                if (foundRows[0][7].ToString().Length > 0)
+                {
+                    mb.Transfer = foundRows[0][7].ToString();
+                    Total = Total + Decimal.Round(Decimal.Parse( foundRows[0][7].ToString()),2);
 
+                }
+                else
+                    mb.Transfer = "";
+
+                mb.TOTAL = Total.ToString("0.##");
 
             }
             return mb;

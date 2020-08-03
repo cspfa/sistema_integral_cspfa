@@ -60,7 +60,9 @@ namespace SOCIOS.bono
         public int     Planilla_Cuotas    = 0;
 
         public decimal Transfrencia = 0;
-
+        public decimal Total        = 0;
+        public decimal Gastos_Gestion = 0;
+        public DateTime? Fecha_Paquete;
 
         
 
@@ -106,7 +108,7 @@ namespace SOCIOS.bono
             //int AnioDto =Int32.Parse(Config.getValor("CREDITOS", "FECHA_DTO", 0));
             //int MesDto = Int32.Parse(Config.getValor("CREDITOS", "FECHA_DTO", 1));
             
-            dpSeniaFecha.Value =  new DateTime(System.DateTime.Now.AddMonths(1).Year,System.DateTime.Now.AddMonths(1).Month,1);
+            dpSeniaFecha.Value =  new DateTime(System.DateTime.Now.Year,System.DateTime.Now.Month,1);
 
             if (pFecha_Referencia_Cuotas != null)
             {
@@ -299,6 +301,7 @@ namespace SOCIOS.bono
         private void btnGrabar_Click(object sender, EventArgs e)
         {
             tipoPago = this.GetTipoPago();
+         
 
             try
             {
@@ -370,7 +373,7 @@ namespace SOCIOS.bono
                         Control_Efectivo(Efectivo);
                         Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
                         Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
-                       
+                        Gastos_Gestion = Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
                         
                         break;
                     case 7:
@@ -406,7 +409,7 @@ namespace SOCIOS.bono
                         Tarjeta_credito_cuotas = Tarjeta_credito_cuotas;
                          Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2);
                          Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
-
+                       Gastos_Gestion=  Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
                         break;
 
                     case 5:
@@ -427,6 +430,7 @@ namespace SOCIOS.bono
                         SaldoIngreso = 0;
                         Planilla = Decimal.Round(Decimal.Parse(lblSaldo.Text), 2);
                         Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
+                       Gastos_Gestion = Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
                         break;
                     case 6:
                         //Todo en Financiacion Efectivo
@@ -471,7 +475,7 @@ namespace SOCIOS.bono
                         formaPago = formaPago + ", Financiacion Efectivo $" + lbSaldoSenia.Text + "a Pagarse en " + tbSeniaCantidadCuotas.Text + " Cuota/s de   $" + lbMontoCuotaSenia.Text.ToString();
                         Tarjeta_Debito = Decimal.Parse(lbMonto1.Text);
                         SaldoIngreso = Tarjeta_Debito;
-                        //Efectivo = SaldoIngreso;
+                       // Efectivo = Decimal.Round(Decimal.Parse(lbSaldoSenia.Text), 2);
 
 
                     break;
@@ -490,7 +494,7 @@ namespace SOCIOS.bono
 
                         Tarjeta_credito        = SaldoIngreso;
                         Tarjeta_credito_cuotas = Tarjeta_credito_cuotas;
-                       // Efectivo               = Decimal.Parse(lbMonto2.Text);
+                       // Efectivo               = Decimal.Round( Decimal.Parse(lbSaldoSenia.Text),2);
 
                     break;
                  
@@ -538,6 +542,15 @@ namespace SOCIOS.bono
 
         }
 
+
+        public decimal Total_Actualizado()
+        {
+
+
+
+
+            return decimal.Round(Saldo + Gastos_Gestion, 2);
+        }
 
         private void ValidarTarjeta()
 
@@ -1030,7 +1043,10 @@ namespace SOCIOS.bono
                         tbMontoCuotas.Text = Decimal.Round((Saldo / CantidadCuotas), 2).ToString();
 
                     if (CantidadCuotas <= 1)
+                    {
                         lbGestion.Text = "";
+                        lbGestionLeyenda.Text = "";
+                    }
                 }
                 else
                 {
@@ -1087,8 +1103,9 @@ namespace SOCIOS.bono
 
 
             lbGestion.Visible = true;
-
-            lbGestion.Text = "Gastos Gestion  $ " + Decimal.Round(SaldoMonto,2).ToString();
+            lbGestionLeyenda.Visible = true;
+            lbGestionLeyenda.Text = "Gastos Gestion  $ ";
+            lbGestion.Text =  Decimal.Round(SaldoMonto,2).ToString();
             RecargoCuota =  Recargo;
             tbMontoCuotas.Text =  Decimal.Round((Saldo+SaldoMonto)/Cuotas,2).ToString();
 
@@ -1126,7 +1143,7 @@ namespace SOCIOS.bono
             {
                 int CantidadCuotas = Int32.Parse(tbSeniaCantidadCuotas.Text);
                 //Controlar maximo de cuotas !
-
+                MaxCuotas = Cantidad_Control_Fechas_Cuota;
                 if (CantidadCuotas <= MaxCuotas)
                 {
                     decimal Saldo = Decimal.Round(Decimal.Parse(lbSaldoSenia.Text));
@@ -1212,7 +1229,7 @@ namespace SOCIOS.bono
                 {
                     Tope_Cuotas(Fecha_Referencia_Cuotas);
                     lbCantidadMaximaCuotas_Efectivo.Text = "Cantidad cuotas Maximas " + Cantidad_Control_Fechas_Cuota.ToString();
-                    lbCantidadMaximaCuotas_Efectivo.Text = "Cantidad cuotas Maximas " + Cantidad_Control_Fechas_Cuota.ToString();
+
                 }
             }
             catch (Exception ex)
@@ -1224,9 +1241,13 @@ namespace SOCIOS.bono
         }
         private void Tope_Cuotas(DateTime fecha)
         {
-            Cantidad_Control_Fechas_Cuota = (fecha - System.DateTime.Now).Days;
+            Cantidad_Control_Fechas_Cuota = ((fecha - System.DateTime.Now).Days / 30);
+
+
             if (Cantidad_Control_Fechas_Cuota == 0)
                 Cantidad_Control_Fechas_Cuota = 1;
+            if (Cantidad_Control_Fechas_Cuota < 0)
+                Cantidad_Control_Fechas_Cuota = Cantidad_Control_Fechas_Cuota * (-1);
         }
     }
 }
