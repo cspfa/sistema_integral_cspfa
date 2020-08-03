@@ -1011,6 +1011,10 @@
     <Compile Include="Turismo\Salidas.designer.cs">
       <DependentUpon>Salidas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Turismo\Salidas_Insert_Masivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Turismo\Salidas_Insert_Masivo.Designer.cs" />
     <Compile Include="Turismo\Solicitudes\Clases.cs" />
     <Compile Include="Turismo\Solicitudes\Personas_Solicitud.cs">
       <SubType>Form</SubType>
@@ -1704,6 +1708,7 @@
     <EmbeddedResource Include="Turismo\Salidas.resx">
       <DependentUpon>Salidas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Turismo\Salidas_Insert_Masivo.resx" />
     <EmbeddedResource Include="Turismo\Solicitudes\Personas_Solicitud.resx">
       <DependentUpon>Personas_Solicitud.cs</DependentUpon>
     </EmbeddedResource>

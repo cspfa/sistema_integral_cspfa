@@ -2310,5 +2310,11 @@ namespace SOCIOS
             SOCIOS.interior.Vouchers_Social vs = new interior.Vouchers_Social();
             vs.ShowDialog();
         }
+
+        private void SalidasCreacionMasivaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Turismo.Salidas_Insert_Masivo sim = new Turismo.Salidas_Insert_Masivo();
+            sim.ShowDialog();
+        }
     }
 }
