@@ -1003,9 +1003,9 @@ namespace SOCIOS
 
                 for (int i = 0; i <= foundRows.Length - 1; i++)
                 {
-                    html += "<table width='750' style='margin-top:700px;' border='0' cellspacing='2'>";
+                    html += "<table width='750' style='margin-top:650px;' border='0' cellspacing='2'>";
 
-                    html += "<tr><td colspan='3' style='font-size:12px;' align='center'>C&iacute;rculo de Suboficiales de la Polic&iacute;a Federal Argentina <div>Asociaci&oacute;n Civil Fundada el 7 de Marzo de 1957 con Personer&iacute;a Jur&iacute;dica Otorgada el 26 de Mayo de 1958 <br/> CUIT: 30-51658821-3 </div> </td></tr>";
+                    //html += "<tr><td colspan='3' style='font-size:12px;' align='center'>C&iacute;rculo de Suboficiales de la Polic&iacute;a Federal Argentina <div>Asociaci&oacute;n Civil Fundada el 7 de Marzo de 1957 con Personer&iacute;a Jur&iacute;dica Otorgada el 26 de Mayo de 1958 <br/> CUIT: 30-51658821-3 </div> </td></tr>";
 
                     html += "<tr><td colspan='3'><div align='center' style='font-size:12px;font-weight:bold;'>AUTORIZACI&Oacute;N ALTA DESCUENTO</div></td></tr>";
 
@@ -1017,7 +1017,7 @@ namespace SOCIOS
 
                     html += "<tr><td><div style='float:left;font-size:18px;background-color:#000;color:#fff;font-weight:bold;padding:2px 4px;'>LP: " + foundRows[i][6] + "</div></td><td>&nbsp;</td><td style='font-size:12px;'>NRO SOCIO: <strong>" + foundRows[i][5] + "</strong></td></tr>";
 
-                    html += "<tr style='font-size:12px;'><td colspan='3' style='border:1px solid #333;padding:6px;'>Autorizo en este acto al CSPFA a efectuar el descuento mensual de la Cuota Societaria de mis Haberes seg&uacute;n detalle, firmando al pie de la presente en conformidad.-</td></tr>";
+                    html += "<tr style='font-size:12px;'><td colspan='3' style='border:1px solid #333;padding:6px;'>Autorizo en este acto al Círculo de Suboficiales de la Policía Federal Argentina a efectuar el descuento mensual de la Cuota Societaria de mis Haberes seg&uacute;n detalle, firmando al pie de la presente en conformidad.-</td></tr>";
 
                     html += "<tr style='font-size:12px;'><td align='center' style='border:1px solid #CCC;'>CONCEPTO</td><td align='center' style='border:1px solid #CCC;'>COD.DTO.</td><td align='center' style='border:1px solid #CCC;'>HABERES</td></tr>";
 
@@ -1029,7 +1029,7 @@ namespace SOCIOS
 
                     html += "</table>";
 
-                    html += "<br style='page-break-after: always;' />";
+                    //html += "<br style='page-break-after: always;' />";
 
                 }
 

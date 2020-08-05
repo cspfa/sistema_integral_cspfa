@@ -1030,10 +1030,10 @@ namespace SOCIOS
                 string query = "";
 
                 if (DEPO == 0)
-                    query = "SELECT ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA, EXPORTADA, ID_ROL FROM CAJA_DIARIA WHERE DEPOSITADA IN (0,1,2) AND ROL = '" + VGlobales.vp_role + "' ORDER BY ID_ROL DESC;";
+                    query = "SELECT ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA, EXPORTADA, ID_ROL FROM CAJA_DIARIA WHERE DEPOSITADA IN (0,1,2) AND ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC;";
 
                 if (DEPO == 1)
-                    query = "SELECT ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA, EXPORTADA, ID_ROL FROM CAJA_DIARIA WHERE DEPOSITADA = 1 AND ROL = '" + VGlobales.vp_role + "' ORDER BY ID_ROL DESC;";
+                    query = "SELECT ID, FECHA, US_ALTA, FE_ALTA, INGRESOS_EFECTIVO, INGRESOS_OTROS, SUBTOTAL_INGRESOS, EGRESOS, SALDO_CAJA, TOTAL, DEPOSITADA, EXPORTADA, ID_ROL FROM CAJA_DIARIA WHERE DEPOSITADA = 1 AND ROL = '" + VGlobales.vp_role + "' ORDER BY FECHA DESC;";
 
                 FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
                 cs.DataSource = ini3.Servidor; cs.Port = int.Parse(ini3.Puerto);
@@ -1394,7 +1394,7 @@ namespace SOCIOS
                 connection.Open();
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
-                string query = "SELECT CAMBIO FROM CAJA_CAMBIO WHERE CAJA_DIARIA = " + CAJA;
+                string query = "SELECT FIRST 1 CC.CAMBIO FROM CAJA_CAMBIO CC, CAJA_DIARIA CD WHERE CD.ID_ROL = " + CAJA + " AND CC.CAJA_DIARIA = CD.ID;";
                 FbCommand cmd = new FbCommand(query, connection, transaction);
                 cmd.CommandText = query;
                 cmd.Connection = connection;

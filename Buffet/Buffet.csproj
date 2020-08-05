@@ -61,7 +61,7 @@
       <HintPath>C:\CSPFA_SOCIOS\MicroFour.StrataFrame.Lzma.x86.Net4.dll</HintPath>
     </Reference>
     <Reference Include="SOCIOS">
-      <HintPath>C:\CSPFA_SOCIOS\SOCIOS.exe</HintPath>
+      <HintPath>..\bin\x86\Debug\SOCIOS.exe</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

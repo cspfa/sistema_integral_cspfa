@@ -412,6 +412,8 @@
             this.label40 = new System.Windows.Forms.Label();
             this.tpSolicitud = new System.Windows.Forms.TabPage();
             this.gbSolicitudesCompras = new System.Windows.Forms.GroupBox();
+            this.cBoxTipoFiltro = new System.Windows.Forms.CheckBox();
+            this.cBoxSectorFiltro = new System.Windows.Forms.CheckBox();
             this.cbFiltroFecha = new System.Windows.Forms.CheckBox();
             this.cbPteRtaFiltro = new System.Windows.Forms.ComboBox();
             this.label138 = new System.Windows.Forms.Label();
@@ -512,8 +514,6 @@
             this.label119 = new System.Windows.Forms.Label();
             this.label115 = new System.Windows.Forms.Label();
             this.label116 = new System.Windows.Forms.Label();
-            this.cBoxSectorFiltro = new System.Windows.Forms.CheckBox();
-            this.cBoxTipoFiltro = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.themedGroupBox2)).BeginInit();
@@ -631,7 +631,7 @@
             // lbIdArticulo
             // 
             this.lbIdArticulo.AutoSize = true;
-            this.lbIdArticulo.Location = new System.Drawing.Point(215, 658);
+            this.lbIdArticulo.Location = new System.Drawing.Point(215, 616);
             this.lbIdArticulo.Name = "lbIdArticulo";
             this.lbIdArticulo.Size = new System.Drawing.Size(78, 13);
             this.lbIdArticulo.TabIndex = 59;
@@ -640,7 +640,7 @@
             // btnCancelarEdicion
             // 
             this.btnCancelarEdicion.Image = global::SOCIOS.Properties.Resources.arrow_undo;
-            this.btnCancelarEdicion.Location = new System.Drawing.Point(7, 651);
+            this.btnCancelarEdicion.Location = new System.Drawing.Point(7, 609);
             this.btnCancelarEdicion.Name = "btnCancelarEdicion";
             this.btnCancelarEdicion.Size = new System.Drawing.Size(26, 26);
             this.btnCancelarEdicion.TabIndex = 58;
@@ -651,7 +651,7 @@
             // btnContabilizar
             // 
             this.btnContabilizar.Image = global::SOCIOS.Properties.Resources.calculator_add;
-            this.btnContabilizar.Location = new System.Drawing.Point(131, 651);
+            this.btnContabilizar.Location = new System.Drawing.Point(131, 609);
             this.btnContabilizar.Name = "btnContabilizar";
             this.btnContabilizar.Size = new System.Drawing.Size(26, 26);
             this.btnContabilizar.TabIndex = 57;
@@ -662,7 +662,7 @@
             // btnEliminarArticulo
             // 
             this.btnEliminarArticulo.Image = global::SOCIOS.Properties.Resources.delete;
-            this.btnEliminarArticulo.Location = new System.Drawing.Point(100, 651);
+            this.btnEliminarArticulo.Location = new System.Drawing.Point(100, 609);
             this.btnEliminarArticulo.Name = "btnEliminarArticulo";
             this.btnEliminarArticulo.Size = new System.Drawing.Size(26, 26);
             this.btnEliminarArticulo.TabIndex = 56;
@@ -673,7 +673,7 @@
             // lbID
             // 
             this.lbID.AutoSize = true;
-            this.lbID.Location = new System.Drawing.Point(296, 658);
+            this.lbID.Location = new System.Drawing.Point(296, 616);
             this.lbID.Name = "lbID";
             this.lbID.Size = new System.Drawing.Size(74, 13);
             this.lbID.TabIndex = 54;
@@ -682,7 +682,7 @@
             // btnModFactura
             // 
             this.btnModFactura.Enabled = false;
-            this.btnModFactura.Location = new System.Drawing.Point(714, 652);
+            this.btnModFactura.Location = new System.Drawing.Point(714, 610);
             this.btnModFactura.Name = "btnModFactura";
             this.btnModFactura.Size = new System.Drawing.Size(210, 25);
             this.btnModFactura.TabIndex = 55;
@@ -692,7 +692,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(930, 652);
+            this.button4.Location = new System.Drawing.Point(930, 610);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(104, 25);
             this.button4.TabIndex = 51;
@@ -703,7 +703,7 @@
             // btnModArt
             // 
             this.btnModArt.Image = ((System.Drawing.Image)(resources.GetObject("btnModArt.Image")));
-            this.btnModArt.Location = new System.Drawing.Point(69, 651);
+            this.btnModArt.Location = new System.Drawing.Point(69, 609);
             this.btnModArt.Name = "btnModArt";
             this.btnModArt.Size = new System.Drawing.Size(26, 26);
             this.btnModArt.TabIndex = 48;
@@ -713,7 +713,7 @@
             // 
             // btnGuardarFactura
             // 
-            this.btnGuardarFactura.Location = new System.Drawing.Point(539, 652);
+            this.btnGuardarFactura.Location = new System.Drawing.Point(539, 610);
             this.btnGuardarFactura.Name = "btnGuardarFactura";
             this.btnGuardarFactura.Size = new System.Drawing.Size(169, 25);
             this.btnGuardarFactura.TabIndex = 52;
@@ -1074,7 +1074,7 @@
             // btAgregarArticulo
             // 
             this.btAgregarArticulo.Image = global::SOCIOS.Properties.Resources.add;
-            this.btAgregarArticulo.Location = new System.Drawing.Point(38, 651);
+            this.btAgregarArticulo.Location = new System.Drawing.Point(38, 609);
             this.btAgregarArticulo.Name = "btAgregarArticulo";
             this.btAgregarArticulo.Size = new System.Drawing.Size(26, 26);
             this.btAgregarArticulo.TabIndex = 6;
@@ -1461,7 +1461,7 @@
             this.dgArticulos.RowTemplate.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(2);
             this.dgArticulos.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dgArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgArticulos.Size = new System.Drawing.Size(1023, 156);
+            this.dgArticulos.Size = new System.Drawing.Size(1023, 118);
             this.dgArticulos.TabIndex = 46;
             this.dgArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgArticulos_CellClick);
             this.dgArticulos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgArticulos_CellContentClick);
@@ -1634,6 +1634,7 @@
             this.gbFacturas.Size = new System.Drawing.Size(1039, 223);
             this.gbFacturas.TabIndex = 55;
             this.gbFacturas.Title = "FACTURAS";
+            this.gbFacturas.Visible = false;
             this.gbFacturas.TitleHeadingGradientBegin = System.Drawing.Color.SteelBlue;
             this.gbFacturas.TitleHeadingGradientEnd = System.Drawing.Color.SteelBlue;
             this.gbFacturas.TitleShadow = false;
@@ -4723,6 +4724,24 @@
             this.gbSolicitudesCompras.TabStop = false;
             this.gbSolicitudesCompras.Text = "SOLICITUDES";
             // 
+            // cBoxTipoFiltro
+            // 
+            this.cBoxTipoFiltro.AutoSize = true;
+            this.cBoxTipoFiltro.Location = new System.Drawing.Point(922, 30);
+            this.cBoxTipoFiltro.Name = "cBoxTipoFiltro";
+            this.cBoxTipoFiltro.Size = new System.Drawing.Size(15, 14);
+            this.cBoxTipoFiltro.TabIndex = 132;
+            this.cBoxTipoFiltro.UseVisualStyleBackColor = true;
+            // 
+            // cBoxSectorFiltro
+            // 
+            this.cBoxSectorFiltro.AutoSize = true;
+            this.cBoxSectorFiltro.Location = new System.Drawing.Point(692, 30);
+            this.cBoxSectorFiltro.Name = "cBoxSectorFiltro";
+            this.cBoxSectorFiltro.Size = new System.Drawing.Size(15, 14);
+            this.cBoxSectorFiltro.TabIndex = 131;
+            this.cBoxSectorFiltro.UseVisualStyleBackColor = true;
+            // 
             // cbFiltroFecha
             // 
             this.cbFiltroFecha.AutoSize = true;
@@ -5683,24 +5702,6 @@
             this.label116.Size = new System.Drawing.Size(32, 13);
             this.label116.TabIndex = 66;
             this.label116.Text = "TIPO";
-            // 
-            // cBoxSectorFiltro
-            // 
-            this.cBoxSectorFiltro.AutoSize = true;
-            this.cBoxSectorFiltro.Location = new System.Drawing.Point(692, 30);
-            this.cBoxSectorFiltro.Name = "cBoxSectorFiltro";
-            this.cBoxSectorFiltro.Size = new System.Drawing.Size(15, 14);
-            this.cBoxSectorFiltro.TabIndex = 131;
-            this.cBoxSectorFiltro.UseVisualStyleBackColor = true;
-            // 
-            // cBoxTipoFiltro
-            // 
-            this.cBoxTipoFiltro.AutoSize = true;
-            this.cBoxTipoFiltro.Location = new System.Drawing.Point(922, 30);
-            this.cBoxTipoFiltro.Name = "cBoxTipoFiltro";
-            this.cBoxTipoFiltro.Size = new System.Drawing.Size(15, 14);
-            this.cBoxTipoFiltro.TabIndex = 132;
-            this.cBoxTipoFiltro.UseVisualStyleBackColor = true;
             // 
             // compras
             // 

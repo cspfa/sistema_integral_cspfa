@@ -265,6 +265,12 @@ namespace SOCIOS.registroSocios
 
         private void generarListaAspirantes(string ARCHIVO)
         {
+            if(tbNombreHoja.Text.Trim() == "")
+            {
+                MessageBox.Show("ESCRIBIR EL NOMBRE DE LA HOJA");
+                return;
+            }
+
             List<ASPIRANTES> ASPIRANTES = new List<ASPIRANTES>();
             OleDbConnection con = new System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + ARCHIVO + ";Mode=ReadWrite;Extended Properties=\"Excel 12.0 Xml;HDR=YES;IMEX=1\"");
             con.Open();
@@ -287,14 +293,20 @@ namespace SOCIOS.registroSocios
                 try
                 {
                     //string ORDEN =     table.Rows[i][0].ToString().Replace(".", "");
-                    string ELEPE = table.Rows[i][0].ToString().Replace(".", "");
                     //string APELLIDOS = table.Rows[i][2].ToString().Trim().ToUpper();
-                    string NOMBRES = table.Rows[i][2].ToString().Trim().ToUpper();
                     //string GENERO =    table.Rows[i][4].ToString().Trim().ToUpper();
                     //string ALTA =      table.Rows[i][5].ToString();
-                    string S_DNI = table.Rows[i][1].ToString().Replace(".", "");
-                    string AFIL = table.Rows[i][3].ToString().Replace(".", "");
                     //string ESCALAFON = table.Rows[i][5].ToString().Trim().ToUpper();
+
+                    string ELEPE = table.Rows[i][0].ToString().Replace(".", "");
+                    string S_DNI = table.Rows[i][1].ToString().Replace(".", "");
+                    string NOMBRES = table.Rows[i][2].ToString().Trim().ToUpper();
+                    string AFIL = table.Rows[i][3].ToString().Replace(".", "");
+
+                    if(S_DNI.Count() > 8)
+                    {
+                        S_DNI = S_DNI.Substring(2, 8);
+                    }
 
                     /*if (ORDEN != "")
                         ORD = int.Parse(ORDEN);*/

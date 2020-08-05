@@ -52,7 +52,7 @@ namespace SOCIOS
             comboTipoCheques();
             ACCION = "NUEVA";
 
-            if (VGlobales.vp_role != "TESORERIA" || VGlobales.vp_role != "CONTADURIA")
+            if (VGlobales.vp_role != "TESORERIA" && VGlobales.vp_role != "CONTADURIA")
             {
                 tabControl1.TabPages.Remove(tabPage1);
                 tabControl1.TabPages.Remove(tabAdjuntos);
@@ -1225,12 +1225,12 @@ namespace SOCIOS
 
         private void agregarModificarArticulo(string ACCION, int ID_ARTICULO, object sender)
         {
-            if (tbImporte.Text == "")
+            /*if (tbImporte.Text == "")
             {
                 MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
                 tbImporte.Focus();
             }
-            else if (tbCantidad.Text == "")
+            else*/ if (tbCantidad.Text == "")
             {
                 MessageBox.Show("COMPLETAR EL CAMPO CANTIDAD", "ERROR");
                 tbCantidad.Focus();
