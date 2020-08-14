@@ -426,6 +426,7 @@ namespace SOCIOS.Turismo.Solicitudes
                          else
                              Bloqueo = false;
 
+
                          dLog.HABITACION_HOTEL_OCUPACION_I(h.Fecha, Solicitud.Nro_Socio, Solicitud.Nro_Dep,Solicitud.Barra, Solicitud.Nombre, Solicitud.Apellido, Solicitud.DNI, h.Habitacion_ID, h.Disponibles, Bloqueo, Solicitud.ID, Registro);
 
                          foreach (GridPersona p in h.Personas)

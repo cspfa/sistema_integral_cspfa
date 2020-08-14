@@ -42,6 +42,7 @@ namespace SOCIOS.Turismo.Hoteles
             dataGridDispo.Columns[1].Visible = false;
             dataGridDispo.Columns[2].Visible = false;
             dataGridDispo.Columns[11].Visible = false;
+
         
         
         }
@@ -68,6 +69,7 @@ namespace SOCIOS.Turismo.Hoteles
                 {
                     du.Liberar_Ocupacion(ID);
                     this.LoadData(Habitacion, dpFecha.Value);
+
 
                 }
               
