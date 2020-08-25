@@ -41,6 +41,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tbPorcentaje = new System.Windows.Forms.TextBox();
             this.gpPlanilla = new System.Windows.Forms.GroupBox();
+            this.lbGestionLeyenda = new System.Windows.Forms.Label();
             this.lbCantidadMaximaCuotas = new System.Windows.Forms.Label();
             this.lbGestion = new System.Windows.Forms.Label();
             this.tbContralor = new System.Windows.Forms.TextBox();
@@ -75,7 +76,6 @@
             this.tbTBreferencia = new System.Windows.Forms.TextBox();
             this.rbTBCiudad = new System.Windows.Forms.RadioButton();
             this.rbTBPatagonia = new System.Windows.Forms.RadioButton();
-            this.lbGestionLeyenda = new System.Windows.Forms.Label();
             this.gpPago.SuspendLayout();
             this.gpPlanilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -224,6 +224,17 @@
             this.gpPlanilla.Text = "Financiacion Planilla";
             this.gpPlanilla.Visible = false;
             // 
+            // lbGestionLeyenda
+            // 
+            this.lbGestionLeyenda.AutoSize = true;
+            this.lbGestionLeyenda.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbGestionLeyenda.Location = new System.Drawing.Point(394, 20);
+            this.lbGestionLeyenda.Name = "lbGestionLeyenda";
+            this.lbGestionLeyenda.Size = new System.Drawing.Size(55, 13);
+            this.lbGestionLeyenda.TabIndex = 90;
+            this.lbGestionLeyenda.Text = "GESTION";
+            this.lbGestionLeyenda.Visible = false;
+            // 
             // lbCantidadMaximaCuotas
             // 
             this.lbCantidadMaximaCuotas.AutoSize = true;
@@ -240,9 +251,9 @@
             this.lbGestion.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.lbGestion.Location = new System.Drawing.Point(445, 50);
             this.lbGestion.Name = "lbGestion";
-            this.lbGestion.Size = new System.Drawing.Size(55, 13);
+            this.lbGestion.Size = new System.Drawing.Size(13, 13);
             this.lbGestion.TabIndex = 88;
-            this.lbGestion.Text = "GESTION";
+            this.lbGestion.Text = "0";
             this.lbGestion.Visible = false;
             // 
             // tbContralor
@@ -556,17 +567,6 @@
             this.rbTBPatagonia.TabStop = true;
             this.rbTBPatagonia.Text = "PATAGONIA";
             this.rbTBPatagonia.UseVisualStyleBackColor = true;
-            // 
-            // lbGestionLeyenda
-            // 
-            this.lbGestionLeyenda.AutoSize = true;
-            this.lbGestionLeyenda.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lbGestionLeyenda.Location = new System.Drawing.Point(394, 20);
-            this.lbGestionLeyenda.Name = "lbGestionLeyenda";
-            this.lbGestionLeyenda.Size = new System.Drawing.Size(55, 13);
-            this.lbGestionLeyenda.TabIndex = 90;
-            this.lbGestionLeyenda.Text = "GESTION";
-            this.lbGestionLeyenda.Visible = false;
             // 
             // PagoBonos
             // 
