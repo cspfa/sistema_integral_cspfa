@@ -28,44 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnFiltro = new System.Windows.Forms.Button();
-            this.cbFiltro = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dpHasta = new System.Windows.Forms.DateTimePicker();
             this.dpDesde = new System.Windows.Forms.DateTimePicker();
-            this.dgvStats = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).BeginInit();
+            this.XLS = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btnFiltro
-            // 
-            this.btnFiltro.Location = new System.Drawing.Point(600, 13);
-            this.btnFiltro.Name = "btnFiltro";
-            this.btnFiltro.Size = new System.Drawing.Size(95, 23);
-            this.btnFiltro.TabIndex = 95;
-            this.btnFiltro.Text = "BUSCAR";
-            this.btnFiltro.UseVisualStyleBackColor = true;
-            this.btnFiltro.Click += new System.EventHandler(this.btnFiltro_Click);
-            // 
-            // cbFiltro
-            // 
-            this.cbFiltro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFiltro.FormattingEnabled = true;
-            this.cbFiltro.Location = new System.Drawing.Point(428, 13);
-            this.cbFiltro.Name = "cbFiltro";
-            this.cbFiltro.Size = new System.Drawing.Size(130, 21);
-            this.cbFiltro.TabIndex = 94;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(377, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
-            this.label3.TabIndex = 93;
-            this.label3.Text = "FILTRO";
             // 
             // label2
             // 
@@ -101,30 +69,28 @@
             this.dpDesde.Size = new System.Drawing.Size(88, 20);
             this.dpDesde.TabIndex = 89;
             // 
-            // dgvStats
+            // XLS
             // 
-            this.dgvStats.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStats.Location = new System.Drawing.Point(12, 48);
-            this.dgvStats.Name = "dgvStats";
-            this.dgvStats.Size = new System.Drawing.Size(814, 201);
-            this.dgvStats.TabIndex = 96;
+            this.XLS.Location = new System.Drawing.Point(372, 11);
+            this.XLS.Name = "XLS";
+            this.XLS.Size = new System.Drawing.Size(75, 23);
+            this.XLS.TabIndex = 97;
+            this.XLS.Text = "XLS";
+            this.XLS.UseVisualStyleBackColor = true;
+            this.XLS.Click += new System.EventHandler(this.XLS_Click);
             // 
             // Stats
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 261);
-            this.Controls.Add(this.dgvStats);
-            this.Controls.Add(this.btnFiltro);
-            this.Controls.Add(this.cbFiltro);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(471, 40);
+            this.Controls.Add(this.XLS);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dpHasta);
             this.Controls.Add(this.dpDesde);
             this.Name = "Stats";
             this.Text = "Stats";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvStats)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -132,13 +98,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnFiltro;
-        private System.Windows.Forms.ComboBox cbFiltro;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dpHasta;
         private System.Windows.Forms.DateTimePicker dpDesde;
-        private System.Windows.Forms.DataGridView dgvStats;
+        private System.Windows.Forms.Button XLS;
     }
 }

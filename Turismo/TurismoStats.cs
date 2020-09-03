@@ -31,6 +31,9 @@ namespace SOCIOS.Turismo
         public string Plazas { get; set; }
         
     }
+
+
+
   
     public class TurismoStats
     {
@@ -154,7 +157,9 @@ where B.TIPO='HOT' and V.BONO=B.ID and H.ID=V.HOTEL and B.FE_BONO > '" + Desde +
                 m.Total = foundRows[I][9].ToString();
                 m.Obs = foundRows[I][10].ToString();
                 m.Obs_Pago = foundRows[I][11].ToString();
-                m.Noches = foundRows[I][12].ToString();
+                m.Noches = foundRows[I][13].ToString();
+                m.Plazas =  (Int32.Parse(m.Noches) * Int32.Parse(m.Pax)).ToString();
+
                 I = I + 1;
                 lista.Add(m);
 
