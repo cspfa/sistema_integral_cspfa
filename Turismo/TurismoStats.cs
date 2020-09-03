@@ -108,7 +108,7 @@ where B.ID = BTP.BONO and  BTP.DESTINO= L.LOCALIDADID AND B.TIPO='PAS' and B.FE_
                 m.Contado         = foundRows[I][6].ToString();
                 m.PLanilla        = foundRows[I][7].ToString();
                 m.Cuotas          = foundRows[I][8].ToString();
-                if (m.Cuotas.Length > 0)
+                if (m.Cuotas.Length > 1)
                     m.Valor_Cuota = Decimal.Round(Decimal.Parse(m.PLanilla) / Decimal.Parse(m.Cuotas), 2).ToString();
                 m.Total           = foundRows[I][9].ToString();
                 m.Obs             = foundRows[I][10].ToString();

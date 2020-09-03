@@ -60,12 +60,12 @@ namespace SOCIOS.Turismo
             xlWorkBook = xlApp.Workbooks.Add();
             Excel.Worksheet HOTEL;
             HOTEL = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-           
+            Excel.Worksheet PASAJE;
+            PASAJE = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
 
             HOTEL = xlWorkBook.Worksheets[1];
             HOTEL.Name = "HOTELES";
-            Excel.Worksheet PASAJE;
-            PASAJE = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+          
             PASAJE.Name = "PASAJES";
             PASAJE = xlWorkBook.Worksheets[2];
 
@@ -101,7 +101,7 @@ namespace SOCIOS.Turismo
                  HOTEL.Cells[I, 13] = m.Obs_Pago;
                 I = I + 1;
             }
-            I = 2;
+            int I_ = 2;
 
             PASAJE.Cells[1, 1] = "NRO";
             PASAJE.Cells[1, 2] = "FECHA";
@@ -120,19 +120,19 @@ namespace SOCIOS.Turismo
 
             foreach (Memoria m in (new TurismoStats()).Stats_Memoria_Pasajes(desde, hasta))
             {
-                PASAJE.Cells[I, 1] = m.Nro_Solicitud;
-                PASAJE.Cells[I, 2] = m.Fecha; 
-                PASAJE.Cells[I, 3] = m.Nombre_Apellido;
-                PASAJE.Cells[I, 4] = m.Destino;
-                PASAJE.Cells[I, 5] = m.Pax;
+                PASAJE.Cells[I_, 1] = m.Nro_Solicitud;
+                PASAJE.Cells[I_, 2] = m.Fecha; 
+                PASAJE.Cells[I_, 3] = m.Nombre_Apellido;
+                PASAJE.Cells[I_, 4] = m.Destino;
+                PASAJE.Cells[I_, 5] = m.Pax;
                
-                PASAJE.Cells[I, 6] = m.Contado;
-                PASAJE.Cells[I, 7] = m.Cuotas;
-                PASAJE.Cells[I, 8] = m.Valor_Cuota;
-                PASAJE.Cells[I, 9] = m.Total;
-                PASAJE.Cells[I, 10] = m.Obs;
-                PASAJE.Cells[I, 11] = m.Obs_Pago;
-                I = I + 1;
+                PASAJE.Cells[I_, 6] = m.Contado;
+                PASAJE.Cells[I_, 7] = m.Cuotas;
+                PASAJE.Cells[I_, 8] = m.Valor_Cuota;
+                PASAJE.Cells[I_, 9] = m.Total;
+                PASAJE.Cells[I_, 10] = m.Obs;
+                PASAJE.Cells[I_, 11] = m.Obs_Pago;
+                I_ = I_ + 1;
             }
 
 
