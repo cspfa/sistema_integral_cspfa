@@ -38,7 +38,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(200, 16);
+            this.label2.Location = new System.Drawing.Point(30, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 92;
@@ -56,7 +56,7 @@
             // dpHasta
             // 
             this.dpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dpHasta.Location = new System.Drawing.Point(260, 12);
+            this.dpHasta.Location = new System.Drawing.Point(79, 42);
             this.dpHasta.Name = "dpHasta";
             this.dpHasta.Size = new System.Drawing.Size(88, 20);
             this.dpHasta.TabIndex = 90;
@@ -71,9 +71,9 @@
             // 
             // XLS
             // 
-            this.XLS.Location = new System.Drawing.Point(372, 11);
+            this.XLS.Location = new System.Drawing.Point(12, 89);
             this.XLS.Name = "XLS";
-            this.XLS.Size = new System.Drawing.Size(75, 23);
+            this.XLS.Size = new System.Drawing.Size(181, 23);
             this.XLS.TabIndex = 97;
             this.XLS.Text = "XLS";
             this.XLS.UseVisualStyleBackColor = true;
@@ -83,14 +83,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(471, 40);
+            this.ClientSize = new System.Drawing.Size(205, 135);
             this.Controls.Add(this.XLS);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dpHasta);
             this.Controls.Add(this.dpDesde);
             this.Name = "Stats";
-            this.Text = "Stats";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "XLS Memoria";
             this.ResumeLayout(false);
             this.PerformLayout();
 
