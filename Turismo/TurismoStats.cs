@@ -109,8 +109,11 @@ where B.ID = BTP.BONO and  BTP.DESTINO= L.LOCALIDADID AND B.TIPO='PAS' and B.FE_
                 m.PLanilla        = foundRows[I][7].ToString();
                 m.Cuotas          = foundRows[I][8].ToString();
                 if (m.Cuotas.Length > 1)
+                {
+                    if (m.Cuotas != "0")
                     m.Valor_Cuota = Decimal.Round(Decimal.Parse(m.PLanilla) / Decimal.Parse(m.Cuotas), 2).ToString();
-                m.Total           = foundRows[I][9].ToString();
+                }
+                    m.Total           = foundRows[I][9].ToString();
                 m.Obs             = foundRows[I][10].ToString();
                 m.Obs_Pago            = foundRows[I][11].ToString();
                 I=I+1;
@@ -153,7 +156,9 @@ where B.TIPO='HOT' and V.BONO=B.ID and H.ID=V.HOTEL and B.FE_BONO > '" + Desde +
                 m.PLanilla = foundRows[I][7].ToString();
                 m.Cuotas = foundRows[I][8].ToString();
                 if (m.Cuotas.Length > 0)
+                {   if (m.Cuotas !="0")
                     m.Valor_Cuota = Decimal.Round(Decimal.Parse(m.PLanilla) / Decimal.Parse(m.Cuotas), 2).ToString();
+                }
                 m.Total = foundRows[I][9].ToString();
                 m.Obs = foundRows[I][10].ToString();
                 m.Obs_Pago = foundRows[I][11].ToString();
