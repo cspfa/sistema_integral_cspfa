@@ -158,7 +158,8 @@ namespace SOCIOS.Turismo
                     throw new Exception("Ingrese Localidad Desde");
                 if (cbLocalidadHasta.Text.Trim().Count() == 0)
                     throw new Exception("Ingrese Localidad Hasta");
-
+                if (tbDias.Text.Length==0)
+                    throw new Exception("Ingrese Dias de la Salida!");
                 int LocDesde = Int32.Parse(cbLocalidadDesde.SelectedValue.ToString());
                 int LocHasta = Int32.Parse(cbLocalidadHasta.SelectedValue.ToString());
                 int Operador = Int32.Parse(cbOperador.SelectedValue.ToString());
@@ -173,6 +174,8 @@ namespace SOCIOS.Turismo
                 int Hotel = 0;
                 int Web = 1;
                 int Bono = 1;
+                int Dias = Int32.Parse(tbDias.Text);
+
 
 
 
@@ -196,9 +199,9 @@ namespace SOCIOS.Turismo
                 else
                     Bono = 0;
                 if (Modo == "INS")
-                    dlog.Salida_Ins(tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, cbDiaria.Checked, CocheCama, Web, Bono);
+                    dlog.Salida_Ins(tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, cbDiaria.Checked, CocheCama, Web, Bono,Dias);
                 else
-                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, cbDiaria.Checked, CocheCama, Web, Bono);
+                    dlog.Salida_Upd(ID, tbNombre.Text, dtSalida.Value, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, cbDiaria.Checked, CocheCama, Web, Bono,Dias);
 
 
                 this.UpdateGrilla();
@@ -438,6 +441,9 @@ namespace SOCIOS.Turismo
         private void Seteo_diaria(bool Diaria)
         {
             dtSalida.Visible = !Diaria;
+            if (Diaria)
+                tbDias.Text = "1";
+
         }
 
         private void label17_Click(object sender, EventArgs e)

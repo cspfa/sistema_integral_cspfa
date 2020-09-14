@@ -77,11 +77,13 @@
             this.cbProvinciaDesde = new System.Windows.Forms.ComboBox();
             this.dgvSalidas = new System.Windows.Forms.DataGridView();
             this.AccionesGrilla = new System.Windows.Forms.ToolStrip();
+            this.Procesar = new System.Windows.Forms.ToolStripButton();
             this.NuevoBank = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
             this.btnVista = new System.Windows.Forms.Button();
-            this.Procesar = new System.Windows.Forms.ToolStripButton();
+            this.label18 = new System.Windows.Forms.Label();
+            this.tbDias = new System.Windows.Forms.TextBox();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -89,6 +91,8 @@
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.tbDias);
+            this.gpDatos.Controls.Add(this.label18);
             this.gpDatos.Controls.Add(this.cbBono);
             this.gpDatos.Controls.Add(this.cbWeb);
             this.gpDatos.Controls.Add(this.tbCocheCama);
@@ -146,7 +150,7 @@
             this.cbBono.AutoSize = true;
             this.cbBono.Checked = true;
             this.cbBono.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbBono.Location = new System.Drawing.Point(671, 179);
+            this.cbBono.Location = new System.Drawing.Point(671, 200);
             this.cbBono.Name = "cbBono";
             this.cbBono.Size = new System.Drawing.Size(104, 17);
             this.cbBono.TabIndex = 173;
@@ -158,7 +162,7 @@
             this.cbWeb.AutoSize = true;
             this.cbWeb.Checked = true;
             this.cbWeb.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbWeb.Location = new System.Drawing.Point(565, 179);
+            this.cbWeb.Location = new System.Drawing.Point(565, 200);
             this.cbWeb.Name = "cbWeb";
             this.cbWeb.Size = new System.Drawing.Size(102, 17);
             this.cbWeb.TabIndex = 172;
@@ -313,7 +317,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 210);
+            this.label11.Location = new System.Drawing.Point(6, 228);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(29, 13);
             this.label11.TabIndex = 156;
@@ -322,7 +326,7 @@
             // tbObs
             // 
             this.tbObs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbObs.Location = new System.Drawing.Point(79, 207);
+            this.tbObs.Location = new System.Drawing.Point(79, 229);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
             this.tbObs.Size = new System.Drawing.Size(761, 62);
@@ -331,7 +335,7 @@
             // cbDestacado
             // 
             this.cbDestacado.AutoSize = true;
-            this.cbDestacado.Location = new System.Drawing.Point(671, 156);
+            this.cbDestacado.Location = new System.Drawing.Point(671, 177);
             this.cbDestacado.Name = "cbDestacado";
             this.cbDestacado.Size = new System.Drawing.Size(78, 17);
             this.cbDestacado.TabIndex = 19;
@@ -341,7 +345,7 @@
             // cbAgotado
             // 
             this.cbAgotado.AutoSize = true;
-            this.cbAgotado.Location = new System.Drawing.Point(565, 156);
+            this.cbAgotado.Location = new System.Drawing.Point(565, 177);
             this.cbAgotado.Name = "cbAgotado";
             this.cbAgotado.Size = new System.Drawing.Size(66, 17);
             this.cbAgotado.TabIndex = 18;
@@ -591,6 +595,15 @@
             this.AccionesGrilla.TabIndex = 112;
             this.AccionesGrilla.Text = "toolStrip4";
             // 
+            // Procesar
+            // 
+            this.Procesar.Image = global::SOCIOS.Properties.Resources.bullet_green;
+            this.Procesar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Procesar.Name = "Procesar";
+            this.Procesar.Size = new System.Drawing.Size(87, 22);
+            this.Procesar.Text = "Seleccionar";
+            this.Procesar.Click += new System.EventHandler(this.Procesar_Click);
+            // 
             // NuevoBank
             // 
             this.NuevoBank.Image = ((System.Drawing.Image)(resources.GetObject("NuevoBank.Image")));
@@ -625,14 +638,21 @@
             this.btnVista.Visible = false;
             this.btnVista.Click += new System.EventHandler(this.btnVista_Click);
             // 
-            // Procesar
+            // label18
             // 
-            this.Procesar.Image = global::SOCIOS.Properties.Resources.bullet_green;
-            this.Procesar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Procesar.Name = "Procesar";
-            this.Procesar.Size = new System.Drawing.Size(87, 22);
-            this.Procesar.Text = "Seleccionar";
-            this.Procesar.Click += new System.EventHandler(this.Procesar_Click);
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(562, 153);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(60, 13);
+            this.label18.TabIndex = 174;
+            this.label18.Text = "Dias Salida";
+            // 
+            // tbDias
+            // 
+            this.tbDias.Location = new System.Drawing.Point(640, 151);
+            this.tbDias.Name = "tbDias";
+            this.tbDias.Size = new System.Drawing.Size(54, 20);
+            this.tbDias.TabIndex = 175;
             // 
             // Salidas
             // 
@@ -713,5 +733,7 @@
         private System.Windows.Forms.CheckBox cbBono;
         private System.Windows.Forms.Button btnVista;
         private System.Windows.Forms.ToolStripButton Procesar;
+        private System.Windows.Forms.TextBox tbDias;
+        private System.Windows.Forms.Label label18;
     }
 }

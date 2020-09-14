@@ -247,9 +247,9 @@ namespace SOCIOS.Turismo
                     {   
                         DateTime D = fecha.FECHAS;
                         if (count==0 &&  cbCabecera.Checked)
-                            dlog.Salida_Ins(Concat_Fechas(tbNombre.Text), D, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, false, CocheCama, 1, 0);
+                            dlog.Salida_Ins(Concat_Fechas(tbNombre.Text), D, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, false, CocheCama, 1, 0,1);
                        
-                        dlog.Salida_Ins(tbNombre.Text, D, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, false, CocheCama, 0, 1);
+                        dlog.Salida_Ins(tbNombre.Text, D, cbAgotado.Checked, ProvDesde, ProvHasta, Operador, LocDesde, LocHasta, Socio, Invitado, InterCirculo, Menor, tbEstadia.Text, Regimen, Traslado, Tipo, Hotel, tbHotel.Text, cbDestacado.Checked, cbMoneda.SelectedText, tbObs.Text, false, CocheCama, 0, 1,1);
                         count = count + 1;
                     }
 
