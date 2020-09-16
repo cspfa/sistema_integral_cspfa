@@ -62,12 +62,17 @@ namespace SOCIOS.Turismo
             HOTEL = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             Excel.Worksheet PASAJE;
             PASAJE = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet SALIDA;
+            SALIDA = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
 
             HOTEL = xlWorkBook.Worksheets[1];
             HOTEL.Name = "HOTELES";
-          
-            PASAJE.Name = "PASAJES";
             PASAJE = xlWorkBook.Worksheets[2];
+            PASAJE.Name = "PASAJES";
+
+            SALIDA = xlWorkBook.Worksheets[3];
+            SALIDA.Name = "SALIDA";
+       
 
             HOTEL.Cells[1, 1] = "NRO";
             HOTEL.Cells[1, 2] = "FECHA";
@@ -136,6 +141,41 @@ namespace SOCIOS.Turismo
             }
 
 
+           SALIDA.Cells[1, 1] = "NRO";
+           SALIDA.Cells[1, 2] = "FECHA";
+           SALIDA.Cells[1, 3] = "NOMBRE";
+           SALIDA.Cells[1, 4] = "DESTINO";
+           SALIDA.Cells[1, 5] = "PAX";
+           SALIDA.Cells[1, 6] = "NOCHES";
+           SALIDA.Cells[1, 7] = "PLAZAS";
+           SALIDA.Cells[1, 8] = "CONTADO";
+           SALIDA.Cells[1, 9] = "CUOTAS";
+           SALIDA.Cells[1, 10] = "VALOR CUOTA";
+           SALIDA.Cells[1, 11] = "TOTAL";
+           SALIDA.Cells[1, 12] = "OBS";
+           SALIDA.Cells[1, 13] = "OBS_PAGO";
+
+            int I__ = 2;
+
+            foreach (Memoria_Hotel m in (new TurismoStats()).Stats_Memoria_Hoteles(3, desde, hasta))
+            {
+                SALIDA.Cells[I__, 1] = m.Nro_Solicitud;
+                SALIDA.Cells[I__, 2] = m.Fecha;
+                SALIDA.Cells[I__, 3] = m.Nombre_Apellido;
+                SALIDA.Cells[I__, 4] = m.Destino;
+                SALIDA.Cells[I__, 5] = m.Pax;
+                SALIDA.Cells[I__, 6] = m.Noches;
+                SALIDA.Cells[I__, 7] = m.Plazas;
+                SALIDA.Cells[I__, 8] = m.Contado;
+                SALIDA.Cells[I__, 9] = m.Cuotas;
+                SALIDA.Cells[I__, 10] = m.Valor_Cuota;
+                SALIDA.Cells[I__, 11] = m.Total;
+                SALIDA.Cells[I__, 12] = m.Obs;
+                SALIDA.Cells[I__, 13] = m.Obs_Pago;
+                I__ = I__ + 1;
+            }
+
+
             string ARCHIVO = "";
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "Archivo XLS|*.xls";
@@ -155,6 +195,8 @@ namespace SOCIOS.Turismo
             releaseObject(xlApp);
             MessageBox.Show("EXCEL GENERADO CORRECTAMENTE", "LISTO!");
         }
+
+      
 
         private void releaseObject(object obj)
         {
