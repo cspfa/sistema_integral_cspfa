@@ -98,7 +98,10 @@ namespace SOCIOS.bono
                  tbContacto.Text = srvDatosSocio.CAB.Telefonos;
              if (srvDatosSocio.CAB.EMAIL.Length >0)
                  tbMail.Text = srvDatosSocio.CAB.EMAIL;
+             
+             
              CODINT = Int32.Parse(Config.getValor("TURISMO", "COD_TURISMO", 0));
+            
              Autorizacion = Apto_Autorizacion();
 
          }
@@ -552,7 +555,7 @@ namespace SOCIOS.bono
                     Tarjeta_credito = pb.Tarjeta_credito;
                     Tarjeta_credito_cuotas = pb.Tarjeta_credito_cuotas;
                     Tarjeta_Debito = pb.Tarjeta_Debito;
-                    Planilla = pb.Planilla;
+                    Planilla = Decimal.Round(pb.Planilla, 2);
                     Planilla_Cuotas = pb.Planilla_Cuotas;
                     Transferencia = pb.Transfrencia;
                     lblSaldoTotal.Text = pb.Total_Actualizado().ToString();
@@ -813,8 +816,12 @@ namespace SOCIOS.bono
                         if (VGlobales.vp_role.Contains("TURISMO"))
                             CodInt = 1001;
                         else
-                            CodInt = 1008; //Codint De Interior
-
+                        {
+                            if  (utilsTurismo.HotelPropio(Hotel))
+                            CodInt = 1008; //Codint De Interior propio
+                               else
+                            CodInt = 1009; // Codint de interior no propio
+                        }
 
                         dlog.InsertBonoTurismo(Nro_Socio_titular, Int32.Parse(persona.NRO_SOCIO), Int32.Parse(persona.NRO_DEP), Nro_Dep_Titular, 0, dpFechaBono.Value, 0, 0, 0, Saldo + Recargo, Saldo, Recargo, Nombre, Apellido, persona.NUM_DOC, fechaNacimiento, "", Telefono, persona.MAIL, this.srvDatosSocio.CAB.AAR, this.srvDatosSocio.CAB.ACRJP1, this.srvDatosSocio.CAB.ACRJP2, this.srvDatosSocio.CAB.ACRJP3, this.srvDatosSocio.CAB.PAR, this.srvDatosSocio.CAB.PCRJP1, this.srvDatosSocio.CAB.PCRJP2, this.srvDatosSocio.CAB.PCRJP3, tbObs.Text, MotivoViaje, Operador_CSPFA, "", ClasePasaje, VGlobales.vp_username, "SOC", 0, Int32.Parse(lbInfoDias.Text), tbNroHabitacion.Text, Contralor, VGlobales.vp_role.TrimEnd().TrimStart(), CodInt, SUBCODIGO, "NO", 0, 0, "", "", "", 0, 0, Efectivo, Tarjeta_credito, Tarjeta_credito_cuotas, Tarjeta_Debito, Planilla, Planilla_Cuotas, Transferencia);
 
