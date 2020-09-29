@@ -72,12 +72,16 @@
             this.cbLocalidadDesde = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbProvinciaDesde = new System.Windows.Forms.ComboBox();
+            this.tbDias = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFecha)).BeginInit();
             this.SuspendLayout();
             // 
             // gpDatos
             // 
+            this.gpDatos.Controls.Add(this.tbDias);
+            this.gpDatos.Controls.Add(this.label18);
             this.gpDatos.Controls.Add(this.cbCabecera);
             this.gpDatos.Controls.Add(this.btnFecha);
             this.gpDatos.Controls.Add(this.dgvFecha);
@@ -123,7 +127,7 @@
             this.gpDatos.Controls.Add(this.cbProvinciaDesde);
             this.gpDatos.Location = new System.Drawing.Point(3, 1);
             this.gpDatos.Name = "gpDatos";
-            this.gpDatos.Size = new System.Drawing.Size(850, 388);
+            this.gpDatos.Size = new System.Drawing.Size(850, 397);
             this.gpDatos.TabIndex = 1;
             this.gpDatos.TabStop = false;
             // 
@@ -152,7 +156,7 @@
             // 
             this.dgvFecha.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFecha.Enabled = false;
-            this.dgvFecha.Location = new System.Drawing.Point(666, 157);
+            this.dgvFecha.Location = new System.Drawing.Point(665, 169);
             this.dgvFecha.Name = "dgvFecha";
             this.dgvFecha.ReadOnly = true;
             this.dgvFecha.Size = new System.Drawing.Size(98, 109);
@@ -194,7 +198,7 @@
             // 
             // Reset
             // 
-            this.Reset.Location = new System.Drawing.Point(368, 343);
+            this.Reset.Location = new System.Drawing.Point(368, 355);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(148, 36);
             this.Reset.TabIndex = 166;
@@ -240,7 +244,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(665, 343);
+            this.btnSave.Location = new System.Drawing.Point(665, 355);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 36);
             this.btnSave.TabIndex = 21;
@@ -284,7 +288,7 @@
             // tbObs
             // 
             this.tbObs.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.tbObs.Location = new System.Drawing.Point(79, 272);
+            this.tbObs.Location = new System.Drawing.Point(79, 284);
             this.tbObs.Multiline = true;
             this.tbObs.Name = "tbObs";
             this.tbObs.Size = new System.Drawing.Size(761, 62);
@@ -523,6 +527,23 @@
             this.cbProvinciaDesde.TabIndex = 13;
             this.cbProvinciaDesde.SelectedIndexChanged += new System.EventHandler(this.cbProvinciaDesde_SelectedIndexChanged_1);
             // 
+            // tbDias
+            // 
+            this.tbDias.Location = new System.Drawing.Point(564, 154);
+            this.tbDias.Name = "tbDias";
+            this.tbDias.Size = new System.Drawing.Size(54, 20);
+            this.tbDias.TabIndex = 178;
+            this.tbDias.Text = "1";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(505, 156);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(44, 13);
+            this.label18.TabIndex = 177;
+            this.label18.Text = "Noches";
+            // 
             // Salidas_Insert_Masivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -585,5 +606,7 @@
         private System.Windows.Forms.DataGridView dgvFecha;
         private System.Windows.Forms.CheckBox cbCabecera;
         private System.Windows.Forms.Button btnFecha;
+        private System.Windows.Forms.TextBox tbDias;
+        private System.Windows.Forms.Label label18;
     }
 }

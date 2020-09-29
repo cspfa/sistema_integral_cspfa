@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Salidas));
             this.gpDatos = new System.Windows.Forms.GroupBox();
+            this.tbDias = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.cbBono = new System.Windows.Forms.CheckBox();
             this.cbWeb = new System.Windows.Forms.CheckBox();
             this.tbCocheCama = new System.Windows.Forms.TextBox();
@@ -82,8 +84,6 @@
             this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.CancelarBank = new System.Windows.Forms.ToolStripButton();
             this.btnVista = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.tbDias = new System.Windows.Forms.TextBox();
             this.gpDatos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSalidas)).BeginInit();
             this.AccionesGrilla.SuspendLayout();
@@ -144,6 +144,22 @@
             this.gpDatos.TabIndex = 0;
             this.gpDatos.TabStop = false;
             this.gpDatos.Visible = false;
+            // 
+            // tbDias
+            // 
+            this.tbDias.Location = new System.Drawing.Point(640, 151);
+            this.tbDias.Name = "tbDias";
+            this.tbDias.Size = new System.Drawing.Size(54, 20);
+            this.tbDias.TabIndex = 175;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(562, 153);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(76, 13);
+            this.label18.TabIndex = 174;
+            this.label18.Text = "Noches Salida";
             // 
             // cbBono
             // 
@@ -637,22 +653,6 @@
             this.btnVista.UseVisualStyleBackColor = true;
             this.btnVista.Visible = false;
             this.btnVista.Click += new System.EventHandler(this.btnVista_Click);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(562, 153);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(60, 13);
-            this.label18.TabIndex = 174;
-            this.label18.Text = "Dias Salida";
-            // 
-            // tbDias
-            // 
-            this.tbDias.Location = new System.Drawing.Point(640, 151);
-            this.tbDias.Name = "tbDias";
-            this.tbDias.Size = new System.Drawing.Size(54, 20);
-            this.tbDias.TabIndex = 175;
             // 
             // Salidas
             // 
