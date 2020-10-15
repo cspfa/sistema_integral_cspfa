@@ -99,7 +99,9 @@ where B.ID = BTP.BONO and  BTP.DESTINO= L.LOCALIDADID AND B.TIPO='PAS' and B.FE_
             int I=0;
             if (foundRows.Length > 0)
             {
-                Memoria m = new Memoria();
+                
+                while (I< foundRows.Length)
+               { Memoria m = new Memoria();
                 m.Nro_Solicitud =  Int32.Parse(foundRows[I][0].ToString());
                 m.Fecha         = foundRows[I][1].ToString();
                 m.Nombre_Apellido = foundRows[I][2].ToString() + " " + foundRows[I][3].ToString();
@@ -119,6 +121,7 @@ where B.ID = BTP.BONO and  BTP.DESTINO= L.LOCALIDADID AND B.TIPO='PAS' and B.FE_
                 I=I+1;
                 lista.Add(m);
 
+            }
             }
 
             return lista;
@@ -149,7 +152,9 @@ where B.TIPO='HOT' and V.BONO=B.ID and H.ID=V.HOTEL and B.FE_BONO > '" + Desde +
             int I = 0;
             if (foundRows.Length > 0)
             {
-                Memoria_Hotel m = new Memoria_Hotel();
+              
+                while (I < foundRows.Length)
+               { Memoria_Hotel m = new Memoria_Hotel();
                 m.Nro_Solicitud = Int32.Parse(foundRows[I][0].ToString());
                 m.Fecha = foundRows[I][1].ToString();
                 m.Nombre_Apellido = foundRows[I][2].ToString() + " " + foundRows[I][3].ToString();
@@ -170,6 +175,7 @@ where B.TIPO='HOT' and V.BONO=B.ID and H.ID=V.HOTEL and B.FE_BONO > '" + Desde +
 
                 I = I + 1;
                 lista.Add(m);
+               }
 
             }
 
@@ -200,6 +206,9 @@ where B.SALIDA = BS.ID and  BS.LOC_HASTA= L.LOCALIDADID AND B.TIPO='PAQ' and B.F
 
             if (foundRows.Length > 0)
             {
+                
+                 while (I < foundRows.Length)
+               { 
                 Memoria_Hotel m = new Memoria_Hotel();
                 m.Nro_Solicitud = Int32.Parse(foundRows[I][0].ToString());
                 m.Fecha = foundRows[I][1].ToString();
@@ -223,7 +232,7 @@ where B.SALIDA = BS.ID and  BS.LOC_HASTA= L.LOCALIDADID AND B.TIPO='PAQ' and B.F
                 I = I + 1;
                 lista.Add(m);
 
-
+               }
 
 
             }
