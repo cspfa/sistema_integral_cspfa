@@ -769,7 +769,7 @@ namespace SOCIOS.Turismo
                 else
                     mb.Efectivo = "0";
 
-                if (foundRows[0][2].ToString() != "0")
+                if (foundRows[0][1].ToString() != "0")
                 {
                     mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + foundRows[0][2].ToString() + " Cuotas";
                     Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2);
