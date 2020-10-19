@@ -305,7 +305,9 @@ namespace SOCIOS.bono
 
             try
             {
-                decimal cargoGestion = Decimal.Parse(lbGestion.Text);
+                decimal cargoGestion = 0;
+                if (lbGestion.Text.Length>0)
+                 cargoGestion=  Decimal.Parse(lbGestion.Text);
                 if (cargoGestion > 0)
                 {
                     Saldo = Decimal.Round(Saldo + cargoGestion,2);
@@ -370,7 +372,7 @@ namespace SOCIOS.bono
                       
 
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
-                         Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2) + Decimal.Round(Decimal.Parse(lbGestion.Text), 2);;
+                         Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2) + cargoGestion;
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Efectivo $" + lbMonto1.Text + " ,  " + Planilla.ToString() +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
                         SaldoIngreso = Decimal.Round( Decimal.Parse(lbMonto1.Text),2);
@@ -379,7 +381,7 @@ namespace SOCIOS.bono
                         Control_Efectivo(Efectivo);
                        
                         Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
-                        Gastos_Gestion = Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
+                        Gastos_Gestion = Decimal.Round(cargoGestion, 2);
                         
                         break;
                     case 7:
@@ -390,7 +392,7 @@ namespace SOCIOS.bono
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
                        
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
-                        Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2) + Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
+                        Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2) + cargoGestion;
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Debito $" + lbMonto1.Text + " ,  " +Planilla.ToString() +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
                         SaldoIngreso = Decimal.Round(Decimal.Parse(lbMonto1.Text),2);
@@ -406,7 +408,7 @@ namespace SOCIOS.bono
                         this.ValidarMonto(Decimal.Parse(lbMonto1.Text));
                         this.ValidarMonto(Decimal.Parse(lbMonto2.Text));
                         MontoCuota = Decimal.Round(Decimal.Parse(tbMontoCuotas.Text), 2);
-                        Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2) + Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
+                        Planilla = Decimal.Round(Decimal.Parse(lbMonto2.Text), 2) + cargoGestion;
                         formaPago = formaPago + ", Se va a Abonar el Bono en  Tarjeta de Credito $" + lbMonto1.Text + " ,  " + Planilla.ToString() +
                             " a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" + MontoCuota.ToString();
                         SaldoIngreso = Decimal.Round(Decimal.Parse(lbMonto1.Text),2);
@@ -416,7 +418,7 @@ namespace SOCIOS.bono
                         Tarjeta_credito_cuotas = Tarjeta_credito_cuotas;
                       
                          Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
-                       Gastos_Gestion=  Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
+                         Gastos_Gestion = Decimal.Round(cargoGestion, 2);
                         break;
 
                     case 5:
@@ -431,13 +433,13 @@ namespace SOCIOS.bono
                         this.ValidarMonto(Decimal.Parse(lblSaldo.Text));
                         this.ValidarMonto(decimal.Parse(tbMontoCuotas.Text));
 
-                         Planilla = Decimal.Round(Decimal.Parse(lblSaldo.Text), 2) + Decimal.Round(Decimal.Parse(lbGestion.Text), 2);;
+                        Planilla = Decimal.Round(Decimal.Parse(lblSaldo.Text), 2) + cargoGestion;
                         formaPago = formaPago + ", Financiacion por planilla $ " + Planilla.ToString() +
                         ",a Pagarse en " + tbCantidadCuotas.Text + " Cuota/s de   $" +tbMontoCuotas.Text;
                         SaldoIngreso = 0;
                        
                         Planilla_Cuotas = Int32.Parse(tbCantidadCuotas.Text);
-                       Gastos_Gestion = Decimal.Round(Decimal.Parse(lbGestion.Text), 2);
+                        Gastos_Gestion = Decimal.Round(cargoGestion, 2);
                         break;
                     case 6:
                         //Todo en Financiacion Efectivo
