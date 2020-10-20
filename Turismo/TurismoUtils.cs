@@ -771,7 +771,11 @@ namespace SOCIOS.Turismo
 
                 if (foundRows[0][1].ToString() != "0")
                 {
-                    mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + foundRows[0][2].ToString() + " Cuotas";
+
+                    string Cuotas = foundRows[0][2].ToString();
+                    if (Cuotas == "0")
+                        Cuotas = "1";
+                    mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + Cuotas + " Cuotas";
                     Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2);
                 }
                 else
