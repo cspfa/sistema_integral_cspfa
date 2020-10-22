@@ -235,12 +235,11 @@ namespace SOCIOS.bono
            totalInter = salida.InterCirculo * Intercirculo;
            totalInvi = salida.Invitado * Invitado;
            totalMenor = salida.Menor * MenorPaquete;
-
-       
-           this.TotalizarTipo(tbSocios, Socios, salida.Socio, totalSocio);
-           this.TotalizarTipo(tbInterCirculo, Intercirculo, salida.InterCirculo, totalInter);
-           this.TotalizarTipo(tbInvitados, Invitado, salida.Invitado, totalInvi);
-           this.TotalizarTipo(tbMenor, MenorPaquete, salida.Menor, totalMenor);
+             
+           totalSocio= this.TotalizarTipo(tbSocios, Socios, salida.Socio, totalSocio);
+          totalInter= this.TotalizarTipo(tbInterCirculo, Intercirculo, salida.InterCirculo, totalInter);
+          totalInvi= this.TotalizarTipo(tbInvitados, Invitado, salida.Invitado, totalInvi);
+          totalMenor= this.TotalizarTipo(tbMenor, MenorPaquete, salida.Menor, totalMenor);
 
            lbSaldoTotal.Text = (totalInvi + totalSocio + totalInter + totalMenor).ToString("0.##");
           
@@ -268,7 +267,7 @@ namespace SOCIOS.bono
 
         }
 
-        private void TotalizarTipo(TextBox tb, int Cantidad, decimal Monto,decimal Total)
+        private decimal TotalizarTipo(TextBox tb, int Cantidad, decimal Monto,decimal Total)
         {
             decimal CocheCama=0;
 
@@ -276,11 +275,13 @@ namespace SOCIOS.bono
             {
                 CocheCama = salida.Coche_Cama;
             }
-            
+            decimal MontoTotal = (Cantidad * (Monto + CocheCama));
             if (Total != 0)
-               tb.Text = (Cantidad * (Monto+CocheCama)).ToString("0.##");
+               tb.Text = Monto.ToString("0.##");
             else
                 tb.Text ="";
+
+            return MontoTotal;
         }
 
         private void Grabar_Click(object sender, EventArgs e)
