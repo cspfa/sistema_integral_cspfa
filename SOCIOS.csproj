@@ -117,8 +117,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\CSPFA_SOCIOS\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
-    <Reference Include="Buffet">
-      <HintPath>Buffet\bin\Debug\Buffet.exe</HintPath>
+    <Reference Include="Buffet, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\x86\Debug\Buffet.exe</HintPath>
     </Reference>
     <Reference Include="FirebirdSql.Data.Firebird, Version=1.7.1.0, Culture=neutral, PublicKeyToken=fa843d180294369d">
       <SpecificVersion>False</SpecificVersion>
@@ -1035,12 +1036,17 @@
       <DependentUpon>Solicitud.cs</DependentUpon>
     </Compile>
     <Compile Include="Turismo\Solicitudes\SolicitudUtils.cs" />
+    <Compile Include="Turismo\Stats.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Turismo\Stats.Designer.cs" />
     <Compile Include="Turismo\Stats_Hoteles.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Turismo\Stats_Hoteles.Designer.cs">
       <DependentUpon>Stats_Hoteles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Turismo\TurismoStats.cs" />
     <Compile Include="Turismo\TurismoUtils.cs" />
     <Compile Include="Turismo\Turismo_Stats_Utils.cs" />
     <Compile Include="Turismo\VoucherUtils.cs" />

@@ -1318,7 +1318,7 @@ namespace SOCIOS
                 connection.Open();
                 FbTransaction transaction = connection.BeginTransaction();
                 DataSet ds = new DataSet();
-                string query = "SELECT C.FECHA, C.INGRESOS_EFECTIVO, C.IMPUTACION, B.NOMBRE FROM CAJA_DIARIA C, BANCOS B WHERE C.CAJA_DEPOSITADA = " + CAJA + " AND C.BANCO = B.ID;";
+                string query = "SELECT C.FECHA, C.INGRESOS_EFECTIVO, C.IMPUTACION, B.NOMBRE FROM CAJA_DIARIA C, BANCOS B WHERE C.CAJA_DEPOSITADA = (SELECT ID FROM CAJA_DIARIA WHERE ID_ROL = " + CAJA + ") AND C.BANCO = B.ID;";
                 FbCommand cmd = new FbCommand(query, connection, transaction);
                 cmd.CommandText = query;
                 cmd.Connection = connection;
@@ -2935,7 +2935,7 @@ namespace SOCIOS
                 if (INSERT == "SI")
                 {
                     dgComposicion.Rows.Add("", "CAMBIO", string.Format("{0:n}", (Convert.ToDecimal(tbCambio.Text.Trim()))));
-                    tbTotal.Text = (decimal.Parse(tbTotal.Text) + decimal.Parse(tbCambio.Text)).ToString();
+                    //tbTotal.Text = (decimal.Parse(tbTotal.Text) + decimal.Parse(tbCambio.Text)).ToString();
                 }
             }
             catch (Exception ex)
@@ -3970,7 +3970,7 @@ namespace SOCIOS
                     foreach (DataGridViewRow ROW in dgCajasAnteriores.SelectedRows)
                     {
                         DEPOSITADA = ROW.Cells[10].Value.ToString();
-                        CAJA = int.Parse(ROW.Cells[0].Value.ToString());
+                        CAJA = int.Parse(ROW.Cells[11].Value.ToString());
 
                         if (DEPOSITADA == "0")
                         {

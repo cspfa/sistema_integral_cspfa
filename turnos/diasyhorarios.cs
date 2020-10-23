@@ -56,6 +56,7 @@ namespace SOCIOS
             cbTurno.Items.Add("15");
             cbTurno.Items.Add("20");
             cbTurno.Items.Add("30");
+            cbTurno.Items.Add("40");
             cbTurno.Items.Add("60");
         }
 

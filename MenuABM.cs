@@ -2316,5 +2316,11 @@ namespace SOCIOS
             Turismo.Salidas_Insert_Masivo sim = new Turismo.Salidas_Insert_Masivo();
             sim.ShowDialog();
         }
+
+        private void MemoriaXLSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Turismo.Stats ts = new Turismo.Stats();
+            ts.ShowDialog();
+        }
     }
 }

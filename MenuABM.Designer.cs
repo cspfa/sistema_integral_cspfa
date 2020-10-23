@@ -168,6 +168,7 @@
             this.pnl_Interior = new System.Windows.Forms.Panel();
             this.LINK_INTERIOR = new System.Windows.Forms.LinkLabel();
             this.lbInterior = new System.Windows.Forms.Label();
+            this.memoriaXLSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -1024,7 +1025,8 @@
             this.arancelesToolStripMenuItem1,
             this.planDeCuentaToolStripMenuItem1,
             this.bonosEnBlancoToolStripMenuItem,
-            this.salidasCreacionMasivaToolStripMenuItem});
+            this.salidasCreacionMasivaToolStripMenuItem,
+            this.memoriaXLSToolStripMenuItem});
             this.turismoToolStripMenuItem.Enabled = false;
             this.turismoToolStripMenuItem.Name = "turismoToolStripMenuItem";
             this.turismoToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
@@ -1426,6 +1428,13 @@
             this.lbInterior.TabIndex = 0;
             this.lbInterior.Text = "CONTACTOS SIN LEER!";
             // 
+            // memoriaXLSToolStripMenuItem
+            // 
+            this.memoriaXLSToolStripMenuItem.Name = "memoriaXLSToolStripMenuItem";
+            this.memoriaXLSToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.memoriaXLSToolStripMenuItem.Text = "Memoria- XLS";
+            this.memoriaXLSToolStripMenuItem.Click += new System.EventHandler(this.MemoriaXLSToolStripMenuItem_Click);
+            // 
             // MenuABM
             // 
             this.AutoDeleteMessage = "Business_AutoDeleteMessage";
@@ -1610,5 +1619,6 @@
         private System.Windows.Forms.Label lbInterior;
         private System.Windows.Forms.ToolStripMenuItem vouchersSocialesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salidasCreacionMasivaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem memoriaXLSToolStripMenuItem;
     }
 }
