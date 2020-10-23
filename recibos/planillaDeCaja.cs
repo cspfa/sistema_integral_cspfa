@@ -36,6 +36,11 @@ namespace SOCIOS
         public planillaDeCaja()
         {
             InitializeComponent();
+
+           if (VGlobales.vp_role.Trim() == "SISTEMAS" ||  VGlobales.vp_role.Trim() == "CONTADURIA" )
+           {
+               Asignar_Caja.Visible = true;
+           }
         }
 
         private void planillaDeCaja_Load(object sender, EventArgs e)
@@ -5434,6 +5439,19 @@ namespace SOCIOS
             }
 
 
+        }
+
+        private void Asignar_Caja_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedRowCollection Seleccionados = dgBuscador.SelectedRows;
+            List<int> lista = new List<int>();
+            foreach (DataGridViewRow item in Seleccionados)
+            {
+                 lista.Add(Int32.Parse( item.Cells[9].Value.ToString()));
+            }
+
+            Agregar_Recibos_Caja_Diaria agrd = new Agregar_Recibos_Caja_Diaria(lista);
+            agrd.ShowDialog();
         }
     }
 }
