@@ -769,7 +769,7 @@ namespace SOCIOS.Turismo
                 else
                     mb.Efectivo = "0";
 
-                if (foundRows[0][1].ToString() != "0")
+                if (foundRows[0][1].ToString().Length>0)
                 {
 
                     string Cuotas = foundRows[0][2].ToString();
@@ -788,7 +788,7 @@ namespace SOCIOS.Turismo
                 else
                     mb.Debito = "0";
 
-                if (foundRows[0][5].ToString() != "0")
+                if (foundRows[0][5].ToString().Length > 0)
                 {
                     mb.Planilla = Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2).ToString() + " - " + foundRows[0][5].ToString() + " Cuotas";
                     Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2);
