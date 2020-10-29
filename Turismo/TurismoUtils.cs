@@ -771,12 +771,16 @@ namespace SOCIOS.Turismo
 
                 if (foundRows[0][1].ToString().Length>0)
                 {
-
-                    string Cuotas = foundRows[0][2].ToString();
-                    if (Cuotas == "0")
-                        Cuotas = "1";
-                    mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + Cuotas + " Cuotas";
-                    Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2);
+                    if (foundRows[0][1].ToString() != "0")
+                    {
+                        string Cuotas = foundRows[0][2].ToString();
+                        if (Cuotas == "0")
+                            Cuotas = "1";
+                        mb.Credito = Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2).ToString() + " - " + Cuotas + " Cuotas";
+                        Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][1].ToString()), 2);
+                    }
+                    else
+                        mb.Credito = "0";
                 }
                 else
                     mb.Credito = "0";
@@ -790,8 +794,13 @@ namespace SOCIOS.Turismo
 
                 if (foundRows[0][5].ToString().Length > 0)
                 {
-                    mb.Planilla = Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2).ToString() + " - " + foundRows[0][5].ToString() + " Cuotas";
-                    Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2);
+                    if (foundRows[0][5].ToString() != "0")
+                    {
+                        mb.Planilla = Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2).ToString() + " - " + foundRows[0][5].ToString() + " Cuotas";
+                        Total = Total + Decimal.Round(Decimal.Parse(foundRows[0][4].ToString()), 2);
+                    }
+                    else
+                        mb.Planilla = "0";
                 }
                 else
                     mb.Planilla = "0";
