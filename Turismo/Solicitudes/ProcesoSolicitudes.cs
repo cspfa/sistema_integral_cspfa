@@ -139,6 +139,7 @@ namespace SOCIOS.Turismo.Solicitudes
             {
                 dLog.SOLICITUD_ALOJAMIENTO_U(ID, dpDesde.Value, dpHasta.Value, Int32.Parse(cbTipo.SelectedValue.ToString()));
                 gvSolicitudes.DataSource = su.getSolicitudes(0);
+
                 MessageBox.Show("Datos Guardados con Exito", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 gpUpdateSolicitud.Visible = false;
             }
@@ -197,7 +198,7 @@ namespace SOCIOS.Turismo.Solicitudes
 
             {
                 fechas.Add(new DatoFecha(fecha1,false) );
-                fecha1.AddDays(1);
+                fecha1=fecha1.AddDays(1);
             
             }
 

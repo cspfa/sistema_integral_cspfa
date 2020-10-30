@@ -70,6 +70,7 @@ namespace SOCIOS.Turismo.Solicitudes
         private void btnGrabar_Click(object sender, EventArgs e)
         {
 
+
             int NroAdh=0;
             int NroDepAdh=0;
             int ID_ROL = 0;
