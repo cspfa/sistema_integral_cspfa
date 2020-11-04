@@ -150,12 +150,12 @@
             this.gpInvitados.Controls.Add(this.linkLabel2);
             this.gpInvitados.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.gpInvitados.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.gpInvitados.Location = new System.Drawing.Point(11, 134);
+            this.gpInvitados.Location = new System.Drawing.Point(1, 134);
             this.gpInvitados.Name = "gpInvitados";
-            this.gpInvitados.Size = new System.Drawing.Size(334, 47);
+            this.gpInvitados.Size = new System.Drawing.Size(344, 47);
             this.gpInvitados.TabIndex = 5;
             this.gpInvitados.TabStop = false;
-            this.gpInvitados.Text = "INVITADOS OCASIONALES";
+            this.gpInvitados.Text = "INVITADOS / CONCURRENTES / PERSONAL POLICIAL NO SOCIO";
             // 
             // lnk_Invitado_Estacionamiento
             // 
@@ -275,7 +275,7 @@
             this.gpInterCirculo.Size = new System.Drawing.Size(416, 47);
             this.gpInterCirculo.TabIndex = 5;
             this.gpInterCirculo.TabStop = false;
-            this.gpInterCirculo.Text = "INTERCIRCULO Y PERSONAL POLICIAL NO SOCIO";
+            this.gpInterCirculo.Text = "INTERCIRCULO";
             // 
             // lnk_InterCirculo_Estacionamiento
             // 
@@ -587,9 +587,9 @@
             this.chkPersonalPolicial.AutoSize = true;
             this.chkPersonalPolicial.Location = new System.Drawing.Point(441, 19);
             this.chkPersonalPolicial.Name = "chkPersonalPolicial";
-            this.chkPersonalPolicial.Size = new System.Drawing.Size(170, 17);
+            this.chkPersonalPolicial.Size = new System.Drawing.Size(82, 17);
             this.chkPersonalPolicial.TabIndex = 31;
-            this.chkPersonalPolicial.Text = "Personal Policial / InterCirculo ";
+            this.chkPersonalPolicial.Text = "InterCirculo ";
             this.chkPersonalPolicial.UseVisualStyleBackColor = true;
             this.chkPersonalPolicial.CheckedChanged += new System.EventHandler(this.chkPersonalPolicial_CheckedChanged);
             // 
