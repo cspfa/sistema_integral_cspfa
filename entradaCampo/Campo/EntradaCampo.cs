@@ -51,15 +51,18 @@ namespace SOCIOS.Entrada_Campo
         int Menor = 0;
         int Discapacitado = 0;
         int Oro = 0;
+        int Promo = 0;
         bool ModoInvitado=false;
         bool ModoIntercirculo = false;
         bool esReintegro = false;
+        int Hora_Pileta = 0;
         
 
         decimal MontoMaximoAReintegrar = 0;
 
         bo_Entrada_Campo dlog = new bo_Entrada_Campo();
-      
+        Entrada_Campo.DiasPiletaService serviceDias = new Entrada_Campo.DiasPiletaService();
+        
         
         List<SOCIOS.RegistroEntradaCampo> lista = new List<RegistroEntradaCampo>();
         EntradaCampoService entradaCampoService = new EntradaCampoService();
@@ -129,6 +132,10 @@ namespace SOCIOS.Entrada_Campo
 
             }
 
+            this.Aforo_Total();
+            lbInfoAforo.Text= entradaCampoService.INFO_AFORO();
+
+
          
 
 
@@ -161,6 +168,7 @@ namespace SOCIOS.Entrada_Campo
             //Tipo 10 : Entrada Menor Pileta
             //Tipo 11 : Entrada Disca Pileta
             //Tipo 12 : Entrada VITALICIO ORO
+            //Tipo 13 : Entrada Pileta Promo
 
 
 
@@ -212,6 +220,11 @@ namespace SOCIOS.Entrada_Campo
                 case 12:
 
                     entrada.Tipo = "PILETA VITALICIO ORO";
+                    break;
+
+                case 13:
+
+                    entrada.Tipo = "PILETA PROMO";
                     break;
 
                 default:
@@ -271,7 +284,7 @@ namespace SOCIOS.Entrada_Campo
 
             lbInter.Text            = lista.Where(x => (x.TipoValor == 7)).Count().ToString();
             lbInterPileta.Text      = lista.Where(x => (x.TipoValor == 8)).Count().ToString();
-            lbSinCargo.Text         = lista.Where(x => (x.TipoValor == 10 || x.TipoValor == 11 || x.TipoValor ==12)).Count().ToString();
+            lbSinCargo.Text = lista.Where(x => (x.TipoValor == 10 || x.TipoValor == 11 || x.TipoValor == 12 || x.TipoValor == 13)).Count().ToString();
             lbEstacionamiento.Text  = lista.Where(x => (x.TipoValor == 3 || x.TipoValor == 6 || x.TipoValor==9)).Count().ToString();
 
 
@@ -281,7 +294,10 @@ namespace SOCIOS.Entrada_Campo
 
         private void lnk_Familiar_Pileta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.NuevoItem(entradaCampoService.EntradaSocioPileta, 2);
+            if (cbPiletaHorario.Checked==false)
+              this.NuevoItem(entradaCampoService.EntradaSocioPileta, 2);
+            else
+                this.NuevoItem(entradaCampoService.EntradaSocioPiletaHora, 2);
         }
 
         private void lnkInvitado_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -291,7 +307,12 @@ namespace SOCIOS.Entrada_Campo
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.NuevoItem(entradaCampoService.EntradaInviPileta, 5);
+
+            if (cbPiletaHorario.Checked == false)
+                this.NuevoItem(entradaCampoService.EntradaInviPileta, 5);
+            else
+                this.NuevoItem(entradaCampoService.EntradaInviPiletaHora, 5);
+            
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -318,10 +339,13 @@ namespace SOCIOS.Entrada_Campo
         {
             try
             {
-             
-                
-                
-                
+
+
+                Hora_Pileta=0;
+
+                if (cbPiletaHorario.Checked)
+                    Hora_Pileta = Int32.Parse(cbHorario.SelectedValue.ToString());
+
                 decimal Monto_Entrada =0;
                 decimal Monto_Total=0;
            
@@ -333,7 +357,7 @@ namespace SOCIOS.Entrada_Campo
                 int Cantidad_Pileta=0;
                 int Cantidad_Estacionamiento = 0;
                 int Cantidad_Total=0;
-
+                
 
                
 
@@ -354,25 +378,36 @@ namespace SOCIOS.Entrada_Campo
                 Menor = lista.Where(x => x.TipoValor == 10).Count();
                 Discapacitado = lista.Where(x => x.TipoValor == 11).Count();
                 Oro = lista.Where(x => x.TipoValor == 12).Count();
-               
+                Promo = lista.Where(x => x.TipoValor == 13).Count();
+
                 if (esReintegro)
                 {
                     Socio = Socio * (-1);
                     Socio_Pileta = Socio_Pileta * (-1);
                     Socio_Estacionamiento = Socio_Estacionamiento * (-1);
-                    
+
                     Invitado = Invitado * (-1);
                     Invitado_Pileta = Invitado_Pileta * (-1);
                     Invitado_Estacionamiento = Invitado_Estacionamiento * (-1);
 
-                    Intercirculo         = Intercirculo * (-1);
+                    Intercirculo = Intercirculo * (-1);
                     Intercirculo_Pileta = Intercirculo_Pileta * (-1);
                     Intercirculo_Estacionamiento = Intercirculo_Estacionamiento * (-1);
 
                     Menor = Menor * (-1);
                     Discapacitado = Discapacitado * (-1);
-                    Oro  = Oro * (-1);
+                    Oro = Oro * (-1);
+                    Promo = Promo * (-1);
 
+                }
+                else // Si no es reintegro, control de piletas y aforo
+                {   int Piletas= Promo+ Menor+ Discapacitado+Oro+Invitado_Pileta + Socio_Pileta + Intercirculo_Pileta;
+                    if (Piletas !=0)
+                    {
+                        bool Control_Aforo = ControlAforo(Piletas, Hora_Pileta);
+                        if (Control_Aforo == false)
+                            return;
+                    }
                 }
 
 
@@ -441,7 +476,7 @@ namespace SOCIOS.Entrada_Campo
                 int ID_INT = entradaCampoService.Ultimo_ID(VGlobales.vp_role);
                
                 
-                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Oro,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","",Hora);
+                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Oro,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","",Hora,Promo,Hora_Pileta);
 
                 
                 MostrarControles(false,esReintegro,IngresoManual);
@@ -477,6 +512,49 @@ namespace SOCIOS.Entrada_Campo
 
             }
 
+        }
+
+
+        private bool ControlAforo(int TotalPiletas, int Horario)
+        {
+            
+            
+            
+            int Aforo_Total = serviceDias.AforoFecha(System.DateTime.Now);
+            int TopeDia=  entradaCampoService.Tope_Dia_Pileta;
+            int TopeHora = entradaCampoService.Tope_Hora_Pileta;
+            
+          
+
+            if (Horario != 0)
+            {   int Aforo_Horario = serviceDias.AforoHorarios(System.DateTime.Now,Horario);
+                if (TopeHora < Aforo_Horario + TotalPiletas)
+                {
+                    DialogResult dr = (MessageBox.Show("El Horario Seleccionado Excede la capacidad estimada, continuar?", "Control Aforo Horario", MessageBoxButtons.YesNo));
+                    if (dr == DialogResult.No)
+                        return false;
+
+                }
+              
+            }
+
+            if (TopeDia < Aforo_Total + TotalPiletas)
+            {
+                DialogResult drd = (MessageBox.Show("Los Ingresos Seleccionados Exceden la capacidad estimada Total, continuar?", "Control Aforo Total", MessageBoxButtons.YesNo));
+                if (drd == DialogResult.No)
+                    return false;
+            }
+          
+                  
+
+
+            return true;
+          
+
+
+
+
+        
         }
 
         private void RestaCantidades()
@@ -559,8 +637,8 @@ namespace SOCIOS.Entrada_Campo
 
         {
             int ID = entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false,false,"");
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro,ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false,false,"");
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro,Promo, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false,false,true,"",0,false,false,"",Hora_Pileta);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro,Promo,ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false,"",0,false,false,"",Hora_Pileta);
             this.Imprimir_Pileta(false);
 
         }
@@ -569,9 +647,9 @@ namespace SOCIOS.Entrada_Campo
         private void Imprimir_Directo()
         {
             int ID = entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, true,"");
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro,Promo, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, true,"",Hora_Pileta);
             
-           entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, true,"");
+           entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Oro,Promo, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, true,"",Hora_Pileta);
            this.Imprimir_Pileta(true);
             
 
@@ -583,7 +661,7 @@ namespace SOCIOS.Entrada_Campo
         private void Imprimir_Pileta(bool Directo)
 
         { 
-            int CantidadPiletas = Invitado_Pileta + Socio_Pileta + Intercirculo_Pileta + Menor + Discapacitado + Oro;
+            int CantidadPiletas = Invitado_Pileta + Socio_Pileta + Intercirculo_Pileta + Menor + Discapacitado + Oro + Promo;
             int contador = 0;
 
             contador = Impresion_piletas(contador, CantidadPiletas, "SOC", Socio_Pileta, Directo);
@@ -592,7 +670,7 @@ namespace SOCIOS.Entrada_Campo
             contador = Impresion_piletas(contador, CantidadPiletas, "DIS", Discapacitado, Directo);
             contador = Impresion_piletas(contador, CantidadPiletas, "ORO", Oro, Directo);
             contador = Impresion_piletas(contador, CantidadPiletas, "INT", Intercirculo_Pileta, Directo);
-           
+            contador = Impresion_piletas(contador, CantidadPiletas, "PRM", Promo, Directo);
         
         
         }
@@ -626,7 +704,11 @@ namespace SOCIOS.Entrada_Campo
 
         private void lnk_Intercirculo_Pileta_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.NuevoItem(entradaCampoService.EntradaInterPileta, 8);
+
+            if (cbPiletaHorario.Checked == false)
+                this.NuevoItem(entradaCampoService.EntradaInterPileta, 8);
+            else
+                this.NuevoItem(entradaCampoService.EntradaInterPiletaHora, 8);
         }
 
         private void lnk_InterCirculo_Estacionamiento_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -652,6 +734,11 @@ namespace SOCIOS.Entrada_Campo
         private void lnkDiscaAcom_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.NuevoItem(0, 12);
+        }
+
+        private void lnkPromo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.NuevoItem(0, 13);
         }
 
         private void chkCumple_CheckedChanged(object sender, EventArgs e)
@@ -685,5 +772,39 @@ namespace SOCIOS.Entrada_Campo
             this.Imprimir_Directo();
             this.Close();
         }
+        
+        private void cbPiletaHorario_CheckedChanged(object sender, EventArgs e)
+        {
+            cbHorario.Visible = cbPiletaHorario.Checked;
+            lbAforoDiario.Visible = cbPiletaHorario.Checked;
+
+            if (cbPiletaHorario.Checked)
+            {
+                cbHorario.DataSource = null;
+                cbHorario.Items.Clear();
+                cbHorario.DataSource = serviceDias.getDiasPileta();
+                cbHorario.DisplayMember = "DESDE_HASTA";
+                cbHorario.ValueMember = "ID";
+                cbHorario.SelectedItem = 1;
+                Aforo_Horario(1);
+            }
+
+           
+        }
+
+        private void Aforo_Horario(int Horario)
+        {
+            lbAforoDiario.Text = " PILETAS EN EL HORARIO :" + serviceDias.AforoHorarios(System.DateTime.Now, Horario).ToString();
+              
+        }
+
+        private void Aforo_Total()
+        {
+            lbAforoTotal.Text = "PILETAS EN EL DIA : " + serviceDias.AforoFecha(System.DateTime.Now).ToString();
+        }
+
+
+
+        
     }
 }

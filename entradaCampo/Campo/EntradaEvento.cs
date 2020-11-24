@@ -151,7 +151,7 @@ namespace SOCIOS.entradaCampo.Campo
                             NRO_SOCIO = Int32.Parse(tbLegajoNroSocio.Text);
                     }
                     string Hora = System.DateTime.Now.Hour.ToString() + ":" + System.DateTime.Now.Minute.ToString(); 
-                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, Cantidad, MontoTotal, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, 0, 0, 0, Cantidad, MontoTotal, ID_INT, Tipo_reg, 0, "INGRESO EVENTO DEPORTIVO", 0, "", "",Hora);
+                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, Cantidad, MontoTotal, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, 0, 0, 0, Cantidad, MontoTotal, ID_INT, Tipo_reg, 0, "INGRESO EVENTO DEPORTIVO", 0, "", "",Hora,0,-1);
 
 
 
@@ -181,8 +181,8 @@ namespace SOCIOS.entradaCampo.Campo
             int ID = es.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart());
             int cantidad = lista.Count;
 
-            es.Imprimir(0,0,0,0,0,0,0,0,0,0,0,0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", cantidad,false,true,"");
-            es.Imprimir(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", cantidad, false, true,"");
+            es.Imprimir(0,0,0,0,0,0,0,0,0,0,0,0,0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", cantidad,false,true,"",-1);
+            es.Imprimir(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0, ID, DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", cantidad, false, true,"",-1);
         }
 
         private void chkSocio_CheckedChanged(object sender, EventArgs e)

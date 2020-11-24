@@ -50,6 +50,7 @@ namespace SOCIOS.Entrada_Campo.CSPFA
         int Menor = 0;
         int Discapacitado = 0;
         int Discapacitado_Acompa = 0;
+        int Promo = 0;
         bool ModoInvitado=false;
         bool ModoIntercirculo = false;
         bool esReintegro = false;
@@ -226,6 +227,11 @@ namespace SOCIOS.Entrada_Campo.CSPFA
                 case 12:
 
                     entrada.Tipo = "VITALICIO ORO ";
+                    break;
+
+                case 13:
+
+                    entrada.Tipo = "PROMO";
                     break;
 
                 default:
@@ -410,7 +416,7 @@ namespace SOCIOS.Entrada_Campo.CSPFA
                 Menor = lista.Where(x => x.TipoValor == 10).Count();
                 Discapacitado = lista.Where(x => x.TipoValor == 11).Count();
                 Discapacitado_Acompa = lista.Where(x => x.TipoValor == 12).Count();
-
+                Promo = lista.Where(x => x.TipoValor == 13).Count();
                 if (esReintegro)
                 {
                     Socio = Socio * (-1);
@@ -428,6 +434,7 @@ namespace SOCIOS.Entrada_Campo.CSPFA
                     Menor = Menor * (-1);
                     Discapacitado = Discapacitado * (-1);
                     Discapacitado_Acompa = Discapacitado_Acompa * (-1);
+                    Promo = Promo * (-1);
 
                 }
 
@@ -491,7 +498,7 @@ namespace SOCIOS.Entrada_Campo.CSPFA
                 int ID_INT = entradaCampoService.Ultimo_ID(VGlobales.vp_role);
 
                 string Hora = System.DateTime.Now.Hour.ToString() + ":" + System.DateTime.Now.Minute.ToString(); 
-                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Discapacitado_Acompa,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","",Hora);
+                    dlog.Entrada_Campo_Ins(DNI, NOMBRE, APELLIDO, NRO_SOCIO, NRO_DEP, TIPO, Invitado, Invitado_Monto, Invitado_Pileta, Invitado_Pileta_Monto, Invitado_Estacionamiento, Invitado_Estacionamiento_Monto, Socio, Socio_Monto, Socio_Pileta, Socio_Pileta_Monto, Socio_Estacionamiento, Socio_Estacionamiento_Monto, Intercirculo, Intercirculo_Monto, Intercirculo_Pileta, Intercirculo_Pileta_Monto, Intercirculo_Estacionamiento, Intercirculo_Estacionamiento_Monto, Cantidad_Total, Monto_Total, System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username,Menor,Discapacitado,Discapacitado_Acompa,0,0,ID_INT,Tipo_reg,LEGAJO,tbCumple.Text,0,"","",Hora,Promo,-1);
 
                 
                 MostrarControles(false,esReintegro);
@@ -599,8 +606,8 @@ namespace SOCIOS.Entrada_Campo.CSPFA
         private void Imprimir()
 
         {
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, true,"");
-            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, true,"");
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa,Promo, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, true, "", 0, false, true,"",-1);
+            entradaCampoService.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Intercirculo, Intercirculo_Pileta, Intercirculo_Estacionamiento, Menor, Discapacitado, Discapacitado_Acompa,Promo, entradaCampoService.GetMaxID_ROL(DNI, VGlobales.vp_role.TrimEnd().TrimStart()), DNI + "-" + APELLIDO + "," + NOMBRE, TIPO, false, false, false, "", 0, false, true,"",-1);
            // this.Imprimir_Pileta();
         }
 
@@ -696,6 +703,19 @@ namespace SOCIOS.Entrada_Campo.CSPFA
             }
         }
 
+        private void lnkPromo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+
+                this.NuevoItem(0, 13);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void lnkDiscaAcom_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
@@ -764,6 +784,8 @@ namespace SOCIOS.Entrada_Campo.CSPFA
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+      
 
       
         }

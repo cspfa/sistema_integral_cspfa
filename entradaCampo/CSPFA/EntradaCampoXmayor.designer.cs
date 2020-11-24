@@ -74,6 +74,7 @@
             this.tbCantidad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.cbReintegro = new System.Windows.Forms.CheckBox();
+            this.lnkPromo = new System.Windows.Forms.LinkLabel();
             this.gpSinCargo.SuspendLayout();
             this.gpInterCirculo.SuspendLayout();
             this.gpInvitados.SuspendLayout();
@@ -170,6 +171,7 @@
             // 
             // gpSinCargo
             // 
+            this.gpSinCargo.Controls.Add(this.lnkPromo);
             this.gpSinCargo.Controls.Add(this.lnkDiscaAcom);
             this.gpSinCargo.Controls.Add(this.lnkDisca);
             this.gpSinCargo.Controls.Add(this.lnkMenor);
@@ -600,6 +602,18 @@
             this.cbReintegro.UseVisualStyleBackColor = true;
             this.cbReintegro.CheckedChanged += new System.EventHandler(this.cbReintegro_CheckedChanged);
             // 
+            // lnkPromo
+            // 
+            this.lnkPromo.AutoSize = true;
+            this.lnkPromo.LinkColor = System.Drawing.Color.Green;
+            this.lnkPromo.Location = new System.Drawing.Point(112, 43);
+            this.lnkPromo.Name = "lnkPromo";
+            this.lnkPromo.Size = new System.Drawing.Size(96, 13);
+            this.lnkPromo.TabIndex = 8;
+            this.lnkPromo.TabStop = true;
+            this.lnkPromo.Text = "+ PILETA PROMO";
+            this.lnkPromo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkPromo_LinkClicked);
+            // 
             // EntradaCampoXmayor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -702,5 +716,6 @@
         private System.Windows.Forms.TextBox tbCantidad;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbReintegro;
+        private System.Windows.Forms.LinkLabel lnkPromo;
     }
 }

@@ -59,6 +59,7 @@
             this.lbSinCargo = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.gpSinCargo = new System.Windows.Forms.GroupBox();
+            this.lnkPromo = new System.Windows.Forms.LinkLabel();
             this.lnkDiscaAcom = new System.Windows.Forms.LinkLabel();
             this.lnkDisca = new System.Windows.Forms.LinkLabel();
             this.lnkMenor = new System.Windows.Forms.LinkLabel();
@@ -73,6 +74,11 @@
             this.tbCumple = new System.Windows.Forms.TextBox();
             this.chkSocio = new System.Windows.Forms.CheckBox();
             this.chkPersonalPolicial = new System.Windows.Forms.CheckBox();
+            this.cbPiletaHorario = new System.Windows.Forms.CheckBox();
+            this.cbHorario = new System.Windows.Forms.ComboBox();
+            this.lbAforoDiario = new System.Windows.Forms.Label();
+            this.lbAforoTotal = new System.Windows.Forms.Label();
+            this.lbInfoAforo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Personas)).BeginInit();
             this.gpFamiliares.SuspendLayout();
             this.gpInvitados.SuspendLayout();
@@ -86,11 +92,11 @@
             this.Personas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Personas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Personas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Personas.Location = new System.Drawing.Point(188, 200);
+            this.Personas.Location = new System.Drawing.Point(188, 223);
             this.Personas.Name = "Personas";
             this.Personas.RowHeadersVisible = false;
             this.Personas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Personas.Size = new System.Drawing.Size(359, 273);
+            this.Personas.Size = new System.Drawing.Size(359, 251);
             this.Personas.TabIndex = 1;
             // 
             // lnkFamiliar
@@ -198,7 +204,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(471, 578);
+            this.label1.Location = new System.Drawing.Point(471, 624);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 8;
@@ -209,7 +215,7 @@
             this.lbTotal.AutoSize = true;
             this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotal.ForeColor = System.Drawing.Color.Red;
-            this.lbTotal.Location = new System.Drawing.Point(634, 578);
+            this.lbTotal.Location = new System.Drawing.Point(634, 624);
             this.lbTotal.Name = "lbTotal";
             this.lbTotal.Size = new System.Drawing.Size(18, 20);
             this.lbTotal.TabIndex = 9;
@@ -229,7 +235,7 @@
             // btnImprimir
             // 
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImprimir.Location = new System.Drawing.Point(288, 447);
+            this.btnImprimir.Location = new System.Drawing.Point(288, 521);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(136, 30);
             this.btnImprimir.TabIndex = 11;
@@ -241,7 +247,7 @@
             // 
             this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Delete.Location = new System.Drawing.Point(70, 479);
+            this.Delete.Location = new System.Drawing.Point(70, 522);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(161, 30);
             this.Delete.TabIndex = 7;
@@ -254,7 +260,7 @@
             // 
             this.Pago.Image = ((System.Drawing.Image)(resources.GetObject("Pago.Image")));
             this.Pago.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Pago.Location = new System.Drawing.Point(475, 479);
+            this.Pago.Location = new System.Drawing.Point(475, 522);
             this.Pago.Name = "Pago";
             this.Pago.Size = new System.Drawing.Size(113, 30);
             this.Pago.TabIndex = 6;
@@ -318,7 +324,7 @@
             this.lb.AutoSize = true;
             this.lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lb.Location = new System.Drawing.Point(81, 520);
+            this.lb.Location = new System.Drawing.Point(81, 566);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(75, 20);
             this.lb.TabIndex = 12;
@@ -329,7 +335,7 @@
             this.lbSocio.AutoSize = true;
             this.lbSocio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSocio.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbSocio.Location = new System.Drawing.Point(152, 520);
+            this.lbSocio.Location = new System.Drawing.Point(152, 566);
             this.lbSocio.Name = "lbSocio";
             this.lbSocio.Size = new System.Drawing.Size(18, 20);
             this.lbSocio.TabIndex = 13;
@@ -340,7 +346,7 @@
             this.lbInvitado.AutoSize = true;
             this.lbInvitado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInvitado.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInvitado.Location = new System.Drawing.Point(152, 549);
+            this.lbInvitado.Location = new System.Drawing.Point(152, 595);
             this.lbInvitado.Name = "lbInvitado";
             this.lbInvitado.Size = new System.Drawing.Size(18, 20);
             this.lbInvitado.TabIndex = 15;
@@ -351,7 +357,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(56, 549);
+            this.label4.Location = new System.Drawing.Point(56, 595);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 14;
@@ -362,7 +368,7 @@
             this.lbEstacionamiento.AutoSize = true;
             this.lbEstacionamiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEstacionamiento.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lbEstacionamiento.Location = new System.Drawing.Point(637, 520);
+            this.lbEstacionamiento.Location = new System.Drawing.Point(637, 566);
             this.lbEstacionamiento.Name = "lbEstacionamiento";
             this.lbEstacionamiento.Size = new System.Drawing.Size(18, 20);
             this.lbEstacionamiento.TabIndex = 17;
@@ -373,7 +379,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(471, 520);
+            this.label5.Location = new System.Drawing.Point(471, 566);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(170, 20);
             this.label5.TabIndex = 16;
@@ -384,7 +390,7 @@
             this.lbInter.AutoSize = true;
             this.lbInter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInter.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInter.Location = new System.Drawing.Point(152, 578);
+            this.lbInter.Location = new System.Drawing.Point(152, 624);
             this.lbInter.Name = "lbInter";
             this.lbInter.Size = new System.Drawing.Size(18, 20);
             this.lbInter.TabIndex = 19;
@@ -395,7 +401,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(23, 578);
+            this.label3.Location = new System.Drawing.Point(23, 624);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 20);
             this.label3.TabIndex = 18;
@@ -406,7 +412,7 @@
             this.lbSinCargo.AutoSize = true;
             this.lbSinCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSinCargo.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lbSinCargo.Location = new System.Drawing.Point(637, 549);
+            this.lbSinCargo.Location = new System.Drawing.Point(637, 595);
             this.lbSinCargo.Name = "lbSinCargo";
             this.lbSinCargo.Size = new System.Drawing.Size(18, 20);
             this.lbSinCargo.TabIndex = 21;
@@ -417,7 +423,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label6.Location = new System.Drawing.Point(471, 549);
+            this.label6.Location = new System.Drawing.Point(471, 595);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 20);
             this.label6.TabIndex = 20;
@@ -425,6 +431,7 @@
             // 
             // gpSinCargo
             // 
+            this.gpSinCargo.Controls.Add(this.lnkPromo);
             this.gpSinCargo.Controls.Add(this.lnkDiscaAcom);
             this.gpSinCargo.Controls.Add(this.lnkDisca);
             this.gpSinCargo.Controls.Add(this.lnkMenor);
@@ -437,11 +444,23 @@
             this.gpSinCargo.TabStop = false;
             this.gpSinCargo.Text = "PILETAS SIN CARGO";
             // 
+            // lnkPromo
+            // 
+            this.lnkPromo.AutoSize = true;
+            this.lnkPromo.LinkColor = System.Drawing.Color.Green;
+            this.lnkPromo.Location = new System.Drawing.Point(354, 20);
+            this.lnkPromo.Name = "lnkPromo";
+            this.lnkPromo.Size = new System.Drawing.Size(56, 13);
+            this.lnkPromo.TabIndex = 7;
+            this.lnkPromo.TabStop = true;
+            this.lnkPromo.Text = "+ PROMO";
+            this.lnkPromo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkPromo_LinkClicked);
+            // 
             // lnkDiscaAcom
             // 
             this.lnkDiscaAcom.AutoSize = true;
             this.lnkDiscaAcom.LinkColor = System.Drawing.Color.Green;
-            this.lnkDiscaAcom.Location = new System.Drawing.Point(275, 20);
+            this.lnkDiscaAcom.Location = new System.Drawing.Point(254, 20);
             this.lnkDiscaAcom.Name = "lnkDiscaAcom";
             this.lnkDiscaAcom.Size = new System.Drawing.Size(94, 13);
             this.lnkDiscaAcom.TabIndex = 6;
@@ -489,7 +508,7 @@
             this.lbSocioPileta.AutoSize = true;
             this.lbSocioPileta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSocioPileta.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbSocioPileta.Location = new System.Drawing.Point(357, 520);
+            this.lbSocioPileta.Location = new System.Drawing.Point(357, 566);
             this.lbSocioPileta.Name = "lbSocioPileta";
             this.lbSocioPileta.Size = new System.Drawing.Size(18, 20);
             this.lbSocioPileta.TabIndex = 24;
@@ -500,7 +519,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(228, 520);
+            this.label7.Location = new System.Drawing.Point(228, 566);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 20);
             this.label7.TabIndex = 23;
@@ -511,7 +530,7 @@
             this.lbInviPileta.AutoSize = true;
             this.lbInviPileta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInviPileta.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInviPileta.Location = new System.Drawing.Point(357, 549);
+            this.lbInviPileta.Location = new System.Drawing.Point(357, 595);
             this.lbInviPileta.Name = "lbInviPileta";
             this.lbInviPileta.Size = new System.Drawing.Size(18, 20);
             this.lbInviPileta.TabIndex = 26;
@@ -522,7 +541,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(228, 549);
+            this.label9.Location = new System.Drawing.Point(228, 595);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(83, 20);
             this.label9.TabIndex = 25;
@@ -533,7 +552,7 @@
             this.lbInterPileta.AutoSize = true;
             this.lbInterPileta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInterPileta.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInterPileta.Location = new System.Drawing.Point(357, 577);
+            this.lbInterPileta.Location = new System.Drawing.Point(357, 623);
             this.lbInterPileta.Name = "lbInterPileta";
             this.lbInterPileta.Size = new System.Drawing.Size(18, 20);
             this.lbInterPileta.TabIndex = 28;
@@ -544,7 +563,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(228, 577);
+            this.label11.Location = new System.Drawing.Point(228, 623);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(83, 20);
             this.label11.TabIndex = 27;
@@ -553,7 +572,7 @@
             // chkCumple
             // 
             this.chkCumple.AutoSize = true;
-            this.chkCumple.Location = new System.Drawing.Point(25, 628);
+            this.chkCumple.Location = new System.Drawing.Point(25, 647);
             this.chkCumple.Name = "chkCumple";
             this.chkCumple.Size = new System.Drawing.Size(132, 17);
             this.chkCumple.TabIndex = 29;
@@ -563,7 +582,7 @@
             // 
             // tbCumple
             // 
-            this.tbCumple.Location = new System.Drawing.Point(13, 666);
+            this.tbCumple.Location = new System.Drawing.Point(13, 671);
             this.tbCumple.MaxLength = 100;
             this.tbCumple.Multiline = true;
             this.tbCumple.Name = "tbCumple";
@@ -593,12 +612,69 @@
             this.chkPersonalPolicial.UseVisualStyleBackColor = true;
             this.chkPersonalPolicial.CheckedChanged += new System.EventHandler(this.chkPersonalPolicial_CheckedChanged);
             // 
+            // cbPiletaHorario
+            // 
+            this.cbPiletaHorario.AutoSize = true;
+            this.cbPiletaHorario.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cbPiletaHorario.Location = new System.Drawing.Point(323, 187);
+            this.cbPiletaHorario.Name = "cbPiletaHorario";
+            this.cbPiletaHorario.Size = new System.Drawing.Size(142, 17);
+            this.cbPiletaHorario.TabIndex = 33;
+            this.cbPiletaHorario.Text = "PILETA CON HORARIO";
+            this.cbPiletaHorario.UseVisualStyleBackColor = true;
+            this.cbPiletaHorario.CheckedChanged += new System.EventHandler(this.cbPiletaHorario_CheckedChanged);
+            // 
+            // cbHorario
+            // 
+            this.cbHorario.FormattingEnabled = true;
+            this.cbHorario.Location = new System.Drawing.Point(475, 183);
+            this.cbHorario.Name = "cbHorario";
+            this.cbHorario.Size = new System.Drawing.Size(129, 21);
+            this.cbHorario.TabIndex = 34;
+            this.cbHorario.Visible = false;
+            // 
+            // lbAforoDiario
+            // 
+            this.lbAforoDiario.AutoSize = true;
+            this.lbAforoDiario.ForeColor = System.Drawing.Color.Red;
+            this.lbAforoDiario.Location = new System.Drawing.Point(472, 207);
+            this.lbAforoDiario.Name = "lbAforoDiario";
+            this.lbAforoDiario.Size = new System.Drawing.Size(67, 13);
+            this.lbAforoDiario.TabIndex = 35;
+            this.lbAforoDiario.Text = "lbAforoDiario";
+            this.lbAforoDiario.Visible = false;
+            // 
+            // lbAforoTotal
+            // 
+            this.lbAforoTotal.AutoSize = true;
+            this.lbAforoTotal.ForeColor = System.Drawing.Color.Red;
+            this.lbAforoTotal.Location = new System.Drawing.Point(573, 43);
+            this.lbAforoTotal.Name = "lbAforoTotal";
+            this.lbAforoTotal.Size = new System.Drawing.Size(82, 13);
+            this.lbAforoTotal.TabIndex = 36;
+            this.lbAforoTotal.Text = "AFORO TOTAL";
+            // 
+            // lbInfoAforo
+            // 
+            this.lbInfoAforo.AutoSize = true;
+            this.lbInfoAforo.ForeColor = System.Drawing.Color.Red;
+            this.lbInfoAforo.Location = new System.Drawing.Point(22, 207);
+            this.lbInfoAforo.Name = "lbInfoAforo";
+            this.lbInfoAforo.Size = new System.Drawing.Size(10, 13);
+            this.lbInfoAforo.TabIndex = 37;
+            this.lbInfoAforo.Text = "-";
+            // 
             // EntradaCampoIngresoTotales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(779, 743);
+            this.Controls.Add(this.lbInfoAforo);
+            this.Controls.Add(this.lbAforoTotal);
+            this.Controls.Add(this.lbAforoDiario);
+            this.Controls.Add(this.cbHorario);
+            this.Controls.Add(this.cbPiletaHorario);
             this.Controls.Add(this.chkSocio);
             this.Controls.Add(this.chkPersonalPolicial);
             this.Controls.Add(this.tbCumple);
@@ -695,5 +771,11 @@
         private System.Windows.Forms.TextBox tbCumple;
         private System.Windows.Forms.CheckBox chkSocio;
         private System.Windows.Forms.CheckBox chkPersonalPolicial;
+        private System.Windows.Forms.LinkLabel lnkPromo;
+        private System.Windows.Forms.CheckBox cbPiletaHorario;
+        private System.Windows.Forms.ComboBox cbHorario;
+        private System.Windows.Forms.Label lbAforoDiario;
+        private System.Windows.Forms.Label lbAforoTotal;
+        private System.Windows.Forms.Label lbInfoAforo;
     }
 }

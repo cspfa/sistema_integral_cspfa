@@ -83,6 +83,8 @@ namespace SOCIOS
         public int      EVENTO                        { get; set; }
         public decimal  MONTO_EVENTO                  { get; set; }
         public string   HORA                          { get; set; }
+        public int      PROMO                         { get; set; }
+        public int      HORA_PILETA                   { get; set; }
 
     }
 
@@ -105,6 +107,8 @@ namespace SOCIOS
        private int SectAct_Pileta = 0;
        private int Secact_Estacionamiento = 0;
        private int Secact_Evento = 0;
+       private int Secact_Pileta_Hora = 0;
+
 
         private int Prof_Entrada = 0;
        private int Prof_Pileta = 0;
@@ -112,18 +116,21 @@ namespace SOCIOS
        private int Prof_Estacionamiento = 0;
 
        private int Prof_Evento = 0;
-       
+       private int Prof_Pileta_Hora = 0;
 
        public decimal EntradaSocio                 = 0;
        public decimal EntradaSocioPileta           = 0;
+       public decimal EntradaSocioPiletaHora             = 0;
        public decimal EntradaSocioEstacionamiento  = 0;   
        
        public decimal EntradaInvi                  = 0;
        public decimal EntradaInviPileta            = 0;
+       public decimal EntradaInviPiletaHora = 0;
        public decimal EntradaInviEstacionamiento   = 0;
 
        public decimal  EntradaInter                = 0;
        public decimal  EntradaInterPileta          = 0;
+       public decimal EntradaInterPiletaHora        = 0;
        public decimal  EntradaInterEstacionamiento = 0;
        
        public decimal EntradaEvento = 0;
@@ -143,7 +150,13 @@ namespace SOCIOS
 
        public decimal TotalEvento = 0;
 
+       public decimal TotalPiletaHora = 0;
+
+       public int Tope_Hora_Pileta = 0;
+       public int Tope_Dia_Pileta = 0;
+
        public string Titulo = "";
+       public string Titulo_Horario = "";
        public int ID = 0;
        string Dato1 = "";
        string Dato2 = "";
@@ -163,7 +176,7 @@ namespace SOCIOS
        int Menor = 0;
        int Disca = 0;
        int Oro = 0;
-
+       int Promo = 0;
        int Evento = 0;
 
        string Hora = "";
@@ -190,6 +203,12 @@ namespace SOCIOS
             Secact_Evento = Int32.Parse(Config.getValor(VGlobales.vp_role, "CAMPO_ESTDEPO", 0));
             Prof_Evento   = Int32.Parse(Config.getValor(VGlobales.vp_role, "CAMPO_ESTDEPO", 1));
             
+            Secact_Pileta_Hora = Int32.Parse(Config.getValor(VGlobales.vp_role, "CAMPO_PILETA_HORA", 0));
+            Prof_Pileta_Hora = Int32.Parse(Config.getValor(VGlobales.vp_role, "CAMPO_PILETA_HORA", 1));
+
+            Tope_Hora_Pileta = Int32.Parse(Config.getValor(VGlobales.vp_role, "CAMPO_PILETA_TOPE", 0));
+            Tope_Dia_Pileta = Int32.Parse(Config.getValor(VGlobales.vp_role, "CAMPO_PILETA_TOPE", 1));
+
             EntradaSocio       = Aran.valorGrupo(SectAct_Entrada, 1, Prof_Entrada);
             EntradaInter       = Aran.valorGrupo(SectAct_Entrada, 2, Prof_Entrada);
             EntradaInvi        = Aran.valorGrupo(SectAct_Entrada, 3, Prof_Entrada);
@@ -198,6 +217,12 @@ namespace SOCIOS
             EntradaSocioPileta = Aran.valorGrupo(SectAct_Pileta, 1, Prof_Pileta);
             EntradaInterPileta = Aran.valorGrupo(SectAct_Pileta, 2, Prof_Pileta);
             EntradaInviPileta  = Aran.valorGrupo(SectAct_Pileta, 3, Prof_Pileta);
+
+            EntradaSocioPiletaHora = Aran.valorGrupo(Secact_Pileta_Hora, 1, Prof_Pileta_Hora);
+            EntradaInterPiletaHora  = Aran.valorGrupo(Secact_Pileta_Hora, 1, Prof_Pileta_Hora);
+            EntradaInviPiletaHora  = Aran.valorGrupo(Secact_Pileta_Hora, 1, Prof_Pileta_Hora);
+
+
 
             EntradaSocioEstacionamiento = Aran.valorGrupo(Secact_Estacionamiento, 1, Prof_Estacionamiento);
             EntradaInterEstacionamiento = Aran.valorGrupo(Secact_Estacionamiento, 2, Prof_Estacionamiento);
@@ -213,7 +238,7 @@ namespace SOCIOS
         }
 
 
-        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pOro, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales,bool ImpresionDirecta,string pHora)
+        public void Imprimir(int pSocio, int pSocioPileta,int pSocioEst, int pinvitado, int pinvitadoPileta,int pinvitadoEst, int pInter, int pInterPileta,int pInterEst,int pMenor, int pDisca, int pOro,int pPromo, int pID,string pDato1,string pDato2,bool Reintegro,bool Totales_reintegro,bool Original,string User,int pEvento,bool Totales,bool ImpresionDirecta,string pHora,int HorarioPileta)
 
         {
 
@@ -248,6 +273,7 @@ namespace SOCIOS
              Disca = pDisca;
              Oro = pOro;
              Hora = pHora;
+             Promo = pPromo;
 
              if (Evento > 0 && !Totales)
                  Titulo = "EST. EVENTO " + VGlobales.vp_role.TrimEnd().TrimStart();
@@ -270,6 +296,16 @@ namespace SOCIOS
          
              Dato1 = pDato1;
              Dato2 = pDato2;
+
+             if (HorarioPileta > -1)
+             {
+                 if (HorarioPileta == 0)
+                     Titulo_Horario = "ESTADIA";
+                 else
+                 {    Entrada_Campo.DiasPiletaService serviceDias = new Entrada_Campo.DiasPiletaService();
+                    Titulo_Horario = " TURNO " + serviceDias.getDiasPileta(HorarioPileta);
+                 }
+             }
              PrintDialog pd = new PrintDialog(); 
              PrintDocument pdoc = new PrintDocument();
 
@@ -307,7 +343,7 @@ namespace SOCIOS
             EntradaCampo ec = this.getRegistroEntradaCampo(ID);
 
             
-            this.Imprimir(ec.SOCIO, ec.SOCIO_PILETA, ec.SOCIO_ESTACIONAMIENTO, ec.INVITADO, ec.INVITADO_PILETA, ec.INVITADO_ESTACIONAMIENTO, ec.INTERCIRCULO, ec.INTERCIRCULO_PILETA, ec.INTERCIRCULO_ESTACIONAMIENTO, ec.MENOR, ec.DISCAPACITADO, ec.DISCAPACITADO_ACOM, ec.ID, ec.DNI + "-" + ec.APELLIDO + "," + ec.NOMBRE, ec.Tipo, false, false, false,"",ec.EVENTO,false,Directo,ec.HORA);
+            this.Imprimir(ec.SOCIO, ec.SOCIO_PILETA, ec.SOCIO_ESTACIONAMIENTO, ec.INVITADO, ec.INVITADO_PILETA, ec.INVITADO_ESTACIONAMIENTO, ec.INTERCIRCULO, ec.INTERCIRCULO_PILETA, ec.INTERCIRCULO_ESTACIONAMIENTO, ec.MENOR, ec.DISCAPACITADO, ec.DISCAPACITADO_ACOM,ec.PROMO, ec.ID, ec.DNI + "-" + ec.APELLIDO + "," + ec.NOMBRE, ec.Tipo, false, false, false,"",ec.EVENTO,false,Directo,ec.HORA,ec.HORA_PILETA);
 
         }
 
@@ -371,13 +407,14 @@ namespace SOCIOS
             int Disca = lista.Sum(x => x.DISCAPACITADO);
             int Disca_Acom = lista.Sum(x => x.DISCAPACITADO_ACOM);
             int Evento = lista.Sum(x => x.EVENTO);
+            int Promo = lista.Sum(x => x.PROMO);
 
             string LeyendaTotales = "";
 
             LeyendaTotales = "TOTALES DE " + lista.OrderBy(x => x.ID).FirstOrDefault().ID.ToString() + " A " + lista.OrderByDescending(x => x.ID).FirstOrDefault().ID.ToString(); 
 
 
-            this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom,0, LeyendaTotales , System.DateTime.Now.ToString(), false,false,true,User,Evento,true,false,"");
+            this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom,0,Promo, LeyendaTotales , System.DateTime.Now.ToString(), false,false,true,User,Evento,true,false,"",-1);
 
         
         }
@@ -400,6 +437,7 @@ namespace SOCIOS
             int Menor = lista.Sum(x => x.MENOR);
             int Disca = lista.Sum(x => x.DISCAPACITADO);
             int Disca_Acom = lista.Sum(x => x.DISCAPACITADO_ACOM);
+            int Promo = lista.Sum(x => x.PROMO);
             string LeyendaTotales = "";
 
            
@@ -411,7 +449,7 @@ namespace SOCIOS
             {
                 LeyendaTotales = "TOTALES REINT " + lista.OrderBy(x => x.ID).FirstOrDefault().ID.ToString() + " A " + lista.OrderByDescending(x => x.ID).FirstOrDefault().ID.ToString(); 
 
-                this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom, 0, LeyendaTotales, System.DateTime.Now.ToString(), false, true, true,"",Evento,false,false,"");
+                this.Imprimir(Socio, Socio_Pileta, Socio_Estacionamiento, Invitado, Invitado_Pileta, Invitado_Estacionamiento, Inter, Inter_Pileta, Inter_Estacionamiento, Menor, Disca, Disca_Acom, 0,Promo, LeyendaTotales, System.DateTime.Now.ToString(), false, true, true,"",Evento,false,false,"",-1);
             }
 
 
@@ -446,6 +484,12 @@ namespace SOCIOS
             graphics.DrawString(hoy.Day.ToString() + "-" + hoy.Month.ToString() + "-" + hoy.Year.ToString() + "-" + Hora + ORIGINAL_DUPLICADO, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
 
+
+            if (Titulo_Horario.Length > 0)
+            {
+                graphics.DrawString(Titulo_Horario, courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+            }
             graphics.DrawString(Titulo, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
           
@@ -570,6 +614,14 @@ namespace SOCIOS
                  Offset = Offset + 20;
              }
 
+             if (Promo > 0)
+             {
+                 graphics.DrawString(Promo.ToString("00") + txtUtils.CompletarBlancos("-Pil Promo", true, 15), courier_big, black, startX, startY + Offset);
+                 graphics.DrawString(":$0", courier_big, black, startX + 150, startY + Offset);
+                 Offset = Offset + 20;
+             }
+
+
 
              graphics.DrawString(" TOTAL ", courier_big, black, startX, startY + Offset);
              graphics.DrawString(":$" + Total.ToString(), courier_big, black, startX + 150, startY + Offset); 
@@ -596,6 +648,11 @@ namespace SOCIOS
         }
 
 
+        public string INFO_AFORO()
+        {
+            return "LIMITE AFORO PILETA TOTAL: " + Tope_Dia_Pileta.ToString() + " / HORARIO : " + Tope_Dia_Pileta.ToString();
+        }
+
         public void pPileta_Print(object sender, PrintPageEventArgs e)
         {
             Barcode39 code39 = new Barcode39();
@@ -619,7 +676,11 @@ namespace SOCIOS
 
             graphics.DrawString(Titulo, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
-
+            if (Titulo_Horario.Length > 0)
+            {
+                graphics.DrawString(Titulo_Horario, courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+            }
 
 
             graphics.DrawString(Dato1, courier_big, black, startX, startY + Offset);
@@ -786,6 +847,13 @@ namespace SOCIOS
                 Offset = Offset + 20;
             }
 
+            if (Promo != 0)
+            {
+                graphics.DrawString(Promo.ToString("00") + txtUtils.CompletarBlancos("-R.Pil Promo", true, 15), courier_big, black, startX, startY + Offset);
+                graphics.DrawString(":$0", courier_big, black, startX + 150, startY + Offset);
+                Offset = Offset + 20;
+            }
+
 
             graphics.DrawString(" TOTAL REINTEGROS ", courier_big, black, startX, startY + Offset);
             graphics.DrawString(":$" + Total.ToString(), courier_big, black, startX + 150, startY + Offset);
@@ -855,7 +923,7 @@ namespace SOCIOS
                                       MONTO_INVITADO_PIL,INVITADO_EST, MONTO_INVITADO_EST, SOCIO, MONTO_SOCIO, SOCIO_PILETA, MONTO_SOCIO_PIL,
                                       SOCIO_EST, MONTO_SOCIO_EST, INTER, MONTO_INTER, INTER_PILETA, MONTO_INTER_PILETA, INTER_EST, MONTO_INTER_EST,
                                       CANTIDAD_TOTAL,MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION,
-                                      ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,EVENTO,MONTO_EVENTO FROM  ENTRADA_CAMPO WHERE ID_ROL=  " + ID.ToString() + " and ROL ='"+ROL+"'" ;
+                                      ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,EVENTO,MONTO_EVENTO,PROMO,HORA_PILETA FROM  ENTRADA_CAMPO WHERE ID_ROL=  " + ID.ToString() + " and ROL ='"+ROL+"'" ;
 
             
 
@@ -929,12 +997,13 @@ namespace SOCIOS
                         item.MONTO_EVENTO = decimal.Parse(foundRows[I][42].ToString().Trim());
                      
                     }
-
+                    item.PROMO = Int32.Parse(foundRows[I][43].ToString().Trim());
+                    item.HORA_PILETA = Int32.Parse(foundRows[I][44].ToString().Trim());
                     
                       int ID_INT = this.Ultimo_ID(VGlobales.vp_role);
                       string Hora = System.DateTime.Now.Hour.ToString() + ":" + System.DateTime.Now.Minute.ToString(); 
 
-                      dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO * (-1), item.MONTO_INVITADO * (-1), item.INVITADO_PILETA * (-1), item.MONTO_INVITADO_PILETA * (-1), item.INVITADO_ESTACIONAMIENTO * (-1), item.MONTO_INVITADO_EST * (-1), item.SOCIO * (-1), item.MONTO_SOCIO * (-1), item.SOCIO_PILETA * (-1), item.MONTO_SOCIO_PILETA * (-1), item.SOCIO_ESTACIONAMIENTO * (-1), item.MONTO_SOCIO_EST * (-1), item.INTERCIRCULO * (-1), item.MONTO_INTER * (-1), item.INTERCIRCULO_PILETA * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.INTERCIRCULO_ESTACIONAMIENTO * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.TOTAL * (-1), item.MONTO_TOTAL * (-1), System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM, item.EVENTO, item.MONTO_EVENTO * (-1), ID_INT, "BAJA", item.LEGAJO, item.OBS_CUMPLE, 0, "", "",Hora);
+                      dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO * (-1), item.MONTO_INVITADO * (-1), item.INVITADO_PILETA * (-1), item.MONTO_INVITADO_PILETA * (-1), item.INVITADO_ESTACIONAMIENTO * (-1), item.MONTO_INVITADO_EST * (-1), item.SOCIO * (-1), item.MONTO_SOCIO * (-1), item.SOCIO_PILETA * (-1), item.MONTO_SOCIO_PILETA * (-1), item.SOCIO_ESTACIONAMIENTO * (-1), item.MONTO_SOCIO_EST * (-1), item.INTERCIRCULO * (-1), item.MONTO_INTER * (-1), item.INTERCIRCULO_PILETA * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.INTERCIRCULO_ESTACIONAMIENTO * (-1), item.MONTO_INTERCIRCULO_PILETA * (-1), item.TOTAL * (-1), item.MONTO_TOTAL * (-1), System.DateTime.Now, VGlobales.vp_role, VGlobales.vp_username, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM, item.EVENTO, item.MONTO_EVENTO * (-1), ID_INT, "BAJA", item.LEGAJO, item.OBS_CUMPLE, 0, "", "",Hora,item.PROMO,item.HORA_PILETA);
                   
 
                     Lista.Add(item);
@@ -1187,7 +1256,7 @@ namespace SOCIOS
 
             string QUERY = @"SELECT   ID_ROL,DNI,NOMBRE,APELLIDO, NRO_SOC, NRO_DEP,TIPO,INVITADO, MONTO_INVITADO, INVITADO_PILETA, MONTO_INVITADO_PIL,INVITADO_EST, MONTO_INVITADO_EST,
   SOCIO, MONTO_SOCIO, SOCIO_PILETA, MONTO_SOCIO_PIL, SOCIO_EST, MONTO_SOCIO_EST, INTER, MONTO_INTER, INTER_PILETA, MONTO_INTER_PILETA, INTER_EST, MONTO_INTER_EST, CANTIDAD_TOTAL,
-  MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION, ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,ID,EVENTO,MONTO_EVENTO FROM  ENTRADA_CAMPO WHERE 1=1";
+  MONTO_TOTAL,FECHA, ROL, USUARIO, EXPORTADO,  FECHA_ANUL, USUARIO_IMPORTACION, FECHA_IMPORTACION, ROL_IMPORTACION, USUARIO_ANUL, MENOR, DISCA, DISCA_ACOM,LEGAJO,CUMPLE_OBS,ID,EVENTO,MONTO_EVENTO,PROMO,HORA_PILETA FROM  ENTRADA_CAMPO WHERE 1=1";
 
             //AND ROL = '" + VGlobales.vp_role + "'";
 
@@ -1282,6 +1351,8 @@ namespace SOCIOS
                     
                     }
 
+                    item.PROMO = Int32.Parse(foundRows[I][44].ToString());
+                    item.HORA_PILETA = Int32.Parse(foundRows[I][45].ToString());
 
 
                     I = I + 1;
@@ -1705,7 +1776,7 @@ namespace SOCIOS
                         if (YaProcesados.Where(x => x.ID == item.ID_INTERNO).Count() == 0)
                         {
 
-                            dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO, item.MONTO_INVITADO, item.INVITADO_PILETA, item.MONTO_INVITADO_PILETA, item.INVITADO_ESTACIONAMIENTO, item.MONTO_INVITADO_EST, item.SOCIO, item.MONTO_SOCIO, item.SOCIO_PILETA, item.MONTO_SOCIO_PILETA, item.SOCIO_ESTACIONAMIENTO, item.MONTO_SOCIO_EST, item.INTERCIRCULO, item.MONTO_INTER, item.INTERCIRCULO_PILETA, item.MONTO_INTERCIRCULO_PILETA, item.INTERCIRCULO_ESTACIONAMIENTO, item.MONTO_INTERCIRCULO_EST, item.TOTAL, item.MONTO_TOTAL, item.FECHA, item.ROL, item.USER, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM,item.EVENTO,item.MONTO_EVENTO, item.ID_INTERNO, "ALTA", item.LEGAJO, item.OBS_CUMPLE, 1,VGlobales.vp_username,VGlobales.vp_role,item.HORA);
+                            dlog.Entrada_Campo_Ins(item.DNI, item.NOMBRE, item.APELLIDO, item.NRO_SOCIO, item.NRO_DEP, item.Tipo, item.INVITADO, item.MONTO_INVITADO, item.INVITADO_PILETA, item.MONTO_INVITADO_PILETA, item.INVITADO_ESTACIONAMIENTO, item.MONTO_INVITADO_EST, item.SOCIO, item.MONTO_SOCIO, item.SOCIO_PILETA, item.MONTO_SOCIO_PILETA, item.SOCIO_ESTACIONAMIENTO, item.MONTO_SOCIO_EST, item.INTERCIRCULO, item.MONTO_INTER, item.INTERCIRCULO_PILETA, item.MONTO_INTERCIRCULO_PILETA, item.INTERCIRCULO_ESTACIONAMIENTO, item.MONTO_INTERCIRCULO_EST, item.TOTAL, item.MONTO_TOTAL, item.FECHA, item.ROL, item.USER, item.MENOR, item.DISCAPACITADO, item.DISCAPACITADO_ACOM,item.EVENTO,item.MONTO_EVENTO, item.ID_INTERNO, "ALTA", item.LEGAJO, item.OBS_CUMPLE, 1,VGlobales.vp_username,VGlobales.vp_role,item.HORA,item.PROMO,item.HORA_PILETA);
                           
                         }
                    }
