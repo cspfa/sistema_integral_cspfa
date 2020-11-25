@@ -79,6 +79,7 @@
             this.lbAforoDiario = new System.Windows.Forms.Label();
             this.lbAforoTotal = new System.Windows.Forms.Label();
             this.lbInfoAforo = new System.Windows.Forms.Label();
+            this.lbCampo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Personas)).BeginInit();
             this.gpFamiliares.SuspendLayout();
             this.gpInvitados.SuspendLayout();
@@ -632,6 +633,7 @@
             this.cbHorario.Size = new System.Drawing.Size(129, 21);
             this.cbHorario.TabIndex = 34;
             this.cbHorario.Visible = false;
+            this.cbHorario.SelectedIndexChanged += new System.EventHandler(this.cbHorario_SelectedIndexChanged);
             // 
             // lbAforoDiario
             // 
@@ -664,12 +666,23 @@
             this.lbInfoAforo.TabIndex = 37;
             this.lbInfoAforo.Text = "-";
             // 
+            // lbCampo
+            // 
+            this.lbCampo.AutoSize = true;
+            this.lbCampo.ForeColor = System.Drawing.Color.Red;
+            this.lbCampo.Location = new System.Drawing.Point(570, 15);
+            this.lbCampo.Name = "lbCampo";
+            this.lbCampo.Size = new System.Drawing.Size(83, 13);
+            this.lbCampo.TabIndex = 38;
+            this.lbCampo.Text = "TOTAL CAMPO";
+            // 
             // EntradaCampoIngresoTotales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(779, 743);
+            this.Controls.Add(this.lbCampo);
             this.Controls.Add(this.lbInfoAforo);
             this.Controls.Add(this.lbAforoTotal);
             this.Controls.Add(this.lbAforoDiario);
@@ -777,5 +790,6 @@
         private System.Windows.Forms.Label lbAforoDiario;
         private System.Windows.Forms.Label lbAforoTotal;
         private System.Windows.Forms.Label lbInfoAforo;
+        private System.Windows.Forms.Label lbCampo;
     }
 }

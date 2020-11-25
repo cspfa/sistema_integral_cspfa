@@ -135,6 +135,7 @@ namespace SOCIOS.Entrada_Campo
             this.Aforo_Total();
             lbInfoAforo.Text= entradaCampoService.INFO_AFORO();
 
+            cbPiletaHorario.Checked = true;
 
          
 
@@ -794,13 +795,23 @@ namespace SOCIOS.Entrada_Campo
 
         private void Aforo_Horario(int Horario)
         {
-            lbAforoDiario.Text = " PILETAS EN EL HORARIO :" + serviceDias.AforoHorarios(System.DateTime.Now, Horario).ToString();
+            int Estadias = (serviceDias.AforoHorarios(System.DateTime.Now, 0));
+            if (Estadias != 0)
+                Estadias = Estadias - 1;
+            lbAforoDiario.Text = " PILETAS EN EL HORARIO :" + (serviceDias.AforoHorarios(System.DateTime.Now, Horario) + Estadias  ).ToString();
               
         }
 
         private void Aforo_Total()
         {
             lbAforoTotal.Text = "PILETAS EN EL DIA : " + serviceDias.AforoFecha(System.DateTime.Now).ToString();
+            lbCampo.Text = "TOTAL ENTRADAS CAMPO:" + serviceDias.PersonasFecha(System.DateTime.Now).ToString();
+        }
+
+        private void cbHorario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Aforo_Horario(Int32.Parse(cbHorario.SelectedValue.ToString()));
+
         }
 
 

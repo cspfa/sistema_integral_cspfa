@@ -137,6 +137,33 @@ namespace SOCIOS.Entrada_Campo
         
         }
 
+
+        public int PersonasFecha(DateTime Fecha)
+        {
+            int cantidad = 0;
+
+            string QUERY = " select  SUM(Promo + Invitado_Pileta + SOCIO_PILETA + inter_pileta + Menor + Disca + DISCA_ACOM + INVITADO + SOCIO + INTER) from entrada_Campo where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "' and HORA_PILETA>-1  ";
+
+       
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+
+                if (foundRows[0][0].ToString().Length == 0)
+                    return 0;
+
+                return Int32.Parse(foundRows[0][0].ToString().Trim()); ;
+            }
+            else
+                return 0;
+
+
+
+        }
+
+
         public int AforoHorarios(DateTime Fecha, int Horario)
         {
 
