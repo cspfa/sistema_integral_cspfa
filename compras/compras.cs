@@ -6601,7 +6601,7 @@ namespace SOCIOS
                 int REF_NRO_SOL = 0;
 
                 if (tbRefSolCompra.Text != "")
-                    REF_NRO_SOL = Convert.ToInt32(tbRefSolCompra);
+                    REF_NRO_SOL = Convert.ToInt32(tbRefSolCompra.Text);
 
                 string DETALLE_ART_SOL = "";
                 int ID_TIPO_ART_SOL = 1;

@@ -83,6 +83,7 @@ namespace SOCIOS.Factura_Electronica
                urlWsfe = "https://wswhomo.afip.gov.ar/wsfev1/service.asmx?WSDL";
                rutaArchivos = "\\\\192.168.1.6\\factura_electronica\\TEST\\" + Punto_Venta.ToString().PadLeft(4, '0') + "\\XML";
 
+
             }
 
            rutaTicket = "C:/CSPFA_SOCIOS/AFIP/ticketAcceso.xml";

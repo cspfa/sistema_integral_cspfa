@@ -200,6 +200,7 @@
     <Compile Include="compras\detalle_solicitud.Designer.cs">
       <DependentUpon>detalle_solicitud.cs</DependentUpon>
     </Compile>
+    <Compile Include="entradaCampo\DiasPiletaService.cs" />
     <Compile Include="Factura_Electronica\Consulta_Factura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -240,6 +241,12 @@
     </Compile>
     <Compile Include="Notificacion\Notificacion.Designer.cs" />
     <Compile Include="Notificacion\Notificaciones.cs" />
+    <Compile Include="recibos\Agregar_Recibos_Caja_Diaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="recibos\Agregar_Recibos_Caja_Diaria.Designer.cs">
+      <DependentUpon>Agregar_Recibos_Caja_Diaria.cs</DependentUpon>
+    </Compile>
     <Compile Include="recibos\asignarReciboC.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1361,6 +1368,9 @@
     <EmbeddedResource Include="interior\Disponibilidad_Dias.resx" />
     <EmbeddedResource Include="interior\Vouchers_Social.resx" />
     <EmbeddedResource Include="Notificacion\Notificacion.resx" />
+    <EmbeddedResource Include="recibos\Agregar_Recibos_Caja_Diaria.resx">
+      <DependentUpon>Agregar_Recibos_Caja_Diaria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="recibos\asignarReciboC.resx">
       <DependentUpon>asignarReciboC.cs</DependentUpon>
     </EmbeddedResource>

@@ -546,11 +546,11 @@ namespace SOCIOS
                 query = "SELECT distinct B.NRO_COMP, TRIM(B.NOMBRE_SOCIO) AS DETALLE, (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)) AS CONCEPTO, B.CUENTA_HABER AS IMPUTACION, ";
                 query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END AS IMPORTE, ";
                 query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, F.DETALLE AS F_PAGO, B.ANULADO, B.DESTINO, B.ID AS ID_COMP, B.PTO_VTA ";
-                query += ", B.NUMERO_E, B.DNI, B.pto_VTA_E AS PTO_E ";
+                query += ", B.NUMERO_E, B.DNI ";
                 query += "FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
                 query += "WHERE B.SECTACT = S.ID ";
                 query += "AND B.ID_PROFESIONAL = P.ID ";
-               
+
                 if (PAGO == "1")
                 {
                     query += "AND B.FORMA_PAGO = '1' ";
@@ -584,7 +584,7 @@ namespace SOCIOS
                 if (VGlobales.vp_role == "CAJA")
                     query += "AND(B.DESTINO IS NULL OR B.DESTINO NOT IN(10, 4, 1, 3, 16, 2)) ";
 
-                query += "ORDER BY B.NRO_COMP ASC";
+                query += "ORDER BY B.NRO_COMP ASC,B.NUMERO_E DESC";
 
                 conString cs = new conString();
                 string connectionString = cs.get();
@@ -605,8 +605,6 @@ namespace SOCIOS
                     dt1.Columns.Add("F_PAGO", typeof(string));
                     dt1.Columns.Add("ID", typeof(string));
                     dt1.Columns.Add("PV", typeof(string));
-                    dt1.Columns.Add("PVE", typeof(string));
-                    dt1.Columns.Add("PTO_E", typeof(string));
                     dt1.Columns.Add("NE", typeof(string));
                     dt1.Columns.Add("DNI", typeof(string));
                     ds1.Tables.Add(dt1);
@@ -629,38 +627,47 @@ namespace SOCIOS
                     string PTO_VTA = string.Empty;
                     string NUMERO_E = string.Empty;
                     string DNI = string.Empty;
-                    string PTO_E = string.Empty;
-
+                    List<string> repetidos = new List<string>();
                     while (reader.Read())
                     {
-                        TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
-                        NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
 
-                        if (TIPO == "B")
-                            NRO_COMP = "B" + NRO_COMP;
-                        else
-                            NRO_COMP = "R" + NRO_COMP;
 
-                        DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
-                        CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
-                        IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));
-                        IMPORTE = reader.GetDecimal(reader.GetOrdinal("IMPORTE"));
-                        VALOR = string.Format("{0:n}", IMPORTE);
-                        OBSERVACIONES = reader.GetString(reader.GetOrdinal("OBSERVACIONES")).Trim();
-                        FECHA = reader.GetString(reader.GetOrdinal("FECHA_RECIBO")).Trim().Replace(" 0:00:00", "");
-                        TOTAL = TOTAL + IMPORTE;
-                        ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
-                        F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
-                        ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
-                        PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
-                        PTO_E = reader.GetString(reader.GetOrdinal("PTO_E"));
-                        NUMERO_E = reader.GetString(reader.GetOrdinal("NUMERO_E"));
-                        DNI = reader.GetString(reader.GetOrdinal("DNI")).Trim();
-                        dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NUMERO_E, DNI);
 
-                        if (PAGO == "2")
+
+                        int repe = 0;
+                        repe = repetidos.Where(w => w == reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim()).Count();
+                        if (repe == 0)
                         {
-                            dgComposicion.Rows.Add(NRO_COMP.Replace("R", ""), "CHEQUE " + CONCEPTO + " " + FECHA, string.Format("{0:n}", (IMPORTE)));
+                            repetidos.Add(reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim());
+
+                            TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
+                            NRO_COMP = reader.GetString(reader.GetOrdinal("NRO_COMP")).Trim();
+
+                            if (TIPO == "B")
+                                NRO_COMP = "B" + NRO_COMP;
+                            else
+                                NRO_COMP = "R" + NRO_COMP;
+
+                            DETALLE = reader.GetString(reader.GetOrdinal("DETALLE")).Trim();
+                            CONCEPTO = reader.GetString(reader.GetOrdinal("CONCEPTO")).Trim();
+                            IMPUTACION = reader.GetString(reader.GetOrdinal("IMPUTACION"));
+                            IMPORTE = reader.GetDecimal(reader.GetOrdinal("IMPORTE"));
+                            VALOR = string.Format("{0:n}", IMPORTE);
+                            OBSERVACIONES = reader.GetString(reader.GetOrdinal("OBSERVACIONES")).Trim();
+                            FECHA = reader.GetString(reader.GetOrdinal("FECHA_RECIBO")).Trim().Replace(" 0:00:00", "");
+                            TOTAL = TOTAL + IMPORTE;
+                            ANULADO = reader.GetString(reader.GetOrdinal("ANULADO")).Trim().Replace(" 0:00:00", "");
+                            F_PAGO = reader.GetString(reader.GetOrdinal("F_PAGO")).Trim();
+                            ID_COMP = reader.GetString(reader.GetOrdinal("ID_COMP"));
+                            PTO_VTA = reader.GetString(reader.GetOrdinal("PTO_VTA"));
+                            NUMERO_E = reader.GetString(reader.GetOrdinal("NUMERO_E"));
+                            DNI = reader.GetString(reader.GetOrdinal("DNI")).Trim();
+                            dt1.Rows.Add(NRO_COMP, DETALLE, CONCEPTO, IMPUTACION, VALOR, OBSERVACIONES, FECHA, ANULADO, F_PAGO, ID_COMP, PTO_VTA, NUMERO_E, DNI);
+
+                            if (PAGO == "2")
+                            {
+                                dgComposicion.Rows.Add(NRO_COMP.Replace("R", ""), "CHEQUE " + CONCEPTO + " " + FECHA, string.Format("{0:n}", (IMPORTE)));
+                            }
                         }
                     }
 
@@ -681,7 +688,6 @@ namespace SOCIOS
                     GRID.Columns[9].Width = 50;
                     GRID.Columns[10].Width = 40;
                     GRID.Columns[11].Width = 40;
-                    GRID.Columns[12].Width = 40;
                     transaction.Commit();
 
                     if (PAGO == "1") //EFECTIVO
@@ -1445,7 +1451,7 @@ namespace SOCIOS
                 DataSet ds = new DataSet();
                 //string query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
-                string query = "SELECT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, ";
+                string query = "SELECT distinct  B.NRO_COMP, TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, ";
                 query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END, ";
                 query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, B.DESTINO, B.ANULADO, ";
                 query += "F.DETALLE, B.PTO_VTA, B.BANCO_DEPO, B.PTO_VTA_E, B.NUMERO_E ";
@@ -1472,6 +1478,7 @@ namespace SOCIOS
                 {
                     query += "AND (B.FORMA_PAGO != '1' OR B.REINTEGRO_DE > 0) AND (B.FORMA_PAGO != '2' OR B.REINTEGRO_DE > 0) ";
                 }
+
 
 
                 query += "AND B.CAJA_DIARIA = " + CAJA;
@@ -2017,8 +2024,16 @@ namespace SOCIOS
 
                 #region DATOS INGRESOS EN EFECTIVO
                 X = 0;
+                List<string> repetidos = new List<string>();
                 foreach (DataRow row in EFECTIVO_DS.Tables[0].Rows)
                 {
+                    int repe = 0;
+                    repe = repetidos.Where(w => w == row[0].ToString()).Count();
+                    if (repe == 0)
+                    { repetidos.Add(row[0].ToString()); 
+                    
+                   
+
                     NUM = row[0].ToString();
                     NOMBRE = row[1].ToString();
                     CONCEPTO = row[2].ToString();
@@ -2115,6 +2130,7 @@ namespace SOCIOS
                     CELL_ANULADO.BackgroundColor = colorFondo;
                     CELL_ANULADO.FixedHeight = 14f;
                     TABLA_INGRESOS.AddCell(CELL_ANULADO);
+                    }
                 }
 
                 doc.Add(TABLA_INGRESOS);
@@ -4185,7 +4201,7 @@ namespace SOCIOS
                 if (FORMA_PAGO != "10")
                     query += " AND B.FORMA_PAGO = '" + FORMA_PAGO + "'";
 
-                query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC;";
+                query += " AND B.PTO_VTA = '" + PTO + "' ORDER BY B.NRO_COMP ASC,B.NUMERO_E DESC;";
             }
 
             return query;
@@ -4246,7 +4262,7 @@ namespace SOCIOS
                     string DNI = string.Empty;
                     string NRO_NC = string.Empty;
                     string PTO_E = string.Empty;
-
+                   
                     while (reader.Read())
                     {
                         TIPO = reader.GetString(reader.GetOrdinal("TIPO"));
