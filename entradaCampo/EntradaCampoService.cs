@@ -485,11 +485,11 @@ namespace SOCIOS
             Offset = Offset + 20;
 
 
-            if (Titulo_Horario.Length > 0)
-            {
-                graphics.DrawString(Titulo_Horario, courier_big, black, startX, startY + Offset);
-                Offset = Offset + 20;
-            }
+            //if (Titulo_Horario.Length > 0)
+            //{
+            //    graphics.DrawString(Titulo_Horario, courier_big, black, startX, startY + Offset);
+            //    Offset = Offset + 20;
+            //}
             graphics.DrawString(Titulo, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
           
@@ -663,11 +663,19 @@ namespace SOCIOS
             Graphics graphics = e.Graphics;
             Font courier_big = new Font("FontA1x1", 10);
             Font courier_med = new Font("FontA1x1", 7);
+            Font courier_superbig = new Font("FontA1x1", 15);
             SolidBrush black = new SolidBrush(Color.Black);
             int startX = 0;
             int startY = 0;
             int Offset = 0;
             string TOTAL = "";
+
+
+            if (Titulo_Horario.Length > 0)
+            {
+                graphics.DrawString(Titulo_Horario, courier_superbig, black, startX, startY + Offset);
+                Offset = Offset + 20;
+            }
 
             DateTime hoy = System.DateTime.Now;
             string Hora = hoy.Hour.ToString() + ":" + hoy.Minute.ToString();
@@ -676,11 +684,7 @@ namespace SOCIOS
 
             graphics.DrawString(Titulo, courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
-            if (Titulo_Horario.Length > 0)
-            {
-                graphics.DrawString(Titulo_Horario, courier_big, black, startX, startY + Offset);
-                Offset = Offset + 20;
-            }
+           
 
 
             graphics.DrawString(Dato1, courier_big, black, startX, startY + Offset);
