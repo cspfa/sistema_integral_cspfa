@@ -80,11 +80,16 @@
             this.lbAforoTotal = new System.Windows.Forms.Label();
             this.lbInfoAforo = new System.Windows.Forms.Label();
             this.lbCampo = new System.Windows.Forms.Label();
+            this.dgvInfo = new System.Windows.Forms.DataGridView();
+            this.lbAvisoAbono = new System.Windows.Forms.Label();
+            this.tbCantidad = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Personas)).BeginInit();
             this.gpFamiliares.SuspendLayout();
             this.gpInvitados.SuspendLayout();
             this.gpInterCirculo.SuspendLayout();
             this.gpSinCargo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInfo)).BeginInit();
             this.SuspendLayout();
             // 
             // Personas
@@ -93,11 +98,11 @@
             this.Personas.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Personas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Personas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Personas.Location = new System.Drawing.Point(188, 223);
+            this.Personas.Location = new System.Drawing.Point(1, 255);
             this.Personas.Name = "Personas";
             this.Personas.RowHeadersVisible = false;
             this.Personas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Personas.Size = new System.Drawing.Size(359, 251);
+            this.Personas.Size = new System.Drawing.Size(242, 251);
             this.Personas.TabIndex = 1;
             // 
             // lnkFamiliar
@@ -205,7 +210,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label1.Location = new System.Drawing.Point(471, 624);
+            this.label1.Location = new System.Drawing.Point(561, 643);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 8;
@@ -216,7 +221,7 @@
             this.lbTotal.AutoSize = true;
             this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotal.ForeColor = System.Drawing.Color.Red;
-            this.lbTotal.Location = new System.Drawing.Point(634, 624);
+            this.lbTotal.Location = new System.Drawing.Point(724, 643);
             this.lbTotal.Name = "lbTotal";
             this.lbTotal.Size = new System.Drawing.Size(18, 20);
             this.lbTotal.TabIndex = 9;
@@ -236,7 +241,7 @@
             // btnImprimir
             // 
             this.btnImprimir.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnImprimir.Location = new System.Drawing.Point(288, 521);
+            this.btnImprimir.Location = new System.Drawing.Point(708, 548);
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(136, 30);
             this.btnImprimir.TabIndex = 11;
@@ -248,7 +253,7 @@
             // 
             this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Delete.Location = new System.Drawing.Point(70, 522);
+            this.Delete.Location = new System.Drawing.Point(11, 512);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(161, 30);
             this.Delete.TabIndex = 7;
@@ -261,7 +266,7 @@
             // 
             this.Pago.Image = ((System.Drawing.Image)(resources.GetObject("Pago.Image")));
             this.Pago.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Pago.Location = new System.Drawing.Point(475, 522);
+            this.Pago.Location = new System.Drawing.Point(728, 512);
             this.Pago.Name = "Pago";
             this.Pago.Size = new System.Drawing.Size(113, 30);
             this.Pago.TabIndex = 6;
@@ -325,7 +330,7 @@
             this.lb.AutoSize = true;
             this.lb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lb.Location = new System.Drawing.Point(81, 566);
+            this.lb.Location = new System.Drawing.Point(171, 585);
             this.lb.Name = "lb";
             this.lb.Size = new System.Drawing.Size(75, 20);
             this.lb.TabIndex = 12;
@@ -336,7 +341,7 @@
             this.lbSocio.AutoSize = true;
             this.lbSocio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSocio.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbSocio.Location = new System.Drawing.Point(152, 566);
+            this.lbSocio.Location = new System.Drawing.Point(242, 585);
             this.lbSocio.Name = "lbSocio";
             this.lbSocio.Size = new System.Drawing.Size(18, 20);
             this.lbSocio.TabIndex = 13;
@@ -347,7 +352,7 @@
             this.lbInvitado.AutoSize = true;
             this.lbInvitado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInvitado.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInvitado.Location = new System.Drawing.Point(152, 595);
+            this.lbInvitado.Location = new System.Drawing.Point(242, 614);
             this.lbInvitado.Name = "lbInvitado";
             this.lbInvitado.Size = new System.Drawing.Size(18, 20);
             this.lbInvitado.TabIndex = 15;
@@ -358,7 +363,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label4.Location = new System.Drawing.Point(56, 595);
+            this.label4.Location = new System.Drawing.Point(146, 614);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 14;
@@ -369,7 +374,7 @@
             this.lbEstacionamiento.AutoSize = true;
             this.lbEstacionamiento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEstacionamiento.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lbEstacionamiento.Location = new System.Drawing.Point(637, 566);
+            this.lbEstacionamiento.Location = new System.Drawing.Point(727, 585);
             this.lbEstacionamiento.Name = "lbEstacionamiento";
             this.lbEstacionamiento.Size = new System.Drawing.Size(18, 20);
             this.lbEstacionamiento.TabIndex = 17;
@@ -380,7 +385,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label5.Location = new System.Drawing.Point(471, 566);
+            this.label5.Location = new System.Drawing.Point(561, 585);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(170, 20);
             this.label5.TabIndex = 16;
@@ -391,7 +396,7 @@
             this.lbInter.AutoSize = true;
             this.lbInter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInter.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInter.Location = new System.Drawing.Point(152, 624);
+            this.lbInter.Location = new System.Drawing.Point(242, 643);
             this.lbInter.Name = "lbInter";
             this.lbInter.Size = new System.Drawing.Size(18, 20);
             this.lbInter.TabIndex = 19;
@@ -402,7 +407,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label3.Location = new System.Drawing.Point(23, 624);
+            this.label3.Location = new System.Drawing.Point(113, 643);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 20);
             this.label3.TabIndex = 18;
@@ -413,7 +418,7 @@
             this.lbSinCargo.AutoSize = true;
             this.lbSinCargo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSinCargo.ForeColor = System.Drawing.Color.CadetBlue;
-            this.lbSinCargo.Location = new System.Drawing.Point(637, 595);
+            this.lbSinCargo.Location = new System.Drawing.Point(727, 614);
             this.lbSinCargo.Name = "lbSinCargo";
             this.lbSinCargo.Size = new System.Drawing.Size(18, 20);
             this.lbSinCargo.TabIndex = 21;
@@ -424,7 +429,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label6.Location = new System.Drawing.Point(471, 595);
+            this.label6.Location = new System.Drawing.Point(561, 614);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(107, 20);
             this.label6.TabIndex = 20;
@@ -509,7 +514,7 @@
             this.lbSocioPileta.AutoSize = true;
             this.lbSocioPileta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbSocioPileta.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbSocioPileta.Location = new System.Drawing.Point(357, 566);
+            this.lbSocioPileta.Location = new System.Drawing.Point(447, 585);
             this.lbSocioPileta.Name = "lbSocioPileta";
             this.lbSocioPileta.Size = new System.Drawing.Size(18, 20);
             this.lbSocioPileta.TabIndex = 24;
@@ -520,7 +525,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label7.Location = new System.Drawing.Point(228, 566);
+            this.label7.Location = new System.Drawing.Point(318, 585);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 20);
             this.label7.TabIndex = 23;
@@ -531,7 +536,7 @@
             this.lbInviPileta.AutoSize = true;
             this.lbInviPileta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInviPileta.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInviPileta.Location = new System.Drawing.Point(357, 595);
+            this.lbInviPileta.Location = new System.Drawing.Point(447, 614);
             this.lbInviPileta.Name = "lbInviPileta";
             this.lbInviPileta.Size = new System.Drawing.Size(18, 20);
             this.lbInviPileta.TabIndex = 26;
@@ -542,7 +547,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(228, 595);
+            this.label9.Location = new System.Drawing.Point(318, 614);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(83, 20);
             this.label9.TabIndex = 25;
@@ -553,7 +558,7 @@
             this.lbInterPileta.AutoSize = true;
             this.lbInterPileta.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbInterPileta.ForeColor = System.Drawing.Color.OliveDrab;
-            this.lbInterPileta.Location = new System.Drawing.Point(357, 623);
+            this.lbInterPileta.Location = new System.Drawing.Point(447, 642);
             this.lbInterPileta.Name = "lbInterPileta";
             this.lbInterPileta.Size = new System.Drawing.Size(18, 20);
             this.lbInterPileta.TabIndex = 28;
@@ -564,7 +569,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(228, 623);
+            this.label11.Location = new System.Drawing.Point(318, 642);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(83, 20);
             this.label11.TabIndex = 27;
@@ -573,7 +578,7 @@
             // chkCumple
             // 
             this.chkCumple.AutoSize = true;
-            this.chkCumple.Location = new System.Drawing.Point(25, 647);
+            this.chkCumple.Location = new System.Drawing.Point(115, 666);
             this.chkCumple.Name = "chkCumple";
             this.chkCumple.Size = new System.Drawing.Size(132, 17);
             this.chkCumple.TabIndex = 29;
@@ -583,7 +588,7 @@
             // 
             // tbCumple
             // 
-            this.tbCumple.Location = new System.Drawing.Point(13, 671);
+            this.tbCumple.Location = new System.Drawing.Point(103, 690);
             this.tbCumple.MaxLength = 100;
             this.tbCumple.Multiline = true;
             this.tbCumple.Name = "tbCumple";
@@ -639,7 +644,7 @@
             // 
             this.lbAforoDiario.AutoSize = true;
             this.lbAforoDiario.ForeColor = System.Drawing.Color.Red;
-            this.lbAforoDiario.Location = new System.Drawing.Point(472, 207);
+            this.lbAforoDiario.Location = new System.Drawing.Point(626, 191);
             this.lbAforoDiario.Name = "lbAforoDiario";
             this.lbAforoDiario.Size = new System.Drawing.Size(67, 13);
             this.lbAforoDiario.TabIndex = 35;
@@ -676,12 +681,57 @@
             this.lbCampo.TabIndex = 38;
             this.lbCampo.Text = "TOTAL CAMPO";
             // 
+            // dgvInfo
+            // 
+            this.dgvInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dgvInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInfo.Location = new System.Drawing.Point(249, 255);
+            this.dgvInfo.Name = "dgvInfo";
+            this.dgvInfo.RowHeadersVisible = false;
+            this.dgvInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvInfo.Size = new System.Drawing.Size(589, 251);
+            this.dgvInfo.TabIndex = 39;
+            // 
+            // lbAvisoAbono
+            // 
+            this.lbAvisoAbono.AutoSize = true;
+            this.lbAvisoAbono.ForeColor = System.Drawing.Color.Orange;
+            this.lbAvisoAbono.Location = new System.Drawing.Point(13, 230);
+            this.lbAvisoAbono.Name = "lbAvisoAbono";
+            this.lbAvisoAbono.Size = new System.Drawing.Size(680, 13);
+            this.lbAvisoAbono.TabIndex = 40;
+            this.lbAvisoAbono.Text = "VA A INGRESAR PILETA ABONO /INGRESOS AL CAMPO- PARA VOLVER A INGRESAR PILETA X HO" +
+                "RARIO REINGRESE AL MODULO!";
+            this.lbAvisoAbono.Visible = false;
+            // 
+            // tbCantidad
+            // 
+            this.tbCantidad.Location = new System.Drawing.Point(80, 185);
+            this.tbCantidad.Name = "tbCantidad";
+            this.tbCantidad.Size = new System.Drawing.Size(28, 20);
+            this.tbCantidad.TabIndex = 41;
+            this.tbCantidad.Text = "1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 191);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 13);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "PERSONAS";
+            // 
             // EntradaCampoIngresoTotales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(779, 743);
+            this.ClientSize = new System.Drawing.Size(901, 759);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tbCantidad);
+            this.Controls.Add(this.lbAvisoAbono);
+            this.Controls.Add(this.dgvInfo);
             this.Controls.Add(this.lbCampo);
             this.Controls.Add(this.lbInfoAforo);
             this.Controls.Add(this.lbAforoTotal);
@@ -733,6 +783,7 @@
             this.gpInterCirculo.PerformLayout();
             this.gpSinCargo.ResumeLayout(false);
             this.gpSinCargo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInfo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -791,5 +842,9 @@
         private System.Windows.Forms.Label lbAforoTotal;
         private System.Windows.Forms.Label lbInfoAforo;
         private System.Windows.Forms.Label lbCampo;
+        private System.Windows.Forms.DataGridView dgvInfo;
+        private System.Windows.Forms.Label lbAvisoAbono;
+        private System.Windows.Forms.TextBox tbCantidad;
+        private System.Windows.Forms.Label label2;
     }
 }

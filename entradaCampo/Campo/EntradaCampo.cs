@@ -89,7 +89,9 @@ namespace SOCIOS.Entrada_Campo
 
           
             ModoInvitado =Invitado;
-
+            ModoInvitado = false; // Segun pedido de susana 01-12-2020
+            chkPersonalPolicial.Checked = true;
+            chkSocio.Checked = true;
             MostrarControles(true,reintegro,IngresoManual);
             esReintegro = reintegro;
 
@@ -135,6 +137,8 @@ namespace SOCIOS.Entrada_Campo
             this.Aforo_Total();
             lbInfoAforo.Text= entradaCampoService.INFO_AFORO();
 
+         
+            dgvInfo.DataSource =  serviceDias.INFO_HORARIOS();
             cbPiletaHorario.Checked = true;
 
          
@@ -146,8 +150,8 @@ namespace SOCIOS.Entrada_Campo
        
 
         private void lnkFamiliar_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.NuevoItem(entradaCampoService.EntradaSocio, 1);
+        {  
+            this.NuevoItem(entradaCampoService.EntradaSocio,1);
         }
 
 
@@ -247,8 +251,25 @@ namespace SOCIOS.Entrada_Campo
                 entrada.ID = lista.Count + 1;
             }
 
-            lista.Add(entrada);
+            int Cantidad = 1;
 
+            try
+            {
+                Cantidad = Int32.Parse(tbCantidad.Text);
+            }
+            catch
+            {
+                Cantidad = 1;
+            }
+
+            int Veces = 0;
+
+
+            while (Veces < Cantidad)
+            {
+                lista.Add(entrada);
+                Veces = Veces + 1;
+            }
 
 
 
@@ -788,6 +809,14 @@ namespace SOCIOS.Entrada_Campo
                 cbHorario.ValueMember = "ID";
                 cbHorario.SelectedItem = 1;
                 Aforo_Horario(1);
+            }
+            else
+            {
+                cbHorario.Visible = false;
+                lbAforoDiario.Visible = false;
+                lbAvisoAbono.Visible = true;
+                cbPiletaHorario.Enabled = false;
+            
             }
 
            

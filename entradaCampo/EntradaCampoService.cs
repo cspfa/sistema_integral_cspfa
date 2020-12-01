@@ -653,6 +653,9 @@ namespace SOCIOS
             return "LIMITE AFORO PILETA TOTAL: " + Tope_Dia_Pileta.ToString() + " / HORARIO : " + Tope_Dia_Pileta.ToString();
         }
 
+
+       
+
         public void pPileta_Print(object sender, PrintPageEventArgs e)
         {
             Barcode39 code39 = new Barcode39();

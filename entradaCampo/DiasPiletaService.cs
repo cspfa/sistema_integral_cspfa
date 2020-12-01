@@ -18,11 +18,40 @@ namespace SOCIOS.Entrada_Campo
         public string Desde_Hasta { get; set; }
     }
 
+    public class InfoPiletaDia 
+    {
+        public string Horario { get; set; }
+        public int    Socio   { get; set; }
+        public int    Inter   { get; set; }
+        public int    Invi    { get; set; }
+        public int    Menor   { get; set; }
+        public int    Disc    { get; set; }
+        public int    Oro     { get; set; }
+        public int    Promo   { get; set; }
+        public int    Total   { get; set; }
+        public InfoPiletaDia()
+        {
+            Horario = "";
+            Socio = 0;
+            Inter = 0;
+            Invi = 0;
+            Menor = 0;
+            Disc = 0;
+            Oro = 0;
+            Promo = 0;
+            Total = 0;
+        }
+
+    }
+
     public class DiasPiletaService
     {
         bo_Entrada_Campo dlog = new bo_Entrada_Campo();
         string Mensaje_Aforo;
          
+       
+
+
         public List<DiasPileta> getDiasPileta()
       { 
             List<DiasPileta> Lista = new List<DiasPileta>();
@@ -62,6 +91,29 @@ namespace SOCIOS.Entrada_Campo
             }
 
             return Lista;
+        }
+
+        public List<InfoPiletaDia> INFO_HORARIOS()
+        {
+            List<InfoPiletaDia> lista = new List<InfoPiletaDia>();
+            InfoPiletaDia abono = this.Cantidad_Horario(System.DateTime.Now, 0);
+
+            foreach (DiasPileta dia in getDiasPileta())
+            {
+                InfoPiletaDia item = this.Cantidad_Horario(System.DateTime.Now, dia.ID);
+                item.Horario = dia.Desde_Hasta;
+                item.Socio   = item.Socio + abono.Socio;
+                item.Inter   = item.Inter + abono.Inter;
+                item.Invi    = item.Invi + abono.Invi;
+                item.Menor = item.Menor + abono.Menor;
+                item.Oro = item.Oro + abono.Oro;
+                item.Promo = item.Promo + abono.Promo;
+                item.Total = item.Total + abono.Total;
+                lista.Add(item);
+            }
+
+            return lista;
+        
         }
 
 
@@ -187,6 +239,38 @@ namespace SOCIOS.Entrada_Campo
                 return 0;
 
         }
+
+        public InfoPiletaDia Cantidad_Horario(DateTime Fecha, int Horario)
+        {
+
+            int cantidad = 0;
+            InfoPiletaDia info = new InfoPiletaDia();
+            string QUERY = " select  Coalesce(SUM(SOCIO_PILETA),0),Coalesce(SUM(INTER_PILETA),0),Coalesce(SUM(INVITADO_PILETA),0),Coalesce(SUM(MENOR),0),Coalesce(SUM(DISCA),0),Coalesce(SUM(DISCA_ACOM),0),Coalesce(SUM(PROMO),0) from entrada_Campo where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "'  and HORA_PILETA>-1 and  HORA_PILETA=  " + Horario.ToString();
+
+
+
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+            if (foundRows.Length > 0)
+            {
+                info.Socio = Int32.Parse(foundRows[0][0].ToString().Trim());
+                info.Inter = Int32.Parse(foundRows[0][1].ToString().Trim());
+                info.Invi  = Int32.Parse(foundRows[0][2].ToString().Trim());
+                info.Menor = Int32.Parse(foundRows[0][3].ToString().Trim());
+                info.Disc  = Int32.Parse(foundRows[0][4].ToString().Trim());
+                info.Oro   = Int32.Parse(foundRows[0][5].ToString().Trim());
+                info.Promo = Int32.Parse(foundRows[0][6].ToString().Trim());
+                info.Total = info.Socio + info.Inter + info.Invi + info.Menor + info.Disc + info.Oro + info.Promo;
+               
+
+                return info ;
+            }
+            else
+                return info;
+
+        }
+
         
         
         public int Cantidad_Horarios()
