@@ -320,10 +320,10 @@ namespace SOCIOS
              if (HorarioPileta > -1)
              {
                  if (HorarioPileta == 0)
-                     Titulo_Horario = "ESTADIA";
+                     Titulo_Horario = ID.ToString() + "-ESTADIA";
                  else
                  {    Entrada_Campo.DiasPiletaService serviceDias = new Entrada_Campo.DiasPiletaService();
-                    Titulo_Horario = " TURNO " + serviceDias.getDiasPileta(HorarioPileta);
+                 Titulo_Horario = ID.ToString() + " TURNO " + serviceDias.getDiasPileta(HorarioPileta) + " HS";
                  }
              }
              PrintDialog pd = new PrintDialog(); 
