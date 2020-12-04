@@ -242,6 +242,23 @@ namespace SOCIOS
 
         {
 
+
+            decimal MontoPiletaSocio = 0;
+            decimal MontoPiletaInter = 0;
+            decimal MontoPiletaInvi = 0;
+
+            if (HorarioPileta > 0)
+            {
+                MontoPiletaSocio = EntradaSocioPiletaHora;
+                MontoPiletaInter = EntradaInterPiletaHora;
+                MontoPiletaInvi = EntradaInviPiletaHora;
+            }
+            else
+            {
+                MontoPiletaSocio = EntradaSocioPileta;
+                MontoPiletaInter = EntradaInterPileta;
+                MontoPiletaInvi = EntradaInviPileta;
+            }
             Socio = pSocio;
             SocioPileta = pSocioPileta;
             SocioEstacionamiento = pSocioEst;
@@ -256,16 +273,19 @@ namespace SOCIOS
 
             Evento = pEvento;
 
+
+
+
              TotalSocio                =   Decimal.Round( EntradaSocio * Socio,2);
-             TotalSocioPileta          =   Decimal.Round(EntradaSocioPileta * SocioPileta, 2);
+             TotalSocioPileta          =   Decimal.Round(MontoPiletaSocio * SocioPileta, 2);
              TotalSocioEstacionamiento =   Decimal.Round( EntradaSocioEstacionamiento * SocioEstacionamiento, 2);
              
              TotalInvi                 =   Decimal.Round(EntradaInvi * Invitado, 2);
-             TotalInviPileta           =   Decimal.Round(EntradaInviPileta * InvitadoPileta, 2);
+             TotalInviPileta           =   Decimal.Round(MontoPiletaInvi * InvitadoPileta, 2);
              TotalInviEstacionamiento  =    Decimal.Round(EntradaInviEstacionamiento * InvitadoEstacionamiento, 2);
              
              TotalInter = Decimal.Round(EntradaInter * Intercirculo, 2);
-             TotalInterPileta = Decimal.Round(EntradaInterPileta * IntercirculoPileta, 2);
+             TotalInterPileta = Decimal.Round(MontoPiletaInter * IntercirculoPileta, 2);
              TotalInterEstacionamiento = Decimal.Round(EntradaInterEstacionamiento * IntercirculoEstacionamiento, 2);
              TotalEvento = Decimal.Round(EntradaEvento * Evento, 2);
 
@@ -645,6 +665,8 @@ namespace SOCIOS
             Offset = Offset + 20;
             graphics.DrawString("COMO TICKET FISCAL", courier_big, black, startX, startY + Offset);
 
+
+
         }
 
 
@@ -694,11 +716,24 @@ namespace SOCIOS
             Offset = Offset + 20;
 
             graphics.DrawString(Dato2, courier_big, black, startX, startY + Offset);
-          
-            Offset = Offset + 20;
-            graphics.DrawString("LOS REINTEGROS SE EFECTUAN", courier_big, black, startX, startY + Offset);
-            Offset = Offset + 20;
-            graphics.DrawString("DENTRO DE LAS 2 HS", courier_big, black, startX, startY + Offset);
+
+            if (Titulo_Horario.Length > 0)
+            {
+                Offset = Offset + 20;
+                graphics.DrawString("TICKET SOLAMENTE VALIDO", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("PARA EL DIA Y HORARIO", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("QUE FIGURAN EN ", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("LA PARTE SUPERIOR ", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("NO SE ACEPTAN DEVOLUCIONES ", courier_big, black, startX, startY + Offset);
+            }
+            //Offset = Offset + 20;
+            //graphics.DrawString("LOS REINTEGROS SE EFECTUAN", courier_big, black, startX, startY + Offset);
+            //Offset = Offset + 20;
+            //graphics.DrawString("DENTRO DE LAS 2 HS", courier_big, black, startX, startY + Offset);
 
 
 

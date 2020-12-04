@@ -81,8 +81,9 @@ namespace SOCIOS.Entrada_Campo
                 {
 
                     item = new DiasPileta();
-                    item.ID =Int32.Parse(foundRows[I][0].ToString().Trim()); 
-                    item.Desde_Hasta = (foundRows[I][1].ToString().Trim() + " / " + (foundRows[I][2].ToString().Trim()));
+                    item.ID =Int32.Parse(foundRows[I][0].ToString().Trim());
+                    item.Desde_Hasta = (foundRows[I][1].ToString().Trim() + " / " + (foundRows[I][2].ToString().Trim())) + " HS ";
+                        
                     Lista.Add(item);
                     I = I + 1;
       
@@ -194,7 +195,7 @@ namespace SOCIOS.Entrada_Campo
         {
             int cantidad = 0;
 
-            string QUERY = " select  SUM(Promo + Invitado_Pileta + SOCIO_PILETA + inter_pileta + Menor + Disca + DISCA_ACOM + INVITADO + SOCIO + INTER) from entrada_Campo where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "' and HORA_PILETA>-1  ";
+            string QUERY = " select  SUM(INVITADO + SOCIO + INTER) from entrada_Campo where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "' and HORA_PILETA>-1  ";
 
        
             DataRow[] foundRows;
