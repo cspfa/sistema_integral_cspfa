@@ -219,8 +219,8 @@ namespace SOCIOS
             EntradaInviPileta  = Aran.valorGrupo(SectAct_Pileta, 3, Prof_Pileta);
 
             EntradaSocioPiletaHora = Aran.valorGrupo(Secact_Pileta_Hora, 1, Prof_Pileta_Hora);
-            EntradaInterPiletaHora  = Aran.valorGrupo(Secact_Pileta_Hora, 1, Prof_Pileta_Hora);
-            EntradaInviPiletaHora  = Aran.valorGrupo(Secact_Pileta_Hora, 1, Prof_Pileta_Hora);
+            EntradaInterPiletaHora  = Aran.valorGrupo(Secact_Pileta_Hora, 2, Prof_Pileta_Hora);
+            EntradaInviPiletaHora  = Aran.valorGrupo(Secact_Pileta_Hora, 3, Prof_Pileta_Hora);
 
 
 

@@ -816,6 +816,19 @@ namespace SOCIOS.Entrada_Campo
                 lbAforoDiario.Visible = false;
                 lbAvisoAbono.Visible = true;
                 cbPiletaHorario.Enabled = false;
+                lista = new List<RegistroEntradaCampo>();
+                Personas.DataSource = null;
+                lbSocio.Text = "0";
+                lbInvitado.Text = "0";
+                lbInter.Text = "0";
+                lbInterPileta.Text = "0";
+                lbInvitado.Text = "0";
+                lbSocioPileta.Text = "0";
+                lbEstacionamiento.Text = "0";
+                lbSinCargo.Text = "0";
+                lbTotal.Text = "0";
+
+
             
             }
 
