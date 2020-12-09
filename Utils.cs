@@ -19,7 +19,7 @@ using System.Collections.Specialized;
 namespace SOCIOS
 {
    public static class Utils
-    {
+    {   
         public static Image resizeImage(Image imgToResize, Size size)
         {
             int sourceWidth = imgToResize.Width; int sourceHeight = imgToResize.Height; float nPercent = 0;
@@ -208,7 +208,46 @@ namespace SOCIOS
                //throw new Exception(ex.Message);
            }
        }
+
+
+       public static void setValor(string pRol, string pValor, int pNumero,string pDato)
+       {
+           try
+           {
+               bo dlog = new bo();
+
+               string VALOR = "";
+
+               if (pNumero == 0)
+                   VALOR = " VALOR ";
+
+               if (pNumero == 1)
+                   VALOR = "VALOR1 ";
+               if (pNumero == 2)
+                   VALOR = " VALOR2 ";
+               if (pNumero == 3)
+                   VALOR = " VALOR3 ";
+
+               string Query = "UPDATE  CONFIG SET " + VALOR + "='"+ pDato +"'  WHERE PARAM ='" + pValor + "'";
+               
+
+          
+
+               if (pRol.Contains("CPO"))
+                   Query = Query + " AND ROL LIKE '%" + pRol + "%'";
+
+               
+              dlog.BO_EjecutoConsulta(Query);
+            
+           }
+           catch (Exception ex)
+           {
+              
+               //throw new Exception(ex.Message);
+           }
+       }
    }
+
 
    public class Encrypt
 
@@ -444,5 +483,4 @@ namespace SOCIOS
        }
    
    }
-
 }
