@@ -85,6 +85,7 @@
             this.tbCantidad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.btnConfig = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Personas)).BeginInit();
             this.gpFamiliares.SuspendLayout();
             this.gpInvitados.SuspendLayout();
@@ -734,12 +735,24 @@
             this.label8.Text = "SE PERMITE 1 COMBINACION DE HORARIO POR TICKET";
             this.label8.Visible = false;
             // 
+            // btnConfig
+            // 
+            this.btnConfig.Location = new System.Drawing.Point(773, 82);
+            this.btnConfig.Name = "btnConfig";
+            this.btnConfig.Size = new System.Drawing.Size(75, 23);
+            this.btnConfig.TabIndex = 44;
+            this.btnConfig.Text = "CONFIG";
+            this.btnConfig.UseVisualStyleBackColor = true;
+            this.btnConfig.Visible = false;
+            this.btnConfig.Click += new System.EventHandler(this.btnConfig_Click);
+            // 
             // EntradaCampoIngresoTotales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(901, 759);
+            this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbCantidad);
@@ -860,5 +873,6 @@
         private System.Windows.Forms.TextBox tbCantidad;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnConfig;
     }
 }

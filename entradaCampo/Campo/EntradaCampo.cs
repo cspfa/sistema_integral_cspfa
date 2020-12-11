@@ -141,6 +141,11 @@ namespace SOCIOS.Entrada_Campo
             dgvInfo.DataSource =  serviceDias.INFO_HORARIOS();
             cbPiletaHorario.Checked = true;
 
+            if (VGlobales.vp_role.Contains("SISTEMAS"))
+                btnConfig.Visible=true;
+            else
+                btnConfig.Visible =false;
+
          
 
 
@@ -854,6 +859,12 @@ namespace SOCIOS.Entrada_Campo
         {
             Aforo_Horario(Int32.Parse(cbHorario.SelectedValue.ToString()));
 
+        }
+
+        private void btnConfig_Click(object sender, EventArgs e)
+        {
+            SOCIOS.entradaCampo.CSPFA.ConfiguracionAforo aforo = new entradaCampo.CSPFA.ConfiguracionAforo();
+            aforo.ShowDialog();
         }
 
 

@@ -89,6 +89,7 @@
             this.Controls.Add(this.btnGrabar);
             this.Name = "ConfiguracionAforo";
             this.Text = "Limites Aforo";
+            this.Load += new System.EventHandler(this.ConfiguracionAforo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

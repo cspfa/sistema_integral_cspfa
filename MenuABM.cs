@@ -2322,5 +2322,11 @@ namespace SOCIOS
             Turismo.Stats ts = new Turismo.Stats();
             ts.ShowDialog();
         }
+
+        private void aforoCamposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SOCIOS.entradaCampo.CSPFA.ConfiguracionAforo aforo = new entradaCampo.CSPFA.ConfiguracionAforo();
+            aforo.ShowDialog();
+        }
     }
 }

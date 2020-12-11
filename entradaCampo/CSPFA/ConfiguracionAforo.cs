@@ -15,8 +15,8 @@ namespace SOCIOS.entradaCampo.CSPFA
         {
             InitializeComponent();
 
-            tbPileta.Text   = Config.getValor(VGlobales.vp_role, "CAMPO_PILETA_TOPE", 0);
-            tbDia.Text      = Config.getValor(VGlobales.vp_role, "CAMPO_PILETA_TOPE", 1);
+            tbPileta.Text   = Config.getValor("CPOCABA", "CAMPO_PILETA_TOPE", 0);
+            tbDia.Text      = Config.getValor("CPOCABA", "CAMPO_PILETA_TOPE", 1);
         }
 
         private void btnGrabar_Click(object sender, EventArgs e)
