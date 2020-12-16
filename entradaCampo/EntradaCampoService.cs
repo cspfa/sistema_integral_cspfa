@@ -672,7 +672,7 @@ namespace SOCIOS
 
         public string INFO_AFORO()
         {
-            return "LIMITE AFORO PILETA TOTAL: " + Tope_Dia_Pileta.ToString() + " / HORARIO : " + Tope_Dia_Pileta.ToString();
+            return "LIMITE AFORO PILETA TOTAL: " + Tope_Dia_Pileta.ToString() + " / HORARIO : " + Tope_Hora_Pileta.ToString();
         }
 
 
