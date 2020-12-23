@@ -11,6 +11,7 @@ using FirebirdSql.Data.FirebirdClient;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
 
+
 namespace SOCIOS
 {
     public class RegistroEntradaCampo
@@ -20,6 +21,9 @@ namespace SOCIOS
         public int     TipoValor  { get; set; }
         public string     Tipo       { get; set; }
         public decimal Monto      { get; set; }
+        public string Horario { get; set; }
+        public int    HorarioID { get; set; }
+
 
     
     }
@@ -323,7 +327,11 @@ namespace SOCIOS
                      Titulo_Horario = ID.ToString() + "-ESTADIA";
                  else
                  {    Entrada_Campo.DiasPiletaService serviceDias = new Entrada_Campo.DiasPiletaService();
-                 Titulo_Horario = ID.ToString() + " TURNO " + serviceDias.getDiasPileta(HorarioPileta) + " HS";
+                 var dias = serviceDias.Cantidad_Horarios_Entrada(ID, VGlobales.vp_role);
+                         if (dias.Count==1)
+                              Titulo_Horario = ID.ToString() + " TURNO " + dias.First().Horario + " HS";
+                         else
+                             Titulo_Horario = ID.ToString() + " VARIOS TURNOS ";
                  }
              }
              PrintDialog pd = new PrintDialog(); 

@@ -20,15 +20,17 @@ namespace SOCIOS.Entrada_Campo
 
     public class InfoPiletaDia 
     {
-        public string Horario { get; set; }
-        public int    Socio   { get; set; }
-        public int    Inter   { get; set; }
-        public int    Invi    { get; set; }
-        public int    Menor   { get; set; }
-        public int    Disc    { get; set; }
-        public int    Oro     { get; set; }
-        public int    Promo   { get; set; }
-        public int    Total   { get; set; }
+        public string Horario  { get; set; }
+        public int    Socio    { get; set; }
+        public int    Inter    { get; set; }
+        public int    Invi     { get; set; }
+        public int    Menor    { get; set; }
+        public int    Disc     { get; set; }
+        public int    Oro      { get; set; }
+        public int    Promo    { get; set; }
+        public int    Total    { get; set; }
+        public int HorarioID   { get; set; }
+       
         public InfoPiletaDia()
         {
             Horario = "";
@@ -222,7 +224,7 @@ namespace SOCIOS.Entrada_Campo
 
             int cantidad = 0;
 
-            string QUERY = " select  SUM(Promo + Invitado_Pileta + SOCIO_PILETA + inter_pileta + Menor + Disca + DISCA_ACOM) from entrada_Campo where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "'  and HORA_PILETA>-1 and (HORA_PILETA=0 or HORA_PILETA=  " + Horario.ToString() + ")";
+            string QUERY = " select  SUM(Promo + INVI_PILETA + SOCIO_PILETA + inter_pileta + Menor + Disca + DISCA_ACOM) from entrada_Campo_ph where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "'  and ID_HORA=  " + Horario.ToString() + "";
 
            
 
@@ -246,7 +248,7 @@ namespace SOCIOS.Entrada_Campo
 
             int cantidad = 0;
             InfoPiletaDia info = new InfoPiletaDia();
-            string QUERY = " select  Coalesce(SUM(SOCIO_PILETA),0),Coalesce(SUM(INTER_PILETA),0),Coalesce(SUM(INVITADO_PILETA),0),Coalesce(SUM(MENOR),0),Coalesce(SUM(DISCA),0),Coalesce(SUM(DISCA_ACOM),0),Coalesce(SUM(PROMO),0) from entrada_Campo where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "'  and HORA_PILETA>-1 and  HORA_PILETA=  " + Horario.ToString();
+            string QUERY = " select  Coalesce(SUM(SOCIO_PILETA),0),Coalesce(SUM(INTER_PILETA),0),Coalesce(SUM(INVI_PILETA),0),Coalesce(SUM(MENOR),0),Coalesce(SUM(DISCA),0),Coalesce(SUM(DISCA_ACOM),0),Coalesce(SUM(PROMO),0) from entrada_Campo_PH where Fecha>'" + Fecha.AddDays(-1).ToString("MM/dd/yyyy") + "' and Fecha< '" + Fecha.AddDays(+1).ToString("MM/dd/yyyy") + "'  and ID_HORA= " + Horario.ToString();
 
 
 
@@ -305,6 +307,44 @@ namespace SOCIOS.Entrada_Campo
 
 
         }
+
+
+        public List<InfoPiletaDia> Cantidad_Horarios_Entrada(int ID_EC, string ROL)
+        {
+            List<InfoPiletaDia> lista = new List<InfoPiletaDia>();
+
+           
+            string QUERY = " select  SOCIO_PILETA,INTER_PILETA,INVI_PILETA,MENOR,DISCA,DISCA_ACOM,PROMO,ID_HORA from ENTRADA_CAMPO_PH  where ID_EC=" + ID_EC.ToString() + " and ROL='"+ROL+"'";
+
+
+
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            int I = 0;
+
+            while (I<foundRows.Length)
+           
+            {
+                InfoPiletaDia info = new InfoPiletaDia();
+                info.Socio = Int32.Parse(foundRows[I][0].ToString().Trim());
+                info.Inter = Int32.Parse(foundRows[I][1].ToString().Trim());
+                info.Invi = Int32.Parse(foundRows[I][2].ToString().Trim());
+                info.Menor = Int32.Parse(foundRows[I][3].ToString().Trim());
+                info.Disc = Int32.Parse(foundRows[I][4].ToString().Trim());
+                info.Oro = Int32.Parse(foundRows[I][5].ToString().Trim());
+                info.Promo = Int32.Parse(foundRows[I][6].ToString().Trim());
+                info.Total = info.Socio + info.Inter + info.Invi + info.Menor + info.Disc + info.Oro + info.Promo;
+                info.HorarioID = Int32.Parse(foundRows[I][7].ToString().Trim());
+                info.Horario = this.getDiasPileta(info.HorarioID);
+
+                lista.Add(info);
+                I = I + 1;
+            }
+            return lista;
+
+        }
+
+
     }
     
     

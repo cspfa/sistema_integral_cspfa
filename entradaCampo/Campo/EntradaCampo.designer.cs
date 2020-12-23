@@ -104,7 +104,7 @@
             this.Personas.Name = "Personas";
             this.Personas.RowHeadersVisible = false;
             this.Personas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Personas.Size = new System.Drawing.Size(242, 251);
+            this.Personas.Size = new System.Drawing.Size(358, 251);
             this.Personas.TabIndex = 1;
             // 
             // lnkFamiliar
@@ -688,7 +688,7 @@
             this.dgvInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInfo.Location = new System.Drawing.Point(249, 255);
+            this.dgvInfo.Location = new System.Drawing.Point(365, 255);
             this.dgvInfo.Name = "dgvInfo";
             this.dgvInfo.RowHeadersVisible = false;
             this.dgvInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -751,7 +751,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(901, 759);
+            this.ClientSize = new System.Drawing.Size(973, 759);
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);
