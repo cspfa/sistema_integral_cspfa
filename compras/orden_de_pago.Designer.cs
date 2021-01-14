@@ -167,6 +167,7 @@
             this.Name = "orden_de_pago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DETALLE DE LA ORDEN DE PAGO";
+            this.Load += new System.EventHandler(this.Orden_de_pago_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

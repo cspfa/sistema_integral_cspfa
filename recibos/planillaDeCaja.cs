@@ -1219,11 +1219,12 @@ namespace SOCIOS
             {
                 Cursor = Cursors.WaitCursor;
                 int CAJA = int.Parse(dgCajasAnteriores[11, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
+                int ID_CAJA = int.Parse(dgCajasAnteriores[0, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString());
                 string DIA = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(0, 2);
                 string MES = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(3, 2);
                 string ANIO = dgCajasAnteriores[1, dgCajasAnteriores.CurrentCell.RowIndex].Value.ToString().Substring(6, 4);
                 string PATH = "SAVEAS";
-                imprimirPlanilla(CAJA, PATH);
+                imprimirPlanilla(CAJA, PATH, ID_CAJA);
                 Cursor = Cursors.Default;
             }
         }
@@ -1608,7 +1609,7 @@ namespace SOCIOS
             File.WriteAllBytes(ARCHIVO, bytes);
         }
 
-        private void imprimirPlanilla(int CAJA, string PATH)
+        private void imprimirPlanilla(int CAJA, string PATH, int ID_CAJA)
         {
             try
             {
@@ -1652,13 +1653,13 @@ namespace SOCIOS
 
                 DataSet EFECTIVO_DS = buscarIngresosInforme(CAJA, "1");
                 DataSet CAMBIO_DS = buscarCambioInforme(CAJA);
-                DataSet TOTALES_DIA = buscarTotalesInforme(CAJA);
+                DataSet TOTALES_DIA = buscarTotalesInforme(ID_CAJA);
                 DataSet OTROS_DS = buscarIngresosInforme(CAJA, "0");
                 DataSet EGRESOS = buscarIngresosInforme(CAJA, "E");
-                DataSet CHEQUES = buscarChequesInforme(CAJA);
-                DataSet COMPOSICION_DS = buscarComposicionInforme(CAJA);
-                DataSet CAJAS_DEPOSITADAS = buscarCajasDepositadas(CAJA);
-                DataSet CHEQUES_COMPOSICION = buscarChequesComposicion(CAJA);
+                DataSet CHEQUES = buscarChequesInforme(ID_CAJA);
+                DataSet COMPOSICION_DS = buscarComposicionInforme(ID_CAJA);
+                DataSet CAJAS_DEPOSITADAS = buscarCajasDepositadas(ID_CAJA);
+                DataSet CHEQUES_COMPOSICION = buscarChequesComposicion(ID_CAJA);
 
                 string NUM = "";
                 string NUM_E = "";

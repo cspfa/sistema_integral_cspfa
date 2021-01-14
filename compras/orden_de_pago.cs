@@ -244,5 +244,10 @@ namespace SOCIOS
                 }
             }
         }
+
+        private void Orden_de_pago_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

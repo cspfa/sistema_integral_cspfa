@@ -638,5 +638,72 @@ namespace SOCIOS
 
         }
 
+
+        public void Entrada_Campo_HORARIOS_Ins(int ID_EC,int ID_HORA,int SOCIO,int INTER,int INVI, int MENOR,int DISCA,int DISCA_ACOM,int PROMO)
+        {
+            db resultado = new db();
+            ArrayList vector_contenidos = new ArrayList();
+            ArrayList vector_nombres = new ArrayList();
+            ArrayList vector_tipos = new ArrayList();
+
+
+
+            vector_contenidos.Add(ID_EC);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_ID_EC");
+
+            vector_contenidos.Add(ID_HORA);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_ID_HORA");
+
+            vector_contenidos.Add(SOCIO);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_SOCIO_PILETA");
+
+
+            vector_contenidos.Add(INTER);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_INTER_PILETA");
+
+            vector_contenidos.Add(INVI);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_INVI_PILETA");
+
+
+            vector_contenidos.Add(MENOR);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_MENOR");
+
+            vector_contenidos.Add(DISCA);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_DISCA");
+
+            vector_contenidos.Add(DISCA_ACOM);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_DISCA_ACOM");
+
+            vector_contenidos.Add(PROMO);
+            vector_tipos.Add("FbDbType.Integer");
+            vector_nombres.Add("@PIN_PROMO");
+
+            vector_contenidos.Add(System.DateTime.Now);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_FECHA");
+
+            vector_contenidos.Add(VGlobales.vp_role);
+            vector_tipos.Add("FbDbType.Varchar");
+            vector_nombres.Add("@PIN_ROL");
+
+
+
+
+          
+
+            string vprocedure = "P_ENTRADA_CAMPO_PH_I";
+
+            resultado.Ejecuto_Stored_Insert(vprocedure, vector_contenidos, vector_tipos, vector_nombres);
+
+        }
+
     }
 }

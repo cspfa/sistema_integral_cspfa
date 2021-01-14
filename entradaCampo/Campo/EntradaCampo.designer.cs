@@ -104,7 +104,7 @@
             this.Personas.Name = "Personas";
             this.Personas.RowHeadersVisible = false;
             this.Personas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Personas.Size = new System.Drawing.Size(242, 251);
+            this.Personas.Size = new System.Drawing.Size(358, 251);
             this.Personas.TabIndex = 1;
             // 
             // lnkFamiliar
@@ -268,7 +268,7 @@
             // 
             this.Pago.Image = ((System.Drawing.Image)(resources.GetObject("Pago.Image")));
             this.Pago.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Pago.Location = new System.Drawing.Point(728, 512);
+            this.Pago.Location = new System.Drawing.Point(589, 548);
             this.Pago.Name = "Pago";
             this.Pago.Size = new System.Drawing.Size(113, 30);
             this.Pago.TabIndex = 6;
@@ -688,11 +688,11 @@
             this.dgvInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvInfo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInfo.Location = new System.Drawing.Point(249, 255);
+            this.dgvInfo.Location = new System.Drawing.Point(365, 255);
             this.dgvInfo.Name = "dgvInfo";
             this.dgvInfo.RowHeadersVisible = false;
             this.dgvInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInfo.Size = new System.Drawing.Size(589, 251);
+            this.dgvInfo.Size = new System.Drawing.Size(589, 287);
             this.dgvInfo.TabIndex = 39;
             // 
             // lbAvisoAbono
@@ -704,7 +704,7 @@
             this.lbAvisoAbono.Size = new System.Drawing.Size(680, 13);
             this.lbAvisoAbono.TabIndex = 40;
             this.lbAvisoAbono.Text = "VA A INGRESAR PILETA ABONO /INGRESOS AL CAMPO- PARA VOLVER A INGRESAR PILETA X HO" +
-                "RARIO REINGRESE AL MODULO!";
+    "RARIO REINGRESE AL MODULO!";
             this.lbAvisoAbono.Visible = false;
             // 
             // tbCantidad
@@ -751,7 +751,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(901, 759);
+            this.ClientSize = new System.Drawing.Size(973, 749);
             this.Controls.Add(this.btnConfig);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label2);

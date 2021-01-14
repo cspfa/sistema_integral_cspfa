@@ -11,6 +11,7 @@ using FirebirdSql.Data.FirebirdClient;
 using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
 
+
 namespace SOCIOS
 {
     public class RegistroEntradaCampo
@@ -20,6 +21,9 @@ namespace SOCIOS
         public int     TipoValor  { get; set; }
         public string     Tipo       { get; set; }
         public decimal Monto      { get; set; }
+        public string Horario { get; set; }
+        public int    HorarioID { get; set; }
+
 
     
     }
@@ -323,7 +327,11 @@ namespace SOCIOS
                      Titulo_Horario = ID.ToString() + "-ESTADIA";
                  else
                  {    Entrada_Campo.DiasPiletaService serviceDias = new Entrada_Campo.DiasPiletaService();
-                 Titulo_Horario = ID.ToString() + " TURNO " + serviceDias.getDiasPileta(HorarioPileta) + " HS";
+                 var dias = serviceDias.Cantidad_Horarios_Entrada(ID, VGlobales.vp_role);
+                         if (dias.Count==1)
+                              Titulo_Horario = ID.ToString() + " TURNO " + dias.First().Horario + " HS";
+                         else
+                             Titulo_Horario = ID.ToString() + " VARIOS TURNOS ";
                  }
              }
              PrintDialog pd = new PrintDialog(); 
@@ -661,6 +669,8 @@ namespace SOCIOS
             Offset = Offset + 20;
             graphics.DrawString("DENTRO DE LAS  2 HS", courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
+            graphics.DrawString("PILETA X HORA S/DEVOLUCION", courier_big, black, startX, startY + Offset);
+            Offset = Offset + 20;
             graphics.DrawString("COMPROBANTE NO VALIDO", courier_big, black, startX, startY + Offset);
             Offset = Offset + 20;
             graphics.DrawString("COMO TICKET FISCAL", courier_big, black, startX, startY + Offset);
@@ -717,8 +727,8 @@ namespace SOCIOS
 
             graphics.DrawString(Dato2, courier_big, black, startX, startY + Offset);
 
-            if (Titulo_Horario.Length > 0)
-            {
+            //if (Titulo_Horario.Length > 0)
+            //{
                 Offset = Offset + 20;
                 graphics.DrawString("TICKET SOLAMENTE VALIDO", courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
@@ -728,8 +738,15 @@ namespace SOCIOS
                 Offset = Offset + 20;
                 graphics.DrawString("LA PARTE SUPERIOR ", courier_big, black, startX, startY + Offset);
                 Offset = Offset + 20;
-                graphics.DrawString("NO SE ACEPTAN DEVOLUCIONES ", courier_big, black, startX, startY + Offset);
-            }
+                graphics.DrawString("REINTEGRO SOLO PILETA ESTADIA  ", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("DENTRO DE LAS 2 HS, X HORA  ", courier_big, black, startX, startY + Offset);
+                Offset = Offset + 20;
+                graphics.DrawString("SIN DEVOLUCION ", courier_big, black, startX, startY + Offset);
+            //}
+            //else
+            //{
+            //}
             //Offset = Offset + 20;
             //graphics.DrawString("LOS REINTEGROS SE EFECTUAN", courier_big, black, startX, startY + Offset);
             //Offset = Offset + 20;

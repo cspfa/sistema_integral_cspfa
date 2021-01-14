@@ -307,7 +307,7 @@ namespace SOCIOS
                 MessageBox.Show(ex.ToString());
             }
         }
-
+        
         private void limpiarFormulario()
         {
             tbRazonSocial.Text = "";
@@ -325,7 +325,7 @@ namespace SOCIOS
 
         private void limpiarFactura()
         {
-            cbProveedores.SelectedIndex = 0;
+            cbProveedores.Text = "";
             tbNumFactura.Text = "";
             dpFechaFactura.Text = DateTime.Today.ToShortDateString();
             tbImporte.Text = "";
@@ -443,14 +443,14 @@ namespace SOCIOS
                 totalImporteFacturasOP();
                 tbImporteOP.Text = lbTotalFacturasOP.Text;
                 tbImporteTrans.Text = lbTotalFacturasOP.Text;
-                comboProveedores(cbProvTrans);
+               // comboProveedores(cbProvTrans);
                 desbloquearFormsOP();
                 comboBancos(cbBancos);
                 comboBancos(cbBancoOrigenTrans);
                 int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
                 comboCuentasBancariasCargadas(BANCO, cbCtaOrigenTrans);
-                int PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
-                traeCuentaBancariaProveedor(PROVEEDOR);
+                //int PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
+                traeCuentaBancariaProveedor(/*PROVEEDOR*/);
                 comboCheques(BANCO, cbCheques);
                 int CHEQUE = 0;
 
@@ -2753,7 +2753,7 @@ namespace SOCIOS
             cbCuentaDestinoTrans.DataSource = null;
             cbCuentaDestinoTrans.Items.Clear();
             cbCuentaDestinoTrans.Enabled = false;
-            comboProveedores(cbProvTrans);
+            //comboProveedores(cbProvTrans);
             tbImporteTrans.Text = "";
             dpFechaTransferencia.Text = DateTime.Today.ToShortDateString();
         }
@@ -4355,13 +4355,17 @@ namespace SOCIOS
             {
                 MessageBox.Show("COMPLETAR EL CAMPO IMPORTE", "ERROR");
             }
-            else if (Convert.ToDecimal(lbTotalFacturasOP.Text) > Convert.ToDecimal(tbImporteTrans.Text))
+            else if (Convert.ToDecimal(lbTotalFacturasOP.Text) < Convert.ToDecimal(tbImporteTrans.Text))
             {
                 MessageBox.Show("EL IMPORTE DE LA TRANSFERENCIA SUPERA EL TOTAL DE LAS FACTURAS SELECCIONADAS", "ERROR");
             }
+            else if (lvTransSeleccionadas.Columns.Count > 0 && VerificarTotalTransferido())
+            {
+                MessageBox.Show("EL IMPORTE DE LAS TRANSFERENCIAS SUPERA EL TOTAL DE LAS FACTURAS SELECCIONADAS", "ERROR");
+            }
             else if (cbProvTrans.Text.Trim() == "")
             {
-                MessageBox.Show("SELECCIONAR UN PROVEEDOR", "ERROR");
+                MessageBox.Show("COMPLETAR EL CAMBPO PROVEEDOR", "ERROR");
             }
             else if (cbCuentaDestinoTrans.Items.Count == 0)
             {
@@ -4376,13 +4380,13 @@ namespace SOCIOS
                 string BANCO_ORIGEN_ID = cbBancoOrigenTrans.SelectedValue.ToString();
                 string BANCO_ORIGEN = cbBancoOrigenTrans.Text.Trim();
                 string CUENTA_ORIGEN = cbCtaOrigenTrans.Text.Trim();
-                string CUENTA_ORIGEN_ID = cbCtaOrigenTrans.SelectedValue.ToString();
+                string CUENTA_ORIGEN_ID = "1";// cbCtaOrigenTrans.SelectedValue.ToString();
                 string CHEQUE = cbChequeAcompTrans.Text.Trim();
                 string CUENTA_DESTINO = cbCuentaDestinoTrans.Text.Trim();
                 string CUENTA_DESTINO_ID = cbCuentaDestinoTrans.SelectedValue.ToString();
                 string IMPORTE = string.Format("{0:n}", Convert.ToDecimal(tbImporteTrans.Text.Trim()));
                 string PROVEEDOR = cbProvTrans.Text.Trim().ToUpper().Trim();
-                string PROVEEDOR_ID = cbProvTrans.SelectedValue.ToString().Trim();
+                //string PROVEEDOR_ID = cbProvTrans.SelectedValue.ToString().Trim();
                 string PDF_RUTA = lbPdfTrans.Text.Trim();
                 string[] BANCO_DESTINO = obtenerBancoDeCuenta(CUENTA_DESTINO_ID);
                 string FECHA = dpFechaTransferencia.Text;
@@ -4400,7 +4404,7 @@ namespace SOCIOS
                     lvTransSeleccionadas.Columns.Add("CHEQUE");
                     lvTransSeleccionadas.Columns.Add("IMPORTE");
                     lvTransSeleccionadas.Columns.Add("PROVEEDOR");
-                    lvTransSeleccionadas.Columns.Add("PROVEEDOR_ID");
+                   // lvTransSeleccionadas.Columns.Add("PROVEEDOR_ID");
                     lvTransSeleccionadas.Columns.Add("FECHA");
                     lvTransSeleccionadas.Columns.Add("PDF");
                 }
@@ -4416,7 +4420,7 @@ namespace SOCIOS
                 items.SubItems.Add(CHEQUE);
                 items.SubItems.Add(IMPORTE);
                 items.SubItems.Add(PROVEEDOR);
-                items.SubItems.Add(PROVEEDOR_ID);
+               // items.SubItems.Add(PROVEEDOR_ID);
                 items.SubItems.Add(FECHA);
                 items.SubItems.Add(PDF_RUTA);
                 lvTransSeleccionadas.Items.Add(items);
@@ -4429,7 +4433,7 @@ namespace SOCIOS
                 lvTransSeleccionadas.Columns[5].Width = 0;
                 lvTransSeleccionadas.Columns[7].Width = 0;
                 lvTransSeleccionadas.Columns[11].Width = 0;
-                lvTransSeleccionadas.Columns[13].Width = 0;
+                //lvTransSeleccionadas.Columns[13].Width = 0;
 
 
                 if (BANCO_ORIGEN_ID == "2")
@@ -4441,6 +4445,20 @@ namespace SOCIOS
             }
 
             sumaTransferencias();
+        }
+
+        private bool VerificarTotalTransferido()
+        {
+            decimal total = 0;
+
+            foreach (ListViewItem itemRow in lvTransSeleccionadas.Items)
+            {
+                total += Convert.ToDecimal(itemRow.SubItems[9].Text);
+            }
+
+            total += Convert.ToDecimal(tbImporteTrans.Text);
+
+            return total > Convert.ToDecimal(lbTotalFacturasOP.Text);
         }
 
         private void cbBancoOrigenTrans_SelectionChangeCommitted(object sender, EventArgs e)
@@ -4488,9 +4506,9 @@ namespace SOCIOS
             }
         }
 
-        private void traeCuentaBancariaProveedor(int ID_PROVEEDOR)
+        private void traeCuentaBancariaProveedor( /*int ID_PROVEEDOR  */)
         {
-            string QUERY = "SELECT ID, NRO_CUENTA FROM CUENTAS_BANCARIAS WHERE PROVEEDOR = " + ID_PROVEEDOR + ";";
+            string QUERY = "SELECT ID, NRO_CUENTA FROM CUENTAS_BANCARIAS";// WHERE PROVEEDOR = " + ID_PROVEEDOR + ";";
             cbCuentaDestinoTrans.DataSource = null;
             cbCuentaDestinoTrans.Items.Clear();
             cbCuentaDestinoTrans.DataSource = dlog.BO_EjecutoDataTable(QUERY);
@@ -4500,7 +4518,7 @@ namespace SOCIOS
         }
 
         private void cbProvTrans_SelectionChangeCommitted(object sender, EventArgs e)
-        {
+        {/*
             int ID_PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
             traeCuentaBancariaProveedor(ID_PROVEEDOR);
 
@@ -4511,7 +4529,7 @@ namespace SOCIOS
             else
             {
                 cbCuentaDestinoTrans.Enabled = false;
-            }
+            } */
         }
 
         private void buscarCuentasBancarias(int PROVEEDOR)
@@ -5613,7 +5631,7 @@ namespace SOCIOS
             if (sender == cbProveedores)
             {
                 VALOR = cbProveedores.SelectedValue.ToString();
-            }
+            } 
         }
         
         private void lvFacturas_MouseUp(object sender, MouseEventArgs e)
@@ -5685,7 +5703,7 @@ namespace SOCIOS
         private void cbProveedores_SelectionChangeCommitted(object sender, EventArgs e)
         {
             //grupoFacturas(sender);
-        }
+        } 
 
         private void buscarPlanDeCuentas(string CUENTA)
         {
@@ -6720,6 +6738,53 @@ namespace SOCIOS
             {
                 buscarSolicitudes("ENVIADAS", "X");
             }
+        }
+
+        private void LvTransSeleccionadas_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (lvTransSeleccionadas.FocusedItem.Bounds.Contains(e.Location) == true)
+                {
+                    cmTransferencias.Show(Cursor.Position);
+                }
+            }
+
+        }
+
+        private void eliminarTransferencias(string CUALES)
+        {
+            string CHEQUE = "";
+            string BANCO_ID = "";
+
+            if (CUALES == "SELECCIONADOS")
+            {
+                foreach (ListViewItem itemRow in lvTransSeleccionadas.SelectedItems)
+                {
+                    //CHEQUE = itemRow.SubItems[1].Text;
+                    //BANCO_ID = itemRow.SubItems[7].Text;
+                    //BO_COMPRAS.chequeOpTemp(0, int.Parse(CHEQUE), int.Parse(BANCO_ID));
+                    itemRow.Remove();
+                }
+            }
+
+            if (CUALES == "TODOS")
+            {
+                foreach (ListViewItem itemRow in lvTransSeleccionadas.Items)
+                {
+                    //CHEQUE = itemRow.SubItems[1].Text;
+                    //BANCO_ID = itemRow.SubItems[7].Text;
+                    //BO_COMPRAS.chequeOpTemp(0, int.Parse(CHEQUE), int.Parse(BANCO_ID));
+                    itemRow.Remove();
+                }
+            }
+            sumaTransferencias();
+            //int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
+        }
+
+        private void ToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            eliminarTransferencias("SELECCIONADOS");
         }
     }
 }

@@ -2342,7 +2342,7 @@ namespace Buffet
                     case "CTACORRIENTE":
                         QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 9 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4 OR C.TIPO_COMANDA = 5) AND C.ROL = '" + VGlobales.vp_role + "'";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 9 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4 OR C.TIPO_COMANDA = 5 OR C.TIPO_COMANDA = 8) AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -2359,7 +2359,7 @@ namespace Buffet
                     case "EFECTIVO":
                         QUERY  = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4 OR C.TIPO_COMANDA = 5) AND C.ROL = '" + VGlobales.vp_role + "'";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND C.FORMA_DE_PAGO = 1 AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4 OR C.TIPO_COMANDA = 5 OR C.TIPO_COMANDA = 8) AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
@@ -2376,7 +2376,7 @@ namespace Buffet
                     case "TARJETA":
                         QUERY = "SELECT C.NRO_COMANDA, C.FECHA, C.MESA, M.NOMBRE, C.IMPORTE, C.NRO_SOC, C.NRO_DEP, C.BARRA, C.PERSONAS, C.NOMBRE_SOCIO, C.AFILIADO, C.BENEFICIO, C.DESCUENTO, F.DETALLE, C.ANULADA, C.COM_BORRADOR, C.ID ";
                         QUERY += "FROM CONFITERIA_COMANDAS C, CONFITERIA_MOZOS M, FORMAS_DE_PAGO F ";
-                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND (C.FORMA_DE_PAGO = 3 OR C.FORMA_DE_PAGO = 4 OR C.FORMA_DE_PAGO = 5 OR C.FORMA_DE_PAGO = 6) AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4) AND C.ROL = '" + VGlobales.vp_role + "'";
+                        QUERY += "WHERE M.ID = C.MOZO AND F.ID = C.FORMA_DE_PAGO AND (C.FORMA_DE_PAGO = 3 OR C.FORMA_DE_PAGO = 4 OR C.FORMA_DE_PAGO = 5 OR C.FORMA_DE_PAGO = 6) AND (C.TIPO_COMANDA = 1 OR C.TIPO_COMANDA = 4 OR C.TIPO_COMANDA = 8) AND C.ROL = '" + VGlobales.vp_role + "'";
 
                         if (RENDIDA > 0)
                             QUERY += "AND RENDIDA = " + RENDIDA + " ";
