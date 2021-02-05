@@ -23,7 +23,7 @@ namespace SOCIOS
         private void Mover_Adherentes_Load(object sender, EventArgs e)
         {
             this.textBox4.Text = Convert.ToString(Socios.vp_nro_soc);
-            this.textBox3.Text = Convert.ToString(Socios.vp_nro_dep);
+            this.textBox3.Text = Convert.ToString(Socios.vp_nro_dep); 
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -38,5 +38,10 @@ namespace Buffet
                 this.Close();
             }
         }
+
+        private void AgregarItem_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

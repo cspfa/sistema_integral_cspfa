@@ -108,6 +108,11 @@ namespace SOCIOS
                         conveniosToolStripMenuItem.Enabled = true;
                     }
 
+                    if (VGlobales.vp_role.Trim() == "CONVENIOS")
+                    {
+                        conveniosToolStripMenuItem.Enabled = true;
+                    }
+
                     if (VGlobales.vp_role.Trim() == "PATRIMONIO")
                     {
                         patrimonioToolStripMenuItem.Enabled = true;

@@ -523,7 +523,7 @@ namespace SOCIOS
                     FOUND = dlog.BO_EjecutoDataTable(QUERY).Select();
                     PLUS = FOUND[0][0].ToString();
 
-                    if (PLUS  != "")
+                    /*if (PLUS  != "")
                     {
                         decimal PLUS_D = decimal.Parse(PLUS);
                         decimal DISPONIBLE = importe_traido - PLUS_D;
@@ -532,7 +532,7 @@ namespace SOCIOS
                         {
                             RET = true;
                         }
-                    }
+                    }*/
                 }
             }
 
@@ -575,6 +575,7 @@ namespace SOCIOS
             if (cbPtoVta.SelectedValue.ToString() == "0005")
             {
                 PTO_VTA_N = "0005"; //REINTEGROS
+                PTO_VTA_O = "0005";
             }
             else
             {

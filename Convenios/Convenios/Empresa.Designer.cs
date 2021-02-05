@@ -52,6 +52,7 @@
             this.ID_LOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LOCALIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnLimpiarEmpresa = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResultadosBuscador)).BeginInit();
@@ -98,6 +99,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnLimpiarEmpresa);
             this.groupBox2.Controls.Add(this.btnAgregarEmpresa);
             this.groupBox2.Controls.Add(this.cbLocalidad);
             this.groupBox2.Controls.Add(this.label6);
@@ -287,6 +289,16 @@
             this.label7.TabIndex = 48;
             this.label7.Text = "RESULTADOS";
             // 
+            // btnLimpiarEmpresa
+            // 
+            this.btnLimpiarEmpresa.Location = new System.Drawing.Point(372, 45);
+            this.btnLimpiarEmpresa.Name = "btnLimpiarEmpresa";
+            this.btnLimpiarEmpresa.Size = new System.Drawing.Size(99, 23);
+            this.btnLimpiarEmpresa.TabIndex = 18;
+            this.btnLimpiarEmpresa.Text = "LIMPIAR";
+            this.btnLimpiarEmpresa.UseVisualStyleBackColor = true;
+            this.btnLimpiarEmpresa.Click += new System.EventHandler(this.BtnLimpiarEmpresa_Click);
+            // 
             // Empresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,5 +344,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DOMICILIO;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID_LOC;
         private System.Windows.Forms.DataGridViewTextBoxColumn LOCALIDAD;
+        private System.Windows.Forms.Button btnLimpiarEmpresa;
     }
 }

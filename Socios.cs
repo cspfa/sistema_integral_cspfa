@@ -3823,7 +3823,15 @@ namespace SOCIOS
        }
        private void TabAdherentes_Enter(object sender, EventArgs e)
        {
-           Cargar_Solapa_Adh();
+            if (vp_nro_soc == -1)
+            {
+                btnImportarAdherentes.Enabled = false;
+            }
+            else
+            {
+                btnImportarAdherentes.Enabled = true;
+            }
+            Cargar_Solapa_Adh();
        }
 
        private void TabFamiliares_Enter(object sender, EventArgs e)

@@ -100,14 +100,7 @@ namespace Convenios
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (tbRazonSocialBuscador.Text == "")
-            {
-                MessageBox.Show("COMPLETAR EL CAMPO LOCALIDAD", "ERROR");
-            }
-            else
-            {
                 buscar(tbRazonSocialBuscador.Text.Trim());
-            }
         }
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -138,6 +131,11 @@ namespace Convenios
                             MessageBox.Show("SE GUARDO LA EMPRESA CORRECTAMENTE", "LISTO");
                         }
                     }
+                    ID_EMPRESA = 0;
+                    tbRazonSocial.Text = "";
+                    tbDomicilio.Text = "";
+                    comboLocalidades();
+                    buscar(tbRazonSocialBuscador.Text.Trim());
                 }
                 catch (Exception error)
                 {
@@ -168,6 +166,14 @@ namespace Convenios
                     }
                 }
             }
+        }
+
+        private void BtnLimpiarEmpresa_Click(object sender, EventArgs e)
+        {
+            ID_EMPRESA = 0;
+            tbRazonSocial.Text = "";
+            tbDomicilio.Text = "";
+            comboLocalidades();
         }
     }
 }

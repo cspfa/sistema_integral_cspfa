@@ -99,7 +99,6 @@
             this.button2.Location = new System.Drawing.Point(393, 108);
             this.button2.Name = "button2";
             this.button2.ParentContainer = this;
-            this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 73;
             this.button2.Text = "CANCELAR";
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -162,8 +161,15 @@
             // 
             // Mover_Adherentes
             // 
+            this.AutoDeleteMessage = "Business_AutoDeleteMessage";
+            this.AutoDeleteTitle = "Business_AutoDeleteTitle";
+            this.AutoSaveChangesMessage = "Business_AutoSaveChangesMessage";
+            this.AutoSaveChangesTitle = "Business_AutoSaveChangesTitle";
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BrokenRulesAlertText = "Business_BrokenRulesAlertText";
+            this.BrokenRulesAlertTextAdditionalRows = "Business_BrokenRulesAlertTextAdditionalRows";
+            this.BrokenRulesAlertTitle = "Business_BrokenRulesAlertTitle";
             this.ClientSize = new System.Drawing.Size(478, 139);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -171,6 +177,7 @@
             this.Controls.Add(this.button1);
             this.ErrorProviderBlinkStyle = System.Windows.Forms.ErrorBlinkStyle.BlinkIfDifferentError;
             this.ErrorProviderIconAlignment = System.Windows.Forms.ErrorIconAlignment.MiddleRight;
+            this.ErrorProviderRequiredFieldDesc = "Business_ErrorProviderRequiredFieldDesc";
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Mover_Adherentes";

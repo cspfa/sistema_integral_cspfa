@@ -150,6 +150,7 @@ namespace Convenios
                     }
 
                     MessageBox.Show(MSG_SUCC, "LISTO");
+                    buscar();
                 }
                 catch (Exception error)
                 {
@@ -193,7 +194,7 @@ namespace Convenios
             pintarResultados();
         }
 
-        private void buscar(string RAPIDA)
+        private void buscar()
         {
             Cursor = Cursors.WaitCursor;
 
@@ -218,7 +219,7 @@ namespace Convenios
                         QUERY += " AND C.NRO_INTERNO = " + tbNroIntBuscador.Text.Trim();
 
                     if (tbRegGralBuscador.Text != "")
-                        QUERY += " AND C.NRO_REG_GRAL = " + tbRegGralBuscador.Text.Trim();
+                        QUERY += " AND C.NRO_REG_GRAL = '" + tbRegGralBuscador.Text.Trim() + "' ";
 
                     if (tbAnioBuscador.Text != "")
                         QUERY += " AND C.ANIO = " + tbAnioBuscador.Text.Trim();
@@ -261,13 +262,20 @@ namespace Convenios
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            int n;
             if (tbDetalleBuscador.Text == "" && tbNroIntBuscador.Text == "" && tbRegGralBuscador.Text == "" && tbAnioBuscador.Text == "" && cbEmpresaBuscador.SelectedValue.ToString() == "")
             {
                 MessageBox.Show("INGRESAR UN CRITERIO DE BÚSQUEDA", "ERROR");
+            } else if (tbAnioBuscador.Text != "" && !Int32.TryParse(tbAnioBuscador.Text,out n) )
+            {
+                MessageBox.Show("EL CAMPO AÑO NO PUEDE TENER CARACTERES", "ERROR");
+            } else if (tbNroIntBuscador.Text != "" && !Int32.TryParse(tbNroIntBuscador.Text, out n) )
+            {
+                MessageBox.Show("EL CAMPO NRO INTERNO NO PUEDE TENER CARACTERES", "ERROR");
             }
             else
             {
-                buscar("TODOS");
+                buscar();
             }
         }
 
@@ -305,6 +313,7 @@ namespace Convenios
         {
             Empresa empresa = new Empresa();
             empresa.ShowDialog();
+            comboEmpresas(cbEmpresaBuscador);
             comboEmpresas(cbEmpresas);
         }
 
@@ -339,6 +348,18 @@ namespace Convenios
                     dpFin.Value = Convert.ToDateTime(row.Cells[4].Value.ToString());
                 }
             }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            ID_CONVENIO = 0;
+            tbDetalle.Clear();
+            tbRegGral.Clear();
+            tbNroInt.Clear();
+            tbAnio.Clear();
+            tbObsevaciones.Clear();
+            dpInicio.Value = DateTime.Now;
+            dpFin.Value = DateTime.Now;
         }
     }
 }

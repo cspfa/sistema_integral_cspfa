@@ -68,25 +68,37 @@ namespace Buffet
                     DataSet ds = new DataSet();
 
                     string query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE, P.BAJA, S.ID ";
-                    query += "FROM SECTACT S, PROFESIONALES P, PROF_ESP PE, ARANCELES A ";
-                    query += "WHERE P.ID = PE.PROFESIONAL AND S.ID = PE.ESPECIALIDAD AND A.PROFESIONAL = PE.PROFESIONAL AND P.ROL = '" + ROLE + "' ";
-                    query += "AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC";
+                    query += "FROM ARANCELES A ";
+                    query += "INNER JOIN (SELECT MAX(ID) as ID FROM ARANCELES GROUP BY PROFESIONAL) B ON A.ID = B.ID ";
+                    query += "INNER JOIN PROF_ESP PE ON A.PROFESIONAL = PE.PROFESIONAL ";
+                    query += "INNER JOIN PROFESIONALES P ON P.ID = PE.PROFESIONAL ";
+                    query += "INNER JOIN SECTACT S ON S.ID = PE.ESPECIALIDAD ";
+                    query += "WHERE P.ROL = '" + ROLE + "' AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ";
+                    query += "ORDER BY S.DETALLE ASC, P.NOMBRE ASC";
 
                     if (CATEGORIA !="X")
                     {
                         query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE, P.BAJA, S.ID ";
-                        query += "FROM SECTACT S, PROFESIONALES P, PROF_ESP PE, ARANCELES A ";
-                        query += "WHERE PE.ESPECIALIDAD = " + CATEGORIA;
-                        query += "AND P.ID = PE.PROFESIONAL AND S.ID = PE.ESPECIALIDAD AND A.PROFESIONAL = PE.PROFESIONAL AND P.ROL = '" + ROLE + "' ";
+                        query += "FROM ARANCELES A ";
+                        query += "INNER JOIN (SELECT MAX(ID) as ID FROM ARANCELES GROUP BY PROFESIONAL) B ON A.ID = B.ID ";
+                        query += "INNER JOIN PROF_ESP PE ON A.PROFESIONAL = PE.PROFESIONAL ";
+                        query += "INNER JOIN PROFESIONALES P ON P.ID = PE.PROFESIONAL ";
+                        query += "INNER JOIN SECTACT S ON S.ID = PE.ESPECIALIDAD ";
+                        query += "WHERE PE.ESPECIALIDAD = " + CATEGORIA + " ";
+                        query += "AND P.ROL = '" + ROLE + "' ";
                         query += "AND A.FE_BAJA IS NULL AND A.CATSOC = '001' ORDER BY S.DETALLE ASC, P.NOMBRE ASC";
                     }
 
                     if (BARCODE != null)
                     {
                         query = "SELECT S.DETALLE, P.NOMBRE, A.ARANCEL, COALESCE(P.STOCK, 0), P.ID, P.BARCODE, P.BAJA, S.ID ";
-                        query += "FROM SECTACT S, PROFESIONALES P, PROF_ESP PE, ARANCELES A ";
-                        query += "WHERE PE.ESPECIALIDAD = " + CATEGORIA;
-                        query += "AND P.ID = PE.PROFESIONAL AND S.ID = PE.ESPECIALIDAD AND A.PROFESIONAL = PE.PROFESIONAL AND P.ROL = '" + ROLE + "' ";
+                        query += "FROM ARANCELES A ";
+                        query += "INNER JOIN (SELECT MAX(ID) as ID FROM ARANCELES GROUP BY PROFESIONAL) B ON A.ID = B.ID ";
+                        query += "INNER JOIN PROF_ESP PE ON A.PROFESIONAL = PE.PROFESIONAL ";
+                        query += "INNER JOIN PROFESIONALES P ON P.ID = PE.PROFESIONAL ";
+                        query += "INNER JOIN SECTACT S ON S.ID = PE.ESPECIALIDAD ";
+                        query += "WHERE PE.ESPECIALIDAD = " + CATEGORIA + " ";
+                        query += "AND P.ROL = '" + ROLE + "' ";
                         query += "AND A.FE_BAJA IS NULL AND A.CATSOC = '001' AND P.BARCODE = '" + BARCODE + "' ORDER BY S.DETALLE ASC, P.NOMBRE ASC";
                     }
 

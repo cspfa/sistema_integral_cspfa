@@ -17,6 +17,7 @@ namespace SOCIOS
     public class RegistroEntradaCampo
 
     {
+
         public int     ID         { get; set; }
         public int     TipoValor  { get; set; }
         public string     Tipo       { get; set; }
@@ -1553,6 +1554,55 @@ namespace SOCIOS
         
         
         }
+
+
+       public bool Control_Grupo_Familiar(int Cantidad,int NRO_SOC, int NRO_DEP, DateTime fecha,int Hora)
+       {
+
+           int Familiares = Cantidad_Personas_Grupo_Familiar(NRO_SOC, NRO_DEP);
+           int Ingresos = Cantidad_Grupo_Familiar_Ingresada(NRO_SOC, NRO_DEP, fecha,Hora);
+
+           if ( (Ingresos+ Cantidad) > Familiares)
+               return false;
+           else
+               return true;
+
+       }
+
+
+
+       public int Cantidad_Personas_Grupo_Familiar(int NRO_SOC, int NRO_DEP)
+       {
+           string QUERY = "SELECT COUNT(ID_TITULAR) from FAMILIAR WHERE NRO_SOC=" + NRO_SOC.ToString() + " AND NRO_DEP=" + NRO_DEP.ToString();
+
+           DataRow[] foundRows;
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+           if (foundRows.Length > 0)
+           {
+               return Int32.Parse(foundRows[0][0].ToString());
+           }
+           else
+               return 0;
+       }
+
+       public int Cantidad_Grupo_Familiar_Ingresada(int NRO_SOC,int NRO_DEP, DateTime fecha,int Hora)
+       {
+
+           string QUERY = "SELECT COUNT(ID) from entrada_campo WHERE NRO_SOC=" + NRO_SOC.ToString() + " AND NRO_DEP="+ NRO_DEP.ToString()+" AND ROL = '" + VGlobales.vp_role + "' and extract (day from fecha) = " + fecha.Day.ToString() + " and extract(month from fecha) = " + fecha.Month.ToString() + " and extract(year from fecha )= " + fecha.Year.ToString() + " and Hora_Pileta=" + Hora.ToString();
+
+           DataRow[] foundRows;
+           foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+
+           if (foundRows.Length > 0)
+           {
+               return Int32.Parse(foundRows[0][0].ToString());
+           }
+           else
+               return 0;
+
+
+       }
 
 
        public int Ultimo_ID(string ROL)

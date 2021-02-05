@@ -6,6 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -443,14 +444,11 @@ namespace SOCIOS
                 totalImporteFacturasOP();
                 tbImporteOP.Text = lbTotalFacturasOP.Text;
                 tbImporteTrans.Text = lbTotalFacturasOP.Text;
-               // comboProveedores(cbProvTrans);
                 desbloquearFormsOP();
                 comboBancos(cbBancos);
                 comboBancos(cbBancoOrigenTrans);
                 int BANCO = int.Parse(cbBancos.SelectedValue.ToString());
                 comboCuentasBancariasCargadas(BANCO, cbCtaOrigenTrans);
-                //int PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
-                traeCuentaBancariaProveedor(/*PROVEEDOR*/);
                 comboCheques(BANCO, cbCheques);
                 int CHEQUE = 0;
 
@@ -461,6 +459,7 @@ namespace SOCIOS
                 }
 
                 comboBeneficiarios();
+                traeCuentaBancariaProveedor();
                 toggleBotones("OCULTAR");
                 comboCheques(int.Parse(cbBancoOrigenTrans.SelectedValue.ToString()), cbChequeAcompTrans);
             }
@@ -1868,7 +1867,7 @@ namespace SOCIOS
             }
             else if (sumarTotales() == false)
             {
-                MessageBox.Show("EL IMPORTE DE LAS FACTURAS SELECCIONADAS YA HA SIDO CUBIERTO", "ERROR");
+                MessageBox.Show("EL IMPORTE DE LAS FACTURAS SELECCIONADAS NO HA SIDO CUBIERTO", "ERROR");
             }
             else if (cbBenefOpe.Text == "")
             {
@@ -1887,7 +1886,7 @@ namespace SOCIOS
                         string FECHA = DateTime.Now.ToShortDateString();
                         string OBSERVACIONES = tbObservacionesOP.Text.Trim();
                         string BENEFICIARIO_OP = cbBenefOpe.Text.Trim().ToUpper();
-                        decimal TOTAL = Convert.ToDecimal(lbTotalCheques.Text);
+                        decimal TOTAL = Convert.ToDecimal(lbTotalCheques.Text) + Convert.ToDecimal(lbTotalTransferencias.Text) ;
                         string US_ALTA = VGlobales.vp_username;
                         string FECHA_OP = fechaOP.Text;
                         BO_COMPRAS.nuevaOrdenDePago(FECHA, OBSERVACIONES, TOTAL, BENEFICIARIO_OP, 0, US_ALTA, FECHA_OP);
@@ -1920,7 +1919,11 @@ namespace SOCIOS
                             {
                                 int BANCO_ORIGEN = int.Parse(itemRow.SubItems[0].Text);
                                 int CUENTA_ORIGEN = int.Parse(itemRow.SubItems[3].Text);
-                                int CHEQUE = int.Parse(itemRow.SubItems[8].Text);
+                                int CHEQUE;
+                                if (itemRow.SubItems[8].Text != "")
+                                    CHEQUE = int.Parse(itemRow.SubItems[8].Text);
+                                else
+                                    CHEQUE = 0;
                                 int PROVEEDOR_TRANS = int.Parse(itemRow.SubItems[11].Text);
                                 int CUENTA_DESTINO = int.Parse(itemRow.SubItems[7].Text);
                                 decimal IMPORTE = decimal.Parse(itemRow.SubItems[9].Text);
@@ -1930,11 +1933,16 @@ namespace SOCIOS
                                 BO_COMPRAS.altaTransferencia(BANCO_ORIGEN, CUENTA_ORIGEN, CHEQUE, PROVEEDOR_TRANS, CUENTA_DESTINO, IMPORTE, US_ALTA_TRANS, FE_ALTA, FECHA_TRANS, ID_OP);
                             }
 
-                            int ID_TRANS = int.Parse(mid.m("ID", "TRANSFERENCIAS"));
-                            string ARCHIVO_ORIGEN = lbPdfTrans.Text;
-                            string ARCHIVO_DESTINO = "\\\\192.168.1.6\\ComprasPDF\\TRANSFERENCIA_" + ID_OP + "_" + ID_TRANS + ".PDF";
-                            File.Copy(ARCHIVO_ORIGEN, ARCHIVO_DESTINO);
+                            if (lbPdfTrans.Text != "ARCHIVO PDF NO CARGADO")
+                            {
+                                int ID_TRANS = int.Parse(mid.m("ID", "TRANSFERENCIAS"));
+                                string ARCHIVO_ORIGEN = lbPdfTrans.Text;
+                                string ARCHIVO_DESTINO = "\\\\192.168.1.6\\ComprasPDF\\TRANSFERENCIA_" + ID_OP + "_" + ID_TRANS + ".PDF";
+                                File.Copy(ARCHIVO_ORIGEN, ARCHIVO_DESTINO);
+                                lbPdfTrans.Text = "ARCHIVO PDF NO CARGADO";
+                            }
                         }
+
                         
                         imprimirOrdenDePago(ID_OP);
                         DialogResult result = MessageBox.Show("ORDEN DE PAGO CREADA CORRECTAMENTE \n\n ¿ABRIR EL ARCHIVO?", "LISTO!", MessageBoxButtons.YesNo);
@@ -2195,7 +2203,9 @@ namespace SOCIOS
             DataRow[] FACTURAS = dlog.BO_EjecutoDataTable(QUERY_FACTURAS).Select();
             string QUERY_CHEQUES = "SELECT B.NOMBRE, C.SERIE, C.NRO_CHEQUE, C.IMPORTE, C.FECHA, C.TIPO, C.VENCIMIENTO, C.BENEFICIARIO FROM CHEQUERAS C, BANCOS B WHERE OP_ASIGNADA = " + ID_OP + " AND B.ID = C.BANCO;";
             DataRow[] CHEQUES = dlog.BO_EjecutoDataTable(QUERY_CHEQUES).Select();
-            
+            string QUERY_TRANSFERENCIAS = "SELECT C.CBU, P.RAZON_SOCIAL, T.IMPORTE FROM TRANSFERENCIAS T, PROVEEDORES P, CUENTAS_BANCARIAS C WHERE T.PROVEEDOR = P.ID AND C.ID = T.CUENTA_DESTINO AND T.OP = " + ID_OP;
+            DataRow[] TRANSFERENCIAS = dlog.BO_EjecutoDataTable(QUERY_TRANSFERENCIAS).Select();
+
             string OBSERVACIONES = OP[0][2].ToString().Trim();
             decimal TOTAL = Convert.ToDecimal(OP[0][3]);
             string BENEFICIARIO = OP[0][4].ToString();
@@ -2465,119 +2475,63 @@ namespace SOCIOS
             #endregion
 
             #region TABLA TRANSFERENCIAS
-            /*if (TRANSFERENCIAS.Length > 0)
+            if (TRANSFERENCIAS.Length > 0)
             {
-                PdfPTable TABLA_TRANSFERENCIAS = new PdfPTable(7);
-                TABLA_CHEQUES.WidthPercentage = 100;
-                TABLA_CHEQUES.SpacingAfter = 5;
-                TABLA_CHEQUES.SpacingBefore = 5;
-                TABLA_CHEQUES.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f });
+                PdfPTable TABLA_TRANSFERENCIAS = new PdfPTable(3);
+                TABLA_TRANSFERENCIAS.WidthPercentage = 100;
+                TABLA_TRANSFERENCIAS.SpacingAfter = 5;
+                TABLA_TRANSFERENCIAS.SpacingBefore = 5;
+                TABLA_TRANSFERENCIAS.SetWidths(new float[] { 1f, 1f, 1f });
 
-                PdfPCell CELDA_BANCO = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
-                CELDA_BANCO.BackgroundColor = topo;
-                CELDA_BANCO.BorderColor = blanco;
-                CELDA_BANCO.HorizontalAlignment = 1;
-                CELDA_BANCO.FixedHeight = 16f;
-                TABLA_CHEQUES.AddCell(CELDA_BANCO);
+                PdfPCell CELDA_CBU = new PdfPCell(new Phrase("CBU", _mediumFontBoldWhite));
+                CELDA_CBU.BackgroundColor = topo;
+                CELDA_CBU.BorderColor = blanco;
+                CELDA_CBU.HorizontalAlignment = 1;
+                CELDA_CBU.FixedHeight = 16f;
+                TABLA_TRANSFERENCIAS.AddCell(CELDA_CBU);
 
-                PdfPCell CELDA_SERIE = new PdfPCell(new Phrase("SERIE", _mediumFontBoldWhite));
-                CELDA_SERIE.BackgroundColor = topo;
-                CELDA_SERIE.BorderColor = blanco;
-                CELDA_SERIE.HorizontalAlignment = 1;
-                CELDA_SERIE.FixedHeight = 16f;
-                TABLA_CHEQUES.AddCell(CELDA_SERIE);
+                PdfPCell CELDA_PROVEEDOR_T = new PdfPCell(new Phrase("PROVEEDOR", _mediumFontBoldWhite));
+                CELDA_PROVEEDOR_T.BackgroundColor = topo;
+                CELDA_PROVEEDOR_T.BorderColor = blanco;
+                CELDA_PROVEEDOR_T.HorizontalAlignment = 1;
+                CELDA_PROVEEDOR_T.FixedHeight = 16f;
+                TABLA_TRANSFERENCIAS.AddCell(CELDA_PROVEEDOR_T);
 
-                PdfPCell CELDA_NRO_CHEQUE = new PdfPCell(new Phrase("CHEQUE", _mediumFontBoldWhite));
-                CELDA_NRO_CHEQUE.BackgroundColor = topo;
-                CELDA_NRO_CHEQUE.BorderColor = blanco;
-                CELDA_NRO_CHEQUE.HorizontalAlignment = 1;
-                CELDA_NRO_CHEQUE.FixedHeight = 16f;
-                TABLA_CHEQUES.AddCell(CELDA_NRO_CHEQUE);
+                PdfPCell CELDA_IMPORTE_T = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_T.BackgroundColor = topo;
+                CELDA_IMPORTE_T.BorderColor = blanco;
+                CELDA_IMPORTE_T.HorizontalAlignment = 1;
+                CELDA_IMPORTE_T.FixedHeight = 16f;
+                TABLA_TRANSFERENCIAS.AddCell(CELDA_IMPORTE_T);
 
-                PdfPCell CELDA_IMPORTE_CHEQUE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
-                CELDA_IMPORTE_CHEQUE.BackgroundColor = topo;
-                CELDA_IMPORTE_CHEQUE.BorderColor = blanco;
-                CELDA_IMPORTE_CHEQUE.HorizontalAlignment = 1;
-                CELDA_IMPORTE_CHEQUE.FixedHeight = 16f;
-                TABLA_CHEQUES.AddCell(CELDA_IMPORTE_CHEQUE);
-
-                PdfPCell CELDA_FECHA_CHEQUE = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
-                CELDA_FECHA_CHEQUE.BackgroundColor = topo;
-                CELDA_FECHA_CHEQUE.BorderColor = blanco;
-                CELDA_FECHA_CHEQUE.HorizontalAlignment = 1;
-                CELDA_FECHA_CHEQUE.FixedHeight = 16f;
-                TABLA_CHEQUES.AddCell(CELDA_FECHA_CHEQUE);
-
-                PdfPCell CELDA_FECHA_TIPO = new PdfPCell(new Phrase("TIPO", _mediumFontBoldWhite));
-                CELDA_FECHA_TIPO.BackgroundColor = topo;
-                CELDA_FECHA_TIPO.BorderColor = blanco;
-                CELDA_FECHA_TIPO.HorizontalAlignment = 1;
-                CELDA_FECHA_TIPO.FixedHeight = 16f;
-                TABLA_CHEQUES.AddCell(CELDA_FECHA_TIPO);
-
-                PdfPCell CELDA_VENCIMIENTO = new PdfPCell(new Phrase("VENCIMIENTO", _mediumFontBoldWhite));
-                CELDA_VENCIMIENTO.BackgroundColor = topo;
-                CELDA_VENCIMIENTO.BorderColor = blanco;
-                CELDA_VENCIMIENTO.HorizontalAlignment = 1;
-                CELDA_VENCIMIENTO.FixedHeight = 16f;
-                TABLA_CHEQUES.AddCell(CELDA_VENCIMIENTO);
-
-                for (int i = 0; i <= CHEQUES.Length - 1; i++)
+                for (int i = 0; i <= TRANSFERENCIAS.Length - 1; i++)
                 {
-                    string BANCO = CHEQUES[i][0].ToString();
-                    string SERIE = CHEQUES[i][1].ToString();
-                    string NRO_CHEQUE = CHEQUES[i][2].ToString();
-                    string IMPORTE = "$ " + string.Format("{0:n}", CHEQUES[i][3]).ToString();
-                    string FECHA_CHEQUE = Convert.ToDateTime(CHEQUES[i][4]).ToShortDateString();
-                    string TIPO = CHEQUES[i][5].ToString();
-                    string VENCIMIENTO = CHEQUES[i][6].ToString();
-                    string BENEF_CHEQUE = CHEQUES[i][7].ToString();
+                    string CBU = TRANSFERENCIAS[i][0].ToString();
+                    string PROVEEDOR = TRANSFERENCIAS[i][1].ToString();
+                    string IMPORTE = "$ " + string.Format("{0:n}", TRANSFERENCIAS[i][2]).ToString();
 
-                    PdfPCell DATO_BANCO = new PdfPCell(new Phrase(BANCO, _mediumFont));
-                    DATO_BANCO.BackgroundColor = blanco;
-                    DATO_BANCO.BorderColor = blanco;
-                    DATO_BANCO.HorizontalAlignment = 1;
-                    TABLA_CHEQUES.AddCell(DATO_BANCO);
+                    PdfPCell DATO_CBU = new PdfPCell(new Phrase(CBU, _mediumFont));
+                    DATO_CBU.BackgroundColor = blanco;
+                    DATO_CBU.BorderColor = blanco;
+                    DATO_CBU.HorizontalAlignment = 1;
+                    TABLA_TRANSFERENCIAS.AddCell(DATO_CBU);
 
-                    PdfPCell DATO_SERIE = new PdfPCell(new Phrase(SERIE, _mediumFont));
-                    DATO_SERIE.BackgroundColor = blanco;
-                    DATO_SERIE.BorderColor = blanco;
-                    DATO_SERIE.HorizontalAlignment = 1;
-                    TABLA_CHEQUES.AddCell(DATO_SERIE);
-
-                    PdfPCell DATO_NRO_CHEQUE = new PdfPCell(new Phrase(NRO_CHEQUE, _mediumFont));
-                    DATO_NRO_CHEQUE.BackgroundColor = blanco;
-                    DATO_NRO_CHEQUE.BorderColor = blanco;
-                    DATO_NRO_CHEQUE.HorizontalAlignment = 1;
-                    TABLA_CHEQUES.AddCell(DATO_NRO_CHEQUE);
+                    PdfPCell DATO_PROVEEDOR = new PdfPCell(new Phrase(PROVEEDOR, _mediumFont));
+                    DATO_PROVEEDOR.BackgroundColor = blanco;
+                    DATO_PROVEEDOR.BorderColor = blanco;
+                    DATO_PROVEEDOR.HorizontalAlignment = 1;
+                    TABLA_TRANSFERENCIAS.AddCell(DATO_PROVEEDOR);
 
                     PdfPCell DATO_IMPORTE = new PdfPCell(new Phrase(IMPORTE, _mediumFont));
                     DATO_IMPORTE.BackgroundColor = blanco;
                     DATO_IMPORTE.BorderColor = blanco;
                     DATO_IMPORTE.HorizontalAlignment = 1;
-                    TABLA_CHEQUES.AddCell(DATO_IMPORTE);
+                    TABLA_TRANSFERENCIAS.AddCell(DATO_IMPORTE);
 
-                    PdfPCell DATO_FECHA_CHEQUE = new PdfPCell(new Phrase(FECHA_CHEQUE, _mediumFont));
-                    DATO_FECHA_CHEQUE.BackgroundColor = blanco;
-                    DATO_FECHA_CHEQUE.BorderColor = blanco;
-                    DATO_FECHA_CHEQUE.HorizontalAlignment = 1;
-                    TABLA_CHEQUES.AddCell(DATO_FECHA_CHEQUE);
-
-                    PdfPCell DATO_TIPO = new PdfPCell(new Phrase(TIPO, _mediumFont));
-                    DATO_TIPO.BackgroundColor = blanco;
-                    DATO_TIPO.BorderColor = blanco;
-                    DATO_TIPO.HorizontalAlignment = 1;
-                    TABLA_CHEQUES.AddCell(DATO_TIPO);
-
-                    PdfPCell DATO_VENCIMIENTO = new PdfPCell(new Phrase(VENCIMIENTO, _mediumFont));
-                    DATO_VENCIMIENTO.BackgroundColor = blanco;
-                    DATO_VENCIMIENTO.BorderColor = blanco;
-                    DATO_VENCIMIENTO.HorizontalAlignment = 1;
-                    TABLA_CHEQUES.AddCell(DATO_VENCIMIENTO);
                 }
 
-                doc.Add(TABLA_CHEQUES);
-            }*/
+                doc.Add(TABLA_TRANSFERENCIAS);
+            }
             #endregion
 
             #region TABLA TOTAL OP
@@ -2753,7 +2707,7 @@ namespace SOCIOS
             cbCuentaDestinoTrans.DataSource = null;
             cbCuentaDestinoTrans.Items.Clear();
             cbCuentaDestinoTrans.Enabled = false;
-            //comboProveedores(cbProvTrans);
+            tbProvTrans.Text = "";
             tbImporteTrans.Text = "";
             dpFechaTransferencia.Text = DateTime.Today.ToShortDateString();
         }
@@ -2852,7 +2806,7 @@ namespace SOCIOS
 
         private void comboCuentasBancariasCargadas(int BANCO, ComboBox COMBO)
         {
-            string query = "SELECT ID, NRO_CUENTA FROM CUENTAS_BANCARIAS WHERE FE_BAJA IS NULL AND BANCO = " + BANCO + "  AND PROVEEDOR = 99999999 ORDER BY NRO_CUENTA;";
+            string query = "SELECT ID, NRO_CUENTA FROM CUENTAS_BANCARIAS WHERE FE_BAJA IS NULL AND BANCO = " + BANCO + " ORDER BY NRO_CUENTA";//"  AND PROVEEDOR = 99999999 ORDER BY NRO_CUENTA;";
             COMBO.DataSource = null;
             COMBO.Items.Clear();
             DataRow[] foundRows;
@@ -4165,7 +4119,7 @@ namespace SOCIOS
             decimal TOTALFA = Convert.ToDecimal(lbTotalFacturasOP.Text);
             decimal TOTALLL = CHEQUES + TRANSFE;
 
-            if (TOTALLL <= TOTALFA)
+            if (TOTALLL == TOTALFA)
             {
                 return true;
             }
@@ -4363,14 +4317,22 @@ namespace SOCIOS
             {
                 MessageBox.Show("EL IMPORTE DE LAS TRANSFERENCIAS SUPERA EL TOTAL DE LAS FACTURAS SELECCIONADAS", "ERROR");
             }
-            else if (cbProvTrans.Text.Trim() == "")
+            else if (tbProvTrans.Text.Trim() == "")
             {
-                MessageBox.Show("COMPLETAR EL CAMBPO PROVEEDOR", "ERROR");
+                MessageBox.Show("COMPLETAR EL CAMPO PROVEEDOR", "ERROR");
             }
             else if (cbCuentaDestinoTrans.Items.Count == 0)
             {
                 MessageBox.Show("NO SE ENCONTRÓ NINGUNA CUENTA BANCARIA ASIGNADA AL PROVEEDOR SELECCIONADO", "ERROR");
             }
+            else if (!checkProveedor(tbProvTrans.Text.Trim()))
+            {
+                MessageBox.Show("EL PROVEEDOR INGRESADO NO EXISTE");
+            }
+            /*else if (checkCuentaDestino( cbProvTrans.Text.Trim(), cbCuentaDestinoTrans.Text.Trim()))
+            {
+                MessageBox.Show("EL PROVEEDOR NO COINCIDE CON EL NRO DE CUENTA DESTINO");
+            }*/
             /*else if (lbPdfTrans.Text == "ARCHIVO PDF NO CARGADO")
             {
                 MessageBox.Show("NO SE CARGO NINGUN COMPROBANTE DE TRANSFERENCIA", "ERROR");
@@ -4380,13 +4342,13 @@ namespace SOCIOS
                 string BANCO_ORIGEN_ID = cbBancoOrigenTrans.SelectedValue.ToString();
                 string BANCO_ORIGEN = cbBancoOrigenTrans.Text.Trim();
                 string CUENTA_ORIGEN = cbCtaOrigenTrans.Text.Trim();
-                string CUENTA_ORIGEN_ID = "1";// cbCtaOrigenTrans.SelectedValue.ToString();
+                string CUENTA_ORIGEN_ID = cbCtaOrigenTrans.SelectedValue.ToString();
                 string CHEQUE = cbChequeAcompTrans.Text.Trim();
                 string CUENTA_DESTINO = cbCuentaDestinoTrans.Text.Trim();
                 string CUENTA_DESTINO_ID = cbCuentaDestinoTrans.SelectedValue.ToString();
                 string IMPORTE = string.Format("{0:n}", Convert.ToDecimal(tbImporteTrans.Text.Trim()));
-                string PROVEEDOR = cbProvTrans.Text.Trim().ToUpper().Trim();
-                //string PROVEEDOR_ID = cbProvTrans.SelectedValue.ToString().Trim();
+                string PROVEEDOR = tbProvTrans.Text.Trim().ToUpper().Trim();
+                string PROVEEDOR_ID = idProveedor(PROVEEDOR);
                 string PDF_RUTA = lbPdfTrans.Text.Trim();
                 string[] BANCO_DESTINO = obtenerBancoDeCuenta(CUENTA_DESTINO_ID);
                 string FECHA = dpFechaTransferencia.Text;
@@ -4404,7 +4366,7 @@ namespace SOCIOS
                     lvTransSeleccionadas.Columns.Add("CHEQUE");
                     lvTransSeleccionadas.Columns.Add("IMPORTE");
                     lvTransSeleccionadas.Columns.Add("PROVEEDOR");
-                   // lvTransSeleccionadas.Columns.Add("PROVEEDOR_ID");
+                    lvTransSeleccionadas.Columns.Add("PROVEEDOR_ID");
                     lvTransSeleccionadas.Columns.Add("FECHA");
                     lvTransSeleccionadas.Columns.Add("PDF");
                 }
@@ -4420,7 +4382,7 @@ namespace SOCIOS
                 items.SubItems.Add(CHEQUE);
                 items.SubItems.Add(IMPORTE);
                 items.SubItems.Add(PROVEEDOR);
-               // items.SubItems.Add(PROVEEDOR_ID);
+                items.SubItems.Add(PROVEEDOR_ID);
                 items.SubItems.Add(FECHA);
                 items.SubItems.Add(PDF_RUTA);
                 lvTransSeleccionadas.Items.Add(items);
@@ -4433,7 +4395,7 @@ namespace SOCIOS
                 lvTransSeleccionadas.Columns[5].Width = 0;
                 lvTransSeleccionadas.Columns[7].Width = 0;
                 lvTransSeleccionadas.Columns[11].Width = 0;
-                //lvTransSeleccionadas.Columns[13].Width = 0;
+                lvTransSeleccionadas.Columns[13].Width = 0;
 
 
                 if (BANCO_ORIGEN_ID == "2")
@@ -4445,6 +4407,22 @@ namespace SOCIOS
             }
 
             sumaTransferencias();
+        }
+
+        private string idProveedor(string PROVEEDOR)
+        {
+            string QUERY = "SELECT ID FROM PROVEEDORES WHERE RAZON_SOCIAL = '" + PROVEEDOR + "' AND FE_BAJA IS NULL";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            return foundRows[0][0].ToString().Trim();
+        }
+
+        private bool checkCuentaDestino(string PROVEEDOR, string CUENTA)
+        {
+            string QUERY = "SELECT ID FROM CUENTAS_BANCARIAS WHERE PROVEEDOR = " + PROVEEDOR + " AND NRO_CUENTA = '" + CUENTA + "'";
+            DataRow[] foundRows;
+            foundRows = dlog.BO_EjecutoDataTable(QUERY).Select();
+            return foundRows.Length < 0;
         }
 
         private bool VerificarTotalTransferido()
@@ -4518,18 +4496,7 @@ namespace SOCIOS
         }
 
         private void cbProvTrans_SelectionChangeCommitted(object sender, EventArgs e)
-        {/*
-            int ID_PROVEEDOR = int.Parse(cbProvTrans.SelectedValue.ToString());
-            traeCuentaBancariaProveedor(ID_PROVEEDOR);
-
-            if (cbCuentaDestinoTrans.Items.Count > 0)
-            {
-                cbCuentaDestinoTrans.Enabled = true;
-            }
-            else
-            {
-                cbCuentaDestinoTrans.Enabled = false;
-            } */
+        {
         }
 
         private void buscarCuentasBancarias(int PROVEEDOR)
@@ -6752,7 +6719,7 @@ namespace SOCIOS
 
         }
 
-        private void eliminarTransferencias(string CUALES)
+        private void eliminarTransferencias(string CUALES) // revisar codigo comentado
         {
             string CHEQUE = "";
             string BANCO_ID = "";
@@ -6785,6 +6752,608 @@ namespace SOCIOS
         private void ToolStripMenuItem5_Click(object sender, EventArgs e)
         {
             eliminarTransferencias("SELECCIONADOS");
+        }
+
+        private void BtnVistaPreviaTrans_Click(object sender, EventArgs e)
+        {
+            if (lvOP.Items.Count == 0)
+            {
+                MessageBox.Show("NO SE SELECCIONO NINGUNA FACTURA", "ERROR");
+            }
+            else if (lvChequesSeleccionados.Items.Count == 0 && lvTransSeleccionadas.Items.Count == 0)
+            {
+                MessageBox.Show("NO SE CARGO NINGUN CHEQUE NI TRANSFERENCIA", "ERROR");
+            }
+            else if (sumarTotales() == false)
+            {
+                MessageBox.Show("EL IMPORTE DE LAS FACTURAS SELECCIONADAS YA HA SIDO CUBIERTO", "ERROR");
+            }
+            else if (cbBenefOpe.Text == "")
+            {
+                MessageBox.Show("SELECCIONAR UN BENEFICIARIO PARA LA ORDEN DE PAGO", "ERROR");
+            }
+            else
+            {
+                if (MessageBox.Show("¿DESEA CREAR VISTA PREVIA?", "PREGUNTA", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    int ID_OP = int.Parse(mid.m("ID", "ORDENES_DE_PAGO")) + 1;
+
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.FileName = "VISTAPREVIAOP - " + ID_OP.ToString(); 
+                    saveFileDialog1.Filter = "Pdf Files|*.pdf";
+                    saveFileDialog1.Title = "Guardar PDF vista previa";
+                    saveFileDialog1.ShowDialog();
+
+                    if (saveFileDialog1.FileName != "" && saveFileDialog1.FileName != "VISTAPREVIAOP - " + ID_OP.ToString())
+                    {
+                        string PATH = saveFileDialog1.FileName;
+                        Cursor = Cursors.WaitCursor;
+                        string[][] TRANSFERENCIAS = new string[lvTransSeleccionadas.Items.Count][];
+                        string[][] CHEQUES = new string[lvChequesSeleccionados.Items.Count][];
+                        try
+                        {
+                            string ID_FACTURA = "";
+                            decimal TOTAL = Convert.ToDecimal(lbTotalCheques.Text) + Convert.ToDecimal(lbTotalTransferencias.Text);
+
+                            foreach (ListViewItem itemRow in lvOP.Items)
+                            {
+                                ID_FACTURA = itemRow.SubItems[0].Text;
+                            }
+
+                            string[] OP = new string[4];
+                            OP[0] = tbObservacionesOP.Text.Trim();
+                            OP[1] = cbBenefOpe.Text.Trim().ToUpper();
+                            OP[2] = Convert.ToString(TOTAL);
+                            OP[3] = ID_FACTURA;
+
+
+                            if (lvChequesSeleccionados.Items.Count > 0)
+                            {
+                                int i = 0;
+                                foreach (ListViewItem itemRow in lvChequesSeleccionados.Items)
+                                {
+                                    CHEQUES[i] = new string[8];
+                                    CHEQUES[i][0] = itemRow.SubItems[0].Text; // Banco
+                                    CHEQUES[i][1] = "A"; // SERIE
+                                    CHEQUES[i][2] = itemRow.SubItems[1].Text; // Cheque
+                                    CHEQUES[i][3] = itemRow.SubItems[4].Text; // Importe
+                                    CHEQUES[i][4] = itemRow.SubItems[5].Text; // Fecha
+                                    CHEQUES[i][5] = itemRow.SubItems[2].Text; // Tipo
+                                    CHEQUES[i][6] = itemRow.SubItems[3].Text; // Vencimiento
+                                    CHEQUES[i][7] = itemRow.SubItems[6].Text.ToUpper(); // Beneficiario
+                                    i++;
+                                }
+                            }
+
+                            if (lvTransSeleccionadas.Items.Count > 0)
+                            {
+                                int i = 0;
+                                foreach (ListViewItem itemRow in lvTransSeleccionadas.Items)
+                                {
+                                    string QUERY_CBU = "SELECT CBU FROM CUENTAS_BANCARIAS WHERE ID = " + itemRow.SubItems[7].Text;
+                                    DataRow[] CBU = dlog.BO_EjecutoDataTable(QUERY_CBU).Select();
+
+                                    TRANSFERENCIAS[i] = new string[3];
+                                    TRANSFERENCIAS[i][0] = CBU[0][0].ToString(); // CBU
+                                    TRANSFERENCIAS[i][1] = itemRow.SubItems[10].Text; // Proveedor
+                                    TRANSFERENCIAS[i][2] = itemRow.SubItems[9].Text; // Importe
+                                    i++;
+                                }
+
+                                if (lbPdfTrans.Text != "ARCHIVO PDF NO CARGADO")
+                                {
+                                    int ID_TRANS = int.Parse(mid.m("ID", "TRANSFERENCIAS"));
+                                    string ARCHIVO_ORIGEN = lbPdfTrans.Text;
+                                    string ARCHIVO_DESTINO = "\\\\192.168.1.6\\ComprasPDF\\TRANSFERENCIA_" + ID_OP + "_" + ID_TRANS + ".PDF";
+                                    File.Copy(ARCHIVO_ORIGEN, ARCHIVO_DESTINO);
+                                    lbPdfTrans.Text = "ARCHIVO PDF NO CARGADO";
+                                }
+                            }
+
+                            imprimirVistaPrevia(TRANSFERENCIAS, CHEQUES, OP, PATH);
+                            DialogResult result = MessageBox.Show("VISTA PREVIA CREADA CORRECTAMENTE \n\n ¿ABRIR EL ARCHIVO?", "LISTO!", MessageBoxButtons.YesNo);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                Process.Start(PATH);
+                            }
+                        }
+                        catch (Exception error)
+                        {
+                            MessageBox.Show("NO SE PUDO GENERAR VISTA PREVIA\n" + error, "ERROR");
+                            Cursor = Cursors.Default;
+                        }
+                    }
+                    Cursor = Cursors.Default;
+                } 
+            }
+        
+        }
+
+        private void imprimirVistaPrevia(string[][] TRANSFERENCIAS, string[][] CHEQUES, string[] OP, string PATH)
+        {
+            maxid mid = new maxid();
+            int ID_OP = int.Parse(mid.m("ID", "ORDENES_DE_PAGO")) + 1;
+            string QUERY_FACTURAS = "SELECT F.NUM_FACTURA, P.RAZON_SOCIAL, F.FECHA, F.IMPORTE, F.OBSERVACIONES, F.SECTOR FROM FACTURAS F, PROVEEDORES P WHERE P.ID = F.PROVEEDOR AND F.ID = " + OP[3];
+            DataRow[] FACTURAS = dlog.BO_EjecutoDataTable(QUERY_FACTURAS).Select();
+
+            string OBSERVACIONES = OP[0];
+            decimal TOTAL = Decimal.Parse(OP[2]);
+            string BENEFICIARIO = OP[1];
+            DateTime FECHA = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+            string FECHA_LARGA = FECHA.ToString("D", CultureInfo.CreateSpecificCulture("es-MX"));
+            string TOTAL_OP = "$ " + string.Format("{0:n}", TOTAL);
+
+            #region HEADER
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 12, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            iTextSharp.text.Font _standardFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 12, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+            iTextSharp.text.Font _standardFontWhite = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 12, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
+            iTextSharp.text.Font _standardFontBoldWhite = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 12, iTextSharp.text.Font.BOLD, BaseColor.WHITE);
+            iTextSharp.text.Font _mediumFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
+            iTextSharp.text.Font _mediumFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 8, iTextSharp.text.Font.BOLD, BaseColor.BLACK);
+            iTextSharp.text.Font _mediumFontWhite = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 8, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
+            iTextSharp.text.Font _mediumFontBoldWhite = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.COURIER, 8, iTextSharp.text.Font.BOLD, BaseColor.WHITE);
+            BaseColor negro = new BaseColor(0, 0, 0);
+            BaseColor gris = new BaseColor(230, 230, 230);
+            BaseColor topo = new BaseColor(100, 100, 100);
+            BaseColor blanco = new BaseColor(255, 255, 255);
+
+            Document doc = new Document(PageSize.A4);
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(PATH, FileMode.Create));
+            doc.AddTitle("ORDEN DE PAGO Nº " + ID_OP.ToString());
+            doc.AddCreator("CSPFA");
+            doc.Open();
+
+            PdfPTable TABLA_HEADER = new PdfPTable(2);
+            TABLA_HEADER.WidthPercentage = 100;
+            TABLA_HEADER.SpacingAfter = 5;
+            TABLA_HEADER.SetWidths(new float[] { 1f, 1f });
+
+            PdfPCell CELDA_CSPFA = new PdfPCell(new Phrase("CÍRCULO DE SUBOFICIALES DE LA PFA", _standardFont));
+            PdfPCell CELDA_OP = new PdfPCell(new Phrase("ORDEN DE PAGO Nº " + ID_OP.ToString(), _standardFont));
+
+            CELDA_CSPFA.BackgroundColor = blanco;
+            CELDA_CSPFA.BorderColor = blanco;
+            CELDA_CSPFA.HorizontalAlignment = 0;
+            CELDA_CSPFA.FixedHeight = 16f;
+
+            CELDA_OP.BackgroundColor = blanco;
+            CELDA_OP.BorderColor = blanco;
+            CELDA_OP.HorizontalAlignment = 2;
+            CELDA_OP.FixedHeight = 16f;
+
+            TABLA_HEADER.AddCell(CELDA_CSPFA);
+            TABLA_HEADER.AddCell(CELDA_OP);
+
+            doc.Add(TABLA_HEADER);
+
+            Paragraph P_FECHA = new Paragraph("Buenos Aires " + FECHA_LARGA, _mediumFont);
+            P_FECHA.Alignment = Element.ALIGN_LEFT;
+            P_FECHA.SpacingAfter = 5;
+            doc.Add(P_FECHA);
+
+            Paragraph P_PAGUESE = new Paragraph("Páguese por Tesorería los importes correspondientes a los comprobantes que se adjuntan", _mediumFont);
+            P_PAGUESE.Alignment = Element.ALIGN_LEFT;
+            P_PAGUESE.SpacingBefore = 5;
+            doc.Add(P_PAGUESE);
+
+            Paragraph P_BENEFICIARIO = new Paragraph("BENEFICIARIO: " + BENEFICIARIO, _mediumFont);
+            P_BENEFICIARIO.Alignment = Element.ALIGN_LEFT;
+            P_BENEFICIARIO.SpacingAfter = 5;
+            doc.Add(P_BENEFICIARIO);
+            #endregion
+
+            #region TABLA FACTURAS
+            PdfPTable TABLA_FACTURAS = new PdfPTable(5);
+            TABLA_FACTURAS.WidthPercentage = 100;
+            TABLA_FACTURAS.SpacingAfter = 5;
+            TABLA_FACTURAS.SpacingBefore = 5;
+            TABLA_FACTURAS.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f });
+
+            PdfPCell CELDA_NRO_FACTURA = new PdfPCell(new Phrase("FACTURA Nº", _mediumFontBoldWhite));
+            CELDA_NRO_FACTURA.BackgroundColor = topo;
+            CELDA_NRO_FACTURA.BorderColor = blanco;
+            CELDA_NRO_FACTURA.HorizontalAlignment = 1;
+            CELDA_NRO_FACTURA.FixedHeight = 16f;
+            TABLA_FACTURAS.AddCell(CELDA_NRO_FACTURA);
+
+            PdfPCell CELDA_PROVEEDOR = new PdfPCell(new Phrase("PROVEEDOR", _mediumFontBoldWhite));
+            CELDA_PROVEEDOR.BackgroundColor = topo;
+            CELDA_PROVEEDOR.BorderColor = blanco;
+            CELDA_PROVEEDOR.HorizontalAlignment = 1;
+            CELDA_PROVEEDOR.FixedHeight = 16f;
+            TABLA_FACTURAS.AddCell(CELDA_PROVEEDOR);
+
+            PdfPCell CELDA_FECHA = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+            CELDA_FECHA.BackgroundColor = topo;
+            CELDA_FECHA.BorderColor = blanco;
+            CELDA_FECHA.HorizontalAlignment = 1;
+            CELDA_FECHA.FixedHeight = 16f;
+            TABLA_FACTURAS.AddCell(CELDA_FECHA);
+
+            PdfPCell CELDA_SECTOR = new PdfPCell(new Phrase("SECTOR", _mediumFontBoldWhite));
+            CELDA_SECTOR.BackgroundColor = topo;
+            CELDA_SECTOR.BorderColor = blanco;
+            CELDA_SECTOR.HorizontalAlignment = 1;
+            CELDA_SECTOR.FixedHeight = 16f;
+            TABLA_FACTURAS.AddCell(CELDA_SECTOR);
+
+            PdfPCell CELDA_IMPORTE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+            CELDA_IMPORTE.BackgroundColor = topo;
+            CELDA_IMPORTE.BorderColor = blanco;
+            CELDA_IMPORTE.HorizontalAlignment = 1;
+            CELDA_IMPORTE.FixedHeight = 16f;
+            TABLA_FACTURAS.AddCell(CELDA_IMPORTE);
+
+            for (int i = 0; i <= FACTURAS.Length - 1; i++)
+            {
+                string NRO_FACTURA = FACTURAS[i][0].ToString().Trim();
+                string PROVEEDOR = FACTURAS[i][1].ToString().Trim();
+                string FECHA_FACTURA = Convert.ToDateTime(FACTURAS[i][2]).ToShortDateString();
+                string IMPORTE = "$ " + string.Format("{0:n}", FACTURAS[i][3]).ToString();
+                string OBS_FACTURA = FACTURAS[i][4].ToString().Trim();
+                string SECTOR = FACTURAS[i][5].ToString().Trim();
+
+                PdfPCell DATO_NRO_FACTURA = new PdfPCell(new Phrase(NRO_FACTURA, _mediumFont));
+                DATO_NRO_FACTURA.BackgroundColor = blanco;
+                DATO_NRO_FACTURA.BorderColor = blanco;
+                DATO_NRO_FACTURA.HorizontalAlignment = 1;
+                TABLA_FACTURAS.AddCell(DATO_NRO_FACTURA);
+
+                PdfPCell DATO_PROVEEDOR = new PdfPCell(new Phrase(PROVEEDOR, _mediumFont));
+                DATO_PROVEEDOR.BackgroundColor = blanco;
+                DATO_PROVEEDOR.BorderColor = blanco;
+                DATO_PROVEEDOR.HorizontalAlignment = 1;
+                TABLA_FACTURAS.AddCell(DATO_PROVEEDOR);
+
+                PdfPCell DATO_FECHA = new PdfPCell(new Phrase(FECHA_FACTURA, _mediumFont));
+                DATO_FECHA.BackgroundColor = blanco;
+                DATO_FECHA.BorderColor = blanco;
+                DATO_FECHA.HorizontalAlignment = 1;
+                TABLA_FACTURAS.AddCell(DATO_FECHA);
+
+                PdfPCell DATO_SECTOR = new PdfPCell(new Phrase(SECTOR, _mediumFont));
+                DATO_SECTOR.BackgroundColor = blanco;
+                DATO_SECTOR.BorderColor = blanco;
+                DATO_SECTOR.HorizontalAlignment = 1;
+                TABLA_FACTURAS.AddCell(DATO_SECTOR);
+
+                PdfPCell DATO_IMPORTE = new PdfPCell(new Phrase(IMPORTE, _mediumFont));
+                DATO_IMPORTE.BackgroundColor = blanco;
+                DATO_IMPORTE.BorderColor = blanco;
+                DATO_IMPORTE.HorizontalAlignment = 1;
+                TABLA_FACTURAS.AddCell(DATO_IMPORTE);
+            }
+
+            doc.Add(TABLA_FACTURAS);
+            #endregion
+
+            #region TABLA CHEQUES
+            if (CHEQUES.Length > 0)
+            {
+                PdfPTable TABLA_CHEQUES = new PdfPTable(7);
+                TABLA_CHEQUES.WidthPercentage = 100;
+                TABLA_CHEQUES.SpacingAfter = 5;
+                TABLA_CHEQUES.SpacingBefore = 5;
+                TABLA_CHEQUES.SetWidths(new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f });
+
+                PdfPCell CELDA_BANCO = new PdfPCell(new Phrase("BANCO", _mediumFontBoldWhite));
+                CELDA_BANCO.BackgroundColor = topo;
+                CELDA_BANCO.BorderColor = blanco;
+                CELDA_BANCO.HorizontalAlignment = 1;
+                CELDA_BANCO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_BANCO);
+
+                PdfPCell CELDA_SERIE = new PdfPCell(new Phrase("SERIE", _mediumFontBoldWhite));
+                CELDA_SERIE.BackgroundColor = topo;
+                CELDA_SERIE.BorderColor = blanco;
+                CELDA_SERIE.HorizontalAlignment = 1;
+                CELDA_SERIE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_SERIE);
+
+                PdfPCell CELDA_NRO_CHEQUE = new PdfPCell(new Phrase("CHEQUE", _mediumFontBoldWhite));
+                CELDA_NRO_CHEQUE.BackgroundColor = topo;
+                CELDA_NRO_CHEQUE.BorderColor = blanco;
+                CELDA_NRO_CHEQUE.HorizontalAlignment = 1;
+                CELDA_NRO_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_NRO_CHEQUE);
+
+                PdfPCell CELDA_IMPORTE_CHEQUE = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_CHEQUE.BackgroundColor = topo;
+                CELDA_IMPORTE_CHEQUE.BorderColor = blanco;
+                CELDA_IMPORTE_CHEQUE.HorizontalAlignment = 1;
+                CELDA_IMPORTE_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_IMPORTE_CHEQUE);
+
+                PdfPCell CELDA_FECHA_CHEQUE = new PdfPCell(new Phrase("FECHA", _mediumFontBoldWhite));
+                CELDA_FECHA_CHEQUE.BackgroundColor = topo;
+                CELDA_FECHA_CHEQUE.BorderColor = blanco;
+                CELDA_FECHA_CHEQUE.HorizontalAlignment = 1;
+                CELDA_FECHA_CHEQUE.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_FECHA_CHEQUE);
+
+                PdfPCell CELDA_FECHA_TIPO = new PdfPCell(new Phrase("TIPO", _mediumFontBoldWhite));
+                CELDA_FECHA_TIPO.BackgroundColor = topo;
+                CELDA_FECHA_TIPO.BorderColor = blanco;
+                CELDA_FECHA_TIPO.HorizontalAlignment = 1;
+                CELDA_FECHA_TIPO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_FECHA_TIPO);
+
+                PdfPCell CELDA_VENCIMIENTO = new PdfPCell(new Phrase("VENCIMIENTO", _mediumFontBoldWhite));
+                CELDA_VENCIMIENTO.BackgroundColor = topo;
+                CELDA_VENCIMIENTO.BorderColor = blanco;
+                CELDA_VENCIMIENTO.HorizontalAlignment = 1;
+                CELDA_VENCIMIENTO.FixedHeight = 16f;
+                TABLA_CHEQUES.AddCell(CELDA_VENCIMIENTO);
+
+                for (int i = 0; i <= CHEQUES.Length - 1; i++)
+                {
+                    string BANCO = CHEQUES[i][0];
+                    string SERIE = CHEQUES[i][1].ToString();
+                    string NRO_CHEQUE = CHEQUES[i][2].ToString();
+                    string IMPORTE = "$ " + string.Format("{0:n}", CHEQUES[i][3]).ToString();
+                    string FECHA_CHEQUE = Convert.ToDateTime(CHEQUES[i][4]).ToShortDateString();
+                    string TIPO = CHEQUES[i][5].ToString();
+                    string VENCIMIENTO = CHEQUES[i][6].ToString();
+                    string BENEF_CHEQUE = CHEQUES[i][7].ToString();
+
+                    PdfPCell DATO_BANCO = new PdfPCell(new Phrase(BANCO, _mediumFont));
+                    DATO_BANCO.BackgroundColor = blanco;
+                    DATO_BANCO.BorderColor = blanco;
+                    DATO_BANCO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_BANCO);
+
+                    PdfPCell DATO_SERIE = new PdfPCell(new Phrase(SERIE, _mediumFont));
+                    DATO_SERIE.BackgroundColor = blanco;
+                    DATO_SERIE.BorderColor = blanco;
+                    DATO_SERIE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_SERIE);
+
+                    PdfPCell DATO_NRO_CHEQUE = new PdfPCell(new Phrase(NRO_CHEQUE, _mediumFont));
+                    DATO_NRO_CHEQUE.BackgroundColor = blanco;
+                    DATO_NRO_CHEQUE.BorderColor = blanco;
+                    DATO_NRO_CHEQUE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_NRO_CHEQUE);
+
+                    PdfPCell DATO_IMPORTE = new PdfPCell(new Phrase(IMPORTE, _mediumFont));
+                    DATO_IMPORTE.BackgroundColor = blanco;
+                    DATO_IMPORTE.BorderColor = blanco;
+                    DATO_IMPORTE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_IMPORTE);
+
+                    PdfPCell DATO_FECHA_CHEQUE = new PdfPCell(new Phrase(FECHA_CHEQUE, _mediumFont));
+                    DATO_FECHA_CHEQUE.BackgroundColor = blanco;
+                    DATO_FECHA_CHEQUE.BorderColor = blanco;
+                    DATO_FECHA_CHEQUE.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_FECHA_CHEQUE);
+
+                    PdfPCell DATO_TIPO = new PdfPCell(new Phrase(TIPO, _mediumFont));
+                    DATO_TIPO.BackgroundColor = blanco;
+                    DATO_TIPO.BorderColor = blanco;
+                    DATO_TIPO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_TIPO);
+
+                    PdfPCell DATO_VENCIMIENTO = new PdfPCell(new Phrase(VENCIMIENTO, _mediumFont));
+                    DATO_VENCIMIENTO.BackgroundColor = blanco;
+                    DATO_VENCIMIENTO.BorderColor = blanco;
+                    DATO_VENCIMIENTO.HorizontalAlignment = 1;
+                    TABLA_CHEQUES.AddCell(DATO_VENCIMIENTO);
+                }
+
+                doc.Add(TABLA_CHEQUES);
+            }
+            #endregion
+
+            #region TABLA TRANSFERENCIAS
+            if (TRANSFERENCIAS.Length > 0)
+            {
+                PdfPTable TABLA_TRANSFERENCIAS = new PdfPTable(3);
+                TABLA_TRANSFERENCIAS.WidthPercentage = 100;
+                TABLA_TRANSFERENCIAS.SpacingAfter = 5;
+                TABLA_TRANSFERENCIAS.SpacingBefore = 5;
+                TABLA_TRANSFERENCIAS.SetWidths(new float[] { 1f, 1f, 1f });
+
+                PdfPCell CELDA_CBU = new PdfPCell(new Phrase("CBU", _mediumFontBoldWhite));
+                CELDA_CBU.BackgroundColor = topo;
+                CELDA_CBU.BorderColor = blanco;
+                CELDA_CBU.HorizontalAlignment = 1;
+                CELDA_CBU.FixedHeight = 16f;
+                TABLA_TRANSFERENCIAS.AddCell(CELDA_CBU);
+
+                PdfPCell CELDA_PROVEEDOR_T = new PdfPCell(new Phrase("PROVEEDOR", _mediumFontBoldWhite));
+                CELDA_PROVEEDOR_T.BackgroundColor = topo;
+                CELDA_PROVEEDOR_T.BorderColor = blanco;
+                CELDA_PROVEEDOR_T.HorizontalAlignment = 1;
+                CELDA_PROVEEDOR_T.FixedHeight = 16f;
+                TABLA_TRANSFERENCIAS.AddCell(CELDA_PROVEEDOR_T);
+
+                PdfPCell CELDA_IMPORTE_T = new PdfPCell(new Phrase("IMPORTE", _mediumFontBoldWhite));
+                CELDA_IMPORTE_T.BackgroundColor = topo;
+                CELDA_IMPORTE_T.BorderColor = blanco;
+                CELDA_IMPORTE_T.HorizontalAlignment = 1;
+                CELDA_IMPORTE_T.FixedHeight = 16f;
+                TABLA_TRANSFERENCIAS.AddCell(CELDA_IMPORTE_T);
+
+                for (int i = 0; i < TRANSFERENCIAS.Length; i++)
+                {
+                    string CBU = Convert.ToString(TRANSFERENCIAS[i][0]);
+                    string PROVEEDOR = Convert.ToString(TRANSFERENCIAS[i][1]);
+                    string IMPORTE = "$ " + string.Format("{0:n}", TRANSFERENCIAS[i][2]);
+
+                    PdfPCell DATO_CBU = new PdfPCell(new Phrase(CBU, _mediumFont));
+                    DATO_CBU.BackgroundColor = blanco;
+                    DATO_CBU.BorderColor = blanco;
+                    DATO_CBU.HorizontalAlignment = 1;
+                    TABLA_TRANSFERENCIAS.AddCell(DATO_CBU);
+
+                    PdfPCell DATO_PROVEEDOR = new PdfPCell(new Phrase(PROVEEDOR, _mediumFont));
+                    DATO_PROVEEDOR.BackgroundColor = blanco;
+                    DATO_PROVEEDOR.BorderColor = blanco;
+                    DATO_PROVEEDOR.HorizontalAlignment = 1;
+                    TABLA_TRANSFERENCIAS.AddCell(DATO_PROVEEDOR);
+
+                    PdfPCell DATO_IMPORTE = new PdfPCell(new Phrase(IMPORTE, _mediumFont));
+                    DATO_IMPORTE.BackgroundColor = blanco;
+                    DATO_IMPORTE.BorderColor = blanco;
+                    DATO_IMPORTE.HorizontalAlignment = 1;
+                    TABLA_TRANSFERENCIAS.AddCell(DATO_IMPORTE);
+
+                }
+
+                doc.Add(TABLA_TRANSFERENCIAS);
+            }
+            #endregion
+
+            #region TABLA TOTAL OP
+            PdfPTable TABLA_TOTAL_OP = new PdfPTable(1);
+            TABLA_TOTAL_OP.WidthPercentage = 100;
+            TABLA_TOTAL_OP.SpacingAfter = 5;
+            TABLA_TOTAL_OP.SetWidths(new float[] { 1f });
+
+            PdfPCell CELDA_IMPORTE_TOTAL_OP = new PdfPCell(new Phrase("TOTAL: " + TOTAL_OP, _mediumFontBoldWhite));
+            CELDA_IMPORTE_TOTAL_OP.BackgroundColor = topo;
+            CELDA_IMPORTE_TOTAL_OP.BorderColor = blanco;
+            CELDA_IMPORTE_TOTAL_OP.HorizontalAlignment = 2;
+            CELDA_IMPORTE_TOTAL_OP.FixedHeight = 16f;
+            TABLA_TOTAL_OP.AddCell(CELDA_IMPORTE_TOTAL_OP);
+
+            doc.Add(TABLA_TOTAL_OP);
+            #endregion
+
+            #region TABLA FIRMAS
+
+            PdfPTable TABLA_FIRMA_BENEFICIARIO = new PdfPTable(2);
+            TABLA_FIRMA_BENEFICIARIO.WidthPercentage = 100;
+            TABLA_FIRMA_BENEFICIARIO.SpacingBefore = 65;
+            TABLA_FIRMA_BENEFICIARIO.SetWidths(new float[] { 3f, 1f });
+
+            PdfPCell CELDA_RECIBI = new PdfPCell(new Phrase("Recibí de conformidad el pago con los valores detallados precedentemente", _mediumFont));
+            CELDA_RECIBI.BackgroundColor = blanco;
+            CELDA_RECIBI.BorderColor = blanco;
+            CELDA_RECIBI.HorizontalAlignment = 0;
+            TABLA_FIRMA_BENEFICIARIO.AddCell(CELDA_RECIBI);
+
+            PdfPCell CELDA_LINEA_FIRMA_RECIBI = new PdfPCell(new Phrase("__________________________", _mediumFont));
+            CELDA_LINEA_FIRMA_RECIBI.BackgroundColor = blanco;
+            CELDA_LINEA_FIRMA_RECIBI.BorderColor = blanco;
+            CELDA_LINEA_FIRMA_RECIBI.HorizontalAlignment = 2;
+            TABLA_FIRMA_BENEFICIARIO.AddCell(CELDA_LINEA_FIRMA_RECIBI);
+
+            PdfPCell CELDA_VACIA = new PdfPCell(new Phrase(" ", _mediumFont));
+            CELDA_VACIA.BackgroundColor = blanco;
+            CELDA_VACIA.BorderColor = blanco;
+            CELDA_VACIA.HorizontalAlignment = 1;
+            TABLA_FIRMA_BENEFICIARIO.AddCell(CELDA_VACIA);
+
+            PdfPCell CELDA_FIRMA = new PdfPCell(new Phrase("Firma del Beneficiario  ", _mediumFont));
+            CELDA_FIRMA.BackgroundColor = blanco;
+            CELDA_FIRMA.BorderColor = blanco;
+            CELDA_FIRMA.HorizontalAlignment = 2;
+            TABLA_FIRMA_BENEFICIARIO.AddCell(CELDA_FIRMA);
+
+            doc.Add(TABLA_FIRMA_BENEFICIARIO);
+
+            PdfPTable TABLA_FIRMAS = new PdfPTable(3);
+            TABLA_FIRMAS.WidthPercentage = 100;
+            TABLA_FIRMAS.SpacingBefore = 65;
+            TABLA_FIRMAS.SetWidths(new float[] { 1f, 1f, 1f });
+
+            PdfPCell CELDA_LINEA_TAVARES = new PdfPCell(new Phrase("_______________________________", _mediumFont));
+            CELDA_LINEA_TAVARES.BackgroundColor = blanco;
+            CELDA_LINEA_TAVARES.BorderColor = blanco;
+            CELDA_LINEA_TAVARES.HorizontalAlignment = 1;
+            CELDA_LINEA_TAVARES.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_LINEA_TAVARES);
+
+            PdfPCell CELDA_LINEA_HERNANDEZ = new PdfPCell(new Phrase("_______________________________", _mediumFont));
+            CELDA_LINEA_HERNANDEZ.BackgroundColor = blanco;
+            CELDA_LINEA_HERNANDEZ.BorderColor = blanco;
+            CELDA_LINEA_HERNANDEZ.HorizontalAlignment = 1;
+            CELDA_LINEA_HERNANDEZ.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_LINEA_HERNANDEZ);
+
+            PdfPCell CELDA_LINEA_VISCONTI = new PdfPCell(new Phrase("_______________________________", _mediumFont));
+            CELDA_LINEA_VISCONTI.BackgroundColor = blanco;
+            CELDA_LINEA_VISCONTI.BorderColor = blanco;
+            CELDA_LINEA_VISCONTI.HorizontalAlignment = 1;
+            CELDA_LINEA_VISCONTI.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_LINEA_VISCONTI);
+
+            PdfPCell CELDA_TAVARES = new PdfPCell(new Phrase("Miguel Ángel TAVARES", _mediumFont));
+            CELDA_TAVARES.BackgroundColor = blanco;
+            CELDA_TAVARES.BorderColor = blanco;
+            CELDA_TAVARES.HorizontalAlignment = 1;
+            CELDA_TAVARES.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_TAVARES);
+
+            PdfPCell CELDA_HERNANDEZ = new PdfPCell(new Phrase("Carlos Aníbal HERNANDEZ", _mediumFont));
+            CELDA_HERNANDEZ.BackgroundColor = blanco;
+            CELDA_HERNANDEZ.BorderColor = blanco;
+            CELDA_HERNANDEZ.HorizontalAlignment = 1;
+            CELDA_HERNANDEZ.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_HERNANDEZ);
+
+            PdfPCell CELDA_VISCONTI = new PdfPCell(new Phrase("Eliseo Aníbal VISCONTI", _mediumFont));
+            CELDA_VISCONTI.BackgroundColor = blanco;
+            CELDA_VISCONTI.BorderColor = blanco;
+            CELDA_VISCONTI.HorizontalAlignment = 1;
+            CELDA_VISCONTI.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_VISCONTI);
+
+
+            PdfPCell CELDA_SECRETARIO = new PdfPCell(new Phrase("SECRETARIO GENERAL", _mediumFont));
+            CELDA_SECRETARIO.BackgroundColor = blanco;
+            CELDA_SECRETARIO.BorderColor = blanco;
+            CELDA_SECRETARIO.HorizontalAlignment = 1;
+            CELDA_SECRETARIO.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_SECRETARIO);
+
+            PdfPCell CELDA_TESORERO = new PdfPCell(new Phrase("TESORERO", _mediumFont));
+            CELDA_TESORERO.BackgroundColor = blanco;
+            CELDA_TESORERO.BorderColor = blanco;
+            CELDA_TESORERO.HorizontalAlignment = 1;
+            CELDA_TESORERO.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_TESORERO);
+
+            PdfPCell CELDA_PRESIDENTE = new PdfPCell(new Phrase("PRESIDENTE", _mediumFont));
+            CELDA_PRESIDENTE.BackgroundColor = blanco;
+            CELDA_PRESIDENTE.BorderColor = blanco;
+            CELDA_PRESIDENTE.HorizontalAlignment = 1;
+            CELDA_PRESIDENTE.FixedHeight = 16f;
+            TABLA_FIRMAS.AddCell(CELDA_PRESIDENTE);
+
+
+            doc.Add(TABLA_FIRMAS);
+
+            #endregion
+
+            Paragraph P_PROCEDIO = new Paragraph("Se procedió al pago ordenado precedentemente", _mediumFont);
+            P_PROCEDIO.Alignment = Element.ALIGN_LEFT;
+            P_PROCEDIO.SpacingBefore = 25;
+            doc.Add(P_PROCEDIO);
+
+            Paragraph P_CREV = new Paragraph("VERIFICACIÓN COMISIÓN REVISORA DE CUENTAS", _mediumFont);
+            P_CREV.Alignment = Element.ALIGN_LEFT;
+            P_CREV.SpacingBefore = 15;
+            doc.Add(P_CREV);
+
+            Paragraph P_LINEA_CREV = new Paragraph("____________________________________________________________________________________________________________", _mediumFont);
+            P_LINEA_CREV.Alignment = Element.ALIGN_LEFT;
+            P_LINEA_CREV.SpacingBefore = 15;
+            doc.Add(P_LINEA_CREV);
+
+            Paragraph P_OBSERVACIONES = new Paragraph("OBSERVACIONES: " + OBSERVACIONES, _mediumFont);
+            P_OBSERVACIONES.Alignment = Element.ALIGN_LEFT;
+            P_OBSERVACIONES.SpacingBefore = 15;
+            doc.Add(P_OBSERVACIONES);
+
+            doc.Close();
+            writer.Close();
+        }
+
+        private void Compras_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
