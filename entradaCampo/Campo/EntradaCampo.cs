@@ -184,6 +184,8 @@ namespace SOCIOS.Entrada_Campo
 
 
             RegistroEntradaCampo entrada = new RegistroEntradaCampo();
+            int Horario = -1;
+            string Horario_Leyenda = "D.C.";
 
             if (cbPiletaHorario.Checked)
             {
@@ -381,7 +383,8 @@ namespace SOCIOS.Entrada_Campo
 
                 if (cbPiletaHorario.Checked)
                     Hora_Pileta = 1; // Hora 1 , es que hay horarios que recorrer en la tabla anexa  //Hora_Pileta = Int32.Parse(cbHorario.SelectedValue.ToString());
-                   
+               
+                
                 decimal Monto_Entrada =0;
                 decimal Monto_Total=0;
            
@@ -441,11 +444,38 @@ namespace SOCIOS.Entrada_Campo
                     
                     if (Piletas !=0)
                     {
-                        bool Control_Aforo = ControlAforo(Piletas, Hora_Pileta);
+                        Control_Aforo = true;
+                        if (cbPiletaHorario.Checked)
+                        {
+                            foreach (int hora in lista.GroupBy(x => x.HorarioID).Select(v => v.First().HorarioID).ToList())
+                            {
+                                Control_Aforo = ControlAforo(Piletas, hora);
+                                if (Control_Aforo == false)
+                                    return;
+                            }
+                        }
+                        else
+                        {
+                            Control_Aforo = ControlAforo(Piletas,0);
+                        }
                         if (Control_Aforo == false)
                             return;
                     }
                 }
+
+
+               
+                     bool Control=   Control_Cantidad_Familiares(Socio_Pileta + Invitado_Pileta + Intercirculo_Pileta,Hora_Pileta);
+                     if (!Control)
+                     {
+                         if (MessageBox.Show("La cantidad de entradas en el dia excede el limite de cantidade de personas del grupo familiar, esta seguro ?", "Control Grupo Familiar", MessageBoxButtons.YesNo) == DialogResult.No)
+                         {
+                             return;
+                         }
+                 
+                     }
+                
+
 
 
                 Cantidad_Total = Socio + Socio_Pileta + Socio_Estacionamiento+ Invitado + Invitado_Pileta + Invitado_Estacionamiento + Intercirculo + Intercirculo_Pileta + Intercirculo_Estacionamiento;
@@ -552,9 +582,89 @@ namespace SOCIOS.Entrada_Campo
 
         }
 
+        public bool Control_Cantidad_Familiares(int Cantidad,int Hora_Pileta)
+        {
+            if (NRO_SOCIO == 0)
+                return false ;
+
+          return entradaCampoService.Control_Grupo_Familiar(Cantidad, NRO_SOCIO, NRO_DEP, System.DateTime.Now,Hora_Pileta);
+
+            
+        }
+
+        private void Grabar_Horarios(int ID_INT)
+        {
+            var lista_copia = lista;
+
+            foreach (int hora in lista.GroupBy(x => x.HorarioID).Select(v => v.First().HorarioID).ToList())
+            {
+                //Tipo 1 : Entrada Socio /Familiar
+            //Tipo 2 : Entrada Pileta Socio /Familiar
+            //Tipo 3 : Estacionamiento Socio
+
+            //Tipo 4 : Entrada Invi
+            //Tipo 5 : Entrada Invi Pileta 
+            //Tipo 6 : Estacionamiento Invi
+
+            //Tipo 7 : Entrada Inter
+            //Tipo 8 : Entrada Inter Pileta 
+            //Tipo 9 : Estacionamiento Inter
+            //Tipo 10 : Entrada Menor Pileta
+            //Tipo 11 : Entrada Disca Pileta
+            //Tipo 12 : Entrada VITALICIO ORO
+            //Tipo 13 : Entrada Pileta Promo
+                var item = lista_copia.Where(b => b.HorarioID == hora);
+                int Socio=item.Where(x=>x.TipoValor==2).Count();
+                int Inter = item.Where(x => x.TipoValor == 8).Count();
+                int Invi = item.Where(x => x.TipoValor == 5).Count();
+                int Disca = item.Where(x => x.TipoValor == 11).Count();
+                int Menor = item.Where(x => x.TipoValor == 10).Count();
+                int Promo = item.Where(x => x.TipoValor == 13).Count(); ;
+
+                 dlog.Entrada_Campo_HORARIOS_Ins(ID_INT, hora, Socio, Inter, Invi, Menor, Disca, 0, Promo);
+            
+            }
+
+        
+        }
+
         private void Grabar(int ID_INT)
         {
             var lista_copia = lista;
+
+            foreach (int hora in lista.GroupBy(x => x.HorarioID).Select(v => v.First().HorarioID).ToList())
+            {
+                //Tipo 1 : Entrada Socio /Familiar
+                //Tipo 2 : Entrada Pileta Socio /Familiar
+                //Tipo 3 : Estacionamiento Socio
+
+                //Tipo 4 : Entrada Invi
+                //Tipo 5 : Entrada Invi Pileta 
+                //Tipo 6 : Estacionamiento Invi
+
+                //Tipo 7 : Entrada Inter
+                //Tipo 8 : Entrada Inter Pileta 
+                //Tipo 9 : Estacionamiento Inter
+                //Tipo 10 : Entrada Menor Pileta
+                //Tipo 11 : Entrada Disca Pileta
+                //Tipo 12 : Entrada VITALICIO ORO
+                //Tipo 13 : Entrada Pileta Promo
+                var item = lista_copia.Where(b => b.HorarioID == hora);
+                int Socio = item.Where(x => x.TipoValor == 2).Count();
+                int Inter = item.Where(x => x.TipoValor == 8).Count();
+                int Invi = item.Where(x => x.TipoValor == 5).Count();
+                int Disca = item.Where(x => x.TipoValor == 11).Count();
+                int Menor = item.Where(x => x.TipoValor == 10).Count();
+                int Promo = item.Where(x => x.TipoValor == 13).Count(); ;
+
+                dlog.Entrada_Campo_HORARIOS_Ins(ID_INT, hora, Socio, Inter, Invi, Menor, Disca, 0, Promo);
+
+            }
+
+
+        }
+
+
 
         private bool ControlAforo(int TotalPiletas, int Horario)
         {
@@ -746,6 +856,7 @@ namespace SOCIOS.Entrada_Campo
 
 
         }
+
 
         private int Impresion_piletas(int contador, int Total, string TIPO, int Tope, bool Directo)
         {

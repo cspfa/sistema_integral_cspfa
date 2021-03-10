@@ -17,7 +17,6 @@ namespace SOCIOS
     public class RegistroEntradaCampo
 
     {
-
         public int     ID         { get; set; }
         public int     TipoValor  { get; set; }
         public string     Tipo       { get; set; }

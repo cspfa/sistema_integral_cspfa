@@ -1453,7 +1453,7 @@ namespace SOCIOS
                 //string query = "SELECT * FROM PLANILLA_CAJA_INFORME ('" + PAGO + "', " + CAJA + ", '" + VGlobales.vp_role + "');";
 
                 string query = "SELECT DISTINCT B.NRO_COMP, TRIM(B.NOMBRE_SOCIO), (TRIM(S.DETALLE)||' - '||TRIM(P.NOMBRE)), B.CUENTA_HABER, ";
-                query += "CASE WHEN B.ANULADO IS NULL THEN B.VALOR ELSE '0' END, ";
+                query += "CASE WHEN (B.ANULADO IS NULL or B.NUMERO_NC_E is not null  ) THEN B.VALOR ELSE '0' END, ";
                 query += "B.OBSERVACIONES, 'R' AS TIPO, B.CAJA_DIARIA, B.FECHA_RECIBO, B.DESTINO, B.ANULADO, ";
                 query += "F.DETALLE, B.PTO_VTA, B.BANCO_DEPO, B.PTO_VTA_E, B.NUMERO_E, B.NUMERO_NC_E ";
                 query += "FROM RECIBOS_CAJA B, SECTACT S, PROFESIONALES P, FORMAS_DE_PAGO F ";
@@ -2337,7 +2337,7 @@ namespace SOCIOS
                 TABLA_TOTAL_OTROS.WidthPercentage = 100;
                 TABLA_TOTAL_OTROS.SpacingAfter = 0;
                 TABLA_TOTAL_OTROS.SpacingBefore = 0;
-                TABLA_TOTAL_OTROS.SetWidths(new float[] { 4f, 4f, 4f, 4f });
+                TABLA_TOTAL_OTROS.SetWidths(new float[] { 4f, 5f, 4f, 4f });
                 PdfPCell CELDA_TITULO_OTROS = new PdfPCell(new Phrase("3.01.1.01 INGRESOS DEL DIA (DEBE)", _mediumFontBoldWhite));
                 PdfPCell CELDA_TOTAL_OTROS = new PdfPCell(new Phrase("$ " + string.Format("{0:n}", TOTAL_INGRESOS_OTROS), _mediumFontBoldWhite));
                 PdfPCell CELDA_TITULO_OTROS_E = new PdfPCell(new Phrase("TOTAL FACTURADO", _mediumFontBoldWhite));
@@ -2386,7 +2386,7 @@ namespace SOCIOS
                         NUM_NC = row[16].ToString();
                         F_PAGO = row[11].ToString();
 
-                        /*if (NUM_E != "")
+                        if (NUM_E != "")
                         {
                             TOTAL_OTROS_AFIP = TOTAL_OTROS_AFIP + IMPORTE;
                             IMPORTE_E = IMPORTE;
@@ -2396,7 +2396,7 @@ namespace SOCIOS
                         {
                             IMPORTE_E = 0;
                             TEXTO_NUM_E = "";
-                        }*/
+                        }
 
                         if (BANCO_DEPO.Trim() == "PATAGONIA")
                         {
@@ -3180,7 +3180,7 @@ namespace SOCIOS
 
             object misValue = System.Reflection.Missing.Value;
             xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Add();
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
 
 
             Excel.Worksheet CHEQUES_WS;
@@ -3449,7 +3449,7 @@ namespace SOCIOS
                     X++;
                 }
             }
-
+            
             if (VGlobales.vp_role == "CAJA")
             {
 

@@ -74,6 +74,7 @@
             this.planDeCuentaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turismoControlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turneroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aforoCamposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afiliacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imprimirAutorizacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.renunciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -169,7 +170,7 @@
             this.pnl_Interior = new System.Windows.Forms.Panel();
             this.LINK_INTERIOR = new System.Windows.Forms.LinkLabel();
             this.lbInterior = new System.Windows.Forms.Label();
-            this.aforoCamposToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resolucionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip1.SuspendLayout();
             this.themedStatusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.newDataSet1)).BeginInit();
@@ -209,7 +210,7 @@
             this.MenuStrip1.Name = "MenuStrip1";
             this.MenuStrip1.Padding = new System.Windows.Forms.Padding(0, 10, 1, 0);
             this.MenuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.MenuStrip1.Size = new System.Drawing.Size(120, 614);
+            this.MenuStrip1.Size = new System.Drawing.Size(121, 614);
             this.MenuStrip1.TabIndex = 1;
             this.MenuStrip1.Text = "MenuStrip1";
             // 
@@ -229,9 +230,9 @@
             this.ToolStripMenuItem8.BackColor = System.Drawing.SystemColors.Control;
             this.ToolStripMenuItem8.Image = global::SOCIOS.Properties.Resources.user_go;
             this.ToolStripMenuItem8.Name = "ToolStripMenuItem8";
-            this.ToolStripMenuItem8.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift)
-                        | System.Windows.Forms.Keys.D)));
-            this.ToolStripMenuItem8.Size = new System.Drawing.Size(251, 22);
+            this.ToolStripMenuItem8.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.D)));
+            this.ToolStripMenuItem8.Size = new System.Drawing.Size(263, 22);
             this.ToolStripMenuItem8.Text = "Cambiar de Usuario";
             this.ToolStripMenuItem8.Click += new System.EventHandler(this.ToolStripMenuItem8_Click);
             // 
@@ -239,7 +240,7 @@
             // 
             this.toolStripMenuItem13.Image = global::SOCIOS.Properties.Resources.key;
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(251, 22);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(263, 22);
             this.toolStripMenuItem13.Text = "Cambiar Contraseña";
             this.toolStripMenuItem13.Click += new System.EventHandler(this.toolStripMenuItem13_Click);
             // 
@@ -247,7 +248,7 @@
             // 
             this.ToolStripMenuItem9.Image = global::SOCIOS.Properties.Resources.door_out;
             this.ToolStripMenuItem9.Name = "ToolStripMenuItem9";
-            this.ToolStripMenuItem9.Size = new System.Drawing.Size(251, 22);
+            this.ToolStripMenuItem9.Size = new System.Drawing.Size(263, 22);
             this.ToolStripMenuItem9.Text = "&Salir";
             this.ToolStripMenuItem9.Click += new System.EventHandler(this.ToolStripMenuItem9_Click);
             // 
@@ -410,10 +411,11 @@
             this.planDeCuentaToolStripMenuItem,
             this.turismoControlToolStripMenuItem,
             this.turneroToolStripMenuItem,
-            this.aforoCamposToolStripMenuItem});
+            this.aforoCamposToolStripMenuItem,
+            this.resolucionesToolStripMenuItem});
             this.procesosToolStripMenuItem.Enabled = false;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(117, 18);
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(118, 18);
             this.procesosToolStripMenuItem.Text = "Sistemas";
             this.procesosToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -601,6 +603,13 @@
             this.turneroToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
             this.turneroToolStripMenuItem.Text = "Turnero";
             this.turneroToolStripMenuItem.Click += new System.EventHandler(this.turneroToolStripMenuItem_Click);
+            // 
+            // aforoCamposToolStripMenuItem
+            // 
+            this.aforoCamposToolStripMenuItem.Name = "aforoCamposToolStripMenuItem";
+            this.aforoCamposToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.aforoCamposToolStripMenuItem.Text = "Aforo Campos";
+            this.aforoCamposToolStripMenuItem.Click += new System.EventHandler(this.aforoCamposToolStripMenuItem_Click);
             // 
             // afiliacionesToolStripMenuItem
             // 
@@ -1312,10 +1321,10 @@
             this.lbVersion,
             this.lbServidor,
             this.tsUpdater});
-            this.themedStatusStrip1.Location = new System.Drawing.Point(120, 592);
+            this.themedStatusStrip1.Location = new System.Drawing.Point(121, 592);
             this.themedStatusStrip1.Name = "themedStatusStrip1";
             this.themedStatusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
-            this.themedStatusStrip1.Size = new System.Drawing.Size(1242, 22);
+            this.themedStatusStrip1.Size = new System.Drawing.Size(1241, 22);
             this.themedStatusStrip1.TabIndex = 4;
             this.themedStatusStrip1.Text = "themedStatusStrip1";
             // 
@@ -1437,12 +1446,12 @@
             this.lbInterior.TabIndex = 0;
             this.lbInterior.Text = "CONTACTOS SIN LEER!";
             // 
-            // aforoCamposToolStripMenuItem
+            // resolucionesToolStripMenuItem
             // 
-            this.aforoCamposToolStripMenuItem.Name = "aforoCamposToolStripMenuItem";
-            this.aforoCamposToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.aforoCamposToolStripMenuItem.Text = "Aforo Campos";
-            this.aforoCamposToolStripMenuItem.Click += new System.EventHandler(this.aforoCamposToolStripMenuItem_Click);
+            this.resolucionesToolStripMenuItem.Name = "resolucionesToolStripMenuItem";
+            this.resolucionesToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.resolucionesToolStripMenuItem.Text = "Resoluciones";
+            this.resolucionesToolStripMenuItem.Click += new System.EventHandler(this.ResolucionesToolStripMenuItem_Click);
             // 
             // MenuABM
             // 
@@ -1630,5 +1639,6 @@
         private System.Windows.Forms.ToolStripMenuItem salidasCreacionMasivaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem memoriaXLSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aforoCamposToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resolucionesToolStripMenuItem;
     }
 }

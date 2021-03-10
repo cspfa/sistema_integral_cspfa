@@ -14,6 +14,8 @@ using iTextSharp.text;
 using System.IO;
 using FirebirdSql.Data.FirebirdClient;
 using System.Data;
+using System.Drawing;
+
 namespace SOCIOS.Factura_Electronica
 {
     public class DataBarra
@@ -31,6 +33,8 @@ namespace SOCIOS.Factura_Electronica
         string Leyenda_Profesional = "";
         string DIRECTORIO_TEMP = @"C:\CSPFA_SOCIOS\TMP\";
         bo dlog = new bo();
+        QrHelper QR = new QrHelper();
+
         public Impresor_Factura(string pDIR)
         {
             DIRECTORIO = pDIR;
@@ -40,11 +44,22 @@ namespace SOCIOS.Factura_Electronica
 
         {
             ReportDataSource rds = new ReportDataSource();
-            ReportParameter[] para = new ReportParameter[17];
+            ReportParameter[] para = new ReportParameter[18];
             ReportViewer viewer = new ReportViewer();
             FacturaCSPFA facturaService = new FacturaCSPFA(pPunto_De_Venta);
+            int TipoDoc=0;
+            if (pCuit.Length > 8)
+                  {
+                                TipoDoc = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.CUIT;
+                                
+                  } else
+                    { TipoDoc = (int)SOCIOS.Factura_Electronica.Tipo_Doc_Enum.DNI;
+            
+                    }
 
-           
+           System.Drawing.Image Image_Qr = QR.QR_TS(pFecha, pPunto_De_Venta, pTipo_Comprobante, pNumero, pMonto, TipoDoc, pCuit, pCAE);
+
+          
           
 
             if (pTipo_Comprobante == (int)SOCIOS.Factura_Electronica.Tipo_Comprobante_Enum.RECIBO_C)
@@ -76,6 +91,7 @@ namespace SOCIOS.Factura_Electronica
             ReportParameter Concepto        = new ReportParameter("CONCEPTO", pConcepto);
             ReportParameter Direccion                  =  new ReportParameter("DIRECCION",Leyenda_Direccion);
             ReportParameter Leyenda_profesional         = new ReportParameter("LEYENDA", Leyenda_Profesional);
+            ReportParameter QR_P               = new ReportParameter("QR", ImageToBase64(Image_Qr));
             para[0] = Tipo_Comp;
             para[1] = PtoVenta;
             para[2] = Numero;
@@ -94,7 +110,7 @@ namespace SOCIOS.Factura_Electronica
             para[14] = Concepto;
             para[15] = Direccion;
             para[16] = Leyenda_profesional;
-
+            para[17] = QR_P;
             string Excepcion = "";
 
             try
@@ -109,7 +125,7 @@ namespace SOCIOS.Factura_Electronica
                
 
                 viewer.LocalReport.DataSources.Add(new ReportDataSource("DataBarra", this.getCodigoBarra(Codigo_Barra)));
-               
+                viewer.LocalReport.EnableExternalImages = true;
                 viewer.LocalReport.SetParameters(para);
                 viewer.LocalReport.Refresh();
 
@@ -132,6 +148,17 @@ namespace SOCIOS.Factura_Electronica
             }
 
         
+        }
+
+        public string ImageToBase64(System.Drawing.Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            { //Convert Image to byte[]
+                image.Save(ms,image.RawFormat); byte[] imageBytes = ms.ToArray();
+                // Convert byte[] to Base64 String
+                string base64String = Convert.ToBase64String(imageBytes);
+                return base64String; 
+            }
         }
 
         private List<DataBarra> getCodigoBarra(string Codigo)

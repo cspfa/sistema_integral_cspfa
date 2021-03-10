@@ -2333,5 +2333,11 @@ namespace SOCIOS
             SOCIOS.entradaCampo.CSPFA.ConfiguracionAforo aforo = new entradaCampo.CSPFA.ConfiguracionAforo();
             aforo.ShowDialog();
         }
+
+        private void ResolucionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Resoluciones_Disp.Resoluciones_Disp RD = new Resoluciones_Disp.Resoluciones_Disp();
+            RD.ShowDialog();
+        }
     }
 }

@@ -1237,8 +1237,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
-        <Top>10.25957in</Top>
-        <Left>4.13542in</Left>
+        <Top>9.92027in</Top>
+        <Left>4.14291in</Left>
         <Height>0.37336in</Height>
         <Width>1.06962in</Width>
         <ZIndex>7</ZIndex>
@@ -1269,8 +1269,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
-        <Top>10.74915in</Top>
-        <Left>4.13542in</Left>
+        <Top>10.40986in</Top>
+        <Left>4.14291in</Left>
         <Height>0.37336in</Height>
         <Width>1.06962in</Width>
         <ZIndex>8</ZIndex>
@@ -1289,11 +1289,14 @@
         <Value>=First(Fields!Barra.Value,"DataBarra")</Value>
         <MIMEType>image/gif</MIMEType>
         <Sizing>FitProportional</Sizing>
-        <Top>10.17068in</Top>
+        <Top>8.26535in</Top>
         <Left>0.11897in</Left>
         <Height>0.5921in</Height>
         <Width>3.16091in</Width>
         <ZIndex>9</ZIndex>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1315,11 +1318,14 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>BARCODE</rd:DefaultName>
-        <Top>10.79266in</Top>
+        <Top>8.9269in</Top>
         <Left>0.09896in</Left>
         <Height>0.25in</Height>
         <Width>3.91836in</Width>
         <ZIndex>10</ZIndex>
+        <Visibility>
+          <Hidden>true</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1345,8 +1351,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>CAE</rd:DefaultName>
-        <Top>10.25957in</Top>
-        <Left>5.21893in</Left>
+        <Top>9.92027in</Top>
+        <Left>5.22642in</Left>
         <Height>0.25in</Height>
         <Width>2.17745in</Width>
         <ZIndex>11</ZIndex>
@@ -1375,8 +1381,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>VENC</rd:DefaultName>
-        <Top>10.74915in</Top>
-        <Left>5.21893in</Left>
+        <Top>10.40986in</Top>
+        <Left>5.22642in</Left>
         <Height>0.25in</Height>
         <Width>2.17745in</Width>
         <ZIndex>12</ZIndex>
@@ -1452,9 +1458,9 @@
       </Textbox>
       <Line Name="Line1">
         <Top>9.85083in</Top>
-        <Left>1.84375in</Left>
+        <Left>0.09896in</Left>
         <Height>0in</Height>
-        <Width>4.53234in</Width>
+        <Width>7.4745in</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -1568,8 +1574,110 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Image Name="QR">
+        <Source>Database</Source>
+        <Value>=Parameters!QR.Value</Value>
+        <MIMEType>image/bmp</MIMEType>
+        <Sizing>FitProportional</Sizing>
+        <Top>9.92027in</Top>
+        <Left>0.13688in</Left>
+        <Height>1.10417in</Height>
+        <Width>1.3125in</Width>
+        <ZIndex>20</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox28">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>AFIP</Value>
+                <Style>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox12</rd:DefaultName>
+        <Top>9.92027in</Top>
+        <Left>1.60559in</Left>
+        <Height>0.37336in</Height>
+        <Width>1.06962in</Width>
+        <ZIndex>21</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox29">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>COMPROBANTE  AUTORIZADO</Value>
+                <Style>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontWeight>ExtraBold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox12</rd:DefaultName>
+        <Top>10.40986in</Top>
+        <Left>1.59518in</Left>
+        <Height>0.37336in</Height>
+        <Width>2.32276in</Width>
+        <ZIndex>22</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>29.1596cm</Height>
+    <Height>28.18064cm</Height>
     <Style />
   </Body>
   <ReportParameters>
@@ -1670,6 +1778,12 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="LEYENDA">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="QR">
       <DataType>String</DataType>
       <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>

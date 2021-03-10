@@ -155,6 +155,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\CSPFA_SOCIOS\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -221,6 +225,7 @@
       <DependentUpon>PARCHE_RECIBOS.cs</DependentUpon>
     </Compile>
     <Compile Include="Factura_Electronica\PreFacturado.cs" />
+    <Compile Include="Factura_Electronica\QrHelper.cs" />
     <Compile Include="interior\Clases.cs" />
     <Compile Include="interior\Contactos .cs">
       <SubType>Form</SubType>
@@ -2368,6 +2373,10 @@
     <ProjectReference Include="OrientacionSocial\OrientacionSocial.csproj">
       <Project>{7087F8D0-45FB-4AE8-A776-C4356C5275E4}</Project>
       <Name>OrientacionSocial</Name>
+    </ProjectReference>
+    <ProjectReference Include="Resoluciones_Disp\Resoluciones_Disp.csproj">
+      <Project>{7e58f596-0c38-466a-9c47-74d3c235518f}</Project>
+      <Name>Resoluciones_Disp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
